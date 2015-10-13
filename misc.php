@@ -224,10 +224,10 @@ Reason: <reason>
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$cur_post = $db->fetch_assoc($result);
+	$cur_comment = $db->fetch_assoc($result);
 
 	if ($luna_config['o_censoring'] == '1')
-		$cur_post['subject'] = censor_words($cur_post['subject']);
+		$cur_comment['subject'] = censor_words($cur_comment['subject']);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Report comment', 'luna'));
 	$required_fields = array('req_reason' => __('Reason', 'luna'));

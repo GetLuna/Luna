@@ -134,9 +134,9 @@ if (isset($_GET['ip_stats'])) {
 
 	if ($num_posts) {
 		$posters = $poster_ids = array();
-		while ($cur_poster = $db->fetch_assoc($result)) {
-			$posters[] = $cur_poster;
-			$poster_ids[] = $cur_poster['poster_id'];
+		while ($cur_commenter = $db->fetch_assoc($result)) {
+			$posters[] = $cur_commenter;
+			$poster_ids[] = $cur_commenter['poster_id'];
 		}
 
 		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $poster_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -145,18 +145,18 @@ if (isset($_GET['ip_stats'])) {
 			$user_data[$cur_user['id']] = $cur_user;
 
 		// Loop through users and print out some info
-		foreach ($posters as $cur_poster) {
-			if (isset($user_data[$cur_poster['poster_id']])) {
-				$user_title = get_title($user_data[$cur_poster['poster_id']]);
+		foreach ($posters as $cur_commenter) {
+			if (isset($user_data[$cur_commenter['poster_id']])) {
+				$user_title = get_title($user_data[$cur_commenter['poster_id']]);
 
-			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
 ?>
 			<tr>
-				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td>
+				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['username']).'</a>' ?></td>
+				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['email']) ?></a></td>
 				<td><?php echo $user_title ?></td>
-				<td class="text-center"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['poster_id']]['num_posts']) ?></td>
+				<td><?php echo ($user_data[$cur_commenter['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['admin_note']) : '&#160;' ?></td>
 				<td><?php echo $actions ?></td>
 			</tr>
 <?php
@@ -165,7 +165,7 @@ if (isset($_GET['ip_stats'])) {
 
 ?>
 			<tr>
-				<td><?php echo luna_htmlspecialchars($cur_poster['poster']) ?></td>
+				<td><?php echo luna_htmlspecialchars($cur_commenter['poster']) ?></td>
 				<td>&#160;</td>
 				<td><?php _e('Guest', 'luna') ?></td>
 				<td>&#160;</td>
@@ -375,16 +375,16 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			// Find all comments made by this user
 			$result = $db->query('SELECT p.id, p.poster_id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
-				while ($cur_post = $db->fetch_assoc($result)) {
+				while ($cur_comment = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "topic post" or not
-					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_comment['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
-					if ($db->result($result2) == $cur_post['id'])
-						delete_topic($cur_post['topic_id']);
+					if ($db->result($result2) == $cur_comment['id'])
+						delete_topic($cur_comment['topic_id']);
 					else
-						delete_post($cur_post['id'], $cur_post['topic_id'], $cur_post['poster_id']);
+						delete_post($cur_comment['id'], $cur_comment['topic_id'], $cur_comment['poster_id']);
 
-					update_forum($cur_post['forum_id']);
+					update_forum($cur_comment['forum_id']);
 				}
 			}
 		} else

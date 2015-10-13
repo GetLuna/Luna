@@ -27,20 +27,20 @@ else
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-$cur_posting = $db->fetch_assoc($result);
-$is_subscribed = $tid && $cur_posting['is_subscribed'];
+$cur_commenting = $db->fetch_assoc($result);
+$is_subscribed = $tid && $cur_commenting['is_subscribed'];
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
-$mods_array = ($cur_posting['moderators'] != '') ? unserialize($cur_posting['moderators']) : array();
+$mods_array = ($cur_commenting['moderators'] != '') ? unserialize($cur_commenting['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 if ($tid && $luna_config['o_censoring'] == '1')
-	$cur_posting['subject'] = censor_words($cur_posting['subject']);
+	$cur_commenting['subject'] = censor_words($cur_commenting['subject']);
 
 // Do we have permission to post?
-if ((($tid && (($cur_posting['post_replies'] == '' && $luna_user['g_post_replies'] == '0') || $cur_posting['post_replies'] == '0')) ||
-	($fid && (($cur_posting['post_topics'] == '' && $luna_user['g_post_topics'] == '0') || $cur_posting['post_topics'] == '0')) ||
-	(isset($cur_posting['closed']) && $cur_posting['closed'] == '1')) &&
+if ((($tid && (($cur_commenting['post_replies'] == '' && $luna_user['g_post_replies'] == '0') || $cur_commenting['post_replies'] == '0')) ||
+	($fid && (($cur_commenting['post_topics'] == '' && $luna_user['g_post_topics'] == '0') || $cur_commenting['post_topics'] == '0')) ||
+	(isset($cur_commenting['closed']) && $cur_commenting['closed'] == '1')) &&
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
@@ -177,7 +177,7 @@ if (isset($_POST['form_sent'])) {
 
 			update_search_index('post', $new_pid, $message);
 
-			update_forum($cur_posting['fid']);
+			update_forum($cur_commenting['fid']);
 
 			// Should we send out notifications?
 			if ($luna_config['o_thread_subscriptions'] == '1') {
@@ -186,7 +186,7 @@ if (isset($_POST['form_sent'])) {
 				$previous_post_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_commenting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
 					require_once LUNA_ROOT.'include/email.php';
 
@@ -200,7 +200,7 @@ if (isset($_POST['form_sent'])) {
 					// Loop through subscribed users and send emails
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
 						// First of all, add a new notification
-						new_notification($cur_subscriber['id'], get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_posting['subject'], 'fa-reply');
+						new_notification($cur_subscriber['id'], get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_commenting['subject'], 'fa-reply');
 
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
@@ -246,15 +246,15 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf-8));
 								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
 
-								$mail_subject = str_replace('<thread_subject>', $cur_posting['subject'], $mail_subject);
-								$mail_message = str_replace('<thread_subject>', $cur_posting['subject'], $mail_message);
+								$mail_subject = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_subject);
+								$mail_message = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_message);
 								$mail_message = str_replace('<replier>', $username, $mail_message);
 								$mail_message = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-								$mail_subject_full = str_replace('<thread_subject>', $cur_posting['subject'], $mail_subject_full);
-								$mail_message_full = str_replace('<thread_subject>', $cur_posting['subject'], $mail_message_full);
+								$mail_subject_full = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_subject_full);
+								$mail_message_full = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_message_full);
 								$mail_message_full = str_replace('<replier>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
 								$mail_message_full = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
@@ -317,7 +317,7 @@ You can unsubscribe by going to <unsubscribe_url>
 			// Should we send out notifications?
 			if ($luna_config['o_forum_subscriptions'] == '1') {
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['fid'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_commenting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_commenting['fid'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
 					require_once LUNA_ROOT.'include/email.php';
 
@@ -374,21 +374,21 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf-8));
 								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
 
-								$mail_subject = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject);
+								$mail_subject = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_subject);
 								$mail_message = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
-								$mail_message = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message);
+								$mail_message = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_message);
 								$mail_message = str_replace('<commenter>', $username, $mail_message);
 								$mail_message = str_replace('<thread_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message);
-								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['fid'], $mail_message);
+								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_commenting['fid'], $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-								$mail_subject_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject_full);
+								$mail_subject_full = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_subject_full);
 								$mail_message_full = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message_full);
-								$mail_message_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message_full);
+								$mail_message_full = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_message_full);
 								$mail_message_full = str_replace('<commenter>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
 								$mail_message_full = str_replace('<thread_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message_full);
-								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['fid'], $mail_message_full);
+								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_commenting['fid'], $mail_message_full);
 								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
 								$notification_emails[$cur_subscriber['language']][0] = $mail_subject;

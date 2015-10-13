@@ -50,11 +50,11 @@ function draw_preview_panel($message) {
 
 // Show the editor panel
 function draw_editor($height) {
-	global $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message, $luna_config, $cur_index, $p_message;
+	global $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_comment, $message, $luna_config, $cur_index, $p_message;
 	
 	$pin_btn = $silence_btn = '';
 
-	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1') {
+	if (isset($_POST['stick_topic']) || $cur_comment['sticky'] == '1') {
 		$pin_status = ' checked';
 		$pin_active = ' active';
 	} else {
@@ -160,7 +160,7 @@ function draw_editor($height) {
 			if (LUNA_ACTIVE_PAGE == 'post')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			elseif (LUNA_ACTIVE_PAGE == 'edit')
-				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
+				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_comment['message']);
 			elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
 				echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
 		?></textarea>
@@ -221,8 +221,8 @@ function draw_topics_list() {
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
 		$topic_ids = array();
-		for ($i = 0; $cur_topic_id = $db->result($result, $i); $i++)
-			$topic_ids[] = $cur_topic_id;
+		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
+			$topic_ids[] = $cur_thread_id;
 	
 		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
@@ -242,79 +242,79 @@ function draw_topics_list() {
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 	
 		$topic_count = 0;
-		while ($cur_topic = $db->fetch_assoc($result)) {
+		while ($cur_thread = $db->fetch_assoc($result)) {
 	
 			++$topic_count;
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_topic['subject']) > 53)
-				$subject = utf8_substr($cur_topic['subject'], 0, 50).'...';
+			if (luna_strlen($cur_thread['subject']) > 53)
+				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 			else
-				$subject = luna_htmlspecialchars($cur_topic['subject']);
-			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
+				$subject = luna_htmlspecialchars($cur_thread['subject']);
+			$last_post_date = '<a href="viewtopic.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
-			if (is_null($cur_topic['moved_to'])) {
-				$topic_id = $cur_topic['id'];
+			if (is_null($cur_thread['moved_to'])) {
+				$topic_id = $cur_thread['id'];
 
-				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_poster_id'] > '1')
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
 				else
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
 			} else {
 				$last_poster = '';
-				$topic_id = $cur_topic['moved_to'];
+				$topic_id = $cur_thread['moved_to'];
 			}
 	
 			if ($luna_config['o_censoring'] == '1')
-				$cur_topic['subject'] = censor_words($cur_topic['subject']);
+				$cur_thread['subject'] = censor_words($cur_thread['subject']);
 	
-			if ($cur_topic['sticky'] == '1') {
+			if ($cur_thread['sticky'] == '1') {
 				$item_status .= ' sticky-item';
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if (isset($cur_topic['answer']) && $cur_forum['solved'] == 1) {
+			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
 			$url = 'viewtopic.php?id='.$topic_id;
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
 	
-			if ($cur_topic['moved_to'] != 0) {
+			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
-			} elseif ($cur_topic['closed'] == '1') {
+			} elseif ($cur_thread['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
 	
 			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
-				if ($cur_topic['has_commented'] == $luna_user['id']) {
+				if ($cur_thread['has_commented'] == $luna_user['id']) {
 					$item_status .= ' posted-item';
 				}
 			}
 	
-			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_thread['id']]) || $tracked_topics['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 
 			$subject_status = implode(' ', $status_text);
 	
-			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
+			$num_pages_topic = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
-			$replies_label = _n('reply', 'replies', $cur_topic['num_replies'], 'luna');
-			$views_label = _n('view', 'views', $cur_topic['num_views'], 'luna');
+			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
+			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
 	
 			require get_view_path('topic.php');
 	
@@ -476,7 +476,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 }
 
 function draw_index_topics_list() {
-	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
+	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_topics;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
@@ -484,8 +484,8 @@ function draw_index_topics_list() {
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
 		$topic_ids = array();
-		for ($i = 0; $cur_topic_id = $db->result($result, $i); $i++)
-			$topic_ids[] = $cur_topic_id;
+		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
+			$topic_ids[] = $cur_thread_id;
 
 		// Fetch list of threads to display on this page
 		$sql_soft = NULL;
@@ -517,28 +517,28 @@ function draw_index_topics_list() {
 		}
 	
 		$topic_count = 0;
-		while ($cur_topic = $db->fetch_assoc($result)) {
+		while ($cur_thread = $db->fetch_assoc($result)) {
 			
 			++$topic_count;
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_topic['subject']) > 53)
-				$subject = utf8_substr($cur_topic['subject'], 0, 50).'...';
+			if (luna_strlen($cur_thread['subject']) > 53)
+				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 			else
-				$subject = luna_htmlspecialchars($cur_topic['subject']);
-			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
+				$subject = luna_htmlspecialchars($cur_thread['subject']);
+			$last_post_date = '<a href="viewtopic.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
-			if (is_null($cur_topic['moved_to'])) {
-				$topic_id = $cur_topic['id'];
+			if (is_null($cur_thread['moved_to'])) {
+				$topic_id = $cur_thread['id'];
 
-				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_poster_id'] > '1')
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
 				else
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
 				
 				foreach ($luna_forums as $cur_forum) {
-					if ($cur_topic['forum_id'] == $cur_forum['id']) {
+					if ($cur_thread['forum_id'] == $cur_forum['id']) {
 						$forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
 						$forum_color = $cur_forum['color'];
 						if ($cur_forum['icon'] != NULL)
@@ -548,60 +548,60 @@ function draw_index_topics_list() {
 					}
 				}
 				
-				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.$forum_name.'</a></span>';
+				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.$forum_name.'</a></span>';
 			} else {
 				$last_poster = '';
-				$topic_id = $cur_topic['moved_to'];
+				$topic_id = $cur_thread['moved_to'];
 			}
 	
 			if ($luna_config['o_censoring'] == '1')
-				$cur_topic['subject'] = censor_words($cur_topic['subject']);
+				$cur_thread['subject'] = censor_words($cur_thread['subject']);
 	
-			if ($cur_topic['sticky'] == '1') {
+			if ($cur_thread['sticky'] == '1') {
 				$item_status .= ' sticky-item';
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if (isset($cur_topic['answer'])) {
+			if (isset($cur_thread['answer'])) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
 			$url = 'viewtopic.php?id='.$topic_id;
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
 	
-			if ($cur_topic['moved_to'] != 0) {
+			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
-			} elseif ($cur_topic['closed'] == '1') {
+			} elseif ($cur_thread['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
 	
 			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
-				if ($cur_topic['has_commented'] == $luna_user['id']) {
+				if ($cur_thread['has_commented'] == $luna_user['id']) {
 					$item_status .= ' posted-item';
 				}
 			}
 	
-			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_thread['id']]) || $tracked_topics['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 	
 			$subject_status = implode(' ', $status_text);
 	
-			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
+			$num_pages_topic = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
-			$replies_label = _n('reply', 'replies', $cur_topic['num_replies'], 'luna');
-			$views_label = _n('view', 'views', $cur_topic['num_views'], 'luna');
+			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
+			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
 	
 			require get_view_path('topic.php');
 	
@@ -611,11 +611,11 @@ function draw_index_topics_list() {
 }
 
 function draw_comment_list() {
-	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic, $started_by, $cur_forum;
+	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective poster/online status)
 	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-	while ($cur_post = $db->fetch_assoc($result)) {
+	while ($cur_comment = $db->fetch_assoc($result)) {
 		$post_count++;
 		$user_avatar = '';
 		$user_info = array();
@@ -625,147 +625,147 @@ function draw_comment_list() {
 		$signature = '';
 	
 		// If the commenter is a registered user
-		if ($cur_post['poster_id'] > 1) {
+		if ($cur_comment['poster_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
-				$username = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['username']).'</a>';
+				$username = '<a href="profile.php?id='.$cur_comment['poster_id'].'">'.luna_htmlspecialchars($cur_comment['username']).'</a>';
 			else
-				$username = luna_htmlspecialchars($cur_post['username']);
+				$username = luna_htmlspecialchars($cur_comment['username']);
 	
-			$user_title = get_title($cur_post);
+			$user_title = get_title($cur_comment);
 	
 			if ($luna_config['o_censoring'] == '1')
 				$user_title = censor_words($user_title);
 	
 			// Format the online indicator, those are ment as CSS classes
-			$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
+			$is_online = ($cur_comment['is_online'] == $cur_comment['poster_id']) ? 'is-online' : 'is-offline';
 	
 			// We only show location, register date, post count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
-				if ($cur_post['location'] != '') {
+				if ($cur_comment['location'] != '') {
 					if ($luna_config['o_censoring'] == '1')
-						$cur_post['location'] = censor_words($cur_post['location']);
+						$cur_comment['location'] = censor_words($cur_comment['location']);
 	
-					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_comment['location']).'</span></dd>';
 				}
 	
 				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'._n('Comment:', 'Comments:', $cur_post['num_posts'], 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'._n('Comment:', 'Comments:', $cur_comment['num_posts'], 'luna').' '.forum_number_format($cur_comment['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
-				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_post['email']).'">'.__('Email', 'luna').'</a>';
-				elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_post['poster_id'].'">'.__('Email', 'luna').'</a>';
+				if ((($cur_comment['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_comment['email']).'">'.__('Email', 'luna').'</a>';
+				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_comment['poster_id'].'">'.__('Email', 'luna').'</a>';
 	
-				if ($cur_post['url'] != '') {
+				if ($cur_comment['url'] != '') {
 					if ($luna_config['o_censoring'] == '1')
-						$cur_post['url'] = censor_words($cur_post['url']);
+						$cur_comment['url'] = censor_words($cur_comment['url']);
 	
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.__('Website', 'luna').'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_comment['url']).'" rel="nofollow">'.__('Website', 'luna').'</a>';
 				}
 	
 	
 				if ($luna_user['is_admmod']) {
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.__('IP log', 'luna').'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['poster_ip']).'">'.__('IP log', 'luna').'</a>';
 				}
 			}
 	
 	
 			if ($luna_user['is_admmod']) {
-				if ($cur_post['admin_note'] != '')
-					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+				if ($cur_comment['admin_note'] != '')
+					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_comment['admin_note']).'</strong></span></dd>';
 			}
 		}
 		// If the commenter is a guest (or a user that has been deleted)
 		else {
-			$username = luna_htmlspecialchars($cur_post['username']);
-			$user_title = get_title($cur_post);
+			$username = luna_htmlspecialchars($cur_comment['username']);
+			$user_title = get_title($cur_comment);
 	
 			if ($luna_user['is_admmod'])
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.__('IP log', 'luna').'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['poster_ip']).'">'.__('IP log', 'luna').'</a></span></dd>';
 	
-			if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_post['poster_email']).'">'.__('Email', 'luna').'</a></span>';
+			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_comment['poster_email']).'">'.__('Email', 'luna').'</a></span>';
 		}
 	
 		// Get us the avatar
 		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
-			if (isset($user_avatar_cache[$cur_post['poster_id']]))
-				$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
+			if (isset($user_avatar_cache[$cur_comment['poster_id']]))
+				$user_avatar = $user_avatar_cache[$cur_comment['poster_id']];
 			else
-				$user_avatar = draw_user_avatar($cur_post['poster_id'], false, 'media-object media-avatar');
+				$user_avatar = draw_user_avatar($cur_comment['poster_id'], false, 'media-object media-avatar');
 		}
 	
 		// Generation post action array (quote, edit, delete etc.)
 		if (!$is_admmod) {
 			if (!$luna_user['is_guest']) {
-				if ($cur_post['marked'] == false) {
-					$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+				if ($cur_comment['marked'] == false) {
+					$post_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
 				} else {
-					$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+					$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
 				}
 			}
 	
-			if ($cur_topic['closed'] == 0) {
-				if ($cur_post['poster_id'] == $luna_user['id']) {
+			if ($cur_thread['closed'] == 0) {
+				if ($cur_comment['poster_id'] == $luna_user['id']) {
 					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1))
-						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
+						$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_posts'] == 1)) {
-						if ($cur_post['soft'] == 0)
-							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
+						if ($cur_comment['soft'] == 0)
+							$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 						else
-							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
 					}
 					if ($luna_user['g_edit_posts'] == 1)
-						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
+						$post_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 				}
 	
-				if (($cur_topic['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_topic['post_replies'] == 1)
-					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
+				if (($cur_thread['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_thread['post_replies'] == 1)
+					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 
 				if ($cur_forum['solved'] == 1) {
 					if ($luna_user['username'] == $started_by) {
-						if ($cur_post['id'] == $cur_topic['answer'])
-							$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
+						if ($cur_comment['id'] == $cur_thread['answer'])
+							$post_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
 						else
-							$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+							$post_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
 					}
 				}
 			}
 		} else {
-			if ($cur_post['marked'] == false)
-				$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+			if ($cur_comment['marked'] == false)
+				$post_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
 			else
-				$post_actions[] = '<a disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+				$post_actions[] = '<a disabled="disabled" href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
 
-			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
-				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
-				if ($cur_post['soft'] == 0)
-					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
+			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['poster_id'], $admin_ids)) {
+				$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
+				if ($cur_comment['soft'] == 0)
+					$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 				else
-					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
-				$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
+					$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
+				$post_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 			}
-			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
+			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 			
 			if ($cur_forum['solved'] == 1) {
-				if ($cur_post['id'] == $cur_topic['answer'])
-					$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
+				if ($cur_comment['id'] == $cur_thread['answer'])
+					$post_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
 				else
-					$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+					$post_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
 			}
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
-		$cur_post['message'] = parse_message($cur_post['message']);
+		$cur_comment['message'] = parse_message($cur_comment['message']);
 	
 		// Do signature parsing/caching
-		if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0') {
-			if (isset($signature_cache[$cur_post['poster_id']]))
-				$signature = $signature_cache[$cur_post['poster_id']];
+		if ($luna_config['o_signatures'] == '1' && $cur_comment['signature'] != '' && $luna_user['show_sig'] != '0') {
+			if (isset($signature_cache[$cur_comment['poster_id']]))
+				$signature = $signature_cache[$cur_comment['poster_id']];
 			else {
-				$signature = parse_signature($cur_post['signature']);
-				$signature_cache[$cur_post['poster_id']] = $signature;
+				$signature = parse_signature($cur_comment['signature']);
+				$signature_cache[$cur_comment['poster_id']] = $signature;
 			}
 		}
 	
@@ -777,7 +777,7 @@ function draw_comment_list() {
 function draw_response_list() {
 	global $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
 
-	while ($cur_post = $db->fetch_assoc($result)) {	
+	while ($cur_comment = $db->fetch_assoc($result)) {	
 		$post_count++;
 		$user_avatar = '';
 		$user_info = array();
@@ -787,88 +787,88 @@ function draw_response_list() {
 		$signature = '';
 		
 		// If the commenter is a registered user
-		if ($cur_post['id']) {
+		if ($cur_comment['id']) {
 			if ($luna_user['g_view_users'] == '1')
-				$username = '<a href="profile.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
+				$username = '<a href="profile.php?id='.$cur_comment['sender_id'].'">'.luna_htmlspecialchars($cur_comment['sender']).'</a>';
 			else
-				$username = luna_htmlspecialchars($cur_post['sender']);
+				$username = luna_htmlspecialchars($cur_comment['sender']);
 				
-			$user_title = get_title($cur_post);
+			$user_title = get_title($cur_comment);
 	
 			if ($luna_config['o_censoring'] == '1')
 				$user_title = censor_words($user_title);
 	
 			// Format the online indicator
-			$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
+			$is_online = ($cur_comment['is_online'] == $cur_comment['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
 	
 			if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
-				if (isset($user_avatar_cache[$cur_post['sender_id']]))
-					$user_avatar = $user_avatar_cache[$cur_post['sender_id']];
+				if (isset($user_avatar_cache[$cur_comment['sender_id']]))
+					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']];
 				else
-					$user_avatar = $user_avatar_cache[$cur_post['sender_id']] = generate_avatar_markup($cur_post['sender_id']);
+					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']] = generate_avatar_markup($cur_comment['sender_id']);
 			}
 	
 			// We only show location, register date, post count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
-				if ($cur_post['location'] != '') {
+				if ($cur_comment['location'] != '') {
 					if ($luna_config['o_censoring'] == '1')
-						$cur_post['location'] = censor_words($cur_post['location']);
+						$cur_comment['location'] = censor_words($cur_comment['location']);
 	
-					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_comment['location']).'</span></dd>';
 				}
 	
-				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_post['registered'], true).'</span></dd>';
+				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_comment['registered'], true).'</span></dd>';
 	
 				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'.__('Comments:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('Comments:', 'luna').' '.forum_number_format($cur_comment['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
-				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
-					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['email'].'">'.__('Email', 'luna').'</a></span>';
-				elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_post['sender_id'].'">'.__('Email', 'luna').'</a></span>';
+				if ((($cur_comment['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
+					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['email'].'">'.__('Email', 'luna').'</a></span>';
+				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_comment['sender_id'].'">'.__('Email', 'luna').'</a></span>';
 					
-				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1') {
-					$pid = isset($cur_post['sender_id']) ? $cur_post['sender_id'] : $cur_post['sender_id'];
+				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_comment['use_pm'] == '1') {
+					$pid = isset($cur_comment['sender_id']) ? $cur_comment['sender_id'] : $cur_comment['sender_id'];
 					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
 				}
 	
-				if ($cur_post['url'] != '')
-					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_post['url']).'">'.__('Website', 'luna').'</a></span>';
+				if ($cur_comment['url'] != '')
+					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_comment['url']).'">'.__('Website', 'luna').'</a></span>';
 					
 			}
 	
 			if ($luna_user['is_admmod']) {
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_ip'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
 	
-				if ($cur_post['admin_note'] != '')
-					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+				if ($cur_comment['admin_note'] != '')
+					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_comment['admin_note']).'</strong></span></dd>';
 			}
 		} else { // If the commenter is a guest (or a user that has been deleted)
-			$username = luna_htmlspecialchars($cur_post['username']);
-			$user_title = get_title($cur_post);
+			$username = luna_htmlspecialchars($cur_comment['username']);
+			$user_title = get_title($cur_comment);
 	
 			if ($luna_user['is_admmod'])
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_id'].'" title="'.$cur_post['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_id'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
 	
-			if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['poster_email'].'">'.__('Email', 'luna').'</a></span>';
+			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['poster_email'].'">'.__('Email', 'luna').'</a></span>';
 		}
 		
-		$username_quickreply = luna_htmlspecialchars($cur_post['username']);
+		$username_quickreply = luna_htmlspecialchars($cur_comment['username']);
 
-		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.__('Quote', 'luna').'</a>';
+		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'">'.__('Quote', 'luna').'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
-		$cur_post['message'] = parse_message($cur_post['message']);
+		$cur_comment['message'] = parse_message($cur_comment['message']);
 	
 		// Do signature parsing/caching
-		if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0') {
-			if (isset($signature_cache[$cur_post['id']]))
-				$signature = $signature_cache[$cur_post['id']];
+		if ($luna_config['o_signatures'] == '1' && $cur_comment['signature'] != '' && $luna_user['show_sig'] != '0') {
+			if (isset($signature_cache[$cur_comment['id']]))
+				$signature = $signature_cache[$cur_comment['id']];
 			else {
-				$signature = parse_signature($cur_post['signature']);
-				$signature_cache[$cur_post['id']] = $signature;
+				$signature = parse_signature($cur_comment['signature']);
+				$signature_cache[$cur_comment['id']] = $signature;
 			}
 		}
 	
@@ -944,9 +944,9 @@ function draw_soft_reset_form($id) {
 }
 
 function draw_delete_title() {
-	global $is_topic_post, $cur_post;
+	global $is_topic_post, $cur_comment;
 
-	printf($is_topic_post ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
+	printf($is_topic_post ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['poster']).'</strong>', format_time($cur_comment['posted']));
 }
 
 function draw_rules_form() {
@@ -972,7 +972,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $cur_topic, $subject_status, $last_post_date, $tracked_topics, $start_from;
+	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $cur_thread, $subject_status, $last_post_date, $tracked_topics, $start_from;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';

@@ -77,17 +77,17 @@ else
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-$cur_topic = $db->fetch_assoc($result);
-$started_by = $cur_topic['poster'];
+$cur_thread = $db->fetch_assoc($result);
+$started_by = $cur_thread['poster'];
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
-$mods_array = ($cur_topic['moderators'] != '') ? unserialize($cur_topic['moderators']) : array();
+$mods_array = ($cur_thread['moderators'] != '') ? unserialize($cur_thread['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 if ($is_admmod)
 $admin_ids = get_admin_ids();
 
-if ($cur_topic['closed'] == '0') {
-	if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
+if ($cur_thread['closed'] == '0') {
+	if (($cur_thread['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_thread['post_replies'] == '1' || $is_admmod)
 		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
 	else
 		$post_link = '';
@@ -110,7 +110,7 @@ if (!$luna_user['is_guest']) {
 
 
 // Determine the comment offset (based on $_GET['p'])
-$num_pages = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
+$num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_posts']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
 $start_from = $luna_user['disp_posts'] * ($p - 1);
@@ -119,7 +119,7 @@ $start_from = $luna_user['disp_posts'] * ($p - 1);
 $paging_links = paginate($num_pages, $p, 'viewtopic.php?id='.$id);
 
 $quickpost = false;
-if (($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) && ($cur_topic['closed'] == '0' || $is_admmod)) {
+if (($cur_thread['post_replies'] == '1' || ($cur_thread['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) && ($cur_thread['closed'] == '0' || $is_admmod)) {
 	$required_fields = array('req_message' => __('Message', 'luna'));
 	if ($luna_user['is_guest']) {
 		$required_fields['req_username'] = __('Name', 'luna');
@@ -131,7 +131,7 @@ if (($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $
 }
 
 if ($luna_config['o_censoring'] == '1')
-	$cur_topic['subject'] = censor_words($cur_topic['subject']);
+	$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
 if ($luna_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.__('RSS thread feed', 'luna').'" />');
@@ -143,7 +143,7 @@ $topic_actions = array();
 if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') {
 	$token_url = '&amp;csrf_token='.luna_csrf_token();
 
-	if ($cur_topic['is_subscribed'])
+	if ($cur_thread['is_subscribed'])
 		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
 	else
 		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
@@ -153,7 +153,7 @@ $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f LEFT JOIN 
 
 $cur_forum = $db->fetch_assoc($result);
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_thread['forum_name']), luna_htmlspecialchars($cur_thread['subject']));
 if (!$pid)
 	define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'viewtopic');
@@ -170,8 +170,8 @@ else
 	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
 $post_ids = array();
-for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
-	$post_ids[] = $cur_post_id;
+for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)
+	$post_ids[] = $cur_comment_id;
 
 $token_url = '&amp;csrf_token='.luna_csrf_token();
 
@@ -186,7 +186,7 @@ require load_page('thread.php');
 if ($luna_config['o_thread_views'] == '1')
 	$db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
-$forum_id = $cur_topic['forum_id'];
+$forum_id = $cur_thread['forum_id'];
 $footer_style = 'viewtopic';
 
 require load_page('footer.php');

@@ -24,26 +24,26 @@ $result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, fp.post_re
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-$cur_post = $db->fetch_assoc($result);
+$cur_comment = $db->fetch_assoc($result);
 
 if ($luna_config['o_censoring'] == '1')
-	$cur_post['subject'] = censor_words($cur_post['subject']);
+	$cur_comment['subject'] = censor_words($cur_comment['subject']);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
-$mods_array = ($cur_post['moderators'] != '') ? unserialize($cur_post['moderators']) : array();
+$mods_array = ($cur_comment['moderators'] != '') ? unserialize($cur_comment['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
-$is_topic_post = ($id == $cur_post['first_post_id']) ? true : false;
+$is_topic_post = ($id == $cur_comment['first_post_id']) ? true : false;
 
 // Do we have permission to edit this post?
 if (($luna_user['g_delete_posts'] == '0' ||
 	($luna_user['g_delete_topics'] == '0' && $is_topic_post) ||
-	$cur_post['poster_id'] != $luna_user['id'] ||
-	$cur_post['closed'] == '1') &&
+	$cur_comment['poster_id'] != $luna_user['id'] ||
+	$cur_comment['closed'] == '1') &&
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
+if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_comment['poster_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Soft delete posts
@@ -55,17 +55,17 @@ if (isset($_POST['soft_delete'])) {
 
 	if ($is_topic_post) {
 		// Delete the thread and all of its posts
-		delete_topic($cur_post['tid'], "soft");
-		update_forum($cur_post['fid']);
+		delete_topic($cur_comment['tid'], "soft");
+		update_forum($cur_comment['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid']);
+		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
 		// Delete just this one post
 		$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
-		update_forum($cur_post['fid']);
+		update_forum($cur_comment['fid']);
 
 		// Redirect towards the previous post
-		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
 
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
@@ -81,14 +81,14 @@ if (isset($_POST['reset'])) {
 
 	if ($is_topic_post) {
 		// Reset the thread and all of its posts
-		delete_topic($cur_post['tid'], "reset");
-		update_forum($cur_post['fid']);
+		delete_topic($cur_comment['tid'], "reset");
+		update_forum($cur_comment['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid']);
+		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
 		// Reset just this one post
 		$db->query('UPDATE '.$db->prefix.'posts SET soft = 0 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
-		update_forum($cur_post['fid']);
+		update_forum($cur_comment['fid']);
 
 		// Redirect towards the comment
 		redirect('viewtopic.php?pid='.$id.'#p'.$id);
@@ -103,17 +103,17 @@ if (isset($_POST['delete'])) {
 
 	if ($is_topic_post) {
 		// Delete the thread and all of its posts
-		delete_topic($cur_post['tid'], "hard");
-		update_forum($cur_post['fid']);
+		delete_topic($cur_comment['tid'], "hard");
+		update_forum($cur_comment['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid']);
+		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
 		// Delete just this one post
-		delete_post($id, $cur_post['tid'], $cur_post['poster_id']);
-		update_forum($cur_post['fid']);
+		delete_post($id, $cur_comment['tid'], $cur_comment['poster_id']);
+		update_forum($cur_comment['fid']);
 
 		// Redirect towards the previous post
-		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
 
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
@@ -124,7 +124,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('De
 define ('LUNA_ACTIVE_PAGE', 'delete');
 
 require LUNA_ROOT.'include/parser.php';
-$cur_post['message'] = parse_message($cur_post['message']);
+$cur_comment['message'] = parse_message($cur_comment['message']);
 
 require load_page('header.php');
 

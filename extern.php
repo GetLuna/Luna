@@ -280,43 +280,43 @@ if ($action == 'feed') {
 			exit(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		}
 
-		$cur_topic = $db->fetch_assoc($result);
+		$cur_thread = $db->fetch_assoc($result);
 
 		if ($luna_config['o_censoring'] == '1')
-			$cur_topic['subject'] = censor_words($cur_topic['subject']);
+			$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
 		// Setup the feed
 		$feed = array(
-			'title' 		=>	$luna_config['o_board_title'].__(' / ', 'luna').$cur_topic['subject'],
+			'title' 		=>	$luna_config['o_board_title'].__(' / ', 'luna').$cur_thread['subject'],
 			'link'			=>	get_base_url(true).'/viewtopic.php?id='.$tid,
-			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_topic['subject']),
+			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_thread['subject']),
 			'items'			=>	array(),
 			'type'			=>	'posts'
 		);
 
 		// Fetch $show posts
 		$result = $db->query('SELECT p.id, p.poster, p.message, p.hide_smilies, p.posted, p.poster_id, u.email_setting, u.email, p.poster_email FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id WHERE p.topic_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-		while ($cur_post = $db->fetch_assoc($result)) {
-			$cur_post['message'] = parse_message($cur_post['message']);
+		while ($cur_comment = $db->fetch_assoc($result)) {
+			$cur_comment['message'] = parse_message($cur_comment['message']);
 
 			$item = array(
-				'id'			=>	$cur_post['id'],
-				'title'			=>	$cur_topic['first_post_id'] == $cur_post['id'] ? $cur_topic['subject'] : __('Re: ', 'luna').$cur_topic['subject'],
-				'link'			=>	get_base_url(true).'/viewtopic.php?pid='.$cur_post['id'].'#p'.$cur_post['id'],
-				'description'		=>	$cur_post['message'],
+				'id'			=>	$cur_comment['id'],
+				'title'			=>	$cur_thread['first_post_id'] == $cur_comment['id'] ? $cur_thread['subject'] : __('Re: ', 'luna').$cur_thread['subject'],
+				'link'			=>	get_base_url(true).'/viewtopic.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id'],
+				'description'		=>	$cur_comment['message'],
 				'author'		=>	array(
-					'name'	=> $cur_post['poster'],
+					'name'	=> $cur_comment['poster'],
 				),
-				'pubdate'		=>	$cur_post['posted']
+				'pubdate'		=>	$cur_comment['posted']
 			);
 
-			if ($cur_post['poster_id'] > 1) {
-				if ($cur_post['email_setting'] == '0' && !$luna_user['is_guest'])
-					$item['author']['email'] = $cur_post['email'];
+			if ($cur_comment['poster_id'] > 1) {
+				if ($cur_comment['email_setting'] == '0' && !$luna_user['is_guest'])
+					$item['author']['email'] = $cur_comment['email'];
 
-				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_post['poster_id'];
-			} elseif ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
-				$item['author']['email'] = $cur_post['poster_email'];
+				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_comment['poster_id'];
+			} elseif ($cur_comment['poster_email'] != '' && !$luna_user['is_guest'])
+				$item['author']['email'] = $cur_comment['poster_email'];
 
 			$feed['items'][] = $item;
 		}
@@ -374,30 +374,30 @@ if ($action == 'feed') {
 
 			// Fetch $show topics
 			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
-			while ($cur_topic = $db->fetch_assoc($result)) {
+			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
-					$cur_topic['subject'] = censor_words($cur_topic['subject']);
+					$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
-				$cur_topic['message'] = parse_message($cur_topic['message']);
+				$cur_thread['message'] = parse_message($cur_thread['message']);
 
 				$item = array(
-					'id'			=>	$cur_topic['id'],
-					'title'			=>	$cur_topic['subject'],
-					'link'			=>	'/viewtopic.php?id='.$cur_topic['id'].($order_posted ? '' : '&action=new'),
-					'description'	=>	$cur_topic['message'],
+					'id'			=>	$cur_thread['id'],
+					'title'			=>	$cur_thread['subject'],
+					'link'			=>	'/viewtopic.php?id='.$cur_thread['id'].($order_posted ? '' : '&action=new'),
+					'description'	=>	$cur_thread['message'],
 					'author'		=>	array(
-						'name'	=> $order_posted ? $cur_topic['poster'] : $cur_topic['last_poster']
+						'name'	=> $order_posted ? $cur_thread['poster'] : $cur_thread['last_poster']
 					),
-					'pubdate'		=>	$order_posted ? $cur_topic['posted'] : $cur_topic['last_post']
+					'pubdate'		=>	$order_posted ? $cur_thread['posted'] : $cur_thread['last_post']
 				);
 
-				if ($cur_topic['poster_id'] > 1) {
-					if ($cur_topic['email_setting'] == '0' && !$luna_user['is_guest'])
-						$item['author']['email'] = $cur_topic['email'];
+				if ($cur_thread['poster_id'] > 1) {
+					if ($cur_thread['email_setting'] == '0' && !$luna_user['is_guest'])
+						$item['author']['email'] = $cur_thread['email'];
 
-					$item['author']['uri'] = '/profile.php?id='.$cur_topic['poster_id'];
-				} elseif ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
-					$item['author']['email'] = $cur_topic['poster_email'];
+					$item['author']['uri'] = '/profile.php?id='.$cur_thread['poster_id'];
+				} elseif ($cur_thread['poster_email'] != '' && !$luna_user['is_guest'])
+					$item['author']['email'] = $cur_thread['poster_email'];
 
 				$feed['items'][] = $item;
 			}
