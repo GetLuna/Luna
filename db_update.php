@@ -218,9 +218,6 @@ switch ($stage) {
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 
-		// Rename the subscription table
-		$db->rename_table('subscriptions', 'topic_subscriptions');
-
 		// if we don't have the forum_subscriptions table, create it
 		if (!$db->table_exists('forum_subscriptions'))
 		{
@@ -246,10 +243,6 @@ switch ($stage) {
 		// Insert new config option o_forum_subscriptions
 		if (!array_key_exists('o_forum_subscriptions', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
-
-		// Rename config option o_subscriptions to o_topic_subscriptions
-		if (!array_key_exists('o_topic_subscriptions', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_topic_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
@@ -601,6 +594,14 @@ switch ($stage) {
 		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
+		
+		// Luna 1.3 upgrade support
+		$db->rename_table('subscriptions', 'thread_subscriptions');
+		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
+		if (!array_key_exists('o_thread_subscriptions', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
+		if (!array_key_exists('o_thread_subscriptions', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_topic_subscriptions\'') or error('Unable to rename config value \'o_thread_subscriptions\'', __FILE__, __LINE__, $db->error());
 
 		break;
 

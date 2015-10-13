@@ -7,16 +7,16 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const LUNA_VERSION = '1.2-beta.2';
-	const LUNA_CORE_VERSION = '1.2.5029';
-	const LUNA_CORE_REVISION = '120b2';
+	const LUNA_VERSION = '1.3-dev';
+	const LUNA_CORE_VERSION = '1.3.5041';
+	const LUNA_CORE_REVISION = '130d1';
 
 	// The Luna Core code name
-	const LUNA_CODE_NAME = 'cornflowserblue';
-	const LUNA_CODE_NAME_SEM = 'Cornflower Blue';
+	const LUNA_CODE_NAME = 'denim';
+	const LUNA_CODE_NAME_SEM = 'Denim';
 
 	// The database version number, every change in the database requires this number to go one up
-	const LUNA_DB_VERSION = '89.10';
+	const LUNA_DB_VERSION = '90.00';
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const LUNA_PARSER_VERSION = '11.2.0';

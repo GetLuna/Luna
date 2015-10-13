@@ -64,7 +64,7 @@ if ($luna_user['g_search'] == '1') {
 		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.__('Show threads', 'luna').'</a>';
 		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.__('Show comments', 'luna').'</a>';
 	}
-	if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
+	if ($luna_user['is_admmod'] && $luna_config['o_thread_subscriptions'] == '1')
 		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Show subscriptions', 'luna').'</a>';
 
 	if (!empty($quick_searches))

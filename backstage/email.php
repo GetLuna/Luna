@@ -19,7 +19,7 @@ if (isset($_POST['form_sent'])) {
 		'admin_email'			=> strtolower(luna_trim($_POST['form']['admin_email'])),
 		'webmaster_email'		=> strtolower(luna_trim($_POST['form']['webmaster_email'])),
 		'forum_subscriptions'	=> isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
-		'topic_subscriptions'	=> isset($_POST['form']['topic_subscriptions']) ? '1' : '0',
+		'thread_subscriptions'	=> isset($_POST['form']['thread_subscriptions']) ? '1' : '0',
 		'smtp_host'				=> luna_trim($_POST['form']['smtp_host']),
 		'smtp_user'				=> luna_trim($_POST['form']['smtp_user']),
 		'smtp_ssl'				=> isset($_POST['form']['smtp_ssl']) ? '1' : '0',
@@ -106,7 +106,7 @@ if (isset($_GET['saved']))
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($luna_config['o_topic_subscriptions'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[thread_subscriptions]" value="1" <?php if ($luna_config['o_thread_subscriptions'] == '1') echo ' checked' ?> />
 								<?php _e('Enable users to subscribe to threads.', 'luna') ?>
 							</label>
 						</div>

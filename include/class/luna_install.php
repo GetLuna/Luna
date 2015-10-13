@@ -959,7 +959,7 @@ class Installer {
 			'PRIMARY KEY'	=> array('user_id', 'topic_id')
 		);
 	
-		$db->create_table('topic_subscriptions', $schema) or error('Unable to create topic subscriptions table', __FILE__, __LINE__, $db->error());
+		$db->create_table('thread_subscriptions', $schema) or error('Unable to create topic subscriptions table', __FILE__, __LINE__, $db->error());
 	
 	
 		$schema = array(
@@ -1474,7 +1474,7 @@ class Installer {
 			'o_admin_email'				=> $email,
 			'o_webmaster_email'			=> $email,
 			'o_forum_subscriptions'		=> 1,
-			'o_topic_subscriptions'		=> 1,
+			'o_thread_subscriptions'		=> 1,
 			'o_first_run_message'		=> __('Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
 			'o_show_first_run'			=> 1,
 			'o_first_run_guests'		=> 1,
