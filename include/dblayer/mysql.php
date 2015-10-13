@@ -159,7 +159,7 @@ class DBLayer {
 
 	function close() {
 		if ($this->link_id) {
-			if ($this->query_result)
+			if (is_resource($this->query_result))
 				@mysql_free_result($this->query_result);
 
 			return @mysql_close($this->link_id);
