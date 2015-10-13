@@ -7,8 +7,7 @@
 	<?php if ($cur_topic['moved_to'] == 0) { ?>
 		<span class="text-muted"> &middot; 
 			<?php echo $last_post_date ?>
-			&middot; <?php echo $forum_name ?>
-			<?php if ($cur_topic['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span><?php } ?>
+			&middot; <?php echo $forum_name ?><?php if ($cur_topic['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span><?php } ?>
 		</span>
 	<?php } ?>
 </div>
