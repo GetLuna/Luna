@@ -174,7 +174,6 @@ if ($action == 'delete') {
 		require load_page('footer.php');
 	}
 } else {
-
 	// Start building page
 	$result_receivers = $db->query('SELECT DISTINCT receiver, owner, sender_id FROM '.$db->prefix.'messages WHERE shared_id='.$tid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 	
@@ -210,10 +209,9 @@ if ($action == 'delete') {
 	if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 		message(__('You do not have permission to access this page.', 'luna'));
 		
-		$post_count = '0'; // Keep track of comment numbers
-		
-		if ($num_new_pm > '0')
-			$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());
+	$post_count = '0'; // Keep track of post numbers
+	
+	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());
 	
 	$result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.posted, m.showed, m.sender, m.sender_id, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_posts, u.admin_note, u.signature, u.use_pm, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.posted LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
 	
