@@ -72,9 +72,9 @@ function check_cookie(&$luna_user) {
 			$luna_user['style'] = $luna_config['o_default_style'];
 
 		if (!$luna_user['disp_topics'])
-			$luna_user['disp_topics'] = $luna_config['o_disp_topics_default'];
+			$luna_user['disp_topics'] = $luna_config['o_disp_threads'];
 		if (!$luna_user['disp_posts'])
-			$luna_user['disp_posts'] = $luna_config['o_disp_posts_default'];
+			$luna_user['disp_posts'] = $luna_config['o_disp_comments'];
 
 		// Define this if you want this visit to affect the online list and the users last visit data
 		if (!defined('LUNA_QUIET_VISIT')) {
@@ -310,8 +310,8 @@ function set_default_user() {
 	} else
 		$db->query('UPDATE '.$db->prefix.'online SET logged='.time().' WHERE ident=\''.$db->escape($remote_addr).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 
-	$luna_user['disp_topics'] = $luna_config['o_disp_topics_default'];
-	$luna_user['disp_posts'] = $luna_config['o_disp_posts_default'];
+	$luna_user['disp_topics'] = $luna_config['o_disp_threads'];
+	$luna_user['disp_posts'] = $luna_config['o_disp_comments'];
 	$luna_user['timezone'] = $luna_config['o_default_timezone'];
 	$luna_user['dst'] = $luna_config['o_default_dst'];
 	$luna_user['language'] = $luna_config['o_default_lang'];

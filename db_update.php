@@ -288,7 +288,7 @@ switch ($stage) {
 		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
 		build_config(1, 'o_first_run_guests', '1');
 		build_config(1, 'o_first_run_message');
-		build_config(1, 'o_has_posted', '1');
+		build_config(1, 'o_has_commented', '1');
 		build_config(0, 'o_redirect_delay');
 		build_config(1, 'o_show_first_run', '1');
 
@@ -599,10 +599,23 @@ switch ($stage) {
 		$db->rename_table('topics', 'threads');
 		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		
+		build_config(0, 'o_topic_review');
+		
 		if (!array_key_exists('o_thread_subscriptions', $luna_config))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
 		if (!array_key_exists('o_thread_subscriptions', $luna_config))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_topic_subscriptions\'') or error('Unable to rename config value \'o_thread_subscriptions\'', __FILE__, __LINE__, $db->error());
+		if (!array_key_exists('o_disp_threads', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_disp_threads\' WHERE conf_name=\'o_disp_topics_default\'') or error('Unable to rename config value \'o_disp_topics_default\'', __FILE__, __LINE__, $db->error());
+		if (!array_key_exists('o_disp_comments', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_disp_comments\' WHERE conf_name=\'o_disp_posts_default\'') or error('Unable to rename config value \'o_disp_posts_default\'', __FILE__, __LINE__, $db->error());
+		if (!array_key_exists('o_thread_views', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_views\' WHERE conf_name=\'o_topic_views\'') or error('Unable to rename config value \'o_topic_views\'', __FILE__, __LINE__, $db->error());
+		if (!array_key_exists('o_show_comment_count', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_show_comment_count\' WHERE conf_name=\'o_show_post_count\'') or error('Unable to rename config value \'o_show_post_count\'', __FILE__, __LINE__, $db->error());
+		if (!array_key_exists('o_has_commented', $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_has_commented\' WHERE conf_name=\'o_has_posted\'') or error('Unable to rename config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
 
 		break;
 

@@ -16,7 +16,7 @@ elseif ($luna_user['g_view_users'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Determine if we are allowed to view post counts
-$show_post_count = ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod']) ? true : false;
+$show_comment_count = ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod']) ? true : false;
 
 $username = isset($_GET['username']) && $luna_user['g_search_users'] == '1' ? luna_trim($_GET['username']) : '';
 if (isset($_GET['sort'])) {

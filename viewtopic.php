@@ -183,7 +183,7 @@ $cur_index = 1;
 require load_page('thread.php');
 
 // Increment "num_views" for topic
-if ($luna_config['o_topic_views'] == '1')
+if ($luna_config['o_thread_views'] == '1')
 	$db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 $forum_id = $cur_topic['forum_id'];

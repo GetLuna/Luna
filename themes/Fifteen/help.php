@@ -174,7 +174,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                             <td><span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span></td>
                             <td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
                         </tr>
-                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
+                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
                         <tr>
                             <td>&middot;</td>
                             <td><?php _e('This little dot appears when you have made a comment in this thread.', 'luna') ?></td>

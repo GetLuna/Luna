@@ -914,7 +914,7 @@ if ($db->num_rows($result)) {
 	}
 	?></div><?php
 } else {
-	$colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
+	$colspan = ($luna_config['o_thread_views'] == '1') ? 5 : 4;
 	$button_status = ' disabled="disabled"';
 	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.__('This forum has s yet.', 'luna').'</td></tr>'."\n";
 }

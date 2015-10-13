@@ -225,7 +225,7 @@ function draw_topics_list() {
 			$topic_ids[] = $cur_topic_id;
 	
 		// Fetch list of threads to display on this page
-		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
+		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
 			// When not showing a commented label
 			if (!$luna_user['is_admmod'])
 				$sql_addition = 'soft = 0 AND ';
@@ -236,7 +236,7 @@ function draw_topics_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_addition = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -290,8 +290,8 @@ function draw_topics_list() {
 				$item_status .= ' closed-item';
 			}
 	
-			if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') {
-				if ($cur_topic['has_posted'] == $luna_user['id']) {
+			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
+				if ($cur_topic['has_commented'] == $luna_user['id']) {
 					$item_status .= ' posted-item';
 				}
 			}
@@ -489,7 +489,7 @@ function draw_index_topics_list() {
 
 		// Fetch list of threads to display on this page
 		$sql_soft = NULL;
-		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
+		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 'soft = 0 AND ';
 
@@ -499,7 +499,7 @@ function draw_index_topics_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
+			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -578,8 +578,8 @@ function draw_index_topics_list() {
 				$item_status .= ' closed-item';
 			}
 	
-			if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') {
-				if ($cur_topic['has_posted'] == $luna_user['id']) {
+			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
+				if ($cur_topic['has_commented'] == $luna_user['id']) {
 					$item_status .= ' posted-item';
 				}
 			}
@@ -648,7 +648,7 @@ function draw_comment_list() {
 					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
 				}
 	
-				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
+				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
 					$user_info[] = '<dd><span>'._n('Comment:', 'Comments:', $cur_post['num_posts'], 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
@@ -819,7 +819,7 @@ function draw_response_list() {
 	
 				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_post['registered'], true).'</span></dd>';
 	
-				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
+				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
 					$user_info[] = '<dd><span>'.__('Comments:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
