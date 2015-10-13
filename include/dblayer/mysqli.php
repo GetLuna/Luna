@@ -165,7 +165,7 @@ class DBLayer {
 
 	function close() {
 		if ($this->link_id) {
-			if ($this->query_result)
+			if ($this->query_result instanceof mysqli_result)
 				@mysqli_free_result($this->query_result);
 
 			return @mysqli_close($this->link_id);
