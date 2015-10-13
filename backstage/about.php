@@ -42,7 +42,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved tabel in user management</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Updated and incorporated components</li>
 							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>Default avatar settings have been updated for new installations</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 13 bugs</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 19 bugs</li>
 						</ul>
 					</div>
 				</section>

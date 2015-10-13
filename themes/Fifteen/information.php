@@ -19,7 +19,7 @@ $xmlstr = <<<XML
 	<version>1.2 Beta</version>
 	<minversion>1.2 Beta 1</minversion>
 	<minversion>1.2 Beta 1</minversion>
-	<description>Fifteen was the default theme of the Luna software for 2015, this modern, fresh, yet colorfull design makes your board an unique piece!</description>
+	<description>Fifteen is the default theme of the Luna software for 2015, this modern, fresh, yet colorfull design makes your board an unique piece!</description>
 </style>
 XML;
 ?>
