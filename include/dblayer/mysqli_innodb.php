@@ -323,6 +323,16 @@ class DBLayer {
 
 		return $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' MODIFY '.$field_name.' '.$field_type.($allow_null ? '' : ' NOT NULL').(!is_null($default_value) ? ' DEFAULT '.$default_value : '').(!is_null($after_field) ? ' AFTER '.$after_field : '')) ? true : false;
 	}
+	
+	
+	function rename_field($table_name, $field_name, $new_field_name, $field_type, $no_prefix = false) {
+		if (!$this->field_exists($table_name, $field_name, $no_prefix))
+			return true;
+
+		$field_type = preg_replace(array_keys($this->datatype_transformations), array_values($this->datatype_transformations), $field_type);
+
+		return $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' CHANGE '.$field_name.' '.$new_field_name.' '.$field_type);
+	}
 
 
 	function drop_field($table_name, $field_name, $no_prefix = false) {

@@ -363,6 +363,16 @@ class DBLayer {
 
 		return $result;
 	}
+	
+	
+	function rename_field($table_name, $field_name, $new_field_name, $field_type, $no_prefix = false) {
+		if (!$this->field_exists($table_name, $field_name, $no_prefix))
+			return true;
+
+		$field_type = preg_replace(array_keys($this->datatype_transformations), array_values($this->datatype_transformations), $field_type);
+
+		$result &= $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' RENAME COLUMN '.$field_name.' TO '.$new_field_name) ? true : false;
+	}
 
 
 	function drop_field($table_name, $field_name, $no_prefix = false) {
