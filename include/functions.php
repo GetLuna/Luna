@@ -1029,8 +1029,10 @@ function message($message, $no_back_link = false, $http_status = null) {
 	require load_page('header.php');
 
 ?>
-<h2 class="profile-title"><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
-<p><?php echo $message ?></p>
+<div class="error-message">
+	<h2><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
+	<p><?php echo $message ?></p>
+</div>
 <?php
 	require load_page('footer.php');
 	

@@ -6,7 +6,6 @@
 }
 
 html {
-    overflow-y: scroll;
 	background-color: #e8e8e8;
 }
 
@@ -93,6 +92,11 @@ h1, h2, h3, h4, h5, h6 {
 	opacity: 1;
 }
 
+.error-message {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
 /* General design */
 .container-main {
 	background: #fff;
@@ -110,9 +114,15 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
 	.container-main {
 		margin-bottom: 15px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.container {
+		width: 100%;
 	}
 }
 
@@ -721,7 +731,7 @@ textarea.textarea, textarea.textarea:focus {
 }
 
 .textarea-toolbar .btn-emoji {
-	padding: 11px 16px 12px !important;
+	padding: 14px 16px !important;
 }
 
 @media screen and (min-width: 767px) {
