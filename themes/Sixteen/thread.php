@@ -57,10 +57,10 @@ if (!defined('FORUM'))
 					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?>"><span class="fa fa-fw fa-lock"></span> <?php _e('Close', 'luna') ?></a>
 				<?php } ?>
 				
-				<?php if ($cur_thread['sticky'] == '1') { ?>
-					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unstick=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unpin', 'luna') ?></a>
+				<?php if ($cur_thread['pinned'] == '1') { ?>
+					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unpin', 'luna') ?></a>
 				<?php } else { ?>
-					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&stick=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin', 'luna') ?></a>
+					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin', 'luna') ?></a>
 				<?php } ?>
 			</div>
 		<?php endif; ?>

@@ -1041,7 +1041,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'sticky'		=> array(
+				'pinned'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'

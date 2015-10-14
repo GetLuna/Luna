@@ -155,15 +155,15 @@ function authenticate_user($user, $password, $password_is_hash = false) {
 
 
 //
-// Delete threads from $forum_id that are "older than" $prune_date (if $prune_sticky is 1, sticky topics will also be deleted)
+// Delete threads from $forum_id that are "older than" $prune_date (if $prune_pinned is 1, pinned topics will also be deleted)
 //
-function prune($forum_id, $prune_sticky, $prune_date) {
+function prune($forum_id, $prune_pinned, $prune_date) {
 	global $db;
 
 	$extra_sql = ($prune_date != -1) ? ' AND last_post<'.$prune_date : '';
 
-	if (!$prune_sticky)
-		$extra_sql .= ' AND sticky=\'0\'';
+	if (!$prune_pinned)
+		$extra_sql .= ' AND pinned=\'0\'';
 
 	// Fetch topics to prune
 	$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.$extra_sql, true) or error('Unable to fetch topics', __FILE__, __LINE__, $db->error());

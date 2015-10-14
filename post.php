@@ -133,7 +133,7 @@ if (isset($_POST['form_sent'])) {
 
 	$hide_smilies = isset($_POST['hide_smilies']) ? '1' : '0';
 	$subscribe = isset($_POST['subscribe']) ? '1' : '0';
-	$stick_topic = isset($_POST['stick_topic']) && $is_admmod ? '1' : '0';
+	$pin_topic = isset($_POST['pin_topic']) && $is_admmod ? '1' : '0';
 
 	// Replace four-byte characters (MySQL cannot handle them)
 	$message = strip_bad_multibyte_chars($message);
@@ -290,7 +290,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$user_id_poster = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$pin_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {

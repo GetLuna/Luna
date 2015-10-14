@@ -18,7 +18,7 @@ $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'prune') {
 	$prune_from = luna_trim($_POST['prune_from']);
-	$prune_sticky = intval($_POST['prune_sticky']);
+	$prune_pinned = intval($_POST['prune_pinned']);
 
 	if (isset($_POST['prune_comply'])) {
 		confirm_referrer('backstage/prune.php');
@@ -35,12 +35,12 @@ if ($action == 'prune') {
 			for ($i = 0; $i < $num_forums; ++$i) {
 				$fid = $db->result($result, $i);
 
-				prune($fid, $prune_sticky, $prune_date);
+				prune($fid, $prune_pinned, $prune_date);
 				update_forum($fid);
 			}
 		} else {
 			$prune_from = intval($prune_from);
-			prune($prune_from, $prune_sticky, $prune_date);
+			prune($prune_from, $prune_pinned, $prune_date);
 			update_forum($prune_from);
 		}
 
@@ -67,8 +67,8 @@ if ($action == 'prune') {
 	// Concatenate together the query for counting number of threads to prune
 	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'threads WHERE last_post<'.$prune_date.' AND moved_to IS NULL';
 
-	if ($prune_sticky == '0')
-		$sql .= ' AND sticky=0';
+	if ($prune_pinned == '0')
+		$sql .= ' AND pinned=0';
 
 	if ($prune_from != 'all') {
 		$prune_from = intval($prune_from);
@@ -100,7 +100,7 @@ if ($action == 'prune') {
 		<form method="post" action="prune.php">
 			<input type="hidden" name="action" value="prune" />
 			<input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
-			<input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
+			<input type="hidden" name="prune_pinned" value="<?php echo $prune_pinned ?>" />
 			<input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
 			<fieldset>
 				<h3><?php _e('Confirm prune comments', 'luna') ?></h3>
@@ -234,11 +234,11 @@ require 'header.php';
 					<label class="col-sm-3 control-label"><?php _e('Prune pinned threads', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
-							<input type="radio" name="prune_sticky" value="1" tabindex="6" checked />
+							<input type="radio" name="prune_pinned" value="1" tabindex="6" checked />
 							<?php _e('Yes', 'luna') ?>
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="prune_sticky" value="0" />
+							<input type="radio" name="prune_pinned" value="0" />
 							<?php _e('No', 'luna') ?>
 						</label>
 					</div>

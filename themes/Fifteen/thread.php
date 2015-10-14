@@ -40,10 +40,10 @@ if (!defined('FORUM'))
 				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-times"></span> <?php _e('Close topic', 'luna') ?></a>
 			<?php } ?>
 			
-			<?php if ($cur_thread['sticky'] == '1') { ?>
-				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unstick=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unstick topic', 'luna') ?></a>
+			<?php if ($cur_thread['pinned'] == '1') { ?>
+				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('unpin topic', 'luna') ?></a>
 			<?php } else { ?>
-				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&stick=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Stick topic', 'luna') ?></a>
+				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin topic', 'luna') ?></a>
 			<?php } ?>
 		</div>
 		<?php endif; ?>

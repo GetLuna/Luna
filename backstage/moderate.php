@@ -733,39 +733,39 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 }
 
 
-// Stick a thread
-elseif (isset($_GET['stick'])) {
+// Pin a thread
+elseif (isset($_GET['pin'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 	
 	check_csrf($_GET['csrf_token']);
 
-	$stick = intval($_GET['stick']);
-	if ($stick < 1)
+	$pin = intval($_GET['pin']);
+	if ($pin < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$db->query('UPDATE '.$db->prefix.'threads SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to Pin thread', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'1\' WHERE id='.$pin.' AND forum_id='.$fid) or error('Unable to Pin thread', __FILE__, __LINE__, $db->error());
 
-	redirect('viewtopic.php?id='.$stick);
+	redirect('viewtopic.php?id='.$pin);
 }
 
 
-// Unstick a thread
-elseif (isset($_GET['unstick'])) {
+// unpin a thread
+elseif (isset($_GET['unpin'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 	
 	check_csrf($_GET['csrf_token']);
 
-	$unstick = intval($_GET['unstick']);
-	if ($unstick < 1)
+	$unpin = intval($_GET['unpin']);
+	if ($unpin < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$db->query('UPDATE '.$db->prefix.'threads SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'0\' WHERE id='.$unpin.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
 
-	redirect('viewtopic.php?id='.$unstick);
+	redirect('viewtopic.php?id='.$unpin);
 } 
 
 // If absolutely none of them are going on
-elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_topics']) && !isset($_POST['delete_topics_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
+elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_topics']) && !isset($_POST['delete_topics_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
 
 	// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
 	
@@ -820,7 +820,7 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 
 
 // Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$fid.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$fid.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 
 // If there are topics in this forum
 if ($db->num_rows($result)) {
@@ -829,7 +829,7 @@ if ($db->num_rows($result)) {
 		$topic_ids[] = $cur_thread_id;
 
 	// Select topics
-	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $topic_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
 
 	$button_status = '';
 	$topic_count = 0;
@@ -854,8 +854,8 @@ if ($db->num_rows($result)) {
 		if ($luna_config['o_censoring'] == '1')
 			$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
-		if ($cur_thread['sticky'] == '1') {
-			$item_status .= ' isticky';
+		if ($cur_thread['pinned'] == '1') {
+			$item_status .= ' ipinned';
 			$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 		}
 
