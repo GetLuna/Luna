@@ -5,7 +5,7 @@
 ## About
 Luna is an open source board software web app released under the GPLv3 license. Our vision is to bring you a small (in size) and light forum solution and to provide an experience that is both desktop-first and mobile-first, as manny seem to forget about the first one. Luna is the successor to ModernBB, one of the first forum software projects to provide a full featured build-in mobile experience without compromises.
 
-## New in Aero
+## New in Bittersweet Shimmer
 - Night mode
 - Improved themes
 - Real-time notifications
