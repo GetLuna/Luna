@@ -397,8 +397,8 @@ elseif (isset($_POST['add_edit_group'])) {
 		$soft_delete_posts = isset($_POST['soft_delete_posts']) ? '1' : '0';
 		$soft_delete_topics = isset($_POST['soft_delete_topics']) ? '1' : '0';
 	} else {
-		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_posts = $soft_delete_topics = '1';
-		$moderator = $post_flood = $search_flood = $email_flood = $report_flood = '0';
+		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_posts = $soft_delete_topics = $inbox_allow = '1';
+		$moderator = $post_flood = $search_flood = $email_flood = $report_flood = $inbox_limit = '0';
 	}
 
 	if ($title == '')
