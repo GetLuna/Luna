@@ -132,7 +132,7 @@ if (isset($_GET['user_failed']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="username" tabindex="26" required="required" />
+						<input type="text" maxlength="25" class="form-control" name="username" tabindex="26" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
