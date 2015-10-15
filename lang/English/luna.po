@@ -2812,6 +2812,27 @@ msgstr ""
 msgrid "At least 6 characters long"
 msgstr ""
 
+msgid "%s B"
+msgstr ""
+
+msgid "%s KiB"
+msgstr ""
+
+msgid "%s MiB"
+msgstr ""
+
+msgid "%s GiB"
+msgstr ""
+
+msgid "%s TiB"
+msgstr ""
+
+msgid "%s PiB"
+msgstr ""
+
+msgid "%s EiB"
+msgstr ""
+
 msgrid "Board setup"
 msgstr ""
 
