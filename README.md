@@ -27,7 +27,7 @@ Luna is an open source board software web app released under the GPLv3 license. 
  - PHP zlib module
 
 ## Upgrade paths
-Luna 1.2 supports updating from all versions of FluxBB since 1.4.0, all versions of ModernBB and - of course - all previous Luna versions.
+Luna supports updating from all versions of FluxBB since 1.4.0, all versions of ModernBB and - of course - all previous Luna versions.
 
 - **FluxBB support**
  - **FluxBB 1.4**: 1.4.0 and higher (no support for upgrading from betas and RCs)
