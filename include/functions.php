@@ -1591,7 +1591,7 @@ function file_size($size) {
 	for ($i = 0; $size > 1024; $i++)
 		$size /= 1024;
 
-	return sprintf(__('Size unit %s', 'luna'), $units[ round($size, 2) ]);
+	return sprintf(__('%s '.$units[$i], 'luna'), round($size, 2));
 }
 
 

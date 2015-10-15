@@ -3469,7 +3469,37 @@ msgstr ""
 
 #: include/functions.php:1566
 #, php-format
-msgid "Size unit %s"
+msgid "%s B"
+msgstr ""
+
+#: include/functions.php:1566
+#, php-format
+msgid "%s KiB"
+msgstr ""
+
+#: include/functions.php:1566
+#, php-format
+msgid "%s MiB"
+msgstr ""
+
+#: include/functions.php:1566
+#, php-format
+msgid "%s GiB"
+msgstr ""
+
+#: include/functions.php:1566
+#, php-format
+msgid "%s TiB"
+msgstr ""
+
+#: include/functions.php:1566
+#, php-format
+msgid "%s PiB"
+msgstr ""
+
+#: include/functions.php:1566
+#, php-format
+msgid "%s EiB"
 msgstr ""
 
 #: include/functions.php:1964
