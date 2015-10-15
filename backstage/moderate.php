@@ -34,7 +34,7 @@ if (isset($_GET['get_host'])) {
 		$ip = $db->result($result);
 	}
 
-	message_backstage(sprintf(__('The IP address is: %s', 'luna'), $ip).'<br />'.sprintf(__('The host name is: %s', 'luna'), @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.__('Show more users for this IP', 'luna').'</a>');
+	message_backstage(sprintf(__('The IP address is: %s', 'luna'), $ip).'<br />'.sprintf(__('The host name is: %s', 'luna'), @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="users.php?show_users='.$ip.'">'.__('Show more users for this IP', 'luna').'</a>');
 }
 
 
