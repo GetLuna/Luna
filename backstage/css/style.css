@@ -15,10 +15,6 @@
 	box-shadow: none !important;
 }
 
-html {
-    overflow-y: scroll;
-}
-
 body {
 	margin-top: 50px;
 	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
