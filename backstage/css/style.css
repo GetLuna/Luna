@@ -434,6 +434,10 @@ h3.panel-title {
 	margin-bottom: 0;
 }
 
+.modal-open {
+    padding-right: 0px !important;
+}
+
 .panel-style .thumbnail {
 	border: none;
 	padding: 0;
