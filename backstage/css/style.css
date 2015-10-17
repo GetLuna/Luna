@@ -433,6 +433,10 @@ fieldset[disabled] .form-control {
 }
 
 /* Buttons */
+.btn {
+	border: none !important;
+}
+
 .panel-title .btn {
 	padding: 9px 14px;
 	border: none;
@@ -451,7 +455,6 @@ fieldset[disabled] .form-control {
 
 .btn-success {
 	background-color: #76b900;
-	border-color: #66a100;
 }
 
 .btn-success:hover,
@@ -460,12 +463,10 @@ fieldset[disabled] .form-control {
 .active.btn-success,
 .open .btn-success.dropdown-toggle {
 	background-color: #66a100;
-	border-color: #588a00;
 }
 
 .btn-warning {
 	background-color: #ffc000;
-	border-color: #ffa800;
 }
 
 .btn-warning:hover,
@@ -474,12 +475,10 @@ fieldset[disabled] .form-control {
 .active.btn-warning,
 .open .btn-warning.dropdown-toggle {
 	background-color: #ffa800;
-	border-color: #ff8400;
 }
 
 .btn-danger {
 	background-color: #ff5400;
-	border-color: #df4900;
 }
 
 .btn-danger:hover,
@@ -488,12 +487,10 @@ fieldset[disabled] .form-control {
 .active.btn-danger,
 .open .btn-danger.dropdown-toggle {
 	background-color: #df4900;
-	border-color: #c14000;
 }
 
 .btn-info {
 	background-color: #14a3ff;
-	border-color: #008be4;
 }
 
 .btn-info:hover,
@@ -502,7 +499,6 @@ fieldset[disabled] .form-control {
 .active.btn-info,
 .open .btn-info.dropdown-toggle {
 	background-color: #008be4;
-	border-color: #007dce;
 }
 
 /* Styles page */
@@ -518,6 +514,10 @@ fieldset[disabled] .form-control {
 
 .thumbnail {
 	margin-bottom: 0;
+}
+
+.modal-open {
+    padding-right: 0px !important;
 }
 
 .panel-style .thumbnail {

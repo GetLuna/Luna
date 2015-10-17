@@ -8,7 +8,7 @@ if ($luna_user['first_run'] == '0') {
 ?>
 <div class="first-run panel panel-default">
 	<div class="row first-run-content">
-		<div class="col-md-4 col-sm-6 col-xs-5 first-run-profile">
+		<div class="col-md-4 col-sm-6 hidden-xs first-run-profile">
 			<h3 class="first-run-title"><span class="hidden-xs"><?php echo sprintf(__('Hi there, %s', 'luna'), luna_htmlspecialchars($luna_user['username'])) ?></span><span class="visible-xs-block"><?php echo luna_htmlspecialchars($luna_user['username']) ?></span></h3>
 			<span class="first-run-avatar thumbnail">
 				<?php echo $user_avatar ?>
@@ -19,7 +19,7 @@ if ($luna_user['first_run'] == '0') {
 			<h3 class="first-run-forumtitle"><?php echo sprintf(__('Welcome to %s', 'luna'), $luna_config['o_board_title']) ?></h3>
 			<p><?php echo $luna_config['o_first_run_message']; ?></p>
 		</div>
-		<div class="col-md-4 col-sm-6 col-xs-7">
+		<div class="col-md-4 col-sm-6 col-xs-12">
 			<div class="list-group first-run-list">
 				<a href="settings.php" class="list-group-item"><?php _e('Extend your details', 'luna') ?></a>
 				<a href="help.php" class="list-group-item"><?php _e('Get help', 'luna') ?></a>

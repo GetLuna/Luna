@@ -28,7 +28,7 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.2 Beta 1</span></p><h2>Cornflower Blue Beta 1</h2>
+						<p class="meta"><span class="release-version">1.2.0</span></p><h2>Cornflower Blue</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark topics as solved</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now set any color as forum colors</li>
@@ -42,7 +42,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved tabel in user management</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Updated and incorporated components</li>
 							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>Default avatar settings have been updated for new installations</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 19 bugs</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 29 bugs</li>
 						</ul>
 					</div>
 				</section>
