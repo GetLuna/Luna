@@ -580,2965 +580,2977 @@ msgstr ""
 msgid "Censor words in comments. See %s for more info."
 msgstr ""
 
-msgrid "Show the number of views for each thread."
+msgid "Show the number of views for each thread."
 msgstr ""
 
-msgrid "Show a label in front of the threads where users have commented."
+msgid "Show a label in front of the threads where users have commented."
 msgstr ""
 
-msgrid "User features"
+msgid "User features"
 msgstr ""
 
-msgrid "Display info on the index page about users currently browsing the board."
+msgid "Display info on the index page about users currently browsing the board."
 msgstr ""
 
-msgrid "Allow users to attach a signature to their comments."
+msgid "Allow users to attach a signature to their comments."
 msgstr ""
 
-msgrid "Use user ranks. See %s for more info."
+msgid "Use user ranks. See %s for more info."
 msgstr ""
 
-msgrid "Ranks"
+msgid "Ranks"
 msgstr ""
 
-msgrid "Allow users to use the advanced search options."
+msgid "Allow users to use the advanced search options."
 msgstr ""
 
-msgrid "Allow search only in 1 forum at a time."
+msgid "Allow search only in 1 forum at a time."
 msgstr ""
 
-msgrid "Inbox"
+msgid "Inbox"
 msgstr ""
 
-msgrid "Use Inbox"
+msgid "Use Inbox"
 msgstr ""
 
-msgrid "Allow users to use Inbox."
+msgid "Allow users to use Inbox."
 msgstr ""
 
-msgrid "Receivers"
+msgid "Receivers"
 msgstr ""
 
-msgrid "The number of receivers an Inbox message can have."
+msgid "The number of receivers an Inbox message can have."
 msgstr ""
 
-msgrid "First run"
+msgid "First run"
 msgstr ""
 
-msgrid "General settings"
+msgid "General settings"
 msgstr ""
 
-msgrid "Show the first run panel when an user logs in for the first time."
+msgid "Show the first run panel when an user logs in for the first time."
 msgstr ""
 
-msgrid "Show the first run panel to guests with login field and registration button."
+msgid "Show the first run panel to guests with login field and registration button."
 msgstr ""
 
-msgrid "Welcome text"
+msgid "Welcome text"
 msgstr ""
 
-msgrid "The introduction to the forum displayed in the middle of the first run panel"
+msgid "The introduction to the forum displayed in the middle of the first run panel"
 msgstr ""
 
-msgrid "BBCode"
+msgid "BBCode"
 msgstr ""
 
-msgrid "Convert smilies to small graphic icons in user signatures."
+msgid "Convert smilies to small graphic icons in user signatures."
 msgstr ""
 
-msgrid "Convert URLs automatically to clickable hyperlinks."
+msgid "Convert URLs automatically to clickable hyperlinks."
 msgstr ""
 
-msgrid "Indent size"
+msgid "Indent size"
 msgstr ""
 
-msgrid "Amount of spaces that represent a tab"
+msgid "Amount of spaces that represent a tab"
 msgstr ""
 
-msgrid "Maximum [quote] depth"
+msgid "Maximum [quote] depth"
 msgstr ""
 
-msgrid "Maximum [quote] can be used in [quote]"
+msgid "Maximum [quote] can be used in [quote]"
 msgstr ""
 
-msgrid "Video height"
+msgid "Video height"
 msgstr ""
 
-msgrid "Height of an embedded video"
+msgid "Height of an embedded video"
 msgstr ""
 
-msgrid "Video width"
+msgid "Video width"
 msgstr ""
 
-msgrid "Width of an embedded video"
+msgid "Width of an embedded video"
 msgstr ""
 
-msgrid "Advanced"
+msgid "Advanced"
 msgstr ""
 
-msgrid "Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature."
+msgid "Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature."
 msgstr ""
 
-msgrid "Generated in %1$s seconds, %2$s queries executed"
+msgid "Generated in %1$s seconds, %2$s queries executed"
 msgstr ""
 
-msgrid "Memory usage: %1$s"
+msgid "Memory usage: %1$s"
 msgstr ""
 
-msgrid "(Peak: %1$s)"
+msgid "(Peak: %1$s)"
 msgstr ""
 
-msgrid "Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here."
+msgid "Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here."
 msgstr ""
 
-msgrid "Group title"
+msgid "Group title"
 msgstr ""
 
-msgrid "Setup group options and permissions"
+msgid "Setup group options and permissions"
 msgstr ""
 
-msgrid "Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect."
+msgid "Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect."
 msgstr ""
 
-msgrid "User title"
+msgid "User title"
 msgstr ""
 
-msgrid "The title will override the user rank"
+msgid "The title will override the user rank"
 msgstr ""
 
-msgrid "Moderator privileges"
+msgid "Moderator privileges"
 msgstr ""
 
-msgrid "In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile."
+msgid "In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile."
 msgstr ""
 
-msgrid "Edit user profiles"
+msgid "Edit user profiles"
 msgstr ""
 
-msgrid "If moderator privileges are enabled, allow users to edit user profiles."
+msgid "If moderator privileges are enabled, allow users to edit user profiles."
 msgstr ""
 
-msgrid "Rename users"
+msgid "Rename users"
 msgstr ""
 
-msgrid "If moderator privileges are enabled, allow users to rename users."
+msgid "If moderator privileges are enabled, allow users to rename users."
 msgstr ""
 
-msgrid "Change passwords"
+msgid "Change passwords"
 msgstr ""
 
-msgrid "If moderator privileges are enabled, allow users to change user passwords."
+msgid "If moderator privileges are enabled, allow users to change user passwords."
 msgstr ""
 
-msgrid "Ban users"
+msgid "Ban users"
 msgstr ""
 
-msgrid "If moderator privileges are enabled, allow users to ban users."
+msgid "If moderator privileges are enabled, allow users to ban users."
 msgstr ""
 
-msgrid "Show deleted content"
+msgid "Show deleted content"
 msgstr ""
 
-msgrid "Allow users to view threads and comments that have been soft deleted."
+msgid "Allow users to view threads and comments that have been soft deleted."
 msgstr ""
 
-msgrid "Soft delete comments"
+msgid "Soft delete comments"
 msgstr ""
 
-msgrid "Allow users to soft delete comments from all users."
+msgid "Allow users to soft delete comments from all users."
 msgstr ""
 
-msgrid "Soft delete comments"
+msgid "Allow users to soft delete threads from all users."
 msgstr ""
 
-msgrid "Allow users to soft delete threads from all users."
+msgid "Allow users to send messages with Inbox."
 msgstr ""
 
-msgrid "Allow users to send messages with Inbox."
+msgid "The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit."
 msgstr ""
 
-msgrid "The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit."
+msgid "Read board"
 msgstr ""
 
-msgrid "Read board"
+msgid "If this is disabled, users will only be able to login and logout."
 msgstr ""
 
-msgrid "If this is disabled, users will only be able to login and logout."
+msgid "View user information"
 msgstr ""
 
-msgrid "View user information"
+msgid "Allow users to view the user list and user profiles."
 msgstr ""
 
-msgrid "Allow users to view the user list and user profiles."
+msgid "Allow users to comment in threads."
 msgstr ""
 
-msgrid "Allow users to comment in threads."
+msgid "Allow users to create new threads."
 msgstr ""
 
-msgrid "Allow users to create new threads."
+msgid "Edit comment"
 msgstr ""
 
-msgrid "Edit comment"
+msgid "Allow users to edit their own comments."
 msgstr ""
 
-msgrid "Allow users to edit their own comments."
+msgid "Delete comments"
 msgstr ""
 
-msgrid "Delete comments"
+msgid "Allow users to delete their own comments."
 msgstr ""
 
-msgrid "Allow users to delete their own comments."
+msgid "Delete threads"
 msgstr ""
 
-msgrid "Delete threads"
+msgid "Allow users to delete their own threads (including any comments)."
 msgstr ""
 
-msgrid "Allow users to delete their own threads (including any comments)."
+msgid "Set own user title"
 msgstr ""
 
-msgrid "Set own user title"
+msgid "Allow users to set their own user title."
 msgstr ""
 
-msgrid "Allow users to set their own user title."
+msgid "Use search"
 msgstr ""
 
-msgrid "Use search"
+msgid "Allow users to use the search feature."
 msgstr ""
 
-msgrid "Allow users to use the search feature."
+msgid "Search user list"
 msgstr ""
 
-msgrid "Search user list"
+msgid "Allow users to search for other users in the user list."
 msgstr ""
 
-msgrid "Allow users to search for other users in the user list."
+msgid "Send e-mails"
 msgstr ""
 
-msgrid "Send e-mails"
+msgid "Allow users to send e-mails to other users."
 msgstr ""
 
-msgrid "Allow users to send e-mails to other users."
+msgid "Comment flood interval"
 msgstr ""
 
-msgrid "Comment flood interval"
+msgid "Time users have to wait between comments"
 msgstr ""
 
-msgrid "Time users have to wait between comments"
+msgid "seconds"
 msgstr ""
 
-msgrid "seconds"
+msgid "Search flood interval"
 msgstr ""
 
-msgrid "Search flood interval"
+msgid "Time users have to wait between searches"
 msgstr ""
 
-msgrid "Time users have to wait between searches"
+msgid "Email flood interval"
 msgstr ""
 
-msgrid "Email flood interval"
+msgid "Time users have to wait between emails"
 msgstr ""
 
-msgrid "Time users have to wait between emails"
+msgid "Report flood interval"
 msgstr ""
 
-msgrid "Report flood interval"
+msgid "Time users have to wait between reports"
 msgstr ""
 
-msgrid "Time users have to wait between reports"
+msgid "Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile."
 msgstr ""
 
-msgrid "Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile."
+msgid "You must enter a title."
 msgstr ""
 
-msgrid "You must enter a title."
+msgid "There is already a group with the title <strong>%s</strong>."
 msgstr ""
 
-msgrid "There is already a group with the title <strong>%s</strong>."
+msgid "The default group cannot be removed. In order to delete this group, you must first setup a different group as the default."
 msgstr ""
 
-msgrid "The default group cannot be removed. In order to delete this group, you must first setup a different group as the default."
+msgid "Are you sure that you want to delete the group <strong>%s</strong>?"
 msgstr ""
 
-msgrid "Are you sure that you want to delete the group <strong>%s</strong>?"
+msgid "<b>Warning:</b> After you deleted a group you cannot restore it."
 msgstr ""
 
-msgrid "<b>Warning:</b> After you deleted a group you cannot restore it."
+msgid "Delete"
 msgstr ""
 
-msgrid "Delete"
+msgid "Delete group"
 msgstr ""
 
-msgrid "Delete group"
+msgid "The group <strong>%s</strong> currently has <strong>%s</strong> members. Please select a group to which these members will be assigned upon deletion."
 msgstr ""
 
-msgrid "The group <strong>%s</strong> currently has <strong>%s</strong> members. Please select a group to which these members will be assigned upon deletion."
+msgid "Move users to"
 msgstr ""
 
-msgrid "Move users to"
+msgid "Add new group"
 msgstr ""
 
-msgrid "Add new group"
+msgid "Select a group the new group will be based on."
 msgstr ""
 
-msgrid "Select a group the new group will be based on."
+msgid "Set default group"
 msgstr ""
 
-msgrid "Set default group"
+msgid "The default group in which new users will be placed."
 msgstr ""
 
-msgrid "The default group in which new users will be placed."
+msgid "Manage groups"
 msgstr ""
 
-msgrid "Manage groups"
+msgid "Backstage"
 msgstr ""
 
-msgrid "Backstage"
+msgid "is a required field in this form."
 msgstr ""
 
-msgrid "is a required field in this form."
+msgid "Could not remove install.php. Please do so by hand."
 msgstr ""
 
-msgrid "Could not remove install.php. Please do so by hand."
+msgid "Index"
 msgstr ""
 
-msgrid "Index"
+msgid "The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644."
 msgstr ""
 
-msgrid "The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644."
+msgid "The file install.php still exists, but should be removed."
 msgstr ""
 
-msgrid "The file install.php still exists, but should be removed."
+msgid "Delete it"
 msgstr ""
 
-msgrid "Delete it"
+msgid "Welcome to Luna"
 msgstr ""
 
-msgrid "Welcome to Luna"
+msgid "Got it"
 msgstr ""
 
-msgrid "Got it"
+msgid "Welcome to the Backstage. Here, you can manage your newly set up board. We're ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!"
 msgstr ""
 
-msgrid "Welcome to the Backstage. Here, you can manage your newly set up board. We're ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!"
+msgid "What's new"
 msgstr ""
 
-msgrid "What's new"
+msgid "Create new sections"
 msgstr ""
 
-msgrid "Create new sections"
+msgid "Alter functionality"
 msgstr ""
 
-msgrid "Alter functionality"
+msgid "Change settings"
 msgstr ""
 
-msgrid "Change settings"
+msgid "New reports"
 msgstr ""
 
-msgrid "New reports"
+msgid "View all"
 msgstr ""
 
-msgrid "View all"
+msgid "Reported by"
 msgstr ""
 
-msgrid "Reported by"
+msgid "Date and time"
 msgstr ""
 
-msgrid "Date and time"
+msgid "Deleted user"
 msgstr ""
 
-msgrid "Deleted user"
+msgid "Deleted"
 msgstr ""
 
-msgrid "Deleted"
+msgid "Comment #%s"
 msgstr ""
 
-msgrid "Comment #%s"
+msgid "There are no new reports."
 msgstr ""
 
-msgrid "There are no new reports."
+msgid "Back-up"
 msgstr ""
 
-msgrid "Back-up"
+msgid "Create new backup"
 msgstr ""
 
-msgrid "Create new backup"
+msgid "Luna v%s is available, %s!"
 msgstr ""
 
-msgrid "Luna v%s is available, %s!"
+msgid "update now"
 msgstr ""
 
-msgrid "update now"
+msgid "Admin notes"
 msgstr ""
 
-msgrid "Admin notes"
+msgid "Add a note..."
 msgstr ""
 
-msgrid "Add a note..."
+msgid "You do not have permission to access this page."
 msgstr ""
 
-msgrid "You do not have permission to access this page."
+msgid "There is no plugin called %s in the plugin directory."
 msgstr ""
 
-msgrid "There is no plugin called %s in the plugin directory."
+msgid "Loading of the plugin - <strong>%s</strong> - failed."
 msgstr ""
 
-msgrid "Loading of the plugin - <strong>%s</strong> - failed."
+msgid "Login"
 msgstr ""
 
-msgrid "Login"
+msgid "Password"
 msgstr ""
 
-msgrid "Password"
+msgid "Remember me"
 msgstr ""
 
-msgrid "Remember me"
+msgid "Comments per cycle must be a positive integer value."
 msgstr ""
 
-msgrid "Comments per cycle must be a positive integer value."
+msgid "Rebuilding search index"
 msgstr ""
 
-msgrid "Rebuilding search index"
+msgid "Rebuilding index. This might be a good time to put on some coffee :-)"
 msgstr ""
 
-msgrid "Rebuilding index. This might be a good time to put on some coffee :-)"
+msgid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
-msgrid "Processing comment <strong>%s</strong> …"
+msgid "JavaScript redirect unsuccessful. %s to continue …"
 msgstr ""
 
-msgrid "JavaScript redirect unsuccessful. %s to continue …"
+msgid "Click here"
 msgstr ""
 
-msgrid "Click here"
+msgid "The forums are temporarily down for maintenance. Please try again in a few minutes."
 msgstr ""
 
-msgrid "The forums are temporarily down for maintenance. Please try again in a few minutes."
+msgid "Maintenance"
 msgstr ""
 
-msgrid "Maintenance"
+msgid "The cache files have been removed."
 msgstr ""
 
-msgrid "The cache files have been removed."
+msgid "The message to tell users about the maintenance"
 msgstr ""
 
-msgrid "The message to tell users about the maintenance"
+msgid "Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!"
 msgstr ""
 
-msgrid "Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!"
+msgid "Cache"
 msgstr ""
 
-msgrid "Cache"
+msgid "Remove all cache files so the database has to return up-to-date values"
 msgstr ""
 
-msgrid "Remove all cache files so the database has to return up-to-date values"
+msgid "Clear cache"
 msgstr ""
 
-msgrid "Clear cache"
+msgid "Rebuild search index"
 msgstr ""
 
-msgrid "Rebuild search index"
+msgid "Rebuild index"
 msgstr ""
 
-msgrid "Rebuild index"
+msgid "If you changes something about threads and comments in the database you should rebuild the search index. It's recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!"
 msgstr ""
 
-msgrid "If you changes something about threads and comments in the database you should rebuild the search index. It's recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!"
+msgid "Comments per cycle"
 msgstr ""
 
-msgrid "Comments per cycle"
+msgid "Number of comments per pageview, this prevents a timeout, 300 recommended"
 msgstr ""
 
-msgrid "Number of comments per pageview, this prevents a timeout, 300 recommended"
+msgid "Starting comment ID"
 msgstr ""
 
-msgrid "Starting comment ID"
+msgid "The ID where to start, default is first ID found in database"
 msgstr ""
 
-msgrid "The ID where to start, default is first ID found in database"
+msgid "Empty index"
 msgstr ""
 
-msgrid "Empty index"
+msgid "Select this if you want the search index to be emptied before rebuilding (see below)."
 msgstr ""
 
-msgrid "Select this if you want the search index to be emptied before rebuilding (see below)."
+msgid "Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in \"Starting comment ID\" if you want to continue (Uncheck \"Empty index\")."
 msgstr ""
 
-msgrid "Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in \"Starting comment ID\" if you want to continue (Uncheck \"Empty index\")."
+msgid "You must give your menu item a title."
 msgstr ""
 
-msgrid "You must give your menu item a title."
+msgid "You must give your menu item an URL."
 msgstr ""
 
-msgrid "You must give your menu item an URL."
+msgid "New menu item"
 msgstr ""
 
-msgrid "New menu item"
+msgid "URL"
 msgstr ""
 
-msgrid "URL"
+msgid "Menu"
 msgstr ""
 
-msgrid "Menu"
+msgid "Show"
 msgstr ""
 
-msgrid "Show"
+msgid "The IP address is: %s"
 msgstr ""
 
-msgrid "The IP address is: %s"
+msgid "The host name is: %s"
 msgstr ""
 
-msgrid "The host name is: %s"
+msgid "Show more users for this IP"
 msgstr ""
 
-msgrid "Show more users for this IP"
+msgid "Moderate"
 msgstr ""
 
-msgrid "Moderate"
+msgid "Moderate content"
 msgstr ""
 
-msgrid "Moderate content"
+msgid "Visit a forum or thread and choose \"Moderate\" in the moderator bar to moderate content."
 msgstr ""
 
-msgrid "Visit a forum or thread and choose \"Moderate\" in the moderator bar to moderate content."
+msgid "You must select at least one comment for split/delete."
 msgstr ""
 
-msgrid "You must select at least one comment for split/delete."
+msgid "Are you sure you want to delete the selected comments?"
 msgstr ""
 
-msgrid "Are you sure you want to delete the selected comments?"
+msgid "Threads must contain a subject."
 msgstr ""
 
-msgrid "Threads must contain a subject."
+msgid "Subjects cannot be longer than 70 characters."
 msgstr ""
 
-msgrid "Subjects cannot be longer than 70 characters."
+msgid "Split comments"
 msgstr ""
 
-msgrid "Split comments"
+msgid "Split"
 msgstr ""
 
-msgrid "Split"
+msgid "Move to"
 msgstr ""
 
-msgrid "Move to"
+msgid "New subject"
 msgstr ""
 
-msgrid "New subject"
+msgid "Guest"
 msgstr ""
 
-msgrid "Guest"
+msgid "Last edited by"
 msgstr ""
 
-msgrid "Last edited by"
+msgid "Select"
 msgstr ""
 
-msgrid "Select"
+msgid "First comment cannot be selected for split/delete."
 msgstr ""
 
-msgrid "First comment cannot be selected for split/delete."
+msgid "You must select at least one threads for move/delete/open/close."
 msgstr ""
 
-msgrid "You must select at least one threads for move/delete/open/close."
+msgid "There are no forums into which you can move threads."
 msgstr ""
 
-msgrid "There are no forums into which you can move threads."
+msgid "Move thread"
 msgstr ""
 
-msgrid "Move thread"
+msgid "Move threads"
 msgstr ""
 
-msgrid "Move threads"
+msgid "Move"
 msgstr ""
 
-msgrid "Move"
+msgid "Leave redirect thread(s)"
 msgstr ""
 
-msgrid "Leave redirect thread(s)"
+msgid "You must select at least two threads to merge."
 msgstr ""
 
-msgrid "You must select at least two threads to merge."
+msgid "Merge threads"
 msgstr ""
 
-msgrid "Merge threads"
+msgid "Merge"
 msgstr ""
 
-msgrid "Merge"
+msgid "Are you sure you want to delete the selected threads?"
 msgstr ""
 
-msgrid "Are you sure you want to delete the selected threads?"
+msgid "Moderating \"%s\""
 msgstr ""
 
-msgrid "Moderating \"%s\""
+msgid "by"
 msgstr ""
 
-msgrid "by"
+msgid "Moved"
 msgstr ""
 
-msgrid "Moved"
+msgid "Closed"
 msgstr ""
 
-msgrid "Closed"
+msgid "Go to the first new comment in this thread."
 msgstr ""
 
-msgrid "Go to the first new comment in this thread."
+msgid "New"
 msgstr ""
 
-msgrid "New"
+msgid "Forum is empty."
 msgstr ""
 
-msgrid "Forum is empty."
+msgid "Open"
 msgstr ""
 
-msgrid "Open"
+msgid "Close"
 msgstr ""
 
-msgrid "Close"
+msgid "Permissions"
 msgstr ""
 
-msgrid "Permissions"
+msgid "Commenting"
 msgstr ""
 
-msgrid "Commenting"
+msgid "Allow the BBCode [img] tag in comments."
 msgstr ""
 
-msgrid "Allow the BBCode [img] tag in comments."
+msgid "All caps"
 msgstr ""
 
-msgrid "All caps"
+msgid "Allow a message to contain only capital letters."
 msgstr ""
 
-msgrid "Allow a message to contain only capital letters."
+msgid "Allow a subject to contain only capital letters."
 msgstr ""
 
-msgrid "Allow a subject to contain only capital letters."
+msgid "Guests"
 msgstr ""
 
-msgrid "Guests"
+msgid "Require guests to supply an email address when commenting."
 msgstr ""
 
-msgrid "Require guests to supply an email address when commenting."
+msgid "Signatures"
 msgstr ""
 
-msgrid "Signatures"
+msgid "Allow the BBCode [img] tag in user signatures (not recommended)."
 msgstr ""
 
-msgrid "Allow the BBCode [img] tag in user signatures (not recommended)."
+msgid "Allow a signature to contain only capital letters."
 msgstr ""
 
-msgrid "Allow a signature to contain only capital letters."
+msgid "Maximum signature length"
 msgstr ""
 
-msgrid "Maximum signature length"
+msgid "Maximum amount of characters a signature can have"
 msgstr ""
 
-msgrid "Maximum amount of characters a signature can have"
+msgid "Maximum signature lines"
 msgstr ""
 
-msgrid "Maximum signature lines"
+msgid "Maximum amount of lines a signature can have"
 msgstr ""
 
-msgrid "Maximum amount of lines a signature can have"
+msgid "Registration"
 msgstr ""
 
-msgrid "Registration"
+msgid "Allow users to use a banned email address, mailing list will be warned when this happens."
 msgstr ""
 
-msgrid "Allow users to use a banned email address, mailing list will be warned when this happens."
+msgid "Allow users to use an email address that is already used, mailing list will be warned when this happens."
 msgstr ""
 
-msgrid "Allow users to use an email address that is already used, mailing list will be warned when this happens."
+msgid "Days to prune must be a positive integer value."
 msgstr ""
 
-msgrid "Days to prune must be a positive integer value."
+msgid "All forums"
 msgstr ""
 
-msgrid "All forums"
+msgid "There are no threads that are %s days old. Please decrease the value of \"Days old\" and try again."
 msgstr ""
 
-msgrid "There are no threads that are %s days old. Please decrease the value of \"Days old\" and try again."
+msgid "Prune"
 msgstr ""
 
-msgrid "Prune"
+msgid "Confirm prune comments"
 msgstr ""
 
-msgrid "Confirm prune comments"
+msgid "Are you sure that you want to prune all comments older than %s days from %s (%s threads)."
 msgstr ""
 
-msgrid "Are you sure that you want to prune all comments older than %s days from %s (%s threads)."
+msgid "Pruning comments deletes them permanently."
 msgstr ""
 
-msgrid "Pruning comments deletes them permanently."
+msgid "Pruning complete. Notifications pruned."
 msgstr ""
 
-msgrid "Pruning complete. Notifications pruned."
+msgid "Pruning complete, all users that matched the requirements have been pruned."
 msgstr ""
 
-msgrid "Pruning complete, all users that matched the requirements have been pruned."
+msgid "Prune notifications"
 msgstr ""
 
-msgrid "Prune notifications"
+msgid "It's recommended to activate %s during pruning."
 msgstr ""
 
-msgrid "It's recommended to activate %s during pruning."
+msgid "maintenance mode"
 msgstr ""
 
-msgrid "maintenance mode"
+msgid "Type"
 msgstr ""
 
-msgrid "Type"
+msgid "All notifications"
 msgstr ""
 
-msgrid "All notifications"
+msgid "Seen notifications"
 msgstr ""
 
-msgrid "Seen notifications"
+msgid "New notifications"
 msgstr ""
 
-msgrid "New notifications"
+msgid "Prune old comments"
 msgstr ""
 
-msgrid "Prune old comments"
+msgid "Days old"
 msgstr ""
 
-msgrid "Days old"
+msgid "The number of days old a thread must be to be pruned"
 msgstr ""
 
+msgstr ""
 msgrid "The number of days old a notification must be to be pruned"
-msgstr ""
 
+msgstr ""
 msgrid "The number of days old a thread must be to be pruned"
-msgstr ""
-
-msgrid "Prune pinned threads"
-msgstr ""
-
-msgrid "Prune from"
-msgstr ""
-
-msgrid "Prune users"
-msgstr ""
-
-msgrid "Prune by"
-msgstr ""
-
-msgrid "What should we count to prune?"
-msgstr ""
-
-msgrid "Registered date"
-msgstr ""
-
-msgrid "Last login"
-msgstr ""
-
-msgrid "Minimum days since registration/last login"
-msgstr ""
-
-msgrid "The minimum amount of days since event specified above"
-msgstr ""
-
-msgrid "Maximum number of comments"
-msgstr ""
-
-msgrid "How many comments do you require before an users isn't pruned"
-msgstr ""
-
-msgrid "Delete admins and mods"
-msgstr ""
-
-msgrid "User status"
-msgstr ""
-
-msgrid "Delete any"
-msgstr ""
-
-msgrid "Delete only verified"
-msgstr ""
-
-msgrid "Delete only unverified"
-msgstr ""
-
-msgrid "Minimum comments must be a positive integer value."
-msgstr ""
-
-msgrid "There is already a rank with a minimum amount of %s comments."
-msgstr ""
-
-msgrid "<strong>User ranks is disabled in %s.</strong>"
-msgstr ""
-
-msgrid "Add rank"
-msgstr ""
-
-msgrid "Rank title"
-msgstr ""
-
-msgrid "Minimum comments"
-msgstr ""
-
-msgrid "Manage ranks"
-msgstr ""
-
-msgrid "No ranks in list"
-msgstr ""
-
-msgrid "Enter your rules here."
-msgstr ""
-
-msgrid "Allow new registrations"
-msgstr ""
-
-msgrid "Allow new users to be made by people."
-msgstr ""
-
-msgrid "Verify registrations"
-msgstr ""
-
-msgrid "Send a random password to users to verify their email address.  "
-msgstr ""
-
-msgrid "Report new registrations"
-msgstr ""
-
-msgrid "Notify people on the mailing list when new user registers.  "
-msgstr ""
-
-msgrid "User forum rules"
-msgstr ""
-
-msgrid "Require users to agree with the rules. This will enable a \"Rules\" panel in Help."
-msgstr ""
-
-msgrid "Enter your rules here"
-msgstr ""
-
-msgrid "Enter rules or useful information, required when rules are enabled"
-msgstr ""
-
-msgrid "Default email setting"
-msgstr ""
-
-msgrid "Default privacy setting for new registrations"
-msgstr ""
-
-msgrid "Display email address to other users."
-msgstr ""
-
-msgrid "Hide email address but allow form e-mail."
-msgstr ""
-
-msgrid "Hide email address and disallow form email."
-msgstr ""
-
-msgrid "Reports"
-msgstr ""
-
-msgrid "Mark as read"
-msgstr ""
-
-msgrid "10 last read reports"
-msgstr ""
-
-msgrid "Marked as read by"
-msgstr ""
-
-msgrid "N/A"
-msgstr ""
-
-msgrid "There are no read reports."
-msgstr ""
-
-msgrid "Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter."
-msgstr ""
-
-msgrid "Enter your announcement here."
-msgstr ""
-
-msgrid "The value of \"Timeout online\" must be smaller than the value of \"Timeout visit\"."
-msgstr ""
-
-msgrid "Essentials"
-msgstr ""
-
-msgrid "Board title"
-msgstr ""
-
-msgrid "Board description"
-msgstr ""
-
-msgrid "What's this board about?"
-msgstr ""
-
-msgrid "Board tags"
-msgstr ""
-
-msgrid "Add some words that describe your board, separated by a comma"
-msgstr ""
-
-msgrid "Board URL"
-msgstr ""
-
-msgrid "Default language"
-msgstr ""
-
-msgrid "The default language"
-msgstr ""
-
-msgrid "Time and timeouts"
-msgstr ""
-
-msgrid "Time format"
-msgstr ""
-
-msgrid "Now: %s. See %s for more info"
-msgstr ""
-
-msgrid "PHP manual"
-msgstr ""
-
-msgrid "Date format"
-msgstr ""
-
-msgrid "Default time zone"
-msgstr ""
-
-msgrid "(UTC-12:00) International Date Line West"
-msgstr ""
-
-msgrid "(UTC-11:00) Niue, Samoa"
-msgstr ""
-
-msgrid "(UTC-10:00) Hawaii-Aleutian, Cook Island"
-msgstr ""
-
-msgrid "(UTC-09:30) Marquesas Islands"
-msgstr ""
-
-msgrid "(UTC-09:00) Alaska, Gambier Island"
-msgstr ""
-
-msgrid "(UTC-08:30) Pitcairn Islands"
-msgstr ""
-
-msgrid "(UTC-08:00) Pacific"
-msgstr ""
-
-msgrid "(UTC-07:00) Mountain"
-msgstr ""
-
-msgrid "(UTC-06:00) Central"
-msgstr ""
-
-msgrid "(UTC-05:00) Eastern"
-msgstr ""
-
-msgrid "(UTC-04:00) Atlantic"
-msgstr ""
-
-msgrid "(UTC-03:30) Newfoundland"
-msgstr ""
-
-msgrid "(UTC-03:00) Amazon, Central Greenland"
-msgstr ""
-
-msgrid "(UTC-02:00) Mid-Atlantic"
-msgstr ""
-
-msgrid "(UTC-01:00) Azores, Cape Verde, Eastern Greenland"
-msgstr ""
-
-msgrid "(UTC) Western European, Greenwich"
-msgstr ""
-
-msgrid "(UTC+01:00) Central European, West African"
-msgstr ""
-
-msgrid "(UTC+02:00) Eastern European, Central African"
-msgstr ""
-
-msgrid "(UTC+03:00) Eastern African"
-msgstr ""
-
-msgrid "(UTC+03:30) Iran"
-msgstr ""
-
-msgrid "(UTC+04:00) Moscow, Gulf, Samara"
-msgstr ""
-
-msgrid "(UTC+04:30) Afghanistan"
-msgstr ""
-
-msgrid "(UTC+05:00) Pakistan"
-msgstr ""
-
-msgrid "(UTC+05:30) India, Sri Lanka"
-msgstr ""
-
-msgrid "(UTC+05:45) Nepal"
-msgstr ""
-
-msgrid "(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg"
-msgstr ""
-
-msgrid "(UTC+06:30) Cocos Islands, Myanmar"
-msgstr ""
-
-msgrid "(UTC+07:00) Indochina, Novosibirsk"
-msgstr ""
-
-msgrid "(UTC+08:00) Greater China, Australian Western, Krasnoyarsk"
-msgstr ""
-
-msgrid "(UTC+08:45) Southeastern Western Australia"
-msgstr ""
-
-msgrid "(UTC+09:00) Japan, Korea, Chita, Irkutsk"
-msgstr ""
-
-msgrid "(UTC+09:30) Australian Central"
-msgstr ""
-
-msgrid "(UTC+10:00) Australian Eastern"
-msgstr ""
-
-msgrid "(UTC+10:30) Lord Howe"
-msgstr ""
-
-msgrid "(UTC+11:00) Solomon Island, Vladivostok"
-msgstr ""
-
-msgrid "(UTC+11:30) Norfolk Island"
-msgstr ""
-
-msgrid "(UTC+12:00) New Zealand, Fiji, Magadan"
-msgstr ""
-
-msgrid "(UTC+12:45) Chatham Islands"
-msgstr ""
-
-msgrid "(UTC+13:00) Tonga, Phoenix Islands, Kamchatka"
-msgstr ""
-
-msgrid "(UTC+14:00) Line Islands"
-msgstr ""
-
-msgrid "Advance time by 1 hour for daylight saving."
-msgstr ""
-
-msgrid "Visit timeout"
-msgstr ""
-
-msgrid "Time before a visit ends"
-msgstr ""
-
-msgrid "Online timeout"
-msgstr ""
-
-msgrid "Time before someone isn't online anymore"
-msgstr ""
-
-msgrid "Syndication"
-msgstr ""
-
-msgrid "Default feed type"
-msgstr ""
-
-msgrid "Select a feed"
-msgstr ""
-
-msgrid "None"
-msgstr ""
-
-msgrid "RSS"
-msgstr ""
-
-msgrid "Atom"
-msgstr ""
-
-msgrid "Duration to cache feeds"
-msgstr ""
-
-msgrid "Reduce sources by caching feeds"
-msgstr ""
-
-msgrid "Don't cache"
-msgstr ""
-
-msgrid "%d minutes"
-msgstr ""
-
-msgrid "Reporting method"
-msgstr ""
-
-msgrid "How should we handle reports?"
-msgstr ""
-
-msgrid "Internal"
-msgstr ""
-
-msgrid "Both"
-msgstr ""
-
-msgrid "Mailing list"
-msgstr ""
-
-msgrid "A comma separated list of subscribers who get e-mails when new reports are made"
-msgstr ""
-
-msgrid "Cookie bar"
-msgstr ""
-
-msgrid "More info"
-msgstr ""
-
-msgrid "Show a bar with information about cookies at the bottom of the page."
-msgstr ""
-
-msgrid "Cookie bar URL"
-msgstr ""
-
-msgrid "Use your own URL for cookie information, by default, we provide our own page"
-msgstr ""
-
-msgrid "Avatars"
-msgstr ""
-
-msgrid "Use avatars"
-msgstr ""
-
-msgrid "Enable so users can upload avatars."
-msgstr ""
-
-msgrid "Upload directory"
-msgstr ""
-
-msgrid "Where avatars will be stored relative to Lunas root, write permission required"
-msgstr ""
-
-msgrid "Max width"
-msgstr ""
-
-msgrid "Max height"
-msgstr ""
-
-msgrid "Max size"
-msgstr ""
-
-msgrid "bytes"
-msgstr ""
-
-msgrid "Announcements"
-msgstr ""
-
-msgrid "Enable this to display the below message in the board."
-msgstr ""
-
-msgrid "Announcement title"
-msgstr ""
-
-msgrid "You can leave this empty if there is no title"
-msgstr ""
-
-msgrid "Announcement type"
-msgstr ""
-
-msgrid "Default"
-msgstr ""
-
-msgrid "Info"
-msgstr ""
-
-msgrid "Success"
-msgstr ""
-
-msgrid "Warning"
-msgstr ""
-
-msgrid "Danger"
-msgstr ""
-
-msgrid "Announcement message"
-msgstr ""
-
-msgrid "The PHP function phpinfo() has been disabled on this server."
-msgstr ""
-
-msgrid "Not available"
-msgstr ""
-
-msgrid "turck-mmcache.sourceforge.net/"
-msgstr ""
-
-msgrid "Turck MMCache"
-msgstr ""
-
-msgrid "www.php-accelerator.co.uk/"
-msgstr ""
-
-msgrid "ionCube PHP Accelerator"
-msgstr ""
-
-msgrid "www.php.net/apc/"
-msgstr ""
-
-msgrid "Alternative PHP Cache (APC)"
-msgstr ""
-
-msgrid "www.zend.com/products/guard/zend-optimizer/"
-msgstr ""
-
-msgrid "Zend Optimizer"
-msgstr ""
-
-msgrid "www.eaccelerator.net/"
-msgstr ""
-
-msgrid "eAccelerator"
-msgstr ""
-
-msgrid "xcache.lighttpd.net/"
-msgstr ""
-
-msgrid "XCache"
-msgstr ""
-
-msgrid "Server statistics"
-msgstr ""
-
-msgrid "Luna version information"
-msgstr ""
-
-msgrid "Version"
-msgstr ""
-
-msgrid "Software version"
-msgstr ""
-
-msgrid "Bootstrap version"
-msgstr ""
-
-msgrid "Core version"
-msgstr ""
-
-msgrid "Font Awesome version"
-msgstr ""
-
-msgrid "Database version"
-msgstr ""
-
-msgrid "jQuery version"
-msgstr ""
-
-msgrid "Server load"
-msgstr ""
-
-msgrid "Environment"
-msgstr ""
-
-msgrid "%s - %s user(s) online"
-msgstr ""
-
-msgrid "Operating system: %s"
-msgstr ""
-
-msgrid "PHP: %s - %s"
-msgstr ""
-
-msgrid "Show info"
-msgstr ""
-
-msgrid "Accelerator: %s"
-msgstr ""
-
-msgrid "Rows: %s"
-msgstr ""
-
-msgrid "Size: %s"
-msgstr ""
-
-msgrid "Style"
-msgstr ""
-
-msgrid "Current theme"
-msgstr ""
-
-msgrid "Theme settings for %s"
-msgstr ""
-
-msgrid "This theme has no settings available..."
-msgstr ""
-
-msgrid "Default style"
-msgstr ""
-
-msgrid "Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above."
-msgstr ""
-
-msgrid "About %s"
-msgstr ""
-
-msgrid "version %s"
-msgstr ""
-
-msgrid "Released on %s"
-msgstr ""
-
-msgrid "Designed for Luna %s to %s"
-msgstr ""
-
-msgrid "In use"
-msgstr ""
-
-msgrid "Use"
-msgstr ""
-
-msgrid "Usernames must be at least 2 characters long. Please choose another (longer) username."
-msgstr ""
-
-msgrid "Passwords must be at least 6 characters long. Please choose another (longer) password."
-msgstr ""
-
-msgrid "The username guest is reserved. Please choose another username."
-msgstr ""
-
-msgrid "Usernames may not be in the form of an IP address. Please choose another username."
-msgstr ""
-
-msgrid "Usernames may not contain all the characters ', \" and [ or ] at once. Please choose another username."
-msgstr ""
-
-msgrid "Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username."
-msgstr ""
-
-msgrid "Someone is already registered with the username"
-msgstr ""
-
-msgrid "The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username."
-msgstr ""
-
-msgrid "Subject: Welcome to <board_title>!\n\nThank you for registering in the forums at <base_url>. Your account details are:\n\nUsername: <username>\nPassword: <password>\n\nLogin at <login_url> to activate the account.\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
-msgstr ""
-
-msgrid "Users"
-msgstr ""
-
-msgrid "User created"
-msgstr ""
-
-msgrid "Failed to create user, no password was given."
-msgstr ""
-
-msgrid "Add user"
-msgstr ""
-
-msgrid "Generate a random password, this will be emailed to the above address. When checked, leave \"Password\" empty."
-msgstr ""
-
-msgrid "Update ring"
-msgstr ""
-
-msgrid "Normal"
-msgstr ""
-
-msgrid "Preview"
-msgstr ""
-
-msgrid "Nightly"
-msgstr ""
-
-msgrid "Luna software updates"
-msgstr ""
-
-msgrid "Check for updates"
-msgstr ""
-
-msgrid "A new version is available!"
-msgstr ""
-
-msgrid "A new version, Luna %s has been released. It's a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates."
-msgstr ""
-
-msgrid "Download v%s"
-msgstr ""
-
-msgrid "Changelog"
-msgstr ""
-
-msgrid "You're using the latest version of Luna!"
-msgstr ""
-
-msgrid "You're on our latest release! Nothing to worry about."
-msgstr ""
-
-msgrid "You're using a development version of Luna. Be sure to stay up-to-date."
-msgstr ""
-
-msgrid "We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href=\"http://getluna.org/lunareleases.php\">our website</a>. New builds can contain new features, improved features, and/or bugfixes."
-msgstr ""
-
-msgrid "At this point, we can only tell you that you're beyond the latest release. We can't tell you if there is a new preview available. You'll have to find out for yourself."
-msgstr ""
-
-msgrid "Download"
-msgstr ""
-
-msgrid "Last used"
-msgstr ""
-
-msgrid "Times found"
-msgstr ""
-
-msgrid "Find more users for this ip"
-msgstr ""
-
-msgrid "There are currently no comments by that user in the forum."
-msgstr ""
-
-msgrid "The supplied IP address is not correctly formatted."
-msgstr ""
-
-msgrid "Title/Status"
-msgstr ""
-
-msgrid "Comments"
-msgstr ""
-
-msgrid "Admin note"
-msgstr ""
-
-msgrid "IP stats"
-msgstr ""
-
-msgrid "The supplied IP address could not be found in the database."
-msgstr ""
-
-msgrid "No users selected."
-msgstr ""
-
-msgrid "For security reasons, you are not allowed to move multiple administrators to another group. If you want to move these administrators, you can do so on their respective user profiles."
-msgstr ""
-
-msgrid "Invalid group ID."
-msgstr ""
-
-msgrid "Change user group"
-msgstr ""
-
-msgrid "New group"
-msgstr ""
-
-msgrid "Select a new user group"
-msgstr ""
-
-msgrid "Administrators cannot be deleted. In order to delete administrators, you must first move them to a different user group."
-msgstr ""
-
-msgrid "Delete users"
-msgstr ""
-
-msgrid "Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time."
-msgstr ""
-
-msgrid "Delete all comments and threads this user has made"
-msgstr ""
-
-msgrid "Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group."
-msgstr ""
-
-msgrid "Moderators cannot be banned. In order to ban moderators, you must first move them to a different user group."
-msgstr ""
-
-msgrid "Ban IP addresses"
-msgstr ""
-
-msgrid "Also ban the IP addresses of the banned users to make registering a new account more difficult for them."
-msgstr ""
-
-msgrid "You entered a non-numeric value into a numeric only column."
-msgstr ""
-
-msgrid "You entered an invalid date/time."
-msgstr ""
-
-msgrid "Change group"
-msgstr ""
-
-msgrid "Banned"
-msgstr ""
-
-msgrid "Not verified"
-msgstr ""
-
-msgrid "The user has been deleted."
-msgstr ""
-
-msgrid "User search"
-msgstr ""
-
-msgrid "Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches."
-msgstr ""
-
-msgrid "Email address"
-msgstr ""
-
-msgrid "Title"
-msgstr ""
-
-msgrid "Real name"
-msgstr ""
-
-msgrid "Website"
-msgstr ""
-
-msgrid "Facebook"
-msgstr ""
-
-msgrid "Microsoft Account"
-msgstr ""
-
-msgrid "Twitter"
-msgstr ""
-
-msgrid "Google+"
-msgstr ""
-
-msgrid "Location"
-msgstr ""
-
-msgrid "Signature"
-msgstr ""
-
-msgrid "User group"
-msgstr ""
-
-msgrid "All groups"
-msgstr ""
-
-msgrid "Unverified users"
-msgstr ""
-
-msgrid "Number of comments less than"
-msgstr ""
-
-msgrid "Number of comments greater than"
-msgstr ""
-
-msgrid "Last comment is before"
-msgstr ""
-
-msgrid "Last comment is after"
-msgstr ""
-
-msgrid "Last visit is before"
-msgstr ""
-
-msgrid "Last visit is after"
-msgstr ""
-
-msgrid "Registered before"
-msgstr ""
-
-msgrid "Registered after"
-msgstr ""
-
-msgrid "Number of comments"
-msgstr ""
-
-msgrid "Last visit"
-msgstr ""
-
-msgrid "Registered"
-msgstr ""
-
-msgrid "IP search"
-msgstr ""
-
-msgrid "Find IP address"
-msgstr ""
-
-msgrid "The IP address to search for in the comment database."
-msgstr ""
-
-msgrid "You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue."
-msgstr ""
-
-msgrid "Your forum is already as up-to-date as this script can make it"
-msgstr ""
-
-msgrid "Continue"
-msgstr ""
-
-msgrid "Let's get started"
-msgstr ""
-
-msgrid "There is an update ready to be installed"
-msgstr ""
-
-msgrid "Start update"
-msgstr ""
-
-msgrid "Update Luna"
-msgstr ""
-
-msgrid "Preparsing %1$s %2$s …"
-msgstr ""
-
-msgrid "comment"
-msgstr ""
-
-msgrid "signature"
-msgstr ""
-
-msgrid "Rebuilding index for %1$s %2$s"
-msgstr ""
-
-msgrid "You do not have permission to view this page."
-msgstr ""
-
-msgrid "Delete comment"
-msgstr ""
-
-msgrid "Are you sure you want to do this?"
-msgstr ""
-
-msgrid "Threads must contain a subject. After applying censoring filters, your subject was empty."
-msgstr ""
-
-msgrid "Subjects cannot contain only capital letters."
-msgstr ""
-
-msgrid "Comments cannot be longer than %s bytes."
-msgstr ""
-
-msgrid "Comments cannot contain only capital letters."
-msgstr ""
-
-msgrid "You must enter a message."
-msgstr ""
-
-msgrid "You must enter a message. After applying censoring filters, your message was empty."
-msgstr ""
-
-msgrid "Edit comment"
-msgstr ""
-
-msgrid " / "
-msgstr ""
-
-msgrid "The most recent comments in %s."
-msgstr ""
-
-msgrid "Re: "
-msgstr ""
-
-msgrid "en"
-msgstr ""
-
-msgrid "The most recent threads at %s."
-msgstr ""
-
-msgrid "Guests online"
-msgstr ""
-
-msgrid "Users online"
-msgstr ""
-
-msgrid "Newest user"
-msgstr ""
-
-msgrid "Threads"
-msgstr ""
-
-msgrid "No new notifications"
-msgstr ""
-
-msgrid "More"
-msgstr ""
-
-msgrid "Help"
-msgstr ""
-
-msgrid "You must select some messages"
-msgstr ""
-
-msgrid "Private Messages"
-msgstr ""
-
-msgrid "System info"
-msgstr ""
-
-msgrid "Luna software update"
-msgstr ""
-
-msgrid "About Luna"
-msgstr ""
-
-msgrid "Tools"
-msgstr ""
-
-msgrid "Groups"
-msgstr ""
-
-msgrid "Settings"
-msgstr ""
-
-msgrid "Theme"
-msgstr ""
-
-msgrid "Database management"
-msgstr ""
-
-msgrid "Content"
-msgstr ""
-
-msgrid "Extensions"
-msgstr ""
-
-msgrid "Profile"
-msgstr ""
-
-msgrid "Support"
-msgstr ""
-
-msgrid "Logout"
-msgstr ""
-
-msgrid "About"
-msgstr ""
-
-msgrid "Usernames must be at least 2 characters long."
-msgstr ""
-
-msgrid "Usernames must not be more than 25 characters long."
-msgstr ""
-
-msgrid "The username guest is reserved."
-msgstr ""
-
-msgrid "Usernames may not be in the form of an IP address."
-msgstr ""
-
-msgrid "Usernames may not contain all the characters ', \" and [ or ] at once."
-msgstr ""
-
-msgrid "Usernames may not contain any of the text formatting tags (BBCode) that the forum uses."
-msgstr ""
-
-msgrid "Passwords must be at least 6 characters long."
-msgstr ""
-
-msgrid "Passwords do not match."
-msgstr ""
-
-msgrid "The administrator email address you entered is invalid."
-msgstr ""
-
-msgrid "You must enter a board title."
-msgstr ""
-
-msgrid "The default language chosen doesn't seem to exist."
-msgstr ""
-
-msgrid "The default style chosen doesn't seem to exist."
-msgstr ""
-
-msgrid "\"%s\" is not a valid database type"
-msgstr ""
-
-msgrid "The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please choose a different prefix"
-msgstr ""
-
-msgrid "InnoDB does not seem to be enabled. Please choose a database layer that does not have InnoDB support, or enable InnoDB on your MySQL server"
-msgstr ""
-
-msgrid "The table prefix '%s' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix"
-msgstr ""
-
-msgrid "A table called \"%susers\" is already present in the database \"%s\". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix"
-msgstr ""
-
-msgrid "H:i"
-msgstr ""
-
-msgrid "j M Y"
-msgstr ""
-
-msgrid "Wow, it's great to have you here, welcome and thanks for joining us. We've set up your account and you're ready to go. Though we like to point out some actions you might want to do first."
-msgstr ""
-
-msgrid "Announcement"
-msgstr ""
-
-msgrid "Rules"
-msgstr ""
-
-msgrid "Administrators"
-msgstr ""
-
-msgrid "Administrator"
-msgstr ""
-
-msgrid "Moderators"
-msgstr ""
-
-msgrid "Moderator"
-msgstr ""
-
-msgrid "Members"
-msgstr ""
-
-msgrid "New member"
-msgstr ""
-
-msgrid "Member"
-msgstr ""
-
-msgrid "You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website."
-msgstr ""
-
-msgrid "Comment errors"
-msgstr ""
-
-msgrid "Comment preview"
-msgstr ""
-
-msgrid "Pin thread"
-msgstr ""
-
-msgrid "Mute edit"
-msgstr ""
-
-msgrid "The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though."
-msgstr ""
-
-msgrid "Bold"
-msgstr ""
-
-msgrid "Underline"
-msgstr ""
-
-msgrid "Italic"
-msgstr ""
-
-msgrid "Strike"
-msgstr ""
-
-msgrid "Heading"
-msgstr ""
-
-msgrid "Subscript"
-msgstr ""
-
-msgrid "Superscript"
-msgstr ""
-
-msgrid "Quote"
-msgstr ""
-
-msgrid "Code"
-msgstr ""
-
-msgrid "Inline code"
-msgstr ""
-
-msgrid "Image"
-msgstr ""
-
-msgrid "Video"
-msgstr ""
-
-msgrid "List"
-msgstr ""
-
-msgrid "List item"
-msgstr ""
-
-msgrid "Smile"
-msgstr ""
-
-msgrid "Neutral"
-msgstr ""
-
-msgrid "Sad"
-msgstr ""
-
-msgrid "Big smile"
-msgstr ""
-
-msgrid "Yikes"
-msgstr ""
-
-msgrid "Wink"
-msgstr ""
-
-msgrid "Hmmm"
-msgstr ""
-
-msgrid "Tongue"
-msgstr ""
-
-msgrid "Happy"
-msgstr ""
-
-msgrid "Angry"
-msgstr ""
-
-msgrid "Roll eye"
-msgstr ""
-
-msgrid "Cool"
-msgstr ""
-
-msgrid "Happy cry"
-msgstr ""
-
-msgrid "Angel"
-msgstr ""
-
-msgrid "Oh yeah"
-msgstr ""
-
-msgrid "Smilies"
-msgstr ""
-
-msgrid "Start typing..."
-msgstr ""
-
-msgrid "Submit"
-msgstr ""
-
-msgrid "There are no threads in this forum yet, but you can <a href=\"post.php?fid=%s\">start the first one</a>."
-msgstr ""
-
-msgrid "thread"
-msgstr ""
-
-msgrid "Never"
-msgstr ""
-
-msgrid "There are no forums in this board yet."
-msgstr ""
-
-msgrid "in"
-msgstr ""
-
-msgrid "The board is empty, select a forum and create a thread to begin."
-msgstr ""
-
-msgrid "From:"
-msgstr ""
-
-msgrid "IP log"
-msgstr ""
-
-msgrid "Note:"
-msgstr ""
-
-msgrid "Report"
-msgstr ""
-
-msgrid "Soft delete"
-msgstr ""
-
-msgrid "Soft reset"
-msgstr ""
-
-msgrid "Unsolved"
-msgstr ""
-
-msgrid "Answer"
-msgstr ""
-
-msgrid "Online:"
-msgstr ""
-
-msgrid "Offline"
-msgstr ""
-
-msgrid "Registered since"
-msgstr ""
-
-msgrid "Comments:"
-msgstr ""
-
-msgrid "PM"
-msgstr ""
-
-msgrid "Your search returned no hits."
-msgstr ""
-
-msgrid "This is the first comment in the thread, the whole thread will be permanently deleted."
-msgstr ""
-
-msgrid "The comment you have chosen to delete is set out below for you to review before proceeding."
-msgstr ""
-
-msgrid "Cancel"
-msgstr ""
-
-msgrid "The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead."
-msgstr ""
-
-msgrid "This comment has been soft deleted. We'll enable it again with a click on the button."
-msgstr ""
-
-msgrid "Reset comment"
-msgstr ""
-
-msgrid "Thread started by %s - %s"
-msgstr ""
-
-msgrid "Comment by %s - %s"
-msgstr ""
-
-msgrid "Enter the requested data"
-msgstr ""
-
-msgrid "Register"
-msgstr ""
-
-msgrid "If you are human please leave this field blank!"
-msgstr ""
-
-msgrid "Enter a username between 2 and 25 characters long"
-msgstr ""
-
-msgrid "Passwords must be at least 6 characters long and are case sensitive"
-msgstr ""
 
-msgrid "Your password will be sent to this address, make sure it's valid"
+msgid "Prune pinned threads"
 msgstr ""
 
-msgrid "You must agree to the following in order to register"
+msgid "Prune from"
 msgstr ""
 
-msgrid "Agree"
+msgid "Prune users"
 msgstr ""
 
-msgrid "Send"
+msgid "Prune by"
 msgstr ""
 
-msgrid "Tell us why you are reporting this"
+msgid "What should we count to prune?"
 msgstr ""
 
-msgrid "Forum"
+msgid "Registered date"
 msgstr ""
 
-msgrid "Luna"
+msgid "Last login"
 msgstr ""
 
-msgrid "%s Mailer"
+msgid "Minimum days since registration/last login"
 msgstr ""
 
-msgrid "You are banned from this forum."
+msgid "The minimum amount of days since event specified above"
 msgstr ""
 
-msgrid "The ban expires at the end of"
+msgid "Maximum number of comments"
 msgstr ""
 
-msgrid "The administrator or moderator that banned you left the following message:"
+msgid "How many comments do you require before an users isn't pruned"
 msgstr ""
 
-msgrid "Please direct any inquiries to the forum administrator at"
+msgid "Delete admins and mods"
 msgstr ""
 
-msgrid "Usernames must not be more than 25 characters long. Please choose another (shorter) username."
+msgid "User status"
 msgstr ""
 
-msgrid "The username you entered contains one or more censored words. Please choose a different username."
+msgid "Delete any"
 msgstr ""
 
-msgrid "The username you entered is banned in this forum. Please choose another username."
+msgid "Delete only verified"
 msgstr ""
 
-msgrid "Page %s"
+msgid "Delete only unverified"
 msgstr ""
 
-msgrid "…"
+msgid "Minimum comments must be a positive integer value."
 msgstr ""
 
-msgrid "We've got us a situation here."
+msgid "There is already a rank with a minimum amount of %s comments."
 msgstr ""
 
-msgrid "Today"
+msgid "<strong>User ranks is disabled in %s.</strong>"
 msgstr ""
 
-msgrid "Yesterday"
+msgid "Add rank"
 msgstr ""
 
-msgrid "."
+msgid "Rank title"
 msgstr ""
 
-msgrid ","
+msgid "Minimum comments"
 msgstr ""
 
-msgrid "Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \"Base URL\" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation."
+msgid "Manage ranks"
 msgstr ""
 
-msgrid "Size unit %s"
+msgid "No ranks in list"
 msgstr ""
 
-msgrid "Debug information"
+msgid "Enter your rules here."
 msgstr ""
 
-msgrid "Time (s)"
+msgid "Allow new registrations"
 msgstr ""
 
-msgrid "Query"
+msgid "Allow new users to be made by people."
 msgstr ""
 
-msgrid "Total query time: %s"
+msgid "Verify registrations"
 msgstr ""
 
-msgrid "Toggle navigation"
+msgid "Send a random password to users to verify their email address.  "
 msgstr ""
 
-msgrid "Reply"
+msgid "Report new registrations"
 msgstr ""
 
-msgrid "Compose"
+msgid "Notify people on the mailing list when new user registers.  "
 msgstr ""
 
-msgrid "It seems your comment consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level."
+msgid "User forum rules"
 msgstr ""
 
-msgrid "The quote, code, list, video, and heading BBCodes are not allowed in signatures."
+msgid "Require users to agree with the rules. This will enable a \"Rules\" panel in Help."
 msgstr ""
 
-msgrid "Your list was too long to parse, please make it smaller!"
+msgid "Enter your rules here"
 msgstr ""
 
-msgrid "[%s] tag had an empty attribute section"
+msgid "Enter rules or useful information, required when rules are enabled"
 msgstr ""
 
-msgrid "[%1$s] was opened within [%2$s], this is not allowed"
+msgid "Default email setting"
 msgstr ""
 
-msgrid "[/%1$s] was found without a matching [%1$s]"
+msgid "Default privacy setting for new registrations"
 msgstr ""
 
-msgrid "[%1$s] was found without a matching [/%1$s]"
+msgid "Display email address to other users."
 msgstr ""
 
-msgrid "[%s] was opened within itself, this is not allowed"
+msgid "Hide email address but allow form e-mail."
 msgstr ""
 
-msgrid "image"
+msgid "Hide email address and disallow form email."
 msgstr ""
 
-msgrid "No users online"
+msgid "Reports"
 msgstr ""
 
-msgrid "RSS active threads feed"
+msgid "Mark as read"
 msgstr ""
 
-msgrid "Atom active threads feed"
+msgid "10 last read reports"
 msgstr ""
 
-msgrid "It seems like Luna is already installed."
+msgid "Marked as read by"
 msgstr ""
 
-msgrid "We're done here"
+msgid "N/A"
 msgstr ""
 
-msgrid "You can do anything"
+msgid "There are no read reports."
 msgstr ""
 
-msgrid "<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777."
+msgid "Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter."
 msgstr ""
 
-msgrid "<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777."
+msgid "Enter your announcement here."
 msgstr ""
 
-msgrid "PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, though"
+msgid "The value of \"Timeout online\" must be smaller than the value of \"Timeout visit\"."
 msgstr ""
 
-msgrid "Luna Installation"
+msgid "Essentials"
 msgstr ""
 
-msgrid "Server hostname"
+msgid "Board title"
 msgstr ""
 
-msgrid "Administrator password 1"
+msgid "Board description"
 msgstr ""
 
-msgrid "Administrator password 2"
+msgid "What's this board about?"
 msgstr ""
 
-msgrid "No trailing slash"
+msgid "Board tags"
 msgstr ""
 
-msgrid "Install Luna %s"
+msgid "Add some words that describe your board, separated by a comma"
 msgstr ""
 
-msgrid "Choose the install script language"
+msgid "Board URL"
 msgstr ""
 
-msgrid "Install language"
+msgid "Default language"
 msgstr ""
 
-msgrid "The language used for this install script. The default language used for the board itself can be set below."
+msgid "The default language"
 msgstr ""
 
-msgrid "Change language"
+msgid "Time and timeouts"
 msgstr ""
 
-msgrid "The following errors need to be corrected:"
+msgid "Time format"
 msgstr ""
 
-msgrid "Database setup"
+msgid "Now: %s. See %s for more info"
 msgstr ""
 
-msgrid "What database do you want to use?"
+msgid "PHP manual"
 msgstr ""
 
-msgrid "Where's the server?"
+msgid "Date format"
 msgstr ""
 
-msgrid "The database name"
+msgid "Default time zone"
 msgstr ""
 
-msgrid "Your database username"
+msgid "(UTC-12:00) International Date Line West"
 msgstr ""
 
-msgrid "Table prefix"
+msgid "(UTC-11:00) Niue, Samoa"
 msgstr ""
 
-msgrid "Set for more Luna installation in this database"
+msgid "(UTC-10:00) Hawaii-Aleutian, Cook Island"
 msgstr ""
 
-msgrid "Administration setup"
+msgid "(UTC-09:30) Marquesas Islands"
 msgstr ""
 
-msgrid "2 to 25 characters long"
+msgid "(UTC-09:00) Alaska, Gambier Island"
 msgstr ""
 
-msgrid "At least 6 characters long"
+msgid "(UTC-08:30) Pitcairn Islands"
 msgstr ""
 
-msgrid "Board setup"
+msgid "(UTC-08:00) Pacific"
 msgstr ""
 
-msgrid "Start install"
+msgid "(UTC-07:00) Mountain"
 msgstr ""
 
-msgrid "<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features."
+msgid "(UTC-06:00) Central"
 msgstr ""
 
-msgrid "Luna has been installed. To finalize the installation please follow the instructions below."
+msgid "(UTC-05:00) Eastern"
 msgstr ""
 
-msgrid "To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your Luna installation."
+msgid "(UTC-04:00) Atlantic"
 msgstr ""
 
-msgrid "Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href=\"index.php\">go to the forum index</a>."
+msgid "(UTC-03:30) Newfoundland"
 msgstr ""
 
-msgrid "Download config.php file"
+msgid "(UTC-03:00) Amazon, Central Greenland"
 msgstr ""
 
-msgrid "Luna has been fully installed! You may now <a href=\"index.php\">go to the forum index</a>."
+msgid "(UTC-02:00) Mid-Atlantic"
 msgstr ""
 
-msgrid "Wrong username and/or password."
+msgid "(UTC-01:00) Azores, Cape Verde, Eastern Greenland"
 msgstr ""
 
-msgrid "Forgotten password"
+msgid "(UTC) Western European, Greenwich"
 msgstr ""
 
-msgrid "The email address you entered is invalid."
+msgid "(UTC+01:00) Central European, West African"
 msgstr ""
 
-msgrid "Subject: New password requested\n\nHello <username>,\n\nYou have requested to have a new password assigned to your account in the discussion forum at <base_url>. If you did not request this or if you do not want to change your password you should just ignore this message. Only if you visit the activation page below will your password be changed.\n\nYour new password is: <new_password>\n\nTo change your password, please visit the following page:\n<activation_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "(UTC+02:00) Eastern European, Central African"
 msgstr ""
 
-msgrid "This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again."
+msgid "(UTC+03:00) Eastern African"
 msgstr ""
 
-msgrid "An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at"
+msgid "(UTC+03:30) Iran"
 msgstr ""
 
-msgrid "There is no user registered with the email address"
+msgid "(UTC+04:00) Moscow, Gulf, Samara"
 msgstr ""
 
-msgrid "The user you are trying to send an email to has disabled form email."
+msgid "(UTC+04:30) Afghanistan"
 msgstr ""
 
-msgrid "You must enter a subject."
+msgid "(UTC+05:00) Pakistan"
 msgstr ""
 
-msgrid "Messages cannot be longer than 65535 characters (64 KB)."
+msgid "(UTC+05:30) India, Sri Lanka"
 msgstr ""
 
-msgrid "At least %s seconds have to pass between sent emails. Please wait %s seconds and try sending again."
+msgid "(UTC+05:45) Nepal"
 msgstr ""
 
-msgrid "Subject: <mail_subject>\n\n<sender> from <board_title> has sent you a message. You can reply to <sender> by replying to this email.\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<mail_message>\n\n-----------------------------------------------------------------------\n\n--\n<board_mailer> Mailer"
+msgid "(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg"
 msgstr ""
 
-msgrid "Send email to"
+msgid "(UTC+06:30) Cocos Islands, Myanmar"
 msgstr ""
 
-msgrid "You must enter a reason."
+msgid "(UTC+07:00) Indochina, Novosibirsk"
 msgstr ""
 
-msgrid "Your message must be under 65535 bytes (~64kb)."
+msgid "(UTC+08:00) Greater China, Australian Western, Krasnoyarsk"
 msgstr ""
 
-msgrid "At least %s seconds have to pass between reports. Please wait %s seconds and try sending again."
+msgid "(UTC+08:45) Southeastern Western Australia"
 msgstr ""
 
-msgrid "Subject: Report(<forum_id>) - \"<thread_subject>\"\n\nUser \"<username>\" has reported the following message: <comment_url>\n\nReason: <reason>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "(UTC+09:00) Japan, Korea, Chita, Irkutsk"
 msgstr ""
 
-msgrid "Report comment"
+msgid "(UTC+09:30) Australian Central"
 msgstr ""
 
-msgrid "Reason"
+msgid "(UTC+10:00) Australian Eastern"
 msgstr ""
 
-msgrid "You are subscribed"
+msgid "(UTC+10:30) Lord Howe"
 msgstr ""
 
-msgrid "You're already subscribed to this forum."
+msgid "(UTC+11:00) Solomon Island, Vladivostok"
 msgstr ""
 
-msgrid "You're not subscribed to this thread."
+msgid "(UTC+11:30) Norfolk Island"
 msgstr ""
 
-msgrid "At least % seconds have to pass between sends. Please wait a little while and try send the message again."
+msgid "(UTC+12:00) New Zealand, Fiji, Magadan"
 msgstr ""
 
-msgrid "Can't save message, your boxes are full."
+msgid "(UTC+12:45) Chatham Islands"
 msgstr ""
 
-msgrid "You must give at least one receiver"
+msgid "(UTC+13:00) Tonga, Phoenix Islands, Kamchatka"
 msgstr ""
 
-msgrid "You can send a message at the same time only to %s receivers maximum."
+msgid "(UTC+14:00) Line Islands"
 msgstr ""
 
-msgrid "%s has left the conversation."
+msgid "Advance time by 1 hour for daylight saving."
 msgstr ""
 
-msgrid "%s disabled the private messages."
+msgid "Visit timeout"
 msgstr ""
 
-msgrid "%s inbox is full, you can not send you message to this user."
+msgid "Time before a visit ends"
 msgstr ""
 
-msgrid "There's no user with the username \"%s\"."
+msgid "Online timeout"
 msgstr ""
 
-msgrid "Subject: You received a new private message on <board_title>\n\n<sender> sent a private message to you.\n\nYou can read this private message at this address: <pm_url>\n\n-- \n<board_mailer>\n(Do not reply to this message)"
+msgid "Time before someone isn't online anymore"
 msgstr ""
 
-msgrid "Subject: You received a private message on <board_title>\n\n<sender> sent a private message to you.\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can read this private message at this address: <pm_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Syndication"
 msgstr ""
 
-msgrid "Send a message"
+msgid "Default feed type"
 msgstr ""
 
-msgrid "At least %s seconds have to pass between comments. Please wait %s seconds and try commenting again."
+msgid "Select a feed"
 msgstr ""
 
-msgrid "The email address you entered is banned in this forum. Please choose another email address."
+msgid "None"
 msgstr ""
 
-msgrid "Subject: Reply to thread: \"<thread_subject>\"\n\n<replier> has replied to the thread \"<thread_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe comment is located at <comment_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "RSS"
 msgstr ""
 
-msgrid "Subject: Reply to thread: \"<thread_subject>\"\n\n<replier> has replied to the thread \"<thread_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe comment is located at <comment_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Atom"
 msgstr ""
 
-msgrid "Subject: New thread in forum: \"<forum_name>\"\n\n<commenter> has commented a new thread \"<thread_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe thread is located at <thread_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Duration to cache feeds"
 msgstr ""
 
-msgrid "Subject: New thread in forum: \"<forum_name>\"\n\n<commenter> has commented a new thread \"<thread_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe thread is located at <thread_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Reduce sources by caching feeds"
 msgstr ""
 
-msgrid "Subject: Alert - Banned email detected\n\nUser \"<username>\" commented with banned email address: <email>\n\nComment URL: <comment_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Don't cache"
 msgstr ""
 
-msgrid "Add comment"
+msgid "%d minutes"
 msgstr ""
 
-msgrid "Create thread"
+msgid "Reporting method"
 msgstr ""
 
-msgrid "Show threads"
+msgid "How should we handle reports?"
 msgstr ""
 
-msgrid "Show comments"
+msgid "Internal"
 msgstr ""
 
-msgrid "Show subscriptions"
+msgid "Both"
 msgstr ""
 
-msgrid "Send email"
+msgid "Mailing list"
 msgstr ""
 
-msgrid "This forum is not accepting new registrations."
+msgid "A comma separated list of subscribers who get e-mails when new reports are made"
 msgstr ""
 
-msgrid "Forum rules"
+msgid "Cookie bar"
 msgstr ""
 
-msgrid "A new user was registered with the same IP address as you within the last hour. To prevent registration flooding, at least an hour has to pass between registrations from the same IP. Sorry for the inconvenience."
+msgid "More info"
 msgstr ""
 
-msgrid "Email addresses do not match."
+msgid "Show a bar with information about cookies at the bottom of the page."
 msgstr ""
 
-msgrid "Someone else is already registered with that email address. Please choose another email address."
+msgid "Cookie bar URL"
 msgstr ""
 
-msgrid "Unfortunately it looks like your request is spam. If you feel this is a mistake, please direct any inquiries to the forum administrator at"
+msgid "Use your own URL for cookie information, by default, we provide our own page"
 msgstr ""
 
-msgrid "Subject: Alert - Banned email detected\n\nUser \"<username>\" registered with banned email address: <email>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Avatars"
 msgstr ""
 
-msgrid "Subject: Alert - Duplicate email detected\n\nUser \"<username>\" registered with an email address that also belongs to: <dupe_list>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Use avatars"
 msgstr ""
 
-msgrid "Subject: Alert - New registration\n\nUser \"<username>\" registered in the forums at <base_url>\n\nUser profile: <profile_url>\n\nTo administer this account, please visit the following page:\n<admin_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Enable so users can upload avatars."
 msgstr ""
 
-msgrid "Thank you for registering. Your password has been sent to the specified address. If it doesn't arrive you can contact the forum administrator at"
+msgid "Upload directory"
 msgstr ""
 
-msgrid "Confirm password"
+msgid "Where avatars will be stored relative to Lunas root, write permission required"
 msgstr ""
 
-msgrid "You do not have permission to use the search feature."
+msgid "Max width"
 msgstr ""
 
-msgrid "You have to enter at least one keyword and/or an author to search for."
+msgid "Max height"
 msgstr ""
 
-msgrid "At least %s seconds have to pass between searches. Please wait %s seconds and try searching again."
+msgid "Max size"
 msgstr ""
 
-msgrid "There are no threads with new comments since your last visit."
+msgid "bytes"
 msgstr ""
 
-msgrid "No new comments have been made within the last 24 hours."
+msgid "Announcements"
 msgstr ""
 
-msgrid "There are no comments by this user in this forum."
+msgid "Enable this to display the below message in the board."
 msgstr ""
 
-msgrid "There are no threads by this user in this forum."
+msgid "Announcement title"
 msgstr ""
 
-msgrid "This user is currently not subscribed to and threads."
+msgid "You can leave this empty if there is no title"
 msgstr ""
 
-msgrid "There are no unanswered comments in this forum."
+msgid "Announcement type"
 msgstr ""
 
-msgrid "Threads by %s"
+msgid "Default"
 msgstr ""
 
-msgrid "Comments by %s"
+msgid "Info"
 msgstr ""
 
-msgrid "Subscribed by %s"
+msgid "Success"
 msgstr ""
 
-msgrid "Quick search %s"
+msgid "Warning"
 msgstr ""
 
-msgrid "Search results"
+msgid "Danger"
 msgstr ""
 
-msgrid "Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group."
+msgid "Announcement message"
 msgstr ""
 
-msgrid "Confirm delete user"
+msgid "The PHP function phpinfo() has been disabled on this server."
 msgstr ""
 
-msgrid "The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at"
+msgid "Not available"
 msgstr ""
 
-msgrid "Your password has been updated. You can now login with your new password."
+msgid "turck-mmcache.sourceforge.net/"
 msgstr ""
 
-msgrid "Wrong old password."
+msgid "Turck MMCache"
 msgstr ""
 
-msgrid "The specified email activation key was incorrect or has expired. Please re-request change of email address. If that fails, contact the forum administrator at"
+msgid "www.php-accelerator.co.uk/"
 msgstr ""
 
-msgrid "Your email address has been updated."
+msgid "ionCube PHP Accelerator"
 msgstr ""
 
-msgrid "Subject: Alert - Banned email detected\n\nUser \"<username>\" changed to banned email address: <email>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "www.php.net/apc/"
 msgstr ""
 
-msgrid "Subject: Alert - Duplicate email detected\n\nUser \"<username>\" changed to an email address that also belongs to: <dupe_list>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "Alternative PHP Cache (APC)"
 msgstr ""
 
-msgrid "Subject: Change email address requested\n\nHello <username>,\n\nYou have requested to have a new email address assigned to your account in the discussion forum at <base_url>. If you did not request this or if you do not want to change your email address you should just ignore this message. Only if you visit the activation page below will your email address be changed. In order for the activation page to work, you must be logged in to the forum.\n\nTo change your email address, please visit the following page:\n<activation_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgid "www.zend.com/products/guard/zend-optimizer/"
 msgstr ""
 
-msgrid "An email has been sent to the specified address with instructions on how to activate the new email address. If it doesn't arrive you can contact the forum administrator at"
+msgid "Zend Optimizer"
 msgstr ""
 
-msgrid "Change email address"
+msgid "www.eaccelerator.net/"
 msgstr ""
 
-msgrid "New email"
+msgid "eAccelerator"
 msgstr ""
 
-msgrid "The administrator has disabled avatar support."
+msgid "xcache.lighttpd.net/"
 msgstr ""
 
-msgrid "You did not select a file for upload."
+msgid "XCache"
 msgstr ""
 
-msgrid "The selected file was too large to upload. The server didn't allow the upload."
+msgid "Server statistics"
 msgstr ""
 
-msgrid "The selected file was only partially uploaded. Please try again."
+msgid "Luna version information"
 msgstr ""
 
-msgrid "PHP was unable to save the uploaded file to a temporary location."
+msgid "Version"
 msgstr ""
 
-msgrid "The file you tried to upload is not of an allowed type. Allowed types are gif, jpeg and png."
+msgid "Software version"
 msgstr ""
 
-msgrid "The file you tried to upload is larger than the maximum allowed"
+msgid "Bootstrap version"
 msgstr ""
 
-msgrid "The server was unable to save the uploaded file. Please contact the forum administrator at"
+msgid "Core version"
 msgstr ""
 
-msgrid "The file you tried to upload is wider and/or higher than the maximum allowed"
+msgid "Font Awesome version"
 msgstr ""
 
-msgrid "An unknown error occurred. Please try again."
+msgid "Database version"
 msgstr ""
 
-msgrid "Unverified"
+msgid "jQuery version"
 msgstr ""
 
-msgrid "The website URL you entered is invalid."
+msgid "Server load"
 msgstr ""
 
-msgrid "The title you entered contains a forbidden word. You must choose a different title."
+msgid "Environment"
 msgstr ""
 
-msgrid "Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters."
+msgid "%s - %s user(s) online"
 msgstr ""
 
-msgrid "Signatures cannot have more than %s lines."
+msgid "Operating system: %s"
 msgstr ""
 
-msgrid "Change avatar"
+msgid "PHP: %s - %s"
 msgstr ""
 
-msgrid "Delete avatar"
+msgid "Show info"
 msgstr ""
 
-msgrid "Upload avatar"
+msgid "Accelerator: %s"
 msgstr ""
 
-msgrid "No signature currently stored in profile."
+msgid "Rows: %s"
 msgstr ""
 
-msgrid "Are you certain that this comment is the solution to your thread?"
+msgid "Size: %s"
 msgstr ""
 
-msgrid "Edit \"%s\""
+msgid "Style"
 msgstr ""
 
-msgrid "RSS forum feed"
+msgid "Current theme"
 msgstr ""
 
-msgrid "Atom forum feed"
+msgid "Theme settings for %s"
 msgstr ""
 
-msgrid "RSS thread feed"
+msgid "This theme has no settings available..."
 msgstr ""
 
-msgrid "Atom thread feed"
+msgid "Default style"
 msgstr ""
 
-msgrid "Powered by %s"
+msgid "Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above."
 msgstr ""
 
-msgrid "We use cookies to give you the best experience on this board."
+msgid "About %s"
 msgstr ""
 
-msgrid "Don't show again"
+msgid "version %s"
 msgstr ""
 
-msgrid "Back to index"
+msgid "Released on %s"
 msgstr ""
 
-msgrid "Subforums"
+msgid "Designed for Luna %s to %s"
 msgstr ""
 
-msgrid "Moderate forum"
+msgid "In use"
 msgstr ""
 
-msgrid "Search in comments"
+msgid "Use"
 msgstr ""
 
-msgrid "BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you comment a message or edit your signature."
+msgid "Usernames must be at least 2 characters long. Please choose another (longer) username."
 msgstr ""
 
-msgrid "Text style"
+msgid "Passwords must be at least 6 characters long. Please choose another (longer) password."
 msgstr ""
 
-msgrid "Multimedia"
+msgid "The username guest is reserved. Please choose another username."
 msgstr ""
 
-msgrid "Quotes"
+msgid "Usernames may not be in the form of an IP address. Please choose another username."
 msgstr ""
 
-msgrid "Lists"
+msgid "Usernames may not contain all the characters ', \" and [ or ] at once. Please choose another username."
 msgstr ""
 
-msgrid "The following tags change the appearance of text:"
+msgid "Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username."
 msgstr ""
 
-msgrid "Bold text"
+msgid "Someone is already registered with the username"
 msgstr ""
 
-msgrid "produces"
+msgid "The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username."
 msgstr ""
 
-msgrid "Underlined text"
+msgid "Subject: Welcome to <board_title>!\n\nThank you for registering in the forums at <base_url>. Your account details are:\n\nUsername: <username>\nPassword: <password>\n\nLogin at <login_url> to activate the account.\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Italic text"
+msgid "Users"
 msgstr ""
 
-msgrid "Strike-through text"
+msgid "User created"
 msgstr ""
 
-msgrid "Inserted text"
+msgid "Failed to create user, no password was given."
 msgstr ""
 
-msgrid "Red text"
+msgid "Add user"
 msgstr ""
 
-msgrid "Blue text"
+msgid "Generate a random password, this will be emailed to the above address. When checked, leave \"Password\" empty."
 msgstr ""
 
-msgrid "Subscript text"
+msgid "Update ring"
 msgstr ""
 
-msgrid "Superscript text"
+msgid "Normal"
 msgstr ""
 
-msgrid "Heading text"
+msgid "Preview"
 msgstr ""
 
-msgrid "You can create links to other locations or to email addresses using the following tags:"
+msgid "Nightly"
 msgstr ""
 
-msgrid "My email address"
+msgid "Luna software updates"
 msgstr ""
 
-msgrid "If you want to display an image you can use the img tag. The text appearing after the \"=\" sign in the opening tag is used for the alt attribute and should be included whenever possible."
+msgid "Check for updates"
 msgstr ""
 
-msgrid "Luna BBCode Test"
+msgid "A new version is available!"
 msgstr ""
 
-msgrid "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos."
+msgid "A new version, Luna %s has been released. It's a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates."
 msgstr ""
 
-msgrid "Put the link to the video here"
+msgid "Download v%s"
 msgstr ""
 
-msgrid "If you want to quote someone, you should use the quote tag."
+msgid "Changelog"
 msgstr ""
 
-msgrid "This is the text I want to quote."
+msgid "You're using the latest version of Luna!"
 msgstr ""
 
-msgrid "produces a quote box like this:"
+msgid "You're on our latest release! Nothing to worry about."
 msgstr ""
 
-msgrid "wrote"
+msgid "You're using a development version of Luna. Be sure to stay up-to-date."
 msgstr ""
 
-msgrid "If you don't want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks."
+msgid "We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href=\"http://getluna.org/lunareleases.php\">our website</a>. New builds can contain new features, improved features, and/or bugfixes."
 msgstr ""
 
-msgrid "When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags."
+msgid "At this point, we can only tell you that you're beyond the latest release. We can't tell you if there is a new preview available. You'll have to find out for yourself."
 msgstr ""
 
-msgrid "This is some code."
+msgid "Download"
 msgstr ""
 
-msgrid "produces a code box like this:"
+msgid "Last used"
 msgstr ""
 
-msgrid "You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be noted on the first line inside the codetag and can't be on the same line as <code>[code]</code>."
+msgid "Times found"
 msgstr ""
 
-msgrid "To create a list you can use the list tag. You can create 2 types of lists using the list tag."
+msgid "Find more users for this ip"
 msgstr ""
 
-msgrid "Example list item 1."
+msgid "There are currently no comments by that user in the forum."
 msgstr ""
 
-msgrid "Example list item 2."
+msgid "The supplied IP address is not correctly formatted."
 msgstr ""
 
-msgrid "Example list item 3."
+msgid "Title/Status"
 msgstr ""
 
-msgrid "produces a bulleted list."
+msgid "Comments"
 msgstr ""
 
-msgrid "produces a numbered list."
+msgid "Admin note"
 msgstr ""
 
-msgrid "If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:"
+msgid "IP stats"
 msgstr ""
 
-msgrid "and"
+msgid "The supplied IP address could not be found in the database."
 msgstr ""
 
-msgrid "General use"
+msgid "No users selected."
 msgstr ""
 
-msgrid "Explains some of the basics on how to work with this forum software."
+msgid "For security reasons, you are not allowed to move multiple administrators to another group. If you want to move these administrators, you can do so on their respective user profiles."
 msgstr ""
 
-msgrid "Forums and threads"
+msgid "Invalid group ID."
 msgstr ""
 
-msgrid "What do the labels in front of thread titles mean?"
+msgid "Change user group"
 msgstr ""
 
-msgrid "You'll see that some of the threads are labeled, different labels have different meanings."
+msgid "New group"
 msgstr ""
 
-msgrid "Label"
+msgid "Select a new user group"
 msgstr ""
 
-msgrid "Explanation"
+msgid "Administrators cannot be deleted. In order to delete administrators, you must first move them to a different user group."
 msgstr ""
 
-msgrid "Threads marked with a check are solved according to the author."
+msgid "Delete users"
 msgstr ""
 
-msgrid "Pinned threads are usually important to read. It's worth it to take a look there."
+msgid "Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time."
 msgstr ""
 
-msgrid "When a you see a closed label, it means you can't comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though."
+msgid "Delete all comments and threads this user has made"
 msgstr ""
 
-msgrid "This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won't show and thread stats anymore."
+msgid "Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group."
 msgstr ""
 
-msgrid "This little dot appears when you have made a comment in this thread."
+msgid "Moderators cannot be banned. In order to ban moderators, you must first move them to a different user group."
 msgstr ""
 
-msgrid "Smilies, signatures, avatars and images are not visible?"
+msgid "Ban IP addresses"
 msgstr ""
 
-msgrid "You can change the behavior of the thread view in your profile settings. There you can enable smilies, signatures, avatars and images in comments, but they should be enabled by default unless your forum admin has disabled those features."
+msgid "Also ban the IP addresses of the banned users to make registering a new account more difficult for them."
 msgstr ""
 
-msgrid "Why can't I see and threads or forums?"
+msgid "You entered a non-numeric value into a numeric only column."
 msgstr ""
 
-msgrid "You might not have the correct permissions to do so, ask the forum administrator for more help."
+msgid "You entered an invalid date/time."
 msgstr ""
 
-msgrid "Why can't I see any profiles?"
+msgid "Change group"
 msgstr ""
 
-msgrid "My profile doesn't contain as much as others?"
+msgid "Banned"
 msgstr ""
 
-msgrid "You're profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields."
+msgid "Not verified"
 msgstr ""
 
-msgrid "Are there more options to search?"
+msgid "The user has been deleted."
 msgstr ""
 
-msgrid "When you go to the search page, you'll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin."
+msgid "User search"
 msgstr ""
 
-msgrid "Why can't search in more then 1 forum at once?"
+msgid "Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches."
 msgstr ""
 
-msgrid "You might not have the correct permissions to do so, ask the forums administrator for more help."
+msgid "Email address"
 msgstr ""
 
-msgrid "Moderating"
+msgid "Title"
 msgstr ""
 
-msgrid "Admins and moderators need help sometimes, too! The basics of moderating are explained here."
+msgid "Real name"
 msgstr ""
 
-msgrid "How do I moderate a forum?"
+msgid "Website"
 msgstr ""
 
-msgrid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple threads at once."
+msgid "Facebook"
 msgstr ""
 
-msgrid "How do I moderate a thread?"
+msgid "Microsoft Account"
 msgstr ""
 
-msgrid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current thread from there, you can select multiple comment to delete or split from the current thread at once."
+msgid "Twitter"
 msgstr ""
 
-msgrid "Next to the \"Moderate thread\" button, you can find options to move, open or close the thread. You can also pin the thread from there, or unpin it."
+msgid "Google+"
 msgstr ""
 
-msgrid "How do I moderate an user?"
+msgid "Location"
 msgstr ""
 
-msgrid "Moderating options are available in the users profile. You can find the moderation options under \"Administration\" in the users profile menu. Those features aren't available for all moderators."
+msgid "Signature"
 msgstr ""
 
-msgrid "The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the comment count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions."
+msgid "User group"
 msgstr ""
 
-msgrid "Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better off with the advanced user management features in the Backstage."
+msgid "All groups"
 msgstr ""
 
-msgrid "Are you sure that you want to delete the message(s) from your inbox??"
+msgid "Unverified users"
 msgstr ""
 
-msgrid "Confirm deletion"
+msgid "Number of comments less than"
 msgstr ""
 
-msgrid "Are you sure you want to delete the selected messages?"
+msgid "Number of comments greater than"
 msgstr ""
 
-msgrid "Write message"
+msgid "Last comment is before"
 msgstr ""
 
-msgrid "Send to"
+msgid "Last comment is after"
 msgstr ""
 
-msgrid "Separate names with commas, maximum %s names"
+msgid "Last visit is before"
 msgstr ""
 
-msgrid "Mark as unread"
+msgid "Last visit is after"
 msgstr ""
 
-msgrid "Messages"
+msgid "Registered before"
 msgstr ""
 
-msgrid "Sender"
+msgid "Registered after"
 msgstr ""
 
-msgrid "Receiver(s)"
+msgid "Number of comments"
 msgstr ""
 
-msgrid "No messages"
+msgid "Last visit"
 msgstr ""
 
-msgrid "Hi there, %s"
+msgid "Registered"
 msgstr ""
 
-msgrid "Welcome to %s"
+msgid "IP search"
 msgstr ""
 
-msgrid "Extend your details"
+msgid "Find IP address"
 msgstr ""
 
-msgrid "Get help"
+msgid "The IP address to search for in the comment database."
 msgstr ""
 
-msgrid "Search the board"
+msgid "You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue."
 msgstr ""
 
-msgrid "Recent activity"
+msgid "Your forum is already as up-to-date as this script can make it"
 msgstr ""
 
-msgrid "Request password"
+msgid "Continue"
 msgstr ""
 
-msgrid "Back"
+msgid "Let's get started"
 msgstr ""
 
-msgrid "Please confirm that you want to delete the user"
+msgid "There is an update ready to be installed"
 msgstr ""
 
-msgrid "An email will be sent to your new address with an activation link. You must click the link in the email you receive to activate the new address."
+msgid "Start update"
 msgstr ""
 
-msgrid "Change password"
+msgid "Update Luna"
 msgstr ""
 
-msgrid "Old password"
+msgid "Preparsing %1$s %2$s …"
 msgstr ""
 
-msgrid "New password"
+msgid "comment"
 msgstr ""
 
-msgrid "Confirm new password"
+msgid "signature"
 msgstr ""
 
-msgrid "An avatar is a small image that will be displayed under your username in your comments. It has to be smaller than %s by %s pixels and %s bytes."
+msgid "Rebuilding index for %1$s %2$s"
 msgstr ""
 
-msgrid "Upload"
+msgid "You do not have permission to view this page."
 msgstr ""
 
-msgrid "Mark as seen"
+msgid "Delete comment"
 msgstr ""
 
-msgrid "Delete notifications"
+msgid "Are you sure you want to do this?"
 msgstr ""
 
-msgrid "By %s"
+msgid "Threads must contain a subject. After applying censoring filters, your subject was empty."
 msgstr ""
 
-msgrid "on"
+msgid "Subjects cannot contain only capital letters."
 msgstr ""
 
-msgrid "comments since"
+msgid "Comments cannot be longer than %s bytes."
 msgstr ""
 
-msgrid "New thread in \"%s\""
+msgid "Comments cannot contain only capital letters."
 msgstr ""
 
-msgrid "New comment in \"%s\""
+msgid "You must enter a message."
 msgstr ""
 
-msgrid "About user"
+msgid "You must enter a message. After applying censoring filters, your message was empty."
 msgstr ""
 
-msgrid "Contact"
+msgid " / "
 msgstr ""
 
-msgrid "Keyword"
+msgid "The most recent comments in %s."
 msgstr ""
 
-msgrid "Author"
+msgid "Re: "
 msgstr ""
 
-msgrid "Message text and thread subject"
+msgid "en"
 msgstr ""
 
-msgrid "Message text only"
+msgid "The most recent threads at %s."
 msgstr ""
 
-msgrid "Thread subject only"
+msgid "Guests online"
 msgstr ""
 
-msgrid "Comment time"
+msgid "Users online"
 msgstr ""
 
-msgrid "Personalize"
+msgid "Newest user"
 msgstr ""
 
 msgid "Threads"
+msgstr ""
+
+msgid "No new notifications"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "You must select some messages"
+msgstr ""
+
+msgid "Private Messages"
+msgstr ""
+
+msgid "System info"
+msgstr ""
+
+msgid "Luna software update"
+msgstr ""
+
+msgid "About Luna"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Groups"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "Database management"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Extensions"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Support"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Usernames must be at least 2 characters long."
+msgstr ""
+
+msgid "Usernames must not be more than 25 characters long."
+msgstr ""
+
+msgid "The username guest is reserved."
+msgstr ""
+
+msgid "Usernames may not be in the form of an IP address."
+msgstr ""
+
+msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
+msgstr ""
+
+msgid "Usernames may not contain any of the text formatting tags (BBCode) that the forum uses."
+msgstr ""
+
+msgid "Passwords must be at least 6 characters long."
+msgstr ""
+
+msgid "Passwords do not match."
+msgstr ""
+
+msgid "The administrator email address you entered is invalid."
+msgstr ""
+
+msgid "You must enter a board title."
+msgstr ""
+
+msgid "The default language chosen doesn't seem to exist."
+msgstr ""
+
+msgid "The default style chosen doesn't seem to exist."
+msgstr ""
+
+msgid "\"%s\" is not a valid database type"
+msgstr ""
+
+msgid "The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please choose a different prefix"
+msgstr ""
+
+msgid "InnoDB does not seem to be enabled. Please choose a database layer that does not have InnoDB support, or enable InnoDB on your MySQL server"
+msgstr ""
+
+msgid "The table prefix '%s' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix"
+msgstr ""
+
+msgid "A table called \"%susers\" is already present in the database \"%s\". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix"
+msgstr ""
+
+msgid "H:i"
+msgstr ""
+
+msgid "j M Y"
+msgstr ""
+
+msgid "Wow, it's great to have you here, welcome and thanks for joining us. We've set up your account and you're ready to go. Though we like to point out some actions you might want to do first."
+msgstr ""
+
+msgid "Announcement"
+msgstr ""
+
+msgid "Rules"
+msgstr ""
+
+msgid "Administrators"
+msgstr ""
+
+msgid "Administrator"
+msgstr ""
+
+msgid "Moderators"
+msgstr ""
+
+msgid "Moderator"
+msgstr ""
+
+msgid "Members"
+msgstr ""
+
+msgid "New member"
+msgstr ""
+
+msgid "Member"
+msgstr ""
+
+msgid "You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website."
+msgstr ""
+
+msgid "Comment errors"
+msgstr ""
+
+msgid "Comment preview"
+msgstr ""
+
+msgid "Mute edit"
+msgstr ""
+
+msgid "The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though."
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Underline"
+msgstr ""
+
+msgid "Italic"
+msgstr ""
+
+msgid "Strike"
+msgstr ""
+
+msgid "Heading"
+msgstr ""
+
+msgid "Subscript"
+msgstr ""
+
+msgid "Superscript"
+msgstr ""
+
+msgid "Quote"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Inline code"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "List item"
+msgstr ""
+
+msgid "Smile"
+msgstr ""
+
+msgid "Neutral"
+msgstr ""
+
+msgid "Sad"
+msgstr ""
+
+msgid "Big smile"
+msgstr ""
+
+msgid "Yikes"
+msgstr ""
+
+msgid "Wink"
+msgstr ""
+
+msgid "Hmmm"
+msgstr ""
+
+msgid "Tongue"
+msgstr ""
+
+msgid "Happy"
+msgstr ""
+
+msgid "Angry"
+msgstr ""
+
+msgid "Roll eye"
+msgstr ""
+
+msgid "Cool"
+msgstr ""
+
+msgid "Happy cry"
+msgstr ""
+
+msgid "Angel"
+msgstr ""
+
+msgid "Oh yeah"
+msgstr ""
+
+msgid "Smilies"
+msgstr ""
+
+msgid "Start typing..."
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "There are no threads in this forum yet, but you can <a href=\"post.php?fid=%s\">start the first one</a>."
+msgstr ""
+
+msgid "thread"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "There are no forums in this board yet."
+msgstr ""
+
+msgid "in"
+msgstr ""
+
+msgid "The board is empty, select a forum and create a thread to begin."
+msgstr ""
+
+msgid "From:"
+msgstr ""
+
+msgid "IP log"
+msgstr ""
+
+msgid "Note:"
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "Soft delete"
+msgstr ""
+
+msgid "Soft reset"
+msgstr ""
+
+msgid "Unsolved"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Online:"
+msgstr ""
+
+msgid "Offline"
+msgstr ""
+
+msgid "Registered since"
+msgstr ""
+
+msgid "Comments:"
+msgstr ""
+
+msgid "PM"
+msgstr ""
+
+msgid "Your search returned no hits."
+msgstr ""
+
+msgid "This is the first comment in the thread, the whole thread will be permanently deleted."
+msgstr ""
+
+msgid "The comment you have chosen to delete is set out below for you to review before proceeding."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead."
+msgstr ""
+
+msgid "This comment has been soft deleted. We'll enable it again with a click on the button."
+msgstr ""
+
+msgid "Reset comment"
+msgstr ""
+
+msgid "Thread started by %s - %s"
+msgstr ""
+
+msgid "Comment by %s - %s"
+msgstr ""
+
+msgid "Enter the requested data"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "If you are human please leave this field blank!"
+msgstr ""
+
+msgid "Enter a username between 2 and 25 characters long"
+msgstr ""
+
+msgid "Passwords must be at least 6 characters long and are case sensitive"
+msgstr ""
+
+msgid "Your password will be sent to this address, make sure it's valid"
+msgstr ""
+
+msgid "You must agree to the following in order to register"
+msgstr ""
+
+msgid "Agree"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Tell us why you are reporting this"
+msgstr ""
+
+msgid "Forum"
+msgstr ""
+
+msgid "Luna"
+msgstr ""
+
+msgid "%s Mailer"
+msgstr ""
+
+msgid "You are banned from this forum."
+msgstr ""
+
+msgid "The ban expires at the end of"
+msgstr ""
+
+msgid "The administrator or moderator that banned you left the following message:"
+msgstr ""
+
+msgid "Please direct any inquiries to the forum administrator at"
+msgstr ""
+
+msgid "Usernames must not be more than 25 characters long. Please choose another (shorter) username."
+msgstr ""
+
+msgid "The username you entered contains one or more censored words. Please choose a different username."
+msgstr ""
+
+msgid "The username you entered is banned in this forum. Please choose another username."
+msgstr ""
+
+msgid "Page %s"
+msgstr ""
+
+msgid "…"
+msgstr ""
+
+msgid "We've got us a situation here."
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "."
+msgstr ""
+
+msgid ","
+msgstr ""
+
+msgid "Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \"Base URL\" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation."
+msgstr ""
+
+msgid "Size unit %s"
+msgstr ""
+
+msgid "Debug information"
+msgstr ""
+
+msgid "Time (s)"
+msgstr ""
+
+msgid "Query"
+msgstr ""
+
+msgid "Total query time: %s"
+msgstr ""
+
+msgid "Toggle navigation"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Compose"
+msgstr ""
+
+msgid "It seems your comment consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level."
+msgstr ""
+
+msgid "The quote, code, list, video, and heading BBCodes are not allowed in signatures."
+msgstr ""
+
+msgid "Your list was too long to parse, please make it smaller!"
+msgstr ""
+
+msgid "[%s] tag had an empty attribute section"
+msgstr ""
+
+msgid "[%1$s] was opened within [%2$s], this is not allowed"
+msgstr ""
+
+msgid "[/%1$s] was found without a matching [%1$s]"
+msgstr ""
+
+msgid "[%1$s] was found without a matching [/%1$s]"
+msgstr ""
+
+msgid "[%s] was opened within itself, this is not allowed"
+msgstr ""
+
+msgid "image"
+msgstr ""
+
+msgid "No users online"
+msgstr ""
+
+msgid "RSS active threads feed"
+msgstr ""
+
+msgid "Atom active threads feed"
+msgstr ""
+
+msgid "It seems like Luna is already installed."
+msgstr ""
+
+msgid "We're done here"
+msgstr ""
+
+msgid "You can do anything"
+msgstr ""
+
+msgid "<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777."
+msgstr ""
+
+msgid "<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777."
+msgstr ""
+
+msgid "PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, though"
+msgstr ""
+
+msgid "Luna Installation"
+msgstr ""
+
+msgid "Server hostname"
+msgstr ""
+
+msgid "Administrator password 1"
+msgstr ""
+
+msgid "Administrator password 2"
+msgstr ""
+
+msgid "No trailing slash"
+msgstr ""
+
+msgid "Install Luna %s"
+msgstr ""
+
+msgid "Choose the install script language"
+msgstr ""
+
+msgid "Install language"
+msgstr ""
+
+msgid "The language used for this install script. The default language used for the board itself can be set below."
+msgstr ""
+
+msgid "Change language"
+msgstr ""
+
+msgid "The following errors need to be corrected:"
+msgstr ""
+
+msgid "Database setup"
+msgstr ""
+
+msgid "What database do you want to use?"
+msgstr ""
+
+msgid "Where's the server?"
+msgstr ""
+
+msgid "The database name"
+msgstr ""
+
+msgid "Your database username"
+msgstr ""
+
+msgid "Table prefix"
+msgstr ""
+
+msgid "Set for more Luna installation in this database"
+msgstr ""
+
+msgid "Administration setup"
+msgstr ""
+
+msgid "2 to 25 characters long"
+msgstr ""
+
+msgid "At least 6 characters long"
+msgstr ""
+
+msgid "%s B"
+msgstr ""
+
+msgid "%s KiB"
+msgstr ""
+
+msgid "%s MiB"
+msgstr ""
+
+msgid "%s GiB"
+msgstr ""
+
+msgid "%s TiB"
+msgstr ""
+
+msgid "%s PiB"
+msgstr ""
+
+msgid "%s EiB"
+msgstr ""
+
+msgid "Board setup"
+msgstr ""
+
+msgid "Start install"
+msgstr ""
+
+msgid "<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features."
+msgstr ""
+
+msgid "Luna has been installed. To finalize the installation please follow the instructions below."
+msgstr ""
+
+msgid "To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your Luna installation."
+msgstr ""
+
+msgid "Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href=\"index.php\">go to the forum index</a>."
+msgstr ""
+
+msgid "Download config.php file"
+msgstr ""
+
+msgid "Luna has been fully installed! You may now <a href=\"index.php\">go to the forum index</a>."
+msgstr ""
+
+msgid "Wrong username and/or password."
+msgstr ""
+
+msgid "Forgotten password"
+msgstr ""
+
+msgid "The email address you entered is invalid."
+msgstr ""
+
+msgid "Subject: New password requested\n\nHello <username>,\n\nYou have requested to have a new password assigned to your account in the discussion forum at <base_url>. If you did not request this or if you do not want to change your password you should just ignore this message. Only if you visit the activation page below will your password be changed.\n\nYour new password is: <new_password>\n\nTo change your password, please visit the following page:\n<activation_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again."
+msgstr ""
+
+msgid "An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at"
+msgstr ""
+
+msgid "There is no user registered with the email address"
+msgstr ""
+
+msgid "The user you are trying to send an email to has disabled form email."
+msgstr ""
+
+msgid "You must enter a subject."
+msgstr ""
+
+msgid "Messages cannot be longer than 65535 characters (64 KB)."
+msgstr ""
+
+msgid "At least %s seconds have to pass between sent emails. Please wait %s seconds and try sending again."
+msgstr ""
+
+msgid "Subject: <mail_subject>\n\n<sender> from <board_title> has sent you a message. You can reply to <sender> by replying to this email.\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<mail_message>\n\n-----------------------------------------------------------------------\n\n--\n<board_mailer> Mailer"
+msgstr ""
+
+msgid "Send email to"
+msgstr ""
+
+msgid "You must enter a reason."
+msgstr ""
+
+msgid "Your message must be under 65535 bytes (~64kb)."
+msgstr ""
+
+msgid "At least %s seconds have to pass between reports. Please wait %s seconds and try sending again."
+msgstr ""
+
+msgid "Subject: Report(<forum_id>) - \"<thread_subject>\"\n\nUser \"<username>\" has reported the following message: <comment_url>\n\nReason: <reason>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Report comment"
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "You are subscribed"
+msgstr ""
+
+msgid "You're already subscribed to this forum."
+msgstr ""
+
+msgid "You're not subscribed to this thread."
+msgstr ""
+
+msgid "At least % seconds have to pass between sends. Please wait a little while and try send the message again."
+msgstr ""
+
+msgid "Can't save message, your boxes are full."
+msgstr ""
+
+msgid "You must give at least one receiver"
+msgstr ""
+
+msgid "You can send a message at the same time only to %s receivers maximum."
+msgstr ""
+
+msgid "%s has left the conversation."
+msgstr ""
+
+msgid "%s disabled the private messages."
+msgstr ""
+
+msgid "%s inbox is full, you can not send you message to this user."
+msgstr ""
+
+msgid "There's no user with the username \"%s\"."
+msgstr ""
+
+msgid "Subject: You received a new private message on <board_title>\n\n<sender> sent a private message to you.\n\nYou can read this private message at this address: <pm_url>\n\n-- \n<board_mailer>\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: You received a private message on <board_title>\n\n<sender> sent a private message to you.\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can read this private message at this address: <pm_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Send a message"
+msgstr ""
+
+msgid "At least %s seconds have to pass between comments. Please wait %s seconds and try commenting again."
+msgstr ""
+
+msgid "The email address you entered is banned in this forum. Please choose another email address."
+msgstr ""
+
+msgid "Subject: Reply to thread: \"<thread_subject>\"\n\n<replier> has replied to the thread \"<thread_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe comment is located at <comment_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: Reply to thread: \"<thread_subject>\"\n\n<replier> has replied to the thread \"<thread_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe comment is located at <comment_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: New thread in forum: \"<forum_name>\"\n\n<commenter> has commented a new thread \"<thread_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe thread is located at <thread_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: New thread in forum: \"<forum_name>\"\n\n<commenter> has commented a new thread \"<thread_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe thread is located at <thread_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: Alert - Banned email detected\n\nUser \"<username>\" commented with banned email address: <email>\n\nComment URL: <comment_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Add comment"
+msgstr ""
+
+msgid "Create thread"
+msgstr ""
+
+msgid "Show threads"
+msgstr ""
+
+msgid "Show comments"
+msgstr ""
+
+msgid "Show subscriptions"
+msgstr ""
+
+msgid "Send email"
+msgstr ""
+
+msgid "This forum is not accepting new registrations."
+msgstr ""
+
+msgid "Forum rules"
+msgstr ""
+
+msgid "A new user was registered with the same IP address as you within the last hour. To prevent registration flooding, at least an hour has to pass between registrations from the same IP. Sorry for the inconvenience."
+msgstr ""
+
+msgid "Email addresses do not match."
+msgstr ""
+
+msgid "Someone else is already registered with that email address. Please choose another email address."
+msgstr ""
+
+msgid "Unfortunately it looks like your request is spam. If you feel this is a mistake, please direct any inquiries to the forum administrator at"
+msgstr ""
+
+msgid "Subject: Alert - Banned email detected\n\nUser \"<username>\" registered with banned email address: <email>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: Alert - Duplicate email detected\n\nUser \"<username>\" registered with an email address that also belongs to: <dupe_list>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: Alert - New registration\n\nUser \"<username>\" registered in the forums at <base_url>\n\nUser profile: <profile_url>\n\nTo administer this account, please visit the following page:\n<admin_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Thank you for registering. Your password has been sent to the specified address. If it doesn't arrive you can contact the forum administrator at"
+msgstr ""
+
+msgid "Confirm password"
+msgstr ""
+
+msgid "You do not have permission to use the search feature."
+msgstr ""
+
+msgid "You have to enter at least one keyword and/or an author to search for."
+msgstr ""
+
+msgid "At least %s seconds have to pass between searches. Please wait %s seconds and try searching again."
+msgstr ""
+
+msgid "There are no threads with new comments since your last visit."
+msgstr ""
+
+msgid "No new comments have been made within the last 24 hours."
+msgstr ""
+
+msgid "There are no comments by this user in this forum."
+msgstr ""
+
+msgid "There are no threads by this user in this forum."
+msgstr ""
+
+msgid "This user is currently not subscribed to and threads."
+msgstr ""
+
+msgid "There are no unanswered comments in this forum."
+msgstr ""
+
+msgid "Threads by %s"
+msgstr ""
+
+msgid "Comments by %s"
+msgstr ""
+
+msgid "Subscribed by %s"
+msgstr ""
+
+msgid "Quick search %s"
+msgstr ""
+
+msgid "Search results"
+msgstr ""
+
+msgid "Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group."
+msgstr ""
+
+msgid "Confirm delete user"
+msgstr ""
+
+msgid "The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at"
+msgstr ""
+
+msgid "Your password has been updated. You can now login with your new password."
+msgstr ""
+
+msgid "Wrong old password."
+msgstr ""
+
+msgid "The specified email activation key was incorrect or has expired. Please re-request change of email address. If that fails, contact the forum administrator at"
+msgstr ""
+
+msgid "Your email address has been updated."
+msgstr ""
+
+msgid "Subject: Alert - Banned email detected\n\nUser \"<username>\" changed to banned email address: <email>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: Alert - Duplicate email detected\n\nUser \"<username>\" changed to an email address that also belongs to: <dupe_list>\n\nUser profile: <profile_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "Subject: Change email address requested\n\nHello <username>,\n\nYou have requested to have a new email address assigned to your account in the discussion forum at <base_url>. If you did not request this or if you do not want to change your email address you should just ignore this message. Only if you visit the activation page below will your email address be changed. In order for the activation page to work, you must be logged in to the forum.\n\nTo change your email address, please visit the following page:\n<activation_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgstr ""
+
+msgid "An email has been sent to the specified address with instructions on how to activate the new email address. If it doesn't arrive you can contact the forum administrator at"
+msgstr ""
+
+msgid "Change email address"
+msgstr ""
+
+msgid "New email"
+msgstr ""
+
+msgid "The administrator has disabled avatar support."
+msgstr ""
+
+msgid "You did not select a file for upload."
+msgstr ""
+
+msgid "The selected file was too large to upload. The server didn't allow the upload."
+msgstr ""
+
+msgid "The selected file was only partially uploaded. Please try again."
+msgstr ""
+
+msgid "PHP was unable to save the uploaded file to a temporary location."
+msgstr ""
+
+msgid "The file you tried to upload is not of an allowed type. Allowed types are gif, jpeg and png."
+msgstr ""
+
+msgid "The file you tried to upload is larger than the maximum allowed"
+msgstr ""
+
+msgid "The server was unable to save the uploaded file. Please contact the forum administrator at"
+msgstr ""
+
+msgid "The file you tried to upload is wider and/or higher than the maximum allowed"
+msgstr ""
+
+msgid "An unknown error occurred. Please try again."
+msgstr ""
+
+msgid "Unverified"
+msgstr ""
+
+msgid "The website URL you entered is invalid."
+msgstr ""
+
+msgid "The title you entered contains a forbidden word. You must choose a different title."
+msgstr ""
+
+msgid "Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters."
+msgstr ""
+
+msgid "Signatures cannot have more than %s lines."
+msgstr ""
+
+msgid "Change avatar"
+msgstr ""
+
+msgid "Delete avatar"
+msgstr ""
+
+msgid "Upload avatar"
+msgstr ""
+
+msgid "No signature currently stored in profile."
+msgstr ""
+
+msgid "Are you certain that this comment is the solution to your thread?"
+msgstr ""
+
+msgid "Edit \"%s\""
+msgstr ""
+
+msgid "RSS forum feed"
+msgstr ""
+
+msgid "Atom forum feed"
+msgstr ""
+
+msgid "RSS thread feed"
+msgstr ""
+
+msgid "Atom thread feed"
+msgstr ""
+
+msgid "Powered by %s"
+msgstr ""
+
+msgid "We use cookies to give you the best experience on this board."
+msgstr ""
+
+msgid "Don't show again"
+msgstr ""
+
+msgid "Back to index"
+msgstr ""
+
+msgid "Subforums"
+msgstr ""
+
+msgid "Moderate forum"
+msgstr ""
+
+msgid "Search in comments"
+msgstr ""
+
+msgid "BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you comment a message or edit your signature."
+msgstr ""
+
+msgid "Text style"
+msgstr ""
+
+msgid "Multimedia"
+msgstr ""
+
+msgid "Quotes"
+msgstr ""
+
+msgid "Lists"
+msgstr ""
+
+msgid "The following tags change the appearance of text:"
+msgstr ""
+
+msgid "Bold text"
+msgstr ""
+
+msgid "produces"
+msgstr ""
+
+msgid "Underlined text"
+msgstr ""
+
+msgid "Italic text"
+msgstr ""
+
+msgid "Strike-through text"
+msgstr ""
+
+msgid "Inserted text"
+msgstr ""
+
+msgid "Red text"
+msgstr ""
+
+msgid "Blue text"
+msgstr ""
+
+msgid "Subscript text"
+msgstr ""
+
+msgid "Superscript text"
+msgstr ""
+
+msgid "Heading text"
+msgstr ""
+
+msgid "You can create links to other locations or to email addresses using the following tags:"
+msgstr ""
+
+msgid "My email address"
+msgstr ""
+
+msgid "If you want to display an image you can use the img tag. The text appearing after the \"=\" sign in the opening tag is used for the alt attribute and should be included whenever possible."
+msgstr ""
+
+msgid "Luna BBCode Test"
+msgstr ""
+
+msgid "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos."
+msgstr ""
+
+msgid "Put the link to the video here"
+msgstr ""
+
+msgid "If you want to quote someone, you should use the quote tag."
+msgstr ""
+
+msgid "This is the text I want to quote."
+msgstr ""
+
+msgid "produces a quote box like this:"
+msgstr ""
+
+msgid "wrote"
+msgstr ""
+
+msgid "If you don't want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks."
+msgstr ""
+
+msgid "When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags."
+msgstr ""
+
+msgid "This is some code."
+msgstr ""
+
+msgid "produces a code box like this:"
+msgstr ""
+
+msgid "You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be noted on the first line inside the codetag and can't be on the same line as <code>[code]</code>."
+msgstr ""
+
+msgid "To create a list you can use the list tag. You can create 2 types of lists using the list tag."
+msgstr ""
+
+msgid "Example list item 1."
+msgstr ""
+
+msgid "Example list item 2."
+msgstr ""
+
+msgid "Example list item 3."
+msgstr ""
+
+msgid "produces a bulleted list."
+msgstr ""
+
+msgid "produces a numbered list."
+msgstr ""
+
+msgid "If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:"
+msgstr ""
+
+msgid "and"
+msgstr ""
+
+msgid "General use"
+msgstr ""
+
+msgid "Explains some of the basics on how to work with this forum software."
+msgstr ""
+
+msgid "Forums and threads"
+msgstr ""
+
+msgid "What do the labels in front of thread titles mean?"
+msgstr ""
+
+msgid "You'll see that some of the threads are labeled, different labels have different meanings."
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Explanation"
+msgstr ""
+
+msgid "Threads marked with a check are solved according to the author."
+msgstr ""
+
+msgid "Pinned threads are usually important to read. It's worth it to take a look there."
+msgstr ""
+
+msgid "When a you see a closed label, it means you can't comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though."
+msgstr ""
+
+msgid "This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won't show and thread stats anymore."
+msgstr ""
+
+msgid "This little dot appears when you have made a comment in this thread."
+msgstr ""
+
+msgid "Smilies, signatures, avatars and images are not visible?"
+msgstr ""
+
+msgid "You can change the behavior of the thread view in your profile settings. There you can enable smilies, signatures, avatars and images in comments, but they should be enabled by default unless your forum admin has disabled those features."
+msgstr ""
+
+msgid "Why can't I see and threads or forums?"
+msgstr ""
+
+msgid "You might not have the correct permissions to do so, ask the forum administrator for more help."
+msgstr ""
+
+msgid "Why can't I see any profiles?"
+msgstr ""
+
+msgid "My profile doesn't contain as much as others?"
+msgstr ""
+
+msgid "You're profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields."
+msgstr ""
+
+msgid "Are there more options to search?"
+msgstr ""
+
+msgid "When you go to the search page, you'll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin."
+msgstr ""
+
+msgid "Why can't search in more then 1 forum at once?"
+msgstr ""
+
+msgid "You might not have the correct permissions to do so, ask the forums administrator for more help."
+msgstr ""
+
+msgid "Moderating"
+msgstr ""
+
+msgid "Admins and moderators need help sometimes, too! The basics of moderating are explained here."
+msgstr ""
+
+msgid "How do I moderate a forum?"
+msgstr ""
+
+msgid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple threads at once."
+msgstr ""
+
+msgid "How do I moderate a thread?"
+msgstr ""
+
+msgid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current thread from there, you can select multiple comment to delete or split from the current thread at once."
+msgstr ""
+
+msgid "Next to the \"Moderate thread\" button, you can find options to move, open or close the thread. You can also pin the thread from there, or unpin it."
+msgstr ""
+
+msgid "How do I moderate an user?"
+msgstr ""
+
+msgid "Moderating options are available in the users profile. You can find the moderation options under \"Administration\" in the users profile menu. Those features aren't available for all moderators."
+msgstr ""
+
+msgid "The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the comment count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions."
+msgstr ""
+
+msgid "Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better off with the advanced user management features in the Backstage."
+msgstr ""
+
+msgid "Are you sure that you want to delete the message(s) from your inbox??"
+msgstr ""
+
+msgid "Confirm deletion"
+msgstr ""
+
+msgid "Are you sure you want to delete the selected messages?"
+msgstr ""
+
+msgid "Write message"
+msgstr ""
+
+msgid "Send to"
+msgstr ""
+
+msgid "Separate names with commas, maximum %s names"
+msgstr ""
+
+msgid "Mark as unread"
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "Sender"
+msgstr ""
+
+msgid "Receiver(s)"
+msgstr ""
+
+msgid "No messages"
+msgstr ""
+
+msgid "Hi there, %s"
+msgstr ""
+
+msgid "Welcome to %s"
+msgstr ""
+
+msgid "Extend your details"
+msgstr ""
+
+msgid "Get help"
+msgstr ""
+
+msgid "Search the board"
+msgstr ""
+
+msgid "Recent activity"
+msgstr ""
+
+msgid "Request password"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Please confirm that you want to delete the user"
+msgstr ""
+
+msgid "An email will be sent to your new address with an activation link. You must click the link in the email you receive to activate the new address."
+msgstr ""
+
+msgid "Change password"
+msgstr ""
+
+msgid "Old password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid "Confirm new password"
+msgstr ""
+
+msgid "An avatar is a small image that will be displayed under your username in your comments. It has to be smaller than %s by %s pixels and %s bytes."
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Mark as seen"
+msgstr ""
+
+msgid "Delete notifications"
+msgstr ""
+
+msgid "By %s"
+msgstr ""
+
+msgid "on"
+msgstr ""
+
+msgid "comments since"
+msgstr ""
+
+msgid "New thread in \"%s\""
+msgstr ""
+
+msgid "New comment in \"%s\""
+msgstr ""
+
+msgid "About user"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Keyword"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Message text and thread subject"
+msgstr ""
+
+msgid "Message text only"
+msgstr ""
+
+msgid "Thread subject only"
+msgstr ""
+
+msgid "Comment time"
+msgstr ""
+
+msgid "Personalize"
 msgstr ""
 
 msgid "Time"

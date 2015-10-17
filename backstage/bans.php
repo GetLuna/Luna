@@ -133,7 +133,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Expire date', 'luna') ?><span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
+						<input type="date" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
 					</div>
 				</div>
 			</fieldset>
@@ -345,13 +345,13 @@ elseif (isset($_GET['find_ban'])) {
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th><?php _e('Username', 'luna') ?></th>
-				<th><?php _e('Email', 'luna') ?></th>
-				<th><?php _e('IP/IP-ranges', 'luna') ?></th>
-				<th><?php _e('Expires', 'luna') ?></th>
-				<th><?php _e('Message', 'luna') ?></th>
-				<th><?php _e('Banned by', 'luna') ?></th>
-				<th><?php _e('Actions', 'luna') ?></th>
+				<th class="col-xs-1"><?php _e('Username', 'luna') ?></th>
+				<th class="col-xs-2"><?php _e('Email', 'luna') ?></th>
+				<th class="col-xs-1"><?php _e('IP', 'luna') ?></th>
+				<th class="col-xs-1"><?php _e('Expires', 'luna') ?></th>
+				<th class="col-xs-3"><?php _e('Message', 'luna') ?></th>
+				<th class="col-xs-1"><?php _e('By', 'luna') ?></th>
+				<th class="col-xs-3"><?php _e('Actions', 'luna') ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -361,18 +361,18 @@ elseif (isset($_GET['find_ban'])) {
 	if ($db->num_rows($result)) {
 		while ($ban_data = $db->fetch_assoc($result)) {
 
-			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'">'.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'">'.__('Remove', 'luna').'</a></div>';
+			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'"><span class="fa fa-fw fa-pencil-square-o"></span> '.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'"><span class="fa fa-fw fa-trash"></span> '.__('Remove', 'luna').'</a></div>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
 			<tr>
-				<td class="tcl"><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-				<td class="tc2"><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
-				<td class="tc3"><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
-				<td class="tc4"><?php echo $expire ?></td>
-				<td class="tc5"><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-				<td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : __('Unknown', 'luna') ?></td>
-				<td class="tcr"><?php echo $actions ?></td>
+				<td><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
+				<td><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
+				<td><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
+				<td><?php echo $expire ?></td>
+				<td><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
+				<td><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : __('Unknown', 'luna') ?></td>
+				<td><?php echo $actions ?></td>
 			</tr>
 <?php
 
