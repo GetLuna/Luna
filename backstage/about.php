@@ -28,6 +28,17 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.1.5</span></p><h2>Bittersweet Shimmer Update 5</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a with a fatal error mysqli_free_result</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes and issue with excluding new lines when parsing usernames in quotes</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes an issue that caused the wrong error to show up when adding users</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue that caused Administrators to not be able to set a title</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes wrong link to IP information</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes data size in System info not showing up</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.1.4</span></p><h2>Bittersweet Shimmer Update 4</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a bug with the accent function</li>

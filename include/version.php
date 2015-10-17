@@ -7,9 +7,9 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '1.1.4';
-	const FORUM_CORE_VERSION = '1.1.4807';
-	const LUNA_CORE_REVISION = 114;
+	const FORUM_VERSION = '1.1.5';
+	const FORUM_CORE_VERSION = '1.1.4815';
+	const LUNA_CORE_REVISION = 115;
 
 	// The Luna Core code name
 	const FORUM_CODE_NAME = 'bittersweetshimmer';
