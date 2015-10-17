@@ -748,9 +748,6 @@ msgstr ""
 msgid "Allow users to soft delete comments from all users."
 msgstr ""
 
-msgid "Soft delete comments"
-msgstr ""
-
 msgid "Allow users to soft delete threads from all users."
 msgstr ""
 
@@ -2215,9 +2212,6 @@ msgstr ""
 msgid "You must enter a message. After applying censoring filters, your message was empty."
 msgstr ""
 
-msgid "Edit comment"
-msgstr ""
-
 msgid " / "
 msgstr ""
 
@@ -2396,9 +2390,6 @@ msgid "Comment errors"
 msgstr ""
 
 msgid "Comment preview"
-msgstr ""
-
-msgid "Pin thread"
 msgstr ""
 
 msgid "Mute edit"
@@ -3554,9 +3545,6 @@ msgid "Comment time"
 msgstr ""
 
 msgid "Personalize"
-msgstr ""
-
-msgid "Threads"
 msgstr ""
 
 msgid "Time"
