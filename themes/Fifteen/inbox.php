@@ -34,8 +34,8 @@ if (!defined('FORUM'))
                 </div>
 			</div>
 			<?php
-			if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod']) {
-				$per_cent_box = ceil($luna_user['num_pms'] / $luna_user['g_pm_limit'] * '100');	
+			if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod']) {
+				$per_cent_box = ceil($luna_user['num_pms'] / $luna_user['g_inbox_limit'] * '100');	
 				echo '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$per_cent_box.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$per_cent_box.'%;"><span class="progress-text">'.$per_cent_box.'%</span></div></div>';
 			}
 			?>

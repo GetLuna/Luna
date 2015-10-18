@@ -139,7 +139,7 @@ if (isset($_POST['update_group_membership'])) {
 					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 					if ($db->result($result2) == $cur_comment['id'])
-						delete_topic($cur_comment['thread_id']);
+						delete_thread($cur_comment['thread_id']);
 					else
 						delete_post($cur_comment['id'], $cur_comment['thread_id'], $id);
 

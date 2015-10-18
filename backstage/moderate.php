@@ -624,12 +624,12 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 }
 
 // Delete one or more topics
-elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
+elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (empty($topics))
 		message_backstage(__('You must select at least one thread for move/delete/open/close.', 'luna'));
 
-	if (isset($_POST['delete_topics_comply'])) {
+	if (isset($_POST['delete_threads_comply'])) {
 		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
@@ -686,7 +686,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Delete threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_topics_comply"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button></span></h3>
+				<h3 class="panel-title"><?php _e('Delete threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_threads_comply"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
@@ -765,7 +765,7 @@ elseif (isset($_GET['unpin'])) {
 } 
 
 // If absolutely none of them are going on
-elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_topics']) && !isset($_POST['delete_topics_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
+elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_threads']) && !isset($_POST['delete_threads_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
 
 	// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
 	
@@ -924,7 +924,7 @@ if ($db->num_rows($result)) {
 				<div class="panel-footer">
 					<div class="btn-group">
 						<button type="submit" class="btn btn-primary" name="move_topics"<?php echo $button_status ?>><span class="fa fa-fw fa-reply"></span> <?php _e('Move', 'luna') ?></button>
-						<button type="submit" class="btn btn-primary" name="delete_topics"<?php echo $button_status ?>><span class="fa fa-fw fa-trash-o"></span> <?php _e('Delete', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="delete_threads"<?php echo $button_status ?>><span class="fa fa-fw fa-trash-o"></span> <?php _e('Delete', 'luna') ?></button>
 						<button type="submit" class="btn btn-primary" name="merge_topics"<?php echo $button_status ?>><span class="fa fa-fw fa-compress"></span> <?php _e('Merge', 'luna') ?></button>
 					</div>
 					<div class="btn-group">

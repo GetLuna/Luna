@@ -31,7 +31,7 @@ $p = isset($p) ? $p : null;
 $user_avatar = draw_user_avatar($luna_user['id'], true, 'avatar');
 
 // Generate quick links
-$page_statusinfo = $page_topicsearches = array();
+$page_statusinfo = $page_threadsearches = array();
 
 if (!$luna_user['is_guest']) {
 	if (!empty($forum_actions))
@@ -53,13 +53,13 @@ if (!$luna_user['is_guest']) {
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.__('New', 'luna').'">New</a>';
+		$page_threadsearches[] = '<a href="search.php?action=show_new" title="'.__('New', 'luna').'">New</a>';
 }
 
 // Quick searches
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.__('Active', 'luna').'">Active</a>';
-	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'">Unanswered</a>';
+	$page_threadsearches[] = '<a href="search.php?action=show_recent" title="'.__('Active', 'luna').'">Active</a>';
+	$page_threadsearches[] = '<a href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'">Unanswered</a>';
 }
 
 // Generate all that jazz
@@ -74,9 +74,9 @@ if (is_array($page_statusinfo)) {
 	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
 
 // Generate quicklinks
-if (!empty($page_topicsearches)) {
+if (!empty($page_threadsearches)) {
 	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
-	$tpl_temp .= "\n\t\t\t\t".'<li>'.implode(' &middot; ', $page_topicsearches).'</li>';
+	$tpl_temp .= "\n\t\t\t\t".'<li>'.implode(' &middot; ', $page_threadsearches).'</li>';
 	$tpl_temp .= "\n\t\t\t".'</ul>';
 }
 

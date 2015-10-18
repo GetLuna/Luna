@@ -38,8 +38,8 @@ if ($tid && $luna_config['o_censoring'] == '1')
 	$cur_commenting['subject'] = censor_words($cur_commenting['subject']);
 
 // Do we have permission to post?
-if ((($tid && (($cur_commenting['post_replies'] == '' && $luna_user['g_post_replies'] == '0') || $cur_commenting['post_replies'] == '0')) ||
-	($fid && (($cur_commenting['post_topics'] == '' && $luna_user['g_post_topics'] == '0') || $cur_commenting['post_topics'] == '0')) ||
+if ((($tid && (($cur_commenting['post_replies'] == '' && $luna_user['g_comment'] == '0') || $cur_commenting['post_replies'] == '0')) ||
+	($fid && (($cur_commenting['post_topics'] == '' && $luna_user['g_post_threads'] == '0') || $cur_commenting['post_topics'] == '0')) ||
 	(isset($cur_commenting['closed']) && $cur_commenting['closed'] == '1')) &&
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');

@@ -708,19 +708,19 @@ function draw_comment_list() {
 	
 			if ($cur_thread['closed'] == 0) {
 				if ($cur_comment['poster_id'] == $luna_user['id']) {
-					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1))
+					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_delete_comments'] == 1))
 						$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
-					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_posts'] == 1)) {
+					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_comments'] == 1)) {
 						if ($cur_comment['soft'] == 0)
 							$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 						else
 							$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
 					}
-					if ($luna_user['g_edit_posts'] == 1)
+					if ($luna_user['g_edit_comments'] == 1)
 						$post_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 				}
 	
-				if (($cur_thread['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_thread['post_replies'] == 1)
+				if (($cur_thread['post_replies'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['post_replies'] == 1)
 					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 
 				if ($cur_forum['solved'] == 1) {
@@ -828,7 +828,7 @@ function draw_response_list() {
 				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_comment['sender_id'].'">'.__('Email', 'luna').'</a></span>';
 					
-				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_comment['use_pm'] == '1') {
+				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_inbox'] == '1' && $luna_user['use_pm'] == '1' && $cur_comment['use_pm'] == '1') {
 					$pid = isset($cur_comment['sender_id']) ? $cur_comment['sender_id'] : $cur_comment['sender_id'];
 					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
 				}

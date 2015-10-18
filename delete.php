@@ -36,8 +36,8 @@ $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == 
 $is_thread_post = ($id == $cur_comment['first_post_id']) ? true : false;
 
 // Do we have permission to edit this post?
-if (($luna_user['g_delete_posts'] == '0' ||
-	($luna_user['g_delete_topics'] == '0' && $is_thread_post) ||
+if (($luna_user['g_delete_comments'] == '0' ||
+	($luna_user['g_delete_threads'] == '0' && $is_thread_post) ||
 	$cur_comment['poster_id'] != $luna_user['id'] ||
 	$cur_comment['closed'] == '1') &&
 	!$is_admmod)
@@ -55,7 +55,7 @@ if (isset($_POST['soft_delete'])) {
 
 	if ($is_thread_post) {
 		// Delete the thread and all of its posts
-		delete_topic($cur_comment['tid'], "soft");
+		delete_thread($cur_comment['tid'], "soft");
 		update_forum($cur_comment['fid']);
 
 		redirect('viewforum.php?id='.$cur_comment['fid']);
@@ -81,7 +81,7 @@ if (isset($_POST['reset'])) {
 
 	if ($is_thread_post) {
 		// Reset the thread and all of its posts
-		delete_topic($cur_comment['tid'], "reset");
+		delete_thread($cur_comment['tid'], "reset");
 		update_forum($cur_comment['fid']);
 
 		redirect('viewforum.php?id='.$cur_comment['fid']);
@@ -103,7 +103,7 @@ if (isset($_POST['delete'])) {
 
 	if ($is_thread_post) {
 		// Delete the thread and all of its posts
-		delete_topic($cur_comment['tid'], "hard");
+		delete_thread($cur_comment['tid'], "hard");
 		update_forum($cur_comment['fid']);
 
 		redirect('viewforum.php?id='.$cur_comment['fid']);

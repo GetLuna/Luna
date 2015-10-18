@@ -733,7 +733,7 @@ function delete_avatar($user_id) {
 //
 // Delete a thread and all of its posts
 //
-function delete_topic($thread_id, $type) {
+function delete_thread($thread_id, $type) {
 	global $db;
 
 	// Delete the thread and any redirect topics

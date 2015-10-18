@@ -87,7 +87,7 @@ if ($is_admmod)
 $admin_ids = get_admin_ids();
 
 if ($cur_thread['closed'] == '0') {
-	if (($cur_thread['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_thread['post_replies'] == '1' || $is_admmod)
+	if (($cur_thread['post_replies'] == '' && $luna_user['g_comment'] == '1') || $cur_thread['post_replies'] == '1' || $is_admmod)
 		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
 	else
 		$post_link = '';
@@ -119,7 +119,7 @@ $start_from = $luna_user['disp_posts'] * ($p - 1);
 $paging_links = paginate($num_pages, $p, 'thread.php?id='.$id);
 
 $quickpost = false;
-if (($cur_thread['post_replies'] == '1' || ($cur_thread['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) && ($cur_thread['closed'] == '0' || $is_admmod)) {
+if (($cur_thread['post_replies'] == '1' || ($cur_thread['post_replies'] == '' && $luna_user['g_comment'] == '1')) && ($cur_thread['closed'] == '0' || $is_admmod)) {
 	$required_fields = array('req_message' => __('Message', 'luna'));
 	if ($luna_user['is_guest']) {
 		$required_fields['req_username'] = __('Name', 'luna');

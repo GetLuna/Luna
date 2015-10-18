@@ -153,7 +153,7 @@ elseif (isset($_POST['update_positions'])) {
 		
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
-			$result = $db->query('SELECT g_id, g_read_board, g_post_replies, g_post_topics FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_ADMIN) or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT g_id, g_read_board, g_comment, g_post_threads FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_ADMIN) or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 			while ($cur_group = $db->fetch_assoc($result)) {
 				$read_forum_new = ($cur_group['g_read_board'] == '1') ? isset($_POST['read_forum_new'][$cur_group['g_id']]) ? '1' : '0' : intval($_POST['read_forum_old'][$cur_group['g_id']]);
 				$post_replies_new = isset($_POST['post_replies_new'][$cur_group['g_id']]) ? '1' : '0';
@@ -162,7 +162,7 @@ elseif (isset($_POST['update_positions'])) {
 				// Check if the new settings differ from the old
 				if ($read_forum_new != $_POST['read_forum_old'][$cur_group['g_id']] || $post_replies_new != $_POST['post_replies_old'][$cur_group['g_id']] || $post_topics_new != $_POST['post_topics_old'][$cur_group['g_id']]) {
 					// If the new settings are identical to the default settings for this group, delete its row in forum_perms
-					if ($read_forum_new == '1' && $post_replies_new == $cur_group['g_post_replies'] && $post_topics_new == $cur_group['g_post_topics'])
+					if ($read_forum_new == '1' && $post_replies_new == $cur_group['g_comment'] && $post_topics_new == $cur_group['g_post_threads'])
 						$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$cur_group['g_id'].' AND forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 					else {
 						// Run an UPDATE and see if it affected a row, if not, INSERT
@@ -343,17 +343,17 @@ elseif (isset($_POST['update_positions'])) {
 				<tbody>
 <?php
 
-	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.LUNA_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_comment, g.g_post_threads, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.LUNA_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_perm = $db->fetch_assoc($result)) {
 		$read_forum = ($cur_perm['read_forum'] != '0') ? true : false;
-		$post_replies = (($cur_perm['g_post_replies'] == '0' && $cur_perm['post_replies'] == '1') || ($cur_perm['g_post_replies'] == '1' && $cur_perm['post_replies'] != '0')) ? true : false;
-		$post_topics = (($cur_perm['g_post_topics'] == '0' && $cur_perm['post_topics'] == '1') || ($cur_perm['g_post_topics'] == '1' && $cur_perm['post_topics'] != '0')) ? true : false;
+		$post_replies = (($cur_perm['g_comment'] == '0' && $cur_perm['post_replies'] == '1') || ($cur_perm['g_comment'] == '1' && $cur_perm['post_replies'] != '0')) ? true : false;
+		$post_topics = (($cur_perm['g_post_threads'] == '0' && $cur_perm['post_topics'] == '1') || ($cur_perm['g_post_threads'] == '1' && $cur_perm['post_topics'] != '0')) ? true : false;
 
 		// Determine if the current settings differ from the default or not
 		$read_forum_def = ($cur_perm['read_forum'] == '0') ? false : true;
-		$post_replies_def = (($post_replies && $cur_perm['g_post_replies'] == '0') || (!$post_replies && ($cur_perm['g_post_replies'] == '' || $cur_perm['g_post_replies'] == '1'))) ? false : true;
-		$post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$post_topics && ($cur_perm['g_post_topics'] == '' || $cur_perm['g_post_topics'] == '1'))) ? false : true;
+		$post_replies_def = (($post_replies && $cur_perm['g_comment'] == '0') || (!$post_replies && ($cur_perm['g_comment'] == '' || $cur_perm['g_comment'] == '1'))) ? false : true;
+		$post_topics_def = (($post_topics && $cur_perm['g_post_threads'] == '0') || (!$post_topics && ($cur_perm['g_post_threads'] == '' || $cur_perm['g_post_threads'] == '1'))) ? false : true;
 
 ?>
 					<tr>

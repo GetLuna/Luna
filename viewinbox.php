@@ -23,7 +23,7 @@ if (!$luna_user['use_pm'] == '1')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
-if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
+if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // User block

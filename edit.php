@@ -37,7 +37,7 @@ if ($luna_config['o_censoring'] == '1') {
 }
 
 // Do we have permission to edit this post?
-if (($luna_user['g_edit_posts'] == '0' ||
+if (($luna_user['g_edit_comments'] == '0' ||
 	$cur_comment['poster_id'] != $luna_user['id'] ||
 	$cur_comment['closed'] == '1') &&
 	!$is_admmod)

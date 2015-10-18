@@ -21,7 +21,7 @@ if (!$luna_user['use_pm'] == '1')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
-if (!$luna_config['o_pms_enabled'] == '1' || $luna_user['g_pm'] == '0')
+if (!$luna_config['o_pms_enabled'] == '1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 $p_destinataire = '';
@@ -133,7 +133,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			$errors[] = sprintf( __('At least % seconds have to pass between sends. Please wait a little while and try send the message again.', 'luna'), $luna_user['g_post_flood'] );
 		
 	// Check users boxes
-	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_pm_limit'])
+	if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_inbox_limit'])
 		$errors[] = __('Can\'t save message, your boxes are full.', 'luna');
 	
 	// Build receivers list
@@ -164,7 +164,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	$list_usernames = array();
 	foreach ($dest_list as $destinataire) {
 		// Get receiver infos
-		$result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_pm, u.notify_pm_full, u.use_pm, u.num_pms, g.g_id, g.g_pm_limit, g.g_pm FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS pm ON (pm.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
+		$result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_pm, u.notify_pm_full, u.use_pm, u.num_pms, g.g_id, g.g_inbox_limit, g.g_inbox FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS pm ON (pm.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
 
 		// List users infos
 		if ($destinataires[$i] = $db->fetch_assoc($result_username)) {
@@ -179,10 +179,10 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			// Begin to build usernames' list
 			$list_usernames[] = $destinataires[$i]['username'];
 			// Receivers enable PM ?
-			if (!$destinataires[$i]['use_pm'] == '1' || !$destinataires[$i]['g_pm'] == '1')
+			if (!$destinataires[$i]['use_pm'] == '1' || !$destinataires[$i]['g_inbox'] == '1')
 				$errors[] = sprintf(__('%s disabled the private messages.', 'luna'), luna_htmlspecialchars($destinataire));			
 			// Check receivers boxes
-			elseif ($destinataires[$i]['g_id'] > LUNA_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
+			elseif ($destinataires[$i]['g_id'] > LUNA_GUEST && $destinataires[$i]['g_inbox_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_inbox_limit'])
 				$errors[] = sprintf(__('%s inbox is full, you can not send you message to this user.', 'luna'), luna_htmlspecialchars($destinataire));	
 		} else
 			$errors[] = sprintf(__('There\'s no user with the username "%s".', 'luna'), luna_htmlspecialchars($destinataire));
