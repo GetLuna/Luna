@@ -98,7 +98,7 @@ function check_cookie(&$luna_user) {
 				}
 
 				// Reset tracked topics
-				set_tracked_topics(null);
+				set_tracked_threads(null);
 			} else {
 				// Special case: We've timed out, but no other user has browsed the forums since we timed out
 				if ($luna_user['logged'] < ($now-$luna_config['o_timeout_visit'])) {
@@ -638,19 +638,19 @@ function generate_page_title($page_title, $p = null) {
 //
 // Save array of tracked topics in cookie
 //
-function set_tracked_topics($tracked_topics) {
+function set_tracked_threads($tracked_threads) {
 	global $cookie_name, $cookie_path, $cookie_domain, $cookie_secure, $luna_config;
 
 	$cookie_data = '';
-	if (!empty($tracked_topics)) {
+	if (!empty($tracked_threads)) {
 		// Sort the arrays (latest read first)
-		arsort($tracked_topics['topics'], SORT_NUMERIC);
-		arsort($tracked_topics['forums'], SORT_NUMERIC);
+		arsort($tracked_threads['topics'], SORT_NUMERIC);
+		arsort($tracked_threads['forums'], SORT_NUMERIC);
 
 		// Homebrew serialization (to avoid having to run unserialize() on cookie data)
-		foreach ($tracked_topics['topics'] as $id => $timestamp)
+		foreach ($tracked_threads['topics'] as $id => $timestamp)
 			$cookie_data .= 't'.$id.'='.$timestamp.';';
-		foreach ($tracked_topics['forums'] as $id => $timestamp)
+		foreach ($tracked_threads['forums'] as $id => $timestamp)
 			$cookie_data .= 'f'.$id.'='.$timestamp.';';
 
 		// Enforce a byte size limit (4096 minus some space for the cookie name - defaults to 4048)
@@ -668,7 +668,7 @@ function set_tracked_topics($tracked_topics) {
 //
 // Extract array of tracked topics from cookie
 //
-function get_tracked_topics() {
+function get_tracked_threads() {
 	global $cookie_name;
 
 	$cookie_data = isset($_COOKIE[$cookie_name.'_track']) ? $_COOKIE[$cookie_name.'_track'] : false;
@@ -679,17 +679,17 @@ function get_tracked_topics() {
 		return array('topics' => array(), 'forums' => array());
 
 	// Unserialize data from cookie
-	$tracked_topics = array('topics' => array(), 'forums' => array());
+	$tracked_threads = array('topics' => array(), 'forums' => array());
 	$temp = explode(';', $cookie_data);
 	foreach ($temp as $t) {
 		$type = substr($t, 0, 1) == 'f' ? 'forums' : 'topics';
 		$id = intval(substr($t, 1));
 		$timestamp = intval(substr($t, strpos($t, '=') + 1));
 		if ($id > 0 && $timestamp > 0)
-			$tracked_topics[$type][$id] = $timestamp;
+			$tracked_threads[$type][$id] = $timestamp;
 	}
 
-	return $tracked_topics;
+	return $tracked_threads;
 }
 
 

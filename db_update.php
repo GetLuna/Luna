@@ -600,6 +600,9 @@ switch ($stage) {
 		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
+		$db->rename_field('posts', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('thread_subscription', 'topic_id', 'thread_id', 'INT(10)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

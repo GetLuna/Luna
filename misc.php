@@ -26,7 +26,7 @@ if ($action == 'markread') {
 	$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$luna_user['logged'].' WHERE id='.$luna_user['id']) or error('Unable to update user last visit data', __FILE__, __LINE__, $db->error());
 
 	// Reset tracked topics
-	set_tracked_topics(null);
+	set_tracked_threads(null);
 
 	redirect('index.php');
 }
@@ -42,9 +42,9 @@ elseif ($action == 'markforumread') {
 	if ($fid < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$tracked_topics = get_tracked_topics();
-	$tracked_topics['forums'][$fid] = time();
-	set_tracked_topics($tracked_topics);
+	$tracked_threads = get_tracked_threads();
+	$tracked_threads['forums'][$fid] = time();
+	set_tracked_threads($tracked_threads);
 
 	redirect('viewforum.php?id='.$fid);
 } elseif (isset($_GET['email'])) {

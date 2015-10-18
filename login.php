@@ -56,7 +56,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	luna_setcookie($cur_user['id'], $form_password_hash, $expire);
 
 	// Reset tracked topics
-	set_tracked_topics(null);
+	set_tracked_threads(null);
 
 	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after the email is sent)
 	$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');

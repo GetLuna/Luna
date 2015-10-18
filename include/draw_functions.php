@@ -210,7 +210,7 @@ window.onbeforeunload = function() {
 }
 
 function draw_topics_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics, $cur_forum;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_threads, $cur_forum;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
@@ -296,7 +296,7 @@ function draw_topics_list() {
 				}
 			}
 	
-			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_thread['id']]) || $tracked_topics['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
@@ -476,7 +476,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 }
 
 function draw_index_topics_list() {
-	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_topics;
+	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
@@ -584,7 +584,7 @@ function draw_index_topics_list() {
 				}
 			}
 	
-			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_thread['id']]) || $tracked_topics['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
@@ -902,11 +902,11 @@ function draw_user_list() {
 }
 
 function draw_delete_form($id) {
-	global $is_topic_post;
+	global $is_thread_post;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
-			<p><?php echo ($is_topic_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
+			<p><?php echo ($is_thread_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
@@ -916,11 +916,11 @@ function draw_delete_form($id) {
 }
 
 function draw_soft_delete_form($id) {
-	global $is_topic_post;
+	global $is_thread_post;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
-			<p><?php echo ($is_topic_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
+			<p><?php echo ($is_thread_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
@@ -930,7 +930,7 @@ function draw_soft_delete_form($id) {
 }
 
 function draw_soft_reset_form($id) {
-	global $is_topic_post;
+	global $is_thread_post;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
@@ -944,9 +944,9 @@ function draw_soft_reset_form($id) {
 }
 
 function draw_delete_title() {
-	global $is_topic_post, $cur_comment;
+	global $is_thread_post, $cur_comment;
 
-	printf($is_topic_post ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['poster']).'</strong>', format_time($cur_comment['posted']));
+	printf($is_thread_post ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['poster']).'</strong>', format_time($cur_comment['posted']));
 }
 
 function draw_rules_form() {
@@ -972,7 +972,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $cur_thread, $subject_status, $last_post_date, $tracked_topics, $start_from;
+	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $cur_thread, $subject_status, $last_post_date, $tracked_threads, $start_from;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
@@ -1001,7 +1001,7 @@ function draw_search_results() {
 				$item_status .= ' closed-item';
 			}
 			
-			if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post'])) {
+			if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_search['tid']]) || $tracked_threads['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_threads['forums'][$cur_search['forum_id']]) || $tracked_threads['forums'][$cur_search['forum_id']] < $cur_search['last_post'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';

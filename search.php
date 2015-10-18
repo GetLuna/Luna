@@ -485,7 +485,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		// Get topic/forum tracking data
 		if (!$luna_user['is_guest'])
-			$tracked_topics = get_tracked_topics();
+			$tracked_threads = get_tracked_threads();
 
 		require load_page('header.php');
 		require load_page('search-results.php');

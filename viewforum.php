@@ -56,7 +56,7 @@ else
 
 // Get topic/forum tracking data
 if (!$luna_user['is_guest'])
-	$tracked_topics = get_tracked_topics();
+	$tracked_threads = get_tracked_threads();
 
 // Determine the thread offset (based on $_GET['p'])
 $num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);

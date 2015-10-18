@@ -38,8 +38,8 @@ if ($pid) {
 	if ($action == 'new') {
 		if (!$luna_user['is_guest']) {
 			// We need to check if this thread has been viewed recently by the user
-			$tracked_topics = get_tracked_topics();
-			$last_viewed = isset($tracked_topics['topics'][$id]) ? $tracked_topics['topics'][$id] : $luna_user['last_visit'];
+			$tracked_threads = get_tracked_threads();
+			$last_viewed = isset($tracked_threads['topics'][$id]) ? $tracked_threads['topics'][$id] : $luna_user['last_visit'];
 
 			$result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'posts WHERE topic_id='.$id.' AND posted>'.$last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
 			$first_new_post_id = $db->result($result);
@@ -103,9 +103,9 @@ if ($cur_thread['closed'] == '0') {
 
 // Add/update this thread in our list of tracked topics
 if (!$luna_user['is_guest']) {
-	$tracked_topics = get_tracked_topics();
-	$tracked_topics['topics'][$id] = time();
-	set_tracked_topics($tracked_topics);
+	$tracked_threads = get_tracked_threads();
+	$tracked_threads['topics'][$id] = time();
+	set_tracked_threads($tracked_threads);
 }
 
 

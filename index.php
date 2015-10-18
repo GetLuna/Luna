@@ -19,21 +19,21 @@ if (!$luna_user['is_guest']) {
 
 	if ($db->num_rows($result)) {
 		$forums = $new_topics = array();
-		$tracked_topics = get_tracked_topics();
+		$tracked_threads = get_tracked_threads();
 
 		while ($cur_forum = $db->fetch_assoc($result)) {
-			if (!isset($tracked_topics['forums'][$cur_forum['id']]) || $tracked_topics['forums'][$cur_forum['id']] < $cur_forum['last_post'])
+			if (!isset($tracked_threads['forums'][$cur_forum['id']]) || $tracked_threads['forums'][$cur_forum['id']] < $cur_forum['last_post'])
 				$forums[$cur_forum['id']] = $cur_forum['last_post'];
 		}
 
 		if (!empty($forums)) {
-			if (empty($tracked_topics['topics']))
+			if (empty($tracked_threads['topics']))
 				$new_topics = $forums;
 			else {
 				$result = $db->query('SELECT forum_id, id, last_post FROM '.$db->prefix.'threads WHERE forum_id IN('.implode(',', array_keys($forums)).') AND last_post>'.$luna_user['last_visit'].' AND moved_to IS NULL') or error('Unable to fetch new threads', __FILE__, __LINE__, $db->error());
 
 				while ($cur_thread = $db->fetch_assoc($result)) {
-					if (!isset($new_topics[$cur_thread['forum_id']]) && (!isset($tracked_topics['forums'][$cur_thread['forum_id']]) || $tracked_topics['forums'][$cur_thread['forum_id']] < $forums[$cur_thread['forum_id']]) && (!isset($tracked_topics['topics'][$cur_thread['id']]) || $tracked_topics['topics'][$cur_thread['id']] < $cur_thread['last_post']))
+					if (!isset($new_topics[$cur_thread['forum_id']]) && (!isset($tracked_threads['forums'][$cur_thread['forum_id']]) || $tracked_threads['forums'][$cur_thread['forum_id']] < $forums[$cur_thread['forum_id']]) && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']))
 						$new_topics[$cur_thread['forum_id']] = $forums[$cur_thread['forum_id']];
 				}
 			}

@@ -71,7 +71,7 @@ if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] == '0' || !ar
 
 // Get topic/forum tracking data
 if (!$luna_user['is_guest'])
-	$tracked_topics = get_tracked_topics();
+	$tracked_threads = get_tracked_threads();
 
 // All other topic moderation features require a thread ID in GET
 if (isset($_GET['tid'])) {
@@ -871,7 +871,7 @@ if ($db->num_rows($result)) {
 			$item_status .= ' iclosed';
 		}
 
-		if (!$ghost_topic && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_thread['id']]) || $tracked_topics['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_thread['last_post'])) {
+		if (!$ghost_topic && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$fid]) || $tracked_threads['forums'][$fid] < $cur_thread['last_post'])) {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';

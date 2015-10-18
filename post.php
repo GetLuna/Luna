@@ -443,9 +443,9 @@ Comment URL: <comment_url>
 		if (!$luna_user['is_guest']) {
 			$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts+1, last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-			$tracked_topics = get_tracked_topics();
-			$tracked_topics['topics'][$new_tid] = time();
-			set_tracked_topics($tracked_topics);
+			$tracked_threads = get_tracked_threads();
+			$tracked_threads['topics'][$new_tid] = time();
+			set_tracked_threads($tracked_threads);
 		} else {
 			$db->query('UPDATE '.$db->prefix.'online SET last_post='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 		}
