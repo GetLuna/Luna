@@ -897,7 +897,7 @@ function get_title($user) {
 		// Are there any ranks?
 		if ($luna_config['o_ranks'] == '1' && !empty($luna_ranks)) {
 			foreach ($luna_ranks as $cur_rank) {
-				if ($user['num_comments'] >= $cur_rank['min_posts'])
+				if ($user['num_comments'] >= $cur_rank['min_comments'])
 					$user_title = luna_htmlspecialchars($cur_rank['rank']);
 			}
 		}

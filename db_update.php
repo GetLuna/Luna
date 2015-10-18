@@ -251,7 +251,7 @@ switch ($stage) {
 		$db->drop_field($db->prefix.'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_threads') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'groups', 'g_mod_promote_users', 'TINYINT(1)', false, 0, 'g_mod_ban_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
-		if (!$db->table_exists('search_cache')) {
+		if (!$db->table_exists('ranks')) {
 			$schema = array(
 				'FIELDS'		=> array(
 					'id'			=> array(
@@ -263,7 +263,7 @@ switch ($stage) {
 						'allow_null'	=> false,
 						'default'		=> '\'\''
 					),
-					'min_posts'		=> array(
+					'min_comments'	=> array(
 						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 						'allow_null'	=> false,
 						'default'		=> '0'
@@ -274,8 +274,7 @@ switch ($stage) {
 		
 			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
 		}
-		if (!array_key_exists('o_ranks', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_ranks', '1');
 
 		// ModernBB 2.0 upgrade support
 		build_config(0, 'o_quickjump');
@@ -613,6 +612,7 @@ switch ($stage) {
 		$db->rename_field('users', 'num_posts', 'num_comments', 'INT(10)');
 		$db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
 		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
+		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

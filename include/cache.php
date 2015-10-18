@@ -82,7 +82,7 @@ function generate_ranks_cache() {
 	global $db;
 
 	// Get the rank list from the DB
-	$result = $db->query('SELECT * FROM '.$db->prefix.'ranks ORDER BY min_posts', true) or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT * FROM '.$db->prefix.'ranks ORDER BY min_comments', true) or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
 
 	$output = array();
 	while ($cur_rank = $db->fetch_assoc($result))

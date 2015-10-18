@@ -795,7 +795,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				'min_posts'		=> array(
+				'min_comments'		=> array(
 					'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1598,10 +1598,10 @@ class Installer {
 		
 		$db->start_transaction();
 
-		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('New member', 'luna')).'\', 0)')
+		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('New member', 'luna')).'\', 0)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
+		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 		require LUNA_ROOT.'include/notifications.php';		
