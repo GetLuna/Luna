@@ -19,7 +19,7 @@ if ($id < 1)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 // Fetch some info about the comment, the thread and the forum
-$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_threads, t.id AS tid, t.subject, t.commented, t.first_post_id, t.pinned, t.closed, p.commenter, p.commenter_id, p.message, p.hide_smilies FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_threads, t.id AS tid, t.subject, t.commented, t.first_comment_id, t.pinned, t.closed, p.commenter, p.commenter_id, p.message, p.hide_smilies FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -29,7 +29,7 @@ $cur_comment = $db->fetch_assoc($result);
 $mods_array = ($cur_comment['moderators'] != '') ? unserialize($cur_comment['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
-$can_edit_subject = $id == $cur_comment['first_post_id'];
+$can_edit_subject = $id == $cur_comment['first_comment_id'];
 
 if ($luna_config['o_censoring'] == '1') {
 	$cur_comment['subject'] = censor_words($cur_comment['subject']);

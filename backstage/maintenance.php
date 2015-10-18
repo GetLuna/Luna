@@ -78,13 +78,13 @@ if ($action == 'rebuild') {
 	require LUNA_ROOT.'include/search_idx.php';
 
 	// Fetch comments to process this cycle
-	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 	$end_at = 0;
 	while ($cur_item = $db->fetch_assoc($result)) {
 		echo '<p><span>'.sprintf(__('Processing comment <strong>%s</strong> …', 'luna'), $cur_item['id']).'</span></p>'."\n";
 
-		if ($cur_item['id'] == $cur_item['first_post_id'])
+		if ($cur_item['id'] == $cur_item['first_comment_id'])
 			update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
 		else
 			update_search_index('post', $cur_item['id'], $cur_item['message']);

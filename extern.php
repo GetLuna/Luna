@@ -274,7 +274,7 @@ if ($action == 'feed') {
 		$tid = intval($_GET['tid']);
 
 		// Fetch thread subject
-		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t.subject, t.first_comment_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result)) {
 			http_authenticate_user();
 			exit(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -301,7 +301,7 @@ if ($action == 'feed') {
 
 			$item = array(
 				'id'			=>	$cur_comment['id'],
-				'title'			=>	$cur_thread['first_post_id'] == $cur_comment['id'] ? $cur_thread['subject'] : __('Re: ', 'luna').$cur_thread['subject'],
+				'title'			=>	$cur_thread['first_comment_id'] == $cur_comment['id'] ? $cur_thread['subject'] : __('Re: ', 'luna').$cur_thread['subject'],
 				'link'			=>	get_base_url(true).'/thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id'],
 				'description'		=>	$cur_comment['message'],
 				'author'		=>	array(
@@ -373,7 +373,7 @@ if ($action == 'feed') {
 			);
 
 			// Fetch $show threads
-			$result = $db->query('SELECT t.id, t.commenter, t.subject, t.commented, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.commenter_id, p.commenter_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_commented ? 't.first_post_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_commented ? 't.commented' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id, t.commenter, t.subject, t.commented, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.commenter_id, p.commenter_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_commented ? 't.first_comment_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_commented ? 't.commented' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_thread['subject'] = censor_words($cur_thread['subject']);

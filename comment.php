@@ -308,7 +308,7 @@ You can unsubscribe by going to <unsubscribe_url>
 			$new_pid = $db->insert_id();
 
 			// Update the thread with last_comment_id
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment_id='.$new_pid.', first_post_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment_id='.$new_pid.', first_comment_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message, $subject);
 

@@ -632,6 +632,7 @@ switch ($stage) {
 		$db->rename_field('comments', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
@@ -759,13 +760,13 @@ switch ($stage) {
 		require LUNA_ROOT.'include/search_idx.php';
 
 		// Fetch comments to process this cycle
-		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 
-			if ($cur_item['id'] == $cur_item['first_post_id'])
+			if ($cur_item['id'] == $cur_item['first_comment_id'])
 				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
 			else
 				update_search_index('post', $cur_item['id'], $cur_item['message']);

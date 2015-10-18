@@ -1002,7 +1002,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'first_post_id'	=> array(
+				'first_comment_id'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1072,7 +1072,7 @@ class Installer {
 				'moved_to_idx'		=> array('moved_to'),
 				'last_comment_idx'		=> array('last_comment'),
 				'last_commenter_id'	=> array('last_commenter'),
-				'first_post_id_idx'	=> array('first_post_id')
+				'first_comment_id_idx'	=> array('first_comment_id')
 			)
 		);
 	

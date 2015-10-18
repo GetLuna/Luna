@@ -1,5 +1,5 @@
 <div class="">
-	<div id="p<?php echo $cur_comment['id'] ?>" class="row comment <?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_comment['id'] == $cur_thread['first_post_id']) echo ' firstpost'; ?><?php if ($comment_count == 1) echo ' onlypost'; ?><?php if ($cur_comment['marked'] == true) echo ' marked'; ?><?php if ($cur_comment['id'] == $cur_thread['answer']) echo ' answer'; ?>">
+	<div id="p<?php echo $cur_comment['id'] ?>" class="row comment <?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstpost'; ?><?php if ($comment_count == 1) echo ' onlypost'; ?><?php if ($cur_comment['marked'] == true) echo ' marked'; ?><?php if ($cur_comment['id'] == $cur_thread['answer']) echo ' answer'; ?>">
 		<div class="col-md-3">
 			<div class="profile-card">
 				<div class="profile-card-head">

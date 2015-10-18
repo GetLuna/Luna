@@ -80,7 +80,7 @@ if (isset($_GET['tid'])) {
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Fetch some info about the thread
-	$result = $db->query('SELECT t.subject, t.num_replies, t.first_post_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.num_replies, t.first_comment_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -192,7 +192,7 @@ if (isset($_GET['tid'])) {
 			$first_post_data = $db->fetch_assoc($result);
 
 			// Create the new thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_post_id, forum_id) VALUES (\''.$db->escape($first_post_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['commented'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id) VALUES (\''.$db->escape($first_post_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['commented'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
@@ -360,7 +360,7 @@ if (isset($_GET['tid'])) {
 		$cur_comment['message'] = parse_message($cur_comment['message']);
 
 ?>
-				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_post_id']) echo ' firstpost' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
+				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstpost' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>
@@ -370,7 +370,7 @@ if (isset($_GET['tid'])) {
 							<?php if ($cur_comment['edited'] != '') echo "\t\t\t\t\t\t".'<p class="comment-edited"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'."\n"; ?>
 						</div>
 						<div class="panel-footer">
-							<?php echo ($cur_comment['id'] != $cur_thread['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="comments['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
+							<?php echo ($cur_comment['id'] != $cur_thread['first_comment_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="comments['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
 						</div>
 					</div>
 				</div>
