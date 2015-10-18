@@ -758,7 +758,7 @@ class Installer {
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> true
 				),
-				'topic_id'		=> array(
+				'thread_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -776,8 +776,8 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id'),
 			'INDEXES'		=> array(
-				'topic_id_idx'	=> array('topic_id'),
-				'multi_idx'		=> array('poster_id', 'topic_id')
+				'thread_id_idx'	=> array('thread_id'),
+				'multi_idx'		=> array('poster_id', 'thread_id')
 			)
 		);
 	
@@ -818,7 +818,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'topic_id'		=> array(
+				'thread_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -950,13 +950,13 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'topic_id'		=> array(
+				'thread_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				)
 			),
-			'PRIMARY KEY'	=> array('user_id', 'topic_id')
+			'PRIMARY KEY'	=> array('user_id', 'thread_id')
 		);
 	
 		$db->create_table('thread_subscriptions', $schema) or error('Unable to create topic subscriptions table', __FILE__, __LINE__, $db->error());

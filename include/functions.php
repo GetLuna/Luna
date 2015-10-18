@@ -168,13 +168,13 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 	// Fetch topics to prune
 	$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.$extra_sql, true) or error('Unable to fetch topics', __FILE__, __LINE__, $db->error());
 
-	$topic_ids = '';
+	$thread_ids = '';
 	while ($row = $db->fetch_row($result))
-		$topic_ids .= (($topic_ids != '') ? ',' : '').$row[0];
+		$thread_ids .= (($thread_ids != '') ? ',' : '').$row[0];
 
-	if ($topic_ids != '') {
+	if ($thread_ids != '') {
 		// Fetch posts to prune
-		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id IN('.$topic_ids.')', true) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id IN('.$thread_ids.')', true) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$post_ids = '';
 		while ($row = $db->fetch_row($result))
@@ -182,9 +182,9 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 
 		if ($post_ids != '') {
 			// Delete threads
-			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$topic_ids.')') or error('Unable to prune topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune topics', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions
-			$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE topic_id IN('.$topic_ids.')') or error('Unable to prune subscriptions', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$thread_ids.')') or error('Unable to prune subscriptions', __FILE__, __LINE__, $db->error());
 			// Delete comments
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$post_ids.')') or error('Unable to prune posts', __FILE__, __LINE__, $db->error());
 
@@ -733,20 +733,20 @@ function delete_avatar($user_id) {
 //
 // Delete a thread and all of its posts
 //
-function delete_topic($topic_id, $type) {
+function delete_topic($thread_id, $type) {
 	global $db;
 
 	// Delete the thread and any redirect topics
 	if ($type == "hard")
-		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
 	elseif ($type == "soft")
-		$db->query('UPDATE '.$db->prefix.'threads SET soft = 1 WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET soft = 1 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
 	else
-		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
 
 	// Create a list of the comment IDs in this thread
 	$post_ids = '';
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_row($result))
 		$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
 
@@ -757,18 +757,18 @@ function delete_topic($topic_id, $type) {
 
 			strip_search_index($post_ids);
 			// Delete comments in topic
-			$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 		} else {
 			if ($type == "soft")
-				$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE topic_id='.$topic_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE thread_id='.$thread_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
 			else
-				$db->query('UPDATE '.$db->prefix.'posts SET soft = 0 WHERE topic_id='.$topic_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'posts SET soft = 0 WHERE thread_id='.$thread_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
 		}
 	}
 
 	if ($type != "reset") {
 		// Delete any subscriptions for this thread
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE topic_id='.$topic_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$thread_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 	}
 }
 
@@ -776,10 +776,10 @@ function delete_topic($topic_id, $type) {
 //
 // Delete a single post
 //
-function delete_post($post_id, $topic_id, $poster_id) {
+function delete_post($post_id, $thread_id, $poster_id) {
 	global $db;
 
-	$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	list($last_id, ,) = $db->fetch_row($result);
 	list($second_last_id, $second_poster, $second_posted) = $db->fetch_row($result);
 
@@ -793,20 +793,20 @@ function delete_post($post_id, $topic_id, $poster_id) {
 	strip_search_index($post_id);
 
 	// Count number of replies in the thread
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to fetch post count for topic', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id) or error('Unable to fetch post count for topic', __FILE__, __LINE__, $db->error());
 	$num_replies = $db->result($result, 0) - 1;
 
 	// If the message we deleted is the most recent in the thread (at the end of the thread)
 	if ($last_id == $post_id) {
 		// If there is a $second_last_id there is more than 1 reply to the thread
 		if (!empty($second_last_id))
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$second_posted.', last_post_id='.$second_last_id.', last_poster=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$topic_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$second_posted.', last_post_id='.$second_last_id.', last_poster=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 		else
 			// We deleted the only reply, so now last_post/last_post_id/last_poster is posted/id/poster from the thread itself
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post=posted, last_post_id=id, last_poster=poster, num_replies='.$num_replies.' WHERE id='.$topic_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post=posted, last_post_id=id, last_poster=poster, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 	} else
 		// Otherwise we just decrement the reply counter
-		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$topic_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 }
 
 
@@ -2253,7 +2253,7 @@ function num_guests_online() {
 function get_forum_id($post_id) {
 	global $db;
 
-	$result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'posts as p INNER JOIN '.$db->prefix.'threads as t ON p.topic_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
+	$result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'posts as p INNER JOIN '.$db->prefix.'threads as t ON p.thread_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
 
 	$row = $db->fetch_row($result_fid);
 

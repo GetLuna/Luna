@@ -220,9 +220,9 @@ function draw_topics_list() {
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
-		$topic_ids = array();
+		$thread_ids = array();
 		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
-			$topic_ids[] = $cur_thread_id;
+			$thread_ids[] = $cur_thread_id;
 	
 		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
@@ -230,13 +230,13 @@ function draw_topics_list() {
 			if (!$luna_user['is_admmod'])
 				$sql_addition = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, solved AS answer, moved_to, soft FROM '.$db->prefix.'threads WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, solved AS answer, moved_to, soft FROM '.$db->prefix.'threads WHERE '.$sql_addition.'id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a commented label
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_addition = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -255,7 +255,7 @@ function draw_topics_list() {
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
-				$topic_id = $cur_thread['id'];
+				$thread_id = $cur_thread['id'];
 
 				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_poster_id'] > '1')
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
@@ -263,7 +263,7 @@ function draw_topics_list() {
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
 			} else {
 				$last_poster = '';
-				$topic_id = $cur_thread['moved_to'];
+				$thread_id = $cur_thread['moved_to'];
 			}
 	
 			if ($luna_config['o_censoring'] == '1')
@@ -279,7 +279,7 @@ function draw_topics_list() {
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			$url = 'viewtopic.php?id='.$topic_id;
+			$url = 'viewtopic.php?id='.$thread_id;
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
@@ -483,9 +483,9 @@ function draw_index_topics_list() {
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
-		$topic_ids = array();
+		$thread_ids = array();
 		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
-			$topic_ids[] = $cur_thread_id;
+			$thread_ids[] = $cur_thread_id;
 
 		// Fetch list of threads to display on this page
 		$sql_soft = NULL;
@@ -493,13 +493,13 @@ function draw_index_topics_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE '.$sql_soft.'id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE '.$sql_soft.'id IN('.implode(',', $thread_ids).') ORDER BY last_post DESC';
 
 		} else {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
+			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -530,7 +530,7 @@ function draw_index_topics_list() {
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
-				$topic_id = $cur_thread['id'];
+				$thread_id = $cur_thread['id'];
 
 				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_poster_id'] > '1')
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
@@ -551,7 +551,7 @@ function draw_index_topics_list() {
 				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.$forum_name.'</a></span>';
 			} else {
 				$last_poster = '';
-				$topic_id = $cur_thread['moved_to'];
+				$thread_id = $cur_thread['moved_to'];
 			}
 	
 			if ($luna_config['o_censoring'] == '1')
@@ -567,7 +567,7 @@ function draw_index_topics_list() {
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			$url = 'viewtopic.php?id='.$topic_id;
+			$url = 'viewtopic.php?id='.$thread_id;
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {

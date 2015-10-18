@@ -100,7 +100,7 @@ if (isset($_GET['tid'])) {
 
 			// Verify that the comment IDs are valid
 			$admins_sql = ($luna_user['g_id'] != LUNA_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND thread_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -114,7 +114,7 @@ if (isset($_GET['tid'])) {
 			strip_search_index($posts);
 
 			// Get last_post, last_post_id, and last_poster for the thread after deletion
-			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_post = $db->fetch_assoc($result);
 
 			// How many posts did we just delete?
@@ -170,7 +170,7 @@ if (isset($_GET['tid'])) {
 			$num_posts_splitted = substr_count($posts, ',') + 1;
 
 			// Verify that the comment IDs are valid
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND thread_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result) != $num_posts_splitted)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -196,18 +196,18 @@ if (isset($_GET['tid'])) {
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
-			$db->query('UPDATE '.$db->prefix.'posts SET topic_id='.$new_tid.' WHERE id IN('.$posts.')') or error('Unable to move posts into new thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'posts SET thread_id='.$new_tid.' WHERE id IN('.$posts.')') or error('Unable to move posts into new thread', __FILE__, __LINE__, $db->error());
 
 			// Apply every subscription to both topics
-			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, topic_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE topic_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
 
 			// Get last_post, last_post_id, and last_poster from the thread and update it
-			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_post_data = $db->fetch_assoc($result);
 			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_post_data['posted'].', last_post_id='.$last_post_data['id'].', last_poster=\''.$db->escape($last_post_data['poster']).'\', num_replies=num_replies-'.$num_posts_splitted.' WHERE id='.$tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			// Get last_post, last_post_id, and last_poster from the new thread and update it
-			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_post_data = $db->fetch_assoc($result);
 			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_post_data['posted'].', last_post_id='.$last_post_data['id'].', last_poster=\''.$db->escape($last_post_data['poster']).'\', num_replies='.($num_posts_splitted-1).' WHERE id='.$new_tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
@@ -321,7 +321,7 @@ if (isset($_GET['tid'])) {
 	$post_count = 0; // Keep track of comment numbers
 
 	// Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
 	$post_ids = array();
 	for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)
@@ -554,30 +554,30 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 		$db->query($query) or error('Unable to make redirection topics', __FILE__, __LINE__, $db->error());
 
 		// Merge the comments into the thread
-		$db->query('UPDATE '.$db->prefix.'posts SET topic_id='.$merge_to_tid.' WHERE topic_id IN('.implode(',', $topics).')') or error('Unable to merge the comments into the thread', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'posts SET thread_id='.$merge_to_tid.' WHERE thread_id IN('.implode(',', $topics).')') or error('Unable to merge the comments into the thread', __FILE__, __LINE__, $db->error());
 
 		// Update any subscriptions
-		$result = $db->query('SELECT DISTINCT user_id FROM '.$db->prefix.'thread_subscriptions WHERE topic_id IN ('.implode(',', $topics).')') or error('Unable to fetch subscriptions of merged topics', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT DISTINCT user_id FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN ('.implode(',', $topics).')') or error('Unable to fetch subscriptions of merged topics', __FILE__, __LINE__, $db->error());
 
 		$subscribed_users = array();
 		while ($row = $db->fetch_row($result))
 			$subscribed_users[] = $row[0];
 
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE topic_id IN ('.implode(',', $topics).')') or error('Unable to delete subscriptions of merged topics', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN ('.implode(',', $topics).')') or error('Unable to delete subscriptions of merged topics', __FILE__, __LINE__, $db->error());
 
 		foreach ($subscribed_users as $cur_user_id)
-			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (topic_id, user_id) VALUES ('.$merge_to_tid.', '.$cur_user_id.')') or error('Unable to re-enter subscriptions for merge topic', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (thread_id, user_id) VALUES ('.$merge_to_tid.', '.$cur_user_id.')') or error('Unable to re-enter subscriptions for merge topic', __FILE__, __LINE__, $db->error());
 
 		// Without redirection the old topics are removed
 		if (!isset($_POST['with_redirect']))
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $topics).') AND id != '.$merge_to_tid) or error('Unable to delete old topics', __FILE__, __LINE__, $db->error());
 
 		// Count number of replies in the thread
-		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE topic_id='.$merge_to_tid) or error('Unable to fetch post count for topic', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE thread_id='.$merge_to_tid) or error('Unable to fetch post count for topic', __FILE__, __LINE__, $db->error());
 		$num_replies = $db->result($result, 0) - 1;
 
 		// Get last_post, last_post_id and last_poster
-		$result = $db->query('SELECT posted, id, poster FROM '.$db->prefix.'posts WHERE topic_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT posted, id, poster FROM '.$db->prefix.'posts WHERE thread_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
 		list($last_post, $last_post_id, $last_poster) = $db->fetch_row($result);
 
 		// Update topic
@@ -645,7 +645,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 
 		// Verify that the comments are not by admins
 		if ($luna_user['g_id'] != LUNA_ADMIN) {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE thread_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 		}
@@ -654,10 +654,10 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$topics.') OR moved_to IN('.$topics.')') or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
 
 		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE topic_id IN('.$topics.')') or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$topics.')') or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Create a list of the comment IDs in this thread and then strip the search index
-		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id IN('.$topics.')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$post_ids = '';
 		while ($row = $db->fetch_row($result))
@@ -670,7 +670,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 		}
 
 		// Delete comments
-		$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'posts WHERE thread_id IN('.$topics.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 
 		update_forum($fid);
 
@@ -722,13 +722,13 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		
 		check_csrf($_GET['csrf_token']);
 
-		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
-		if ($topic_id < 1)
+		$thread_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
+		if ($thread_id < 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$db->query('UPDATE '.$db->prefix.'threads SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to Close thread', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET closed='.$action.' WHERE id='.$thread_id.' AND forum_id='.$fid) or error('Unable to Close thread', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$topic_id);
+		redirect('viewtopic.php?id='.$thread_id);
 	}
 }
 
@@ -824,12 +824,12 @@ $result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$fi
 
 // If there are topics in this forum
 if ($db->num_rows($result)) {
-	$topic_ids = array();
+	$thread_ids = array();
 	for ($i = 0;$cur_thread_id = $db->result($result, $i);$i++)
-		$topic_ids[] = $cur_thread_id;
+		$thread_ids[] = $cur_thread_id;
 
 	// Select topics
-	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $topic_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
 
 	$button_status = '';
 	$topic_count = 0;

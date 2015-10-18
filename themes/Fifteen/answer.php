@@ -5,7 +5,7 @@ if (!defined('FORUM'))
 	exit;
 ?>
 
-<form class="form-horizontal" id="report" method="post" action="misc.php?answer=<?php echo $post_id ?>&amp;tid=<?php echo $topic_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+<form class="form-horizontal" id="report" method="post" action="misc.php?answer=<?php echo $post_id ?>&amp;tid=<?php echo $thread_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php _e('Answer', 'luna') ?></h3>

@@ -162,14 +162,14 @@ The message reads as follows:
 			message(sprintf(__('At least %s seconds have to pass between reports. Please wait %s seconds and try sending again.', 'luna'), $luna_user['g_report_flood'], $luna_user['g_report_flood'] - (time() - $luna_user['last_report_sent'])));
 
 		// Get the thread ID
-		$result = $db->query('SELECT topic_id FROM '.$db->prefix.'posts WHERE id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT thread_id FROM '.$db->prefix.'posts WHERE id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$topic_id = $db->result($result);
+		$thread_id = $db->result($result);
 
 		// Get the subject and forum ID
-		$result = $db->query('SELECT subject, forum_id FROM '.$db->prefix.'threads WHERE id='.$topic_id) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT subject, forum_id FROM '.$db->prefix.'threads WHERE id='.$thread_id) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -178,7 +178,7 @@ The message reads as follows:
 
 		// Should we use the internal report handling?
 		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2')
-			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, topic_id, forum_id, reported_by, created, message) VALUES('.$post_id.', '.$topic_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, thread_id, forum_id, reported_by, created, message) VALUES('.$post_id.', '.$thread_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'posts SET marked = 1 WHERE id='.$post_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 
 		// Should we email the report?
@@ -220,7 +220,7 @@ Reason: <reason>
 	}
 
 	// Fetch some info about the comment, the thread and the forum
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -242,16 +242,16 @@ Reason: <reason>
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-	$topic_id = intval($_GET['tid']);
+	$thread_id = intval($_GET['tid']);
 	$post_id = intval($_GET['answer']);
-	if ($post_id < 1 || $topic_id < 1)
+	if ($post_id < 1 || $thread_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$post_id.' WHERE id= '.$topic_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$post_id.' WHERE id= '.$thread_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
 	}
@@ -292,27 +292,27 @@ Reason: <reason>
 	
 	check_csrf($_GET['csrf_token']);
 
-	$topic_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
+	$thread_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 	$forum_id = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
-	if ($topic_id < 1 && $forum_id < 1)
+	if ($thread_id < 1 && $forum_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	if ($topic_id) {
+	if ($thread_id) {
 		if ($luna_config['o_thread_subscriptions'] != '1')
 			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 		// Make sure the user can view the thread
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$topic_id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$thread_id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND thread_id='.$thread_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message(__('You are subscribed', 'luna'));
 
-		$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$topic_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$thread_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$topic_id);
+		redirect('viewtopic.php?id='.$thread_id);
 	}
 
 	if ($forum_id) {
@@ -338,22 +338,22 @@ Reason: <reason>
 	
 	check_csrf($_GET['csrf_token']);
 
-	$topic_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
+	$thread_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 	$forum_id = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
-	if ($topic_id < 1 && $forum_id < 1)
+	if ($thread_id < 1 && $forum_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	if ($topic_id) {
+	if ($thread_id) {
 		if ($luna_config['o_thread_subscriptions'] != '1')
 			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND thread_id='.$thread_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('You\'re not subscribed to this thread.', 'luna'));
 
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND thread_id='.$thread_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$topic_id);
+		redirect('viewtopic.php?id='.$thread_id);
 	}
 
 	if ($forum_id) {
