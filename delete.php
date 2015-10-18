@@ -46,7 +46,7 @@ if (($luna_user['g_delete_comments'] == '0' ||
 if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_comment['poster_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-// Soft delete posts
+// Soft delete comments
 if (isset($_POST['soft_delete'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
@@ -54,7 +54,7 @@ if (isset($_POST['soft_delete'])) {
 	require LUNA_ROOT.'include/search_idx.php';
 
 	if ($is_thread_comment) {
-		// Delete the thread and all of its posts
+		// Delete the thread and all of its comments
 		delete_thread($cur_comment['tid'], "soft");
 		update_forum($cur_comment['fid']);
 
@@ -80,7 +80,7 @@ if (isset($_POST['reset'])) {
 	require LUNA_ROOT.'include/search_idx.php';
 
 	if ($is_thread_comment) {
-		// Reset the thread and all of its posts
+		// Reset the thread and all of its comments
 		delete_thread($cur_comment['tid'], "reset");
 		update_forum($cur_comment['fid']);
 
@@ -102,7 +102,7 @@ if (isset($_POST['delete'])) {
 	require LUNA_ROOT.'include/search_idx.php';
 
 	if ($is_thread_comment) {
-		// Delete the thread and all of its posts
+		// Delete the thread and all of its comments
 		delete_thread($cur_comment['tid'], "hard");
 		update_forum($cur_comment['fid']);
 

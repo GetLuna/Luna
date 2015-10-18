@@ -24,10 +24,10 @@
   do), show (how many items to display), fid (the ID or IDs of
   the forum(s) to poll for threads), nfid (the ID or IDs of forums
   that should be excluded), tid (the ID of the thread from which to
-  display posts) and type (output as HTML or RSS). The only
+  display comments) and type (output as HTML or RSS). The only
   mandatory variable is action. Possible/default values are:
 
-	action: feed - show most recent threads/posts (HTML or RSS)
+	action: feed - show most recent threads/comments (HTML or RSS)
 			online - show users online (HTML)
 			online_full - as above, but includes a full list (HTML)
 			stats - show board statistics (HTML)
@@ -43,7 +43,7 @@
 	nfid:   One or more forum IDs (comma-separated) that are to be
 			excluded. E.g. the ID of a a test forum.
 
-	tid:	A thread ID from which to show posts. If a tid is supplied,
+	tid:	A thread ID from which to show comments. If a tid is supplied,
 			fid and nfid are ignored.
 
 	show:   Any integer value between 1 and 50. The default is 15.
@@ -165,7 +165,7 @@ function output_atom($feed) {
 
 	echo "\t".'<id>'.luna_htmlspecialchars($feed['link']).'</id>'."\n";
 
-	$content_tag = ($feed['type'] == 'posts') ? 'content' : 'summary';
+	$content_tag = ($feed['type'] == 'comments') ? 'content' : 'summary';
 
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<entry>'."\n";
@@ -208,7 +208,7 @@ function output_xml($feed) {
 	echo '<source>'."\n";
 	echo "\t".'<url>'.luna_htmlspecialchars($feed['link']).'</url>'."\n";
 
-	$forum_tag = ($feed['type'] == 'posts') ? 'post' : 'thread';
+	$forum_tag = ($feed['type'] == 'comments') ? 'post' : 'thread';
 
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<'.$forum_tag.' id="'.$item['id'].'">'."\n";
@@ -291,10 +291,10 @@ if ($action == 'feed') {
 			'link'			=>	get_base_url(true).'/thread.php?id='.$tid,
 			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_thread['subject']),
 			'items'			=>	array(),
-			'type'			=>	'posts'
+			'type'			=>	'comments'
 		);
 
-		// Fetch $show posts
+		// Fetch $show comments
 		$result = $db->query('SELECT p.id, p.poster, p.message, p.hide_smilies, p.posted, p.poster_id, u.email_setting, u.email, p.poster_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id WHERE p.thread_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		while ($cur_comment = $db->fetch_assoc($result)) {
 			$cur_comment['message'] = parse_message($cur_comment['message']);

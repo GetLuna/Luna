@@ -191,7 +191,7 @@ if (empty($stage)) {
 switch ($stage) {
 	// Start by updating the database structure
 	case 'start':
-		$query_str = '?stage=preparse_posts';
+		$query_str = '?stage=preparse_comments';
 
 		// If we don't need to update the database, skip this stage
 		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::LUNA_DB_VERSION)
@@ -640,8 +640,8 @@ switch ($stage) {
 
 		break;
 
-	// Preparse posts
-	case 'preparse_posts':
+	// Preparse comments
+	case 'preparse_comments':
 		$query_str = '?stage=preparse_sigs';
 
 		// If we don't need to parse the comments, skip this stage
@@ -650,8 +650,8 @@ switch ($stage) {
 
 		require LUNA_ROOT.'include/parser.php';
 
-		// Fetch posts to process this cycle
-		$result = $db->query('SELECT id, message FROM '.$db->prefix.'comments WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		// Fetch comments to process this cycle
+		$result = $db->query('SELECT id, message FROM '.$db->prefix.'comments WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$temp = array();
 		$end_at = 0;
@@ -667,7 +667,7 @@ switch ($stage) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)
-				$query_str = '?stage=preparse_posts&start_at='.$end_at;
+				$query_str = '?stage=preparse_comments&start_at='.$end_at;
 		}
 
 		break;
@@ -736,8 +736,8 @@ switch ($stage) {
 
 		require LUNA_ROOT.'include/search_idx.php';
 
-		// Fetch posts to process this cycle
-		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		// Fetch comments to process this cycle
+		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {

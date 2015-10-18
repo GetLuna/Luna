@@ -40,7 +40,7 @@ $avatar_user_card = draw_user_avatar($id);
 $user_title_field = get_title($user);
 $user_personality[] = '<b>'.__('Title', 'luna').':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
 
-$user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$posts_field = forum_number_format($user['num_comments']);
+$user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$comments_field = forum_number_format($user['num_comments']);
 
 if ($user['num_comments'] > 0)
 	$user_personality[] = '<b>'.__('Last comment', 'luna').':</b> '.$last_comment;
@@ -57,7 +57,7 @@ if ($user['realname'] != '')
 if ($user['location'] != '')
 	$user_personality[] = '<b>'.__('Location', 'luna').':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
 
-$posts_field = '';
+$comments_field = '';
 if ($luna_user['g_search'] == '1') {
 	$quick_searches = array();
 	if ($user['num_comments'] > 0) {
@@ -68,11 +68,11 @@ if ($luna_user['g_search'] == '1') {
 		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Show subscriptions', 'luna').'</a>';
 
 	if (!empty($quick_searches))
-		$posts_field .= implode('', $quick_searches);
+		$comments_field .= implode('', $quick_searches);
 }
 
-if ($posts_field != '')
-	$user_personality[] = '<br /><div class="btn-group">'.$posts_field.'</div>';
+if ($comments_field != '')
+	$user_personality[] = '<br /><div class="btn-group">'.$comments_field.'</div>';
 
 $user_messaging = array();
 

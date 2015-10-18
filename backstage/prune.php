@@ -137,7 +137,7 @@ if (isset($_POST['notiprune'])) {
 
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
-	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
+	if ((trim($_POST['days']) == '') || trim($_POST['comments']) == '')
 		message_backstage('You need to set all settings!');
 
 	if ($_POST['admods_delete'])
@@ -155,7 +155,7 @@ if (isset($_POST['userprune'])) {
 	$prune = ($_POST['prune_by'] == 1) ? 'registered' : 'last_visit';
 
 	$user_time = time() - ($_POST['days'] * 86400);
-	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_comments < '.intval($_POST['posts']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_comments < '.intval($_POST['comments']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
 	
 	$user_ids = array();
 	while ($id = $db->result($result))
@@ -163,7 +163,7 @@ if (isset($_POST['userprune'])) {
 	
 	if (!empty($user_ids)) {
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark posts as guest posts', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark comments as guest comments', __FILE__, __LINE__, $db->error());
 	}
 	
 	// Regenerate the users info cache
@@ -304,7 +304,7 @@ require 'header.php';
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna') ?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="number" class="form-control" name="posts" value="1"  tabindex="1" />
+						<input type="number" class="form-control" name="comments" value="1"  tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">

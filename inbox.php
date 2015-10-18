@@ -35,7 +35,7 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 $id = $luna_user['id'];
 	
-// Mark as read multiple posts
+// Mark as read multiple comments
 if (isset($_REQUEST['markread'])) {
 	confirm_referrer('inbox.php');
 

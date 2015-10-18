@@ -368,12 +368,12 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to remove users from online list', __FILE__, __LINE__, $db->error());
 
 		// Should we delete all comments made by these users?
-		if (isset($_POST['delete_posts'])) {
+		if (isset($_POST['delete_comments'])) {
 			require LUNA_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all comments made by this user
-			$result = $db->query('SELECT p.id, p.poster_id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.poster_id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "thread post" or not
@@ -388,8 +388,8 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 				}
 			}
 		} else
-			// Set all their posts to guest
-			$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
+			// Set all their comments to guest
+			$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
 
 		// Delete the users
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
@@ -424,7 +424,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 				<p><?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></p>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="delete_posts" value="1" checked />
+						<input type="checkbox" name="delete_comments" value="1" checked />
 						<?php _e('Delete all comments and threads this user has made', 'luna') ?>
 					</label>
 				</div>
@@ -578,8 +578,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$form = array_map('luna_trim', $form);
 	$conditions = $query_str = array();
 
-	$posts_greater = isset($_GET['posts_greater']) ? luna_trim($_GET['posts_greater']) : '';
-	$posts_less = isset($_GET['posts_less']) ? luna_trim($_GET['posts_less']) : '';
+	$comments_greater = isset($_GET['comments_greater']) ? luna_trim($_GET['comments_greater']) : '';
+	$comments_less = isset($_GET['comments_less']) ? luna_trim($_GET['comments_less']) : '';
 	$last_comment_after = isset($_GET['last_post_after']) ? luna_trim($_GET['last_post_after']) : '';
 	$last_comment_before = isset($_GET['last_post_before']) ? luna_trim($_GET['last_post_before']) : '';
 	$last_visit_after = isset($_GET['last_visit_after']) ? luna_trim($_GET['last_visit_after']) : '';
@@ -594,7 +594,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$query_str[] = 'direction='.$direction;
 	$query_str[] = 'user_group='.$user_group;
 
-	if (preg_match('%[^0-9]%', $posts_greater.$posts_less))
+	if (preg_match('%[^0-9]%', $comments_greater.$comments_less))
 		message_backstage(__('You entered a non-numeric value into a numeric only column.', 'luna'));
 
 	// Try to convert date/time to timestamps
@@ -661,13 +661,13 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		}
 	}
 
-	if ($posts_greater != '') {
-		$query_str[] = 'posts_greater='.$posts_greater;
-		$conditions[] = 'u.num_comments>'.$posts_greater;
+	if ($comments_greater != '') {
+		$query_str[] = 'comments_greater='.$comments_greater;
+		$conditions[] = 'u.num_comments>'.$comments_greater;
 	}
-	if ($posts_less != '') {
-		$query_str[] = 'posts_less='.$posts_less;
-		$conditions[] = 'u.num_comments<'.$posts_less;
+	if ($comments_less != '') {
+		$query_str[] = 'comments_less='.$comments_less;
+		$conditions[] = 'u.num_comments<'.$comments_less;
 	}
 
 	if ($user_group > -1)
@@ -861,9 +861,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Number of comments less than', 'luna') ?></th>
-					<td><input type="number" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
+					<td><input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" /></td>
 					<th><?php _e('Number of comments greater than', 'luna') ?></th>
-					<td><input type="number" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
+					<td><input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last comment is before', 'luna') ?></th>

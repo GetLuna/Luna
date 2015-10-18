@@ -781,7 +781,7 @@ class Installer {
 			)
 		);
 	
-		$db->create_table('comments', $schema) or error('Unable to create posts table', __FILE__, __LINE__, $db->error());
+		$db->create_table('comments', $schema) or error('Unable to create comments table', __FILE__, __LINE__, $db->error());
 	
 	
 		$schema = array(

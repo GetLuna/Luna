@@ -29,7 +29,7 @@ if ($pid) {
 	list($id, $posted) = $db->fetch_row($result);
 
 	// Determine on which page the comment is located (depending on $forum_user['disp_comments'])
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND posted<'.$posted) or error('Unable to count previous posts', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND posted<'.$posted) or error('Unable to count previous comments', __FILE__, __LINE__, $db->error());
 	$num_comments = $db->result($result) + 1;
 
 	$_GET['p'] = ceil($num_comments / $luna_user['disp_comments']);

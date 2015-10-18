@@ -300,9 +300,9 @@ function draw_threads_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_comments = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
-				$subject_new_posts = null;
+				$subject_new_comments = null;
 
 			$subject_status = implode(' ', $status_text);
 	
@@ -378,7 +378,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
 			$thread_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
-			$comments_label = _n('post', 'posts', $cur_forum['num_comments'], 'luna');
+			$comments_label = _n('post', 'comments', $cur_forum['num_comments'], 'luna');
 			
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
@@ -461,7 +461,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
 			$thread_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
-			$comments_label = __('post', 'posts', $cur_forum['num_comments'], 'luna');
+			$comments_label = __('post', 'comments', $cur_forum['num_comments'], 'luna');
 			
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
@@ -587,9 +587,9 @@ function draw_index_threads_list() {
 			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_comments = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
-				$subject_new_posts = null;
+				$subject_new_comments = null;
 	
 			$subject_status = implode(' ', $status_text);
 	
@@ -980,7 +980,7 @@ function draw_search_results() {
 		if ($luna_config['o_censoring'] == '1')
 			$cur_search['subject'] = censor_words($cur_search['subject']);
 
-		/* if ($show_as == 'posts') {
+		/* if ($show_as == 'comments') {
 			require get_view_path('comment.php');
 		} else { */
 			++$thread_count;
@@ -1005,9 +1005,9 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_comments = '<span class="newtext">[ <a href="thread.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
-				$subject_new_posts = null;
+				$subject_new_comments = null;
 			
 			// Insert the status text before the subject
 			$subject = implode(' ', $status_text).' '.$subject;

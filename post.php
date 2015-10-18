@@ -109,9 +109,9 @@ if (isset($_POST['form_sent'])) {
 	// Clean up message from POST
 	$orig_message = $message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
-	if (strlen($message) > LUNA_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_POSTSIZE));
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_COMMENT_SIZE bytes, not characters
+	if (strlen($message) > LUNA_MAX_COMMENT_SIZE)
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_COMMENT_SIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 

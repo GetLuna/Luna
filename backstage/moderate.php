@@ -86,39 +86,39 @@ if (isset($_GET['tid'])) {
 
 	$cur_thread = $db->fetch_assoc($result);
 
-	// Delete one or more posts
-	if (isset($_POST['delete_posts']) || isset($_POST['delete_posts_comply'])) {
-		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
-		if (empty($posts))
+	// Delete one or more comments
+	if (isset($_POST['delete_comments']) || isset($_POST['delete_comments_comply'])) {
+		$comments = isset($_POST['comments']) ? $_POST['comments'] : array();
+		if (empty($comments))
 			message_backstage(__('You must select at least one comment for split/delete.', 'luna'));
 
-		if (isset($_POST['delete_posts_comply'])) {
+		if (isset($_POST['delete_comments_comply'])) {
 			confirm_referrer('backstage/moderate.php');
 
-			if (@preg_match('%[^0-9,]%', $posts))
+			if (@preg_match('%[^0-9,]%', $comments))
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 			// Verify that the comment IDs are valid
 			$admins_sql = ($luna_user['g_id'] != LUNA_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id IN('.$posts.') AND thread_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id IN('.$comments.') AND thread_id='.$tid.$admins_sql) or error('Unable to check comments', __FILE__, __LINE__, $db->error());
 
-			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
+			if ($db->num_rows($result) != substr_count($comments, ',') + 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 			
-			decrease_post_counts($posts);
+			decrease_post_counts($comments);
 
 			// Delete the comments
-			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$comments.')') or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
 
 			require LUNA_ROOT.'include/search_idx.php';
-			strip_search_index($posts);
+			strip_search_index($comments);
 
 			// Get last_post, last_post_id, and last_poster for the thread after deletion
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment = $db->fetch_assoc($result);
 
-			// How many posts did we just delete?
-			$num_comments_deleted = substr_count($posts, ',') + 1;
+			// How many comments did we just delete?
+			$num_comments_deleted = substr_count($comments, ',') + 1;
 
 			// Update the thread
 			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment['posted'].', last_post_id='.$last_comment['id'].', last_poster=\''.$db->escape($last_comment['poster']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
@@ -137,11 +137,11 @@ if (isset($_GET['tid'])) {
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Delete comments', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="delete_posts_comply" value="<?php _e('Delete', 'luna') ?>" /></span></h3>
+					<h3 class="panel-title"><?php _e('Delete comments', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="delete_comments_comply" value="<?php _e('Delete', 'luna') ?>" /></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
-						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
+						<input type="hidden" name="comments" value="<?php echo implode(',', array_map('intval', array_keys($comments))) ?>" />
 						<p><?php _e('Are you sure you want to delete the selected comments?', 'luna') ?></p>
 					</fieldset>
 				</div>
@@ -151,26 +151,26 @@ if (isset($_GET['tid'])) {
 		
 		require 'footer.php';
 
-	} elseif (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
-		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
-		if (empty($posts))
+	} elseif (isset($_POST['split_comments']) || isset($_POST['split_comments_comply'])) {
+		$comments = isset($_POST['comments']) ? $_POST['comments'] : array();
+		if (empty($comments))
 			message_backstage(__('You must select at least one comment for split/delete.', 'luna'));
 
-		if (isset($_POST['split_posts_comply'])) {
+		if (isset($_POST['split_comments_comply'])) {
 			confirm_referrer('backstage/moderate.php');
 
-			if (@preg_match('%[^0-9,]%', $posts))
+			if (@preg_match('%[^0-9,]%', $comments))
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 			$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
 			if ($move_to_forum < 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-			// How many posts did we just split off?
-			$num_comments_splitted = substr_count($posts, ',') + 1;
+			// How many comments did we just split off?
+			$num_comments_splitted = substr_count($comments, ',') + 1;
 
 			// Verify that the comment IDs are valid
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id IN('.$posts.') AND thread_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id IN('.$comments.') AND thread_id='.$tid) or error('Unable to check comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result) != $num_comments_splitted)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -188,7 +188,7 @@ if (isset($_GET['tid'])) {
 				message_backstage(__('Subjects cannot be longer than 70 characters.', 'luna'));
 
 			// Get data from the new first post
-			$result = $db->query('SELECT p.id, p.poster, p.posted FROM '.$db->prefix.'comments AS p WHERE id IN('.$posts.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.poster, p.posted FROM '.$db->prefix.'comments AS p WHERE id IN('.$comments.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
 			$first_post_data = $db->fetch_assoc($result);
 
 			// Create the new thread
@@ -196,7 +196,7 @@ if (isset($_GET['tid'])) {
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
-			$db->query('UPDATE '.$db->prefix.'comments SET thread_id='.$new_tid.' WHERE id IN('.$posts.')') or error('Unable to move posts into new thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET thread_id='.$new_tid.' WHERE id IN('.$comments.')') or error('Unable to move comments into new thread', __FILE__, __LINE__, $db->error());
 
 			// Apply every subscription to both threads
 			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
@@ -228,11 +228,11 @@ if (isset($_GET['tid'])) {
 		<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Split comments', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php _e('Split', 'luna') ?>" /></span></h3>
+					<h3 class="panel-title"><?php _e('Split comments', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="split_comments_comply" value="<?php _e('Split', 'luna') ?>" /></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
-						<input type="hidden" class="form-control" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
+						<input type="hidden" class="form-control" name="comments" value="<?php echo implode(',', array_map('intval', array_keys($comments))) ?>" />
 						<div class="form-group">
 							<label class="col-sm-2 control-label"><?php _e('Move to', 'luna') ?></label>
 							<div class="col-sm-10">
@@ -274,7 +274,7 @@ if (isset($_GET['tid'])) {
 		exit;
 	}
 
-	// Show the moderate posts view
+	// Show the moderate comments view
 
 	// Used to disable the Move and Delete buttons if there are no replies to this thread
 	$button_status = ($cur_thread['num_replies'] == 0) ? ' disabled="disabled"' : '';
@@ -370,7 +370,7 @@ if (isset($_GET['tid'])) {
 							<?php if ($cur_comment['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'."\n"; ?>
 						</div>
 						<div class="panel-footer">
-							<?php echo ($cur_comment['id'] != $cur_thread['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
+							<?php echo ($cur_comment['id'] != $cur_thread['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="comments['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
 						</div>
 					</div>
 				</div>
@@ -388,8 +388,8 @@ if (isset($_GET['tid'])) {
 				</div>
 				<span class="pull-right"><?php echo $paging_links ?></span>
 				<div class="btn-group pull-right">
-					<button type="submit" class="btn btn-primary" name="split_posts" <?php echo $button_status ?>><span class="fa fa-fw fa-code-fork"></span> <?php _e('Split', 'luna') ?></button>
-					<button type="submit" class="btn btn-primary" name="delete_posts"<?php echo $button_status ?>><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+					<button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><span class="fa fa-fw fa-code-fork"></span> <?php _e('Split', 'luna') ?></button>
+					<button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 				</div>
 			</div>
 		</form>
@@ -645,7 +645,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 
 		// Verify that the comments are not by admins
 		if ($luna_user['g_id'] != LUNA_ADMIN) {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 		}
@@ -657,7 +657,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$threads.')') or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Create a list of the comment IDs in this thread and then strip the search index
-		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$post_ids = '';
 		while ($row = $db->fetch_row($result))
@@ -670,7 +670,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 		}
 
 		// Delete comments
-		$db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.')') or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
 
 		update_forum($fid);
 
@@ -875,9 +875,9 @@ if ($db->num_rows($result)) {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';
-			$subject_new_posts = '<span class="newtext">[ <a href="../thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+			$subject_new_comments = '<span class="newtext">[ <a href="../thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 		} else
-			$subject_new_posts = null;
+			$subject_new_comments = null;
 
 		// Insert the status text before the subject
 		$subject = implode(' ', $status_text).' '.$subject;
@@ -890,8 +890,8 @@ if ($db->num_rows($result)) {
 			$subject_multipage = null;
 
 		// Should we show the "New comments" and/or the multipage links?
-		if (!empty($subject_new_posts) || !empty($subject_multipage)) {
-			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
+		if (!empty($subject_new_comments) || !empty($subject_multipage)) {
+			$subject .= !empty($subject_new_comments) ? ' '.$subject_new_comments : '';
 			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
 		}
 
@@ -901,7 +901,7 @@ if ($db->num_rows($result)) {
 						<span class="hidden-xs hidden-sm hidden-md hidden-lg">
 							<?php echo forum_number_format($thread_count + $start_from) ?>
 						</span>
-						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
+						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_comments ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 						<?php if ($cur_thread['moved_to'] == 0) { ?>
 							<span class="text-muted"> &middot; 
 								<span class="text-muted"><?php echo $last_comment ?></span> &middot; 

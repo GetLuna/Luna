@@ -173,8 +173,8 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 		$thread_ids .= (($thread_ids != '') ? ',' : '').$row[0];
 
 	if ($thread_ids != '') {
-		// Fetch posts to prune
-		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$thread_ids.')', true) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		// Fetch comments to prune
+		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$thread_ids.')', true) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$post_ids = '';
 		while ($row = $db->fetch_row($result))
@@ -186,7 +186,7 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 			// Delete subscriptions
 			$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$thread_ids.')') or error('Unable to prune subscriptions', __FILE__, __LINE__, $db->error());
 			// Delete comments
-			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$post_ids.')') or error('Unable to prune posts', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$post_ids.')') or error('Unable to prune comments', __FILE__, __LINE__, $db->error());
 
 			// We removed a bunch of comments, so now we have to update the search index
 			require_once LUNA_ROOT.'include/search_idx.php';
@@ -694,7 +694,7 @@ function get_tracked_threads() {
 
 
 //
-// Update posts, threads, last_post, last_post_id and last_poster for a forum
+// Update comments, threads, last_post, last_post_id and last_poster for a forum
 //
 function update_forum($forum_id) {
 	global $db;
@@ -702,7 +702,7 @@ function update_forum($forum_id) {
 	$result = $db->query('SELECT COUNT(id), SUM(num_replies) FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id) or error('Unable to fetch forum thread count', __FILE__, __LINE__, $db->error());
 	list($num_threads, $num_comments) = $db->fetch_row($result);
 
-	$num_comments = $num_comments + $num_threads; // $num_comments is only the sum of all replies (we have to add the thread posts)
+	$num_comments = $num_comments + $num_threads; // $num_comments is only the sum of all replies (we have to add the thread comments)
 
 	$result = $db->query('SELECT last_post, last_post_id, last_poster_id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Unable to fetch last_post/last_post_id', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) { // There are threads in the forum
@@ -731,7 +731,7 @@ function delete_avatar($user_id) {
 
 
 //
-// Delete a thread and all of its posts
+// Delete a thread and all of its comments
 //
 function delete_thread($thread_id, $type) {
 	global $db;
@@ -746,7 +746,7 @@ function delete_thread($thread_id, $type) {
 
 	// Create a list of the comment IDs in this thread
 	$post_ids = '';
-	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_row($result))
 		$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
 
@@ -757,7 +757,7 @@ function delete_thread($thread_id, $type) {
 
 			strip_search_index($post_ids);
 			// Delete comments in thread
-			$db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
 		} else {
 			if ($type == "soft")
 				$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE thread_id='.$thread_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
@@ -853,7 +853,7 @@ function censor_words($text) {
 
 //
 // Determines the correct title for $user
-// $user must contain the elements 'username', 'title', 'posts', 'g_id' and 'g_user_title'
+// $user must contain the elements 'username', 'title', 'comments', 'g_id' and 'g_user_title'
 //
 function get_title($user) {
 	global $db, $luna_config, $luna_bans;
@@ -2263,23 +2263,23 @@ function get_forum_id($post_id) {
 		return false;
 }
 
-// Decrease user post counts (used before deleting posts)
+// Decrease user post counts (used before deleting comments)
 function decrease_post_counts($post_ids) {
 	global $db;
 
 	// Count the comment counts for each user to be subtracted
-	$user_posts = array();
-	$result = $db->query('SELECT poster_id FROM '.$db->prefix.'comments WHERE id IN('.$post_ids.') AND poster_id>1') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+	$user_comments = array();
+	$result = $db->query('SELECT poster_id FROM '.$db->prefix.'comments WHERE id IN('.$post_ids.') AND poster_id>1') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_assoc($result))
 	{
-		if (!isset($user_posts[$row['poster_id']]))
-			$user_posts[$row['poster_id']] = 1;
+		if (!isset($user_comments[$row['poster_id']]))
+			$user_comments[$row['poster_id']] = 1;
 		else
-			++$user_posts[$row['poster_id']];
+			++$user_comments[$row['poster_id']];
 	}
 
 	// Decrease the comment counts
-	foreach($user_posts as $user_id => $subtract)
+	foreach($user_comments as $user_id => $subtract)
 		$db->query('UPDATE '.$db->prefix.'users SET num_comments = CASE WHEN num_comments>='.$subtract.' THEN num_comments-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 }
 

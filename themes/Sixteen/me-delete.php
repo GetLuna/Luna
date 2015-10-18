@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 				<?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="delete_posts" value="1" checked />
+						<input type="checkbox" name="delete_comments" value="1" checked />
 						<?php _e('Delete all comments and threads this user has made', 'luna') ?>
 					</label>
 				</div>

@@ -59,7 +59,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		if ($author)
 			$author = str_replace('*', '%', $author);
 
-		$show_as = (isset($_GET['show_as']) && $_GET['show_as'] == 'threads') ? 'threads' : 'posts';
+		$show_as = (isset($_GET['show_as']) && $_GET['show_as'] == 'threads') ? 'threads' : 'comments';
 		$sort_by = (isset($_GET['sort_by'])) ? intval($_GET['sort_by']) : 0;
 		$search_in = (!isset($_GET['search_in']) || $_GET['search_in'] == '0') ? 0 : (($_GET['search_in'] == '1') ? 1 : -1);
 	}
@@ -235,7 +235,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 					while ($row = $db->fetch_row($result))
 						$user_ids[] = $row[0];
 
-					$result = $db->query('SELECT p.id AS post_id, p.thread_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id IN('.implode(',', $user_ids).')'.$forum_sql.' ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch matched posts list', __FILE__, __LINE__, $db->error());
+					$result = $db->query('SELECT p.id AS post_id, p.thread_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id IN('.implode(',', $user_ids).')'.$forum_sql.' ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch matched comments list', __FILE__, __LINE__, $db->error());
 					while ($temp = $db->fetch_assoc($result))
 						$author_results[$temp['post_id']] = $temp['thread_id'];
 
@@ -295,15 +295,15 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			}
 			// If it's a search for comments by a specific user ID
 			elseif ($action == 'show_user_comments') {
-				$show_as = 'posts';
+				$show_as = 'comments';
 
-				$result = $db->query('SELECT p.id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON p.thread_id=t.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY p.posted DESC') or error('Unable to fetch user posts', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT p.id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON p.thread_id=t.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY p.posted DESC') or error('Unable to fetch user comments', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
 					message(__('There are no comments by this user in this forum.', 'luna'));
 
-				// Pass on the user ID so that we can later know whose posts we're searching for
+				// Pass on the user ID so that we can later know whose comments we're searching for
 				$search_type[2] = $user_id;
 			}
 			// If it's a search for threads by a specific user ID
@@ -412,7 +412,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		}
 
 		// Determine the thread or comment offset (based on $_GET['p'])
-		$per_page = ($show_as == 'posts') ? $luna_user['disp_comments'] : $luna_user['disp_threads'];
+		$per_page = ($show_as == 'comments') ? $luna_user['disp_comments'] : $luna_user['disp_threads'];
 		$num_pages = ceil($num_hits / $per_page);
 
 		$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
@@ -425,7 +425,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$search_ids = array_slice($search_ids, $start_from, $per_page);
 
 		// Run the query and fetch the results
-		if ($show_as == 'posts')
+		if ($show_as == 'comments')
 			$result = $db->query('SELECT p.id AS pid, p.poster AS pposter, p.posted AS pposted, p.poster_id, p.message, p.hide_smilies, t.id AS tid, t.poster, t.subject, t.first_post_id, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_replies, t.forum_id, t.pinned, t.closed, f.forum_name FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.id IN('.implode(',', $search_ids).') ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
 		else
 			$result = $db->query('SELECT t.id AS tid, t.poster, t.subject, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_replies, t.closed, t.pinned, t.forum_id, t.pinned, t.closed, f.forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE t.id IN('.implode(',', $search_ids).') ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
@@ -477,7 +477,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		if ($show_as == 'threads') {
 			$thread_count = 0;
-		} elseif ($show_as == 'posts') {
+		} elseif ($show_as == 'comments') {
 			require LUNA_ROOT.'include/parser.php';
 
 			$post_count = 0;

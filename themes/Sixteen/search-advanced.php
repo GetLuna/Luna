@@ -31,7 +31,7 @@ if (!defined('FORUM'))
 				</select>
 				<select class="form-control" name="show_as">
 					<option value="threads"><?php _e('Threads', 'luna') ?></option>
-					<option value="posts"><?php _e('Comments', 'luna') ?></option>
+					<option value="comments"><?php _e('Comments', 'luna') ?></option>
 				</select>
 			</fieldset>
 			<fieldset>

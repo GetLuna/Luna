@@ -210,9 +210,9 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if ($p_message == '')
 		$errors[] = __('You must enter a message.', 'luna');
 
-	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
-	elseif (strlen($p_message) > LUNA_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_POSTSIZE));
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_COMMENT_SIZE bytes, not characters
+	elseif (strlen($p_message) > LUNA_MAX_COMMENT_SIZE)
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_COMMENT_SIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 

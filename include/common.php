@@ -193,8 +193,8 @@ if ($luna_user['is_guest'] && isset($_GET['login']))
 	message(__('You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website.', 'luna'));
 
 // The maximum size of a comment, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...
-if (!defined('LUNA_MAX_POSTSIZE'))
-	define('LUNA_MAX_POSTSIZE', 1048576);
+if (!defined('LUNA_MAX_COMMENT_SIZE'))
+	define('LUNA_MAX_COMMENT_SIZE', 1048576);
 
 if (!defined('LUNA_SEARCH_MIN_WORD'))
 	define('LUNA_SEARCH_MIN_WORD', 3);

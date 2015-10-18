@@ -31,7 +31,7 @@ if ($action == 'markread') {
 	redirect('index.php');
 }
 
-// Mark the threads/posts in a forum as read?
+// Mark the threads/comments in a forum as read?
 elseif ($action == 'markforumread') {
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
@@ -75,8 +75,8 @@ elseif ($action == 'markforumread') {
 			message(__('You must enter a subject.', 'luna'));
 		elseif ($message == '')
 			message(__('You must enter a message.', 'luna'));
-		// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
-		elseif (strlen($message) > LUNA_MAX_POSTSIZE)
+		// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_COMMENT_SIZE bytes, not characters
+		elseif (strlen($message) > LUNA_MAX_COMMENT_SIZE)
 			message(__('Messages cannot be longer than 65535 characters (64 KB).', 'luna'));
 
 		if ($luna_user['last_email_sent'] != '' && (time() - $luna_user['last_email_sent']) < $luna_user['g_email_flood'] && (time() - $luna_user['last_email_sent']) >= 0)
