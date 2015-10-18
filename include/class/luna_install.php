@@ -1158,7 +1158,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'notify_with_post'	=> array(
+				'notify_with_comment'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'

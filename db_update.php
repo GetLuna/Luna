@@ -318,7 +318,7 @@ switch ($stage) {
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
@@ -635,6 +635,7 @@ switch ($stage) {
 		$db->rename_field('threads', 'first_comment_id', 'first_comment_id', 'INT(10)');
 		$db->rename_field('reports', 'comment_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'comment_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

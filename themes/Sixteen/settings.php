@@ -256,7 +256,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 								<div class="col-sm-9">
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked' ?> />
+											<input type="checkbox" name="form[notify_with_comment]" value="1"<?php if ($user['notify_with_comment'] == '1') echo ' checked' ?> />
 											<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 										</label>
 									</div>
