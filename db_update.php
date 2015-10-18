@@ -434,17 +434,17 @@ switch ($stage) {
 						'allow_null'		=> false,
 						'default'			=> '0'
 					),
-					'last_post'			=> array(
+					'last_comment'			=> array(
 						'datatype'			=> 'INT(10)',
 						'allow_null'		=> true,
 						'default'			=> '0'
 					),
-					'last_post_id'		=> array(
+					'last_comment_id'		=> array(
 						'datatype'			=> 'INT(10)',
 						'allow_null'		=> true,
 						'default'			=> '0'
 					),
-					'last_poster'		=> array(
+					'last_commenter'		=> array(
 						'datatype'			=> 'VARCHAR(255)',
 						'allow_null'		=> false,
 						'default'			=> '0'
@@ -613,6 +613,18 @@ switch ($stage) {
 		$db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
 		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
 		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
+		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
+		$db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('threads', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
+		$db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
+		$db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

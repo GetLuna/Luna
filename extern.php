@@ -48,7 +48,7 @@
 
 	show:   Any integer value between 1 and 50. The default is 15.
 
-	order:  last_post - show threads ordered by when they were last
+	order:  last_comment - show threads ordered by when they were last
 						posted in, giving information about the reply.
 			posted - show threads ordered by when they were first
 					 posted, giving information about the original post.
@@ -80,7 +80,7 @@ $action = isset($_GET['action']) ? strtolower($_GET['action']) : 'feed';
 switch ($action) {
 	case 'active':
 		$action = 'feed';
-		$_GET['order'] = 'last_post';
+		$_GET['order'] = 'last_comment';
 		break;
 
 	case 'new':
@@ -373,7 +373,7 @@ if ($action == 'feed') {
 			);
 
 			// Fetch $show threads
-			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_thread['subject'] = censor_words($cur_thread['subject']);
@@ -386,9 +386,9 @@ if ($action == 'feed') {
 					'link'			=>	'/thread.php?id='.$cur_thread['id'].($order_posted ? '' : '&action=new'),
 					'description'	=>	$cur_thread['message'],
 					'author'		=>	array(
-						'name'	=> $order_posted ? $cur_thread['poster'] : $cur_thread['last_poster']
+						'name'	=> $order_posted ? $cur_thread['poster'] : $cur_thread['last_commenter']
 					),
-					'pubdate'		=>	$order_posted ? $cur_thread['posted'] : $cur_thread['last_post']
+					'pubdate'		=>	$order_posted ? $cur_thread['posted'] : $cur_thread['last_comment']
 				);
 
 				if ($cur_thread['poster_id'] > 1) {

@@ -580,13 +580,13 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	$comments_greater = isset($_GET['comments_greater']) ? luna_trim($_GET['comments_greater']) : '';
 	$comments_less = isset($_GET['comments_less']) ? luna_trim($_GET['comments_less']) : '';
-	$last_comment_after = isset($_GET['last_post_after']) ? luna_trim($_GET['last_post_after']) : '';
-	$last_comment_before = isset($_GET['last_post_before']) ? luna_trim($_GET['last_post_before']) : '';
+	$last_comment_after = isset($_GET['last_comment_after']) ? luna_trim($_GET['last_comment_after']) : '';
+	$last_comment_before = isset($_GET['last_comment_before']) ? luna_trim($_GET['last_comment_before']) : '';
 	$last_visit_after = isset($_GET['last_visit_after']) ? luna_trim($_GET['last_visit_after']) : '';
 	$last_visit_before = isset($_GET['last_visit_before']) ? luna_trim($_GET['last_visit_before']) : '';
 	$registered_after = isset($_GET['registered_after']) ? luna_trim($_GET['registered_after']) : '';
 	$registered_before = isset($_GET['registered_before']) ? luna_trim($_GET['registered_before']) : '';
-	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_post', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
+	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_comment', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
 	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
 	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
 
@@ -599,22 +599,22 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	// Try to convert date/time to timestamps
 	if ($last_comment_after != '') {
-		$query_str[] = 'last_post_after='.$last_comment_after;
+		$query_str[] = 'last_comment_after='.$last_comment_after;
 
 		$last_comment_after = strtotime($last_comment_after);
 		if ($last_comment_after === false || $last_comment_after == -1)
 			message_backstage(__('You entered an invalid date/time.', 'luna'));
 
-		$conditions[] = 'u.last_post>'.$last_comment_after;
+		$conditions[] = 'u.last_comment>'.$last_comment_after;
 	}
 	if ($last_comment_before != '') {
-		$query_str[] = 'last_post_before='.$last_comment_before;
+		$query_str[] = 'last_comment_before='.$last_comment_before;
 
 		$last_comment_before = strtotime($last_comment_before);
 		if ($last_comment_before === false || $last_comment_before == -1)
 			message_backstage(__('You entered an invalid date/time.', 'luna'));
 
-		$conditions[] = 'u.last_post<'.$last_comment_before;
+		$conditions[] = 'u.last_comment<'.$last_comment_before;
 	}
 	if ($last_visit_after != '') {
 		$query_str[] = 'last_visit_after='.$last_visit_after;
@@ -867,9 +867,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Last comment is before', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
+					<td><input type="date" class="form-control" name="last_comment_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
 					<th><?php _e('Last comment is after', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="date" class="form-control" name="last_comment_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last visit is before', 'luna') ?></th>
@@ -890,7 +890,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 							<option value="username" selected><?php _e('Username', 'luna') ?></option>
 							<option value="email"><?php _e('Email', 'luna') ?></option>
 							<option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
-							<option value="last_post"><?php _e('Last comment', 'luna') ?></option>
+							<option value="last_comment"><?php _e('Last comment', 'luna') ?></option>
 							<option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
 							<option value="registered"><?php _e('Registered', 'luna') ?></option>
 						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">

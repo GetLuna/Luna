@@ -35,7 +35,7 @@ $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == 
 
 switch ($cur_forum['sort_by']) {
 	case 0:
-		$sort_by = 'last_post DESC';
+		$sort_by = 'last_comment DESC';
 		break;
 	case 1:
 		$sort_by = 'posted DESC';
@@ -44,7 +44,7 @@ switch ($cur_forum['sort_by']) {
 		$sort_by = 'subject ASC';
 		break;
 	default:
-		$sort_by = 'last_post DESC';
+		$sort_by = 'last_comment DESC';
 		break;
 }
 

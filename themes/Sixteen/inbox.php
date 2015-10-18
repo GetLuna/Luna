@@ -58,7 +58,7 @@ include load_page('inbox-delete-comment.php');
 						<tbody>
 <?php
 // Fetch messages
-$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_post DESC LIMIT ".$limit) or error("Unable to find the list of the pms.", __FILE__, __LINE__, $db->error()); 
+$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_comment DESC LIMIT ".$limit) or error("Unable to find the list of the pms.", __FILE__, __LINE__, $db->error()); 
 
 // If there are messages in this folder.
 if ($db->num_rows($result)) {
@@ -77,7 +77,7 @@ if ($db->num_rows($result)) {
 					   '</a>';
 		}
 		
-		$last_comment = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
+		$last_comment = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_comment_id'].'#p'.$cur_mess['last_comment_id'].'">'.format_time($cur_mess['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_commenter']).'</span>';
 ?>
 							<tr class="<?php echo $item_status ?>">
 								<td>

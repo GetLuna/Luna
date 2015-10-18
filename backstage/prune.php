@@ -65,7 +65,7 @@ if ($action == 'prune') {
 	$prune_date = time() - ($prune_days * 86400);
 
 	// Concatenate together the query for counting number of threads to prune
-	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'threads WHERE last_post<'.$prune_date.' AND moved_to IS NULL';
+	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'threads WHERE last_comment<'.$prune_date.' AND moved_to IS NULL';
 
 	if ($prune_pinned == '0')
 		$sql .= ' AND pinned=0';

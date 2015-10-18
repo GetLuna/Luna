@@ -113,7 +113,7 @@ if (isset($_GET['tid'])) {
 			require LUNA_ROOT.'include/search_idx.php';
 			strip_search_index($comments);
 
-			// Get last_post, last_post_id, and last_poster for the thread after deletion
+			// Get last_comment, last_comment_id, and last_commenter for the thread after deletion
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment = $db->fetch_assoc($result);
 
@@ -121,7 +121,7 @@ if (isset($_GET['tid'])) {
 			$num_comments_deleted = substr_count($comments, ',') + 1;
 
 			// Update the thread
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment['posted'].', last_post_id='.$last_comment['id'].', last_poster=\''.$db->escape($last_comment['poster']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment['posted'].', last_comment_id='.$last_comment['id'].', last_commenter=\''.$db->escape($last_comment['poster']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
 
@@ -201,15 +201,15 @@ if (isset($_GET['tid'])) {
 			// Apply every subscription to both threads
 			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
 
-			// Get last_post, last_post_id, and last_poster from the thread and update it
+			// Get last_comment, last_comment_id, and last_commenter from the thread and update it
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment_data['posted'].', last_post_id='.$last_comment_data['id'].', last_poster=\''.$db->escape($last_comment_data['poster']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['posted'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['poster']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
-			// Get last_post, last_post_id, and last_poster from the new thread and update it
+			// Get last_comment, last_comment_id, and last_commenter from the new thread and update it
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'comments WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment_data['posted'].', last_post_id='.$last_comment_data['id'].', last_poster=\''.$db->escape($last_comment_data['poster']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['posted'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['poster']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
 			update_forum($move_to_forum);
@@ -436,11 +436,11 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 		if (isset($_POST['with_redirect'])) {
 			foreach ($threads as $cur_thread) {
 				// Fetch info for the redirect thread
-				$result = $db->query('SELECT poster, subject, posted, last_post FROM '.$db->prefix.'threads WHERE id='.$cur_thread) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT poster, subject, posted, last_comment FROM '.$db->prefix.'threads WHERE id='.$cur_thread) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 				$moved_to = $db->fetch_assoc($result);
 
 				// Create the redirect thread
-				$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, moved_to, forum_id) VALUES(\''.$db->escape($moved_to['poster']).'\', \''.$db->escape($moved_to['subject']).'\', '.$moved_to['posted'].', '.$moved_to['last_post'].', '.$cur_thread.', '.$fid.')') or error('Unable to create redirect thread', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_comment, moved_to, forum_id) VALUES(\''.$db->escape($moved_to['poster']).'\', \''.$db->escape($moved_to['subject']).'\', '.$moved_to['posted'].', '.$moved_to['last_comment'].', '.$cur_thread.', '.$fid.')') or error('Unable to create redirect thread', __FILE__, __LINE__, $db->error());
 			}
 		}
 
@@ -576,12 +576,12 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$merge_to_tid) or error('Unable to fetch post count for thread', __FILE__, __LINE__, $db->error());
 		$num_replies = $db->result($result, 0) - 1;
 
-		// Get last_post, last_post_id and last_poster
+		// Get last_comment, last_comment_id and last_commenter
 		$result = $db->query('SELECT posted, id, poster FROM '.$db->prefix.'comments WHERE thread_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
 		list($last_comment, $last_comment_id, $last_commenter) = $db->fetch_row($result);
 
 		// Update thread
-		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.', last_post='.$last_comment.', last_post_id='.$last_comment_id.', last_poster=\''.$db->escape($last_commenter).'\' WHERE id='.$merge_to_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.', last_comment='.$last_comment.', last_comment_id='.$last_comment_id.', last_commenter=\''.$db->escape($last_commenter).'\' WHERE id='.$merge_to_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 		// Update the forum FROM which the thread was moved and redirect
 		update_forum($fid);
@@ -779,7 +779,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 	
 	switch ($cur_forum['sort_by']) {
 		case 0:
-			$sort_by = 'last_post DESC';
+			$sort_by = 'last_comment DESC';
 			break;
 		case 1:
 			$sort_by = 'posted DESC';
@@ -788,7 +788,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 			$sort_by = 'subject ASC';
 			break;
 		default:
-			$sort_by = 'last_post DESC';
+			$sort_by = 'last_comment DESC';
 			break;
 	}
 	
@@ -829,7 +829,7 @@ if ($db->num_rows($result)) {
 		$thread_ids[] = $cur_thread_id;
 
 	// Select threads
-	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch thread list for forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, poster, subject, posted, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch thread list for forum', __FILE__, __LINE__, $db->error());
 
 	$button_status = '';
 	$thread_count = 0;
@@ -844,7 +844,7 @@ if ($db->num_rows($result)) {
 		$icon_type = 'icon';
 
 		if (is_null($cur_thread['moved_to'])) {
-			$last_comment = '<a href="../thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' <a href="../profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
+			$last_comment = '<a href="../thread.php?pid='.$cur_thread['last_comment_id'].'#p'.$cur_thread['last_comment_id'].'">'.format_time($cur_thread['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').' <a href="../profile.php?id='.$cur_thread['last_commenter_id'].'">'.luna_htmlspecialchars($cur_thread['last_commenter']).'</a></span>';
 			$ghost_thread = false;
 		} else {
 			$last_comment = '- - -';
@@ -871,7 +871,7 @@ if ($db->num_rows($result)) {
 			$item_status .= ' iclosed';
 		}
 
-		if (!$ghost_thread && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$fid]) || $tracked_threads['forums'][$fid] < $cur_thread['last_post'])) {
+		if (!$ghost_thread && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$fid]) || $tracked_threads['forums'][$fid] < $cur_thread['last_comment'])) {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';

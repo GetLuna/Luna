@@ -50,8 +50,8 @@ $errors = array();
 // Did someone just hit "Submit" or "Preview"?
 if (isset($_POST['form_sent'])) {
 	// Flood protection
-	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_comment_flood'])
-		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_post']));
+	if (!isset($_POST['preview']) && $luna_user['last_comment'] != '' && (time() - $luna_user['last_comment']) < $luna_user['g_comment_flood'])
+		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_comment']));
 
 	// Make sure they got here from the site
 	if (($fid && (!isset($_POST['_luna_nonce_create_thread']) || !LunaNonces::verify($_POST['_luna_nonce_create_thread'],'post-reply'))) ||
@@ -173,7 +173,7 @@ if (isset($_POST['form_sent'])) {
 				$user_id_commenter = '1';
 
 			// Update thread
-			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\', last_poster_id=\''.$user_id_commenter.'\' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_comment='.$now.', last_comment_id='.$new_pid.', last_commenter=\''.$db->escape($username).'\', last_commenter_id=\''.$user_id_commenter.'\' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message);
 
@@ -290,7 +290,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$user_id_commenter = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_comment, last_commenter, last_commenter_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {
@@ -307,8 +307,8 @@ You can unsubscribe by going to <unsubscribe_url>
 			}
 			$new_pid = $db->insert_id();
 
-			// Update the thread with last_post_id
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post_id='.$new_pid.', first_post_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			// Update the thread with last_comment_id
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment_id='.$new_pid.', first_post_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message, $subject);
 
@@ -441,13 +441,13 @@ Comment URL: <comment_url>
 
 		// If the commenting user is logged in, increment his/her post count
 		if (!$luna_user['is_guest']) {
-			$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments+1, last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments+1, last_comment='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 			$tracked_threads = get_tracked_threads();
 			$tracked_threads['threads'][$new_tid] = time();
 			set_tracked_threads($tracked_threads);
 		} else {
-			$db->query('UPDATE '.$db->prefix.'online SET last_post='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'online SET last_comment='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 		}
 
 		redirect('thread.php?pid='.$new_pid.'#p'.$new_pid);

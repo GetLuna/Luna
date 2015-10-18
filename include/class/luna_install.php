@@ -378,15 +378,15 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'		=> array(
+				'last_comment'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
-				'last_post_id'	=> array(
+				'last_comment_id'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
-				'last_poster_id'=> array(
+				'last_commenter_id'=> array(
 					'datatype'		=> 'INT(10)',
 					'allow_null'	=> true,
 					'default'		=> NULL,
@@ -682,7 +682,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'			=> array(
+				'last_comment'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
@@ -1007,17 +1007,17 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'		=> array(
+				'last_comment'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post_id'	=> array(
+				'last_comment_id'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_poster'	=> array(
+				'last_commenter'	=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> true
 				),
@@ -1031,7 +1031,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_poster_id'=> array(
+				'last_commenter_id'=> array(
 					'datatype'		=> 'INT(10)',
 					'allow_null'	=> true,
 					'default'		=> NULL,
@@ -1070,8 +1070,8 @@ class Installer {
 			'INDEXES'		=> array(
 				'forum_id_idx'		=> array('forum_id'),
 				'moved_to_idx'		=> array('moved_to'),
-				'last_post_idx'		=> array('last_post'),
-				'last_poster_id'	=> array('last_poster'),
+				'last_comment_idx'		=> array('last_comment'),
+				'last_commenter_id'	=> array('last_commenter'),
 				'first_post_id_idx'	=> array('first_post_id')
 			)
 		);
@@ -1228,7 +1228,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'			=> array(
+				'last_comment'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
@@ -1347,17 +1347,17 @@ class Installer {
 					'allow_null'		=> false,
 					'default'			=> '0'
 				),
-				'last_post'			=> array(
+				'last_comment'			=> array(
 					'datatype'			=> 'INT(10)',
 					'allow_null'		=> true,
 					'default'			=> '0'
 				),
-				'last_post_id'		=> array(
+				'last_comment_id'		=> array(
 					'datatype'			=> 'INT(10)',
 					'allow_null'		=> true,
 					'default'			=> '0'
 				),
-				'last_poster'		=> array(
+				'last_commenter'		=> array(
 					'datatype'			=> 'VARCHAR(255)',
 					'allow_null'		=> false,
 					'default'			=> '0'
@@ -1549,7 +1549,7 @@ class Installer {
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_comment, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 			or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		
 		$db->end_transaction();

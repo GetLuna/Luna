@@ -160,7 +160,7 @@ function authenticate_user($user, $password, $password_is_hash = false) {
 function prune($forum_id, $prune_pinned, $prune_date) {
 	global $db;
 
-	$extra_sql = ($prune_date != -1) ? ' AND last_post<'.$prune_date : '';
+	$extra_sql = ($prune_date != -1) ? ' AND last_comment<'.$prune_date : '';
 
 	if (!$prune_pinned)
 		$extra_sql .= ' AND pinned=\'0\'';
@@ -283,7 +283,7 @@ function set_default_user() {
 	$remote_addr = get_remote_address();
 
 	// Fetch guest user
-	$result = $db->query('SELECT u.*, g.*, o.logged, o.last_post, o.last_search FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.ident=\''.$db->escape($remote_addr).'\' WHERE u.id=1') or error('Unable to fetch guest information', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.*, g.*, o.logged, o.last_comment, o.last_search FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.ident=\''.$db->escape($remote_addr).'\' WHERE u.id=1') or error('Unable to fetch guest information', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		exit('Unable to fetch guest information. Your database must contain both a guest user and a guest user group.');
 
@@ -694,7 +694,7 @@ function get_tracked_threads() {
 
 
 //
-// Update comments, threads, last_post, last_post_id and last_poster for a forum
+// Update comments, threads, last_comment, last_comment_id and last_commenter for a forum
 //
 function update_forum($forum_id) {
 	global $db;
@@ -704,13 +704,13 @@ function update_forum($forum_id) {
 
 	$num_comments = $num_comments + $num_threads; // $num_comments is only the sum of all replies (we have to add the thread comments)
 
-	$result = $db->query('SELECT last_post, last_post_id, last_poster_id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Unable to fetch last_post/last_post_id', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT last_comment, last_comment_id, last_commenter_id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_comment DESC LIMIT 1') or error('Unable to fetch last_comment/last_comment_id', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) { // There are threads in the forum
 		list($last_comment, $last_comment_id, $last_commenter_id) = $db->fetch_row($result);
 
-		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_post='.$last_comment.', last_post_id='.$last_comment_id.', last_poster_id=\''.$db->escape($last_commenter_id).'\' WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_comment='.$last_comment.', last_comment_id='.$last_comment_id.', last_commenter_id=\''.$db->escape($last_commenter_id).'\' WHERE id='.$forum_id) or error('Unable to update last_comment/last_comment_id', __FILE__, __LINE__, $db->error());
 	} else // There are no threads
-		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_post=NULL, last_post_id=NULL, last_poster_id=NULL WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_comment=NULL, last_comment_id=NULL, last_commenter_id=NULL WHERE id='.$forum_id) or error('Unable to update last_comment/last_comment_id', __FILE__, __LINE__, $db->error());
 }
 
 
@@ -800,10 +800,10 @@ function delete_post($comment_id, $thread_id, $poster_id) {
 	if ($last_id == $comment_id) {
 		// If there is a $second_last_id there is more than 1 reply to the thread
 		if (!empty($second_last_id))
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$second_posted.', last_post_id='.$second_last_id.', last_poster=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$second_posted.', last_comment_id='.$second_last_id.', last_commenter=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 		else
-			// We deleted the only reply, so now last_post/last_post_id/last_poster is posted/id/poster from the thread itself
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post=posted, last_post_id=id, last_poster=poster, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			// We deleted the only reply, so now last_comment/last_comment_id/last_commenter is posted/id/poster from the thread itself
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment=posted, last_comment_id=id, last_commenter=poster, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 	} else
 		// Otherwise we just decrement the reply counter
 		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
