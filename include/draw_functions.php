@@ -54,7 +54,7 @@ function draw_editor($height) {
 	
 	$pin_btn = $silence_btn = '';
 
-	if (isset($_POST['pin_topic']) || $cur_comment['pinned'] == '1') {
+	if (isset($_POST['pin_thread']) || $cur_comment['pinned'] == '1') {
 		$pin_status = ' checked';
 		$pin_active = ' active';
 	} else {
@@ -63,7 +63,7 @@ function draw_editor($height) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_thread" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
 
 	if (LUNA_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -329,7 +329,7 @@ function draw_topics_list() {
 }
 
 function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
-	global $db, $luna_config, $luna_user, $id, $new_topics;
+	global $db, $luna_config, $luna_user, $id, $new_threads;
 	
 	// Print the categories and forums
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'threads AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -361,7 +361,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			$last_post = '';
 		
 			// Are there new comments since our last visit?
-			if (isset($new_topics[$cur_forum['fid']])) {
+			if (isset($new_threads[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
 				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
@@ -413,7 +413,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 }
 
 function draw_subforum_list($object_name = 'forum.php') {
-	global $db, $luna_config, $luna_user, $id, $new_topics;
+	global $db, $luna_config, $luna_user, $id, $new_threads;
 	
 	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 	$cur_parent = $db->fetch_assoc($result);
@@ -444,7 +444,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 			$last_post = '';
 		
 			// Are there new comments since our last visit?
-			if (isset($new_topics[$cur_forum['fid']])) {
+			if (isset($new_threads[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
 				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
@@ -720,7 +720,7 @@ function draw_comment_list() {
 						$post_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 				}
 	
-				if (($cur_thread['post_replies'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['post_replies'] == 1)
+				if (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)
 					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 
 				if ($cur_forum['solved'] == 1) {

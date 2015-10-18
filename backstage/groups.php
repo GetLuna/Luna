@@ -208,7 +208,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="post_replies" value="1"<?php if ($group['g_comment'] == '1') echo ' checked' ?> tabindex="19" />
+								<input type="checkbox" name="comment" value="1"<?php if ($group['g_comment'] == '1') echo ' checked' ?> tabindex="19" />
 								<?php echo __('Allow users to comment in threads.', 'luna') ?>
 							</label>
 						</div>
@@ -219,7 +219,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="post_topics" value="1"<?php if ($group['g_create_threads'] == '1') echo ' checked' ?> tabindex="21" />
+								<input type="checkbox" name="create_topics" value="1"<?php if ($group['g_create_threads'] == '1') echo ' checked' ?> tabindex="21" />
 								<?php echo __('Allow users to create new threads.', 'luna') ?>
 							</label>
 						</div>
@@ -380,8 +380,8 @@ elseif (isset($_POST['add_edit_group'])) {
 		$inbox_limit = (isset($_POST['inbox_limit']) && $_POST['inbox_limit'] >= 0) ? intval($_POST['inbox_limit']) : '0';
 		$read_board = isset($_POST['read_board']) ? '1' : '0';
 		$view_users = isset($_POST['view_users']) ? '1' : '0';
-		$post_replies = isset($_POST['post_replies']) ? '1' : '0';
-		$post_topics = isset($_POST['post_topics']) ? '1' : '0';
+		$comment = isset($_POST['comment']) ? '1' : '0';
+		$create_topics = isset($_POST['create_topics']) ? '1' : '0';
 		$edit_posts = isset($_POST['edit_posts']) ? '1' : '0';
 		$delete_posts = isset($_POST['delete_posts']) ? '1' : '0';
 		$delete_threads = isset($_POST['delete_threads']) ? '1' : '0';
@@ -397,7 +397,7 @@ elseif (isset($_POST['add_edit_group'])) {
 		$soft_delete_posts = isset($_POST['soft_delete_posts']) ? '1' : '0';
 		$soft_delete_threads = isset($_POST['soft_delete_threads']) ? '1' : '0';
 	} else {
-		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_threads = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_posts = $soft_delete_threads = $inbox_allow = '1';
+		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $comment = $create_topics = $edit_posts = $delete_posts = $delete_threads = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_posts = $soft_delete_threads = $inbox_allow = '1';
 		$moderator = $post_flood = $search_flood = $email_flood = $report_flood = $inbox_limit = '0';
 	}
 
@@ -411,19 +411,19 @@ elseif (isset($_POST['add_edit_group'])) {
 		if ($db->num_rows($result))
 			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
-		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_inbox, g_inbox_limit, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$post_replies.', '.$post_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_threads.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$inbox_allow.', '.$inbox_limit.', '.$soft_delete_view.', '.$soft_delete_posts.', '.$soft_delete_threads.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_inbox, g_inbox_limit, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$comment.', '.$create_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_threads.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$inbox_allow.', '.$inbox_limit.', '.$soft_delete_view.', '.$soft_delete_posts.', '.$soft_delete_threads.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
 
 		// Now lets copy the forum specific permissions from the group which this group is based on
-		$result = $db->query('SELECT forum_id, read_forum, post_replies, post_topics FROM '.$db->prefix.'forum_perms WHERE group_id='.intval($_POST['base_group'])) or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT forum_id, read_forum, comment, create_topics FROM '.$db->prefix.'forum_perms WHERE group_id='.intval($_POST['base_group'])) or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 		while ($cur_forum_perm = $db->fetch_assoc($result))
-			$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, post_replies, post_topics) VALUES('.$new_group_id.', '.$cur_forum_perm['forum_id'].', '.$cur_forum_perm['read_forum'].', '.$cur_forum_perm['post_replies'].', '.$cur_forum_perm['post_topics'].')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, comment, create_topics) VALUES('.$new_group_id.', '.$cur_forum_perm['forum_id'].', '.$cur_forum_perm['read_forum'].', '.$cur_forum_perm['comment'].', '.$cur_forum_perm['create_topics'].')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
 	} else {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
-		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_comment='.$post_replies.', g_create_threads='.$post_topics.', g_edit_comments='.$edit_posts.', g_delete_comments='.$delete_posts.', g_delete_threads='.$delete_threads.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_comment_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_inbox='.$inbox_allow.', g_inbox_limit='.$inbox_limit.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_comments='.$soft_delete_posts.', g_soft_delete_threads='.$soft_delete_threads.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_comment='.$comment.', g_create_threads='.$create_topics.', g_edit_comments='.$edit_posts.', g_delete_comments='.$delete_posts.', g_delete_threads='.$delete_threads.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_comment_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_inbox='.$inbox_allow.', g_inbox_limit='.$inbox_limit.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_comments='.$soft_delete_posts.', g_soft_delete_threads='.$soft_delete_threads.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/groups.php');

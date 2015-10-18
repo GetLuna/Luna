@@ -20,9 +20,9 @@ if ($tid < 1 && $fid < 1 || $tid > 0 && $fid > 0)
 
 // Fetch some info about the thread and/or the forum
 if ($tid)
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics, t.subject, t.closed, s.user_id AS is_subscribed, t.id AS tid FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_topics, t.subject, t.closed, s.user_id AS is_subscribed, t.id AS tid FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -38,8 +38,8 @@ if ($tid && $luna_config['o_censoring'] == '1')
 	$cur_commenting['subject'] = censor_words($cur_commenting['subject']);
 
 // Do we have permission to post?
-if ((($tid && (($cur_commenting['post_replies'] == '' && $luna_user['g_comment'] == '0') || $cur_commenting['post_replies'] == '0')) ||
-	($fid && (($cur_commenting['post_topics'] == '' && $luna_user['g_create_threads'] == '0') || $cur_commenting['post_topics'] == '0')) ||
+if ((($tid && (($cur_commenting['comment'] == '' && $luna_user['g_comment'] == '0') || $cur_commenting['comment'] == '0')) ||
+	($fid && (($cur_commenting['create_topics'] == '' && $luna_user['g_create_threads'] == '0') || $cur_commenting['create_topics'] == '0')) ||
 	(isset($cur_commenting['closed']) && $cur_commenting['closed'] == '1')) &&
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
@@ -54,7 +54,7 @@ if (isset($_POST['form_sent'])) {
 		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_post']));
 
 	// Make sure they got here from the site
-	if (($fid && (!isset($_POST['_luna_nonce_post_topic']) || !LunaNonces::verify($_POST['_luna_nonce_post_topic'],'post-reply'))) ||
+	if (($fid && (!isset($_POST['_luna_nonce_create_thread']) || !LunaNonces::verify($_POST['_luna_nonce_create_thread'],'post-reply'))) ||
 	   (!$fid && (!isset($_POST['_luna_nonce_post_reply']) || !LunaNonces::verify($_POST['_luna_nonce_post_reply'],'post-reply'))))
 		message(__('Are you sure you want to do this?', 'luna'));
 
@@ -133,7 +133,7 @@ if (isset($_POST['form_sent'])) {
 
 	$hide_smilies = isset($_POST['hide_smilies']) ? '1' : '0';
 	$subscribe = isset($_POST['subscribe']) ? '1' : '0';
-	$pin_topic = isset($_POST['pin_topic']) && $is_admmod ? '1' : '0';
+	$pin_thread = isset($_POST['pin_thread']) && $is_admmod ? '1' : '0';
 
 	// Replace four-byte characters (MySQL cannot handle them)
 	$message = strip_bad_multibyte_chars($message);
@@ -290,7 +290,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$user_id_poster = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$pin_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$pin_thread.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {

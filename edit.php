@@ -19,7 +19,7 @@ if ($id < 1)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 // Fetch some info about the comment, the thread and the forum
-$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics, t.id AS tid, t.subject, t.posted, t.first_post_id, t.pinned, t.closed, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_topics, t.id AS tid, t.subject, t.posted, t.first_post_id, t.pinned, t.closed, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -98,9 +98,9 @@ if (isset($_POST['form_sent'])) {
 	}
 
 	$hide_smilies = isset($_POST['hide_smilies']) ? '1' : '0';
-	$pin_topic = isset($_POST['pin_topic']) ? '1' : '0';
+	$pin_thread = isset($_POST['pin_thread']) ? '1' : '0';
 	if (!$is_admmod)
-		$pin_topic = $cur_comment['pinned'];
+		$pin_thread = $cur_comment['pinned'];
 
 	// Replace four-byte characters (MySQL cannot handle them)
 	$message = strip_bad_multibyte_chars($message);
@@ -113,7 +113,7 @@ if (isset($_POST['form_sent'])) {
 
 		if ($can_edit_subject) {
 			// Update the thread and any redirect topics
-			$db->query('UPDATE '.$db->prefix.'threads SET subject=\''.$db->escape($subject).'\', pinned='.$pin_topic.' WHERE id='.$cur_comment['tid'].' OR moved_to='.$cur_comment['tid']) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET subject=\''.$db->escape($subject).'\', pinned='.$pin_thread.' WHERE id='.$cur_comment['tid'].' OR moved_to='.$cur_comment['tid']) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			// We changed the subject, so we need to take that into account when we update the search words
 			update_search_index('edit', $id, $message, $subject);

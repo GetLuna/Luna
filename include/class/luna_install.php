@@ -332,12 +332,12 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'post_replies'	=> array(
+				'comment'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'post_topics'	=> array(
+				'create_topics'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
