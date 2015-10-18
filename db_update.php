@@ -284,7 +284,6 @@ switch ($stage) {
 		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
 		build_config(1, 'o_first_run_guests', '1');
 		build_config(1, 'o_first_run_message');
-		build_config(1, 'o_has_commented', '1');
 		build_config(0, 'o_redirect_delay');
 		build_config(1, 'o_show_first_run', '1');
 
@@ -640,7 +639,7 @@ switch ($stage) {
 		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
 		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
 		build_config(2, 'o_thread_views', 'o_topic_views');
-		build_config(2, 'o_show_comment_count', 'o_show_comment_count');
+		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(2, 'o_has_commented', 'o_has_posted');
 
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
@@ -648,6 +647,9 @@ switch ($stage) {
 
 			//ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
+			//ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			build_config(1, 'o_has_commented', '1');
 
 			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
