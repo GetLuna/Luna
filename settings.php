@@ -141,7 +141,7 @@ if (isset($_POST['update_group_membership'])) {
 					if ($db->result($result2) == $cur_comment['id'])
 						delete_thread($cur_comment['thread_id']);
 					else
-						delete_post($cur_comment['id'], $cur_comment['thread_id'], $id);
+						delete_comment($cur_comment['id'], $cur_comment['thread_id'], $id);
 
 					update_forum($cur_comment['forum_id']);
 				}

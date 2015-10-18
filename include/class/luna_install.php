@@ -813,7 +813,7 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'post_id'		=> array(
+				'comment_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -891,7 +891,7 @@ class Installer {
 	
 		$schema = array(
 			'FIELDS'		=> array(
-				'post_id'		=> array(
+				'comment_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -909,7 +909,7 @@ class Installer {
 			),
 			'INDEXES'		=> array(
 				'word_id_idx'	=> array('word_id'),
-				'post_id_idx'	=> array('post_id')
+				'comment_id_idx'	=> array('comment_id')
 			)
 		);
 	

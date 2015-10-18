@@ -613,16 +613,16 @@ switch ($stage) {
 		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
 		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
 		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('forums', 'last_comment_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
 		$db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('threads', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'last_comment_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
 		$db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
 		$db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('messages', 'last_comment_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
 		$db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
 		$db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
@@ -632,7 +632,9 @@ switch ($stage) {
 		$db->rename_field('comments', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
-		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'first_comment_id', 'first_comment_id', 'INT(10)');
+		$db->rename_field('reports', 'comment_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'comment_id', 'comment_id', 'INT(10)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

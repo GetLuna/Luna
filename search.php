@@ -166,23 +166,23 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 								$where_cond = str_replace('*', '%', $cur_word);
 								$where_cond = ($search_in ? (($search_in > 0) ? 'p.message LIKE \'%'.$db->escape($where_cond).'%\'' : 't.subject LIKE \'%'.$db->escape($where_cond).'%\'') : 'p.message LIKE \'%'.$db->escape($where_cond).'%\' OR t.subject LIKE \'%'.$db->escape($where_cond).'%\'');
 
-								$result = $db->query('SELECT p.id AS post_id, p.thread_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE ('.$where_cond.') AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for comments', __FILE__, __LINE__, $db->error());
+								$result = $db->query('SELECT p.id AS comment_id, p.thread_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE ('.$where_cond.') AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for comments', __FILE__, __LINE__, $db->error());
 							} else
-								$result = $db->query('SELECT m.post_id, p.thread_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON m.word_id = w.id INNER JOIN '.$db->prefix.'comments AS p ON p.id=m.post_id INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE w.word LIKE \''.$db->escape(str_replace('*', '%', $cur_word)).'\''.$search_in_cond.' AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for comments', __FILE__, __LINE__, $db->error());
+								$result = $db->query('SELECT m.comment_id, p.thread_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON m.word_id = w.id INNER JOIN '.$db->prefix.'comments AS p ON p.id=m.comment_id INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE w.word LIKE \''.$db->escape(str_replace('*', '%', $cur_word)).'\''.$search_in_cond.' AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for comments', __FILE__, __LINE__, $db->error());
 
 							$row = array();
 							while ($temp = $db->fetch_assoc($result)) {
-								$row[$temp['post_id']] = $temp['thread_id'];
+								$row[$temp['comment_id']] = $temp['thread_id'];
 
 								if (!$word_count) {
-									$keyword_results[$temp['post_id']] = $temp['thread_id'];
-									$sort_data[$temp['post_id']] = $temp['sort_by'];
+									$keyword_results[$temp['comment_id']] = $temp['thread_id'];
+									$sort_data[$temp['comment_id']] = $temp['sort_by'];
 								} elseif ($match_type == 'or') {
-									$keyword_results[$temp['post_id']] = $temp['thread_id'];
-									$sort_data[$temp['post_id']] = $temp['sort_by'];
+									$keyword_results[$temp['comment_id']] = $temp['thread_id'];
+									$sort_data[$temp['comment_id']] = $temp['sort_by'];
 								} elseif ($match_type == 'not') {
-									unset($keyword_results[$temp['post_id']]);
-									unset($sort_data[$temp['post_id']]);
+									unset($keyword_results[$temp['comment_id']]);
+									unset($sort_data[$temp['comment_id']]);
 								}
 							}
 
@@ -235,9 +235,9 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 					while ($row = $db->fetch_row($result))
 						$user_ids[] = $row[0];
 
-					$result = $db->query('SELECT p.id AS post_id, p.thread_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.commenter_id IN('.implode(',', $user_ids).')'.$forum_sql.' ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch matched comments list', __FILE__, __LINE__, $db->error());
+					$result = $db->query('SELECT p.id AS comment_id, p.thread_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.commenter_id IN('.implode(',', $user_ids).')'.$forum_sql.' ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch matched comments list', __FILE__, __LINE__, $db->error());
 					while ($temp = $db->fetch_assoc($result))
-						$author_results[$temp['post_id']] = $temp['thread_id'];
+						$author_results[$temp['comment_id']] = $temp['thread_id'];
 
 					$db->free_result($result);
 				}

@@ -42,10 +42,10 @@ if ($pid) {
 			$last_viewed = isset($tracked_threads['threads'][$id]) ? $tracked_threads['threads'][$id] : $luna_user['last_visit'];
 
 			$result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND commented>'.$last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
-			$first_new_post_id = $db->result($result);
+			$first_new_comment_id = $db->result($result);
 
-			if ($first_new_post_id) {
-				header('Location: thread.php?pid='.$first_new_post_id.'#p'.$first_new_post_id);
+			if ($first_new_comment_id) {
+				header('Location: thread.php?pid='.$first_new_comment_id.'#p'.$first_new_comment_id);
 				exit;
 			}
 		}

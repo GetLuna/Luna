@@ -382,7 +382,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 					if ($db->result($result2) == $cur_comment['id'])
 						delete_thread($cur_comment['thread_id']);
 					else
-						delete_post($cur_comment['id'], $cur_comment['thread_id'], $cur_comment['commenter_id']);
+						delete_comment($cur_comment['id'], $cur_comment['thread_id'], $cur_comment['commenter_id']);
 
 					update_forum($cur_comment['forum_id']);
 				}

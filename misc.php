@@ -178,7 +178,7 @@ The message reads as follows:
 
 		// Should we use the internal report handling?
 		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2')
-			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, thread_id, forum_id, reported_by, created, message) VALUES('.$comment_id.', '.$thread_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'reports (comment_id, thread_id, forum_id, reported_by, created, message) VALUES('.$comment_id.', '.$thread_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'comments SET marked = 1 WHERE id='.$comment_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 
 		// Should we email the report?

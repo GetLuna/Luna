@@ -776,7 +776,7 @@ function delete_thread($thread_id, $type) {
 //
 // Delete a single post
 //
-function delete_post($comment_id, $thread_id, $commenter_id) {
+function delete_comment($comment_id, $thread_id, $commenter_id) {
 	global $db;
 
 	$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -2249,7 +2249,7 @@ function num_guests_online() {
 	return $db->num_rows($result_num_guests);
 }
 
-// Get forum_id by post_id
+// Get forum_id by comment_id
 function get_forum_id($comment_id) {
 	global $db;
 
