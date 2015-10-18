@@ -30,7 +30,7 @@ require 'header.php';
 					<div class="container">
 						<p class="meta"><span class="release-version">1.2.0</span></p><h2>Cornflower Blue</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark topics as solved</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark threads as solved</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now set any color as forum colors</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>New tools to clean up notifications</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now give your forums their own icon</li>

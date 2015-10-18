@@ -22,12 +22,12 @@
   The scripts behaviour is controlled via variables supplied in the
   URL to the script. The different variables are: action (what to
   do), show (how many items to display), fid (the ID or IDs of
-  the forum(s) to poll for topics), nfid (the ID or IDs of forums
+  the forum(s) to poll for threads), nfid (the ID or IDs of forums
   that should be excluded), tid (the ID of the thread from which to
   display posts) and type (output as HTML or RSS). The only
   mandatory variable is action. Possible/default values are:
 
-	action: feed - show most recent topics/posts (HTML or RSS)
+	action: feed - show most recent threads/posts (HTML or RSS)
 			online - show users online (HTML)
 			online_full - as above, but includes a full list (HTML)
 			stats - show board statistics (HTML)
@@ -38,19 +38,19 @@
 			html - output as HTML (<li>'s)
 
 	fid:	One or more forum IDs (comma-separated). If ignored,
-			topics from all readable forums will be pulled.
+			threads from all readable forums will be pulled.
 
 	nfid:   One or more forum IDs (comma-separated) that are to be
 			excluded. E.g. the ID of a a test forum.
 
-	tid:	A topic ID from which to show posts. If a tid is supplied,
+	tid:	A thread ID from which to show posts. If a tid is supplied,
 			fid and nfid are ignored.
 
 	show:   Any integer value between 1 and 50. The default is 15.
 
-	order:  last_post - show topics ordered by when they were last
+	order:  last_post - show threads ordered by when they were last
 						posted in, giving information about the reply.
-			posted - show topics ordered by when they were first
+			posted - show threads ordered by when they were first
 					 posted, giving information about the original post.
 
 -----------------------------------------------------------------------------*/
@@ -61,7 +61,7 @@ if (!defined('LUNA_ROOT'))
 	define('LUNA_ROOT', dirname(__FILE__).'/');
 require LUNA_ROOT.'include/common.php';
 
-// The length at which topic subjects will be truncated (for HTML output)
+// The length at which thread subjects will be truncated (for HTML output)
 if (!defined('LUNA_EXTERN_MAX_SUBJECT_LENGTH'))
 	define('LUNA_EXTERN_MAX_SUBJECT_LENGTH', 30);
 
@@ -208,7 +208,7 @@ function output_xml($feed) {
 	echo '<source>'."\n";
 	echo "\t".'<url>'.luna_htmlspecialchars($feed['link']).'</url>'."\n";
 
-	$forum_tag = ($feed['type'] == 'posts') ? 'post' : 'topic';
+	$forum_tag = ($feed['type'] == 'posts') ? 'post' : 'thread';
 
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<'.$forum_tag.' id="'.$item['id'].'">'."\n";
@@ -273,8 +273,8 @@ if ($action == 'feed') {
 	if (isset($_GET['tid'])) {
 		$tid = intval($_GET['tid']);
 
-		// Fetch topic subject
-		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		// Fetch thread subject
+		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result)) {
 			http_authenticate_user();
 			exit(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -369,11 +369,11 @@ if ($action == 'feed') {
 				'link'			=>	'/index.php',
 				'description'	=>	sprintf(__('The most recent threads at %s.', 'luna'), $luna_config['o_board_title']),
 				'items'			=>	array(),
-				'type'			=>	'topics'
+				'type'			=>	'threads'
 			);
 
-			// Fetch $show topics
-			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+			// Fetch $show threads
+			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_thread['subject'] = censor_words($cur_thread['subject']);
@@ -479,7 +479,7 @@ elseif ($action == 'stats') {
 		require LUNA_CACHE_DIR.'cache_users_info.php';
 	}
 
-	$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/post count', __FILE__, __LINE__, $db->error());
 	list($stats['total_threads'], $stats['total_comments']) = $db->fetch_row($result);
 
 	// Send the Content-type header in case the web server is setup to send something else

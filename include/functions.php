@@ -97,7 +97,7 @@ function check_cookie(&$luna_user) {
 						break;
 				}
 
-				// Reset tracked topics
+				// Reset tracked threads
 				set_tracked_threads(null);
 			} else {
 				// Special case: We've timed out, but no other user has browsed the forums since we timed out
@@ -109,7 +109,7 @@ function check_cookie(&$luna_user) {
 				$idle_sql = ($luna_user['idle'] == '1') ? ', idle=0' : '';
 				$db->query('UPDATE '.$db->prefix.'online SET logged='.$now.$idle_sql.' WHERE user_id='.$luna_user['id']) or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 
-				// Update tracked topics with the current expire time
+				// Update tracked threads with the current expire time
 				if (isset($_COOKIE[$cookie_name.'_track']))
 					forum_setcookie($cookie_name.'_track', $_COOKIE[$cookie_name.'_track'], $now + $luna_config['o_timeout_visit']);
 			}
@@ -155,7 +155,7 @@ function authenticate_user($user, $password, $password_is_hash = false) {
 
 
 //
-// Delete threads from $forum_id that are "older than" $prune_date (if $prune_pinned is 1, pinned topics will also be deleted)
+// Delete threads from $forum_id that are "older than" $prune_date (if $prune_pinned is 1, pinned threads will also be deleted)
 //
 function prune($forum_id, $prune_pinned, $prune_date) {
 	global $db;
@@ -165,8 +165,8 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 	if (!$prune_pinned)
 		$extra_sql .= ' AND pinned=\'0\'';
 
-	// Fetch topics to prune
-	$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.$extra_sql, true) or error('Unable to fetch topics', __FILE__, __LINE__, $db->error());
+	// Fetch threads to prune
+	$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.$extra_sql, true) or error('Unable to fetch threads', __FILE__, __LINE__, $db->error());
 
 	$thread_ids = '';
 	while ($row = $db->fetch_row($result))
@@ -182,7 +182,7 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 
 		if ($post_ids != '') {
 			// Delete threads
-			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions
 			$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$thread_ids.')') or error('Unable to prune subscriptions', __FILE__, __LINE__, $db->error());
 			// Delete comments
@@ -483,7 +483,7 @@ function check_username($username, $exclude_id = null) {
 		$errors[] = __('Usernames may not be in the form of an IP address. Please choose another username.', 'luna');
 	elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
 		$errors[] = __('Usernames may not contain all the characters \', " and [ or ] at once. Please choose another username.', 'luna');
-	elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|topic|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
+	elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|thread|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
 		$errors[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username.', 'luna');
 
 	// Check username for any censored words
@@ -636,7 +636,7 @@ function generate_page_title($page_title, $p = null) {
 
 
 //
-// Save array of tracked topics in cookie
+// Save array of tracked threads in cookie
 //
 function set_tracked_threads($tracked_threads) {
 	global $cookie_name, $cookie_path, $cookie_domain, $cookie_secure, $luna_config;
@@ -644,11 +644,11 @@ function set_tracked_threads($tracked_threads) {
 	$cookie_data = '';
 	if (!empty($tracked_threads)) {
 		// Sort the arrays (latest read first)
-		arsort($tracked_threads['topics'], SORT_NUMERIC);
+		arsort($tracked_threads['threads'], SORT_NUMERIC);
 		arsort($tracked_threads['forums'], SORT_NUMERIC);
 
 		// Homebrew serialization (to avoid having to run unserialize() on cookie data)
-		foreach ($tracked_threads['topics'] as $id => $timestamp)
+		foreach ($tracked_threads['threads'] as $id => $timestamp)
 			$cookie_data .= 't'.$id.'='.$timestamp.';';
 		foreach ($tracked_threads['forums'] as $id => $timestamp)
 			$cookie_data .= 'f'.$id.'='.$timestamp.';';
@@ -666,23 +666,23 @@ function set_tracked_threads($tracked_threads) {
 
 
 //
-// Extract array of tracked topics from cookie
+// Extract array of tracked threads from cookie
 //
 function get_tracked_threads() {
 	global $cookie_name;
 
 	$cookie_data = isset($_COOKIE[$cookie_name.'_track']) ? $_COOKIE[$cookie_name.'_track'] : false;
 	if (!$cookie_data)
-		return array('topics' => array(), 'forums' => array());
+		return array('threads' => array(), 'forums' => array());
 
 	if (strlen($cookie_data) > LUNA_MAX_COOKIE_SIZE)
-		return array('topics' => array(), 'forums' => array());
+		return array('threads' => array(), 'forums' => array());
 
 	// Unserialize data from cookie
-	$tracked_threads = array('topics' => array(), 'forums' => array());
+	$tracked_threads = array('threads' => array(), 'forums' => array());
 	$temp = explode(';', $cookie_data);
 	foreach ($temp as $t) {
-		$type = substr($t, 0, 1) == 'f' ? 'forums' : 'topics';
+		$type = substr($t, 0, 1) == 'f' ? 'forums' : 'threads';
 		$id = intval(substr($t, 1));
 		$timestamp = intval(substr($t, strpos($t, '=') + 1));
 		if ($id > 0 && $timestamp > 0)
@@ -694,22 +694,22 @@ function get_tracked_threads() {
 
 
 //
-// Update posts, topics, last_post, last_post_id and last_poster for a forum
+// Update posts, threads, last_post, last_post_id and last_poster for a forum
 //
 function update_forum($forum_id) {
 	global $db;
 
-	$result = $db->query('SELECT COUNT(id), SUM(num_replies) FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id) or error('Unable to fetch forum topic count', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(id), SUM(num_replies) FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id) or error('Unable to fetch forum thread count', __FILE__, __LINE__, $db->error());
 	list($num_threads, $num_comments) = $db->fetch_row($result);
 
 	$num_comments = $num_comments + $num_threads; // $num_comments is only the sum of all replies (we have to add the thread posts)
 
 	$result = $db->query('SELECT last_post, last_post_id, last_poster_id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Unable to fetch last_post/last_post_id', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result)) { // There are topics in the forum
+	if ($db->num_rows($result)) { // There are threads in the forum
 		list($last_post, $last_post_id, $last_poster_id) = $db->fetch_row($result);
 
 		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster_id=\''.$db->escape($last_poster_id).'\' WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
-	} else // There are no topics
+	} else // There are no threads
 		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_post=NULL, last_post_id=NULL, last_poster_id=NULL WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
 }
 
@@ -736,13 +736,13 @@ function delete_avatar($user_id) {
 function delete_thread($thread_id, $type) {
 	global $db;
 
-	// Delete the thread and any redirect topics
+	// Delete the thread and any redirect threads
 	if ($type == "hard")
-		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to delete thread', __FILE__, __LINE__, $db->error());
 	elseif ($type == "soft")
-		$db->query('UPDATE '.$db->prefix.'threads SET soft = 1 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET soft = 1 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete thread', __FILE__, __LINE__, $db->error());
 	else
-		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete thread', __FILE__, __LINE__, $db->error());
 
 	// Create a list of the comment IDs in this thread
 	$post_ids = '';
@@ -756,7 +756,7 @@ function delete_thread($thread_id, $type) {
 			decrease_post_counts($post_ids);
 
 			strip_search_index($post_ids);
-			// Delete comments in topic
+			// Delete comments in thread
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 		} else {
 			if ($type == "soft")
@@ -793,20 +793,20 @@ function delete_post($post_id, $thread_id, $poster_id) {
 	strip_search_index($post_id);
 
 	// Count number of replies in the thread
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id) or error('Unable to fetch post count for topic', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE thread_id='.$thread_id) or error('Unable to fetch post count for thread', __FILE__, __LINE__, $db->error());
 	$num_replies = $db->result($result, 0) - 1;
 
 	// If the message we deleted is the most recent in the thread (at the end of the thread)
 	if ($last_id == $post_id) {
 		// If there is a $second_last_id there is more than 1 reply to the thread
 		if (!empty($second_last_id))
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$second_posted.', last_post_id='.$second_last_id.', last_poster=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$second_posted.', last_post_id='.$second_last_id.', last_poster=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 		else
 			// We deleted the only reply, so now last_post/last_post_id/last_poster is posted/id/poster from the thread itself
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post=posted, last_post_id=id, last_poster=poster, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post=posted, last_post_id=id, last_poster=poster, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 	} else
 		// Otherwise we just decrement the reply counter
-		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 }
 
 

@@ -33,14 +33,14 @@ if (!defined('FORUM'))
 			<?php if($num_pages > 1) { ?>
 				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&tid=<?php echo $id ?>&action=all<?php echo $token_url ?>"><span class="fa fa-fw fa-list"></span> <?php _e('Show all posts', 'luna') ?></a>
 			<?php } ?>
-			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&move_topics=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move thread', 'luna') ?></a>
+			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&move_threads=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move thread', 'luna') ?></a>
 			<?php if ($cur_thread['closed'] == '1') { ?>
 				<a class="list-group-item list-group-disabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&open=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-check"></span> <?php _e('Open thread', 'luna') ?></a>
 			<?php } else { ?>
 				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-times"></span> <?php _e('Close thread', 'luna') ?></a>
 			<?php } ?>
 			
-			<?php if ($cur_topic['pinned'] == '1') { ?>
+			<?php if ($cur_thread['pinned'] == '1') { ?>
 				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unpin thread', 'luna') ?></a>
 			<?php } else { ?>
 				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin thread', 'luna') ?></a>

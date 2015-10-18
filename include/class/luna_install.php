@@ -959,7 +959,7 @@ class Installer {
 			'PRIMARY KEY'	=> array('user_id', 'thread_id')
 		);
 	
-		$db->create_table('thread_subscriptions', $schema) or error('Unable to create topic subscriptions table', __FILE__, __LINE__, $db->error());
+		$db->create_table('thread_subscriptions', $schema) or error('Unable to create thread subscriptions table', __FILE__, __LINE__, $db->error());
 	
 	
 		$schema = array(

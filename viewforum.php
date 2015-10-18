@@ -54,7 +54,7 @@ if (($cur_forum['create_threads'] == '' && $luna_user['g_create_threads'] == '1'
 else
 	$comment_link = '';
 
-// Get topic/forum tracking data
+// Get thread/forum tracking data
 if (!$luna_user['is_guest'])
 	$tracked_threads = get_tracked_threads();
 

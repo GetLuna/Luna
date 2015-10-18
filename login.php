@@ -55,7 +55,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	$expire = ($save_pass == '1') ? time() + 1209600 : time() + $luna_config['o_timeout_visit'];
 	luna_setcookie($cur_user['id'], $form_password_hash, $expire);
 
-	// Reset tracked topics
+	// Reset tracked threads
 	set_tracked_threads(null);
 
 	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after the email is sent)

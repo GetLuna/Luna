@@ -112,8 +112,8 @@ if (isset($_POST['form_sent'])) {
 		require LUNA_ROOT.'include/search_idx.php';
 
 		if ($can_edit_subject) {
-			// Update the thread and any redirect topics
-			$db->query('UPDATE '.$db->prefix.'threads SET subject=\''.$db->escape($subject).'\', pinned='.$pin_thread.' WHERE id='.$cur_comment['tid'].' OR moved_to='.$cur_comment['tid']) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			// Update the thread and any redirect threads
+			$db->query('UPDATE '.$db->prefix.'threads SET subject=\''.$db->escape($subject).'\', pinned='.$pin_thread.' WHERE id='.$cur_comment['tid'].' OR moved_to='.$cur_comment['tid']) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			// We changed the subject, so we need to take that into account when we update the search words
 			update_search_index('edit', $id, $message, $subject);

@@ -50,7 +50,7 @@ if (!defined('FORUM'))
 				<?php } ?>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&move_topics=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move', 'luna') ?></a>
+				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&move_threads=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move', 'luna') ?></a>
 				<?php if ($cur_thread['closed'] == '1') { ?>
 					<a class="btn btn-success" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&open=<?php echo $id ?>"><span class="fa fa-fw fa-unlock"></span> <?php _e('Open', 'luna') ?></a>
 				<?php } else { ?>

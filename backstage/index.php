@@ -69,7 +69,7 @@ if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 2
 	require LUNA_CACHE_DIR.'cache_update.php';
 }
 
-$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_threads'], $stats['total_comments']) = array_map('intval', $db->fetch_row($result));
 
 if ($stats['total_comments'] == 0)
@@ -203,7 +203,7 @@ if ($db->num_rows($result)) {
 						<thead>
 							<tr>
 								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4></td>
 								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4></td>
 							</tr>
 						</thead>

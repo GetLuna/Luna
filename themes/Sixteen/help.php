@@ -201,7 +201,7 @@ if ($luna_user['is_admmod']) {
 	</div>
 	<ul class="nav nav-tabs no-background">
 		<li class="active"><a href="#forums" data-toggle="tab"><?php _e('Forums', 'luna') ?></a></li>
-		<li><a href="#topics" data-toggle="tab"><?php _e('Threads', 'luna') ?></a></li>
+		<li><a href="#threads" data-toggle="tab"><?php _e('Threads', 'luna') ?></a></li>
 		<li><a href="#users" data-toggle="tab"><?php _e('Users', 'luna') ?></a></li>
 	</ul>
 	<div class="tab-content">
@@ -209,7 +209,7 @@ if ($luna_user['is_admmod']) {
 			<h3><?php _e('How do I moderate a forum?', 'luna') ?></h3>
 			<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple threads at once.', 'luna') ?></p>
 		</div>
-		<div class="tab-pane" id="topics">
+		<div class="tab-pane" id="threads">
 			<h3><?php _e('How do I moderate a thread?', 'luna') ?></h3>
 			<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current thread from there, you can select multiple comment to delete or split from the current thread at once.', 'luna') ?></p>
 			<p><?php _e('Next to the "Moderate thread" button, you can find options to move, open or close the thread. You can also pin the thread from there, or unpin it.', 'luna') ?></p>

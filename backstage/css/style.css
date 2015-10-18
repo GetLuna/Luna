@@ -685,23 +685,23 @@ fieldset[disabled] .form-control {
 	margin-bottom: 0;
 }
 
-.list-group-topic {
+.list-group-thread {
 	margin-bottom: 0;
 }
 
-.list-group-topic .list-group-item {
+.list-group-thread .list-group-item {
 	background-color: #fbfbfb;
 	border: none;
 	border-left: 5px solid #f8f8f8;
 	margin-top: 2px;
 }
 
-.list-group-topic .list-group-item.new-item {
+.list-group-thread .list-group-item.new-item {
 	background-color: #f3f3f3;
 	border-left: 5px solid #e3e3e3;
 }
 
-.list-group-topic .list-group-item:hover {
+.list-group-thread .list-group-item:hover {
 	background-color: #f8f8f8;
 	border-left-color: #e8e8e8;
 }
@@ -1125,7 +1125,7 @@ html.night,
 	background-color: #3b3b3b;
 }
 
-.night .list-group-topic .list-group-item {
+.night .list-group-thread .list-group-item {
 	background-color: #404040;
 	border-color: #3e3e3e;
 }

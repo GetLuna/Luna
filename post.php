@@ -172,8 +172,8 @@ if (isset($_POST['form_sent'])) {
 			else
 				$user_id_poster = '1';
 
-			// Update topic
-			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\', last_poster_id=\''.$user_id_poster.'\' WHERE id='.$tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			// Update thread
+			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\', last_poster_id=\''.$user_id_poster.'\' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message);
 
@@ -290,7 +290,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$user_id_poster = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$pin_thread.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {
@@ -298,17 +298,17 @@ You can unsubscribe by going to <unsubscribe_url>
 				if ($luna_config['o_thread_subscriptions'] == '1' && $subscribe)
 					$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-				// Create the comment ("topic post")
+				// Create the comment ("thread post")
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			} else {
-				// Create the comment ("topic post")
+				// Create the comment ("thread post")
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
 
 			// Update the thread with last_post_id
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post_id='.$new_pid.', first_post_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post_id='.$new_pid.', first_post_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message, $subject);
 
@@ -444,7 +444,7 @@ Comment URL: <comment_url>
 			$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments+1, last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 			$tracked_threads = get_tracked_threads();
-			$tracked_threads['topics'][$new_tid] = time();
+			$tracked_threads['threads'][$new_tid] = time();
 			set_tracked_threads($tracked_threads);
 		} else {
 			$db->query('UPDATE '.$db->prefix.'online SET last_post='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());

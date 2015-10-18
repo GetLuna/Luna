@@ -29,14 +29,14 @@ if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_inbox'] == '0')
 // User block
 $avatar_user_card = draw_user_avatar($luna_user['id']);
 
-// Get the message's and topic's id
+// Get the message's and thread's id
 $mid = isset($_REQUEST['mid']) ? intval($_REQUEST['mid']) : '0';
 $tid = isset($_REQUEST['tid']) ? intval($_REQUEST['tid']) : '0';
 $pid = isset($_REQUEST['pid']) ? intval($_REQUEST['pid']) : '0';
 
 $delete_all = '0';
 
-$thread_msg = isset($_REQUEST['all_topic']) ? intval($_REQUEST['all_topic']) : '0';
+$thread_msg = isset($_REQUEST['all_thread']) ? intval($_REQUEST['all_thread']) : '0';
 $delete_all = isset($_POST['delete_all']) ? '1' : '0';
 
 if ($pid) {
@@ -78,7 +78,7 @@ if ($mid <= 0)
 // Action ?
 $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $_REQUEST['action'] : '');
 
-// Delete a single message or a full topic
+// Delete a single message or a full thread
 if ($action == 'delete') {
 	// Make sure they got here from the site
 	confirm_referrer('viewinbox.php');

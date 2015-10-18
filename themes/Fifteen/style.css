@@ -454,23 +454,23 @@ a.list-group-item.active:hover {
 	border-left-color: #e3e3e3;
 }
 
-.list-group-topic .list-group-item {
+.list-group-thread .list-group-item {
 	background-color: #fbfbfb;
 	border: none;
 	border-left: 5px solid #f8f8f8;
 	margin-top: 2px;
 }
 
-.list-group-topic .list-group-item:first-child {
+.list-group-thread .list-group-item:first-child {
 	margin-top: 0 !important;
 }
 
-.list-group-topic .list-group-item.new-item {
+.list-group-thread .list-group-item.new-item {
 	background-color: #f3f3f3;
 	border-left: 5px solid #e3e3e3;
 }
 
-.list-group-topic .list-group-item:hover {
+.list-group-thread .list-group-item:hover {
 	background-color: #f8f8f8;
 	border-left-color: #e8e8e8;
 }
@@ -1329,21 +1329,21 @@ textarea {
 }
 
 /* Forum */
-.topic-entry-list {
+.thread-entry-list {
 	margin-top: 15px;
 }
 
-.topic-index-entry.soft {
+.thread-index-entry.soft {
 	background-color: #fffbe7;
 }
 
-.topic-entry {
+.thread-entry {
 	background-color: #eee;
 	padding: 10px;
 	margin-bottom: 10px;
 }
 
-.topic-entry h3 {
+.thread-entry h3 {
 	margin: 0;
 }
 
@@ -1707,17 +1707,17 @@ html.night {
 	background-color: #3b3b3b;
 }
 
-.night .list-group-topic .list-group-item {
+.night .list-group-thread .list-group-item {
 	background-color: #404040;
 	border-color: #3e3e3e;
 }
 
-.night .list-group-topic .list-group-item.new-item {
+.night .list-group-thread .list-group-item.new-item {
 	background-color: #3b3b3b;
 	border-color: #333;
 }
 
-.night .list-group-topic .list-group-item:hover {
+.night .list-group-thread .list-group-item:hover {
 	background-color: #3b3b3b;
 }
 

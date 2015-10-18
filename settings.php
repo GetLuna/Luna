@@ -120,7 +120,7 @@ if (isset($_POST['update_group_membership'])) {
 		}
 
 		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$id) or error('Unable to delete topic subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$id) or error('Unable to delete thread subscriptions', __FILE__, __LINE__, $db->error());
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$id) or error('Unable to delete forum subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Remove him/her from the online list (if they happen to be logged in)
@@ -135,7 +135,7 @@ if (isset($_POST['update_group_membership'])) {
 			$result = $db->query('SELECT p.id, p.thread_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id='.$id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
-					// Determine whether this post is the "topic post" or not
+					// Determine whether this post is the "thread post" or not
 					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 					if ($db->result($result2) == $cur_comment['id'])
@@ -749,8 +749,8 @@ To change your email address, please visit the following page:
 				$bans_updated = true;
 			$db->query('UPDATE '.$db->prefix.'posts SET poster=\''.$db->escape($form['username']).'\' WHERE poster_id='.$id) or error('Unable to update posts', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'posts SET edited_by=\''.$db->escape($form['username']).'\' WHERE edited_by=\''.$db->escape($old_username).'\'') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'threads SET poster=\''.$db->escape($form['username']).'\' WHERE poster=\''.$db->escape($old_username).'\'') or error('Unable to update topics', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'threads SET last_poster=\''.$db->escape($form['username']).'\' WHERE last_poster=\''.$db->escape($old_username).'\'') or error('Unable to update topics', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET poster=\''.$db->escape($form['username']).'\' WHERE poster=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_poster=\''.$db->escape($form['username']).'\' WHERE last_poster=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'online SET ident=\''.$db->escape($form['username']).'\' WHERE ident=\''.$db->escape($old_username).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 	
 			// If the user is a moderator or an administrator we have to update the moderator lists

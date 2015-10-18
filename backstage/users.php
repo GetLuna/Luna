@@ -361,7 +361,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		}
 
 		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete topic subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete thread subscriptions', __FILE__, __LINE__, $db->error());
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete forum subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Remove them from the online list (if they happen to be logged in)
@@ -376,7 +376,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			$result = $db->query('SELECT p.id, p.poster_id, p.thread_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
-					// Determine whether this post is the "topic post" or not
+					// Determine whether this post is the "thread post" or not
 					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 					if ($db->result($result2) == $cur_comment['id'])

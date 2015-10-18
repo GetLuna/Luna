@@ -48,7 +48,7 @@ define('LUNA_CJK_HANGUL_REGEX', '['.
 //
 function split_words($text, $idx) {
 	// Remove BBCode
-	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
+	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|thread|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
 
 	// Remove any apostrophes or dashes which aren't part of words
 	$text = substr(ucp_preg_replace('%((?<=[^\p{L}\p{N}])[\'\-]|[\'\-](?=[^\p{L}\p{N}]))%u', '', ' '.$text.' '), 1, -1);
@@ -140,7 +140,7 @@ function strip_bbcode($text) {
 			'%\[img=([^\]]*+)\]([^[]*+)\[/img\]%'									=>	'$2 $1',	// Keep the url and description
 			'%\[(url|email)=([^\]]*+)\]([^[]*+(?:(?!\[/\1\])\[[^[]*+)*)\[/\1\]%'	=>	'$2 $3',	// Keep the url and text
 			'%\[(img|url|email)\]([^[]*+(?:(?!\[/\1\])\[[^[]*+)*)\[/\1\]%'			=>	'$2',		// Keep the url
-			'%\[(topic|post|forum|user)\][1-9]\d*\[/\1\]%'							=>	' ',		// Do not index topic/post/forum/user ID
+			'%\[(thread|post|forum|user)\][1-9]\d*\[/\1\]%'							=>	' ',		// Do not index thread/post/forum/user ID
 		);
 	}
 

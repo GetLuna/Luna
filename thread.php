@@ -20,9 +20,9 @@ $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 if ($id < 1 && $pid < 1)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-// If a comment ID is specified we determine topic ID and page number so we can redirect to the correct message
+// If a comment ID is specified we determine thread ID and page number so we can redirect to the correct message
 if ($pid) {
-	$result = $db->query('SELECT thread_id, posted FROM '.$db->prefix.'posts WHERE id='.$pid) or error('Unable to fetch topic ID', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT thread_id, posted FROM '.$db->prefix.'posts WHERE id='.$pid) or error('Unable to fetch thread ID', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -39,7 +39,7 @@ if ($pid) {
 		if (!$luna_user['is_guest']) {
 			// We need to check if this thread has been viewed recently by the user
 			$tracked_threads = get_tracked_threads();
-			$last_viewed = isset($tracked_threads['topics'][$id]) ? $tracked_threads['topics'][$id] : $luna_user['last_visit'];
+			$last_viewed = isset($tracked_threads['threads'][$id]) ? $tracked_threads['threads'][$id] : $luna_user['last_visit'];
 
 			$result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'posts WHERE thread_id='.$id.' AND posted>'.$last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
 			$first_new_post_id = $db->result($result);
@@ -70,9 +70,9 @@ if ($pid) {
 
 // Fetch some info about the thread
 if ($luna_user['is_guest'])
-	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.pinned, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.pinned, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.pinned, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment, s.user_id AS is_subscribed FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.pinned, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment, s.user_id AS is_subscribed FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -101,10 +101,10 @@ if ($cur_thread['closed'] == '0') {
 }
 
 
-// Add/update this thread in our list of tracked topics
+// Add/update this thread in our list of tracked threads
 if (!$luna_user['is_guest']) {
 	$tracked_threads = get_tracked_threads();
-	$tracked_threads['topics'][$id] = time();
+	$tracked_threads['threads'][$id] = time();
 	set_tracked_threads($tracked_threads);
 }
 
@@ -176,15 +176,15 @@ for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)
 $token_url = '&amp;csrf_token='.luna_csrf_token();
 
 if (empty($post_ids))
-	error('The comment table and topic table seem to be out of sync!', __FILE__, __LINE__);
+	error('The comment table and thread table seem to be out of sync!', __FILE__, __LINE__);
 
 $cur_index = 1;
 
 require load_page('thread.php');
 
-// Increment "num_views" for topic
+// Increment "num_views" for thread
 if ($luna_config['o_thread_views'] == '1')
-	$db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 $forum_id = $cur_thread['forum_id'];
 $footer_style = 'thread';

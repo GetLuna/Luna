@@ -11,7 +11,7 @@
 	background-color: #8e8e8e;
 }
 
-.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
+.list-group-forum a.list-group-item:hover, .list-group-thread .list-group-item:hover {
 	border-color: #afafaf;
 }
 

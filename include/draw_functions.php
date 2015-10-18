@@ -170,7 +170,7 @@ function draw_editor($height) {
 			elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
 				$action = 'post-message';
 			else
-				$action = ($fid ? 'post-topic' : 'post-reply');
+				$action = ($fid ? 'post-thread' : 'post-reply');
 			LunaNonces::field($action);
 		?>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
@@ -214,11 +214,11 @@ function draw_threads_list() {
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	else
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	
-	// If there are topics in this forum
+	// If there are threads in this forum
 	if ($db->num_rows($result)) {
 		$thread_ids = array();
 		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
@@ -239,7 +239,7 @@ function draw_threads_list() {
 			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
-		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 	
 		$thread_count = 0;
 		while ($cur_thread = $db->fetch_assoc($result)) {
@@ -296,7 +296,7 @@ function draw_threads_list() {
 				}
 			}
 	
-			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
@@ -306,17 +306,17 @@ function draw_threads_list() {
 
 			$subject_status = implode(' ', $status_text);
 	
-			$num_pages_topic = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 	
-			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
+			if ($num_pages_thread > 1)
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
 			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
 			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
 	
-			require get_view_path('topic.php');
+			require get_view_path('thread.php');
 	
 		}
 	
@@ -377,7 +377,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
-			$thread_label = _n('topic', 'topics', $cur_forum['num_threads'], 'luna');
+			$thread_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = _n('post', 'posts', $cur_forum['num_comments'], 'luna');
 			
 			if ($id == $cur_forum['fid']) {
@@ -460,7 +460,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
-			$thread_label = __('topic', 'topics', $cur_forum['num_threads'], 'luna');
+			$thread_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = __('post', 'posts', $cur_forum['num_comments'], 'luna');
 			
 			if ($id == $cur_forum['fid']) {
@@ -475,13 +475,13 @@ function draw_subforum_list($object_name = 'forum.php') {
 	}
 }
 
-function draw_index_topics_list() {
+function draw_index_threads_list() {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	
-	// If there are topics in this forum
+	// If there are threads in this forum
 	if ($db->num_rows($result)) {
 		$thread_ids = array();
 		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
@@ -502,7 +502,7 @@ function draw_index_topics_list() {
 			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
-		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 
 		// Load cached forums
 		if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
@@ -584,7 +584,7 @@ function draw_index_topics_list() {
 				}
 			}
 	
-			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
@@ -593,17 +593,17 @@ function draw_index_topics_list() {
 	
 			$subject_status = implode(' ', $status_text);
 	
-			$num_pages_topic = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 	
-			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
+			if ($num_pages_thread > 1)
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
 			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
 			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
 	
-			require get_view_path('topic.php');
+			require get_view_path('thread.php');
 	
 		}
 	} else
@@ -1001,7 +1001,7 @@ function draw_search_results() {
 				$item_status .= ' closed-item';
 			}
 			
-			if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_search['tid']]) || $tracked_threads['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_threads['forums'][$cur_search['forum_id']]) || $tracked_threads['forums'][$cur_search['forum_id']] < $cur_search['last_post'])) {
+			if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_search['tid']]) || $tracked_threads['threads'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_threads['forums'][$cur_search['forum_id']]) || $tracked_threads['forums'][$cur_search['forum_id']] < $cur_search['last_post'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
@@ -1012,10 +1012,10 @@ function draw_search_results() {
 			// Insert the status text before the subject
 			$subject = implode(' ', $status_text).' '.$subject;
 			
-			$num_pages_topic = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_comments']);
+			$num_pages_thread = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_comments']);
 			
-			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
+			if ($num_pages_thread > 1)
+				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
 			else
 				$subject_multipage = null;
 			
@@ -1024,7 +1024,7 @@ function draw_search_results() {
 			else
 				$last_poster = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
 
-			require get_view_path('search-topic.php');
+			require get_view_path('search-thread.php');
 		// }
 	}
 

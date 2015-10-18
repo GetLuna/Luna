@@ -21,7 +21,7 @@ if (!defined('LUNA_USERS_INFO_LOADED')) {
 }
 
 // Collect some statistics from the database
-$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_threads'], $stats['total_comments']) = array_map('intval', $db->fetch_row($result));
 
 

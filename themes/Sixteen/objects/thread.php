@@ -1,4 +1,4 @@
-<div class="row topic-row <?php echo $item_status ?><?php if ($cur_thread['soft'] == true) echo ' soft'; ?>">
+<div class="row thread-row <?php echo $item_status ?><?php if ($cur_thread['soft'] == true) echo ' soft'; ?>">
 	<div class="col-sm-6 col-xs-6">
 		<span class="middot">&middot; </span> <?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject."\n" ?></a><?php echo $by ?>
 	</div>

@@ -15,6 +15,6 @@ if (!defined('FORUM'))
 	</div>
 </div>
 <div class="container">
-	<div class="list-group forumview list-group-topic">
+	<div class="list-group forumview list-group-thread">
 		<?php draw_search_results(); ?>
 	</div>

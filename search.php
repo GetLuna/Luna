@@ -59,7 +59,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		if ($author)
 			$author = str_replace('*', '%', $author);
 
-		$show_as = (isset($_GET['show_as']) && $_GET['show_as'] == 'topics') ? 'topics' : 'posts';
+		$show_as = (isset($_GET['show_as']) && $_GET['show_as'] == 'threads') ? 'threads' : 'posts';
 		$sort_by = (isset($_GET['sort_by'])) ? intval($_GET['sort_by']) : 0;
 		$search_in = (!isset($_GET['search_in']) || $_GET['search_in'] == '0') ? 0 : (($_GET['search_in'] == '1') ? 1 : -1);
 	}
@@ -69,7 +69,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		if ($user_id < 2)
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		// Subscribed topics can only be viewed by admins, moderators and the users themselves
+		// Subscribed threads can only be viewed by admins, moderators and the users themselves
 		if ($action == 'show_subscriptions' && !$luna_user['is_admmod'] && $user_id != $luna_user['id'])
 			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 	} elseif ($action == 'show_recent')
@@ -113,7 +113,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 			switch ($sort_by) {
 				case 1:
-					$sort_by_sql = ($show_as == 'topics') ? 't.poster' : 'p.poster';
+					$sort_by_sql = ($show_as == 'threads') ? 't.poster' : 'p.poster';
 					$sort_type = SORT_STRING;
 					break;
 
@@ -133,7 +133,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 					break;
 
 				default:
-					$sort_by_sql = ($show_as == 'topics') ? 't.last_post' : 'p.posted';
+					$sort_by_sql = ($show_as == 'threads') ? 't.last_post' : 'p.posted';
 					$sort_type = SORT_NUMERIC;
 					break;
 			}
@@ -146,7 +146,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				if (empty($keywords_array))
 					message(__('Your search returned no hits.', 'luna'));
 
-				// Should we search in message body or topic subject specifically?
+				// Should we search in message body or thread subject specifically?
 				$search_in_cond = ($search_in) ? (($search_in > 0) ? ' AND m.subject_match = 0' : ' AND m.subject_match = 1') : '';
 
 				$word_count = 0;
@@ -257,7 +257,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 			unset($keyword_results, $author_results);
 
-			if ($show_as == 'topics')
+			if ($show_as == 'threads')
 				$search_ids = array_values($search_ids);
 			else
 				$search_ids = array_keys($search_ids);
@@ -269,7 +269,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				message(__('Your search returned no hits.', 'luna'));
 		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_comments' || $action == 'show_user_threads' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
 			$search_type = array('action', $action);
-			$show_as = 'topics';
+			$show_as = 'threads';
 			// We want to sort things after last comment
 			$sort_by = 0;
 			$sort_dir = 'DESC';
@@ -279,15 +279,15 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				if ($luna_user['is_guest'])
 					message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$luna_user['last_visit'].' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$luna_user['last_visit'].' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('There are no topics with new comments since your last visit.', 'luna'));
+					message(__('There are no threads with new comments since your last visit.', 'luna'));
 			}
 			// If it's a search for recent comments (in a certain time interval)
 			elseif ($action == 'show_recent') {
-				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.(time() - $interval).' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.(time() - $interval).' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
@@ -306,23 +306,23 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				// Pass on the user ID so that we can later know whose posts we're searching for
 				$search_type[2] = $user_id;
 			}
-			// If it's a search for topics by a specific user ID
+			// If it's a search for threads by a specific user ID
 			elseif ($action == 'show_user_threads') {
-				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON t.first_post_id=p.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY t.last_post DESC') or error('Unable to fetch user topics', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON t.first_post_id=p.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY t.last_post DESC') or error('Unable to fetch user threads', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('There are no topics by this user in this forum.', 'luna'));
+					message(__('There are no threads by this user in this forum.', 'luna'));
 
-				// Pass on the user ID so that we can later know whose topics we're searching for
+				// Pass on the user ID so that we can later know whose threads we're searching for
 				$search_type[2] = $user_id;
 			}
-			// If it's a search for subscribed topics
+			// If it's a search for subscribed threads
 			elseif ($action == 'show_subscriptions') {
 				if ($luna_user['is_guest'])
 					message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$user_id.') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$user_id.') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY t.last_post DESC') or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
@@ -333,7 +333,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			}
 			// If it's a search for unanswered comments
 			else {
-				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.num_replies=0 AND t.moved_to IS NULL ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.num_replies=0 AND t.moved_to IS NULL ORDER BY t.last_post DESC') or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
@@ -395,7 +395,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 	if (!empty($search_ids)) {
 		switch ($sort_by) {
 			case 1:
-				$sort_by_sql = ($show_as == 'topics') ? 't.poster' : 'p.poster';
+				$sort_by_sql = ($show_as == 'threads') ? 't.poster' : 'p.poster';
 				break;
 
 			case 2:
@@ -407,7 +407,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				break;
 
 			default:
-				$sort_by_sql = ($show_as == 'topics') ? 't.last_post' : 'p.posted';
+				$sort_by_sql = ($show_as == 'threads') ? 't.last_post' : 'p.posted';
 				break;
 		}
 
@@ -475,15 +475,15 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search results', 'luna'));
 		define('LUNA_ACTIVE_PAGE', 'search');
 
-		if ($show_as == 'topics') {
-			$topic_count = 0;
+		if ($show_as == 'threads') {
+			$thread_count = 0;
 		} elseif ($show_as == 'posts') {
 			require LUNA_ROOT.'include/parser.php';
 
 			$post_count = 0;
 		}
 
-		// Get topic/forum tracking data
+		// Get thread/forum tracking data
 		if (!$luna_user['is_guest'])
 			$tracked_threads = get_tracked_threads();
 

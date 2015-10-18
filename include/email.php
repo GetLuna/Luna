@@ -97,7 +97,7 @@ function bbcode2email($text, $wrap_length = 72) {
 	$text = luna_trim($text, "\t\n ");
 
 	$shortcut_urls = array(
-		'topic' => '/thread.php?id=$1',
+		'thread' => '/thread.php?id=$1',
 		'post' => '/thread.php?pid=$1#p$1',
 		'forum' => '/viewforum.php?id=$1',
 		'user' => '/profile.php?id=$1',
@@ -108,14 +108,14 @@ function bbcode2email($text, $wrap_length = 72) {
 
 	// Strip all bbcodes, except the quote, url, img, email, code and list items bbcodes
 	$text = preg_replace(array(
-		'%\[/?(?!(?:quote|url|topic|post|user|forum|img|email|code|list|\*))[a-z]+(?:=[^\]]+)?\]%i',
+		'%\[/?(?!(?:quote|url|thread|post|user|forum|img|email|code|list|\*))[a-z]+(?:=[^\]]+)?\]%i',
 		'%\n\[/?list(?:=[^\]]+)?\]%i' // A separate regex for the list tags to get rid of some whitespace
 	), '', $text);
 
 	// Match the deepest nested bbcode
 	// An adapted example from Mastering Regular Expressions
 	$match_quote_regex = '%
-		\[(quote|\*|url|img|email|topic|post|user|forum)(?:=([^\]]+))?\]
+		\[(quote|\*|url|img|email|thread|post|user|forum)(?:=([^\]]+))?\]
 		(
 			(?>[^\[]*)
 			(?>
@@ -166,7 +166,7 @@ function bbcode2email($text, $wrap_length = 72) {
 		}
 
 		// Thread, post, forum and user URLs
-		elseif (in_array($matches[1], array('topic', 'post', 'forum', 'user'))) {
+		elseif (in_array($matches[1], array('thread', 'post', 'forum', 'user'))) {
 			$url = isset($shortcut_urls[$matches[1]]) ? $base_url.$shortcut_urls[$matches[1]] : '';
 
 			if (!empty($matches[2])) {
