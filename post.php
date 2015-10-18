@@ -39,7 +39,7 @@ if ($tid && $luna_config['o_censoring'] == '1')
 
 // Do we have permission to post?
 if ((($tid && (($cur_commenting['post_replies'] == '' && $luna_user['g_comment'] == '0') || $cur_commenting['post_replies'] == '0')) ||
-	($fid && (($cur_commenting['post_topics'] == '' && $luna_user['g_post_threads'] == '0') || $cur_commenting['post_topics'] == '0')) ||
+	($fid && (($cur_commenting['post_topics'] == '' && $luna_user['g_create_threads'] == '0') || $cur_commenting['post_topics'] == '0')) ||
 	(isset($cur_commenting['closed']) && $cur_commenting['closed'] == '1')) &&
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
@@ -50,8 +50,8 @@ $errors = array();
 // Did someone just hit "Submit" or "Preview"?
 if (isset($_POST['form_sent'])) {
 	// Flood protection
-	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_post_flood'])
-		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
+	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_comment_flood'])
+		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_post']));
 
 	// Make sure they got here from the site
 	if (($fid && (!isset($_POST['_luna_nonce_post_topic']) || !LunaNonces::verify($_POST['_luna_nonce_post_topic'],'post-reply'))) ||

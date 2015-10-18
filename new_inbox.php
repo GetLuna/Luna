@@ -129,8 +129,8 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		session_start();
 
 	if (isset($_SESION['last_session_request']))
-		if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
-			$errors[] = sprintf( __('At least % seconds have to pass between sends. Please wait a little while and try send the message again.', 'luna'), $luna_user['g_post_flood'] );
+		if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_comment_flood'])
+			$errors[] = sprintf( __('At least % seconds have to pass between sends. Please wait a little while and try send the message again.', 'luna'), $luna_user['g_comment_flood'] );
 		
 	// Check users boxes
 	if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_inbox_limit'])

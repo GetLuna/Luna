@@ -601,11 +601,12 @@ switch ($stage) {
 		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_post_topics', 'g_post_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_replies', 'g_comment', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_flood', 'g_comment_flood', 'SMALLINT(6)');
 		$db->rename_field('groups', 'g_pm', 'g_inbox', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_pm_limit', 'g_inbox_limit', 'INT');
 		
