@@ -1424,20 +1424,6 @@ blockquote footer {
 	border: none;
 }
 
-#posterror {
-	max-width: 330px;
-	margin: 60px auto 20px;
-	border-radius: 3px;
-	background-color: #fff;
-}
-
-#posterrorall {
-	max-width: 30%;
-	margin: 60px auto 20px;
-	border-radius: 3px;
-	background-color: #fff;
-}
-
 .form-errors {
 	background: #ff6000;
 }

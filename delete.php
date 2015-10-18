@@ -20,7 +20,7 @@ if ($id < 1)
 $action = isset($_GET['action']) ? $_GET['action'] : 0;
 
 // Fetch some info about the comment, the thread and the forum
-$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, fp.comment, fp.create_threads, t.id AS tid, t.subject, t.first_post_id, t.closed, p.posted, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, fp.comment, fp.create_threads, t.id AS tid, t.subject, t.first_post_id, t.closed, p.posted, p.commenter, p.commenter_id, p.message, p.hide_smilies FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -38,12 +38,12 @@ $is_thread_comment = ($id == $cur_comment['first_post_id']) ? true : false;
 // Do we have permission to edit this post?
 if (($luna_user['g_delete_comments'] == '0' ||
 	($luna_user['g_delete_threads'] == '0' && $is_thread_comment) ||
-	$cur_comment['poster_id'] != $luna_user['id'] ||
+	$cur_comment['commenter_id'] != $luna_user['id'] ||
 	$cur_comment['closed'] == '1') &&
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_comment['poster_id'], get_admin_ids()))
+if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_comment['commenter_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Soft delete comments
@@ -109,7 +109,7 @@ if (isset($_POST['delete'])) {
 		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
 		// Delete just this one post
-		delete_post($id, $cur_comment['tid'], $cur_comment['poster_id']);
+		delete_post($id, $cur_comment['tid'], $cur_comment['commenter_id']);
 		update_forum($cur_comment['fid']);
 
 		// Redirect towards the previous post

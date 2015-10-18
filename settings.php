@@ -132,7 +132,7 @@ if (isset($_POST['update_group_membership'])) {
 			@set_time_limit(0);
 
 			// Find all comments made by this user
-			$result = $db->query('SELECT p.id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id='.$id) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.commenter_id='.$id) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "thread post" or not
@@ -148,7 +148,7 @@ if (isset($_POST['update_group_membership'])) {
 			}
 		} else
 			// Set all his/her comments to guest
-			$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
 
 		// Delete the user
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to delete user', __FILE__, __LINE__, $db->error());
@@ -747,9 +747,9 @@ To change your email address, please visit the following page:
 			// If any bans were updated, we will need to know because the cache will need to be regenerated.
 			if ($db->affected_rows() > 0)
 				$bans_updated = true;
-			$db->query('UPDATE '.$db->prefix.'comments SET poster=\''.$db->escape($form['username']).'\' WHERE poster_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter=\''.$db->escape($form['username']).'\' WHERE commenter_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'comments SET edited_by=\''.$db->escape($form['username']).'\' WHERE edited_by=\''.$db->escape($old_username).'\'') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'threads SET poster=\''.$db->escape($form['username']).'\' WHERE poster=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET commenter=\''.$db->escape($form['username']).'\' WHERE commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'threads SET last_commenter=\''.$db->escape($form['username']).'\' WHERE last_commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'online SET ident=\''.$db->escape($form['username']).'\' WHERE ident=\''.$db->escape($old_username).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 	

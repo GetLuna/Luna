@@ -150,7 +150,7 @@ if (isset($_POST['form_sent'])) {
 				$new_tid = $tid;
 
 				// Insert the new comment
-				$db->query('INSERT INTO '.$db->prefix.'comments (poster, poster_id, poster_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 
 				// To subscribe or not to subscribe, that ...
@@ -163,7 +163,7 @@ if (isset($_POST['form_sent'])) {
 			} else {
 				// It's a guest. Insert the new comment
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'comments (poster, poster_ip, poster_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 			}
 
@@ -183,10 +183,10 @@ if (isset($_POST['form_sent'])) {
 			if ($luna_config['o_thread_subscriptions'] == '1') {
 				// Get the comment time for the previous post in this thread
 				$result = $db->query('SELECT posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-				$previous_post_time = $db->result($result);
+				$previous_comment_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_commenting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.thread_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_commenting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_comment_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.thread_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
 					require_once LUNA_ROOT.'include/email.php';
 
@@ -290,7 +290,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$user_id_commenter = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_comment, last_commenter, last_commenter_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, posted, last_comment, last_commenter, last_commenter_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {
@@ -299,11 +299,11 @@ You can unsubscribe by going to <unsubscribe_url>
 					$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
 				// Create the comment ("thread post")
-				$db->query('INSERT INTO '.$db->prefix.'comments (poster, poster_id, poster_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			} else {
 				// Create the comment ("thread post")
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'comments (poster, poster_ip, poster_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
 
@@ -466,11 +466,11 @@ if ($tid) {
 		if ($qid < 1)
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$result = $db->query('SELECT poster, message FROM '.$db->prefix.'comments WHERE id='.$qid.' AND thread_id='.$tid) or error('Unable to fetch quote info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT commenter, message FROM '.$db->prefix.'comments WHERE id='.$qid.' AND thread_id='.$tid) or error('Unable to fetch quote info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		list($q_poster, $q_message) = $db->fetch_row($result);
+		list($q_commenter, $q_message) = $db->fetch_row($result);
 
 		// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
 		if (strpos($q_message, '[code]') !== false && strpos($q_message, '[/code]') !== false) {
@@ -503,23 +503,23 @@ if ($tid) {
 		$q_message = luna_htmlspecialchars($q_message);
 
 		// If username contains a square bracket, we add "" or '' around it (so we know when it starts and ends)
-		if (strpos($q_poster, '[') !== false || strpos($q_poster, ']') !== false) {
-			if (strpos($q_poster, '\'') !== false)
-				$q_poster = '"'.$q_poster.'"';
+		if (strpos($q_commenter, '[') !== false || strpos($q_commenter, ']') !== false) {
+			if (strpos($q_commenter, '\'') !== false)
+				$q_commenter = '"'.$q_commenter.'"';
 			else
-				$q_poster = '\''.$q_poster.'\'';
+				$q_commenter = '\''.$q_commenter.'\'';
 		} else {
-			// Get the characters at the start and end of $q_poster
-			$ends = substr($q_poster, 0, 1).substr($q_poster, -1, 1);
+			// Get the characters at the start and end of $q_commenter
+			$ends = substr($q_commenter, 0, 1).substr($q_commenter, -1, 1);
 
 			// Deal with quoting "Username" or 'Username' (becomes '"Username"' or "'Username'")
 			if ($ends == '\'\'')
-				$q_poster = '"'.$q_poster.'"';
+				$q_commenter = '"'.$q_commenter.'"';
 			elseif ($ends == '""')
-				$q_poster = '\''.$q_poster.'\'';
+				$q_commenter = '\''.$q_commenter.'\'';
 		}
 
-		$quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
+		$quote = '[quote='.$q_commenter.']'.$q_message.'[/quote]'."\n";
 	}
 }
 // If a forum ID was specified in the url (new thread)

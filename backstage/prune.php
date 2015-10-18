@@ -163,7 +163,7 @@ if (isset($_POST['userprune'])) {
 	
 	if (!empty($user_ids)) {
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark comments as guest comments', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to mark comments as guest comments', __FILE__, __LINE__, $db->error());
 	}
 	
 	// Regenerate the users info cache

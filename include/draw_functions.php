@@ -230,13 +230,13 @@ function draw_threads_list() {
 			if (!$luna_user['is_admmod'])
 				$sql_addition = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, solved AS answer, moved_to, soft FROM '.$db->prefix.'threads WHERE '.$sql_addition.'id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
+			$sql = 'SELECT id, commenter, subject, posted, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, solved AS answer, moved_to, soft FROM '.$db->prefix.'threads WHERE '.$sql_addition.'id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a commented label
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_addition = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -280,7 +280,7 @@ function draw_threads_list() {
 			}
 
 			$url = 'thread.php?id='.$thread_id;
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
@@ -493,13 +493,13 @@ function draw_index_threads_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE '.$sql_soft.'id IN('.implode(',', $thread_ids).') ORDER BY last_comment DESC';
+			$sql = 'SELECT id, commenter, subject, posted, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE '.$sql_soft.'id IN('.implode(',', $thread_ids).') ORDER BY last_comment DESC';
 
 		} else {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.last_comment DESC';
+			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.posted, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.last_comment DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -568,7 +568,7 @@ function draw_index_threads_list() {
 			}
 
 			$url = 'thread.php?id='.$thread_id;
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
@@ -613,8 +613,8 @@ function draw_index_threads_list() {
 function draw_comment_list() {
 	global $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
 
-	// Retrieve the comments (and their respective poster/online status)
-	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	// Retrieve the comments (and their respective commenter/online status)
+	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.commenter AS username, p.commenter_id, p.commenter_ip, p.commenter_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_comment = $db->fetch_assoc($result)) {
 		$comment_count++;
 		$user_avatar = '';
@@ -625,9 +625,9 @@ function draw_comment_list() {
 		$signature = '';
 	
 		// If the commenter is a registered user
-		if ($cur_comment['poster_id'] > 1) {
+		if ($cur_comment['commenter_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
-				$username = '<a href="profile.php?id='.$cur_comment['poster_id'].'">'.luna_htmlspecialchars($cur_comment['username']).'</a>';
+				$username = '<a href="profile.php?id='.$cur_comment['commenter_id'].'">'.luna_htmlspecialchars($cur_comment['username']).'</a>';
 			else
 				$username = luna_htmlspecialchars($cur_comment['username']);
 	
@@ -637,7 +637,7 @@ function draw_comment_list() {
 				$user_title = censor_words($user_title);
 	
 			// Format the online indicator, those are ment as CSS classes
-			$is_online = ($cur_comment['is_online'] == $cur_comment['poster_id']) ? 'is-online' : 'is-offline';
+			$is_online = ($cur_comment['is_online'] == $cur_comment['commenter_id']) ? 'is-online' : 'is-offline';
 	
 			// We only show location, register date, post count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
@@ -655,7 +655,7 @@ function draw_comment_list() {
 				if ((($cur_comment['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_comment['email']).'">'.__('Email', 'luna').'</a>';
 				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_comment['poster_id'].'">'.__('Email', 'luna').'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_comment['commenter_id'].'">'.__('Email', 'luna').'</a>';
 	
 				if ($cur_comment['url'] != '') {
 					if ($luna_config['o_censoring'] == '1')
@@ -666,7 +666,7 @@ function draw_comment_list() {
 	
 	
 				if ($luna_user['is_admmod']) {
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['poster_ip']).'">'.__('IP log', 'luna').'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['commenter_ip']).'">'.__('IP log', 'luna').'</a>';
 				}
 			}
 	
@@ -682,18 +682,18 @@ function draw_comment_list() {
 			$user_title = get_title($cur_comment);
 	
 			if ($luna_user['is_admmod'])
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['poster_ip']).'">'.__('IP log', 'luna').'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['commenter_ip']).'">'.__('IP log', 'luna').'</a></span></dd>';
 	
-			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_comment['poster_email']).'">'.__('Email', 'luna').'</a></span>';
+			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['commenter_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_comment['commenter_email']).'">'.__('Email', 'luna').'</a></span>';
 		}
 	
 		// Get us the avatar
 		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
-			if (isset($user_avatar_cache[$cur_comment['poster_id']]))
-				$user_avatar = $user_avatar_cache[$cur_comment['poster_id']];
+			if (isset($user_avatar_cache[$cur_comment['commenter_id']]))
+				$user_avatar = $user_avatar_cache[$cur_comment['commenter_id']];
 			else
-				$user_avatar = draw_user_avatar($cur_comment['poster_id'], false, 'media-object media-avatar');
+				$user_avatar = draw_user_avatar($cur_comment['commenter_id'], false, 'media-object media-avatar');
 		}
 	
 		// Generation post action array (quote, edit, delete etc.)
@@ -707,7 +707,7 @@ function draw_comment_list() {
 			}
 	
 			if ($cur_thread['closed'] == 0) {
-				if ($cur_comment['poster_id'] == $luna_user['id']) {
+				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
 						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1)) {
@@ -738,7 +738,7 @@ function draw_comment_list() {
 			else
 				$comment_actions[] = '<a disabled="disabled" href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
 
-			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['poster_id'], $admin_ids)) {
+			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) {
 				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 				if ($cur_comment['soft'] == 0)
 					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
@@ -761,11 +761,11 @@ function draw_comment_list() {
 	
 		// Do signature parsing/caching
 		if ($luna_config['o_signatures'] == '1' && $cur_comment['signature'] != '' && $luna_user['show_sig'] != '0') {
-			if (isset($signature_cache[$cur_comment['poster_id']]))
-				$signature = $signature_cache[$cur_comment['poster_id']];
+			if (isset($signature_cache[$cur_comment['commenter_id']]))
+				$signature = $signature_cache[$cur_comment['commenter_id']];
 			else {
 				$signature = parse_signature($cur_comment['signature']);
-				$signature_cache[$cur_comment['poster_id']] = $signature;
+				$signature_cache[$cur_comment['commenter_id']] = $signature;
 			}
 		}
 	
@@ -851,8 +851,8 @@ function draw_response_list() {
 			if ($luna_user['is_admmod'])
 				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_id'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
 	
-			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['poster_email'].'">'.__('Email', 'luna').'</a></span>';
+			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['commenter_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['commenter_email'].'">'.__('Email', 'luna').'</a></span>';
 		}
 		
 		$username_quickreply = luna_htmlspecialchars($cur_comment['username']);
@@ -946,7 +946,7 @@ function draw_soft_reset_form($id) {
 function draw_delete_title() {
 	global $is_thread_comment, $cur_comment;
 
-	printf($is_thread_comment ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['poster']).'</strong>', format_time($cur_comment['posted']));
+	printf($is_thread_comment ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['commenter']).'</strong>', format_time($cur_comment['posted']));
 }
 
 function draw_rules_form() {
@@ -989,7 +989,7 @@ function draw_search_results() {
 			$icon_type = 'icon';
 			
 			$subject = '<a href="thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a>';
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['commenter']).'</span>';
 			
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';

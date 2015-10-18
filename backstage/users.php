@@ -19,7 +19,7 @@ if (isset($_GET['ip_stats'])) {
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Fetch ip count
-	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'comments WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT commenter_ip, MAX(posted) AS last_used FROM '.$db->prefix.'comments WHERE commenter_id='.$ip_stats.' GROUP BY commenter_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_ips = $db->num_rows($result);
 
 	// Determine the ip offset (based on $_GET['p'])
@@ -56,16 +56,16 @@ if (isset($_GET['ip_stats'])) {
 		<tbody>
 <?php
 
-	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'comments WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT commenter_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'comments WHERE commenter_id='.$ip_stats.' GROUP BY commenter_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) {
 		while ($cur_ip = $db->fetch_assoc($result)) {
 
 ?>
 			<tr>
-				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['commenter_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?></a></td>
 				<td><?php echo format_time($cur_ip['last_used']) ?></td>
 				<td><?php echo $cur_ip['used_times'] ?></td>
-				<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php _e('Find more users for this ip', 'luna') ?></a></td>
+				<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?>"><?php _e('Find more users for this ip', 'luna') ?></a></td>
 			</tr>
 <?php
 
@@ -90,7 +90,7 @@ if (isset($_GET['ip_stats'])) {
 		message_backstage(__('The supplied IP address is not correctly formatted.', 'luna'));
 
 	// Fetch user count
-	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'comments WHERE poster_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT DISTINCT commenter_id, commenter FROM '.$db->prefix.'comments WHERE commenter_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_users = $db->num_rows($result);
 
 	// Determine the user offset (based on $_GET['p'])
@@ -129,34 +129,34 @@ if (isset($_GET['ip_stats'])) {
 		<tbody>
 <?php
 
-	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'comments WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT DISTINCT commenter_id, commenter FROM '.$db->prefix.'comments WHERE commenter_ip=\''.$db->escape($ip).'\' ORDER BY commenter ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_comments = $db->num_rows($result);
 
 	if ($num_comments) {
-		$posters = $poster_ids = array();
+		$commenters = $commenter_ids = array();
 		while ($cur_commenter = $db->fetch_assoc($result)) {
-			$posters[] = $cur_commenter;
-			$poster_ids[] = $cur_commenter['poster_id'];
+			$commenters[] = $cur_commenter;
+			$commenter_ids[] = $cur_commenter['commenter_id'];
 		}
 
-		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $poster_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $commenter_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		$user_data = array();
 		while ($cur_user = $db->fetch_assoc($result))
 			$user_data[$cur_user['id']] = $cur_user;
 
 		// Loop through users and print out some info
-		foreach ($posters as $cur_commenter) {
-			if (isset($user_data[$cur_commenter['poster_id']])) {
-				$user_title = get_title($user_data[$cur_commenter['poster_id']]);
+		foreach ($commenters as $cur_commenter) {
+			if (isset($user_data[$cur_commenter['commenter_id']])) {
+				$user_title = get_title($user_data[$cur_commenter['commenter_id']]);
 
-			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.__('Comments', 'luna').'</a>';
 ?>
 			<tr>
-				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['username']).'</a>' ?></td>
-				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['email']) ?></a></td>
+				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['username']).'</a>' ?></td>
+				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?></a></td>
 				<td><?php echo $user_title ?></td>
-				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['poster_id']]['num_comments']) ?></td>
-				<td><?php echo ($user_data[$cur_commenter['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['admin_note']) : '&#160;' ?></td>
+				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['commenter_id']]['num_comments']) ?></td>
+				<td><?php echo ($user_data[$cur_commenter['commenter_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['admin_note']) : '&#160;' ?></td>
 				<td><?php echo $actions ?></td>
 			</tr>
 <?php
@@ -165,7 +165,7 @@ if (isset($_GET['ip_stats'])) {
 
 ?>
 			<tr>
-				<td><?php echo luna_htmlspecialchars($cur_commenter['poster']) ?></td>
+				<td><?php echo luna_htmlspecialchars($cur_commenter['commenter']) ?></td>
 				<td>&#160;</td>
 				<td><?php _e('Guest', 'luna') ?></td>
 				<td>&#160;</td>
@@ -373,7 +373,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			@set_time_limit(0);
 
 			// Find all comments made by this user
-			$result = $db->query('SELECT p.id, p.poster_id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.commenter_id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "thread post" or not
@@ -382,14 +382,14 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 					if ($db->result($result2) == $cur_comment['id'])
 						delete_thread($cur_comment['thread_id']);
 					else
-						delete_post($cur_comment['id'], $cur_comment['thread_id'], $cur_comment['poster_id']);
+						delete_post($cur_comment['id'], $cur_comment['thread_id'], $cur_comment['commenter_id']);
 
 					update_forum($cur_comment['forum_id']);
 				}
 			}
 		} else
 			// Set all their comments to guest
-			$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
 
 		// Delete the users
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
@@ -498,9 +498,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 		// Overwrite the registration IP with one from the last comment (if it exists)
 		if ($ban_the_ip != 0) {
-			$result = $db->query('SELECT p.poster_id, p.poster_ip FROM '.$db->prefix.'comments AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'comments WHERE poster_id IN ('.implode(',', $user_ids).') GROUP BY poster_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.commenter_id, p.commenter_ip FROM '.$db->prefix.'comments AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'comments WHERE commenter_id IN ('.implode(',', $user_ids).') GROUP BY commenter_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			while ($cur_address = $db->fetch_assoc($result))
-				$user_info[$cur_address['poster_id']]['ip'] = $cur_address['poster_ip'];
+				$user_info[$cur_address['commenter_id']]['ip'] = $cur_address['commenter_ip'];
 		}
 
 		// And insert the bans!

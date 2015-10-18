@@ -625,6 +625,11 @@ switch ($stage) {
 		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
+		$db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
+		$db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
+		$db->rename_field('comments', 'poster_ip', 'commenter_ip', 'VARCHAR(39)');
+		$db->rename_field('comments', 'poster_email', 'commenter_email', 'VARCHAR(80)');
+		$db->rename_field('threads', 'poster', 'commenter', 'VARCHAR(200)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

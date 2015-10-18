@@ -295,7 +295,7 @@ if ($action == 'feed') {
 		);
 
 		// Fetch $show comments
-		$result = $db->query('SELECT p.id, p.poster, p.message, p.hide_smilies, p.posted, p.poster_id, u.email_setting, u.email, p.poster_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id WHERE p.thread_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT p.id, p.commenter, p.message, p.hide_smilies, p.posted, p.commenter_id, u.email_setting, u.email, p.commenter_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id WHERE p.thread_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		while ($cur_comment = $db->fetch_assoc($result)) {
 			$cur_comment['message'] = parse_message($cur_comment['message']);
 
@@ -305,18 +305,18 @@ if ($action == 'feed') {
 				'link'			=>	get_base_url(true).'/thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id'],
 				'description'		=>	$cur_comment['message'],
 				'author'		=>	array(
-					'name'	=> $cur_comment['poster'],
+					'name'	=> $cur_comment['commenter'],
 				),
 				'pubdate'		=>	$cur_comment['posted']
 			);
 
-			if ($cur_comment['poster_id'] > 1) {
+			if ($cur_comment['commenter_id'] > 1) {
 				if ($cur_comment['email_setting'] == '0' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_comment['email'];
 
-				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_comment['poster_id'];
-			} elseif ($cur_comment['poster_email'] != '' && !$luna_user['is_guest'])
-				$item['author']['email'] = $cur_comment['poster_email'];
+				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_comment['commenter_id'];
+			} elseif ($cur_comment['commenter_email'] != '' && !$luna_user['is_guest'])
+				$item['author']['email'] = $cur_comment['commenter_email'];
 
 			$feed['items'][] = $item;
 		}
@@ -373,7 +373,7 @@ if ($action == 'feed') {
 			);
 
 			// Fetch $show threads
-			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id, t.commenter, t.subject, t.posted, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.commenter_id, p.commenter_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_thread['subject'] = censor_words($cur_thread['subject']);
@@ -386,18 +386,18 @@ if ($action == 'feed') {
 					'link'			=>	'/thread.php?id='.$cur_thread['id'].($order_posted ? '' : '&action=new'),
 					'description'	=>	$cur_thread['message'],
 					'author'		=>	array(
-						'name'	=> $order_posted ? $cur_thread['poster'] : $cur_thread['last_commenter']
+						'name'	=> $order_posted ? $cur_thread['commenter'] : $cur_thread['last_commenter']
 					),
 					'pubdate'		=>	$order_posted ? $cur_thread['posted'] : $cur_thread['last_comment']
 				);
 
-				if ($cur_thread['poster_id'] > 1) {
+				if ($cur_thread['commenter_id'] > 1) {
 					if ($cur_thread['email_setting'] == '0' && !$luna_user['is_guest'])
 						$item['author']['email'] = $cur_thread['email'];
 
-					$item['author']['uri'] = '/profile.php?id='.$cur_thread['poster_id'];
-				} elseif ($cur_thread['poster_email'] != '' && !$luna_user['is_guest'])
-					$item['author']['email'] = $cur_thread['poster_email'];
+					$item['author']['uri'] = '/profile.php?id='.$cur_thread['commenter_id'];
+				} elseif ($cur_thread['commenter_email'] != '' && !$luna_user['is_guest'])
+					$item['author']['email'] = $cur_thread['commenter_email'];
 
 				$feed['items'][] = $item;
 			}

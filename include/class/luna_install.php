@@ -718,21 +718,21 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'poster'		=> array(
+				'commenter'		=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				'poster_id'		=> array(
+				'commenter_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'poster_ip'		=> array(
+				'commenter_ip'		=> array(
 					'datatype'		=> 'VARCHAR(39)',
 					'allow_null'	=> true
 				),
-				'poster_email'	=> array(
+				'commenter_email'	=> array(
 					'datatype'		=> 'VARCHAR(80)',
 					'allow_null'	=> true
 				),
@@ -777,7 +777,7 @@ class Installer {
 			'PRIMARY KEY'	=> array('id'),
 			'INDEXES'		=> array(
 				'thread_id_idx'	=> array('thread_id'),
-				'multi_idx'		=> array('poster_id', 'thread_id')
+				'multi_idx'		=> array('commenter_id', 'thread_id')
 			)
 		);
 	
@@ -987,7 +987,7 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'poster'		=> array(
+				'commenter'		=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> false,
 					'default'		=> '\'\''

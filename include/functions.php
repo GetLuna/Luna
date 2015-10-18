@@ -776,19 +776,19 @@ function delete_thread($thread_id, $type) {
 //
 // Delete a single post
 //
-function delete_post($comment_id, $thread_id, $poster_id) {
+function delete_post($comment_id, $thread_id, $commenter_id) {
 	global $db;
 
-	$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, commenter, posted FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	list($last_id, ,) = $db->fetch_row($result);
-	list($second_last_id, $second_poster, $second_posted) = $db->fetch_row($result);
+	list($second_last_id, $second_commenter, $second_posted) = $db->fetch_row($result);
 
 	// Delete the comment
 	$db->query('DELETE FROM '.$db->prefix.'comments WHERE id='.$comment_id) or error('Unable to delete post', __FILE__, __LINE__, $db->error());
 
 	// Decrement user post count if the user is a registered user
-	if ($poster_id > 1)
-		$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments-1 WHERE id='.$poster_id.' AND num_comments>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
+	if ($commenter_id > 1)
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments-1 WHERE id='.$commenter_id.' AND num_comments>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 
 	strip_search_index($comment_id);
 
@@ -800,10 +800,10 @@ function delete_post($comment_id, $thread_id, $poster_id) {
 	if ($last_id == $comment_id) {
 		// If there is a $second_last_id there is more than 1 reply to the thread
 		if (!empty($second_last_id))
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$second_posted.', last_comment_id='.$second_last_id.', last_commenter=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$second_posted.', last_comment_id='.$second_last_id.', last_commenter=\''.$db->escape($second_commenter).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 		else
-			// We deleted the only reply, so now last_comment/last_comment_id/last_commenter is posted/id/poster from the thread itself
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment=posted, last_comment_id=id, last_commenter=poster, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			// We deleted the only reply, so now last_comment/last_comment_id/last_commenter is posted/id/commenter from the thread itself
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment=posted, last_comment_id=id, last_commenter=commenter, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 	} else
 		// Otherwise we just decrement the reply counter
 		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
@@ -2269,13 +2269,13 @@ function decrease_comment_counts($comment_ids) {
 
 	// Count the comment counts for each user to be subtracted
 	$user_comments = array();
-	$result = $db->query('SELECT poster_id FROM '.$db->prefix.'comments WHERE id IN('.$comment_ids.') AND poster_id>1') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT commenter_id FROM '.$db->prefix.'comments WHERE id IN('.$comment_ids.') AND commenter_id>1') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_assoc($result))
 	{
-		if (!isset($user_comments[$row['poster_id']]))
-			$user_comments[$row['poster_id']] = 1;
+		if (!isset($user_comments[$row['commenter_id']]))
+			$user_comments[$row['commenter_id']] = 1;
 		else
-			++$user_comments[$row['poster_id']];
+			++$user_comments[$row['commenter_id']];
 	}
 
 	// Decrease the comment counts
