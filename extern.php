@@ -49,9 +49,9 @@
 	show:   Any integer value between 1 and 50. The default is 15.
 
 	order:  last_comment - show threads ordered by when they were last
-						posted in, giving information about the reply.
-			posted - show threads ordered by when they were first
-					 posted, giving information about the original post.
+						commented in, giving information about the reply.
+			commented - show threads ordered by when they were first
+					 commented, giving information about the original post.
 
 -----------------------------------------------------------------------------*/
 
@@ -85,7 +85,7 @@ switch ($action) {
 
 	case 'new':
 		$action = 'feed';
-		$_GET['order'] = 'posted';
+		$_GET['order'] = 'commented';
 		break;
 }
 
@@ -226,7 +226,7 @@ function output_xml($feed) {
 			echo "\t\t\t".'<uri>'.luna_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
 
 		echo "\t\t".'</author>'."\n";
-		echo "\t\t".'<posted>'.gmdate('r', $item['pubdate']).'</posted>'."\n";
+		echo "\t\t".'<commented>'.gmdate('r', $item['pubdate']).'</commented>'."\n";
 
 		echo "\t".'</'.$forum_tag.'>'."\n";
 	}
@@ -295,7 +295,7 @@ if ($action == 'feed') {
 		);
 
 		// Fetch $show comments
-		$result = $db->query('SELECT p.id, p.commenter, p.message, p.hide_smilies, p.posted, p.commenter_id, u.email_setting, u.email, p.commenter_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id WHERE p.thread_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT p.id, p.commenter, p.message, p.hide_smilies, p.commented, p.commenter_id, u.email_setting, u.email, p.commenter_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id WHERE p.thread_id='.$tid.' ORDER BY p.commented DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		while ($cur_comment = $db->fetch_assoc($result)) {
 			$cur_comment['message'] = parse_message($cur_comment['message']);
 
@@ -307,7 +307,7 @@ if ($action == 'feed') {
 				'author'		=>	array(
 					'name'	=> $cur_comment['commenter'],
 				),
-				'pubdate'		=>	$cur_comment['posted']
+				'pubdate'		=>	$cur_comment['commented']
 			);
 
 			if ($cur_comment['commenter_id'] > 1) {
@@ -324,7 +324,7 @@ if ($action == 'feed') {
 		$output_func = 'output_'.$type;
 		$output_func($feed);
 	} else {
-		$order_posted = isset($_GET['order']) && strtolower($_GET['order']) == 'posted';
+		$order_commented = isset($_GET['order']) && strtolower($_GET['order']) == 'commented';
 		$forum_name = '';
 		$forum_sql = '';
 
@@ -355,7 +355,7 @@ if ($action == 'feed') {
 
 		// Only attempt to cache if caching is enabled and we have all or a single forum
 		if ($luna_config['o_feed_ttl'] > 0 && ($forum_sql == '' || ($forum_name != '' && !isset($_GET['nfid']))))
-			$cache_id = 'feed'.sha1($luna_user['g_id'].'|'.__('en', 'luna').'|'.($order_posted ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
+			$cache_id = 'feed'.sha1($luna_user['g_id'].'|'.__('en', 'luna').'|'.($order_commented ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
 
 		// Load cached feed
 		if (isset($cache_id) && file_exists(LUNA_CACHE_DIR.'cache_'.$cache_id.'.php'))
@@ -373,7 +373,7 @@ if ($action == 'feed') {
 			);
 
 			// Fetch $show threads
-			$result = $db->query('SELECT t.id, t.commenter, t.subject, t.posted, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.commenter_id, p.commenter_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id, t.commenter, t.subject, t.commented, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.commenter_id, p.commenter_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_commented ? 't.first_post_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_commented ? 't.commented' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_thread['subject'] = censor_words($cur_thread['subject']);
@@ -383,12 +383,12 @@ if ($action == 'feed') {
 				$item = array(
 					'id'			=>	$cur_thread['id'],
 					'title'			=>	$cur_thread['subject'],
-					'link'			=>	'/thread.php?id='.$cur_thread['id'].($order_posted ? '' : '&action=new'),
+					'link'			=>	'/thread.php?id='.$cur_thread['id'].($order_commented ? '' : '&action=new'),
 					'description'	=>	$cur_thread['message'],
 					'author'		=>	array(
-						'name'	=> $order_posted ? $cur_thread['commenter'] : $cur_thread['last_commenter']
+						'name'	=> $order_commented ? $cur_thread['commenter'] : $cur_thread['last_commenter']
 					),
-					'pubdate'		=>	$order_posted ? $cur_thread['posted'] : $cur_thread['last_comment']
+					'pubdate'		=>	$order_commented ? $cur_thread['commented'] : $cur_thread['last_comment']
 				);
 
 				if ($cur_thread['commenter_id'] > 1) {

@@ -20,7 +20,7 @@ if ($id < 1)
 $action = isset($_GET['action']) ? $_GET['action'] : 0;
 
 // Fetch some info about the comment, the thread and the forum
-$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, fp.comment, fp.create_threads, t.id AS tid, t.subject, t.first_post_id, t.closed, p.posted, p.commenter, p.commenter_id, p.message, p.hide_smilies FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, fp.comment, fp.create_threads, t.id AS tid, t.subject, t.first_post_id, t.closed, p.commented, p.commenter, p.commenter_id, p.message, p.hide_smilies FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 

@@ -745,7 +745,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'posted'		=> array(
+				'commented'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -997,7 +997,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				'posted'		=> array(
+				'commented'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1407,7 +1407,7 @@ class Installer {
 					'datatype'			=> 'VARCHAR(39)',
 					'allow_null'		=> true
 				),
-				'posted'	=> array(
+				'commented'	=> array(
 					'datatype'			=> 'INT(10)',
 					'allow_null'		=> false,
 				),

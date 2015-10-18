@@ -997,7 +997,7 @@ a.active.list-group-item:focus {
 	font-size: 80%;
 }
 
-.postedit {
+.comment-edited {
 	color: #bbb;
 	font-size: 11px;
 }
@@ -1335,7 +1335,7 @@ textarea {
 	visibility: hidden;
 }
 
-.posted-item .middot {
+.commented-item .middot {
 	visibility: visible;
 }
 

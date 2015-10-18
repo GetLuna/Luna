@@ -114,14 +114,14 @@ if (isset($_GET['tid'])) {
 			strip_search_index($comments);
 
 			// Get last_comment, last_comment_id, and last_commenter for the thread after deletion
-			$result = $db->query('SELECT id, commenter, posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment = $db->fetch_assoc($result);
 
 			// How many comments did we just delete?
 			$num_comments_deleted = substr_count($comments, ',') + 1;
 
 			// Update the thread
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment['posted'].', last_comment_id='.$last_comment['id'].', last_commenter=\''.$db->escape($last_comment['commenter']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment['commented'].', last_comment_id='.$last_comment['id'].', last_commenter=\''.$db->escape($last_comment['commenter']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
 
@@ -188,11 +188,11 @@ if (isset($_GET['tid'])) {
 				message_backstage(__('Subjects cannot be longer than 70 characters.', 'luna'));
 
 			// Get data from the new first post
-			$result = $db->query('SELECT p.id, p.commenter, p.posted FROM '.$db->prefix.'comments AS p WHERE id IN('.$comments.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.commenter, p.commented FROM '.$db->prefix.'comments AS p WHERE id IN('.$comments.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
 			$first_post_data = $db->fetch_assoc($result);
 
 			// Create the new thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, posted, first_post_id, forum_id) VALUES (\''.$db->escape($first_post_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['posted'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_post_id, forum_id) VALUES (\''.$db->escape($first_post_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['commented'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
@@ -202,14 +202,14 @@ if (isset($_GET['tid'])) {
 			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
 
 			// Get last_comment, last_comment_id, and last_commenter from the thread and update it
-			$result = $db->query('SELECT id, commenter, posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['posted'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['commenter']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['commented'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['commenter']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			// Get last_comment, last_comment_id, and last_commenter from the new thread and update it
-			$result = $db->query('SELECT id, commenter, posted FROM '.$db->prefix.'comments WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['posted'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['commenter']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['commented'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['commenter']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
 			update_forum($move_to_forum);
@@ -328,7 +328,7 @@ if (isset($_GET['tid'])) {
 		$comment_ids[] = $cur_comment_id;
 
 	// Retrieve the comments (and their respective commenter)
-	$result = $db->query('SELECT u.title, u.num_comments, g.g_id, g.g_user_title, p.id, p.commenter, p.commenter_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.title, u.num_comments, g.g_id, g.g_user_title, p.id, p.commenter, p.commenter_id, p.message, p.hide_smilies, p.commented, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 	while ($cur_comment = $db->fetch_assoc($result)) {
 		$comment_count++;
@@ -363,11 +363,11 @@ if (isset($_GET['tid'])) {
 				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_post_id']) echo ' firstpost' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['posted']) ?></a></span></h3>
+							<h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>
 						</div>
 						<div class="panel-body">
 							<?php echo $cur_comment['message']."\n" ?>
-							<?php if ($cur_comment['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'."\n"; ?>
+							<?php if ($cur_comment['edited'] != '') echo "\t\t\t\t\t\t".'<p class="comment-edited"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'."\n"; ?>
 						</div>
 						<div class="panel-footer">
 							<?php echo ($cur_comment['id'] != $cur_thread['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="comments['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
@@ -436,11 +436,11 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 		if (isset($_POST['with_redirect'])) {
 			foreach ($threads as $cur_thread) {
 				// Fetch info for the redirect thread
-				$result = $db->query('SELECT commenter, subject, posted, last_comment FROM '.$db->prefix.'threads WHERE id='.$cur_thread) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT commenter, subject, commented, last_comment FROM '.$db->prefix.'threads WHERE id='.$cur_thread) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 				$moved_to = $db->fetch_assoc($result);
 
 				// Create the redirect thread
-				$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, posted, last_comment, moved_to, forum_id) VALUES(\''.$db->escape($moved_to['commenter']).'\', \''.$db->escape($moved_to['subject']).'\', '.$moved_to['posted'].', '.$moved_to['last_comment'].', '.$cur_thread.', '.$fid.')') or error('Unable to create redirect thread', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, last_comment, moved_to, forum_id) VALUES(\''.$db->escape($moved_to['commenter']).'\', \''.$db->escape($moved_to['subject']).'\', '.$moved_to['commented'].', '.$moved_to['last_comment'].', '.$cur_thread.', '.$fid.')') or error('Unable to create redirect thread', __FILE__, __LINE__, $db->error());
 			}
 		}
 
@@ -577,7 +577,7 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 		$num_replies = $db->result($result, 0) - 1;
 
 		// Get last_comment, last_comment_id and last_commenter
-		$result = $db->query('SELECT posted, id, commenter FROM '.$db->prefix.'comments WHERE thread_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT commented, id, commenter FROM '.$db->prefix.'comments WHERE thread_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
 		list($last_comment, $last_comment_id, $last_commenter) = $db->fetch_row($result);
 
 		// Update thread
@@ -782,7 +782,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 			$sort_by = 'last_comment DESC';
 			break;
 		case 1:
-			$sort_by = 'posted DESC';
+			$sort_by = 'commented DESC';
 			break;
 		case 2:
 			$sort_by = 'subject ASC';
@@ -829,7 +829,7 @@ if ($db->num_rows($result)) {
 		$thread_ids[] = $cur_thread_id;
 
 	// Select threads
-	$result = $db->query('SELECT id, commenter, subject, posted, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch thread list for forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch thread list for forum', __FILE__, __LINE__, $db->error());
 
 	$button_status = '';
 	$thread_count = 0;

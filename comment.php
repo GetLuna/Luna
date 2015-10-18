@@ -54,8 +54,8 @@ if (isset($_POST['form_sent'])) {
 		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_comment']));
 
 	// Make sure they got here from the site
-	if (($fid && (!isset($_POST['_luna_nonce_create_thread']) || !LunaNonces::verify($_POST['_luna_nonce_create_thread'],'post-reply'))) ||
-	   (!$fid && (!isset($_POST['_luna_nonce_post_reply']) || !LunaNonces::verify($_POST['_luna_nonce_post_reply'],'post-reply'))))
+	if (($fid && (!isset($_POST['_luna_nonce_create_thread']) || !LunaNonces::verify($_POST['_luna_nonce_create_thread'],'comment'))) ||
+	   (!$fid && (!isset($_POST['_luna_nonce_post_reply']) || !LunaNonces::verify($_POST['_luna_nonce_post_reply'],'comment'))))
 		message(__('Are you sure you want to do this?', 'luna'));
 
 	// If it's a new thread
@@ -150,7 +150,7 @@ if (isset($_POST['form_sent'])) {
 				$new_tid = $tid;
 
 				// Insert the new comment
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 
 				// To subscribe or not to subscribe, that ...
@@ -163,7 +163,7 @@ if (isset($_POST['form_sent'])) {
 			} else {
 				// It's a guest. Insert the new comment
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 			}
 
@@ -182,7 +182,7 @@ if (isset($_POST['form_sent'])) {
 			// Should we send out notifications?
 			if ($luna_config['o_thread_subscriptions'] == '1') {
 				// Get the comment time for the previous post in this thread
-				$result = $db->query('SELECT posted FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 				$previous_comment_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)
@@ -290,7 +290,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$user_id_commenter = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, posted, last_comment, last_commenter, last_commenter_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, last_comment, last_commenter, last_commenter_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {
@@ -299,11 +299,11 @@ You can unsubscribe by going to <unsubscribe_url>
 					$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
 				// Create the comment ("thread post")
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			} else {
 				// Create the comment ("thread post")
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, posted, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
 

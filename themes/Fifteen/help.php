@@ -98,12 +98,12 @@ if ($db->num_rows($result) > 0)
 				<p><a id="list"></a><?php _e('To create a list you can use the list tag. You can create 2 types of lists using the list tag.', 'luna') ?></p>
 				<p><code>[list][*]<?php _e('Example list item 1.', 'luna') ?>[/*][*]<?php _e('Example list item 2.', 'luna') ?>[/*][*]<?php _e('Example list item 3.', 'luna') ?>[/*][/list]</code>
 				<br /><span><?php _e('produces a bulleted list.', 'luna') ?></span></p>
-				<div class="postmsg">
+				<div>
 					<ul><li><p><?php _e('Example list item 1.', 'luna') ?></p></li><li><p><?php _e('Example list item 2.', 'luna') ?></p></li><li><p><?php _e('Example list item 3.', 'luna') ?></p></li></ul>
 				</div>
 				<p><code>[list=1][*]<?php _e('Example list item 1.', 'luna') ?>[/*][*]<?php _e('Example list item 2.', 'luna') ?>[/*][*]<?php _e('Example list item 3.', 'luna') ?>[/*][/list]</code>
 				<br /><span><?php _e('produces a numbered list.', 'luna') ?></span></p>
-				<div class="postmsg">
+				<div>
 					<ol class="decimal"><li><p><?php _e('Example list item 1.', 'luna') ?></p></li><li><p><?php _e('Example list item 2.', 'luna') ?></p></li><li><p><?php _e('Example list item 3.', 'luna') ?></p></li></ol>
 				</div>
 			</div>

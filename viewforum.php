@@ -38,7 +38,7 @@ switch ($cur_forum['sort_by']) {
 		$sort_by = 'last_comment DESC';
 		break;
 	case 1:
-		$sort_by = 'posted DESC';
+		$sort_by = 'commented DESC';
 		break;
 	case 2:
 		$sort_by = 'subject ASC';

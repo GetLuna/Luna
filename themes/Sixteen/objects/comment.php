@@ -18,11 +18,11 @@
 			<div class="panel panel-default panel-thread panel-border">
 				<div class="panel-heading">
 					<div class="comment-arrow hidden-sm hidden-xs"></div>
-					<h3 class="panel-title"><span class="comment-id">#<?php echo ($start_from + $comment_count) ?><span class="pull-right"><a class="posttime" href="thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['posted']) ?></a></span></span></h3>
+					<h3 class="panel-title"><span class="comment-id">#<?php echo ($start_from + $comment_count) ?><span class="pull-right"><a class="posttime" href="thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></span></h3>
 				</div>
 				<div class="panel-body">
 					<?php echo $cur_comment['message']."\n" ?>
-					<?php if ($cur_comment['edited'] != '') echo '<p class="postedit"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'; ?>
+					<?php if ($cur_comment['edited'] != '') echo '<p class="comment-edited"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'; ?>
 					<?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
 					<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="comment-signature">'.$signature.'</div>'."\n"; ?>
 					<?php if (!$luna_user['is_guest']) { ?><div class="pull-right comment-actions"><?php if (count($comment_actions)) echo implode(" &middot; ", $comment_actions) ?></div><?php } ?>

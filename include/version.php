@@ -8,7 +8,7 @@
 class Version {
 	// See http://getluna.org/docs/version.php for more info
 	const LUNA_VERSION = '1.3-dev';
-	const LUNA_CORE_VERSION = '1.3.5091';
+	const LUNA_CORE_VERSION = '1.3.5092';
 	const LUNA_CORE_REVISION = '130d1';
 
 	// The Luna Core code name
@@ -16,7 +16,7 @@ class Version {
 	const LUNA_CODE_NAME_SEM = 'Denim';
 
 	// The database version number, every change in the database requires this number to go one up
-	const LUNA_DB_VERSION = '90.58';
+	const LUNA_DB_VERSION = '90.61';
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const LUNA_PARSER_VERSION = '11.2.0';

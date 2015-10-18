@@ -22,14 +22,14 @@ if ($id < 1 && $pid < 1)
 
 // If a comment ID is specified we determine thread ID and page number so we can redirect to the correct message
 if ($pid) {
-	$result = $db->query('SELECT thread_id, posted FROM '.$db->prefix.'comments WHERE id='.$pid) or error('Unable to fetch thread ID', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT thread_id, commented FROM '.$db->prefix.'comments WHERE id='.$pid) or error('Unable to fetch thread ID', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	list($id, $posted) = $db->fetch_row($result);
+	list($id, $commented) = $db->fetch_row($result);
 
 	// Determine on which page the comment is located (depending on $forum_user['disp_comments'])
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND posted<'.$posted) or error('Unable to count previous comments', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND commented<'.$commented) or error('Unable to count previous comments', __FILE__, __LINE__, $db->error());
 	$num_comments = $db->result($result) + 1;
 
 	$_GET['p'] = ceil($num_comments / $luna_user['disp_comments']);
@@ -41,7 +41,7 @@ if ($pid) {
 			$tracked_threads = get_tracked_threads();
 			$last_viewed = isset($tracked_threads['threads'][$id]) ? $tracked_threads['threads'][$id] : $luna_user['last_visit'];
 
-			$result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND posted>'.$last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND commented>'.$last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
 			$first_new_post_id = $db->result($result);
 
 			if ($first_new_post_id) {

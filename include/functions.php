@@ -779,9 +779,9 @@ function delete_thread($thread_id, $type) {
 function delete_post($comment_id, $thread_id, $commenter_id) {
 	global $db;
 
-	$result = $db->query('SELECT id, commenter, posted FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	list($last_id, ,) = $db->fetch_row($result);
-	list($second_last_id, $second_commenter, $second_posted) = $db->fetch_row($result);
+	list($second_last_id, $second_commenter, $second_commented) = $db->fetch_row($result);
 
 	// Delete the comment
 	$db->query('DELETE FROM '.$db->prefix.'comments WHERE id='.$comment_id) or error('Unable to delete post', __FILE__, __LINE__, $db->error());
@@ -800,10 +800,10 @@ function delete_post($comment_id, $thread_id, $commenter_id) {
 	if ($last_id == $comment_id) {
 		// If there is a $second_last_id there is more than 1 reply to the thread
 		if (!empty($second_last_id))
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$second_posted.', last_comment_id='.$second_last_id.', last_commenter=\''.$db->escape($second_commenter).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$second_commented.', last_comment_id='.$second_last_id.', last_commenter=\''.$db->escape($second_commenter).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 		else
-			// We deleted the only reply, so now last_comment/last_comment_id/last_commenter is posted/id/commenter from the thread itself
-			$db->query('UPDATE '.$db->prefix.'threads SET last_comment=posted, last_comment_id=id, last_commenter=commenter, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			// We deleted the only reply, so now last_comment/last_comment_id/last_commenter is commented/id/commenter from the thread itself
+			$db->query('UPDATE '.$db->prefix.'threads SET last_comment=commented, last_comment_id=id, last_commenter=commenter, num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 	} else
 		// Otherwise we just decrement the reply counter
 		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());

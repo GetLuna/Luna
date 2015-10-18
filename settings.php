@@ -136,7 +136,7 @@ if (isset($_POST['update_group_membership'])) {
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "thread post" or not
-					$result2 = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+					$result2 = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY commented LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 					if ($db->result($result2) == $cur_comment['id'])
 						delete_thread($cur_comment['thread_id']);
