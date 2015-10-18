@@ -50,7 +50,7 @@ if (!defined('FORUM'))
 	</div>
 	<div class="col-sm-9">
 		<?php draw_comment_list(); ?>
-		<?php if ($quickpost): ?>
+		<?php if ($comment_field): ?>
 			<form method="post" action="comment.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 <?php
 			if ($luna_user['is_guest']) {

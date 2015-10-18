@@ -311,7 +311,7 @@ hr {
 	border: none;
 }
 
-.panel-border .panel-body, .panel-border .postfield, .panel-border .panel-footer, .panel-border .quickpostfield {
+.panel-border .panel-body, .panel-border .comment-field, .panel-border .panel-footer {
 	border: 1px solid #ddd;
 	border-top: none;
 }
@@ -713,18 +713,12 @@ hr {
 }
 
 /* Quick post and comment */
-.quickpostfield textarea, .quickpostfield textarea:focus {
-	border: none;
-	box-shadow: none;
-	height: 140px;
-}
-
-.postfield textarea, .postfield textarea:focus {
+.comment-field textarea, .comment-field textarea:focus {
 	border: none;
 	box-shadow: none;
 }
 
-.quickpostfield input[type="text"], .postfield input[type="text"] {
+.comment-field input[type="text"] {
 	border: none;
 	border-bottom: #eee solid 1px;
 	box-shadow: none;
@@ -732,7 +726,7 @@ hr {
 	line-height: 0.8;
 }
 
-.quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder, .quickpostfield textarea::-moz-placeholder, .postfield textarea::-moz-placeholder, .quickpostfield textarea::-ms-input-placeholder, .postfield textarea::-ms-input-placeholder {
+.comment-field textarea::-webkit-input-placeholder, .comment-field textarea::-moz-placeholder, .comment-field textarea::-ms-input-placeholder {
 	font-size: 20px;
 }
 

@@ -77,7 +77,7 @@ function draw_editor($height) {
 
 ?>
 <div class="panel panel-default panel-editor">
-	<fieldset class="postfield editor">
+	<fieldset class="comment-field editor">
 		<input type="hidden" name="form_sent" value="1" />
 		<div class="alert alert-warning hide-if-js" role="alert">
 			<p><?php _e('The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though.', 'luna' ); ?></p>
@@ -1037,7 +1037,7 @@ function draw_mail_form($recipient_id) {
 <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 	<input class="info-textfield form-control" placeholder="<?php _e('Subject', 'luna') ?>" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" autofocus />
 	<div class="panel panel-default panel-editor">
-		<fieldset class="postfield">
+		<fieldset class="comment-field">
 			<input type="hidden" name="form_sent" value="1" />
 			<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
 			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="<?php echo $cur_index++ ?>"></textarea>

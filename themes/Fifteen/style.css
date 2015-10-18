@@ -1100,7 +1100,7 @@ a.active.list-group-item:focus {
 }
 
 .commentfield input[type="text"],
-.postfield input[type="text"] {
+.comment-field input[type="text"] {
 	font-size: 20px;
 	line-height: .8;
 	border: none;

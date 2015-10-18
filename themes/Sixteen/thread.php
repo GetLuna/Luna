@@ -28,7 +28,7 @@ if (!defined('FORUM'))
 			<?php echo $comment_link ?><?php echo $paging_links ?>
 		</span>
 	</div>
-	<?php if ($quickpost): ?>
+	<?php if ($comment_field): ?>
 		<form method="post" action="comment.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 <?php
 		if ($luna_user['is_guest']) {

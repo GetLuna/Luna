@@ -118,7 +118,7 @@ $start_from = $luna_user['disp_comments'] * ($p - 1);
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'thread.php?id='.$id);
 
-$quickpost = false;
+$comment_field = false;
 if (($cur_thread['comment'] == '1' || ($cur_thread['comment'] == '' && $luna_user['g_comment'] == '1')) && ($cur_thread['closed'] == '0' || $is_admmod)) {
 	$required_fields = array('req_message' => __('Message', 'luna'));
 	if ($luna_user['is_guest']) {
@@ -127,7 +127,7 @@ if (($cur_thread['comment'] == '1' || ($cur_thread['comment'] == '' && $luna_use
 			$required_fields['req_email'] = __('Email', 'luna');
 	}
 
-	$quickpost = true;
+	$comment_field = true;
 }
 
 if ($luna_config['o_censoring'] == '1')
