@@ -779,7 +779,7 @@ function delete_thread($thread_id, $type) {
 function delete_comment($comment_id, $thread_id, $commenter_id) {
 	global $db;
 
-	$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	list($last_id, ,) = $db->fetch_row($result);
 	list($second_last_id, $second_commenter, $second_commented) = $db->fetch_row($result);
 
@@ -793,7 +793,7 @@ function delete_comment($comment_id, $thread_id, $commenter_id) {
 	strip_search_index($comment_id);
 
 	// Count number of replies in the thread
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to fetch post count for thread', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to fetch comment count for thread', __FILE__, __LINE__, $db->error());
 	$num_replies = $db->result($result, 0) - 1;
 
 	// If the message we deleted is the most recent in the thread (at the end of the thread)

@@ -61,7 +61,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	
 	$p_ids = implode(', ', $p_ids);
 	
-	$result_subject = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result_subject = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result_subject))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));

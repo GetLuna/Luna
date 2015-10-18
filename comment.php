@@ -37,7 +37,7 @@ $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == 
 if ($tid && $luna_config['o_censoring'] == '1')
 	$cur_commenting['subject'] = censor_words($cur_commenting['subject']);
 
-// Do we have permission to post?
+// Do we have permission to comment?
 if ((($tid && (($cur_commenting['comment'] == '' && $luna_user['g_comment'] == '0') || $cur_commenting['comment'] == '0')) ||
 	($fid && (($cur_commenting['create_threads'] == '' && $luna_user['g_create_threads'] == '0') || $cur_commenting['create_threads'] == '0')) ||
 	(isset($cur_commenting['closed']) && $cur_commenting['closed'] == '1')) &&
@@ -51,11 +51,11 @@ $errors = array();
 if (isset($_POST['form_sent'])) {
 	// Flood protection
 	if (!isset($_POST['preview']) && $luna_user['last_comment'] != '' && (time() - $luna_user['last_comment']) < $luna_user['g_comment_flood'])
-		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_comment']));
+		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try commenting again.', 'luna'), $luna_user['g_comment_flood'], $luna_user['g_comment_flood'] - (time() - $luna_user['last_comment']));
 
 	// Make sure they got here from the site
 	if (($fid && (!isset($_POST['_luna_nonce_create_thread']) || !LunaNonces::verify($_POST['_luna_nonce_create_thread'],'comment'))) ||
-	   (!$fid && (!isset($_POST['_luna_nonce_post_reply']) || !LunaNonces::verify($_POST['_luna_nonce_post_reply'],'comment'))))
+	   (!$fid && (!isset($_POST['_luna_nonce_comment']) || !LunaNonces::verify($_POST['_luna_nonce_comment'],'comment'))))
 		message(__('Are you sure you want to do this?', 'luna'));
 
 	// If it's a new thread
@@ -182,7 +182,7 @@ if (isset($_POST['form_sent'])) {
 			// Should we send out notifications?
 			if ($luna_config['o_thread_subscriptions'] == '1') {
 				// Get the comment time for the previous post in this thread
-				$result = $db->query('SELECT commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 				$previous_comment_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)

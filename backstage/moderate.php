@@ -27,7 +27,7 @@ if (isset($_GET['get_host'])) {
 		if ($get_host < 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$result = $db->query('SELECT commenter_ip FROM '.$db->prefix.'comments WHERE id='.$get_host) or error('Unable to fetch post IP address', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT commenter_ip FROM '.$db->prefix.'comments WHERE id='.$get_host) or error('Unable to fetch comment IP address', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -114,7 +114,7 @@ if (isset($_GET['tid'])) {
 			strip_search_index($comments);
 
 			// Get last_comment, last_comment_id, and last_commenter for the thread after deletion
-			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			$last_comment = $db->fetch_assoc($result);
 
 			// How many comments did we just delete?
@@ -187,12 +187,12 @@ if (isset($_GET['tid'])) {
 			 elseif (luna_strlen($new_subject) > 70)
 				message_backstage(__('Subjects cannot be longer than 70 characters.', 'luna'));
 
-			// Get data from the new first post
-			$result = $db->query('SELECT p.id, p.commenter, p.commented FROM '.$db->prefix.'comments AS p WHERE id IN('.$comments.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
-			$first_post_data = $db->fetch_assoc($result);
+			// Get data from the new first commint
+			$result = $db->query('SELECT p.id, p.commenter, p.commented FROM '.$db->prefix.'comments AS p WHERE id IN('.$comments.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first comment', __FILE__, __LINE__, $db->error());
+			$first_comment_data = $db->fetch_assoc($result);
 
 			// Create the new thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id) VALUES (\''.$db->escape($first_post_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['commented'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id) VALUES (\''.$db->escape($first_comment_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_comment_data['commented'].', '.$first_comment_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
@@ -202,12 +202,12 @@ if (isset($_GET['tid'])) {
 			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
 
 			// Get last_comment, last_comment_id, and last_commenter from the thread and update it
-			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
 			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['commented'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['commenter']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			// Get last_comment, last_comment_id, and last_commenter from the new thread and update it
-			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
 			$db->query('UPDATE '.$db->prefix.'threads SET last_comment='.$last_comment_data['commented'].', last_comment_id='.$last_comment_data['id'].', last_commenter=\''.$db->escape($last_comment_data['commenter']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
@@ -321,14 +321,14 @@ if (isset($_GET['tid'])) {
 	$comment_count = 0; // Keep track of comment numbers
 
 	// Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 
 	$comment_ids = array();
 	for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)
 		$comment_ids[] = $cur_comment_id;
 
 	// Retrieve the comments (and their respective commenter)
-	$result = $db->query('SELECT u.title, u.num_comments, g.g_id, g.g_user_title, p.id, p.commenter, p.commenter_id, p.message, p.hide_smilies, p.commented, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.title, u.num_comments, g.g_id, g.g_user_title, p.id, p.commenter, p.commenter_id, p.message, p.hide_smilies, p.commented, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 
 	while ($cur_comment = $db->fetch_assoc($result)) {
 		$comment_count++;
@@ -573,7 +573,7 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $threads).') AND id != '.$merge_to_tid) or error('Unable to delete old threads', __FILE__, __LINE__, $db->error());
 
 		// Count number of replies in the thread
-		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$merge_to_tid) or error('Unable to fetch post count for thread', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$merge_to_tid) or error('Unable to fetch comment count for thread', __FILE__, __LINE__, $db->error());
 		$num_replies = $db->result($result, 0) - 1;
 
 		// Get last_comment, last_comment_id and last_commenter

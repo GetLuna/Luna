@@ -165,9 +165,9 @@ $comment_count = 0; // Keep track of comment numbers
 
 // Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 if (!$luna_user['is_admmod'])
-	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 
 $comment_ids = array();
 for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)

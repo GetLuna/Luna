@@ -40,14 +40,14 @@ $thread_msg = isset($_REQUEST['all_thread']) ? intval($_REQUEST['all_thread']) :
 $delete_all = isset($_POST['delete_all']) ? '1' : '0';
 
 if ($pid) {
-	$result = $db->query('SELECT shared_id FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT shared_id FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 
 	$id = $db->result($result);
 
 	// Determine on what page the comment is located (depending on $luna_user['disp_comments'])
-	$result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY commented') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY commented') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	$num_comments = $db->num_rows($result);
 
 	for ($i = 0; $i < $num_comments; ++$i) {
@@ -190,7 +190,7 @@ if ($action == 'delete') {
 	
 	$r_usernames = str_replace('Deleted', __('Deleted', 'luna'), $r_usernames);
 	
-	$result = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND show_message=1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND show_message=1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));

@@ -53,7 +53,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 
 		// If we have a $user_id, we can try to find the last known IP of that user
 		if (isset($user_id)) {
-			$result = $db->query('SELECT commenter_ip FROM '.$db->prefix.'comments WHERE commenter_id='.$user_id.' ORDER BY commented DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT commenter_ip FROM '.$db->prefix.'comments WHERE commenter_id='.$user_id.' ORDER BY commented DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			$ban_ip = ($db->num_rows($result)) ? $db->result($result) : '';
 
 			if ($ban_ip == '') {

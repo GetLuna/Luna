@@ -295,7 +295,7 @@ if ($action == 'feed') {
 		);
 
 		// Fetch $show comments
-		$result = $db->query('SELECT p.id, p.commenter, p.message, p.hide_smilies, p.commented, p.commenter_id, u.email_setting, u.email, p.commenter_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id WHERE p.thread_id='.$tid.' ORDER BY p.commented DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT p.id, p.commenter, p.message, p.hide_smilies, p.commented, p.commenter_id, u.email_setting, u.email, p.commenter_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id WHERE p.thread_id='.$tid.' ORDER BY p.commented DESC LIMIT '.$show) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 		while ($cur_comment = $db->fetch_assoc($result)) {
 			$cur_comment['message'] = parse_message($cur_comment['message']);
 
