@@ -4,7 +4,7 @@
 		<?php echo $forum_desc ?>
 	</div>
 	<div class="col-md-1 col-sm-2 col-xs-4 text-center">
-		<?php echo '<b>'.$cur_forum['num_topics'].'</b> '.$topics_label; ?><br />
-		<?php echo '<b>'.$cur_forum['num_posts'].'</b> '.$posts_label; ?>
+		<?php echo '<b>'.$cur_forum['num_threads'].'</b> '.$thread_label; ?><br />
+		<?php echo '<b>'.$cur_forum['num_comments'].'</b> '.$comments_label; ?>
 	</div>
 </div>

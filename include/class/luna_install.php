@@ -337,7 +337,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'create_topics'	=> array(
+				'create_threads'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
@@ -368,12 +368,12 @@ class Installer {
 					'datatype'		=> 'TEXT',
 					'allow_null'	=> true
 				),
-				'num_topics'	=> array(
+				'num_threads'	=> array(
 					'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'num_posts'		=> array(
+				'num_comments'		=> array(
 					'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1145,11 +1145,11 @@ class Installer {
 					'datatype'		=> 'TEXT',
 					'allow_null'	=> true
 				),
-				'disp_topics'		=> array(
+				'disp_threads'		=> array(
 					'datatype'		=> 'TINYINT(3) UNSIGNED',
 					'allow_null'	=> true
 				),
-				'disp_posts'		=> array(
+				'disp_comments'		=> array(
 					'datatype'		=> 'TINYINT(3) UNSIGNED',
 					'allow_null'	=> true
 				),
@@ -1223,7 +1223,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\''.$db->escape($default_style).'\''
 				),
-				'num_posts'			=> array(
+				'num_comments'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1549,7 +1549,7 @@ class Installer {
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 			or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		
 		$db->end_transaction();

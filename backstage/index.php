@@ -69,14 +69,14 @@ if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 2
 	require LUNA_CACHE_DIR.'cache_update.php';
 }
 
-$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
+$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+list($stats['total_threads'], $stats['total_comments']) = array_map('intval', $db->fetch_row($result));
 
-if ($stats['total_posts'] == 0)
-	$stats['total_posts'] == '0';
+if ($stats['total_comments'] == 0)
+	$stats['total_comments'] == '0';
 
-if ($stats['total_topics'] == 0)
-	$stats['total_topics'] == '0';
+if ($stats['total_threads'] == 0)
+	$stats['total_threads'] == '0';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Index', 'luna'));
@@ -155,10 +155,10 @@ if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
 		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : __('Deleted user', 'luna');
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
-		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?id='.$cur_report['thread_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.__('Deleted', 'luna').'</span>';
+		$thread = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?id='.$cur_report['thread_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.__('Deleted', 'luna').'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
 		$post_id = ($cur_report['pid'] != '') ? '<span><a href="thread.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Comment #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
-		$report_location = array($forum, $topic, $post_id);
+		$report_location = array($forum, $thread, $post_id);
 
 ?>
 							<tr>
@@ -202,8 +202,8 @@ if ($db->num_rows($result)) {
 					<table class="table">
 						<thead>
 							<tr>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo _n('post', 'posts', $stats['total_posts'], 'luna') ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo _n('topic', 'topics', $stats['total_topics'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('post', 'posts', $stats['total_comments'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('topic', 'topics', $stats['total_threads'], 'luna') ?></h4></td>
 								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4></td>
 							</tr>
 						</thead>

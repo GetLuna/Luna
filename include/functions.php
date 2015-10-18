@@ -71,10 +71,10 @@ function check_cookie(&$luna_user) {
 		if (!file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/style.css'))
 			$luna_user['style'] = $luna_config['o_default_style'];
 
-		if (!$luna_user['disp_topics'])
-			$luna_user['disp_topics'] = $luna_config['o_disp_threads'];
-		if (!$luna_user['disp_posts'])
-			$luna_user['disp_posts'] = $luna_config['o_disp_comments'];
+		if (!$luna_user['disp_threads'])
+			$luna_user['disp_threads'] = $luna_config['o_disp_threads'];
+		if (!$luna_user['disp_comments'])
+			$luna_user['disp_comments'] = $luna_config['o_disp_comments'];
 
 		// Define this if you want this visit to affect the online list and the users last visit data
 		if (!defined('LUNA_QUIET_VISIT')) {
@@ -310,8 +310,8 @@ function set_default_user() {
 	} else
 		$db->query('UPDATE '.$db->prefix.'online SET logged='.time().' WHERE ident=\''.$db->escape($remote_addr).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 
-	$luna_user['disp_topics'] = $luna_config['o_disp_threads'];
-	$luna_user['disp_posts'] = $luna_config['o_disp_comments'];
+	$luna_user['disp_threads'] = $luna_config['o_disp_threads'];
+	$luna_user['disp_comments'] = $luna_config['o_disp_comments'];
 	$luna_user['timezone'] = $luna_config['o_default_timezone'];
 	$luna_user['dst'] = $luna_config['o_default_dst'];
 	$luna_user['language'] = $luna_config['o_default_lang'];
@@ -700,17 +700,17 @@ function update_forum($forum_id) {
 	global $db;
 
 	$result = $db->query('SELECT COUNT(id), SUM(num_replies) FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id) or error('Unable to fetch forum topic count', __FILE__, __LINE__, $db->error());
-	list($num_topics, $num_posts) = $db->fetch_row($result);
+	list($num_threads, $num_comments) = $db->fetch_row($result);
 
-	$num_posts = $num_posts + $num_topics; // $num_posts is only the sum of all replies (we have to add the thread posts)
+	$num_comments = $num_comments + $num_threads; // $num_comments is only the sum of all replies (we have to add the thread posts)
 
 	$result = $db->query('SELECT last_post, last_post_id, last_poster_id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Unable to fetch last_post/last_post_id', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) { // There are topics in the forum
 		list($last_post, $last_post_id, $last_poster_id) = $db->fetch_row($result);
 
-		$db->query('UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster_id=\''.$db->escape($last_poster_id).'\' WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster_id=\''.$db->escape($last_poster_id).'\' WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
 	} else // There are no topics
-		$db->query('UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post=NULL, last_post_id=NULL, last_poster_id=NULL WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_post=NULL, last_post_id=NULL, last_poster_id=NULL WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
 }
 
 
@@ -788,7 +788,7 @@ function delete_post($post_id, $thread_id, $poster_id) {
 
 	// Decrement user post count if the user is a registered user
 	if ($poster_id > 1)
-		$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts-1 WHERE id='.$poster_id.' AND num_posts>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments-1 WHERE id='.$poster_id.' AND num_comments>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 
 	strip_search_index($post_id);
 
@@ -897,7 +897,7 @@ function get_title($user) {
 		// Are there any ranks?
 		if ($luna_config['o_ranks'] == '1' && !empty($luna_ranks)) {
 			foreach ($luna_ranks as $cur_rank) {
-				if ($user['num_posts'] >= $cur_rank['min_posts'])
+				if ($user['num_comments'] >= $cur_rank['min_posts'])
 					$user_title = luna_htmlspecialchars($cur_rank['rank']);
 			}
 		}
@@ -2280,7 +2280,7 @@ function decrease_post_counts($post_ids) {
 
 	// Decrease the comment counts
 	foreach($user_posts as $user_id => $subtract)
-		$db->query('UPDATE '.$db->prefix.'users SET num_posts = CASE WHEN num_posts>='.$subtract.' THEN num_posts-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments = CASE WHEN num_comments>='.$subtract.' THEN num_comments-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 }
 
 // Create or delete configuration items

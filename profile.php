@@ -22,7 +22,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 2)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_comments, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -40,9 +40,9 @@ $avatar_user_card = draw_user_avatar($id);
 $user_title_field = get_title($user);
 $user_personality[] = '<b>'.__('Title', 'luna').':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
 
-$user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$posts_field = forum_number_format($user['num_posts']);
+$user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$posts_field = forum_number_format($user['num_comments']);
 
-if ($user['num_posts'] > 0)
+if ($user['num_comments'] > 0)
 	$user_personality[] = '<b>'.__('Last comment', 'luna').':</b> '.$last_post;
 
 $user_activity[] = '<b>'.__('Registered', 'luna').':</b> '.format_time($user['registered'], true);
@@ -60,9 +60,9 @@ if ($user['location'] != '')
 $posts_field = '';
 if ($luna_user['g_search'] == '1') {
 	$quick_searches = array();
-	if ($user['num_posts'] > 0) {
-		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.__('Show threads', 'luna').'</a>';
-		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.__('Show comments', 'luna').'</a>';
+	if ($user['num_comments'] > 0) {
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_threads&amp;user_id='.$id.'">'.__('Show threads', 'luna').'</a>';
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_comments&amp;user_id='.$id.'">'.__('Show comments', 'luna').'</a>';
 	}
 	if ($luna_user['is_admmod'] && $luna_config['o_thread_subscriptions'] == '1')
 		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Show subscriptions', 'luna').'</a>';

@@ -81,9 +81,9 @@ if ($action == 'prune') {
 		$forum = __('All forums', 'luna');
 
 	$result = $db->query($sql) or error('Unable to fetch topic prune count', __FILE__, __LINE__, $db->error());
-	$num_topics = $db->result($result);
+	$num_threads = $db->result($result);
 
-	if (!$num_topics)
+	if (!$num_threads)
 		message_backstage(sprintf(__('There are s that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
@@ -104,7 +104,7 @@ if ($action == 'prune') {
 			<input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
 			<fieldset>
 				<h3><?php _e('Confirm prune comments', 'luna') ?></h3>
-				<p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_topics)) ?></p>
+				<p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
 				<p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
 			</fieldset>
 			<div class="btn-group">
@@ -155,7 +155,7 @@ if (isset($_POST['userprune'])) {
 	$prune = ($_POST['prune_by'] == 1) ? 'registered' : 'last_visit';
 
 	$user_time = time() - ($_POST['days'] * 86400);
-	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_posts < '.intval($_POST['posts']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_comments < '.intval($_POST['posts']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
 	
 	$user_ids = array();
 	while ($id = $db->result($result))

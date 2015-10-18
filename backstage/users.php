@@ -130,16 +130,16 @@ if (isset($_GET['ip_stats'])) {
 <?php
 
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-	$num_posts = $db->num_rows($result);
+	$num_comments = $db->num_rows($result);
 
-	if ($num_posts) {
+	if ($num_comments) {
 		$posters = $poster_ids = array();
 		while ($cur_commenter = $db->fetch_assoc($result)) {
 			$posters[] = $cur_commenter;
 			$poster_ids[] = $cur_commenter['poster_id'];
 		}
 
-		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $poster_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $poster_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		$user_data = array();
 		while ($cur_user = $db->fetch_assoc($result))
 			$user_data[$cur_user['id']] = $cur_user;
@@ -149,13 +149,13 @@ if (isset($_GET['ip_stats'])) {
 			if (isset($user_data[$cur_commenter['poster_id']])) {
 				$user_title = get_title($user_data[$cur_commenter['poster_id']]);
 
-			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
 ?>
 			<tr>
 				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['username']).'</a>' ?></td>
 				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['email']) ?></a></td>
 				<td><?php echo $user_title ?></td>
-				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['poster_id']]['num_posts']) ?></td>
+				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['poster_id']]['num_comments']) ?></td>
 				<td><?php echo ($user_data[$cur_commenter['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['poster_id']]['admin_note']) : '&#160;' ?></td>
 				<td><?php echo $actions ?></td>
 			</tr>
@@ -586,7 +586,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$last_visit_before = isset($_GET['last_visit_before']) ? luna_trim($_GET['last_visit_before']) : '';
 	$registered_after = isset($_GET['registered_after']) ? luna_trim($_GET['registered_after']) : '';
 	$registered_before = isset($_GET['registered_before']) ? luna_trim($_GET['registered_before']) : '';
-	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_posts', 'last_post', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
+	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_post', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
 	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
 	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
 
@@ -663,11 +663,11 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	if ($posts_greater != '') {
 		$query_str[] = 'posts_greater='.$posts_greater;
-		$conditions[] = 'u.num_posts>'.$posts_greater;
+		$conditions[] = 'u.num_comments>'.$posts_greater;
 	}
 	if ($posts_less != '') {
 		$query_str[] = 'posts_less='.$posts_less;
-		$conditions[] = 'u.num_posts<'.$posts_less;
+		$conditions[] = 'u.num_comments<'.$posts_less;
 	}
 
 	if ($user_group > -1)
@@ -734,7 +734,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			<tbody>
 <?php
 
-	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) {
 		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title = get_title($user_data);
@@ -743,14 +743,14 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			if (($user_data['g_id'] == '' || $user_data['g_id'] == LUNA_UNVERIFIED) && $user_title != __('Banned', 'luna'))
 				$user_title = '<span class="warntext">'.__('Not verified', 'luna').'</span>';
 
-			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
 
 ?>
 				<tr>
 					<?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif; ?>
 					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
 					<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
-					<td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
+					<td class="text-center"><?php echo forum_number_format($user_data['num_comments']) ?></td>
 					<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
 					<td><?php echo $actions ?></td>
 				</tr>
@@ -889,7 +889,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 						<select class="form-control" name="order_by" tabindex="22">
 							<option value="username" selected><?php _e('Username', 'luna') ?></option>
 							<option value="email"><?php _e('Email', 'luna') ?></option>
-							<option value="num_posts"><?php _e('Number of comments', 'luna') ?></option>
+							<option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
 							<option value="last_post"><?php _e('Last comment', 'luna') ?></option>
 							<option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
 							<option value="registered"><?php _e('Registered', 'luna') ?></option>

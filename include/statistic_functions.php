@@ -21,8 +21,8 @@ if (!defined('LUNA_USERS_INFO_LOADED')) {
 }
 
 // Collect some statistics from the database
-$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
+$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+list($stats['total_threads'], $stats['total_comments']) = array_map('intval', $db->fetch_row($result));
 
 
 function get_total_users() {
@@ -31,28 +31,28 @@ function get_total_users() {
 	return sprintf(forum_number_format($stats['total_users']));
 }
 
-function get_total_topics() {
+function get_total_threads() {
 	global $stats;
 
-	return sprintf(forum_number_format($stats['total_topics']));
+	return sprintf(forum_number_format($stats['total_threads']));
 }
 
-function get_total_posts() {
+function get_total_comments() {
 	global $stats;
 
-	return sprintf(forum_number_format($stats['total_posts']));
+	return sprintf(forum_number_format($stats['total_comments']));
 }
 
 function total_users() {
 	echo get_total_users();
 }
 
-function total_topics() {
-	echo get_total_topics();
+function total_threads() {
+	echo get_total_threads();
 }
 
-function total_posts() {
-	echo get_total_posts();
+function total_comments() {
+	echo get_total_comments();
 }
 
 function newest_user() {

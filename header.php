@@ -37,8 +37,8 @@ if (!$luna_user['is_guest']) {
 	if (!empty($forum_actions))
 		$page_statusinfo[] = '<li>'.implode(' &middot; ', $forum_actions).'</li>';
 
-	if (!empty($topic_actions))
-		$page_statusinfo[] = '<li>'.implode(' &middot; ', $topic_actions).'</li>';
+	if (!empty($thread_actions))
+		$page_statusinfo[] = '<li>'.implode(' &middot; ', $thread_actions).'</li>';
 
 	if ($luna_user['is_admmod']) 	{
 		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2') 		{

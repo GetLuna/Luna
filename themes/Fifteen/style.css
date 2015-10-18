@@ -1060,7 +1060,7 @@ a.active.list-group-item:focus {
 
 /* Threads */
 @media screen and (min-width: 768px) {
-	.topicview {
+	.thread {
 		margin-top: 5px;
 	}
 }

@@ -531,7 +531,7 @@ To change your email address, please visit the following page:
 	redirect('settings.php?id='.$id);
 } else {
 	
-	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.use_pm, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_pm, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_comments, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
@@ -602,8 +602,8 @@ To change your email address, please visit the following page:
 			'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
 			'time_format'		=> intval($_POST['form']['time_format']),
 			'date_format'		=> intval($_POST['form']['date_format']),
-			'disp_topics'		=> luna_trim($_POST['form']['disp_topics']),
-			'disp_posts'		=> luna_trim($_POST['form']['disp_posts']),
+			'disp_threads'		=> luna_trim($_POST['form']['disp_threads']),
+			'disp_comments'		=> luna_trim($_POST['form']['disp_comments']),
 			'show_smilies'		=> isset($_POST['form']['show_smilies']) ? '1' : '0',
 			'show_img'			=> isset($_POST['form']['show_img']) ? '1' : '0',
 			'show_img_sig'		=> isset($_POST['form']['show_img_sig']) ? '1' : '0',
@@ -620,7 +620,7 @@ To change your email address, please visit the following page:
 	
 			// We only allow administrators to update the comment count
 			if ($luna_user['g_id'] == LUNA_ADMIN)
-				$form['num_posts'] = intval($_POST['num_posts']);
+				$form['num_comments'] = intval($_POST['num_comments']);
 		}
 	
 		if ($luna_user['is_admmod']) {
@@ -693,20 +693,20 @@ To change your email address, please visit the following page:
 				message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
 		}
 	
-		if ($form['disp_topics'] != '') {
-			$form['disp_topics'] = intval($form['disp_topics']);
-			if ($form['disp_topics'] < 3)
-				$form['disp_topics'] = 3;
-			elseif ($form['disp_topics'] > 75)
-				$form['disp_topics'] = 75;
+		if ($form['disp_threads'] != '') {
+			$form['disp_threads'] = intval($form['disp_threads']);
+			if ($form['disp_threads'] < 3)
+				$form['disp_threads'] = 3;
+			elseif ($form['disp_threads'] > 75)
+				$form['disp_threads'] = 75;
 		}
 	
-		if ($form['disp_posts'] != '') {
-			$form['disp_posts'] = intval($form['disp_posts']);
-			if ($form['disp_posts'] < 3)
-				$form['disp_posts'] = 3;
-			elseif ($form['disp_posts'] > 75)
-				$form['disp_posts'] = 75;
+		if ($form['disp_comments'] != '') {
+			$form['disp_comments'] = intval($form['disp_comments']);
+			if ($form['disp_comments'] < 3)
+				$form['disp_comments'] = 3;
+			elseif ($form['disp_comments'] > 75)
+				$form['disp_comments'] = 75;
 		}
 	
 		// Make sure we got a valid language string

@@ -5,7 +5,7 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<div class="topicview">
+<div class="thread">
 	<h2 class="profile-title"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></h2>
 	<div class="forum-navigation forum-navigation-top btn-toolbar">
 		<span class="btn-group">
@@ -14,7 +14,7 @@ if (!defined('FORUM'))
 			<a href="thread.php?id=<?php echo $id ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
 		</span>
 		<span class="btn-group pull-right">
-			<?php echo $post_link ?><?php echo $paging_links ?>
+			<?php echo $comment_link ?><?php echo $paging_links ?>
 		</span>
 	</div>
 	<?php draw_comment_list(); ?>
@@ -25,7 +25,7 @@ if (!defined('FORUM'))
 			<a href="thread.php?id=<?php echo $id ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
 		</span>
 		<span class="btn-group pull-right">
-			<?php echo $post_link ?><?php echo $paging_links ?>
+			<?php echo $comment_link ?><?php echo $paging_links ?>
 		</span>
 	</div>
 	<?php if ($quickpost): ?>

@@ -57,20 +57,20 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_topics() ?></div>
+									<div class="statistic-item"><?php total_threads() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'Thread', 'Threads', get_total_topics(), 'luna' ) ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_posts() ?></div>
+									<div class="statistic-item"><?php total_comments() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n('Comment', 'Comments', get_total_posts(), 'luna') ?></div>
+									<div class="statistic-item-stat"><?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?></div>
 								</div>
 							</div>
 						</div>

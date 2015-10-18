@@ -479,8 +479,8 @@ elseif ($action == 'stats') {
 		require LUNA_CACHE_DIR.'cache_users_info.php';
 	}
 
-	$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-	list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
+	$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+	list($stats['total_threads'], $stats['total_comments']) = $db->fetch_row($result);
 
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
@@ -490,8 +490,8 @@ elseif ($action == 'stats') {
 
 	echo sprintf(__('Users', 'luna'), forum_number_format($stats['total_users'])).'<br />'."\n";
 	echo sprintf(__('Newest user', 'luna'), (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
-	echo sprintf(__('Threads', 'luna'), forum_number_format($stats['total_topics'])).'<br />'."\n";
-	echo sprintf(__('Comments', 'luna'), forum_number_format($stats['total_posts'])).'<br />'."\n";
+	echo sprintf(__('Threads', 'luna'), forum_number_format($stats['total_threads'])).'<br />'."\n";
+	echo sprintf(__('Comments', 'luna'), forum_number_format($stats['total_comments'])).'<br />'."\n";
 
 	exit;
 }

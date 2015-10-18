@@ -25,7 +25,7 @@ if (isset($_GET['sort'])) {
 	elseif ($_GET['sort'] == 'registered')
 		$sort_query = 'registered ASC';
 	else
-		$sort_query = 'num_posts DESC';
+		$sort_query = 'num_comments DESC';
 		
 	$sort_by = $_GET['sort'];
 } else {

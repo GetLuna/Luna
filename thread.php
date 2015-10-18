@@ -28,11 +28,11 @@ if ($pid) {
 
 	list($id, $posted) = $db->fetch_row($result);
 
-	// Determine on which page the comment is located (depending on $forum_user['disp_posts'])
+	// Determine on which page the comment is located (depending on $forum_user['disp_comments'])
 	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE thread_id='.$id.' AND posted<'.$posted) or error('Unable to count previous posts', __FILE__, __LINE__, $db->error());
-	$num_posts = $db->result($result) + 1;
+	$num_comments = $db->result($result) + 1;
 
-	$_GET['p'] = ceil($num_posts / $luna_user['disp_posts']);
+	$_GET['p'] = ceil($num_comments / $luna_user['disp_comments']);
 } else {
 	// If action=new, we redirect to the first new comment (if any)
 	if ($action == 'new') {
@@ -88,16 +88,16 @@ $admin_ids = get_admin_ids();
 
 if ($cur_thread['closed'] == '0') {
 	if (($cur_thread['comment'] == '' && $luna_user['g_comment'] == '1') || $cur_thread['comment'] == '1' || $is_admmod)
-		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
+		$comment_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
 	else
-		$post_link = '';
+		$comment_link = '';
 } else {
-	$post_link = '<a class="btn disabled btn-danger btn-post"><span class="fa fa-fw fa-lock"></span></a>';
+	$comment_link = '<a class="btn disabled btn-danger btn-post"><span class="fa fa-fw fa-lock"></span></a>';
 
 	if ($is_admmod)
-		$post_link .= '<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
+		$comment_link .= '<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
 
-	$post_link = $post_link."\n";
+	$comment_link = $comment_link."\n";
 }
 
 
@@ -110,10 +110,10 @@ if (!$luna_user['is_guest']) {
 
 
 // Determine the comment offset (based on $_GET['p'])
-$num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_posts']);
+$num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $luna_user['disp_posts'] * ($p - 1);
+$start_from = $luna_user['disp_comments'] * ($p - 1);
 
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'thread.php?id='.$id);
@@ -138,15 +138,15 @@ if ($luna_config['o_feed_type'] == '1')
 elseif ($luna_config['o_feed_type'] == '2')
 	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.__('Atom thread feed', 'luna').'" />');
 
-$topic_actions = array();
+$thread_actions = array();
 
 if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') {
 	$token_url = '&amp;csrf_token='.luna_csrf_token();
 
 	if ($cur_thread['is_subscribed'])
-		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
+		$thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
 	else
-		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
+		$thread_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
 }
 
 $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'threads AS t ON (f.id = t.forum_id) WHERE t.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
@@ -165,9 +165,9 @@ $post_count = 0; // Keep track of comment numbers
 
 // Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 if (!$luna_user['is_admmod'])
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
 $post_ids = array();
 for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)

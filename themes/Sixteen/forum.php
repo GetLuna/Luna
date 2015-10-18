@@ -30,7 +30,7 @@ if (!defined('FORUM'))
 			</span>
 		<?php } ?>
 		<span class="btn-group pull-right">
-			<?php echo $post_link ?><?php echo $paging_links ?>
+			<?php echo $comment_link ?><?php echo $paging_links ?>
 		</span>
 	</div>
 	<div class="panel panel-default panel-board">
@@ -38,7 +38,7 @@ if (!defined('FORUM'))
 			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3>
 		</div>
 		<div class="panel-body">
-		<?php draw_topics_list(); ?>
+		<?php draw_threads_list(); ?>
 		</div>
 	</div>
 	<div class="forum-navigation btn-toolbar">
@@ -52,6 +52,6 @@ if (!defined('FORUM'))
 			</span>
 		<?php } ?>
 		<span class="btn-group pull-right">
-			<?php echo $post_link ?><?php echo $paging_links ?>
+			<?php echo $comment_link ?><?php echo $paging_links ?>
 		</span>
 	</div>

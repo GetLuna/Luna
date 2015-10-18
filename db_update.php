@@ -325,7 +325,7 @@ switch ($stage) {
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
@@ -601,7 +601,7 @@ switch ($stage) {
 		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_create_topics', 'g_create_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_create_threads', 'g_create_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
@@ -611,6 +611,11 @@ switch ($stage) {
 		$db->rename_field('groups', 'g_pm_limit', 'g_inbox_limit', 'INT');
 		$db->rename_field('forum_perms', 'post_topics', 'create_threads', 'TINYINT(1)');
 		$db->rename_field('forum_perms', 'post_replies', 'comment', 'TINYINT(1)');
+		$db->rename_field('forums', 'num_posts', 'num_comments', 'MEDIUMINT(8)');
+		$db->rename_field('forums', 'num_topics', 'num_threads', 'MEDIUMINT(8)');
+		$db->rename_field('users', 'num_posts', 'num_comments', 'INT(10)');
+		$db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
+		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');

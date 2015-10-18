@@ -20,9 +20,9 @@ if ($id < 1)
 
 // Fetch some info about the forum
 if (!$luna_user['is_guest'])
-	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_topics, f.sort_by, f.icon, f.color, f.solved, fp.create_topics, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_topics, f.sort_by, f.icon, f.color, f.solved, fp.create_topics, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -49,20 +49,20 @@ switch ($cur_forum['sort_by']) {
 }
 
 // Can we or can we not post new threads?
-if (($cur_forum['create_topics'] == '' && $luna_user['g_create_threads'] == '1') || $cur_forum['create_topics'] == '1' || $is_admmod)
-	$post_link = "\t\t\t".'<a class="btn btn-default btn-post" href="post.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
+if (($cur_forum['create_threads'] == '' && $luna_user['g_create_threads'] == '1') || $cur_forum['create_threads'] == '1' || $is_admmod)
+	$comment_link = "\t\t\t".'<a class="btn btn-default btn-post" href="post.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
 else
-	$post_link = '';
+	$comment_link = '';
 
 // Get topic/forum tracking data
 if (!$luna_user['is_guest'])
 	$tracked_threads = get_tracked_threads();
 
 // Determine the thread offset (based on $_GET['p'])
-$num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
+$num_pages = ceil($cur_forum['num_threads'] / $luna_user['disp_threads']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $luna_user['disp_topics'] * ($p - 1);
+$start_from = $luna_user['disp_threads'] * ($p - 1);
 
 // Get the icon			
 if ($cur_forum['icon'] != NULL)

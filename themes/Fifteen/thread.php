@@ -5,7 +5,7 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<div class="row topicview">
+<div class="row thread">
 	<div class="col-sm-12 thread-title">
 		<div class="jumbotron thread-jumbotron">
 			<span class="pull-right"><?php echo $paging_links ?></span>

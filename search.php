@@ -32,7 +32,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 	// Allow the old action names for backwards compatibility reasons
 	if ($action == 'show_user')
-		$action = 'show_user_posts';
+		$action = 'show_user_comments';
 	elseif ($action == 'show_24h')
 		$action = 'show_recent';
 
@@ -64,7 +64,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$search_in = (!isset($_GET['search_in']) || $_GET['search_in'] == '0') ? 0 : (($_GET['search_in'] == '1') ? 1 : -1);
 	}
 	// If it's a user search (by ID)
-	elseif ($action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions') {
+	elseif ($action == 'show_user_comments' || $action == 'show_user_threads' || $action == 'show_subscriptions') {
 		$user_id = (isset($_GET['user_id'])) ? intval($_GET['user_id']) : $luna_user['id'];
 		if ($user_id < 2)
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -267,7 +267,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			$num_hits = count($search_ids);
 			if (!$num_hits)
 				message(__('Your search returned no hits.', 'luna'));
-		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
+		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_comments' || $action == 'show_user_threads' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
 			$search_type = array('action', $action);
 			$show_as = 'topics';
 			// We want to sort things after last comment
@@ -294,7 +294,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 					message(__('No new comments have been made within the last 24 hours.', 'luna'));
 			}
 			// If it's a search for comments by a specific user ID
-			elseif ($action == 'show_user_posts') {
+			elseif ($action == 'show_user_comments') {
 				$show_as = 'posts';
 
 				$result = $db->query('SELECT p.id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON p.thread_id=t.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY p.posted DESC') or error('Unable to fetch user posts', __FILE__, __LINE__, $db->error());
@@ -307,7 +307,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$search_type[2] = $user_id;
 			}
 			// If it's a search for topics by a specific user ID
-			elseif ($action == 'show_user_topics') {
+			elseif ($action == 'show_user_threads') {
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON t.first_post_id=p.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY t.last_post DESC') or error('Unable to fetch user topics', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
@@ -412,7 +412,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		}
 
 		// Determine the thread or comment offset (based on $_GET['p'])
-		$per_page = ($show_as == 'posts') ? $luna_user['disp_posts'] : $luna_user['disp_topics'];
+		$per_page = ($show_as == 'posts') ? $luna_user['disp_comments'] : $luna_user['disp_threads'];
 		$num_pages = ceil($num_hits / $per_page);
 
 		$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
@@ -438,10 +438,10 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$crumbs_text['show_as'] = __('Search', 'luna');
 
 		if ($search_type[0] == 'action') {
-			if ($search_type[1] == 'show_user_topics')
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$search_type[2].'">'.sprintf(__('Threads by %s', 'luna'), luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
-			elseif ($search_type[1] == 'show_user_posts')
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$search_type[2].'">'.sprintf(__('Comments by %s', 'luna'), luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
+			if ($search_type[1] == 'show_user_threads')
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_threads&amp;user_id='.$search_type[2].'">'.sprintf(__('Threads by %s', 'luna'), luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
+			elseif ($search_type[1] == 'show_user_comments')
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_comments&amp;user_id='.$search_type[2].'">'.sprintf(__('Comments by %s', 'luna'), luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
 			elseif ($search_type[1] == 'show_subscriptions') {
 				// Fetch username of subscriber
 				$subscriber_id = $search_type[2];
