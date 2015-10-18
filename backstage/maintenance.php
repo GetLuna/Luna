@@ -85,9 +85,9 @@ if ($action == 'rebuild') {
 		echo '<p><span>'.sprintf(__('Processing comment <strong>%s</strong> …', 'luna'), $cur_item['id']).'</span></p>'."\n";
 
 		if ($cur_item['id'] == $cur_item['first_comment_id'])
-			update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
+			update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
 		else
-			update_search_index('post', $cur_item['id'], $cur_item['message']);
+			update_search_index('comment', $cur_item['id'], $cur_item['message']);
 
 		$end_at = $cur_item['id'];
 	}
@@ -106,7 +106,7 @@ if ($action == 'rebuild') {
 	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf(__('JavaScript redirect unsuccessful. %s to continue …', 'luna'), '<a href="maintenance.php'.$query_str.'">'.__('Click here', 'luna').'</a>').'</p>');
 }
 
-// Get the first post ID from the db
+// Get the first comment ID from the db
 $result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result))
 	$first_id = $db->result($result);

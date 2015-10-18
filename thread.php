@@ -88,14 +88,14 @@ $admin_ids = get_admin_ids();
 
 if ($cur_thread['closed'] == '0') {
 	if (($cur_thread['comment'] == '' && $luna_user['g_comment'] == '1') || $cur_thread['comment'] == '1' || $is_admmod)
-		$comment_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
+		$comment_link = "\t\t\t".'<a class="btn btn-primary btn-comment" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
 	else
 		$comment_link = '';
 } else {
-	$comment_link = '<a class="btn disabled btn-danger btn-post"><span class="fa fa-fw fa-lock"></span></a>';
+	$comment_link = '<a class="btn disabled btn-danger btn-comment"><span class="fa fa-fw fa-lock"></span></a>';
 
 	if ($is_admmod)
-		$comment_link .= '<a class="btn btn-primary btn-post" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
+		$comment_link .= '<a class="btn btn-primary btn-comment" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
 
 	$comment_link = $comment_link."\n";
 }

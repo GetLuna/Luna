@@ -483,7 +483,7 @@ function check_username($username, $exclude_id = null) {
 		$errors[] = __('Usernames may not be in the form of an IP address. Please choose another username.', 'luna');
 	elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
 		$errors[] = __('Usernames may not contain all the characters \', " and [ or ] at once. Please choose another username.', 'luna');
-	elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|thread|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
+	elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|thread|comment|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
 		$errors[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username.', 'luna');
 
 	// Check username for any censored words
@@ -774,7 +774,7 @@ function delete_thread($thread_id, $type) {
 
 
 //
-// Delete a single post
+// Delete a single comment
 //
 function delete_comment($comment_id, $thread_id, $commenter_id) {
 	global $db;
@@ -784,11 +784,11 @@ function delete_comment($comment_id, $thread_id, $commenter_id) {
 	list($second_last_id, $second_commenter, $second_commented) = $db->fetch_row($result);
 
 	// Delete the comment
-	$db->query('DELETE FROM '.$db->prefix.'comments WHERE id='.$comment_id) or error('Unable to delete post', __FILE__, __LINE__, $db->error());
+	$db->query('DELETE FROM '.$db->prefix.'comments WHERE id='.$comment_id) or error('Unable to delete comment', __FILE__, __LINE__, $db->error());
 
-	// Decrement user post count if the user is a registered user
+	// Decrement user comment count if the user is a registered user
 	if ($commenter_id > 1)
-		$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments-1 WHERE id='.$commenter_id.' AND num_comments>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments-1 WHERE id='.$commenter_id.' AND num_comments>0') or error('Unable to update user comment count', __FILE__, __LINE__, $db->error());
 
 	strip_search_index($comment_id);
 
@@ -2263,7 +2263,7 @@ function get_forum_id($comment_id) {
 		return false;
 }
 
-// Decrease user post counts (used before deleting comments)
+// Decrease user comment counts (used before deleting comments)
 function decrease_comment_counts($comment_ids) {
 	global $db;
 
@@ -2280,7 +2280,7 @@ function decrease_comment_counts($comment_ids) {
 
 	// Decrease the comment counts
 	foreach($user_comments as $user_id => $subtract)
-		$db->query('UPDATE '.$db->prefix.'users SET num_comments = CASE WHEN num_comments>='.$subtract.' THEN num_comments-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments = CASE WHEN num_comments>='.$subtract.' THEN num_comments-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user comment count', __FILE__, __LINE__, $db->error());
 }
 
 // Create or delete configuration items

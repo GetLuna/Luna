@@ -386,7 +386,7 @@ You can read this private message at this address: <pm_url>
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('Send a message', 'luna'));
 
 $required_fields = array('req_message' => __('Message', 'luna'));
-$focus_element = array('post');
+$focus_element = array('comment');
 
 if ($r == '0' && $q == '0' && $edit == '0') {
 	$required_fields['req_subject'] = __('Subject', 'luna');

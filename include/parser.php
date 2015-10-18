@@ -598,7 +598,7 @@ function handle_img_tag($url, $is_signature = false, $alt = null) {
 	if ($is_signature && $luna_user['show_img_sig'] != '0')
 		$img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
 	elseif (!$is_signature && $luna_user['show_img'] != '0')
-		$img_tag = '<span class="postimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
+		$img_tag = '<span class="commentimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
 
 	return $img_tag;
 }
@@ -890,7 +890,7 @@ function parse_message($text) {
 // Clean up paragraphs and line breaks
 //
 function clean_paragraphs($text) {
-	// Add paragraph tag around post, but make sure there are no empty paragraphs
+	// Add paragraph tag around comment, but make sure there are no empty paragraphs
 
 	$text = '<p>'.$text.'</p>';
 

@@ -69,7 +69,7 @@ if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 2
 	require LUNA_CACHE_DIR.'cache_update.php';
 }
 
-$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/post count', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/comment count', __FILE__, __LINE__, $db->error());
 list($stats['total_threads'], $stats['total_comments']) = array_map('intval', $db->fetch_row($result));
 
 if ($stats['total_comments'] == 0)
@@ -156,7 +156,7 @@ if ($db->num_rows($result)) {
 		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : __('Deleted user', 'luna');
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
 		$thread = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?id='.$cur_report['thread_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.__('Deleted', 'luna').'</span>';
-		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
+		$comment = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
 		$comment_id = ($cur_report['pid'] != '') ? '<span><a href="thread.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Comment #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
 		$report_location = array($forum, $thread, $comment_id);
 
@@ -164,7 +164,7 @@ if ($db->num_rows($result)) {
 							<tr>
 								<td><?php printf($reporter) ?></td>
 								<td><?php printf(format_time($cur_report['created'])) ?></td>
-								<td><?php echo $post ?></td>
+								<td><?php echo $comment ?></td>
 							</tr>
 <?php
 

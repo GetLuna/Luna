@@ -36,7 +36,7 @@ if ($luna_config['o_censoring'] == '1') {
 	$cur_comment['message'] = censor_words($cur_comment['message']);
 }
 
-// Do we have permission to edit this post?
+// Do we have permission to edit this comment?
 if (($luna_user['g_edit_comments'] == '0' ||
 	$cur_comment['commenter_id'] != $luna_user['id'] ||
 	$cur_comment['closed'] == '1') &&
@@ -121,7 +121,7 @@ if (isset($_POST['form_sent'])) {
 			update_search_index('edit', $id, $message);
 
 		// Update the comment
-		$db->query('UPDATE '.$db->prefix.'comments SET message=\''.$db->escape($message).'\', hide_smilies='.$hide_smilies.$edited_sql.' WHERE id='.$id) or error('Unable to update post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET message=\''.$db->escape($message).'\', hide_smilies='.$hide_smilies.$edited_sql.' WHERE id='.$id) or error('Unable to update comment', __FILE__, __LINE__, $db->error());
 
 		redirect('thread.php?pid='.$id.'#p'.$id);
 	}

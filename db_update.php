@@ -683,7 +683,7 @@ switch ($stage) {
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
-			$db->query('UPDATE '.$db->prefix.'comments SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update comment', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
 		}
@@ -770,9 +770,9 @@ switch ($stage) {
 			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 
 			if ($cur_item['id'] == $cur_item['first_comment_id'])
-				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
+				update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
 			else
-				update_search_index('post', $cur_item['id'], $cur_item['message']);
+				update_search_index('comment', $cur_item['id'], $cur_item['message']);
 
 			$end_at = $cur_item['id'];
 		}

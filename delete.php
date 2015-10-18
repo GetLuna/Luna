@@ -35,7 +35,7 @@ $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == 
 
 $is_thread_comment = ($id == $cur_comment['first_comment_id']) ? true : false;
 
-// Do we have permission to edit this post?
+// Do we have permission to edit this comment?
 if (($luna_user['g_delete_comments'] == '0' ||
 	($luna_user['g_delete_threads'] == '0' && $is_thread_comment) ||
 	$cur_comment['commenter_id'] != $luna_user['id'] ||
@@ -60,11 +60,11 @@ if (isset($_POST['soft_delete'])) {
 
 		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
-		// Delete just this one post
-		$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
+		// Delete just this one comment
+		$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE id='.$id) or error('Unable to soft delete comment', __FILE__, __LINE__, $db->error());
 		update_forum($cur_comment['fid']);
 
-		// Redirect towards the previous post
+		// Redirect towards the previous comment
 		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 		$comment_id = $db->result($result);
 
@@ -86,8 +86,8 @@ if (isset($_POST['reset'])) {
 
 		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
-		// Reset just this one post
-		$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
+		// Reset just this one comment
+		$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE id='.$id) or error('Unable to soft delete comment', __FILE__, __LINE__, $db->error());
 		update_forum($cur_comment['fid']);
 
 		// Redirect towards the comment
@@ -108,11 +108,11 @@ if (isset($_POST['delete'])) {
 
 		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
-		// Delete just this one post
+		// Delete just this one comment
 		delete_comment($id, $cur_comment['tid'], $cur_comment['commenter_id']);
 		update_forum($cur_comment['fid']);
 
-		// Redirect towards the previous post
+		// Redirect towards the previous comment
 		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 		$comment_id = $db->result($result);
 

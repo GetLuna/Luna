@@ -274,17 +274,6 @@ hr {
 	background: none;
 }
 
-/* Links (subscribe, new comment, etc.) */
-.subscribelink {
-	padding-bottom: 10px;
-}
-
-.postlink {
-	float: right;
-	font-weight: bold;
-	text-align: right;
-}
-
 /* Panels */
 .panel {
 	margin-bottom: 10px;
@@ -673,7 +662,7 @@ hr {
 	font-size: 80%;
 }
 
-.post-div {
+.comment-div {
 	margin-top: 2px;
 	margin-bottom: 5px;
 }
@@ -712,7 +701,7 @@ hr {
 	border-top: 1px solid #c3dea5;
 }
 
-/* Quick post and comment */
+/* Quick comment and comment */
 .comment-field textarea, .comment-field textarea:focus {
 	border: none;
 	box-shadow: none;
@@ -731,22 +720,22 @@ hr {
 }
 
 @media screen and (max-width: 991px) {
-	#quickpostform > .panel > .panel-heading {
+	#quickcommentform > .panel > .panel-heading {
 		display: none;
 	}
 	
-	.profile-card-quickpost {
+	.profile-card-quickcomment {
 		margin-bottom: -10px;
 		border-radius: 0 !important;
 	}
 }
 
-#quickpostform > .panel {
+#quickcommentform > .panel {
 	margin-top: 10px;
 }
 
 @media screen and (max-width: 991px) {
-	#quickpostform > .panel-heading {
+	#quickcommentform > .panel-heading {
 		border-radius: 0;
 	}
 }
@@ -916,7 +905,7 @@ hr {
 	background-color: #0b8eeb;
 }
 
-.btn-post {
+.btn-comment {
 	margin-top: 0;
 	margin-left: 5px;
 }

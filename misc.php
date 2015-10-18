@@ -251,7 +251,7 @@ Reason: <reason>
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$comment_id.' WHERE id= '.$thread_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$comment_id.' WHERE id= '.$thread_id) or error('Unable to update solved comment', __FILE__, __LINE__, $db->error());
 
 		redirect('thread.php?pid='.$comment_id.'#p'.$comment_id);
 	}
@@ -275,7 +275,7 @@ Reason: <reason>
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved comment', __FILE__, __LINE__, $db->error());
 
 		redirect('thread.php?pid='.$comment_id.'#p'.$comment_id);
 	}

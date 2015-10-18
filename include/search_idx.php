@@ -48,12 +48,12 @@ define('LUNA_CJK_HANGUL_REGEX', '['.
 //
 function split_words($text, $idx) {
 	// Remove BBCode
-	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|thread|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
+	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|thread|comment|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
 
-	// Remove any apostrophes or dashes which aren't part of words
+	// Remove any acommentrophes or dashes which aren't part of words
 	$text = substr(ucp_preg_replace('%((?<=[^\p{L}\p{N}])[\'\-]|[\'\-](?=[^\p{L}\p{N}]))%u', '', ' '.$text.' '), 1, -1);
 
-	// Remove punctuation and symbols (actually anything that isn't a letter or number), allow apostrophes and dashes (and % * if we aren't indexing)
+	// Remove punctuation and symbols (actually anything that isn't a letter or number), allow acommentrophes and dashes (and % * if we aren't indexing)
 	$text = ucp_preg_replace('%(?![\'\-'.($idx ? '' : '\%\*').'])[^\p{L}\p{N}]+%u', ' ', $text);
 
 	// Replace multiple whitespace or dashes
@@ -140,7 +140,7 @@ function strip_bbcode($text) {
 			'%\[img=([^\]]*+)\]([^[]*+)\[/img\]%'									=>	'$2 $1',	// Keep the url and description
 			'%\[(url|email)=([^\]]*+)\]([^[]*+(?:(?!\[/\1\])\[[^[]*+)*)\[/\1\]%'	=>	'$2 $3',	// Keep the url and text
 			'%\[(img|url|email)\]([^[]*+(?:(?!\[/\1\])\[[^[]*+)*)\[/\1\]%'			=>	'$2',		// Keep the url
-			'%\[(thread|post|forum|user)\][1-9]\d*\[/\1\]%'							=>	' ',		// Do not index thread/post/forum/user ID
+			'%\[(thread|comment|forum|user)\][1-9]\d*\[/\1\]%'							=>	' ',		// Do not index thread/comment/forum/user ID
 		);
 	}
 
@@ -168,24 +168,24 @@ function update_search_index($mode, $comment_id, $message, $subject = null) {
 		$result = $db->query('SELECT w.id, w.word, m.subject_match FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON w.id=m.word_id WHERE m.comment_id='.$comment_id, true) or error('Unable to fetch search index words', __FILE__, __LINE__, $db->error());
 
 		// Declare here to stop array_keys() and array_diff() from complaining if not set
-		$cur_words['post'] = array();
+		$cur_words['comment'] = array();
 		$cur_words['subject'] = array();
 
 		while ($row = $db->fetch_row($result)) {
-			$match_in = ($row[2]) ? 'subject' : 'post';
+			$match_in = ($row[2]) ? 'subject' : 'comment';
 			$cur_words[$match_in][$row[1]] = $row[0];
 		}
 
 		$db->free_result($result);
 
-		$words['add']['post'] = array_diff($words_message, array_keys($cur_words['post']));
+		$words['add']['comment'] = array_diff($words_message, array_keys($cur_words['comment']));
 		$words['add']['subject'] = array_diff($words_subject, array_keys($cur_words['subject']));
-		$words['del']['post'] = array_diff(array_keys($cur_words['post']), $words_message);
+		$words['del']['comment'] = array_diff(array_keys($cur_words['comment']), $words_message);
 		$words['del']['subject'] = array_diff(array_keys($cur_words['subject']), $words_subject);
 	} else {
-		$words['add']['post'] = $words_message;
+		$words['add']['comment'] = $words_message;
 		$words['add']['subject'] = $words_subject;
-		$words['del']['post'] = array();
+		$words['del']['comment'] = array();
 		$words['del']['subject'] = array();
 	}
 
@@ -193,7 +193,7 @@ function update_search_index($mode, $comment_id, $message, $subject = null) {
 	unset($words_subject);
 
 	// Get unique words from the above arrays
-	$unique_words = array_unique(array_merge($words['add']['post'], $words['add']['subject']));
+	$unique_words = array_unique(array_merge($words['add']['comment'], $words['add']['subject']));
 
 	if (!empty($unique_words)) {
 		$result = $db->query('SELECT id, word FROM '.$db->prefix.'search_words WHERE word IN(\''.implode('\',\'', array_map(array($db, 'escape'), $unique_words)).'\')', true) or error('Unable to fetch search index words', __FILE__, __LINE__, $db->error());

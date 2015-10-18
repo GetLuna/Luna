@@ -174,7 +174,7 @@ if (isset($_POST['userprune'])) {
 }
 
 
-// Get the first post ID from the db
+// Get the first comment ID from the db
 $result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result))
 	$first_id = $db->result($result);

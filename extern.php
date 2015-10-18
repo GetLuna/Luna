@@ -51,7 +51,7 @@
 	order:  last_comment - show threads ordered by when they were last
 						commented in, giving information about the reply.
 			commented - show threads ordered by when they were first
-					 commented, giving information about the original post.
+					 commented, giving information about the original comment.
 
 -----------------------------------------------------------------------------*/
 
@@ -208,7 +208,7 @@ function output_xml($feed) {
 	echo '<source>'."\n";
 	echo "\t".'<url>'.luna_htmlspecialchars($feed['link']).'</url>'."\n";
 
-	$forum_tag = ($feed['type'] == 'comments') ? 'post' : 'thread';
+	$forum_tag = ($feed['type'] == 'comments') ? 'comment' : 'thread';
 
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<'.$forum_tag.' id="'.$item['id'].'">'."\n";
@@ -479,7 +479,7 @@ elseif ($action == 'stats') {
 		require LUNA_CACHE_DIR.'cache_users_info.php';
 	}
 
-	$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/post count', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/comment count', __FILE__, __LINE__, $db->error());
 	list($stats['total_threads'], $stats['total_comments']) = $db->fetch_row($result);
 
 	// Send the Content-type header in case the web server is setup to send something else

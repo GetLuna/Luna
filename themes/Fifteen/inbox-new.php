@@ -40,7 +40,7 @@ if (!empty($errors)) {
 $cur_index = 1;
 
 ?>
-<form class="form-horizontal" method="post" id="post" action="new_inbox.php" onsubmit="return process_form(this)">
+<form class="form-horizontal" method="post" id="comment" action="new_inbox.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php _e('Write message', 'luna') ?></h3>

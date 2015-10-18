@@ -48,9 +48,9 @@ switch ($cur_forum['sort_by']) {
 		break;
 }
 
-// Can we or can we not post new threads?
+// Can we or can we not comment new threads?
 if (($cur_forum['create_threads'] == '' && $luna_user['g_create_threads'] == '1') || $cur_forum['create_threads'] == '1' || $is_admmod)
-	$comment_link = "\t\t\t".'<a class="btn btn-default btn-post" href="comment.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
+	$comment_link = "\t\t\t".'<a class="btn btn-default btn-comment" href="comment.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
 else
 	$comment_link = '';
 

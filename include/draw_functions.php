@@ -156,8 +156,8 @@ function draw_editor($height) {
 <?php } ?>
 			</div>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
-			if (LUNA_ACTIVE_PAGE == 'post')
+		<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="comment_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
+			if (LUNA_ACTIVE_PAGE == 'comment')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			elseif (LUNA_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_comment['message']);
@@ -183,7 +183,7 @@ function draw_editor($height) {
 </div>
 <script>
 function AddTag(type, tag) {
-   var Field = document.getElementById('post_field');
+   var Field = document.getElementById('comment_field');
    var val = Field.value;
    var selected_txt = val.substring(Field.selectionStart, Field.selectionEnd);
    var before_txt = val.substring(0, Field.selectionStart);
@@ -197,10 +197,10 @@ function AddTag(type, tag) {
    else if (type == 'emoji')
 	   Field.value = before_txt + ' ' + tag + ' ' + after_txt;
 
-	document.getElementById('post_field').focus();
+	document.getElementById('comment_field').focus();
 }
 window.onbeforeunload = function() {
-    if ( document.getElementById('post_field').value ) {
+    if ( document.getElementById('comment_field').value ) {
 	// Don't translate this; we can't change the confirm text anyway.
 	return 'Unsaved changes!';
     }
@@ -378,7 +378,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
 			$thread_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
-			$comments_label = _n('post', 'comments', $cur_forum['num_comments'], 'luna');
+			$comments_label = _n('comment', 'comments', $cur_forum['num_comments'], 'luna');
 			
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
@@ -461,7 +461,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
 			$thread_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
-			$comments_label = __('post', 'comments', $cur_forum['num_comments'], 'luna');
+			$comments_label = __('comment', 'comments', $cur_forum['num_comments'], 'luna');
 			
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
@@ -639,7 +639,7 @@ function draw_comment_list() {
 			// Format the online indicator, those are ment as CSS classes
 			$is_online = ($cur_comment['is_online'] == $cur_comment['commenter_id']) ? 'is-online' : 'is-offline';
 	
-			// We only show location, register date, post count and the contact links if "Show user info" is enabled
+			// We only show location, register date, comment count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
 				if ($cur_comment['location'] != '') {
 					if ($luna_config['o_censoring'] == '1')
@@ -696,7 +696,7 @@ function draw_comment_list() {
 				$user_avatar = draw_user_avatar($cur_comment['commenter_id'], false, 'media-object media-avatar');
 		}
 	
-		// Generation post action array (quote, edit, delete etc.)
+		// Generation comment action array (quote, edit, delete etc.)
 		if (!$is_admmod) {
 			if (!$luna_user['is_guest']) {
 				if ($cur_comment['marked'] == false) {
@@ -808,7 +808,7 @@ function draw_response_list() {
 					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']] = generate_avatar_markup($cur_comment['sender_id']);
 			}
 	
-			// We only show location, register date, post count and the contact links if "Show user info" is enabled
+			// We only show location, register date, comment count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
 				if ($cur_comment['location'] != '') {
 					if ($luna_config['o_censoring'] == '1')

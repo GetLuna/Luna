@@ -360,7 +360,7 @@ if (isset($_GET['tid'])) {
 		$cur_comment['message'] = parse_message($cur_comment['message']);
 
 ?>
-				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstpost' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
+				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstcomment' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>

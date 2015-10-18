@@ -150,7 +150,7 @@ if (isset($_POST['form_sent'])) {
 				$new_tid = $tid;
 
 				// Insert the new comment
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 
 				// To subscribe or not to subscribe, that ...
@@ -163,7 +163,7 @@ if (isset($_POST['form_sent'])) {
 			} else {
 				// It's a guest. Insert the new comment
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 			}
 
@@ -175,13 +175,13 @@ if (isset($_POST['form_sent'])) {
 			// Update thread
 			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_comment='.$now.', last_comment_id='.$new_pid.', last_commenter=\''.$db->escape($username).'\', last_commenter_id=\''.$user_id_commenter.'\' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
-			update_search_index('post', $new_pid, $message);
+			update_search_index('comment', $new_pid, $message);
 
 			update_forum($cur_commenting['fid']);
 
 			// Should we send out notifications?
 			if ($luna_config['o_thread_subscriptions'] == '1') {
-				// Get the comment time for the previous post in this thread
+				// Get the comment time for the previous comment in this thread
 				$result = $db->query('SELECT commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 				$previous_comment_time = $db->result($result);
 
@@ -217,7 +217,7 @@ You can unsubscribe by going to <unsubscribe_url>
 <board_mailer> Mailer
 (Do not reply to this message)', 'luna'));
 
-								// Load the "new reply full" template (with post included)
+								// Load the "new reply full" template (with comment included)
 								$mail_tpl_full = trim(__('Subject: Reply to thread: "<thread_subject>"
 
 <replier> has replied to the thread "<thread_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
@@ -298,19 +298,19 @@ You can unsubscribe by going to <unsubscribe_url>
 				if ($luna_config['o_thread_subscriptions'] == '1' && $subscribe)
 					$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-				// Create the comment ("thread post")
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				// Create the comment ("thread comment")
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 			} else {
-				// Create the comment ("thread post")
+				// Create the comment ("thread comment")
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
 
 			// Update the thread with last_comment_id
 			$db->query('UPDATE '.$db->prefix.'threads SET last_comment_id='.$new_pid.', first_comment_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
-			update_search_index('post', $new_pid, $message, $subject);
+			update_search_index('comment', $new_pid, $message, $subject);
 
 			update_forum($fid);
 
@@ -345,7 +345,7 @@ You can unsubscribe by going to <unsubscribe_url>
 <board_mailer> Mailer
 (Do not reply to this message)', 'luna'));
 
-								// Load the "new thread full" template (with post included)
+								// Load the "new thread full" template (with comment included)
 								$mail_tpl_full = trim(__('Subject: New thread in forum: "<forum_name>"
 
 <commenter> has commented a new thread "<thread_subject>" in the forum "<forum_name>", to which you are subscribed.
@@ -415,7 +415,7 @@ You can unsubscribe by going to <unsubscribe_url>
 
 		// If we previously found out that the email was banned
 		if ($luna_user['is_guest'] && $banned_email && $luna_config['o_mailing_list'] != '') {
-			// Load the "banned email post" template
+			// Load the "banned email comment" template
 			$mail_tpl = trim(__('Subject: Alert - Banned email detected
 
 User "<username>" commented with banned email address: <email>
@@ -439,7 +439,7 @@ Comment URL: <comment_url>
 			luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 		}
 
-		// If the commenting user is logged in, increment his/her post count
+		// If the commenting user is logged in, increment his/her comment count
 		if (!$luna_user['is_guest']) {
 			$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments+1, last_comment='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
@@ -458,7 +458,7 @@ Comment URL: <comment_url>
 // If a thread ID was specified in the url (it's a reply)
 if ($tid) {
 	$action = __('Add comment', 'luna');
-	$form = '<form id="post" method="post" action="comment.php?action=post&amp;tid='.$tid.'" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
+	$form = '<form id="comment" method="post" action="comment.php?action=comment&amp;tid='.$tid.'" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
 	if (isset($_GET['qid'])) {
@@ -525,14 +525,14 @@ if ($tid) {
 // If a forum ID was specified in the url (new thread)
 elseif ($fid) {
 	$action = __('Create thread', 'luna');
-	$form = '<form id="post" method="post" action="comment.php?action=post&amp;fid='.$fid.'" onsubmit="window.onbeforeunload=null;return process_form(this)">';
+	$form = '<form id="comment" method="post" action="comment.php?action=comment&amp;fid='.$fid.'" onsubmit="window.onbeforeunload=null;return process_form(this)">';
 } else
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $action);
 $required_fields = array('req_email' => __('Email', 'luna'), 'req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
-$focus_element = array('post');
+$focus_element = array('comment');
 
 if (!$luna_user['is_guest'])
 	$focus_element[] = ($fid) ? 'req_subject' : 'req_message';
@@ -542,7 +542,7 @@ else {
 }
 
 $cur_index = 1;
-define('LUNA_ACTIVE_PAGE', 'post');
+define('LUNA_ACTIVE_PAGE', 'comment');
 require load_page('header.php');
 
 require load_page('comment.php');
