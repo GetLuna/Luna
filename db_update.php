@@ -632,7 +632,7 @@ switch ($stage) {
 		$db->rename_field('comments', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
-		$db->rename_field('threads', 'first_comment_id', 'first_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
 		$db->rename_field('reports', 'comment_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'comment_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
