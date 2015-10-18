@@ -458,7 +458,7 @@ Comment URL: <comment_url>
 // If a thread ID was specified in the url (it's a reply)
 if ($tid) {
 	$action = __('Add comment', 'luna');
-	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
+	$form = '<form id="post" method="post" action="comment.php?action=post&amp;tid='.$tid.'" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
 	if (isset($_GET['qid'])) {
@@ -525,7 +525,7 @@ if ($tid) {
 // If a forum ID was specified in the url (new thread)
 elseif ($fid) {
 	$action = __('Create thread', 'luna');
-	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="window.onbeforeunload=null;return process_form(this)">';
+	$form = '<form id="post" method="post" action="comment.php?action=post&amp;fid='.$fid.'" onsubmit="window.onbeforeunload=null;return process_form(this)">';
 } else
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -545,6 +545,6 @@ $cur_index = 1;
 define('LUNA_ACTIVE_PAGE', 'post');
 require load_page('header.php');
 
-require load_page('post.php');
+require load_page('comment.php');
 
 require load_page('footer.php');

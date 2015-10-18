@@ -169,7 +169,7 @@ if ($action == 'delete') {
 		$cur_delete['message'] = parse_message($cur_delete['message']);
 
 		load_inbox_nav($page);
-		require load_page('inbox-delete-post.php');
+		require load_page('inbox-delete-comment.php');
 
 		require load_page('footer.php');
 	}
@@ -209,7 +209,7 @@ if ($action == 'delete') {
 	if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 		message(__('You do not have permission to access this page.', 'luna'));
 		
-	$post_count = '0'; // Keep track of post numbers
+	$comment_count = '0'; // Keep track of post numbers
 	
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());
 	

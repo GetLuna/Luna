@@ -88,14 +88,14 @@ $admin_ids = get_admin_ids();
 
 if ($cur_thread['closed'] == '0') {
 	if (($cur_thread['comment'] == '' && $luna_user['g_comment'] == '1') || $cur_thread['comment'] == '1' || $is_admmod)
-		$comment_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
+		$comment_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
 	else
 		$comment_link = '';
 } else {
 	$comment_link = '<a class="btn disabled btn-danger btn-post"><span class="fa fa-fw fa-lock"></span></a>';
 
 	if ($is_admmod)
-		$comment_link .= '<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
+		$comment_link .= '<a class="btn btn-primary btn-post" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
 
 	$comment_link = $comment_link."\n";
 }
@@ -161,7 +161,7 @@ require load_page('header.php');
 
 require LUNA_ROOT.'include/parser.php';
 
-$post_count = 0; // Keep track of comment numbers
+$comment_count = 0; // Keep track of comment numbers
 
 // Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 if (!$luna_user['is_admmod'])
@@ -169,13 +169,13 @@ if (!$luna_user['is_admmod'])
 else
 	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
-$post_ids = array();
+$comment_ids = array();
 for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)
-	$post_ids[] = $cur_comment_id;
+	$comment_ids[] = $cur_comment_id;
 
 $token_url = '&amp;csrf_token='.luna_csrf_token();
 
-if (empty($post_ids))
+if (empty($comment_ids))
 	error('The comment table and thread table seem to be out of sync!', __FILE__, __LINE__);
 
 $cur_index = 1;

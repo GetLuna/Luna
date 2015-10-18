@@ -4,7 +4,7 @@
 if (!defined('FORUM'))
 	exit;
 
-include load_page('inbox-delete-post.php');
+include load_page('inbox-delete-comment.php');
 
 ?>
 <div class="row">

@@ -105,7 +105,7 @@ if (isset($_GET['tid'])) {
 			if ($db->num_rows($result) != substr_count($comments, ',') + 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 			
-			decrease_post_counts($comments);
+			decrease_comment_counts($comments);
 
 			// Delete the comments
 			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$comments.')') or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
@@ -318,20 +318,20 @@ if (isset($_GET['tid'])) {
 
 	require LUNA_ROOT.'include/parser.php';
 
-	$post_count = 0; // Keep track of comment numbers
+	$comment_count = 0; // Keep track of comment numbers
 
 	// Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
-	$post_ids = array();
+	$comment_ids = array();
 	for ($i = 0;$cur_comment_id = $db->result($result, $i);$i++)
-		$post_ids[] = $cur_comment_id;
+		$comment_ids[] = $cur_comment_id;
 
 	// Retrieve the comments (and their respective poster)
-	$result = $db->query('SELECT u.title, u.num_comments, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.title, u.num_comments, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 	while ($cur_comment = $db->fetch_assoc($result)) {
-		$post_count++;
+		$comment_count++;
 
 		// If the commenter is a registered user
 		if ($cur_comment['poster_id'] > 1) {
@@ -360,10 +360,10 @@ if (isset($_GET['tid'])) {
 		$cur_comment['message'] = parse_message($cur_comment['message']);
 
 ?>
-				<div id="p<?php echo $cur_comment['id'] ?>" class="blockpost<?php if($cur_comment['id'] == $cur_thread['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
+				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_post_id']) echo ' firstpost' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title"><?php echo $poster ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['posted']) ?></a></span></h3>
+							<h3 class="panel-title"><?php echo $poster ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['posted']) ?></a></span></h3>
 						</div>
 						<div class="panel-body">
 							<?php echo $cur_comment['message']."\n" ?>
@@ -659,14 +659,14 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 		// Create a list of the comment IDs in this thread and then strip the search index
 		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
-		$post_ids = '';
+		$comment_ids = '';
 		while ($row = $db->fetch_row($result))
-			$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
+			$comment_ids .= ($comment_ids != '') ? ','.$row[0] : $row[0];
 
 		// We have to check that we actually have a list of comment IDs since we could be deleting just a redirect thread
-		if ($post_ids != '') {
-			decrease_post_counts($post_ids);
-			strip_search_index($post_ids);
+		if ($comment_ids != '') {
+			decrease_comment_counts($comment_ids);
+			strip_search_index($comment_ids);
 		}
 
 		// Delete comments

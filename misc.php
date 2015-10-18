@@ -143,8 +143,8 @@ The message reads as follows:
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-	$post_id = intval($_GET['report']);
-	if ($post_id < 1)
+	$comment_id = intval($_GET['report']);
+	if ($comment_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	if (isset($_POST['form_sent'])) {
@@ -162,7 +162,7 @@ The message reads as follows:
 			message(sprintf(__('At least %s seconds have to pass between reports. Please wait %s seconds and try sending again.', 'luna'), $luna_user['g_report_flood'], $luna_user['g_report_flood'] - (time() - $luna_user['last_report_sent'])));
 
 		// Get the thread ID
-		$result = $db->query('SELECT thread_id FROM '.$db->prefix.'comments WHERE id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT thread_id FROM '.$db->prefix.'comments WHERE id='.$comment_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -178,8 +178,8 @@ The message reads as follows:
 
 		// Should we use the internal report handling?
 		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2')
-			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, thread_id, forum_id, reported_by, created, message) VALUES('.$post_id.', '.$thread_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'comments SET marked = 1 WHERE id='.$post_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, thread_id, forum_id, reported_by, created, message) VALUES('.$comment_id.', '.$thread_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET marked = 1 WHERE id='.$comment_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 
 		// Should we email the report?
 		if ($luna_config['o_report_method'] == '1' || $luna_config['o_report_method'] == '2') {
@@ -204,7 +204,7 @@ Reason: <reason>
 				$mail_subject = str_replace('<forum_id>', $forum_id, $mail_subject);
 				$mail_subject = str_replace('<thread_subject>', $subject, $mail_subject);
 				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
-				$mail_message = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$post_id.'#p'.$post_id, $mail_message);
+				$mail_message = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$comment_id.'#p'.$comment_id, $mail_message);
 				$mail_message = str_replace('<reason>', $reason, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
@@ -220,7 +220,7 @@ Reason: <reason>
 	}
 
 	// Fetch some info about the comment, the thread and the forum
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$comment_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -243,17 +243,17 @@ Reason: <reason>
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	$thread_id = intval($_GET['tid']);
-	$post_id = intval($_GET['answer']);
-	if ($post_id < 1 || $thread_id < 1)
+	$comment_id = intval($_GET['answer']);
+	if ($comment_id < 1 || $thread_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$post_id.' WHERE id= '.$thread_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$comment_id.' WHERE id= '.$thread_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
-		redirect('thread.php?pid='.$post_id.'#p'.$post_id);
+		redirect('thread.php?pid='.$comment_id.'#p'.$comment_id);
 	}
 
 	define('LUNA_ACTIVE_PAGE', 'misc');
@@ -267,7 +267,7 @@ Reason: <reason>
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	$answer_id = intval($_GET['tid']);
-	$post_id = intval($_GET['unanswer']);
+	$comment_id = intval($_GET['unanswer']);
 	if ($answer_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -277,7 +277,7 @@ Reason: <reason>
 
 		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
-		redirect('thread.php?pid='.$post_id.'#p'.$post_id);
+		redirect('thread.php?pid='.$comment_id.'#p'.$comment_id);
 	}
 
 	define('LUNA_ACTIVE_PAGE', 'misc');

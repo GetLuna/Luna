@@ -322,7 +322,7 @@ function draw_threads_list() {
 	
 	} else {
 		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
-		printf(__('There are no threads in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
+		printf(__('There are no threads in this forum yet, but you can <a href="comment.php?fid=%s">start the first one</a>.', 'luna'), $id);
 		echo '</h3></div></div>';
 	}
 	
@@ -611,12 +611,12 @@ function draw_index_threads_list() {
 }
 
 function draw_comment_list() {
-	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
+	global $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective poster/online status)
-	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_comment = $db->fetch_assoc($result)) {
-		$post_count++;
+		$comment_count++;
 		$user_avatar = '';
 		$user_info = array();
 		$user_actions = array();
@@ -708,9 +708,9 @@ function draw_comment_list() {
 	
 			if ($cur_thread['closed'] == 0) {
 				if ($cur_comment['poster_id'] == $luna_user['id']) {
-					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_delete_comments'] == 1))
+					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
 						$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
-					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_comments'] == 1)) {
+					if ((($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1)) {
 						if ($cur_comment['soft'] == 0)
 							$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 						else
@@ -721,7 +721,7 @@ function draw_comment_list() {
 				}
 	
 				if (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)
-					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
+					$post_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 
 				if ($cur_forum['solved'] == 1) {
 					if ($luna_user['username'] == $started_by) {
@@ -746,7 +746,7 @@ function draw_comment_list() {
 					$post_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
 				$post_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 			}
-			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
+			$post_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 			
 			if ($cur_forum['solved'] == 1) {
 				if ($cur_comment['id'] == $cur_thread['answer'])
@@ -775,10 +775,10 @@ function draw_comment_list() {
 }
 
 function draw_response_list() {
-	global $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
+	global $result, $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $inbox;
 
 	while ($cur_comment = $db->fetch_assoc($result)) {	
-		$post_count++;
+		$comment_count++;
 		$user_avatar = '';
 		$user_info = array();
 		$user_contacts = array();
@@ -1052,11 +1052,11 @@ function draw_mail_form($recipient_id) {
 <?php
 }
 
-function draw_report_form($post_id) {
-	global $post_id;
+function draw_report_form($comment_id) {
+	global $comment_id;
 ?>
 
-<form class="form-horizontal" id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+<form class="form-horizontal" id="report" method="post" action="misc.php?report=<?php echo $comment_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php _e('Report', 'luna') ?></h3>
@@ -1073,7 +1073,7 @@ function draw_report_form($post_id) {
 				<div class="form-group">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-9">
-						<a href="thread.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>" class="btn btn-default"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+						<a href="thread.php?pid=<?php echo $comment_id ?>#p<?php echo $comment_id ?>" class="btn btn-default"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 						<button type="submit" class="btn btn-primary" name="submit" accesskey="s"><span class="fa fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button>
 					</div>
 				</div>

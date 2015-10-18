@@ -988,22 +988,6 @@ a.active.list-group-item:focus {
 	max-height: 100%;
 }
 
-.blockpost .postbody {
-	text-align: left;
-	border-left-style: solid;
-	border-left-width: 1px;
-	margin-right: -218px;
-	float: right;
-	position: relative;
-	width: 100%;
-}
-
-.blockpost .postleft {
-	padding: 7px 12px 7px 18px;
-	float: left;
-	position: relative;
-}
-
 .username {
 	margin: 0;
 }

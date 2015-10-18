@@ -620,7 +620,7 @@ switch ($stage) {
 		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
 		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
 		build_config(2, 'o_thread_views', 'o_topic_views');
-		build_config(2, 'o_show_comment_count', 'o_show_post_count');
+		build_config(2, 'o_show_comment_count', 'o_show_comment_count');
 		build_config(2, 'o_has_commented', 'o_has_posted');
 
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade

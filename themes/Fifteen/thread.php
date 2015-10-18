@@ -51,7 +51,7 @@ if (!defined('FORUM'))
 	<div class="col-sm-9">
 		<?php draw_comment_list(); ?>
 		<?php if ($quickpost): ?>
-			<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+			<form method="post" action="comment.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 <?php
 			if ($luna_user['is_guest']) {
 				$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.__('Email', 'luna').'</strong>' : __('Email', 'luna');

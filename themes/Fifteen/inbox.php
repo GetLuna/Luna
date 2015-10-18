@@ -27,7 +27,7 @@ if (!defined('FORUM'))
                 </div>
                 <div class="btn-group">
 					<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
-					<?php include load_page('inbox-delete-post.php'); ?>
+					<?php include load_page('inbox-delete-comment.php'); ?>
                 </div>
             	<div class="btn-group pull-right">
 					<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> <?php _e('Compose', 'luna') ?></a>
@@ -62,8 +62,8 @@ $result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1
 // If there are messages in this folder.
 if ($db->num_rows($result)) {
 	while ($cur_mess = $db->fetch_assoc($result)) {
-		++$post_count;
-		$item_status = ($post_count % 2 == 0) ? 'roweven' : 'rowodd';
+		++$comment_count;
+		$item_status = ($comment_count % 2 == 0) ? 'roweven' : 'rowodd';
 		if ($cur_mess['showed'] == '0') {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';

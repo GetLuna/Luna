@@ -187,10 +187,10 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 							}
 
 							if ($match_type == 'and' && $word_count) {
-								foreach ($keyword_results as $post_id => $thread_id) {
-									if (!isset($row[$post_id])) {
-										unset($keyword_results[$post_id]);
-										unset($sort_data[$post_id]);
+								foreach ($keyword_results as $comment_id => $thread_id) {
+									if (!isset($row[$comment_id])) {
+										unset($keyword_results[$comment_id]);
+										unset($sort_data[$comment_id]);
 									}
 								}
 							}
@@ -204,18 +204,18 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				}
 
 				// Sort the results - annoyingly array_multisort re-indexes arrays with numeric keys, so we need to split the keys out into a separate array then combine them again after
-				$post_ids = array_keys($keyword_results);
+				$comment_ids = array_keys($keyword_results);
 				$thread_ids = array_values($keyword_results);
 
-				array_multisort(array_values($sort_data), $sort_dir == 'DESC' ? SORT_DESC : SORT_ASC, $sort_type, $post_ids, $thread_ids);
+				array_multisort(array_values($sort_data), $sort_dir == 'DESC' ? SORT_DESC : SORT_ASC, $sort_type, $comment_ids, $thread_ids);
 
 				// combine the arrays back into a key=>value array (array_combine is PHP5 only unfortunately)
 				$num_results = count($keyword_results);
 				$keyword_results = array();
 				for ($i = 0;$i < $num_results;$i++)
-					$keyword_results[$post_ids[$i]] = $thread_ids[$i];
+					$keyword_results[$comment_ids[$i]] = $thread_ids[$i];
 
-				unset($sort_data, $post_ids, $thread_ids);
+				unset($sort_data, $comment_ids, $thread_ids);
 			}
 
 			// If it's a search for author name (and that author name isn't Guest)
@@ -480,7 +480,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		} elseif ($show_as == 'comments') {
 			require LUNA_ROOT.'include/parser.php';
 
-			$post_count = 0;
+			$comment_count = 0;
 		}
 
 		// Get thread/forum tracking data

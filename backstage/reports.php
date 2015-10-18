@@ -24,8 +24,8 @@ if (isset($_POST['zap_id'])) {
 	if ($zapped == '') {
 		$db->query('UPDATE '.$db->prefix.'reports SET zapped='.time().', zapped_by='.$luna_user['id'].' WHERE id='.$zap_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
 		$result = $db->query('SELECT post_id FROM '.$db->prefix.'reports WHERE id='.$zap_id) or error('Unable to fetch report info', __FILE__, __LINE__, $db->error());
-		$post_id = $db->result($result);
-		$db->query('UPDATE '.$db->prefix.'comments SET marked = 0 WHERE id='.$post_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
+		$comment_id = $db->result($result);
+		$db->query('UPDATE '.$db->prefix.'comments SET marked = 0 WHERE id='.$comment_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
 	}
 
 	// Delete old reports (which cannot be viewed anyway)
@@ -71,8 +71,8 @@ if ($db->num_rows($result)) {
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
 		$thread = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?id='.$cur_report['thread_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.__('Deleted', 'luna').'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
-		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Comment #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
-		$report_location = array($forum, $thread, $post_id);
+		$comment_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Comment #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
+		$report_location = array($forum, $thread, $comment_id);
 
 ?>
 					<tr>
@@ -127,10 +127,10 @@ if ($db->num_rows($result)) {
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
 		$thread = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?id='.$cur_report['thread_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.__('Deleted', 'luna').'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
-		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Comment #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span> <span class="divider">/</span> '.__('Deleted', 'luna').'</span>';
+		$comment_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../thread.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Comment #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span> <span class="divider">/</span> '.__('Deleted', 'luna').'</span>';
 		$zapped_by = ($cur_report['zapped_by'] != '') ? '<a href="../profile.php?id='.$cur_report['zapped_by_id'].'">'.luna_htmlspecialchars($cur_report['zapped_by']).'</a>' : __('N/A', 'luna');
 		$zapped_by = ($cur_report['zapped_by'] != '') ? '<strong>'.luna_htmlspecialchars($cur_report['zapped_by']).'</strong>' : __('N/A', 'luna');
-		$report_location = array($forum, $thread, $post_id);
+		$report_location = array($forum, $thread, $comment_id);
 
 ?>
 			<tr>

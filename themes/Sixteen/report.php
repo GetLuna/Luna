@@ -4,6 +4,6 @@
 if (!defined('FORUM'))
 	exit;
 
-draw_report_form($post_id);
+draw_report_form($comment_id);
 
 ?>

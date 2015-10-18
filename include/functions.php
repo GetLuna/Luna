@@ -176,21 +176,21 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 		// Fetch comments to prune
 		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$thread_ids.')', true) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
-		$post_ids = '';
+		$comment_ids = '';
 		while ($row = $db->fetch_row($result))
-			$post_ids .= (($post_ids != '') ? ',' : '').$row[0];
+			$comment_ids .= (($comment_ids != '') ? ',' : '').$row[0];
 
-		if ($post_ids != '') {
+		if ($comment_ids != '') {
 			// Delete threads
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions
 			$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$thread_ids.')') or error('Unable to prune subscriptions', __FILE__, __LINE__, $db->error());
 			// Delete comments
-			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$post_ids.')') or error('Unable to prune comments', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$comment_ids.')') or error('Unable to prune comments', __FILE__, __LINE__, $db->error());
 
 			// We removed a bunch of comments, so now we have to update the search index
 			require_once LUNA_ROOT.'include/search_idx.php';
-			strip_search_index($post_ids);
+			strip_search_index($comment_ids);
 		}
 	}
 }
@@ -745,17 +745,17 @@ function delete_thread($thread_id, $type) {
 		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete thread', __FILE__, __LINE__, $db->error());
 
 	// Create a list of the comment IDs in this thread
-	$post_ids = '';
+	$comment_ids = '';
 	$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_row($result))
-		$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
+		$comment_ids .= ($comment_ids != '') ? ','.$row[0] : $row[0];
 
 	// Make sure we have a list of comment IDs
-	if ($post_ids != '') {
+	if ($comment_ids != '') {
 		if ($type == "hard") {
-			decrease_post_counts($post_ids);
+			decrease_comment_counts($comment_ids);
 
-			strip_search_index($post_ids);
+			strip_search_index($comment_ids);
 			// Delete comments in thread
 			$db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
 		} else {
@@ -776,7 +776,7 @@ function delete_thread($thread_id, $type) {
 //
 // Delete a single post
 //
-function delete_post($post_id, $thread_id, $poster_id) {
+function delete_post($comment_id, $thread_id, $poster_id) {
 	global $db;
 
 	$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -784,20 +784,20 @@ function delete_post($post_id, $thread_id, $poster_id) {
 	list($second_last_id, $second_poster, $second_posted) = $db->fetch_row($result);
 
 	// Delete the comment
-	$db->query('DELETE FROM '.$db->prefix.'comments WHERE id='.$post_id) or error('Unable to delete post', __FILE__, __LINE__, $db->error());
+	$db->query('DELETE FROM '.$db->prefix.'comments WHERE id='.$comment_id) or error('Unable to delete post', __FILE__, __LINE__, $db->error());
 
 	// Decrement user post count if the user is a registered user
 	if ($poster_id > 1)
 		$db->query('UPDATE '.$db->prefix.'users SET num_comments=num_comments-1 WHERE id='.$poster_id.' AND num_comments>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 
-	strip_search_index($post_id);
+	strip_search_index($comment_id);
 
 	// Count number of replies in the thread
 	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to fetch post count for thread', __FILE__, __LINE__, $db->error());
 	$num_replies = $db->result($result, 0) - 1;
 
 	// If the message we deleted is the most recent in the thread (at the end of the thread)
-	if ($last_id == $post_id) {
+	if ($last_id == $comment_id) {
 		// If there is a $second_last_id there is more than 1 reply to the thread
 		if (!empty($second_last_id))
 			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$second_posted.', last_post_id='.$second_last_id.', last_poster=\''.$db->escape($second_poster).'\', num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
@@ -2250,10 +2250,10 @@ function num_guests_online() {
 }
 
 // Get forum_id by post_id
-function get_forum_id($post_id) {
+function get_forum_id($comment_id) {
 	global $db;
 
-	$result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'comments as p INNER JOIN '.$db->prefix.'threads as t ON p.thread_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
+	$result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'comments as p INNER JOIN '.$db->prefix.'threads as t ON p.thread_id = t.id WHERE p.id='.intval($comment_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
 
 	$row = $db->fetch_row($result_fid);
 
@@ -2264,12 +2264,12 @@ function get_forum_id($post_id) {
 }
 
 // Decrease user post counts (used before deleting comments)
-function decrease_post_counts($post_ids) {
+function decrease_comment_counts($comment_ids) {
 	global $db;
 
 	// Count the comment counts for each user to be subtracted
 	$user_comments = array();
-	$result = $db->query('SELECT poster_id FROM '.$db->prefix.'comments WHERE id IN('.$post_ids.') AND poster_id>1') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT poster_id FROM '.$db->prefix.'comments WHERE id IN('.$comment_ids.') AND poster_id>1') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_assoc($result))
 	{
 		if (!isset($user_comments[$row['poster_id']]))
