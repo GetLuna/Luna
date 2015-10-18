@@ -68,7 +68,7 @@ if (isset($_POST['soft_delete'])) {
 		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
 
-		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
+		redirect('thread.php?pid='.$post_id.'#p'.$post_id);
 	}
 }
 
@@ -91,7 +91,7 @@ if (isset($_POST['reset'])) {
 		update_forum($cur_comment['fid']);
 
 		// Redirect towards the comment
-		redirect('viewtopic.php?pid='.$id.'#p'.$id);
+		redirect('thread.php?pid='.$id.'#p'.$id);
 	}
 }
 
@@ -116,7 +116,7 @@ if (isset($_POST['delete'])) {
 		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
 
-		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
+		redirect('thread.php?pid='.$post_id.'#p'.$post_id);
 	}
 }
 

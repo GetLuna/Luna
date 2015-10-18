@@ -288,7 +288,7 @@ if ($action == 'feed') {
 		// Setup the feed
 		$feed = array(
 			'title' 		=>	$luna_config['o_board_title'].__(' / ', 'luna').$cur_thread['subject'],
-			'link'			=>	get_base_url(true).'/viewtopic.php?id='.$tid,
+			'link'			=>	get_base_url(true).'/thread.php?id='.$tid,
 			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_thread['subject']),
 			'items'			=>	array(),
 			'type'			=>	'posts'
@@ -302,7 +302,7 @@ if ($action == 'feed') {
 			$item = array(
 				'id'			=>	$cur_comment['id'],
 				'title'			=>	$cur_thread['first_post_id'] == $cur_comment['id'] ? $cur_thread['subject'] : __('Re: ', 'luna').$cur_thread['subject'],
-				'link'			=>	get_base_url(true).'/viewtopic.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id'],
+				'link'			=>	get_base_url(true).'/thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id'],
 				'description'		=>	$cur_comment['message'],
 				'author'		=>	array(
 					'name'	=> $cur_comment['poster'],
@@ -383,7 +383,7 @@ if ($action == 'feed') {
 				$item = array(
 					'id'			=>	$cur_thread['id'],
 					'title'			=>	$cur_thread['subject'],
-					'link'			=>	'/viewtopic.php?id='.$cur_thread['id'].($order_posted ? '' : '&action=new'),
+					'link'			=>	'/thread.php?id='.$cur_thread['id'].($order_posted ? '' : '&action=new'),
 					'description'	=>	$cur_thread['message'],
 					'author'		=>	array(
 						'name'	=> $order_posted ? $cur_thread['poster'] : $cur_thread['last_poster']

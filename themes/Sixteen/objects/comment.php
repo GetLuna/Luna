@@ -18,7 +18,7 @@
 			<div class="panel panel-default panel-topic panel-border">
 				<div class="panel-heading">
 					<div class="comment-arrow hidden-sm hidden-xs"></div>
-					<h3 class="panel-title"><span class="postnr">#<?php echo ($start_from + $post_count) ?><span class="pull-right"><a class="posttime" href="viewtopic.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['posted']) ?></a></span></span></h3>
+					<h3 class="panel-title"><span class="postnr">#<?php echo ($start_from + $post_count) ?><span class="pull-right"><a class="posttime" href="thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['posted']) ?></a></span></span></h3>
 				</div>
 				<div class="panel-body">
 					<?php echo $cur_comment['message']."\n" ?>

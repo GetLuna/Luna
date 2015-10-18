@@ -200,7 +200,7 @@ if (isset($_POST['form_sent'])) {
 					// Loop through subscribed users and send emails
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
 						// First of all, add a new notification
-						new_notification($cur_subscriber['id'], get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_commenting['subject'], 'fa-reply');
+						new_notification($cur_subscriber['id'], get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_commenting['subject'], 'fa-reply');
 
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
@@ -249,7 +249,7 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_subject = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_subject);
 								$mail_message = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_message);
 								$mail_message = str_replace('<replier>', $username, $mail_message);
-								$mail_message = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
+								$mail_message = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
@@ -257,7 +257,7 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_message_full = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_message_full);
 								$mail_message_full = str_replace('<replier>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-								$mail_message_full = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
+								$mail_message_full = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
 								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message_full);
 								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
@@ -378,7 +378,7 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_message = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
 								$mail_message = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_message);
 								$mail_message = str_replace('<commenter>', $username, $mail_message);
-								$mail_message = str_replace('<thread_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message);
+								$mail_message = str_replace('<thread_url>', get_base_url().'/thread.php?id='.$new_tid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_commenting['fid'], $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
@@ -387,7 +387,7 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_message_full = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_message_full);
 								$mail_message_full = str_replace('<commenter>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-								$mail_message_full = str_replace('<thread_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message_full);
+								$mail_message_full = str_replace('<thread_url>', get_base_url().'/thread.php?id='.$new_tid, $mail_message_full);
 								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_commenting['fid'], $mail_message_full);
 								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
@@ -433,7 +433,7 @@ Comment URL: <comment_url>
 
 			$mail_message = str_replace('<username>', $username, $mail_message);
 			$mail_message = str_replace('<email>', $email, $mail_message);
-			$mail_message = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
+			$mail_message = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
 			$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 			luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
@@ -450,7 +450,7 @@ Comment URL: <comment_url>
 			$db->query('UPDATE '.$db->prefix.'online SET last_post='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('viewtopic.php?pid='.$new_pid.'#p'.$new_pid);
+		redirect('thread.php?pid='.$new_pid.'#p'.$new_pid);
 	}
 }
 

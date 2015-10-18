@@ -45,7 +45,7 @@ if ($pid) {
 			$first_new_post_id = $db->result($result);
 
 			if ($first_new_post_id) {
-				header('Location: viewtopic.php?pid='.$first_new_post_id.'#p'.$first_new_post_id);
+				header('Location: thread.php?pid='.$first_new_post_id.'#p'.$first_new_post_id);
 				exit;
 			}
 		}
@@ -61,7 +61,7 @@ if ($pid) {
 
 
 		if ($last_post_id) {
-			header('Location: viewtopic.php?pid='.$last_post_id.'#p'.$last_post_id);
+			header('Location: thread.php?pid='.$last_post_id.'#p'.$last_post_id);
 			exit;
 		}
 	}
@@ -116,7 +116,7 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $luna_user['disp_posts'] * ($p - 1);
 
 // Generate paging links
-$paging_links = paginate($num_pages, $p, 'viewtopic.php?id='.$id);
+$paging_links = paginate($num_pages, $p, 'thread.php?id='.$id);
 
 $quickpost = false;
 if (($cur_thread['post_replies'] == '1' || ($cur_thread['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) && ($cur_thread['closed'] == '0' || $is_admmod)) {
@@ -156,7 +156,7 @@ $cur_forum = $db->fetch_assoc($result);
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_thread['forum_name']), luna_htmlspecialchars($cur_thread['subject']));
 if (!$pid)
 	define('LUNA_ALLOW_INDEX', 1);
-define('LUNA_ACTIVE_PAGE', 'viewtopic');
+define('LUNA_ACTIVE_PAGE', 'thread');
 require load_page('header.php');
 
 require LUNA_ROOT.'include/parser.php';
@@ -187,6 +187,6 @@ if ($luna_config['o_thread_views'] == '1')
 	$db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 $forum_id = $cur_thread['forum_id'];
-$footer_style = 'viewtopic';
+$footer_style = 'thread';
 
 require load_page('footer.php');

@@ -168,5 +168,5 @@ if (!empty($_SERVER['HTTP_REFERER']))
 
 if (!isset($redirect_url))
 	$redirect_url = get_base_url(true).'/index.php';
-elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
+elseif (preg_match('%thread\.php\?pid=(\d+)$%', $redirect_url, $matches))
 	$redirect_url .= '#p'.$matches[1];

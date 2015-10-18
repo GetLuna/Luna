@@ -2147,7 +2147,7 @@ function load_meta() {
 	if (!defined('LUNA_ALLOW_INDEX'))
 		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
 	if (defined('LUNA_CANONICAL_TAG_TOPIC'))
-		echo '<link rel="canonical" href="/viewtopic.php?id='.$id.'" />'."\n";
+		echo '<link rel="canonical" href="/thread.php?id='.$id.'" />'."\n";
 	if (defined('LUNA_CANONICAL_TAG_FORUM'))
 		echo '<link rel="canonical" href="/viewforum.php?id='.$id.'" />'."\n";
 

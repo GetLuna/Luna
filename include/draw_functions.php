@@ -252,7 +252,7 @@ function draw_topics_list() {
 				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_thread['subject']);
-			$last_post_date = '<a href="viewtopic.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
+			$last_post_date = '<a href="thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
 				$thread_id = $cur_thread['id'];
@@ -279,7 +279,7 @@ function draw_topics_list() {
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			$url = 'viewtopic.php?id='.$thread_id;
+			$url = 'thread.php?id='.$thread_id;
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
@@ -300,7 +300,7 @@ function draw_topics_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 
@@ -309,7 +309,7 @@ function draw_topics_list() {
 			$num_pages_topic = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_thread['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
@@ -393,9 +393,9 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_post = '<a href="thread.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_post = '<a href="thread.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} else
 				$last_post = __('Never', 'luna');
 		
@@ -527,7 +527,7 @@ function draw_index_topics_list() {
 				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_thread['subject']);
-			$last_post_date = '<a href="viewtopic.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
+			$last_post_date = '<a href="thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
 				$thread_id = $cur_thread['id'];
@@ -567,7 +567,7 @@ function draw_index_topics_list() {
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			$url = 'viewtopic.php?id='.$thread_id;
+			$url = 'thread.php?id='.$thread_id;
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['poster']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
@@ -587,7 +587,7 @@ function draw_index_topics_list() {
 			if (!$luna_user['is_guest'] && $cur_thread['last_post'] > $luna_user['last_visit'] && (!isset($tracked_threads['topics'][$cur_thread['id']]) || $tracked_threads['topics'][$cur_thread['id']] < $cur_thread['last_post']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_post']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 	
@@ -596,7 +596,7 @@ function draw_index_topics_list() {
 			$num_pages_topic = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_thread['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
@@ -908,7 +908,7 @@ function draw_delete_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
 			<p><?php echo ($is_thread_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 			</div>
 		</form>
@@ -922,7 +922,7 @@ function draw_soft_delete_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
 			<p><?php echo ($is_thread_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
 			</div>
 		</form>
@@ -936,7 +936,7 @@ function draw_soft_reset_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
 			<p><?php _e('This comment has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Reset comment', 'luna') ?></button>
 			</div>
 		</form>
@@ -988,7 +988,7 @@ function draw_search_results() {
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
 			
-			$subject = '<a href="viewtopic.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a>';
+			$subject = '<a href="thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a>';
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['poster']).'</span>';
 			
 			if ($cur_search['pinned'] == '1') {
@@ -1005,7 +1005,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="thread.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 			
@@ -1015,14 +1015,14 @@ function draw_search_results() {
 			$num_pages_topic = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_posts']);
 			
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).'</span>';
+				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
 			else
 				$subject_multipage = null;
 			
 			if ($cur_search['last_poster_id'] > '1' && $luna_user['g_view_users'] == '1')
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
+				$last_poster = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
 			else
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
+				$last_poster = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
 
 			require get_view_path('search-topic.php');
 		// }
@@ -1073,7 +1073,7 @@ function draw_report_form($post_id) {
 				<div class="form-group">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-9">
-						<a href="viewtopic.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>" class="btn btn-default"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+						<a href="thread.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>" class="btn btn-default"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 						<button type="submit" class="btn btn-primary" name="submit" accesskey="s"><span class="fa fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button>
 					</div>
 				</div>

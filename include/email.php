@@ -97,8 +97,8 @@ function bbcode2email($text, $wrap_length = 72) {
 	$text = luna_trim($text, "\t\n ");
 
 	$shortcut_urls = array(
-		'topic' => '/viewtopic.php?id=$1',
-		'post' => '/viewtopic.php?pid=$1#p$1',
+		'topic' => '/thread.php?id=$1',
+		'post' => '/thread.php?pid=$1#p$1',
 		'forum' => '/viewforum.php?id=$1',
 		'user' => '/profile.php?id=$1',
 	);

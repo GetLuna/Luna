@@ -24,7 +24,7 @@ if ($footer_style == 'index') {
 } elseif ($footer_style == 'viewforum') {
 	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS forum feed', 'luna') : __('Atom forum feed', 'luna');
 	$feed_id = '&fid='.$forum_id;
-} elseif ($footer_style == 'viewtopic') {
+} elseif ($footer_style == 'thread') {
 	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS thread feed', 'luna') : __('Atom thread feed', 'luna');
 	$feed_id = '&tid='.$id;
 }

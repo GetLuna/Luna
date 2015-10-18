@@ -13,7 +13,7 @@ $jumbo_style = ' style="background:'.$cur_commenting['color'].';"';
 		<?php if ($fid) { ?>
 			<h2 class="forum-title"><?php printf(__('New thread in "%s"', 'luna'), luna_htmlspecialchars($cur_commenting['forum_name'])) ?></h2><span class="pull-right naviton"><a class="btn btn-danger" href="index.php?id=<?php echo $cur_commenting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
 		<?php } else { ?>
-			<h2 class="forum-title"><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_commenting['subject'])) ?></h2><span class="pull-right naviton"><a class="btn btn-danger" href="viewtopic.php?id=<?php echo $cur_commenting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
+			<h2 class="forum-title"><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_commenting['subject'])) ?></h2><span class="pull-right naviton"><a class="btn btn-danger" href="thread.php?id=<?php echo $cur_commenting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
 		<?php } ?>
 	</div>
 </div>

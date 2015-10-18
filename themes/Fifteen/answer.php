@@ -15,7 +15,7 @@ if (!defined('FORUM'))
 				<input type="hidden" name="form_sent" value="1" />
 				<?php _e('Are you certain that this comment is the solution to your thread?', 'luna') ?>
 				<div class="btn-toolbar">
-					<a href="viewtopic.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>" class="btn btn-danger"><span class="fa fa-fw fa-times"></span> <?php _e('No', 'luna') ?></a>
+					<a href="thread.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>" class="btn btn-danger"><span class="fa fa-fw fa-times"></span> <?php _e('No', 'luna') ?></a>
 					<button type="submit" class="btn btn-success" name="submit" accesskey="s"><span class="fa fa-fw fa-check"></span> <?php _e('Yes', 'luna') ?></button>
 				</div>
 			</fieldset>

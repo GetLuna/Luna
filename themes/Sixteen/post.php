@@ -12,7 +12,7 @@ $jumbo_style = ' style="background:'.$cur_commenting['color'].';"';
 <?php if ($fid) { ?>
 	<h2 class="profile-title"><?php printf(__('New thread in "%s"', 'luna'), luna_htmlspecialchars($cur_commenting['forum_name'])) ?><a class="btn btn-danger pull-right" href="index.php?id=<?php echo $cur_commenting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
 <?php } else { ?>
-	<h2 class="profile-title"><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_commenting['subject'])) ?><a class="btn btn-danger pull-right" href="viewtopic.php?id=<?php echo $cur_commenting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
+	<h2 class="profile-title"><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_commenting['subject'])) ?><a class="btn btn-danger pull-right" href="thread.php?id=<?php echo $cur_commenting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
 <?php }
 
 if (isset($errors))

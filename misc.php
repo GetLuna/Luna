@@ -127,7 +127,7 @@ The message reads as follows:
 
 	if (!isset($redirect_url))
 		$redirect_url = get_base_url(true).'/profile.php?id='.$recipient_id;
-	elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
+	elseif (preg_match('%thread\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Send email to', 'luna').' '.luna_htmlspecialchars($recipient));
@@ -204,7 +204,7 @@ Reason: <reason>
 				$mail_subject = str_replace('<forum_id>', $forum_id, $mail_subject);
 				$mail_subject = str_replace('<thread_subject>', $subject, $mail_subject);
 				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
-				$mail_message = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$post_id.'#p'.$post_id, $mail_message);
+				$mail_message = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$post_id.'#p'.$post_id, $mail_message);
 				$mail_message = str_replace('<reason>', $reason, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
@@ -253,7 +253,7 @@ Reason: <reason>
 
 		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$post_id.' WHERE id= '.$thread_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
+		redirect('thread.php?pid='.$post_id.'#p'.$post_id);
 	}
 
 	define('LUNA_ACTIVE_PAGE', 'misc');
@@ -277,7 +277,7 @@ Reason: <reason>
 
 		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
+		redirect('thread.php?pid='.$post_id.'#p'.$post_id);
 	}
 
 	define('LUNA_ACTIVE_PAGE', 'misc');
@@ -312,7 +312,7 @@ Reason: <reason>
 
 		$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$thread_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$thread_id);
+		redirect('thread.php?id='.$thread_id);
 	}
 
 	if ($forum_id) {
@@ -353,7 +353,7 @@ Reason: <reason>
 
 		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND thread_id='.$thread_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$thread_id);
+		redirect('thread.php?id='.$thread_id);
 	}
 
 	if ($forum_id) {
