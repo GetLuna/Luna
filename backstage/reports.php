@@ -25,7 +25,7 @@ if (isset($_POST['zap_id'])) {
 		$db->query('UPDATE '.$db->prefix.'reports SET zapped='.time().', zapped_by='.$luna_user['id'].' WHERE id='.$zap_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
 		$result = $db->query('SELECT post_id FROM '.$db->prefix.'reports WHERE id='.$zap_id) or error('Unable to fetch report info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
-		$db->query('UPDATE '.$db->prefix.'posts SET marked = 0 WHERE id='.$post_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET marked = 0 WHERE id='.$post_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
 	}
 
 	// Delete old reports (which cannot be viewed anyway)
@@ -63,7 +63,7 @@ require 'header.php';
 				<tbody>
 <?php
 
-$result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'comments AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
@@ -119,7 +119,7 @@ if ($db->num_rows($result)) {
 		<tbody>
 <?php
 
-$result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.message, r.zapped, r.zapped_by AS zapped_by_id, p.id AS pid, t.subject, f.forum_name, u.username AS reporter, u2.username AS zapped_by FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id LEFT JOIN '.$db->prefix.'users AS u2 ON r.zapped_by=u2.id WHERE r.zapped IS NOT NULL ORDER BY zapped DESC LIMIT 10') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.message, r.zapped, r.zapped_by AS zapped_by_id, p.id AS pid, t.subject, f.forum_name, u.username AS reporter, u2.username AS zapped_by FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'comments AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id LEFT JOIN '.$db->prefix.'users AS u2 ON r.zapped_by=u2.id WHERE r.zapped IS NOT NULL ORDER BY zapped DESC LIMIT 10') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {

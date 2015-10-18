@@ -202,8 +202,6 @@ switch ($stage) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 			
 		// Legacy support: FluxBB 1.4
-		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
-		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
 		// Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $luna_config))
@@ -280,7 +278,6 @@ switch ($stage) {
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 
 		// ModernBB 2.0 upgrade support
-		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 		build_config(0, 'o_quickjump');
 		build_config(0, 'o_show_dot');
 
@@ -321,7 +318,6 @@ switch ($stage) {
 		// Luna 1.0 upgrade support
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
@@ -593,6 +589,7 @@ switch ($stage) {
 		$db->rename_table('subscriptions', 'thread_subscriptions');
 		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
 		$db->rename_table('topics', 'threads');
+		$db->rename_table('posts', 'comments');
 		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
@@ -626,9 +623,16 @@ switch ($stage) {
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(2, 'o_has_commented', 'o_has_posted');
 
+			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
+
+			//ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
 			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
+			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
@@ -647,20 +651,20 @@ switch ($stage) {
 		require LUNA_ROOT.'include/parser.php';
 
 		// Fetch posts to process this cycle
-		$result = $db->query('SELECT id, message FROM '.$db->prefix.'posts WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id, message FROM '.$db->prefix.'comments WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$temp = array();
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
-			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
 		}
 
 		// Check if there is more work to do
 		if ($end_at > 0) {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)
 				$query_str = '?stage=preparse_posts&start_at='.$end_at;
@@ -733,7 +737,7 @@ switch ($stage) {
 		require LUNA_ROOT.'include/search_idx.php';
 
 		// Fetch posts to process this cycle
-		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
@@ -749,7 +753,7 @@ switch ($stage) {
 
 		// Check if there is more work to do
 		if ($end_at > 0) {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)
 				$query_str = '?stage=rebuild_idx&start_at='.$end_at;

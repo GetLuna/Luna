@@ -236,7 +236,7 @@ function draw_threads_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_addition = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -499,7 +499,7 @@ function draw_index_threads_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
+			$sql = 'SELECT p.poster_id AS has_commented, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -614,7 +614,7 @@ function draw_comment_list() {
 	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective poster/online status)
-	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_comment = $db->fetch_assoc($result)) {
 		$post_count++;
 		$user_avatar = '';

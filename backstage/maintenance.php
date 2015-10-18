@@ -78,7 +78,7 @@ if ($action == 'rebuild') {
 	require LUNA_ROOT.'include/search_idx.php';
 
 	// Fetch posts to process this cycle
-	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 	$end_at = 0;
 	while ($cur_item = $db->fetch_assoc($result)) {
@@ -94,7 +94,7 @@ if ($action == 'rebuild') {
 
 	// Check if there is more work to do
 	if ($end_at > 0) {
-		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) > 0)
 			$query_str = '?action=rebuild&i_per_page='.$per_page.'&i_start_at='.$db->result($result);
@@ -107,7 +107,7 @@ if ($action == 'rebuild') {
 }
 
 // Get the first post ID from the db
-$result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 

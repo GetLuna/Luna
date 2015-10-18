@@ -19,7 +19,7 @@ if (isset($_GET['ip_stats'])) {
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Fetch ip count
-	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'comments WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_ips = $db->num_rows($result);
 
 	// Determine the ip offset (based on $_GET['p'])
@@ -56,7 +56,7 @@ if (isset($_GET['ip_stats'])) {
 		<tbody>
 <?php
 
-	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'comments WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) {
 		while ($cur_ip = $db->fetch_assoc($result)) {
 
@@ -90,7 +90,7 @@ if (isset($_GET['ip_stats'])) {
 		message_backstage(__('The supplied IP address is not correctly formatted.', 'luna'));
 
 	// Fetch user count
-	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'comments WHERE poster_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_users = $db->num_rows($result);
 
 	// Determine the user offset (based on $_GET['p'])
@@ -129,7 +129,7 @@ if (isset($_GET['ip_stats'])) {
 		<tbody>
 <?php
 
-	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'comments WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_comments = $db->num_rows($result);
 
 	if ($num_comments) {
@@ -373,11 +373,11 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			@set_time_limit(0);
 
 			// Find all comments made by this user
-			$result = $db->query('SELECT p.id, p.poster_id, p.thread_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.poster_id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_comment = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "thread post" or not
-					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+					$result2 = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 					if ($db->result($result2) == $cur_comment['id'])
 						delete_thread($cur_comment['thread_id']);
@@ -389,7 +389,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			}
 		} else
 			// Set all their posts to guest
-			$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
 
 		// Delete the users
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
@@ -498,7 +498,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 		// Overwrite the registration IP with one from the last comment (if it exists)
 		if ($ban_the_ip != 0) {
-			$result = $db->query('SELECT p.poster_id, p.poster_ip FROM '.$db->prefix.'posts AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'posts WHERE poster_id IN ('.implode(',', $user_ids).') GROUP BY poster_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.poster_id, p.poster_ip FROM '.$db->prefix.'comments AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'comments WHERE poster_id IN ('.implode(',', $user_ids).') GROUP BY poster_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			while ($cur_address = $db->fetch_assoc($result))
 				$user_info[$cur_address['poster_id']]['ip'] = $cur_address['poster_ip'];
 		}

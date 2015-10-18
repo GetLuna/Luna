@@ -163,7 +163,7 @@ if (isset($_POST['userprune'])) {
 	
 	if (!empty($user_ids)) {
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark posts as guest posts', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark posts as guest posts', __FILE__, __LINE__, $db->error());
 	}
 	
 	// Regenerate the users info cache
@@ -175,7 +175,7 @@ if (isset($_POST['userprune'])) {
 
 
 // Get the first post ID from the db
-$result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
