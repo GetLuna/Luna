@@ -6,7 +6,7 @@
 	<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 	<?php if ($cur_thread['moved_to'] == 0) { ?>
 		<span class="text-muted"> &middot; 
-			<?php echo $last_post_date ?>
+			<?php echo $last_comment_date ?>
 			&middot; <?php echo $forum_name ?><?php if ($cur_thread['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_thread['num_replies']) ?></span><?php } ?>
 		</span>
 	<?php } ?>

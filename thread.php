@@ -57,11 +57,11 @@ if ($pid) {
 	// If action=last, we redirect to the last comment
 	if ($action == 'last') {
 		$result = $db->query('SELECT MAX(id) FROM '.$db->prefix.'posts WHERE thread_id='.$id) or error('Unable to fetch last comment info', __FILE__, __LINE__, $db->error());
-		$last_post_id = $db->result($result);
+		$last_comment_id = $db->result($result);
 
 
-		if ($last_post_id) {
-			header('Location: thread.php?pid='.$last_post_id.'#p'.$last_post_id);
+		if ($last_comment_id) {
+			header('Location: thread.php?pid='.$last_comment_id.'#p'.$last_comment_id);
 			exit;
 		}
 	}

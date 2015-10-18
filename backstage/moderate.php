@@ -115,13 +115,13 @@ if (isset($_GET['tid'])) {
 
 			// Get last_post, last_post_id, and last_poster for the thread after deletion
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-			$last_post = $db->fetch_assoc($result);
+			$last_comment = $db->fetch_assoc($result);
 
 			// How many posts did we just delete?
 			$num_comments_deleted = substr_count($posts, ',') + 1;
 
 			// Update the thread
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_post['posted'].', last_post_id='.$last_post['id'].', last_poster=\''.$db->escape($last_post['poster']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment['posted'].', last_post_id='.$last_comment['id'].', last_poster=\''.$db->escape($last_comment['poster']).'\', num_replies=num_replies-'.$num_comments_deleted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
 
@@ -203,13 +203,13 @@ if (isset($_GET['tid'])) {
 
 			// Get last_post, last_post_id, and last_poster from the thread and update it
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-			$last_post_data = $db->fetch_assoc($result);
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_post_data['posted'].', last_post_id='.$last_post_data['id'].', last_poster=\''.$db->escape($last_post_data['poster']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$last_comment_data = $db->fetch_assoc($result);
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment_data['posted'].', last_post_id='.$last_comment_data['id'].', last_poster=\''.$db->escape($last_comment_data['poster']).'\', num_replies=num_replies-'.$num_comments_splitted.' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			// Get last_post, last_post_id, and last_poster from the new thread and update it
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE thread_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-			$last_post_data = $db->fetch_assoc($result);
-			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_post_data['posted'].', last_post_id='.$last_post_data['id'].', last_poster=\''.$db->escape($last_post_data['poster']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$last_comment_data = $db->fetch_assoc($result);
+			$db->query('UPDATE '.$db->prefix.'threads SET last_post='.$last_comment_data['posted'].', last_post_id='.$last_comment_data['id'].', last_poster=\''.$db->escape($last_comment_data['poster']).'\', num_replies='.($num_comments_splitted-1).' WHERE id='.$new_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
 			update_forum($move_to_forum);
@@ -578,10 +578,10 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 
 		// Get last_post, last_post_id and last_poster
 		$result = $db->query('SELECT posted, id, poster FROM '.$db->prefix.'posts WHERE thread_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
-		list($last_post, $last_post_id, $last_poster) = $db->fetch_row($result);
+		list($last_comment, $last_comment_id, $last_commenter) = $db->fetch_row($result);
 
 		// Update thread
-		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster=\''.$db->escape($last_poster).'\' WHERE id='.$merge_to_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.', last_post='.$last_comment.', last_post_id='.$last_comment_id.', last_poster=\''.$db->escape($last_commenter).'\' WHERE id='.$merge_to_tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 		// Update the forum FROM which the thread was moved and redirect
 		update_forum($fid);
@@ -844,10 +844,10 @@ if ($db->num_rows($result)) {
 		$icon_type = 'icon';
 
 		if (is_null($cur_thread['moved_to'])) {
-			$last_post = '<a href="../thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' <a href="../profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
+			$last_comment = '<a href="../thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' <a href="../profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
 			$ghost_thread = false;
 		} else {
-			$last_post = '- - -';
+			$last_comment = '- - -';
 			$ghost_thread = true;
 		}
 
@@ -904,7 +904,7 @@ if ($db->num_rows($result)) {
 						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 						<?php if ($cur_thread['moved_to'] == 0) { ?>
 							<span class="text-muted"> &middot; 
-								<span class="text-muted"><?php echo $last_post ?></span> &middot; 
+								<span class="text-muted"><?php echo $last_comment ?></span> &middot; 
 								<?php if ($cur_thread['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_thread['num_replies']) ?></span><?php } ?>
 							</span>
 						<?php } ?>

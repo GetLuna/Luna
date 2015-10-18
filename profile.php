@@ -28,7 +28,7 @@ if (!$db->num_rows($result))
 
 $user = $db->fetch_assoc($result);
 
-$last_post = format_time($user['last_post']);
+$last_comment = format_time($user['last_post']);
 
 $user_personality = array();
 
@@ -43,7 +43,7 @@ $user_personality[] = '<b>'.__('Title', 'luna').':</b> '.(($luna_config['o_censo
 $user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$posts_field = forum_number_format($user['num_comments']);
 
 if ($user['num_comments'] > 0)
-	$user_personality[] = '<b>'.__('Last comment', 'luna').':</b> '.$last_post;
+	$user_personality[] = '<b>'.__('Last comment', 'luna').':</b> '.$last_comment;
 
 $user_activity[] = '<b>'.__('Registered', 'luna').':</b> '.format_time($user['registered'], true);
 
@@ -104,7 +104,7 @@ if ($user['signature'] != '') {
 	$parsed_signature = parse_signature($user['signature']);
 }
 
-$last_post = format_time($user['last_post']);
+$last_comment = format_time($user['last_post']);
 
 if ($user['signature'] != '') {
 	$parsed_signature = parse_signature($user['signature']);

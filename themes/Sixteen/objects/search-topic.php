@@ -6,9 +6,9 @@
 	<?php echo $subject_status ?> <?php echo $subject ?> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 	<?php if ($cur_thread['moved_to'] == 0) { ?>
 		<span class="text-muted"> &middot; 
-			<?php echo $last_post_date ?>
+			<?php echo $last_comment_date ?>
 			<span class="hidden-xs">
-				<?php echo $last_poster ?>
+				<?php echo $last_commenter ?>
 			</span>
 		</span>
 		<span class="pull-right label label-default"><?php echo forum_number_format($cur_thread['num_replies']) ?></span>

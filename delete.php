@@ -33,11 +33,11 @@ if ($luna_config['o_censoring'] == '1')
 $mods_array = ($cur_comment['moderators'] != '') ? unserialize($cur_comment['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
-$is_thread_post = ($id == $cur_comment['first_post_id']) ? true : false;
+$is_thread_comment = ($id == $cur_comment['first_post_id']) ? true : false;
 
 // Do we have permission to edit this post?
 if (($luna_user['g_delete_comments'] == '0' ||
-	($luna_user['g_delete_threads'] == '0' && $is_thread_post) ||
+	($luna_user['g_delete_threads'] == '0' && $is_thread_comment) ||
 	$cur_comment['poster_id'] != $luna_user['id'] ||
 	$cur_comment['closed'] == '1') &&
 	!$is_admmod)
@@ -53,7 +53,7 @@ if (isset($_POST['soft_delete'])) {
 
 	require LUNA_ROOT.'include/search_idx.php';
 
-	if ($is_thread_post) {
+	if ($is_thread_comment) {
 		// Delete the thread and all of its posts
 		delete_thread($cur_comment['tid'], "soft");
 		update_forum($cur_comment['fid']);
@@ -79,7 +79,7 @@ if (isset($_POST['reset'])) {
 
 	require LUNA_ROOT.'include/search_idx.php';
 
-	if ($is_thread_post) {
+	if ($is_thread_comment) {
 		// Reset the thread and all of its posts
 		delete_thread($cur_comment['tid'], "reset");
 		update_forum($cur_comment['fid']);
@@ -101,7 +101,7 @@ if (isset($_POST['delete'])) {
 
 	require LUNA_ROOT.'include/search_idx.php';
 
-	if ($is_thread_post) {
+	if ($is_thread_comment) {
 		// Delete the thread and all of its posts
 		delete_thread($cur_comment['tid'], "hard");
 		update_forum($cur_comment['fid']);

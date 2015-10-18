@@ -168,12 +168,12 @@ if (isset($_POST['form_sent'])) {
 			}
 
 			if (!$luna_user['is_guest'])
-				$user_id_poster = $db->escape($id);
+				$user_id_commenter = $db->escape($id);
 			else
-				$user_id_poster = '1';
+				$user_id_commenter = '1';
 
 			// Update thread
-			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\', last_poster_id=\''.$user_id_poster.'\' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\', last_poster_id=\''.$user_id_commenter.'\' WHERE id='.$tid) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message);
 
@@ -285,12 +285,12 @@ You can unsubscribe by going to <unsubscribe_url>
 		// If it's a new thread
 		elseif ($fid) {
 			if (!$luna_user['is_guest'])
-				$user_id_poster = $db->escape($id);
+				$user_id_commenter = $db->escape($id);
 			else
-				$user_id_poster = '1';
+				$user_id_commenter = '1';
 
 			// Create the thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (poster, subject, posted, last_post, last_poster, last_poster_id, pinned, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_commenter.', '.$pin_thread.', '.$fid.')') or error('Unable to create thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {

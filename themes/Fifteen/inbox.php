@@ -73,7 +73,7 @@ if ($db->num_rows($result)) {
 			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.luna_htmlspecialchars($cur_mess['subject']).'</a>';
 		}
 		
-		$last_post = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
+		$last_comment = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
 ?>
 						<tr class="<?php echo $item_status ?>">
 							<td>
@@ -108,7 +108,7 @@ if ($db->num_rows($result)) {
 				echo luna_htmlspecialchars($cur_mess['receiver']);
 		?>
 							</td>
-							<td><?php echo $last_post ?></td>
+							<td><?php echo $last_comment ?></td>
 						</tr>
 <?php
 	}

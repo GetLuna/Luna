@@ -580,8 +580,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	$posts_greater = isset($_GET['posts_greater']) ? luna_trim($_GET['posts_greater']) : '';
 	$posts_less = isset($_GET['posts_less']) ? luna_trim($_GET['posts_less']) : '';
-	$last_post_after = isset($_GET['last_post_after']) ? luna_trim($_GET['last_post_after']) : '';
-	$last_post_before = isset($_GET['last_post_before']) ? luna_trim($_GET['last_post_before']) : '';
+	$last_comment_after = isset($_GET['last_post_after']) ? luna_trim($_GET['last_post_after']) : '';
+	$last_comment_before = isset($_GET['last_post_before']) ? luna_trim($_GET['last_post_before']) : '';
 	$last_visit_after = isset($_GET['last_visit_after']) ? luna_trim($_GET['last_visit_after']) : '';
 	$last_visit_before = isset($_GET['last_visit_before']) ? luna_trim($_GET['last_visit_before']) : '';
 	$registered_after = isset($_GET['registered_after']) ? luna_trim($_GET['registered_after']) : '';
@@ -598,23 +598,23 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		message_backstage(__('You entered a non-numeric value into a numeric only column.', 'luna'));
 
 	// Try to convert date/time to timestamps
-	if ($last_post_after != '') {
-		$query_str[] = 'last_post_after='.$last_post_after;
+	if ($last_comment_after != '') {
+		$query_str[] = 'last_post_after='.$last_comment_after;
 
-		$last_post_after = strtotime($last_post_after);
-		if ($last_post_after === false || $last_post_after == -1)
+		$last_comment_after = strtotime($last_comment_after);
+		if ($last_comment_after === false || $last_comment_after == -1)
 			message_backstage(__('You entered an invalid date/time.', 'luna'));
 
-		$conditions[] = 'u.last_post>'.$last_post_after;
+		$conditions[] = 'u.last_post>'.$last_comment_after;
 	}
-	if ($last_post_before != '') {
-		$query_str[] = 'last_post_before='.$last_post_before;
+	if ($last_comment_before != '') {
+		$query_str[] = 'last_post_before='.$last_comment_before;
 
-		$last_post_before = strtotime($last_post_before);
-		if ($last_post_before === false || $last_post_before == -1)
+		$last_comment_before = strtotime($last_comment_before);
+		if ($last_comment_before === false || $last_comment_before == -1)
 			message_backstage(__('You entered an invalid date/time.', 'luna'));
 
-		$conditions[] = 'u.last_post<'.$last_post_before;
+		$conditions[] = 'u.last_post<'.$last_comment_before;
 	}
 	if ($last_visit_after != '') {
 		$query_str[] = 'last_visit_after='.$last_visit_after;

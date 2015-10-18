@@ -252,17 +252,17 @@ function draw_threads_list() {
 				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_thread['subject']);
-			$last_post_date = '<a href="thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
+			$last_comment_date = '<a href="thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
 				$thread_id = $cur_thread['id'];
 
 				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_poster_id'] > '1')
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
+					$last_commenter = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
 				else
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
+					$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
 			} else {
-				$last_poster = '';
+				$last_commenter = '';
 				$thread_id = $cur_thread['moved_to'];
 			}
 	
@@ -358,7 +358,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			$forum_field_new = '';
 			$forum_desc = '';
 			$icon_type = 'icon';
-			$last_post = '';
+			$last_comment = '';
 		
 			// Are there new comments since our last visit?
 			if (isset($new_threads[$cur_forum['fid']])) {
@@ -393,11 +393,11 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-						$last_post = '<a href="thread.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
-						$last_post = '<a href="thread.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} else
-				$last_post = __('Never', 'luna');
+				$last_comment = __('Never', 'luna');
 		
 			require get_view_path($forum_object_name);
 		}
@@ -441,7 +441,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 			$forum_field_new = '';
 			$forum_desc = '';
 			$icon_type = 'icon';
-			$last_post = '';
+			$last_comment = '';
 		
 			// Are there new comments since our last visit?
 			if (isset($new_threads[$cur_forum['fid']])) {
@@ -527,15 +527,15 @@ function draw_index_threads_list() {
 				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_thread['subject']);
-			$last_post_date = '<a href="thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
+			$last_comment_date = '<a href="thread.php?pid='.$cur_thread['last_post_id'].'#p'.$cur_thread['last_post_id'].'">'.format_time($cur_thread['last_post']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
 				$thread_id = $cur_thread['id'];
 
 				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_poster_id'] > '1')
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
+					$last_commenter = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_poster_id'].'">'.luna_htmlspecialchars($cur_thread['last_poster']).'</a></span>';
 				else
-					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
+					$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_poster']).'</span>';
 				
 				foreach ($luna_forums as $cur_forum) {
 					if ($cur_thread['forum_id'] == $cur_forum['id']) {
@@ -550,7 +550,7 @@ function draw_index_threads_list() {
 				
 				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.$forum_name.'</a></span>';
 			} else {
-				$last_poster = '';
+				$last_commenter = '';
 				$thread_id = $cur_thread['moved_to'];
 			}
 	
@@ -902,11 +902,11 @@ function draw_user_list() {
 }
 
 function draw_delete_form($id) {
-	global $is_thread_post;
+	global $is_thread_comment;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
-			<p><?php echo ($is_thread_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
+			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
@@ -916,11 +916,11 @@ function draw_delete_form($id) {
 }
 
 function draw_soft_delete_form($id) {
-	global $is_thread_post;
+	global $is_thread_comment;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
-			<p><?php echo ($is_thread_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
+			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
@@ -930,7 +930,7 @@ function draw_soft_delete_form($id) {
 }
 
 function draw_soft_reset_form($id) {
-	global $is_thread_post;
+	global $is_thread_comment;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
@@ -944,9 +944,9 @@ function draw_soft_reset_form($id) {
 }
 
 function draw_delete_title() {
-	global $is_thread_post, $cur_comment;
+	global $is_thread_comment, $cur_comment;
 
-	printf($is_thread_post ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['poster']).'</strong>', format_time($cur_comment['posted']));
+	printf($is_thread_comment ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_comment['poster']).'</strong>', format_time($cur_comment['posted']));
 }
 
 function draw_rules_form() {
@@ -972,7 +972,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user, $luna_config, $thread_count, $cur_thread, $subject_status, $last_post_date, $tracked_threads, $start_from;
+	global $search_set, $cur_search, $luna_user, $luna_config, $thread_count, $cur_thread, $subject_status, $last_comment_date, $tracked_threads, $start_from;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
@@ -1020,9 +1020,9 @@ function draw_search_results() {
 				$subject_multipage = null;
 			
 			if ($cur_search['last_poster_id'] > '1' && $luna_user['g_view_users'] == '1')
-				$last_poster = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
+				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
 			else
-				$last_poster = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
+				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
 
 			require get_view_path('search-thread.php');
 		// }

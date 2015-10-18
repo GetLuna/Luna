@@ -8,6 +8,6 @@
 		<?php echo '<b>'.$cur_forum['num_comments'].'</b> '.$comments_label; ?>
 	</div>
 	<div class="col-sm-5 col-xs-6">
-		<?php echo $last_post ?> <?php echo $forum_field_new ?>
+		<?php echo $last_comment ?> <?php echo $forum_field_new ?>
 	</div>
 </div>
