@@ -27,7 +27,7 @@ if (!defined('FORUM'))
 				<hr />
 			<?php endif; ?>
 			<div class="list-group list-group-forum">
-				<?php draw_forum_list() ?>
+				<?php draw_forum_list('forum.php', 1) ?>
 			</div>
 			<hr />
 			<div class="list-group list-group-forum">

@@ -60,7 +60,7 @@ if ($luna_user['first_run'] == '0') {
 <div class="row index">
 	<div class="col-sm-3 col-xs-12">
 		<div class="list-group list-group-forum">
-			<?php draw_forum_list() ?>
+			<?php draw_forum_list('forum.php', 1) ?>
 		</div>
 		<hr />
 		<div class="list-group list-group-forum">
