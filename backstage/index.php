@@ -202,8 +202,8 @@ if ($db->num_rows($result)) {
 					<table class="table">
 						<thead>
 							<tr>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo _n('post', 'posts', $stats['total_posts'], 'luna') ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo _n('topic', 'topics', $stats['total_topics'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_posts'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_topics'], 'luna') ?></h4></td>
 								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4></td>
 							</tr>
 						</thead>
