@@ -85,7 +85,6 @@ hr {
 	background: #b14bbd;
 	background: linear-gradient(to bottom left, #b14bbd 0%, #ee545e 100%);
 	color: #fff;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 #header .board-head a {
@@ -150,7 +149,6 @@ hr {
 .first-run {
 	border-radius: 0;
 	border: none;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .first-run-content {
@@ -279,7 +277,8 @@ hr {
 	margin-bottom: 10px;
 	margin-top: 10px;
 	border-radius: 0;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
+	border: none;
+	box-shadow: none;
 }
 
 .panel-default .panel-heading {
@@ -288,7 +287,6 @@ hr {
 	background: linear-gradient(to right, #b14bbd, #ee545e);
 	color: #fff;
 	height: 37px;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 	border-radius: 0;
 }
 
@@ -450,7 +448,6 @@ hr {
 	background: #b14bbd;
 	background: linear-gradient(to top right, #b14bbd, #ee545e);
 	border: none;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .no-background {
@@ -461,7 +458,6 @@ hr {
 .nav-tab-info {
 	background: #b14bbd;
 	background: linear-gradient(to top right, #b14bbd, #ee545e);
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .nav-tab-info .tab-pane {
@@ -502,7 +498,6 @@ hr {
 
 .tab-pane {
 	border: none;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 	padding: 15px;
 	background: #fff;
 }
@@ -599,7 +594,6 @@ hr {
 
 .profile-card-nav {
 	padding: 10px;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .tab-pane .img-responsive {
@@ -910,10 +904,6 @@ hr {
 	margin-left: 5px;
 }
 
-.btn-group {
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
-}
-
 .panel-title .btn {
 	margin-top: -10px;
 	margin-right: -15px;
@@ -1091,7 +1081,6 @@ textarea {
 	height: 50px;
 	min-height: 50px;
 	min-width: 50px;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .userlist-name {
@@ -1155,7 +1144,6 @@ textarea {
 
 .comment .profile-card {
 	margin-top: 10px;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .comment .panel-body {
@@ -1234,7 +1222,6 @@ textarea {
 	max-width: 128px;
 	max-height: 128px;
 	margin: 0 auto;
-	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .profile-nav .profile-card .profile-card-head {

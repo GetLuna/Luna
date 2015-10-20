@@ -343,7 +343,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			
 			if ($cur_forum['cid'] != $cur_category && $use_cat == 1) {
 				if ($cur_category != 0)
-					echo '</div></div>';
+					echo $close_tags;
 
 				++$cat_count;
 				$forum_count = 0;

@@ -1,48 +1,48 @@
 /*
- * Sixteen Red Orange 1.0
+ * Sunrise Purple 1.0
  * Based on Trent 1.0
  * Based on Bootstrap 3.3.5
  * Based on Font Awesome 4.4.0
- * #e0532e #e06827 #e8bb1e
+ * #b679d4 #a268bf #8b54a7
  */
 
 #header, .editor {
-	background: #e0532e;
-	background: linear-gradient(to bottom left, #e0532e, #e8bb1e);
+	background: #b679d4;
+	background: linear-gradient(to bottom left, #b679d4, #8b54a7);
 }
 
 .first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
-	background: #e0532e;
-	background: linear-gradient(to top right, #e0532e, #e8bb1e);
+	background: #b679d4;
+	background: linear-gradient(to top right, #b679d4, #8b54a7);
 }
 
 .panel-default .panel-heading {
-	background: #e0532e;
-	background: linear-gradient(to right, #e0532e, #e8bb1e);
+	background: #b679d4;
+	background: linear-gradient(to right, #b679d4, #8b54a7);
 }
 
 .comment-arrow {
-	border-right-color: #e0532e;
+	border-right-color: #b679d4;
 }
 
 .btn-primary {
-	background-color: #e0532e;
+	background-color: #b679d4;
 }
 
 .btn-primary:active {
-	background-color: #e0532e !important;
+	background-color: #b679d4 !important;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #e06827;
+	background-color: #a268bf;
 }
 
 .modal-form .modal-header {
-	background: #e0532e;
-	background: linear-gradient(to bottom left, #e0532e, #e06827);
+	background: #b679d4;
+	background: linear-gradient(to bottom left, #b679d4, #a268bf);
 }
 
 .modal-form .modal-footer {
-	background: #e06827;
-	background: linear-gradient(to bottom left, #e06827, #e8bb1e);
+	background: #a268bf;
+	background: linear-gradient(to bottom left, #a268bf, #8b54a7);
 }
