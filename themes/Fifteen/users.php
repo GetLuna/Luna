@@ -31,10 +31,16 @@ if (!defined('FORUM'))
 	</div>
 </div>
 <div class="container">
-<?php echo $paging_links ?>
-
-<div class="userlist row">
-	<?php draw_user_list() ?>
-</div>
-
-<?php echo $paging_links ?>
+	<div class="row pagination-row">
+		<div class="col-xs-12">
+			<?php echo $paging_links ?>
+		</div>
+	</div>
+	<div class="userlist row">
+		<?php draw_user_list() ?>
+	</div>
+	<div class="row pagination-row">
+		<div class="col-xs-12">
+			<?php echo $paging_links ?>
+		</div>
+	</div>

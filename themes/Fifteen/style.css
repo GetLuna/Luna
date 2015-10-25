@@ -811,6 +811,11 @@ textarea.textarea, textarea.textarea:focus {
 	display: inline;
 }
 
+.pagination-row {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .pagination > li > a, .pagination > li > span {
 	padding: 7px 13px;
 }
