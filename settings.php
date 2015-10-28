@@ -525,6 +525,8 @@ To change your email address, please visit the following page:
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('settings.php');
+	
+	check_csrf($_GET['csrf_token']);
 
 	delete_avatar($id);
 
@@ -798,7 +800,7 @@ To change your email address, please visit the following page:
 	$avatar_user_card = draw_user_avatar($id);
 	$avatar_set = check_avatar($id);
 	if ($avatar_user && $avatar_set)
-		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'">'.__('Delete avatar', 'luna').'</a>';
+		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'&amp;csrf_token='.luna_csrf_token().'">'.__('Delete avatar', 'luna').'</a>';
 	else
 		$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Upload avatar', 'luna').'</a>';
 	
