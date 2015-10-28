@@ -64,6 +64,10 @@ if ($luna_user['first_run'] == '0') {
 		</div>
 		<hr />
 		<div class="list-group list-group-forum">
+			<?php echo implode('', $page_threadsearches) ?>
+		</div>
+		<hr />
+		<div class="list-group list-group-forum">
 			<?php draw_mark_read('list-group-item', 'index'); ?>
 		</div>
 	</div>

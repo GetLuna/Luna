@@ -53,13 +53,13 @@ if (!$luna_user['is_guest']) {
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
-		$page_threadsearches[] = '<a href="search.php?action=show_new" title="'.__('New', 'luna').'">New</a>';
+		$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_new" title="'.__('New', 'luna').'"><span class="fa fa-fw fa-newspaper-o"></span> '.__('New', 'luna').'</a>';
 }
 
 // Quick searches
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_threadsearches[] = '<a href="search.php?action=show_recent" title="'.__('Active', 'luna').'">Active</a>';
-	$page_threadsearches[] = '<a href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'">Unanswered</a>';
+	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_recent" title="'.__('Active', 'luna').'"><span class="fa fa-fw fa-clock-o"></span> '.__('Active', 'luna').'</a>';
+	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'"><span class="fa fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
 }
 
 // Generate all that jazz
