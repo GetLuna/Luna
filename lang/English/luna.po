@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.2\n"
-"POT-Creation-Date: 2015-10-28 15:41+0100\n"
-"PO-Revision-Date: 2015-10-28 15:41+0100\n"
+"POT-Creation-Date: 2015-10-28 15:46+0100\n"
+"PO-Revision-Date: 2015-10-28 15:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: backstage/censoring.php:76 backstage/database.php:509 backstage/email.php:61
 #: backstage/features.php:64 backstage/groups.php:38 backstage/groups.php:492
 #: backstage/groups.php:520 backstage/groups.php:561 backstage/index.php:82
-#: backstage/loader.php:34 backstage/maintenance.php:158
+#: backstage/loader.php:34 backstage/maintenance.php:162
 #: backstage/moderate.php:44 backstage/moderate.php:131
 #: backstage/moderate.php:222 backstage/moderate.php:297
 #: backstage/moderate.php:472 backstage/moderate.php:595
@@ -60,7 +60,7 @@ msgstr ""
 
 #: backstage/appearance.php:78 backstage/board.php:514 backstage/email.php:67
 #: backstage/features.php:70 backstage/index.php:88
-#: backstage/maintenance.php:164 backstage/permissions.php:56
+#: backstage/maintenance.php:168 backstage/permissions.php:56
 #: backstage/registration.php:65 backstage/settings.php:142
 #: backstage/theme.php:39 backstage/tools.php:119 backstage/update.php:74
 #: backstage/users.php:795
@@ -78,7 +78,7 @@ msgstr ""
 #: backstage/features.php:148 backstage/features.php:175
 #: backstage/features.php:208 backstage/features.php:260
 #: backstage/groups.php:48 backstage/groups.php:597 backstage/index.php:232
-#: backstage/maintenance.php:171 backstage/menu.php:101
+#: backstage/maintenance.php:175 backstage/menu.php:101
 #: backstage/permissions.php:61 backstage/permissions.php:110
 #: backstage/permissions.php:148 backstage/ranks.php:123
 #: backstage/registration.php:70 backstage/settings.php:147
@@ -1622,81 +1622,72 @@ msgstr ""
 msgid "Remember me"
 msgstr ""
 
-#: backstage/maintenance.php:25
+#: backstage/maintenance.php:26
 msgid "Comments per cycle must be a positive integer value."
 msgstr ""
 
-#: backstage/maintenance.php:50
+#: backstage/maintenance.php:51
 msgid "Rebuilding search index"
 msgstr ""
 
-#: backstage/maintenance.php:72
+#: backstage/maintenance.php:73
 msgid "Rebuilding index. This might be a good time to put on some coffee :-)"
 msgstr ""
 
-#: backstage/maintenance.php:85
+#: backstage/maintenance.php:86
 #, php-format
 msgid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
-#: backstage/maintenance.php:106
-#, php-format
-msgid "JavaScript redirect unsuccessful. %s to continue …"
-msgstr ""
-
-#: backstage/maintenance.php:106
-msgid "Click here"
-msgstr ""
-
-#: backstage/maintenance.php:125 db_update.php:179
+#: backstage/maintenance.php:129 db_update.php:179
 #: include/class/luna_install.php:1498
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
 msgstr ""
 
-#: backstage/maintenance.php:158 backstage/maintenance.php:171
-#: backstage/maintenance.php:177 backstage/prune.php:182 db_update.php:181
+#: backstage/maintenance.php:162 backstage/maintenance.php:175
+#: backstage/maintenance.php:181 backstage/prune.php:182 db_update.php:181
 #: include/backstage_functions.php:62 include/backstage_functions.php:95
 #: include/backstage_functions.php:189 include/functions.php:1364
 msgid "Maintenance"
 msgstr ""
 
-#: backstage/maintenance.php:166
+#: backstage/maintenance.php:170
 msgid "The cache files have been removed."
 msgstr ""
 
-#: backstage/maintenance.php:177
+#: backstage/maintenance.php:181
 msgid "The message to tell users about the maintenance"
 msgstr ""
 
-#: backstage/maintenance.php:182
+#: backstage/maintenance.php:186
 msgid ""
 "Enable to activate maintenance mode, the board will only be available for "
 "admins. Do not log out when this feature is active!"
 msgstr ""
 
-#: backstage/maintenance.php:194 backstage/maintenance.php:198
+#: backstage/maintenance.php:198 backstage/maintenance.php:202
 msgid "Cache"
 msgstr ""
 
-#: backstage/maintenance.php:198
+#: backstage/maintenance.php:202
 msgid "Remove all cache files so the database has to return up-to-date values"
 msgstr ""
 
-#: backstage/maintenance.php:200
+#: backstage/maintenance.php:204
 msgid "Clear cache"
 msgstr ""
 
-#: backstage/maintenance.php:208
+#: backstage/maintenance.php:212
 msgid "Rebuild search index"
 msgstr ""
 
-#: backstage/maintenance.php:208
+#: backstage/maintenance.php:212
 msgid "Rebuild index"
 msgstr ""
 
-#: backstage/maintenance.php:213
+#: backstage/maintenance.php:217
 msgid ""
 "If you changes something about threads and comments in the database you "
 "should rebuild the search index. It's recommended to activate maintenance "
@@ -1704,34 +1695,34 @@ msgid ""
 "load during the process!"
 msgstr ""
 
-#: backstage/maintenance.php:215
+#: backstage/maintenance.php:219
 msgid "Comments per cycle"
 msgstr ""
 
-#: backstage/maintenance.php:215
+#: backstage/maintenance.php:219
 msgid ""
 "Number of comments per pageview, this prevents a timeout, 300 recommended"
 msgstr ""
 
-#: backstage/maintenance.php:221
+#: backstage/maintenance.php:225
 msgid "Starting comment ID"
 msgstr ""
 
-#: backstage/maintenance.php:221
+#: backstage/maintenance.php:225
 msgid "The ID where to start, default is first ID found in database"
 msgstr ""
 
-#: backstage/maintenance.php:227
+#: backstage/maintenance.php:231
 msgid "Empty index"
 msgstr ""
 
-#: backstage/maintenance.php:232
+#: backstage/maintenance.php:236
 msgid ""
 "Select this if you want the search index to be emptied before rebuilding "
 "(see below)."
 msgstr ""
 
-#: backstage/maintenance.php:237
+#: backstage/maintenance.php:241
 msgid ""
 "Be sure to enable JavaScript during the rebuild (to start a new cycle "
 "automatically). When you have to abort the rebuilding, remember the last "
