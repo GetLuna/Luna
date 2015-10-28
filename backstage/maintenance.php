@@ -17,6 +17,7 @@ if (!$is_admin)
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild') {
+	ob_start(); 
 	$per_page = isset($_GET['i_per_page']) ? intval($_GET['i_per_page']) : 0;
 	$start_at = isset($_GET['i_start_at']) ? intval($_GET['i_start_at']) : 0;
 
@@ -103,7 +104,10 @@ if ($action == 'rebuild') {
 	$db->end_transaction();
 	$db->close();
 
-	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf(__('JavaScript redirect unsuccessful. %s to continue …', 'luna'), '<a href="maintenance.php'.$query_str.'">'.__('Click here', 'luna').'</a>').'</p>');
+	ob_end_clean();  
+	ob_start();  
+	header('Location: backstage/maintenance.php'.$query_str);  
+	exit;  
 }
 
 // Get the first comment ID from the db

@@ -835,5 +835,7 @@ switch ($stage) {
 $db->end_transaction();
 $db->close();
 
-if ($query_str != '')
-	exit('<script type="text/javascript">window.location="db_update.php'.$query_str.'"</script><noscript><meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /></noscript>');
+if ($query_str != '') {
+	header('Location: db_update.php'.$query_str);  
+	exit;  
+} 
