@@ -23,26 +23,20 @@ require 'header.php';
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.2 Cornflower Blue</h3>
+				<h3 class="panel-title">About Luna 1.3 Denim Preview</h3>
 			</div>
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.2.0</span></p><h2>Cornflower Blue</h2>
+						<p class="meta"><span class="release-version">1.3 Preview 1</span></p><h2>Denim</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark threads as solved</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now set any color as forum colors</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>New tools to clean up notifications</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now give your forums their own icon</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for non-Latin characters</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Improvements for non-Javascript usage</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Some parts of the core have been rewritten</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Extended language support for syntax highlighter</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improvements to Fifteen and Sunrise design</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved tabel in user management</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Updated and incorporated components</li>
-							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>Default avatar settings have been updated for new installations</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 29 bugs</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sixteen is a new default theme</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Major naming convention updates</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen now has an updated sidebar</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 2 bugs</li>
+							<hr />
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna G Preview 0</li>
 						</ul>
 					</div>
 				</section>

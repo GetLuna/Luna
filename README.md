@@ -1,23 +1,19 @@
-# Luna 1.2 "Cornflower Blue"
+# Luna 1.3 "Denim" Preview
 
 [![Join the chat at https://gitter.im/GetLuna/Luna](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GetLuna/Luna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## About
 Luna is an open source board software web app released under the GPLv3 license. Our vision is to bring you a small (in size) and light forum solution and to provide an experience that is both desktop-first and mobile-first, as manny seem to forget about the first one. Luna is the successor to ModernBB, one of the first forum software projects to provide a full featured build-in mobile experience without compromises.
 
-## New in Cornflower Blue
-- Updated Fifteen and Sunrise theme
-- Mark topics as solved
-- Forum icons
-- New personalisation options
-- Improved user management experience
-- Improved syntax highlighter
-- Improved notification clean-up tools
-- Many improvements to some core files
+## New in Denip
+- Sunrise has been revamped
+- Improvements to Fifteen, including categories
+- New CSS coding conventions
+- Major update to the Luna database
 
 ## Requirements
 - A webserver with 2,85 MB free disk space
-- PHP 5.2 or later
+- PHP 5.2 or later, may require PHP 5.3 in future previews
 - A database running either
  - MySQL 5.0 or later 
  - SQLite 2 or later
