@@ -8,13 +8,13 @@
  */
 
 // Tell header.php to use the form template
-define('FORUM_FORM', 1);
+define('LUNA_FORM', 1);
 
 if (isset($_GET['action']))
-	define('FORUM_QUIET_VISIT', 1);
+	define('LUNA_QUIET_VISIT', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -39,12 +39,12 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 		message(__('Wrong username and/or password.', 'luna').' <a data-toggle="modal" data-target="#reqpass" data-dismiss="modal">'.__('Forgotten password', 'luna').'</a>.');
 
 	// Update the status if this is the first time the user logged in
-	if ($cur_user['group_id'] == FORUM_UNVERIFIED) {
+	if ($cur_user['group_id'] == LUNA_UNVERIFIED) {
 		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$luna_config['o_default_user_group'].' WHERE id='.$cur_user['id']) or error('Unable to update user status', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the users info cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 	}
@@ -55,8 +55,8 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	$expire = ($save_pass == '1') ? time() + 1209600 : time() + $luna_config['o_timeout_visit'];
 	luna_setcookie($cur_user['id'], $form_password_hash, $expire);
 
-	// Reset tracked topics
-	set_tracked_topics(null);
+	// Reset tracked threads
+	set_tracked_threads(null);
 
 	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after the email is sent)
 	$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
@@ -96,7 +96,7 @@ elseif ($action == 'forget' || $action == 'forget_2') {
 		// Start with a clean slate
 		$errors = array();
 
-		require FORUM_ROOT.'include/email.php';
+		require LUNA_ROOT.'include/email.php';
 
 		// Validate the email address
 		$email = strtolower(luna_trim($_POST['req_email']));
@@ -168,5 +168,5 @@ if (!empty($_SERVER['HTTP_REFERER']))
 
 if (!isset($redirect_url))
 	$redirect_url = get_base_url(true).'/index.php';
-elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
+elseif (preg_match('%thread\.php\?pid=(\d+)$%', $redirect_url, $matches))
 	$redirect_url .= '#p'.$matches[1];

@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -334,7 +334,7 @@ switch($db_type) {
 // Start actual db stuff
 if (isset($_POST['backupstart'])) {
 	// Output sql dump
-	$tables = array('bans', 'categories', 'censoring', 'config', 'forums', 'forum_perms', 'forum_subscriptions', 'groups', 'menu', 'messages', 'notifications', 'online', 'posts', 'ranks', 'reports', 'search_cache', 'search_matches', 'search_words', 'topics', 'topic_subscriptions', 'users');
+	$tables = array('bans', 'categories', 'censoring', 'config', 'forums', 'forum_perms', 'forum_subscriptions', 'groups', 'menu', 'messages', 'notifications', 'online', 'comments', 'ranks', 'reports', 'search_cache', 'search_matches', 'search_words', 'threads', 'thread_subscriptions', 'users');
 	$backup_type = (isset($_POST['backup_type'])) ? $_POST['backup_type'] : ( (isset($HTTP_GET_VARS['backup_type'])) ? $HTTP_GET_VARS['backup_type'] : "" );
 	$gzipcompress = (!empty($_POST['gzipcompress'])) ? $_POST['gzipcompress'] : ( (!empty($HTTP_GET_VARS['gzipcompress'])) ? $HTTP_GET_VARS['gzipcompress'] : 0 );
 	$drop = (!empty($_POST['drop'])) ? intval($_POST['drop']) : ( (!empty($HTTP_GET_VARS['drop'])) ? intval($HTTP_GET_VARS['drop']) : 0 );
@@ -425,7 +425,7 @@ if (isset($_POST['backupstart'])) {
 		// Strip out sql comments
 		$sql_query = remove_remarks($sql_query);
 		$pieces = split_sql_file($sql_query, ";");
-		if(defined('FORUM_DEBUG')) {
+		if(defined('LUNA_DEBUG')) {
 		require 'header.php';
 		load_admin_nav('maintenance', 'database');
 ?>
@@ -438,7 +438,7 @@ if (isset($_POST['backupstart'])) {
 		for($i = 0; $i < $sql_count; $i++) {
 			$sql = trim($pieces[$i]);
 			if(!empty($sql)) {
-				if(defined('FORUM_DEBUG')) {
+				if(defined('LUNA_DEBUG')) {
 					echo "Executing: $sql\n<br>";
 					flush();
 				}
@@ -447,14 +447,14 @@ if (isset($_POST['backupstart'])) {
 					message_backstage(__('Error imported backup file, the database probably has not been restored.', 'luna'));
 			}
 		}
-		if(defined('FORUM_DEBUG')) {
+		if(defined('LUNA_DEBUG')) {
 ?>
 		</p>
 	</div>
 <?php
 		}
 	}
-	if(defined('FORUM_DEBUG')) {
+	if(defined('LUNA_DEBUG')) {
 ?>
 	<h2><?php _e('Restore complete', 'luna') ?></h2>
 <?php
@@ -507,7 +507,7 @@ if (isset($_POST['backupstart'])) {
 	
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Database', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('maintenance', 'database');
 ?>

@@ -13,7 +13,7 @@ else
 			<div class="media-body">
 				<h2 class="media-heading"><?php echo '<a title="'.luna_htmlspecialchars($user_data['username']).'" href="profile.php?id='.$user_data['id'].'">'.$cur_user_name.'</a>' ?></h2>
 				<h4><?php echo $user_title_field ?></h4>
-				<?php echo forum_number_format($user_data['num_posts']).' '.__('comments since', 'luna').' '.format_time($user_data['registered'], true); ?>
+				<?php echo forum_number_format($user_data['num_comments']).' '.__('comments since', 'luna').' '.format_time($user_data['registered'], true); ?>
 			</div>
 		</div>
 	</div>

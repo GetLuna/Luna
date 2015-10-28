@@ -7,16 +7,16 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 // Load the me functions script
-require FORUM_ROOT.'include/me_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 // Include UTF-8 function
-require FORUM_ROOT.'include/utf8/substr_replace.php';
-require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
-require FORUM_ROOT.'include/utf8/strcasecmp.php';
+require LUNA_ROOT.'include/utf8/substr_replace.php';
+require LUNA_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require LUNA_ROOT.'include/utf8/strcasecmp.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $type = isset($_GET['type']) ? $_GET['type'] : null;
@@ -24,7 +24,7 @@ $id = $luna_user['id'];
 if ($id < 2)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -62,7 +62,7 @@ if ($num_unviewed) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'me');
+define('LUNA_ACTIVE_PAGE', 'me');
 require load_page('header.php');
 
 require load_page('notifications.php');

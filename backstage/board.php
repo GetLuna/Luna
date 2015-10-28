@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -25,8 +25,8 @@ if (isset($_POST['add_forum'])) {
 	$new_fid = $db->insert_id();
 
 	// Regenerate the forum cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 	
 	generate_forum_cache();
 
@@ -44,18 +44,18 @@ elseif (isset($_GET['del_forum'])) {
 	if (isset($_POST['del_forum_comply'])) { // Delete a forum with all comments
 		@set_time_limit(0);
 
-		// Prune all comments and topics
+		// Prune all comments and threads
 		prune($forum_id, 1, -1);
 
-		// Locate any "orphaned redirect topics" and delete them
-		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		// Locate any "orphaned redirect threads" and delete them
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'threads AS t1 LEFT JOIN '.$db->prefix.'threads AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect threads', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
 		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
-			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect threads', __FILE__, __LINE__, $db->error());
 		}
 
 		// Delete the forum and any forum specific group permissions
@@ -66,8 +66,8 @@ elseif (isset($_GET['del_forum'])) {
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the forum cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 		
 		generate_forum_cache();
 
@@ -77,7 +77,7 @@ elseif (isset($_GET['del_forum'])) {
 		$forum_name = luna_htmlspecialchars($db->result($result));
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
-		define('FORUM_ACTIVE_PAGE', 'admin');
+		define('LUNA_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 	load_admin_nav('content', 'board');
 
@@ -116,8 +116,8 @@ elseif (isset($_POST['update_positions'])) {
 	}
 	
 	// Regenerate the forum cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 	
 	generate_forum_cache();
 
@@ -153,30 +153,30 @@ elseif (isset($_POST['update_positions'])) {
 		
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
-			$result = $db->query('SELECT g_id, g_read_board, g_post_replies, g_post_topics FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN) or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT g_id, g_read_board, g_comment, g_create_threads FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_ADMIN) or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 			while ($cur_group = $db->fetch_assoc($result)) {
 				$read_forum_new = ($cur_group['g_read_board'] == '1') ? isset($_POST['read_forum_new'][$cur_group['g_id']]) ? '1' : '0' : intval($_POST['read_forum_old'][$cur_group['g_id']]);
-				$post_replies_new = isset($_POST['post_replies_new'][$cur_group['g_id']]) ? '1' : '0';
-				$post_topics_new = isset($_POST['post_topics_new'][$cur_group['g_id']]) ? '1' : '0';
+				$comment_new = isset($_POST['comment_new'][$cur_group['g_id']]) ? '1' : '0';
+				$create_threads_new = isset($_POST['create_threads_new'][$cur_group['g_id']]) ? '1' : '0';
 
 				// Check if the new settings differ from the old
-				if ($read_forum_new != $_POST['read_forum_old'][$cur_group['g_id']] || $post_replies_new != $_POST['post_replies_old'][$cur_group['g_id']] || $post_topics_new != $_POST['post_topics_old'][$cur_group['g_id']]) {
+				if ($read_forum_new != $_POST['read_forum_old'][$cur_group['g_id']] || $comment_new != $_POST['comment_old'][$cur_group['g_id']] || $create_threads_new != $_POST['create_threads_old'][$cur_group['g_id']]) {
 					// If the new settings are identical to the default settings for this group, delete its row in forum_perms
-					if ($read_forum_new == '1' && $post_replies_new == $cur_group['g_post_replies'] && $post_topics_new == $cur_group['g_post_topics'])
+					if ($read_forum_new == '1' && $comment_new == $cur_group['g_comment'] && $create_threads_new == $cur_group['g_create_threads'])
 						$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$cur_group['g_id'].' AND forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 					else {
 						// Run an UPDATE and see if it affected a row, if not, INSERT
-						$db->query('UPDATE '.$db->prefix.'forum_perms SET read_forum='.$read_forum_new.', post_replies='.$post_replies_new.', post_topics='.$post_topics_new.' WHERE group_id='.$cur_group['g_id'].' AND forum_id='.$forum_id) or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
+						$db->query('UPDATE '.$db->prefix.'forum_perms SET read_forum='.$read_forum_new.', comment='.$comment_new.', create_threads='.$create_threads_new.' WHERE group_id='.$cur_group['g_id'].' AND forum_id='.$forum_id) or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
 						if (!$db->affected_rows())
-							$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, post_replies, post_topics) VALUES('.$cur_group['g_id'].', '.$forum_id.', '.$read_forum_new.', '.$post_replies_new.', '.$post_topics_new.')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
+							$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, comment, create_threads) VALUES('.$cur_group['g_id'].', '.$forum_id.', '.$read_forum_new.', '.$comment_new.', '.$create_threads_new.')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
 					}
 				}
 			}
 		}
 
 		// Regenerate the forum cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 		
 		generate_forum_cache();
 
@@ -187,8 +187,8 @@ elseif (isset($_POST['update_positions'])) {
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the forum cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 		
 		generate_forum_cache();
 
@@ -196,7 +196,7 @@ elseif (isset($_POST['update_positions'])) {
 	}
 
 	// Fetch forum info
-	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, icon, color, solved FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_threads, sort_by, cat_id, icon, color, solved FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -211,7 +211,7 @@ elseif (isset($_POST['update_positions'])) {
 	$cur_index = 7;
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'board');
 
@@ -343,17 +343,17 @@ elseif (isset($_POST['update_positions'])) {
 				<tbody>
 <?php
 
-	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.FORUM_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_comment, g.g_create_threads, fp.read_forum, fp.comment, fp.create_threads FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.LUNA_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_perm = $db->fetch_assoc($result)) {
 		$read_forum = ($cur_perm['read_forum'] != '0') ? true : false;
-		$post_replies = (($cur_perm['g_post_replies'] == '0' && $cur_perm['post_replies'] == '1') || ($cur_perm['g_post_replies'] == '1' && $cur_perm['post_replies'] != '0')) ? true : false;
-		$post_topics = (($cur_perm['g_post_topics'] == '0' && $cur_perm['post_topics'] == '1') || ($cur_perm['g_post_topics'] == '1' && $cur_perm['post_topics'] != '0')) ? true : false;
+		$comment = (($cur_perm['g_comment'] == '0' && $cur_perm['comment'] == '1') || ($cur_perm['g_comment'] == '1' && $cur_perm['comment'] != '0')) ? true : false;
+		$create_threads = (($cur_perm['g_create_threads'] == '0' && $cur_perm['create_threads'] == '1') || ($cur_perm['g_create_threads'] == '1' && $cur_perm['create_threads'] != '0')) ? true : false;
 
 		// Determine if the current settings differ from the default or not
 		$read_forum_def = ($cur_perm['read_forum'] == '0') ? false : true;
-		$post_replies_def = (($post_replies && $cur_perm['g_post_replies'] == '0') || (!$post_replies && ($cur_perm['g_post_replies'] == '' || $cur_perm['g_post_replies'] == '1'))) ? false : true;
-		$post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$post_topics && ($cur_perm['g_post_topics'] == '' || $cur_perm['g_post_topics'] == '1'))) ? false : true;
+		$comment_def = (($comment && $cur_perm['g_comment'] == '0') || (!$comment && ($cur_perm['g_comment'] == '' || $cur_perm['g_comment'] == '1'))) ? false : true;
+		$create_threads_def = (($create_threads && $cur_perm['g_create_threads'] == '0') || (!$create_threads && ($cur_perm['g_create_threads'] == '' || $cur_perm['g_create_threads'] == '1'))) ? false : true;
 
 ?>
 					<tr>
@@ -362,13 +362,13 @@ elseif (isset($_POST['update_positions'])) {
 							<input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
 							<input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
 						</td>
-						<td<?php if (!$post_replies_def) echo ' class="danger"'; ?>>
-							<input type="hidden" name="post_replies_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_replies) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="post_replies_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_replies) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+						<td<?php if (!$comment_def) echo ' class="danger"'; ?>>
+							<input type="hidden" name="comment_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($comment) ? '1' : '0'; ?>" />
+							<input type="checkbox" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
 						</td>
-						<td<?php if (!$post_topics_def) echo ' class="danger"'; ?>>
-							<input type="hidden" name="post_topics_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_topics) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="post_topics_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_topics) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+						<td<?php if (!$create_threads_def) echo ' class="danger"'; ?>>
+							<input type="hidden" name="create_threads_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($create_threads) ? '1' : '0'; ?>" />
+							<input type="checkbox" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
 						</td>
 					</tr>
 <?php
@@ -417,30 +417,30 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		for ($i = 0; $i < $num_forums; ++$i) {
 			$cur_forum = $db->result($result, $i);
 
-			// Prune all comments and topics
+			// Prune all comments and threads
 			prune($cur_forum, 1, -1);
 
 			// Delete the forum
 			$db->query('DELETE FROM '.$db->prefix.'forums WHERE id='.$cur_forum) or error('Unable to delete forum', __FILE__, __LINE__, $db->error());
 		}
 
-		// Locate any "orphaned redirect topics" and delete them
-		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		// Locate any "orphaned redirect threads" and delete them
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'threads AS t1 LEFT JOIN '.$db->prefix.'threads AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect threads', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
 		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
-			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect threads', __FILE__, __LINE__, $db->error());
 		}
 
 		// Delete the category
 		$db->query('DELETE FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to delete category', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the quick jump cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		redirect('backstage/board.php?saved=true');
 	} else { // If the user hasn't confirmed the delete
@@ -448,7 +448,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		$cat_name = $db->result($result);
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Categories', 'luna'));
-		define('FORUM_ACTIVE_PAGE', 'admin');
+		define('LUNA_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 	load_admin_nav('content', 'board');
 
@@ -506,7 +506,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	}
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Board', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('content', 'board');
 	

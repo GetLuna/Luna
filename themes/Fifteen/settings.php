@@ -34,7 +34,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 			<li role="presentation"<?php if ( 'contact' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=contact#contact" aria-controls="contact" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
 			<li role="presentation"<?php if ( 'threads' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=threads#threads" aria-controls="threads" role="tab" data-toggle="tab"><span class="fa fa-fw fa-list"></span><span class="hidden-xs"> <?php _e('Threads', 'luna') ?></span></a></li>
 			<li role="presentation"<?php if ( 'time' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=time#time" aria-controls="time" role="tab" data-toggle="tab"><span class="fa fa-fw fa-clock-o"></span><span class="hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
-			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
+			<?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
 				<li role="presentation"<?php if ( 'admin' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=admin#admin" aria-controls="admin" role="tab" data-toggle="tab"><span class="fa fa-fw fa-dashboard"></span><span class="hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
 			<?php endif; ?>
 		</ul>
@@ -48,7 +48,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 							<?php echo $username_field ?>
 						</div>
 					</div>
-					<?php if ($luna_user['id'] == $id || $luna_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')): ?>
+					<?php if ($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')): ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?></label>
 						<div class="col-sm-9">
@@ -250,7 +250,7 @@ if (count($languages) > 1) {
 						<div class="col-sm-9">
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked' ?> />
+									<input type="checkbox" name="form[notify_with_comment]" value="1"<?php if ($user['notify_with_comment'] == '1') echo ' checked' ?> />
 									<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 								</label>
 							</div>
@@ -358,13 +358,13 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?></label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
+							<input type="number" class="form-control" name="form[disp_threads]" value="<?php echo $user['disp_threads'] ?>" maxlength="3" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?></label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
+							<input type="number" class="form-control" name="form[disp_comments]" value="<?php echo $user['disp_comments'] ?>" maxlength="3" />
 						</div>
 					</div>
 				</fieldset>
@@ -462,7 +462,7 @@ if (count($languages) > 1) {
 					</div>
 				</fieldset>
 			</div>
-			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
+			<?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
 			<div role="tabpanel" class="tab-pane<?php if ( 'admin' === $section ) { ?> active<?php } ?>" id="admin">
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_user['g_moderator'] == '1') { ?>
@@ -481,7 +481,7 @@ if (count($languages) > 1) {
 									<select id="group_id" class="form-control" name="group_id">
 <?php
 
-			$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 			while ($cur_group = $db->fetch_assoc($result)) {
 				if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
@@ -508,7 +508,7 @@ if (count($languages) > 1) {
 						</div>
 					</div>
 					<hr />
-					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) { ?>
+					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
 							<div class="col-sm-9">
@@ -536,11 +536,11 @@ if (count($languages) > 1) {
 							<hr />
 						<?php } ?>
 					<?php } ?>
-					<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
+					<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
 							<div class="col-sm-9">
-								<input type="number" class="form-control" name="num_posts" value="<?php echo $user['num_posts'] ?>" maxlength="8" />
+								<input type="number" class="form-control" name="num_comments" value="<?php echo $user['num_comments'] ?>" maxlength="8" />
 							</div>
 						</div>
 					<?php endif; if ($luna_user['is_admmod']): ?>

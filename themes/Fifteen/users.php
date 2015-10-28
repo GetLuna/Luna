@@ -15,7 +15,7 @@ if (!defined('FORUM'))
 					<select class="form-control hidden-xs" name="sort">
 						<option value="username"<?php if ($sort_by == 'username') echo ' selected' ?>><?php _e('Sort by username', 'luna') ?></option>
 						<option value="registered"<?php if ($sort_by == 'registered') echo ' selected' ?>><?php _e('Sort by registration date', 'luna') ?></option>
-						<option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected' ?>><?php _e('Sort by number of comments', 'luna') ?></option>
+						<option value="num_comments"<?php if ($sort_by == 'num_comments') echo ' selected' ?>><?php _e('Sort by number of comments', 'luna') ?></option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -31,10 +31,16 @@ if (!defined('FORUM'))
 	</div>
 </div>
 <div class="container">
-<?php echo $paging_links ?>
-
-<div class="userlist row">
-	<?php draw_user_list() ?>
-</div>
-
-<?php echo $paging_links ?>
+	<div class="row pagination-row">
+		<div class="col-xs-12">
+			<?php echo $paging_links ?>
+		</div>
+	</div>
+	<div class="userlist row">
+		<?php draw_user_list() ?>
+	</div>
+	<div class="row pagination-row">
+		<div class="col-xs-12">
+			<?php echo $paging_links ?>
+		</div>
+	</div>

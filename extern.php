@@ -22,12 +22,12 @@
   The scripts behaviour is controlled via variables supplied in the
   URL to the script. The different variables are: action (what to
   do), show (how many items to display), fid (the ID or IDs of
-  the forum(s) to poll for topics), nfid (the ID or IDs of forums
+  the forum(s) to poll for threads), nfid (the ID or IDs of forums
   that should be excluded), tid (the ID of the thread from which to
-  display posts) and type (output as HTML or RSS). The only
+  display comments) and type (output as HTML or RSS). The only
   mandatory variable is action. Possible/default values are:
 
-	action: feed - show most recent topics/posts (HTML or RSS)
+	action: feed - show most recent threads/comments (HTML or RSS)
 			online - show users online (HTML)
 			online_full - as above, but includes a full list (HTML)
 			stats - show board statistics (HTML)
@@ -38,32 +38,32 @@
 			html - output as HTML (<li>'s)
 
 	fid:	One or more forum IDs (comma-separated). If ignored,
-			topics from all readable forums will be pulled.
+			threads from all readable forums will be pulled.
 
 	nfid:   One or more forum IDs (comma-separated) that are to be
 			excluded. E.g. the ID of a a test forum.
 
-	tid:	A topic ID from which to show posts. If a tid is supplied,
+	tid:	A thread ID from which to show comments. If a tid is supplied,
 			fid and nfid are ignored.
 
 	show:   Any integer value between 1 and 50. The default is 15.
 
-	order:  last_post - show topics ordered by when they were last
-						posted in, giving information about the reply.
-			posted - show topics ordered by when they were first
-					 posted, giving information about the original post.
+	order:  last_comment - show threads ordered by when they were last
+						commented in, giving information about the reply.
+			commented - show threads ordered by when they were first
+					 commented, giving information about the original comment.
 
 -----------------------------------------------------------------------------*/
 
-define('FORUM_QUIET_VISIT', 1);
+define('LUNA_QUIET_VISIT', 1);
 
-if (!defined('FORUM_ROOT'))
-	define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+if (!defined('LUNA_ROOT'))
+	define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
-// The length at which topic subjects will be truncated (for HTML output)
-if (!defined('FORUM_EXTERN_MAX_SUBJECT_LENGTH'))
-	define('FORUM_EXTERN_MAX_SUBJECT_LENGTH', 30);
+// The length at which thread subjects will be truncated (for HTML output)
+if (!defined('LUNA_EXTERN_MAX_SUBJECT_LENGTH'))
+	define('LUNA_EXTERN_MAX_SUBJECT_LENGTH', 30);
 
 // If we're a guest and we've sent a username/pass, we can try to authenticate using those details
 if ($luna_user['is_guest'] && isset($_SERVER['PHP_AUTH_USER']))
@@ -80,12 +80,12 @@ $action = isset($_GET['action']) ? strtolower($_GET['action']) : 'feed';
 switch ($action) {
 	case 'active':
 		$action = 'feed';
-		$_GET['order'] = 'last_post';
+		$_GET['order'] = 'last_comment';
 		break;
 
 	case 'new':
 		$action = 'feed';
-		$_GET['order'] = 'posted';
+		$_GET['order'] = 'commented';
 		break;
 }
 
@@ -165,7 +165,7 @@ function output_atom($feed) {
 
 	echo "\t".'<id>'.luna_htmlspecialchars($feed['link']).'</id>'."\n";
 
-	$content_tag = ($feed['type'] == 'posts') ? 'content' : 'summary';
+	$content_tag = ($feed['type'] == 'comments') ? 'content' : 'summary';
 
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<entry>'."\n";
@@ -208,7 +208,7 @@ function output_xml($feed) {
 	echo '<source>'."\n";
 	echo "\t".'<url>'.luna_htmlspecialchars($feed['link']).'</url>'."\n";
 
-	$forum_tag = ($feed['type'] == 'posts') ? 'post' : 'topic';
+	$forum_tag = ($feed['type'] == 'comments') ? 'comment' : 'thread';
 
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<'.$forum_tag.' id="'.$item['id'].'">'."\n";
@@ -226,7 +226,7 @@ function output_xml($feed) {
 			echo "\t\t\t".'<uri>'.luna_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
 
 		echo "\t\t".'</author>'."\n";
-		echo "\t\t".'<posted>'.gmdate('r', $item['pubdate']).'</posted>'."\n";
+		echo "\t\t".'<commented>'.gmdate('r', $item['pubdate']).'</commented>'."\n";
 
 		echo "\t".'</'.$forum_tag.'>'."\n";
 	}
@@ -247,8 +247,8 @@ function output_html($feed) {
 	header('Pragma: public');
 
 	foreach ($feed['items'] as $item) {
-		if (utf8_strlen($item['title']) > FORUM_EXTERN_MAX_SUBJECT_LENGTH)
-			$subject_truncated = luna_htmlspecialchars(luna_trim(utf8_substr($item['title'], 0, (FORUM_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
+		if (utf8_strlen($item['title']) > LUNA_EXTERN_MAX_SUBJECT_LENGTH)
+			$subject_truncated = luna_htmlspecialchars(luna_trim(utf8_substr($item['title'], 0, (LUNA_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
 		else
 			$subject_truncated = luna_htmlspecialchars($item['title']);
 
@@ -258,7 +258,7 @@ function output_html($feed) {
 
 // Show recent discussions
 if ($action == 'feed') {
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 
 	// Determine what type of feed to output
 	$type = isset($_GET['type']) ? strtolower($_GET['type']) : 'html';
@@ -273,50 +273,50 @@ if ($action == 'feed') {
 	if (isset($_GET['tid'])) {
 		$tid = intval($_GET['tid']);
 
-		// Fetch topic subject
-		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		// Fetch thread subject
+		$result = $db->query('SELECT t.subject, t.first_comment_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result)) {
 			http_authenticate_user();
 			exit(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		}
 
-		$cur_topic = $db->fetch_assoc($result);
+		$cur_thread = $db->fetch_assoc($result);
 
 		if ($luna_config['o_censoring'] == '1')
-			$cur_topic['subject'] = censor_words($cur_topic['subject']);
+			$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
 		// Setup the feed
 		$feed = array(
-			'title' 		=>	$luna_config['o_board_title'].__(' / ', 'luna').$cur_topic['subject'],
-			'link'			=>	get_base_url(true).'/viewtopic.php?id='.$tid,
-			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_topic['subject']),
+			'title' 		=>	$luna_config['o_board_title'].__(' / ', 'luna').$cur_thread['subject'],
+			'link'			=>	get_base_url(true).'/thread.php?id='.$tid,
+			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_thread['subject']),
 			'items'			=>	array(),
-			'type'			=>	'posts'
+			'type'			=>	'comments'
 		);
 
-		// Fetch $show posts
-		$result = $db->query('SELECT p.id, p.poster, p.message, p.hide_smilies, p.posted, p.poster_id, u.email_setting, u.email, p.poster_email FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id WHERE p.topic_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-		while ($cur_post = $db->fetch_assoc($result)) {
-			$cur_post['message'] = parse_message($cur_post['message']);
+		// Fetch $show comments
+		$result = $db->query('SELECT p.id, p.commenter, p.message, p.hide_smilies, p.commented, p.commenter_id, u.email_setting, u.email, p.commenter_email FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id WHERE p.thread_id='.$tid.' ORDER BY p.commented DESC LIMIT '.$show) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+		while ($cur_comment = $db->fetch_assoc($result)) {
+			$cur_comment['message'] = parse_message($cur_comment['message']);
 
 			$item = array(
-				'id'			=>	$cur_post['id'],
-				'title'			=>	$cur_topic['first_post_id'] == $cur_post['id'] ? $cur_topic['subject'] : __('Re: ', 'luna').$cur_topic['subject'],
-				'link'			=>	get_base_url(true).'/viewtopic.php?pid='.$cur_post['id'].'#p'.$cur_post['id'],
-				'description'		=>	$cur_post['message'],
+				'id'			=>	$cur_comment['id'],
+				'title'			=>	$cur_thread['first_comment_id'] == $cur_comment['id'] ? $cur_thread['subject'] : __('Re: ', 'luna').$cur_thread['subject'],
+				'link'			=>	get_base_url(true).'/thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id'],
+				'description'		=>	$cur_comment['message'],
 				'author'		=>	array(
-					'name'	=> $cur_post['poster'],
+					'name'	=> $cur_comment['commenter'],
 				),
-				'pubdate'		=>	$cur_post['posted']
+				'pubdate'		=>	$cur_comment['commented']
 			);
 
-			if ($cur_post['poster_id'] > 1) {
-				if ($cur_post['email_setting'] == '0' && !$luna_user['is_guest'])
-					$item['author']['email'] = $cur_post['email'];
+			if ($cur_comment['commenter_id'] > 1) {
+				if ($cur_comment['email_setting'] == '0' && !$luna_user['is_guest'])
+					$item['author']['email'] = $cur_comment['email'];
 
-				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_post['poster_id'];
-			} elseif ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
-				$item['author']['email'] = $cur_post['poster_email'];
+				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_comment['commenter_id'];
+			} elseif ($cur_comment['commenter_email'] != '' && !$luna_user['is_guest'])
+				$item['author']['email'] = $cur_comment['commenter_email'];
 
 			$feed['items'][] = $item;
 		}
@@ -324,7 +324,7 @@ if ($action == 'feed') {
 		$output_func = 'output_'.$type;
 		$output_func($feed);
 	} else {
-		$order_posted = isset($_GET['order']) && strtolower($_GET['order']) == 'posted';
+		$order_commented = isset($_GET['order']) && strtolower($_GET['order']) == 'commented';
 		$forum_name = '';
 		$forum_sql = '';
 
@@ -355,11 +355,11 @@ if ($action == 'feed') {
 
 		// Only attempt to cache if caching is enabled and we have all or a single forum
 		if ($luna_config['o_feed_ttl'] > 0 && ($forum_sql == '' || ($forum_name != '' && !isset($_GET['nfid']))))
-			$cache_id = 'feed'.sha1($luna_user['g_id'].'|'.__('en', 'luna').'|'.($order_posted ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
+			$cache_id = 'feed'.sha1($luna_user['g_id'].'|'.__('en', 'luna').'|'.($order_commented ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
 
 		// Load cached feed
-		if (isset($cache_id) && file_exists(FORUM_CACHE_DIR.'cache_'.$cache_id.'.php'))
-			include FORUM_CACHE_DIR.'cache_'.$cache_id.'.php';
+		if (isset($cache_id) && file_exists(LUNA_CACHE_DIR.'cache_'.$cache_id.'.php'))
+			include LUNA_CACHE_DIR.'cache_'.$cache_id.'.php';
 
 		$now = time();
 		if (!isset($feed) || $cache_expire < $now) {
@@ -369,43 +369,43 @@ if ($action == 'feed') {
 				'link'			=>	'/index.php',
 				'description'	=>	sprintf(__('The most recent threads at %s.', 'luna'), $luna_config['o_board_title']),
 				'items'			=>	array(),
-				'type'			=>	'topics'
+				'type'			=>	'threads'
 			);
 
-			// Fetch $show topics
-			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
-			while ($cur_topic = $db->fetch_assoc($result)) {
+			// Fetch $show threads
+			$result = $db->query('SELECT t.id, t.commenter, t.subject, t.commented, t.last_comment, t.last_commenter, p.message, p.hide_smilies, u.email_setting, u.email, p.commenter_id, p.commenter_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'comments AS p ON p.id='.($order_commented ? 't.first_comment_id' : 't.last_comment_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_commented ? 't.commented' : 't.last_comment').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+			while ($cur_thread = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
-					$cur_topic['subject'] = censor_words($cur_topic['subject']);
+					$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
-				$cur_topic['message'] = parse_message($cur_topic['message']);
+				$cur_thread['message'] = parse_message($cur_thread['message']);
 
 				$item = array(
-					'id'			=>	$cur_topic['id'],
-					'title'			=>	$cur_topic['subject'],
-					'link'			=>	'/viewtopic.php?id='.$cur_topic['id'].($order_posted ? '' : '&action=new'),
-					'description'	=>	$cur_topic['message'],
+					'id'			=>	$cur_thread['id'],
+					'title'			=>	$cur_thread['subject'],
+					'link'			=>	'/thread.php?id='.$cur_thread['id'].($order_commented ? '' : '&action=new'),
+					'description'	=>	$cur_thread['message'],
 					'author'		=>	array(
-						'name'	=> $order_posted ? $cur_topic['poster'] : $cur_topic['last_poster']
+						'name'	=> $order_commented ? $cur_thread['commenter'] : $cur_thread['last_commenter']
 					),
-					'pubdate'		=>	$order_posted ? $cur_topic['posted'] : $cur_topic['last_post']
+					'pubdate'		=>	$order_commented ? $cur_thread['commented'] : $cur_thread['last_comment']
 				);
 
-				if ($cur_topic['poster_id'] > 1) {
-					if ($cur_topic['email_setting'] == '0' && !$luna_user['is_guest'])
-						$item['author']['email'] = $cur_topic['email'];
+				if ($cur_thread['commenter_id'] > 1) {
+					if ($cur_thread['email_setting'] == '0' && !$luna_user['is_guest'])
+						$item['author']['email'] = $cur_thread['email'];
 
-					$item['author']['uri'] = '/profile.php?id='.$cur_topic['poster_id'];
-				} elseif ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
-					$item['author']['email'] = $cur_topic['poster_email'];
+					$item['author']['uri'] = '/profile.php?id='.$cur_thread['commenter_id'];
+				} elseif ($cur_thread['commenter_email'] != '' && !$luna_user['is_guest'])
+					$item['author']['email'] = $cur_thread['commenter_email'];
 
 				$feed['items'][] = $item;
 			}
 
 			// Output feed as PHP code
 			if (isset($cache_id)) {
-				if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-					require FORUM_ROOT.'include/cache.php';
+				if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+					require LUNA_ROOT.'include/cache.php';
 
 				$content = '<?php'."\n\n".'$feed = '.var_export($feed, true).';'."\n\n".'$cache_expire = '.($now + ($luna_config['o_feed_ttl'] * 60)).';'."\n\n".'?>';
 				luna_write_cache_file('cache_'.$cache_id.'.php', $content);
@@ -468,19 +468,19 @@ elseif ($action == 'online' || $action == 'online_full') {
 // Show board statistics
 elseif ($action == 'stats') {
 	// Collect some statistics from the database
-	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
-		include FORUM_CACHE_DIR.'cache_users_info.php';
+	if (file_exists(LUNA_CACHE_DIR.'cache_users_info.php'))
+		include LUNA_CACHE_DIR.'cache_users_info.php';
 
-	if (!defined('FORUM_USERS_INFO_LOADED')) {
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_USERS_INFO_LOADED')) {
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
-		require FORUM_CACHE_DIR.'cache_users_info.php';
+		require LUNA_CACHE_DIR.'cache_users_info.php';
 	}
 
-	$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-	list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
+	$result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/comment count', __FILE__, __LINE__, $db->error());
+	list($stats['total_threads'], $stats['total_comments']) = $db->fetch_row($result);
 
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
@@ -490,8 +490,8 @@ elseif ($action == 'stats') {
 
 	echo sprintf(__('Users', 'luna'), forum_number_format($stats['total_users'])).'<br />'."\n";
 	echo sprintf(__('Newest user', 'luna'), (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
-	echo sprintf(__('Threads', 'luna'), forum_number_format($stats['total_topics'])).'<br />'."\n";
-	echo sprintf(__('Comments', 'luna'), forum_number_format($stats['total_posts'])).'<br />'."\n";
+	echo sprintf(__('Threads', 'luna'), forum_number_format($stats['total_threads'])).'<br />'."\n";
+	echo sprintf(__('Comments', 'luna'), forum_number_format($stats['total_comments'])).'<br />'."\n";
 
 	exit;
 }

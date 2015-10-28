@@ -7,10 +7,10 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 // Tell common.php that we don't want output buffering
-define('FORUM_DISABLE_BUFFERING', 1);
+define('LUNA_DISABLE_BUFFERING', 1);
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -75,26 +75,26 @@ if ($action == 'rebuild') {
 
 	$query_str = '';
 
-	require FORUM_ROOT.'include/search_idx.php';
+	require LUNA_ROOT.'include/search_idx.php';
 
-	// Fetch posts to process this cycle
-	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+	// Fetch comments to process this cycle
+	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 	$end_at = 0;
 	while ($cur_item = $db->fetch_assoc($result)) {
 		echo '<p><span>'.sprintf(__('Processing comment <strong>%s</strong> …', 'luna'), $cur_item['id']).'</span></p>'."\n";
 
-		if ($cur_item['id'] == $cur_item['first_post_id'])
-			update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
+		if ($cur_item['id'] == $cur_item['first_comment_id'])
+			update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
 		else
-			update_search_index('post', $cur_item['id'], $cur_item['message']);
+			update_search_index('comment', $cur_item['id'], $cur_item['message']);
 
 		$end_at = $cur_item['id'];
 	}
 
 	// Check if there is more work to do
 	if ($end_at > 0) {
-		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) > 0)
 			$query_str = '?action=rebuild&i_per_page='.$per_page.'&i_start_at='.$db->result($result);
@@ -106,8 +106,8 @@ if ($action == 'rebuild') {
 	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf(__('JavaScript redirect unsuccessful. %s to continue …', 'luna'), '<a href="maintenance.php'.$query_str.'">'.__('Click here', 'luna').'</a>').'</p>');
 }
 
-// Get the first post ID from the db
-$result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 1') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+// Get the first comment ID from the db
+$result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
@@ -141,13 +141,13 @@ if (isset($_POST['form_sent'])) {
 	if ($action == 'clear_cache') {
 		confirm_referrer('backstage/maintenance.php');
 	
-		delete_all(FORUM_ROOT.'cache');
+		delete_all(LUNA_ROOT.'cache');
 		redirect('backstage/maitenance.php?cache_cleared=true');
 	}
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -156,7 +156,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'maintenance');
 

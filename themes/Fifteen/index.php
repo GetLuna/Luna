@@ -60,11 +60,15 @@ if ($luna_user['first_run'] == '0') {
 <div class="row index">
 	<div class="col-sm-3 col-xs-12">
 		<div class="list-group list-group-forum">
-			<?php draw_forum_list() ?>
+			<?php draw_forum_list('forum.php', 1, 'category.php', ''); ?>
 		</div>
 		<hr />
 		<div class="list-group list-group-forum">
-			<?php draw_mark_read('list-group-item', 'index') ?>
+			<?php echo implode('', $page_threadsearches) ?>
+		</div>
+		<hr />
+		<div class="list-group list-group-forum">
+			<?php draw_mark_read('list-group-item', 'index'); ?>
 		</div>
 	</div>
 	<div class="col-sm-9 col-xs-12">
@@ -82,9 +86,9 @@ if ($luna_user['first_run'] == '0') {
         <div class="alert alert-info alert-section alert-all">
             <h3><?php _e('Recent activity', 'luna') ?></h3>
         </div>
-		<div class="list-group list-group-topic">
+		<div class="list-group list-group-thread">
 <?php
-			draw_index_topics_list();
+			draw_index_threads_list();
 ?>
 		</div>
 	</div>

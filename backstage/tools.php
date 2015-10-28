@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -62,7 +62,7 @@ if (isset($_POST['add_user'])) {
 	// Insert the new user into the database. We do this now to get the last inserted id for later use.
 	$now = time();
 
-	$intial_group_id = ($_POST['random_pass'] == '0') ? $luna_config['o_default_user_group'] : FORUM_UNVERIFIED;
+	$intial_group_id = ($_POST['random_pass'] == '0') ? $luna_config['o_default_user_group'] : LUNA_UNVERIFIED;
 	$password_hash = luna_hash($password);
 
 	// Add the user
@@ -72,7 +72,7 @@ if (isset($_POST['add_user'])) {
 	// Must the user verify the registration?
 	if ($_POST['random_pass'] == '1') {
 		// Validate e-mail
-		require FORUM_ROOT.'include/email.php';
+		require LUNA_ROOT.'include/email.php';
 
 		// Load the "welcome" template
 		$mail_tpl = trim(__('Subject: Welcome to <board_title>!
@@ -102,8 +102,8 @@ Login at <login_url> to activate the account.
 	}
 
 	// Regenerate the users info cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
 	
@@ -111,7 +111,7 @@ Login at <login_url> to activate the account.
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('users', 'tools');
 

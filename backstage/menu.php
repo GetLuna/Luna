@@ -5,7 +5,7 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
+define('LUNA_ROOT', '../');
 require '../include/common.php';
 
 if (!$is_admin)

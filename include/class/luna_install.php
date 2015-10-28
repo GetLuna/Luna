@@ -92,7 +92,7 @@ class Installer {
 			$alerts[] = __('Passwords do not match.', 'luna');
 	
 		// Validate email
-		require FORUM_ROOT.'include/email.php';
+		require LUNA_ROOT.'include/email.php';
 	
 		if (!is_valid_email($email))
 			$alerts[] = __('The administrator email address you entered is invalid.', 'luna');
@@ -116,19 +116,19 @@ class Installer {
 		// Load the appropriate DB layer class
 		switch ($db_type) {
 			case 'mysql':
-				require FORUM_ROOT.'include/dblayer/mysql.php';
+				require LUNA_ROOT.'include/dblayer/mysql.php';
 				break;
 	
 			case 'mysql_innodb':
-				require FORUM_ROOT.'include/dblayer/mysql_innodb.php';
+				require LUNA_ROOT.'include/dblayer/mysql_innodb.php';
 				break;
 	
 			case 'mysqli':
-				require FORUM_ROOT.'include/dblayer/mysqli.php';
+				require LUNA_ROOT.'include/dblayer/mysqli.php';
 				break;
 	
 			case 'mysqli_innodb':
-				require FORUM_ROOT.'include/dblayer/mysqli_innodb.php';
+				require LUNA_ROOT.'include/dblayer/mysqli_innodb.php';
 				break;
 	
 			case 'pgsql':
@@ -136,11 +136,11 @@ class Installer {
 				break;
 	
 			case 'sqlite':
-				require FORUM_ROOT.'include/dblayer/sqlite.php';
+				require LUNA_ROOT.'include/dblayer/sqlite.php';
 				break;
 
 			case 'sqlite3':
-				require FORUM_ROOT.'include/dblayer/sqlite3.php';
+				require LUNA_ROOT.'include/dblayer/sqlite3.php';
 				break;
 	
 			default:
@@ -158,13 +158,13 @@ class Installer {
 			case 'mysqli_innodb':
 				$mysql_info = $db->get_version();
 				if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
-					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
+					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::LUNA_VERSION, Version::MIN_MYSQL_VERSION));
 				break;
 	
 			case 'pgsql':
 				$pgsql_info = $db->get_version();
 				if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::LUNA_VERSION, Version::MIN_PGSQL_VERSION));
 				break;
 	
 			case 'sqlite':
@@ -332,12 +332,12 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'post_replies'	=> array(
+				'comment'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'post_topics'	=> array(
+				'create_threads'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
@@ -368,25 +368,25 @@ class Installer {
 					'datatype'		=> 'TEXT',
 					'allow_null'	=> true
 				),
-				'num_topics'	=> array(
+				'num_threads'	=> array(
 					'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'num_posts'		=> array(
+				'num_comments'		=> array(
 					'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'		=> array(
+				'last_comment'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
-				'last_post_id'	=> array(
+				'last_comment_id'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
-				'last_poster_id'=> array(
+				'last_commenter_id'=> array(
 					'datatype'		=> 'INT(10)',
 					'allow_null'	=> true,
 					'default'		=> NULL,
@@ -483,27 +483,27 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_post_replies'			=> array(
+				'g_comment'			=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_post_topics'				=> array(
+				'g_create_threads'				=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_edit_posts'				=> array(
+				'g_edit_comments'				=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_delete_posts'			=> array(
+				'g_delete_comments'			=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_delete_topics'			=> array(
+				'g_delete_threads'			=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
@@ -528,7 +528,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_post_flood'				=> array(
+				'g_comment_flood'				=> array(
 					'datatype'		=> 'SMALLINT(6)',
 					'allow_null'	=> false,
 					'default'		=> '30'
@@ -543,12 +543,12 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '60'
 				),
-				'g_pm'						=> array(
+				'g_inbox'						=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_pm_limit'				=> array(
+				'g_inbox_limit'				=> array(
 					'datatype'		=> 'INT',
 					'allow_null'	=> false,
 					'default'		=> '20'
@@ -563,12 +563,12 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_soft_delete_posts'		=> array(
+				'g_soft_delete_comments'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'g_soft_delete_topics'		=> array(
+				'g_soft_delete_threads'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
@@ -682,7 +682,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'			=> array(
+				'last_comment'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
@@ -718,21 +718,21 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'poster'		=> array(
+				'commenter'		=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				'poster_id'		=> array(
+				'commenter_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'poster_ip'		=> array(
+				'commenter_ip'		=> array(
 					'datatype'		=> 'VARCHAR(39)',
 					'allow_null'	=> true
 				),
-				'poster_email'	=> array(
+				'commenter_email'	=> array(
 					'datatype'		=> 'VARCHAR(80)',
 					'allow_null'	=> true
 				),
@@ -745,7 +745,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'posted'		=> array(
+				'commented'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -758,7 +758,7 @@ class Installer {
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> true
 				),
-				'topic_id'		=> array(
+				'thread_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -776,12 +776,12 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id'),
 			'INDEXES'		=> array(
-				'topic_id_idx'	=> array('topic_id'),
-				'multi_idx'		=> array('poster_id', 'topic_id')
+				'thread_id_idx'	=> array('thread_id'),
+				'multi_idx'		=> array('commenter_id', 'thread_id')
 			)
 		);
 	
-		$db->create_table('posts', $schema) or error('Unable to create posts table', __FILE__, __LINE__, $db->error());
+		$db->create_table('comments', $schema) or error('Unable to create comments table', __FILE__, __LINE__, $db->error());
 	
 	
 		$schema = array(
@@ -795,7 +795,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				'min_posts'		=> array(
+				'min_comments'		=> array(
 					'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -813,12 +813,12 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'post_id'		=> array(
+				'comment_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'topic_id'		=> array(
+				'thread_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -891,7 +891,7 @@ class Installer {
 	
 		$schema = array(
 			'FIELDS'		=> array(
-				'post_id'		=> array(
+				'comment_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -909,7 +909,7 @@ class Installer {
 			),
 			'INDEXES'		=> array(
 				'word_id_idx'	=> array('word_id'),
-				'post_id_idx'	=> array('post_id')
+				'comment_id_idx'	=> array('comment_id')
 			)
 		);
 	
@@ -950,16 +950,16 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'topic_id'		=> array(
+				'thread_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				)
 			),
-			'PRIMARY KEY'	=> array('user_id', 'topic_id')
+			'PRIMARY KEY'	=> array('user_id', 'thread_id')
 		);
 	
-		$db->create_table('topic_subscriptions', $schema) or error('Unable to create topic subscriptions table', __FILE__, __LINE__, $db->error());
+		$db->create_table('thread_subscriptions', $schema) or error('Unable to create thread subscriptions table', __FILE__, __LINE__, $db->error());
 	
 	
 		$schema = array(
@@ -987,7 +987,7 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'poster'		=> array(
+				'commenter'		=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> false,
 					'default'		=> '\'\''
@@ -997,27 +997,27 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				'posted'		=> array(
+				'commented'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'first_post_id'	=> array(
+				'first_comment_id'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'		=> array(
+				'last_comment'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post_id'	=> array(
+				'last_comment_id'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_poster'	=> array(
+				'last_commenter'	=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> true
 				),
@@ -1031,7 +1031,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_poster_id'=> array(
+				'last_commenter_id'=> array(
 					'datatype'		=> 'INT(10)',
 					'allow_null'	=> true,
 					'default'		=> NULL,
@@ -1041,7 +1041,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'sticky'		=> array(
+				'pinned'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1070,13 +1070,13 @@ class Installer {
 			'INDEXES'		=> array(
 				'forum_id_idx'		=> array('forum_id'),
 				'moved_to_idx'		=> array('moved_to'),
-				'last_post_idx'		=> array('last_post'),
-				'last_poster_id'	=> array('last_poster'),
-				'first_post_id_idx'	=> array('first_post_id')
+				'last_comment_idx'		=> array('last_comment'),
+				'last_commenter_id'	=> array('last_commenter'),
+				'first_comment_id_idx'	=> array('first_comment_id')
 			)
 		);
 	
-		$db->create_table('topics', $schema) or error('Unable to create topics table', __FILE__, __LINE__, $db->error());
+		$db->create_table('threads', $schema) or error('Unable to create threads table', __FILE__, __LINE__, $db->error());
 	
 		$schema = array(
 			'FIELDS'		=> array(
@@ -1145,11 +1145,11 @@ class Installer {
 					'datatype'		=> 'TEXT',
 					'allow_null'	=> true
 				),
-				'disp_topics'		=> array(
+				'disp_threads'		=> array(
 					'datatype'		=> 'TINYINT(3) UNSIGNED',
 					'allow_null'	=> true
 				),
-				'disp_posts'		=> array(
+				'disp_comments'		=> array(
 					'datatype'		=> 'TINYINT(3) UNSIGNED',
 					'allow_null'	=> true
 				),
@@ -1158,7 +1158,7 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'notify_with_post'	=> array(
+				'notify_with_comment'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1223,12 +1223,12 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\''.$db->escape($default_style).'\''
 				),
-				'num_posts'			=> array(
+				'num_comments'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'last_post'			=> array(
+				'last_comment'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
 				),
@@ -1347,17 +1347,17 @@ class Installer {
 					'allow_null'		=> false,
 					'default'			=> '0'
 				),
-				'last_post'			=> array(
+				'last_comment'			=> array(
 					'datatype'			=> 'INT(10)',
 					'allow_null'		=> true,
 					'default'			=> '0'
 				),
-				'last_post_id'		=> array(
+				'last_comment_id'		=> array(
 					'datatype'			=> 'INT(10)',
 					'allow_null'		=> true,
 					'default'			=> '0'
 				),
-				'last_poster'		=> array(
+				'last_commenter'		=> array(
 					'datatype'			=> 'VARCHAR(255)',
 					'allow_null'		=> false,
 					'default'			=> '0'
@@ -1407,7 +1407,7 @@ class Installer {
 					'datatype'			=> 'VARCHAR(39)',
 					'allow_null'		=> true
 				),
-				'posted'	=> array(
+				'commented'	=> array(
 					'datatype'			=> 'INT(10)',
 					'allow_null'		=> false,
 				),
@@ -1424,12 +1424,12 @@ class Installer {
 
 		// Insert config data
 		$luna_config = array(
-			'o_cur_version'				=> Version::FORUM_VERSION,
-			'o_core_version'			=> Version::FORUM_CORE_VERSION,
+			'o_cur_version'				=> Version::LUNA_VERSION,
+			'o_core_version'			=> Version::LUNA_CORE_VERSION,
 			'o_code_name'				=> Version::LUNA_CODE_NAME,
-			'o_database_revision'		=> Version::FORUM_DB_VERSION,
-			'o_searchindex_revision'	=> Version::FORUM_SI_VERSION,
-			'o_parser_revision'			=> Version::FORUM_PARSER_VERSION,
+			'o_database_revision'		=> Version::LUNA_DB_VERSION,
+			'o_searchindex_revision'	=> Version::LUNA_SI_VERSION,
+			'o_parser_revision'			=> Version::LUNA_PARSER_VERSION,
 			'o_board_title'				=> $title,
 			'o_board_desc'				=> $description,
 			'o_board_tags'				=> NULL,
@@ -1439,7 +1439,7 @@ class Installer {
 			'o_timeout_visit'			=> 1800,
 			'o_timeout_online'			=> 300,
 			'o_show_user_info'			=> 1,
-			'o_show_post_count'			=> 1,
+			'o_show_comment_count'			=> 1,
 			'o_signatures'				=> 1,
 			'o_smilies_sig'				=> 1,
 			'o_make_links'				=> 1,
@@ -1449,16 +1449,15 @@ class Installer {
 			'o_allow_accent_color'		=> 1,
 			'o_allow_night_mode'		=> 1,
 			'o_default_user_group'		=> 4,
-			'o_topic_review'			=> 15,
-			'o_disp_topics_default'		=> 30,
-			'o_disp_posts_default'		=> 25,
+			'o_disp_threads'			=> 30,
+			'o_disp_comments'			=> 25,
 			'o_indent_num_spaces'		=> 4,
 			'o_quote_depth'				=> 3,
 			'o_users_online'			=> 1,
 			'o_censoring'				=> 0,
 			'o_ranks'					=> 1,
-			'o_has_posted'				=> 1,
-			'o_topic_views'				=> 1,
+			'o_has_commented'			=> 1,
+			'o_thread_views'			=> 1,
 			'o_gzip'					=> 0,
 			'o_report_method'			=> 0,
 			'o_regs_report'				=> 0,
@@ -1474,7 +1473,7 @@ class Installer {
 			'o_admin_email'				=> $email,
 			'o_webmaster_email'			=> $email,
 			'o_forum_subscriptions'		=> 1,
-			'o_topic_subscriptions'		=> 1,
+			'o_thread_subscriptions'	=> 1,
 			'o_first_run_message'		=> __('Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
 			'o_show_first_run'			=> 1,
 			'o_first_run_guests'		=> 1,
@@ -1550,7 +1549,7 @@ class Installer {
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_comment, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 			or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		
 		$db->end_transaction();
@@ -1564,13 +1563,13 @@ class Installer {
 		$db->start_transaction();
 
 		// Insert the first 4 groups
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape(__('Administrators', 'luna')).'\', \''.$db->escape(__('Administrator', 'luna')).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape(__('Administrators', 'luna')).'\', \''.$db->escape(__('Administrator', 'luna')).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape(__('Moderators', 'luna')).'\', \''.$db->escape(__('Moderator', 'luna')).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape(__('Moderators', 'luna')).'\', \''.$db->escape(__('Moderator', 'luna')).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape(__('Guests', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape(__('Guests', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape(__('Members', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape(__('Members', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		
 		$db->end_transaction();
 	}
@@ -1599,13 +1598,13 @@ class Installer {
 		
 		$db->start_transaction();
 
-		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('New member', 'luna')).'\', 0)')
+		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('New member', 'luna')).'\', 0)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
+		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-		require FORUM_ROOT.'include/notifications.php';		
+		require LUNA_ROOT.'include/notifications.php';		
 		new_notification('2', 'backstage/about.php', 'Welcome to Luna, discover the possibilities!', 'fa-moon-o');
 		
 		$db->end_transaction();

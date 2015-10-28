@@ -7,10 +7,10 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
-if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 	header("Location: login.php");
 
 // Add/edit a ban (stage 1)
@@ -41,7 +41,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 
 		// Make sure we're not banning an admin or moderator
 		if (isset($group_id)) {
-			if ($group_id == FORUM_ADMIN)
+			if ($group_id == LUNA_ADMIN)
 				message_backstage(sprintf(__('The user %s is an administrator and can\'t be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -53,7 +53,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 
 		// If we have a $user_id, we can try to find the last known IP of that user
 		if (isset($user_id)) {
-			$result = $db->query('SELECT poster_ip FROM '.$db->prefix.'posts WHERE poster_id='.$user_id.' ORDER BY posted DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT commenter_ip FROM '.$db->prefix.'comments WHERE commenter_id='.$user_id.' ORDER BY commented DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			$ban_ip = ($db->num_rows($result)) ? $db->result($result) : '';
 
 			if ($ban_ip == '') {
@@ -82,7 +82,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans2', 'ban_user');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'bans');
 
@@ -166,7 +166,7 @@ elseif (isset($_POST['add_edit_ban'])) {
 		if ($db->num_rows($result)) {
 			$group_id = $db->result($result);
 
-			if ($group_id == FORUM_ADMIN)
+			if ($group_id == LUNA_ADMIN)
 				message_backstage(sprintf(__('The user %s is an administrator and can\'t be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -214,7 +214,7 @@ elseif (isset($_POST['add_edit_ban'])) {
 		$ban_ip = implode(' ', $addresses);
 	}
 
-	require FORUM_ROOT.'include/email.php';
+	require LUNA_ROOT.'include/email.php';
 	if ($ban_email != '' && !is_valid_email($ban_email)) {
 		if (!preg_match('%^[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$%', $ban_email))
 			message_backstage(__('The email address (e.g. user@domain.com) or partial email address domain (e.g. domain.com) you entered is invalid.', 'luna'));
@@ -245,8 +245,8 @@ elseif (isset($_POST['add_edit_ban'])) {
 		$db->query('UPDATE '.$db->prefix.'bans SET username='.$ban_user.', ip='.$ban_ip.', email='.$ban_email.', message='.$ban_message.', expire='.$ban_expire.' WHERE id='.intval($_POST['ban_id'])) or error('Unable to update ban', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the bans cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_bans_cache();
 
@@ -264,8 +264,8 @@ elseif (isset($_GET['del_ban'])) {
 	$db->query('DELETE FROM '.$db->prefix.'bans WHERE id='.$ban_id) or error('Unable to delete ban', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the bans cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_bans_cache();
 
@@ -330,7 +330,7 @@ elseif (isset($_GET['find_ban'])) {
 	$paging_links = paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'), __('Search Results', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'bans');
 
@@ -394,7 +394,7 @@ elseif (isset($_GET['find_ban'])) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans', 'new_ban_user');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('users', 'bans');
 	

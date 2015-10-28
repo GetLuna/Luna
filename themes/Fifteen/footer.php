@@ -25,7 +25,7 @@ if ($footer_style == 'index') {
 } elseif ($footer_style == 'viewforum') {
 	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS forum feed', 'luna') : __('Atom forum feed', 'luna');
 	$feed_id = '&fid='.$forum_id;
-} elseif ($footer_style == 'viewtopic') {
+} elseif ($footer_style == 'thread') {
 	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS thread feed', 'luna') : __('Atom thread feed', 'luna');
 	$feed_id = '&tid='.$id;
 }
@@ -57,20 +57,20 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_topics() ?></div>
+									<div class="statistic-item"><?php total_threads() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'Thread', 'Threads', get_total_topics(), 'luna' ) ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_posts() ?></div>
+									<div class="statistic-item"><?php total_comments() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n('Comment', 'Comments', get_total_posts(), 'luna') ?></div>
+									<div class="statistic-item-stat"><?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?></div>
 								</div>
 							</div>
 						</div>
@@ -159,7 +159,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 }
 
 // Display debug info (if enabled/defined)
-if (defined('FORUM_DEBUG')) {
+if (defined('LUNA_DEBUG')) {
 	echo '<p id="debug">[ ';
 
 	// Calculate script generation time
@@ -181,7 +181,7 @@ if (defined('FORUM_DEBUG')) {
 $db->end_transaction();
 
 // Display executed queries (if enabled)
-if (defined('FORUM_SHOW_QUERIES'))
+if (defined('LUNA_SHOW_QUERIES'))
 	display_saved_queries();
 
 

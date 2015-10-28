@@ -5,13 +5,13 @@
  * License: http://opensource.org/licenses/MIT MIT
  */
 
-define('FORUM_ROOT', dirname(__FILE__) . '/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__) . '/');
+require LUNA_ROOT.'include/common.php';
 define('DOING_AJAX', true);
 
 // Load AJAX handlers
-require FORUM_ROOT . 'include/ajax_functions.php';
-require FORUM_ROOT . 'include/ajax_actions.php';
+require LUNA_ROOT . 'include/ajax_functions.php';
+require LUNA_ROOT . 'include/ajax_actions.php';
 
 $allowed_actions = array('heartbeat', 'fetch-notifications', 'read-notification', 'trash-notification');
 

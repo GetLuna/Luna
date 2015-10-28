@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
@@ -19,7 +19,7 @@ if (isset($_GET['ip_stats'])) {
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Fetch ip count
-	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT commenter_ip, MAX(commented) AS last_used FROM '.$db->prefix.'comments WHERE commenter_id='.$ip_stats.' GROUP BY commenter_ip') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	$num_ips = $db->num_rows($result);
 
 	// Determine the ip offset (based on $_GET['p'])
@@ -32,7 +32,7 @@ if (isset($_GET['ip_stats'])) {
 	$paging_links = paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -56,16 +56,16 @@ if (isset($_GET['ip_stats'])) {
 		<tbody>
 <?php
 
-	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT commenter_ip, MAX(commented) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'comments WHERE commenter_id='.$ip_stats.' GROUP BY commenter_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) {
 		while ($cur_ip = $db->fetch_assoc($result)) {
 
 ?>
 			<tr>
-				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['commenter_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?></a></td>
 				<td><?php echo format_time($cur_ip['last_used']) ?></td>
 				<td><?php echo $cur_ip['used_times'] ?></td>
-				<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php _e('Find more users for this ip', 'luna') ?></a></td>
+				<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?>"><?php _e('Find more users for this ip', 'luna') ?></a></td>
 			</tr>
 <?php
 
@@ -90,7 +90,7 @@ if (isset($_GET['ip_stats'])) {
 		message_backstage(__('The supplied IP address is not correctly formatted.', 'luna'));
 
 	// Fetch user count
-	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT DISTINCT commenter_id, commenter FROM '.$db->prefix.'comments WHERE commenter_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	$num_users = $db->num_rows($result);
 
 	// Determine the user offset (based on $_GET['p'])
@@ -103,7 +103,7 @@ if (isset($_GET['ip_stats'])) {
 	$paging_links = paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -129,34 +129,34 @@ if (isset($_GET['ip_stats'])) {
 		<tbody>
 <?php
 
-	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-	$num_posts = $db->num_rows($result);
+	$result = $db->query('SELECT DISTINCT commenter_id, commenter FROM '.$db->prefix.'comments WHERE commenter_ip=\''.$db->escape($ip).'\' ORDER BY commenter ASC LIMIT '.$start_from.', 50') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+	$num_comments = $db->num_rows($result);
 
-	if ($num_posts) {
-		$posters = $poster_ids = array();
-		while ($cur_poster = $db->fetch_assoc($result)) {
-			$posters[] = $cur_poster;
-			$poster_ids[] = $cur_poster['poster_id'];
+	if ($num_comments) {
+		$commenters = $commenter_ids = array();
+		while ($cur_commenter = $db->fetch_assoc($result)) {
+			$commenters[] = $cur_commenter;
+			$commenter_ids[] = $cur_commenter['commenter_id'];
 		}
 
-		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $poster_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $commenter_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		$user_data = array();
 		while ($cur_user = $db->fetch_assoc($result))
 			$user_data[$cur_user['id']] = $cur_user;
 
 		// Loop through users and print out some info
-		foreach ($posters as $cur_poster) {
-			if (isset($user_data[$cur_poster['poster_id']])) {
-				$user_title = get_title($user_data[$cur_poster['poster_id']]);
+		foreach ($commenters as $cur_commenter) {
+			if (isset($user_data[$cur_commenter['commenter_id']])) {
+				$user_title = get_title($user_data[$cur_commenter['commenter_id']]);
 
-			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.__('Comments', 'luna').'</a>';
 ?>
 			<tr>
-				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td>
+				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['username']).'</a>' ?></td>
+				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?></a></td>
 				<td><?php echo $user_title ?></td>
-				<td class="text-center"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['commenter_id']]['num_comments']) ?></td>
+				<td><?php echo ($user_data[$cur_commenter['commenter_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['admin_note']) : '&#160;' ?></td>
 				<td><?php echo $actions ?></td>
 			</tr>
 <?php
@@ -165,7 +165,7 @@ if (isset($_GET['ip_stats'])) {
 
 ?>
 			<tr>
-				<td><?php echo luna_htmlspecialchars($cur_poster['poster']) ?></td>
+				<td><?php echo luna_htmlspecialchars($cur_commenter['commenter']) ?></td>
 				<td>&#160;</td>
 				<td><?php _e('Guest', 'luna') ?></td>
 				<td>&#160;</td>
@@ -193,7 +193,7 @@ if (isset($_GET['ip_stats'])) {
 
 // Move multiple users to other user groups
 elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
@@ -211,13 +211,13 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 		message_backstage(__('No users selected.', 'luna'));
 
 	// Are we trying to batch move any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.LUNA_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message_backstage(__('For security reasons, you are not allowed to move multiple administrators to another group. If you want to move these administrators, you can do so on their respective user profiles.', 'luna'));
 
 	// Fetch all user groups
 	$all_groups = array();
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id NOT IN ('.FORUM_GUEST.','.FORUM_ADMIN.') ORDER BY g_title ASC') or error('Unable to fetch groups', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id NOT IN ('.LUNA_GUEST.','.LUNA_ADMIN.') ORDER BY g_title ASC') or error('Unable to fetch groups', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_row($result))
 		$all_groups[$row[0]] = $row[1];
 
@@ -249,7 +249,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 				unset($user_groups[$cur_group['g_id']]);
 		}
 
-		if (!empty($user_groups) && $new_group != FORUM_ADMIN && $new_group_mod != '1') {
+		if (!empty($user_groups) && $new_group != LUNA_ADMIN && $new_group_mod != '1') {
 			// Fetch forum list and clean up their moderator list
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 			while ($cur_forum = $db->fetch_assoc($result)) {
@@ -270,7 +270,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Change user group', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -307,7 +307,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 
 // Delete multiple users
 elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
@@ -325,7 +325,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		message_backstage(__('No users selected.', 'luna'));
 
 	// Are we trying to delete any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.LUNA_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message_backstage(__('Administrators cannot be deleted. In order to delete administrators, you must first move them to a different user group.', 'luna'));
 
@@ -361,35 +361,35 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		}
 
 		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete topic subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete thread subscriptions', __FILE__, __LINE__, $db->error());
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete forum subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Remove them from the online list (if they happen to be logged in)
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to remove users from online list', __FILE__, __LINE__, $db->error());
 
 		// Should we delete all comments made by these users?
-		if (isset($_POST['delete_posts'])) {
-			require FORUM_ROOT.'include/search_idx.php';
+		if (isset($_POST['delete_comments'])) {
+			require LUNA_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all comments made by this user
-			$result = $db->query('SELECT p.id, p.poster_id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.commenter_id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
-				while ($cur_post = $db->fetch_assoc($result)) {
-					// Determine whether this post is the "topic post" or not
-					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+				while ($cur_comment = $db->fetch_assoc($result)) {
+					// Determine whether this comment is the "thread comment" or not
+					$result2 = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY commented LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 
-					if ($db->result($result2) == $cur_post['id'])
-						delete_topic($cur_post['topic_id']);
+					if ($db->result($result2) == $cur_comment['id'])
+						delete_thread($cur_comment['thread_id']);
 					else
-						delete_post($cur_post['id'], $cur_post['topic_id'], $cur_post['poster_id']);
+						delete_comment($cur_comment['id'], $cur_comment['thread_id'], $cur_comment['commenter_id']);
 
-					update_forum($cur_post['forum_id']);
+					update_forum($cur_comment['forum_id']);
 				}
 			}
 		} else
-			// Set all their posts to guest
-			$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
+			// Set all their comments to guest
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
 
 		// Delete the users
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
@@ -399,8 +399,8 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			delete_avatar($user_id);
 
 		// Regenerate the users info cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 
@@ -408,7 +408,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Delete users', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -424,7 +424,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 				<p><?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></p>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="delete_posts" value="1" checked />
+						<input type="checkbox" name="delete_comments" value="1" checked />
 						<?php _e('Delete all comments and threads this user has made', 'luna') ?>
 					</label>
 				</div>
@@ -442,7 +442,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 
 // Ban multiple users
 elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
-	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+	if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
@@ -460,7 +460,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		message_backstage(__('No users selected.', 'luna'));
 
 	// Are we trying to ban any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.LUNA_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message_backstage(__('Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group.', 'luna'));
 
@@ -498,9 +498,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 		// Overwrite the registration IP with one from the last comment (if it exists)
 		if ($ban_the_ip != 0) {
-			$result = $db->query('SELECT p.poster_id, p.poster_ip FROM '.$db->prefix.'posts AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'posts WHERE poster_id IN ('.implode(',', $user_ids).') GROUP BY poster_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.commenter_id, p.commenter_ip FROM '.$db->prefix.'comments AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'comments WHERE commenter_id IN ('.implode(',', $user_ids).') GROUP BY commenter_id) AS i ON p.id=i.id') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			while ($cur_address = $db->fetch_assoc($result))
-				$user_info[$cur_address['poster_id']]['ip'] = $cur_address['poster_ip'];
+				$user_info[$cur_address['commenter_id']]['ip'] = $cur_address['commenter_ip'];
 		}
 
 		// And insert the bans!
@@ -513,8 +513,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		}
 
 		// Regenerate the bans cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_bans_cache();
 
@@ -523,7 +523,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans2', 'ban_message');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -578,15 +578,15 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$form = array_map('luna_trim', $form);
 	$conditions = $query_str = array();
 
-	$posts_greater = isset($_GET['posts_greater']) ? luna_trim($_GET['posts_greater']) : '';
-	$posts_less = isset($_GET['posts_less']) ? luna_trim($_GET['posts_less']) : '';
-	$last_post_after = isset($_GET['last_post_after']) ? luna_trim($_GET['last_post_after']) : '';
-	$last_post_before = isset($_GET['last_post_before']) ? luna_trim($_GET['last_post_before']) : '';
+	$comments_greater = isset($_GET['comments_greater']) ? luna_trim($_GET['comments_greater']) : '';
+	$comments_less = isset($_GET['comments_less']) ? luna_trim($_GET['comments_less']) : '';
+	$last_comment_after = isset($_GET['last_comment_after']) ? luna_trim($_GET['last_comment_after']) : '';
+	$last_comment_before = isset($_GET['last_comment_before']) ? luna_trim($_GET['last_comment_before']) : '';
 	$last_visit_after = isset($_GET['last_visit_after']) ? luna_trim($_GET['last_visit_after']) : '';
 	$last_visit_before = isset($_GET['last_visit_before']) ? luna_trim($_GET['last_visit_before']) : '';
 	$registered_after = isset($_GET['registered_after']) ? luna_trim($_GET['registered_after']) : '';
 	$registered_before = isset($_GET['registered_before']) ? luna_trim($_GET['registered_before']) : '';
-	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_posts', 'last_post', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
+	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_comment', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
 	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
 	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
 
@@ -594,27 +594,27 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$query_str[] = 'direction='.$direction;
 	$query_str[] = 'user_group='.$user_group;
 
-	if (preg_match('%[^0-9]%', $posts_greater.$posts_less))
+	if (preg_match('%[^0-9]%', $comments_greater.$comments_less))
 		message_backstage(__('You entered a non-numeric value into a numeric only column.', 'luna'));
 
 	// Try to convert date/time to timestamps
-	if ($last_post_after != '') {
-		$query_str[] = 'last_post_after='.$last_post_after;
+	if ($last_comment_after != '') {
+		$query_str[] = 'last_comment_after='.$last_comment_after;
 
-		$last_post_after = strtotime($last_post_after);
-		if ($last_post_after === false || $last_post_after == -1)
+		$last_comment_after = strtotime($last_comment_after);
+		if ($last_comment_after === false || $last_comment_after == -1)
 			message_backstage(__('You entered an invalid date/time.', 'luna'));
 
-		$conditions[] = 'u.last_post>'.$last_post_after;
+		$conditions[] = 'u.last_comment>'.$last_comment_after;
 	}
-	if ($last_post_before != '') {
-		$query_str[] = 'last_post_before='.$last_post_before;
+	if ($last_comment_before != '') {
+		$query_str[] = 'last_comment_before='.$last_comment_before;
 
-		$last_post_before = strtotime($last_post_before);
-		if ($last_post_before === false || $last_post_before == -1)
+		$last_comment_before = strtotime($last_comment_before);
+		if ($last_comment_before === false || $last_comment_before == -1)
 			message_backstage(__('You entered an invalid date/time.', 'luna'));
 
-		$conditions[] = 'u.last_post<'.$last_post_before;
+		$conditions[] = 'u.last_comment<'.$last_comment_before;
 	}
 	if ($last_visit_after != '') {
 		$query_str[] = 'last_visit_after='.$last_visit_after;
@@ -661,13 +661,13 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		}
 	}
 
-	if ($posts_greater != '') {
-		$query_str[] = 'posts_greater='.$posts_greater;
-		$conditions[] = 'u.num_posts>'.$posts_greater;
+	if ($comments_greater != '') {
+		$query_str[] = 'comments_greater='.$comments_greater;
+		$conditions[] = 'u.num_comments>'.$comments_greater;
 	}
-	if ($posts_less != '') {
-		$query_str[] = 'posts_less='.$posts_less;
-		$conditions[] = 'u.num_posts<'.$posts_less;
+	if ($comments_less != '') {
+		$query_str[] = 'comments_less='.$comments_less;
+		$conditions[] = 'u.num_comments<'.$comments_less;
 	}
 
 	if ($user_group > -1)
@@ -687,13 +687,13 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$paging_links = paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
 	// Some helper variables for permissions
-	$can_delete = $can_move = $luna_user['g_id'] == FORUM_ADMIN;
-	$can_ban = $luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
+	$can_delete = $can_move = $luna_user['g_id'] == LUNA_ADMIN;
+	$can_ban = $luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
 	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -734,23 +734,23 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			<tbody>
 <?php
 
-	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result)) {
 		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title = get_title($user_data);
 
 			// This script is a special case in that we want to display "Not verified" for non-verified users
-			if (($user_data['g_id'] == '' || $user_data['g_id'] == FORUM_UNVERIFIED) && $user_title != __('Banned', 'luna'))
+			if (($user_data['g_id'] == '' || $user_data['g_id'] == LUNA_UNVERIFIED) && $user_title != __('Banned', 'luna'))
 				$user_title = '<span class="warntext">'.__('Not verified', 'luna').'</span>';
 
-			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
 
 ?>
 				<tr>
 					<?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif; ?>
 					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
 					<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
-					<td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
+					<td class="text-center"><?php echo forum_number_format($user_data['num_comments']) ?></td>
 					<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
 					<td><?php echo $actions ?></td>
 				</tr>
@@ -787,7 +787,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 } else {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'));
 	$focus_element = array('find_user', 'form[username]');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -846,7 +846,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 							<option value="0"><?php _e('Unverified users', 'luna') ?></option>
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result))
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
@@ -861,15 +861,15 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Number of comments less than', 'luna') ?></th>
-					<td><input type="number" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
+					<td><input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" /></td>
 					<th><?php _e('Number of comments greater than', 'luna') ?></th>
-					<td><input type="number" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
+					<td><input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last comment is before', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
+					<td><input type="date" class="form-control" name="last_comment_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
 					<th><?php _e('Last comment is after', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="date" class="form-control" name="last_comment_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last visit is before', 'luna') ?></th>
@@ -889,8 +889,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 						<select class="form-control" name="order_by" tabindex="22">
 							<option value="username" selected><?php _e('Username', 'luna') ?></option>
 							<option value="email"><?php _e('Email', 'luna') ?></option>
-							<option value="num_posts"><?php _e('Number of comments', 'luna') ?></option>
-							<option value="last_post"><?php _e('Last comment', 'luna') ?></option>
+							<option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
+							<option value="last_comment"><?php _e('Last comment', 'luna') ?></option>
 							<option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
 							<option value="registered"><?php _e('Registered', 'luna') ?></option>
 						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">

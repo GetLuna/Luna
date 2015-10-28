@@ -21,7 +21,7 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Prevent site from being embedded in a frame 
-$frame_options = defined('FORUM_FRAME_OPTIONS') ? FORUM_FRAME_OPTIONS : 'deny';
+$frame_options = defined('LUNA_FRAME_OPTIONS') ? LUNA_FRAME_OPTIONS : 'deny';
 header('X-Frame-Options: '.$frame_options);
 
 // Define $p if it's not set to avoid a PHP notice
@@ -31,14 +31,14 @@ $p = isset($p) ? $p : null;
 $user_avatar = draw_user_avatar($luna_user['id'], true, 'avatar');
 
 // Generate quick links
-$page_statusinfo = $page_topicsearches = array();
+$page_statusinfo = $page_threadsearches = array();
 
 if (!$luna_user['is_guest']) {
 	if (!empty($forum_actions))
 		$page_statusinfo[] = '<li>'.implode(' &middot; ', $forum_actions).'</li>';
 
-	if (!empty($topic_actions))
-		$page_statusinfo[] = '<li>'.implode(' &middot; ', $topic_actions).'</li>';
+	if (!empty($thread_actions))
+		$page_statusinfo[] = '<li>'.implode(' &middot; ', $thread_actions).'</li>';
 
 	if ($luna_user['is_admmod']) 	{
 		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2') 		{
@@ -53,13 +53,13 @@ if (!$luna_user['is_guest']) {
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new comments'].'">New</a>';
+		$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_new" title="'.__('New', 'luna').'"><span class="fa fa-fw fa-newspaper-o"></span> '.__('New', 'luna').'</a>';
 }
 
 // Quick searches
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">Active</a>';
-	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">Unanswered</a>';
+	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_recent" title="'.__('Active', 'luna').'"><span class="fa fa-fw fa-clock-o"></span> '.__('Active', 'luna').'</a>';
+	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'"><span class="fa fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
 }
 
 // Generate all that jazz
@@ -74,9 +74,9 @@ if (is_array($page_statusinfo)) {
 	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
 
 // Generate quicklinks
-if (!empty($page_topicsearches)) {
+if (!empty($page_threadsearches)) {
 	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
-	$tpl_temp .= "\n\t\t\t\t".'<li>'.implode(' &middot; ', $page_topicsearches).'</li>';
+	$tpl_temp .= "\n\t\t\t\t".'<li>'.implode(' &middot; ', $page_threadsearches).'</li>';
 	$tpl_temp .= "\n\t\t\t".'</ul>';
 }
 

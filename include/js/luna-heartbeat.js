@@ -87,7 +87,7 @@
 			options.beating = true;
 			options.xhr = $.ajax({
 				url:      ajaxurl,
-				type:     'post',
+				type:     'comment',
 				timeout:  30000, // throw an error if not completed after 30 sec.
 				data:     data,
 				dataType: 'json'

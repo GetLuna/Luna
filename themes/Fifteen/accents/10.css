@@ -11,7 +11,7 @@
 	background-color: #ccc;
 }
 
-.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover, .btn-primary, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+.list-group-forum a.list-group-item:hover, .list-group-thread .list-group-item:hover, .btn-primary, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
 	border-color: #eee;
 }
 

@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -20,8 +20,8 @@ if (isset($_POST['form_sent'])) {
 		'censoring'						=> isset($_POST['form']['censoring']) ? '1' : '0',
 		'signatures'					=> isset($_POST['form']['signatures']) ? '1' : '0',
 		'ranks'							=> isset($_POST['form']['ranks']) ? '1' : '0',
-		'topic_views'					=> isset($_POST['form']['topic_views']) ? '1' : '0',
-		'has_posted'					=> isset($_POST['form']['has_posted']) ? '1' : '0',
+		'thread_views'					=> isset($_POST['form']['thread_views']) ? '1' : '0',
+		'has_commented'					=> isset($_POST['form']['has_commented']) ? '1' : '0',
 		'show_first_run'				=> isset($_POST['form']['show_first_run']) ? '1' : '0',
 		'first_run_guests'				=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
 		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
@@ -52,8 +52,8 @@ if (isset($_POST['form_sent'])) {
 	}
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -62,7 +62,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Features', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('settings', 'features');
 
@@ -88,13 +88,13 @@ if (isset($_GET['saved']))
 						</div>   
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[topic_views]" value="1" <?php if ($luna_config['o_topic_views'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[thread_views]" value="1" <?php if ($luna_config['o_thread_views'] == '1') echo ' checked' ?> />
 								<?php _e('Show the number of views for each thread.', 'luna') ?>
 							</label>
 						</div>  
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[has_posted]" value="1" <?php if ($luna_config['o_has_posted'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[has_commented]" value="1" <?php if ($luna_config['o_has_commented'] == '1') echo ' checked' ?> />
 								<?php _e('Show a label in front of the thread where users have commented.', 'luna') ?>
 							</label>
 						</div>					

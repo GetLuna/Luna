@@ -1,12 +1,12 @@
 <?php
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if ($luna_user['is_admmod'])
 	header("Location: index.php");
 
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 
 $redirect_url = check_url();

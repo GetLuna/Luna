@@ -5,31 +5,31 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/parser.php';
-require FORUM_ROOT.'include/utf8/substr_replace.php';
-require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
-require FORUM_ROOT.'include/utf8/strcasecmp.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/parser.php';
+require LUNA_ROOT.'include/utf8/substr_replace.php';
+require LUNA_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require LUNA_ROOT.'include/utf8/strcasecmp.php';
 
 // Load the me functions script
-require FORUM_ROOT.'include/me_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : $luna_user['id'];
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 	(!$luna_user['is_admmod'] ||																	// and we are not an admin or mod
-	($luna_user['g_id'] != FORUM_ADMIN &&														// or we aren't an admin and ...
+	($luna_user['g_id'] != LUNA_ADMIN &&														// or we aren't an admin and ...
 	($luna_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
-	$group_id == FORUM_ADMIN ||																	// or the user is an admin
+	$group_id == LUNA_ADMIN ||																	// or the user is an admin
 	$is_moderator))))																			// or the user is another mod
 	|| $id == '1') {																				// or the ID is 1, and thus a guest
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 }
 
 if (isset($_POST['update_group_membership'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('settings.php');
@@ -42,19 +42,19 @@ if (isset($_POST['update_group_membership'])) {
 	$db->query('UPDATE '.$db->prefix.'users SET group_id='.$new_group_id.' WHERE id='.$id) or error('Unable to change user group', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the users info cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
 
-	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)
+	if ($old_group_id == LUNA_ADMIN || $new_group_id == LUNA_ADMIN)
 		generate_admins_cache();
 
 	$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$new_group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 	$new_group_mod = $db->result($result);
 
 	// If the user was a moderator or an administrator, we remove him/her from the moderator list in all forums as well
-	if ($new_group_id != FORUM_ADMIN && $new_group_mod != '1') {
+	if ($new_group_id != LUNA_ADMIN && $new_group_mod != '1') {
 		$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
 		while ($cur_forum = $db->fetch_assoc($result)) {
@@ -72,7 +72,7 @@ if (isset($_POST['update_group_membership'])) {
 
 	redirect('settings.php?id='.$id);
 } elseif (isset($_POST['ban'])) {
-	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+	if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('settings.php');
@@ -89,14 +89,14 @@ if (isset($_POST['update_group_membership'])) {
 	} else
 		redirect('backstage/bans.php?add_ban='.$id);
 } elseif (isset($_POST['delete_user']) || isset($_POST['delete_user_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	// Get the username and group of the user we are deleting
 	$result = $db->query('SELECT group_id, username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	list($group_id, $username) = $db->fetch_row($result);
 
-	if ($group_id == FORUM_ADMIN)
+	if ($group_id == LUNA_ADMIN)
 		message(__('Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group.', 'luna'));
 
 	if (isset($_POST['delete_user_comply'])) {
@@ -104,7 +104,7 @@ if (isset($_POST['update_group_membership'])) {
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 		$group_mod = $db->result($result);
 
-		if ($group_id == FORUM_ADMIN || $group_mod == '1') {
+		if ($group_id == LUNA_ADMIN || $group_mod == '1') {
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
 			while ($cur_forum = $db->fetch_assoc($result)) {
@@ -120,35 +120,35 @@ if (isset($_POST['update_group_membership'])) {
 		}
 
 		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$id) or error('Unable to delete topic subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$id) or error('Unable to delete thread subscriptions', __FILE__, __LINE__, $db->error());
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$id) or error('Unable to delete forum subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Remove him/her from the online list (if they happen to be logged in)
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$id) or error('Unable to remove user from online list', __FILE__, __LINE__, $db->error());
 
 		// Should we delete all comments made by this user?
-		if (isset($_POST['delete_posts'])) {
-			require FORUM_ROOT.'include/search_idx.php';
+		if (isset($_POST['delete_comments'])) {
+			require LUNA_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all comments made by this user
-			$result = $db->query('SELECT p.id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id='.$id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.thread_id, t.forum_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.commenter_id='.$id) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
-				while ($cur_post = $db->fetch_assoc($result)) {
-					// Determine whether this post is the "topic post" or not
-					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+				while ($cur_comment = $db->fetch_assoc($result)) {
+					// Determine whether this comment is the "thread comment" or not
+					$result2 = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['thread_id'].' ORDER BY commented LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 
-					if ($db->result($result2) == $cur_post['id'])
-						delete_topic($cur_post['topic_id']);
+					if ($db->result($result2) == $cur_comment['id'])
+						delete_thread($cur_comment['thread_id']);
 					else
-						delete_post($cur_post['id'], $cur_post['topic_id'], $id);
+						delete_comment($cur_comment['id'], $cur_comment['thread_id'], $id);
 
-					update_forum($cur_post['forum_id']);
+					update_forum($cur_comment['forum_id']);
 				}
 			}
 		} else
-			// Set all his/her posts to guest
-			$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id='.$id) or error('Unable to update posts', __FILE__, __LINE__, $db->error());
+			// Set all his/her comments to guest
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
 
 		// Delete the user
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to delete user', __FILE__, __LINE__, $db->error());
@@ -157,24 +157,24 @@ if (isset($_POST['update_group_membership'])) {
 		delete_avatar($id);
 
 		// Regenerate the users info cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 
-		if ($group_id == FORUM_ADMIN)
+		if ($group_id == LUNA_ADMIN)
 			generate_admins_cache();
 
 		redirect('index.php');
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Confirm delete user', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('LUNA_ACTIVE_PAGE', 'profile');
 	require load_page('header.php');
 
 	require load_page('me-delete.php');
 } elseif (isset($_POST['update_forums'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('settings.php');
@@ -240,7 +240,7 @@ if (isset($_POST['update_group_membership'])) {
 
 			list($group_id, $is_moderator) = $db->fetch_row($result);
 
-			if ($luna_user['g_mod_edit_users'] == '0' || $luna_user['g_mod_change_passwords'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
+			if ($luna_user['g_mod_edit_users'] == '0' || $luna_user['g_mod_change_passwords'] == '0' || $group_id == LUNA_ADMIN || $is_moderator == '1')
 				message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 		}
 	}
@@ -294,7 +294,7 @@ if (isset($_POST['update_group_membership'])) {
 
 			list($group_id, $is_moderator) = $db->fetch_row($result);
 
-			if ($luna_user['g_mod_edit_users'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
+			if ($luna_user['g_mod_edit_users'] == '0' || $group_id == LUNA_ADMIN || $is_moderator == '1')
 				message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 		}
 	}
@@ -319,7 +319,7 @@ if (isset($_POST['update_group_membership'])) {
 		// Make sure they got here from the site
 		confirm_referrer('settings.php');
 
-		require FORUM_ROOT.'include/email.php';
+		require LUNA_ROOT.'include/email.php';
 
 		// Validate the email address
 		$new_email = strtolower(luna_trim($_POST['req_new_email']));
@@ -427,7 +427,7 @@ To change your email address, please visit the following page:
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Change email address', 'luna'));
 	$required_fields = array('req_new_email' => __('New email', 'luna'), 'req_password' => __('Password', 'luna'));
 	$focus_element = array('change_email', 'req_new_email');
-	define('FORUM_ACTIVE_PAGE', 'me');
+	define('LUNA_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-change_email.tpl.php');
@@ -486,10 +486,10 @@ To change your email address, please visit the following page:
 				message(__('The file you tried to upload is larger than the maximum allowed', 'luna').' '.forum_number_format($luna_config['o_avatars_size']).' '.__('bytes', 'luna').'.');
 
 			// Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
-			if (!@move_uploaded_file($uploaded_file['tmp_name'], FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp'))
+			if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp'))
 				message(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 
-			list($width, $height, $type,) = @getimagesize(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+			list($width, $height, $type,) = @getimagesize(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 
 			// Determine type
 			if ($type == IMAGETYPE_GIF)
@@ -500,20 +500,20 @@ To change your email address, please visit the following page:
 				$extension = '.png';
 			else {
 				// Invalid type
-				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+				@unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message(__('The file you tried to upload is not of an allowed type. Allowed types are gif, jpeg and png.', 'luna'));
 			}
 
 			// Now check the width/height
 			if (empty($width) || empty($height) || $width > $luna_config['o_avatars_width'] || $height > $luna_config['o_avatars_height']) {
-				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+				@unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message(__('The file you tried to upload is wider and/or higher than the maximum allowed', 'luna').' '.$luna_config['o_avatars_width'].'x'.$luna_config['o_avatars_height'].' '.__('pixels', 'luna').'.');
 			}
 
 			// Delete any old avatars and put the new one in place
 			delete_avatar($id);
-			@rename(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension);
-			@chmod(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension, 0644);
+			@rename(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp', LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension);
+			@chmod(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension, 0644);
 		} else
 			message(__('An unknown error occurred. Please try again.', 'luna'));
 
@@ -531,14 +531,14 @@ To change your email address, please visit the following page:
 	redirect('settings.php?id='.$id);
 } else {
 	
-	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.use_pm, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_pm, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
 	$user = $db->fetch_assoc($result);
 	
 	if ($luna_user['is_admmod']) {
-		if ($luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_mod_rename_users'] == '1')
+		if ($luna_user['g_id'] == LUNA_ADMIN || $luna_user['g_mod_rename_users'] == '1')
 			$username_field = '<input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" />';
 		else
 			$username_field = luna_htmlspecialchars($user['username']);
@@ -574,9 +574,9 @@ To change your email address, please visit the following page:
 	
 		if ($luna_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 			(!$luna_user['is_admmod'] ||																	// and we are not an admin or mod
-			($luna_user['g_id'] != FORUM_ADMIN &&														// or we aren't an admin and ...
+			($luna_user['g_id'] != LUNA_ADMIN &&														// or we aren't an admin and ...
 			($luna_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
-			$group_id == FORUM_ADMIN ||																	// or the user is an admin
+			$group_id == LUNA_ADMIN ||																	// or the user is an admin
 			$is_moderator))))																			// or the user is another mod
 			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 	
@@ -602,8 +602,8 @@ To change your email address, please visit the following page:
 			'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
 			'time_format'		=> intval($_POST['form']['time_format']),
 			'date_format'		=> intval($_POST['form']['date_format']),
-			'disp_topics'		=> luna_trim($_POST['form']['disp_topics']),
-			'disp_posts'		=> luna_trim($_POST['form']['disp_posts']),
+			'disp_threads'		=> luna_trim($_POST['form']['disp_threads']),
+			'disp_comments'		=> luna_trim($_POST['form']['disp_comments']),
 			'show_smilies'		=> isset($_POST['form']['show_smilies']) ? '1' : '0',
 			'show_img'			=> isset($_POST['form']['show_img']) ? '1' : '0',
 			'show_img_sig'		=> isset($_POST['form']['show_img_sig']) ? '1' : '0',
@@ -611,7 +611,7 @@ To change your email address, please visit the following page:
 			'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
 			'use_pm'			=> isset($_POST['form']['use_pm']) ? '1' : '0',
 			'email_setting'		=> intval($_POST['form']['email_setting']),
-			'notify_with_post'	=> isset($_POST['form']['notify_with_post']) ? '1' : '0',
+			'notify_with_comment'	=> isset($_POST['form']['notify_with_comment']) ? '1' : '0',
 			'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0'
 		);
 	
@@ -619,13 +619,13 @@ To change your email address, please visit the following page:
 			$form['admin_note'] = luna_trim($_POST['admin_note']);
 	
 			// We only allow administrators to update the comment count
-			if ($luna_user['g_id'] == FORUM_ADMIN)
-				$form['num_posts'] = intval($_POST['num_posts']);
+			if ($luna_user['g_id'] == LUNA_ADMIN)
+				$form['num_comments'] = intval($_POST['num_comments']);
 		}
 	
 		if ($luna_user['is_admmod']) {
 			// Are we allowed to change usernames?
-			if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1')) {
+			if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1')) {
 				$form['username'] = luna_trim($_POST['req_username']);
 	
 				if ($form['username'] != $old_username) {
@@ -641,7 +641,7 @@ To change your email address, please visit the following page:
 		}
 	
 		if ($luna_config['o_regs_verify'] == '0' || $luna_user['is_admmod']) {
-			require FORUM_ROOT.'include/email.php';
+			require LUNA_ROOT.'include/email.php';
 	
 			// Validate the email address
 			$form['email'] = strtolower(luna_trim($_POST['req_email']));
@@ -659,7 +659,7 @@ To change your email address, please visit the following page:
 			$form['url'] = $url['url'];
 		}
 	
-		if ($luna_user['g_id'] == FORUM_ADMIN)
+		if ($luna_user['g_id'] == LUNA_ADMIN)
 			$form['title'] = luna_trim($_POST['title']);
 		elseif ($luna_user['g_set_title'] == '1') {
 			$form['title'] = luna_trim($_POST['title']);
@@ -693,20 +693,20 @@ To change your email address, please visit the following page:
 				message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
 		}
 	
-		if ($form['disp_topics'] != '') {
-			$form['disp_topics'] = intval($form['disp_topics']);
-			if ($form['disp_topics'] < 3)
-				$form['disp_topics'] = 3;
-			elseif ($form['disp_topics'] > 75)
-				$form['disp_topics'] = 75;
+		if ($form['disp_threads'] != '') {
+			$form['disp_threads'] = intval($form['disp_threads']);
+			if ($form['disp_threads'] < 3)
+				$form['disp_threads'] = 3;
+			elseif ($form['disp_threads'] > 75)
+				$form['disp_threads'] = 75;
 		}
 	
-		if ($form['disp_posts'] != '') {
-			$form['disp_posts'] = intval($form['disp_posts']);
-			if ($form['disp_posts'] < 3)
-				$form['disp_posts'] = 3;
-			elseif ($form['disp_posts'] > 75)
-				$form['disp_posts'] = 75;
+		if ($form['disp_comments'] != '') {
+			$form['disp_comments'] = intval($form['disp_comments']);
+			if ($form['disp_comments'] < 3)
+				$form['disp_comments'] = 3;
+			elseif ($form['disp_comments'] > 75)
+				$form['disp_comments'] = 75;
 		}
 	
 		// Make sure we got a valid language string
@@ -747,10 +747,10 @@ To change your email address, please visit the following page:
 			// If any bans were updated, we will need to know because the cache will need to be regenerated.
 			if ($db->affected_rows() > 0)
 				$bans_updated = true;
-			$db->query('UPDATE '.$db->prefix.'posts SET poster=\''.$db->escape($form['username']).'\' WHERE poster_id='.$id) or error('Unable to update posts', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'posts SET edited_by=\''.$db->escape($form['username']).'\' WHERE edited_by=\''.$db->escape($old_username).'\'') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'topics SET poster=\''.$db->escape($form['username']).'\' WHERE poster=\''.$db->escape($old_username).'\'') or error('Unable to update topics', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'topics SET last_poster=\''.$db->escape($form['username']).'\' WHERE last_poster=\''.$db->escape($old_username).'\'') or error('Unable to update topics', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter=\''.$db->escape($form['username']).'\' WHERE commenter_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET edited_by=\''.$db->escape($form['username']).'\' WHERE edited_by=\''.$db->escape($old_username).'\'') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET commenter=\''.$db->escape($form['username']).'\' WHERE commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_commenter=\''.$db->escape($form['username']).'\' WHERE last_commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'online SET ident=\''.$db->escape($form['username']).'\' WHERE ident=\''.$db->escape($old_username).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 	
 			// If the user is a moderator or an administrator we have to update the moderator lists
@@ -760,7 +760,7 @@ To change your email address, please visit the following page:
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 			$group_mod = $db->result($result);
 	
-			if ($group_id == FORUM_ADMIN || $group_mod == '1') {
+			if ($group_id == LUNA_ADMIN || $group_mod == '1') {
 				$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 	
 				while ($cur_forum = $db->fetch_assoc($result)) {
@@ -777,8 +777,8 @@ To change your email address, please visit the following page:
 			}
 	
 			// Regenerate the users info cache
-			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+				require LUNA_ROOT.'include/cache.php';
 	
 			generate_users_info_cache();
 	
@@ -812,7 +812,7 @@ To change your email address, please visit the following page:
 	$user_usertitle = get_title($user);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Settings', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'me');
+	define('LUNA_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 	require load_page('me-modals.php');
 	require load_page('settings.php');

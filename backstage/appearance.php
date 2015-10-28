@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -20,13 +20,12 @@ if (isset($_POST['form_sent'])) {
 		'allow_accent_color'	=> isset($_POST['form']['allow_accent_color']) ? '1' : '0',
 		'allow_night_mode'		=> isset($_POST['form']['allow_night_mode']) ? '1' : '0',
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
-		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
+		'show_comment_count'	=> isset($_POST['form']['show_comment_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
 		'emoji'					=> isset($_POST['form']['emoji']) ? '1' : '0',
 		'emoji_size'			=> intval($_POST['form']['emoji_size']),
-		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
-		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
-		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
+		'disp_threads'			=> intval($_POST['form']['disp_threads']),
+		'disp_comments'			=> intval($_POST['form']['disp_comments']),
 		'board_statistics'		=> isset($_POST['form']['board_statistics']) ? '1' : '0',
 		'back_to_top'			=> isset($_POST['form']['back_to_top']) ? '1' : '0',
 		'notification_flyout'	=> isset($_POST['form']['notification_flyout']) ? '1' : '0',
@@ -37,15 +36,15 @@ if (isset($_POST['form_sent'])) {
 	);
 
 	// Make sure the number of displayed threads and comments is between 3 and 75
-	if ($form['disp_topics_default'] < 3)
-		$form['disp_topics_default'] = 3;
-	elseif ($form['disp_topics_default'] > 75)
-		$form['disp_topics_default'] = 75;
+	if ($form['disp_threads'] < 3)
+		$form['disp_threads'] = 3;
+	elseif ($form['disp_threads'] > 75)
+		$form['disp_threads'] = 75;
 
-	if ($form['disp_posts_default'] < 3)
-		$form['disp_posts_default'] = 3;
-	elseif ($form['disp_posts_default'] > 75)
-		$form['disp_posts_default'] = 75;
+	if ($form['disp_comments'] < 3)
+		$form['disp_comments'] = 3;
+	elseif ($form['disp_comments'] > 75)
+		$form['disp_comments'] = 75;
 
 	foreach ($form as $key => $input) {
 		// Only update values that have changed
@@ -60,8 +59,8 @@ if (isset($_POST['form_sent'])) {
 	}
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -70,7 +69,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Appearance', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('settings', 'appearance');
 
@@ -132,7 +131,7 @@ if (isset($_GET['saved']))
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($luna_config['o_show_post_count'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[show_comment_count]" value="1" <?php if ($luna_config['o_show_comment_count'] == '1') echo ' checked' ?> />
 								<?php _e('Show the number of comments a user has made in threads, profile and the user list.', 'luna') ?>
 							</label>
 						</div>
@@ -172,21 +171,15 @@ if (isset($_GET['saved']))
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Thread review', 'luna') ?><span class="help-block"><?php _e('Maximum amount of comments showed when commenting', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $luna_config['o_topic_review'] ?>" />
-					</div>
-				</div>
-				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?><span class="help-block"><?php _e('Default amount of threads per page', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
+						<input type="number" class="form-control" name="form[disp_threads]" maxlength="2" value="<?php echo $luna_config['o_disp_threads'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?><span class="help-block"><?php _e('Default amount of comments per page', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
+						<input type="number" class="form-control" name="form[disp_comments]" maxlength="3" value="<?php echo $luna_config['o_disp_comments'] ?>" />
 					</div>
 				</div>
 			</fieldset>

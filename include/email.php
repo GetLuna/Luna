@@ -12,10 +12,10 @@ if (!defined('FORUM'))
 	exit;
 
 // Define line breaks in mail headers; possible values can be PHP_EOL, "\r\n", "\n" or "\r"
-if (!defined('FORUM_EOL'))
-	define('FORUM_EOL', PHP_EOL);
+if (!defined('LUNA_EOL'))
+	define('LUNA_EOL', PHP_EOL);
 
-require FORUM_ROOT.'include/utf8/utils/ascii.php';
+require LUNA_ROOT.'include/utf8/utils/ascii.php';
 
 //
 // Validate an email address
@@ -97,8 +97,8 @@ function bbcode2email($text, $wrap_length = 72) {
 	$text = luna_trim($text, "\t\n ");
 
 	$shortcut_urls = array(
-		'topic' => '/viewtopic.php?id=$1',
-		'post' => '/viewtopic.php?pid=$1#p$1',
+		'thread' => '/thread.php?id=$1',
+		'comment' => '/thread.php?pid=$1#p$1',
 		'forum' => '/viewforum.php?id=$1',
 		'user' => '/profile.php?id=$1',
 	);
@@ -108,14 +108,14 @@ function bbcode2email($text, $wrap_length = 72) {
 
 	// Strip all bbcodes, except the quote, url, img, email, code and list items bbcodes
 	$text = preg_replace(array(
-		'%\[/?(?!(?:quote|url|topic|post|user|forum|img|email|code|list|\*))[a-z]+(?:=[^\]]+)?\]%i',
+		'%\[/?(?!(?:quote|url|thread|comment|user|forum|img|email|code|list|\*))[a-z]+(?:=[^\]]+)?\]%i',
 		'%\n\[/?list(?:=[^\]]+)?\]%i' // A separate regex for the list tags to get rid of some whitespace
 	), '', $text);
 
 	// Match the deepest nested bbcode
 	// An adapted example from Mastering Regular Expressions
 	$match_quote_regex = '%
-		\[(quote|\*|url|img|email|topic|post|user|forum)(?:=([^\]]+))?\]
+		\[(quote|\*|url|img|email|thread|comment|user|forum)(?:=([^\]]+))?\]
 		(
 			(?>[^\[]*)
 			(?>
@@ -165,8 +165,8 @@ function bbcode2email($text, $wrap_length = 72) {
 			$url_index++;
 		}
 
-		// Thread, post, forum and user URLs
-		elseif (in_array($matches[1], array('topic', 'post', 'forum', 'user'))) {
+		// Thread, comment, forum and user URLs
+		elseif (in_array($matches[1], array('thread', 'comment', 'forum', 'user'))) {
 			$url = isset($shortcut_urls[$matches[1]]) ? $base_url.$shortcut_urls[$matches[1]] : '';
 
 			if (!empty($matches[2])) {
@@ -240,13 +240,13 @@ function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name
 	$from = '"'.encode_mail_text($from_name).'" <'.$from_email.'>';
 	$subject = encode_mail_text($subject);
 
-	$headers = 'From: '.$from.FORUM_EOL.'Date: '.gmdate('r').FORUM_EOL.'MIME-Version: 1.0'.FORUM_EOL.'Content-transfer-encoding: 8bit'.FORUM_EOL.'Content-type: text/plain; charset=utf-8'.FORUM_EOL.'X-Mailer: Luna Mailer';
+	$headers = 'From: '.$from.LUNA_EOL.'Date: '.gmdate('r').LUNA_EOL.'MIME-Version: 1.0'.LUNA_EOL.'Content-transfer-encoding: 8bit'.LUNA_EOL.'Content-type: text/plain; charset=utf-8'.LUNA_EOL.'X-Mailer: Luna Mailer';
 
 	// If we specified a reply-to email, we deal with it here
 	if (!empty($reply_to_email)) {
 		$reply_to = '"'.encode_mail_text($reply_to_name).'" <'.$reply_to_email.'>';
 
-		$headers .= FORUM_EOL.'Reply-To: '.$reply_to;
+		$headers .= LUNA_EOL.'Reply-To: '.$reply_to;
 	}
 
 	// Make sure all linebreaks are LF in message (and strip out any NULL bytes)

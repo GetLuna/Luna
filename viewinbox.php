@@ -6,11 +6,11 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/parser.php';
-require FORUM_ROOT.'include/inbox_functions.php';
-require FORUM_ROOT.'include/me_functions.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/parser.php';
+require LUNA_ROOT.'include/inbox_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 $inbox = 1;
 
@@ -23,41 +23,41 @@ if (!$luna_user['use_pm'] == '1')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
-if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
+if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // User block
 $avatar_user_card = draw_user_avatar($luna_user['id']);
 
-// Get the message's and topic's id
+// Get the message's and thread's id
 $mid = isset($_REQUEST['mid']) ? intval($_REQUEST['mid']) : '0';
 $tid = isset($_REQUEST['tid']) ? intval($_REQUEST['tid']) : '0';
 $pid = isset($_REQUEST['pid']) ? intval($_REQUEST['pid']) : '0';
 
 $delete_all = '0';
 
-$topic_msg = isset($_REQUEST['all_topic']) ? intval($_REQUEST['all_topic']) : '0';
+$thread_msg = isset($_REQUEST['all_thread']) ? intval($_REQUEST['all_thread']) : '0';
 $delete_all = isset($_POST['delete_all']) ? '1' : '0';
 
 if ($pid) {
-	$result = $db->query('SELECT shared_id FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT shared_id FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 
 	$id = $db->result($result);
 
-	// Determine on what page the comment is located (depending on $luna_user['disp_posts'])
-	$result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY posted') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-	$num_posts = $db->num_rows($result);
+	// Determine on what page the comment is located (depending on $luna_user['disp_comments'])
+	$result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY commented') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+	$num_comments = $db->num_rows($result);
 
-	for ($i = 0; $i < $num_posts; ++$i) {
+	for ($i = 0; $i < $num_comments; ++$i) {
 		$cur_id = $db->result($result, $i);
 		if ($cur_id == $pid)
 			break;
 	}
 	++$i; // we started at 0
 
-	$_REQUEST['p'] = ceil($i / $luna_user['disp_posts']);
+	$_REQUEST['p'] = ceil($i / $luna_user['disp_comments']);
 }
 
 // Replace num_replies' feature by a query :-)
@@ -65,11 +65,11 @@ $result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'messages WHERE shared_
 list($num_replies) = $db->fetch_row($result);
 
 // Determine the comment offset (based on $_GET['p'])
-$num_pages = ceil($num_replies / $luna_user['disp_posts']);
+$num_pages = ceil($num_replies / $luna_user['disp_comments']);
 
 // Page ?
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);
-$start_from = $luna_user['disp_posts'] * ($page - 1);
+$start_from = $luna_user['disp_comments'] * ($page - 1);
 	
 // Check that $mid looks good
 if ($mid <= 0)
@@ -78,16 +78,16 @@ if ($mid <= 0)
 // Action ?
 $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $_REQUEST['action'] : '');
 
-// Delete a single message or a full topic
+// Delete a single message or a full thread
 if ($action == 'delete') {
 	// Make sure they got here from the site
 	confirm_referrer('viewinbox.php');
 	
 	if (isset($_POST['delete_comply'])) {
-		if ($topic_msg > '1' || $topic_msg < '0')
+		if ($thread_msg > '1' || $thread_msg < '0')
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
-		if ($topic_msg == '0') {
+		if ($thread_msg == '0') {
 			if ($luna_user['is_admmod']) {
 				if ($delete_all == '1') {
 					$result_msg = $db->query('SELECT message FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
@@ -156,11 +156,11 @@ if ($action == 'delete') {
 	} else {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Delete message', 'luna'));
 		
-		define('FORUM_ACTIVE_PAGE', 'pm');
+		define('LUNA_ACTIVE_PAGE', 'pm');
 		require load_page('header.php');
 		
 		// If you're not the owner of the message, you can't delete it.
-		$result = $db->query('SELECT owner, show_message, posted, sender, message, hide_smilies FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT owner, show_message, commented, sender, message, hide_smilies FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 		$cur_delete = $db->fetch_assoc($result);
 		
 		if($cur_delete['owner'] != $luna_user['id'] && !$luna_user['is_admmod'])
@@ -169,7 +169,7 @@ if ($action == 'delete') {
 		$cur_delete['message'] = parse_message($cur_delete['message']);
 
 		load_inbox_nav($page);
-		require load_page('inbox-delete-post.php');
+		require load_page('inbox-delete-comment.php');
 
 		require load_page('footer.php');
 	}
@@ -190,7 +190,7 @@ if ($action == 'delete') {
 	
 	$r_usernames = str_replace('Deleted', __('Deleted', 'luna'), $r_usernames);
 	
-	$result = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND show_message=1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND show_message=1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -203,17 +203,17 @@ if ($action == 'delete') {
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('View a private discussion', 'luna'));
 	
-	define('FORUM_ACTIVE_PAGE', 'pm');
+	define('LUNA_ACTIVE_PAGE', 'pm');
 	require load_page('header.php');
 	
 	if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 		message(__('You do not have permission to access this page.', 'luna'));
 		
-	$post_count = '0'; // Keep track of post numbers
+	$comment_count = '0'; // Keep track of comment numbers
 	
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());
 	
-	$result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.posted, m.showed, m.sender, m.sender_id, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_posts, u.admin_note, u.signature, u.use_pm, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.posted LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.commented, m.showed, m.sender, m.sender_id, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_comments, u.admin_note, u.signature, u.use_pm, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.commented LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));

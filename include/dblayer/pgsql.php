@@ -64,7 +64,7 @@ class DBLayer {
 			error('Unable to connect to PostgreSQL server', __FILE__, __LINE__);
 
 		// Setup the client-server character set (UTF-8)
-		if (!defined('FORUM_NO_SET_NAMES'))
+		if (!defined('LUNA_NO_SET_NAMES'))
 			$this->set_names('utf8');
 
 		return $this->link_id;
@@ -99,14 +99,14 @@ class DBLayer {
 		if (strrpos($sql, 'LIMIT') !== false)
 			$sql = preg_replace('%LIMIT ([0-9]+),([ 0-9]+)%', 'LIMIT \\2 OFFSET \\1', $sql);
 
-		if (defined('PUN_SHOW_QUERIES'))
+		if (defined('FORUM_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
 		@pg_send_query($this->link_id, $sql);
 		$this->query_result = @pg_get_result($this->link_id);
 
 		if (pg_result_status($this->query_result) != PGSQL_FATAL_ERROR) {
-			if (defined('PUN_SHOW_QUERIES'))
+			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
@@ -115,7 +115,7 @@ class DBLayer {
 
 			return $this->query_result;
 		} else {
-			if (defined('PUN_SHOW_QUERIES'))
+			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
 			$this->error_no = false;
@@ -209,7 +209,7 @@ class DBLayer {
 	function close() {
 		if ($this->link_id) {
 			if ($this->in_transaction) {
-				if (defined('PUN_SHOW_QUERIES'))
+				if (defined('FORUM_SHOW_QUERIES'))
 					$this->saved_queries[] = array('COMMIT', 0);
 
 				@pg_query($this->link_id, 'COMMIT');
@@ -362,6 +362,16 @@ class DBLayer {
 		$result &= $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' RENAME COLUMN tmp_'.$field_name.' TO '.$field_name) ? true : false;
 
 		return $result;
+	}
+	
+	
+	function rename_field($table_name, $field_name, $new_field_name, $field_type, $no_prefix = false) {
+		if (!$this->field_exists($table_name, $field_name, $no_prefix))
+			return true;
+
+		$field_type = preg_replace(array_keys($this->datatype_transformations), array_values($this->datatype_transformations), $field_type);
+
+		$result &= $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' RENAME COLUMN '.$field_name.' TO '.$new_field_name) ? true : false;
 	}
 
 

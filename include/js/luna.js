@@ -34,7 +34,7 @@ luna.ajax = {
 	},
 
 	/**
-	 * luna.ajax.post( [action], [data] )
+	 * luna.ajax.comment( [action], [data] )
 	 *
 	 * Sends a POST request to Luna.
 	 *
@@ -42,7 +42,7 @@ luna.ajax = {
 	 * @param  {object} data   The data to populate $_POST with.
 	 * @return {$.promise}     A jQuery promise that represents the request.
 	 */
-	post: function( action, data ) {
+	comment: function( action, data ) {
 		return luna.ajax.send({
 			data: _.isObject( action ) ? action : _.extend( data || {}, { action: action })
 		});

@@ -39,8 +39,8 @@ if (!defined('FORUM'))
 						<option value="ASC"><?php _e('Ascending', 'luna') ?></option>
 					</select>
 					<select class="form-control" name="show_as">
-						<option value="topics"><?php _e('Threads', 'luna') ?></option>
-						<option value="posts"><?php _e('Comments', 'luna') ?></option>
+						<option value="threads"><?php _e('Threads', 'luna') ?></option>
+						<option value="comments"><?php _e('Comments', 'luna') ?></option>
 					</select>
 				</fieldset>
 				<fieldset>

@@ -7,9 +7,9 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
-define('FORUM_CANONICAL_TAG_FORUM', 1);
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+define('LUNA_CANONICAL_TAG_FORUM', 1);
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
@@ -20,9 +20,9 @@ if ($id < 1)
 
 // Fetch some info about the forum
 if (!$luna_user['is_guest'])
-	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_topics, f.sort_by, f.icon, f.color, f.solved, fp.post_topics, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_topics, f.sort_by, f.icon, f.color, f.solved, fp.post_topics, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -31,38 +31,38 @@ $cur_forum = $db->fetch_assoc($result);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 switch ($cur_forum['sort_by']) {
 	case 0:
-		$sort_by = 'last_post DESC';
+		$sort_by = 'last_comment DESC';
 		break;
 	case 1:
-		$sort_by = 'posted DESC';
+		$sort_by = 'commented DESC';
 		break;
 	case 2:
 		$sort_by = 'subject ASC';
 		break;
 	default:
-		$sort_by = 'last_post DESC';
+		$sort_by = 'last_comment DESC';
 		break;
 }
 
-// Can we or can we not post new threads?
-if (($cur_forum['post_topics'] == '' && $luna_user['g_post_topics'] == '1') || $cur_forum['post_topics'] == '1' || $is_admmod)
-	$post_link = "\t\t\t".'<a class="btn btn-default btn-post" href="post.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
+// Can we or can we not comment new threads?
+if (($cur_forum['create_threads'] == '' && $luna_user['g_create_threads'] == '1') || $cur_forum['create_threads'] == '1' || $is_admmod)
+	$comment_link = "\t\t\t".'<a class="btn btn-default btn-comment" href="comment.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
 else
-	$post_link = '';
+	$comment_link = '';
 
-// Get topic/forum tracking data
+// Get thread/forum tracking data
 if (!$luna_user['is_guest'])
-	$tracked_topics = get_tracked_topics();
+	$tracked_threads = get_tracked_threads();
 
 // Determine the thread offset (based on $_GET['p'])
-$num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
+$num_pages = ceil($cur_forum['num_threads'] / $luna_user['disp_threads']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $luna_user['disp_topics'] * ($p - 1);
+$start_from = $luna_user['disp_threads'] * ($p - 1);
 
 // Get the icon			
 if ($cur_forum['icon'] != NULL)
@@ -95,8 +95,8 @@ $forum_id = $id;
 $footer_style = 'viewforum';
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
-define('FORUM_ALLOW_INDEX', 1);
-define('FORUM_ACTIVE_PAGE', 'viewforum');
+define('LUNA_ALLOW_INDEX', 1);
+define('LUNA_ACTIVE_PAGE', 'viewforum');
 require load_page('header.php');
 
 require load_page('forum.php');

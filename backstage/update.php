@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
@@ -21,8 +21,8 @@ if (isset($_POST['form_sent'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.luna_htmlspecialchars($_POST['form']['update_ring']).'\' WHERE conf_name=\'o_update_ring\'') or error('Unable to update update ring config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -36,8 +36,8 @@ if (isset($_POST['form_sent'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.floatval($_POST['form']['update_ring']).' WHERE conf_name=\'o_update_ring\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -46,27 +46,27 @@ if (isset($_POST['form_sent'])) {
 }
 
 if ($action == 'check_update') {
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	// Regenerate the update cache		
 	generate_update_cache();
 	header("Location: update.php");
 }
 
-if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
-	include FORUM_CACHE_DIR.'cache_update.php';
+if (file_exists(LUNA_CACHE_DIR.'cache_update.php'))
+	include LUNA_CACHE_DIR.'cache_update.php';
 	
-if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_update_cache();
-	require FORUM_CACHE_DIR.'cache_update.php';
+	require LUNA_CACHE_DIR.'cache_update.php';
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Update', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'update');
 
@@ -107,7 +107,7 @@ if (isset($_GET['saved']))
 			<div class="panel-body">
 <?php 
 if ($luna_config['o_update_ring'] != 3) {
-	if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
+	if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 				<h3><?php _e('A new version is available!', 'luna') ?></h3>
 				<p><?php printf(__('A new version, Luna %s has been released. It\'s a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates.', 'luna'), $update_cache) ?></p>
@@ -116,7 +116,7 @@ if ($luna_config['o_update_ring'] != 3) {
 					<a href="http://getluna.org/changelog.php" class="btn btn-primary"><?php _e('Changelog', 'luna') ?></a>
 				</div>
 <?php
-	} elseif (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'eq')) {
+	} elseif (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'eq')) {
 ?>
 				<h3><?php _e('You\'re using the latest version of Luna!', 'luna') ?></h3>
 				<p><?php _e('You\'re on our latest release! Nothing to worry about.', 'luna') ?></p>

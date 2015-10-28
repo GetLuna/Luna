@@ -98,12 +98,12 @@ if ($db->num_rows($result) > 0)
 				<p><a id="list"></a><?php _e('To create a list you can use the list tag. You can create 2 types of lists using the list tag.', 'luna') ?></p>
 				<p><code>[list][*]<?php _e('Example list item 1.', 'luna') ?>[/*][*]<?php _e('Example list item 2.', 'luna') ?>[/*][*]<?php _e('Example list item 3.', 'luna') ?>[/*][/list]</code>
 				<br /><span><?php _e('produces a bulleted list.', 'luna') ?></span></p>
-				<div class="postmsg">
+				<div>
 					<ul><li><p><?php _e('Example list item 1.', 'luna') ?></p></li><li><p><?php _e('Example list item 2.', 'luna') ?></p></li><li><p><?php _e('Example list item 3.', 'luna') ?></p></li></ul>
 				</div>
 				<p><code>[list=1][*]<?php _e('Example list item 1.', 'luna') ?>[/*][*]<?php _e('Example list item 2.', 'luna') ?>[/*][*]<?php _e('Example list item 3.', 'luna') ?>[/*][/list]</code>
 				<br /><span><?php _e('produces a numbered list.', 'luna') ?></span></p>
-				<div class="postmsg">
+				<div>
 					<ol class="decimal"><li><p><?php _e('Example list item 1.', 'luna') ?></p></li><li><p><?php _e('Example list item 2.', 'luna') ?></p></li><li><p><?php _e('Example list item 3.', 'luna') ?></p></li></ol>
 				</div>
 			</div>
@@ -113,7 +113,7 @@ if ($db->num_rows($result) > 0)
 <?php
 
 // Display the smiley set
-require FORUM_ROOT.'include/parser.php';
+require LUNA_ROOT.'include/parser.php';
 
 $smilies = get_smilies();
 
@@ -174,7 +174,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                             <td><span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span></td>
                             <td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
                         </tr>
-                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
+                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
                         <tr>
                             <td>&middot;</td>
                             <td><?php _e('This little dot appears when you have made a comment in this thread.', 'luna') ?></td>
@@ -213,7 +213,7 @@ if ($luna_user['is_admmod']) {
 		<p><?php _e('Admins and moderators need help sometimes, too! The basics of moderating are explained here.', 'luna') ?></p>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#forums" data-toggle="tab"><?php _e('Forums', 'luna') ?></a></li>
-			<li><a href="#topics" data-toggle="tab"><?php _e('Threads', 'luna') ?></a></li>
+			<li><a href="#threads" data-toggle="tab"><?php _e('Threads', 'luna') ?></a></li>
 			<li><a href="#users" data-toggle="tab"><?php _e('Users', 'luna') ?></a></li>
 		</ul>
 		<div class="tab-content">
@@ -221,7 +221,7 @@ if ($luna_user['is_admmod']) {
 				<h3><?php _e('How do I moderate a forum?', 'luna') ?></h3>
 				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple threads at once.', 'luna') ?></p>
 			</div>
-			<div class="tab-pane" id="topics">
+			<div class="tab-pane" id="threads">
 				<h3><?php _e('How do I moderate a thread?', 'luna') ?></h3>
 				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current thread from there, you can select multiple comment to delete or split from the current thread at once.', 'luna') ?></p>
 				<p><?php _e('Next to the "Moderate thread" button, you can find options to move, open or close the thread. You can also pin the thread from there, or unpin it.', 'luna') ?></p>

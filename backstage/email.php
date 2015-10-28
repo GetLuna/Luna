@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -19,7 +19,7 @@ if (isset($_POST['form_sent'])) {
 		'admin_email'			=> strtolower(luna_trim($_POST['form']['admin_email'])),
 		'webmaster_email'		=> strtolower(luna_trim($_POST['form']['webmaster_email'])),
 		'forum_subscriptions'	=> isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
-		'topic_subscriptions'	=> isset($_POST['form']['topic_subscriptions']) ? '1' : '0',
+		'thread_subscriptions'	=> isset($_POST['form']['thread_subscriptions']) ? '1' : '0',
 		'smtp_host'				=> luna_trim($_POST['form']['smtp_host']),
 		'smtp_user'				=> luna_trim($_POST['form']['smtp_user']),
 		'smtp_ssl'				=> isset($_POST['form']['smtp_ssl']) ? '1' : '0',
@@ -49,8 +49,8 @@ if (isset($_POST['form_sent'])) {
 	}
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -59,7 +59,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Global settings', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('settings', 'email');
 
@@ -106,7 +106,7 @@ if (isset($_GET['saved']))
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($luna_config['o_topic_subscriptions'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[thread_subscriptions]" value="1" <?php if ($luna_config['o_thread_subscriptions'] == '1') echo ' checked' ?> />
 								<?php _e('Enable users to subscribe to threads.', 'luna') ?>
 							</label>
 						</div>

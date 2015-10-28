@@ -46,7 +46,7 @@ else
 	<body class="no-js">
 		<script type="text/javascript">document.body.className = document.body.className.replace( 'no-js', 'js' );</script>
 <?php
-require_once FORUM_ROOT.'include/backstage_functions.php';
+require_once LUNA_ROOT.'include/backstage_functions.php';
 
 if (isset($required_fields)) {
 	// Output JavaScript to validate form (make sure required fields are filled out)

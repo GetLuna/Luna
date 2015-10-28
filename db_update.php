@@ -7,30 +7,30 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_SEARCH_MIN_WORD', 3);
-define('FORUM_SEARCH_MAX_WORD', 20);
+define('LUNA_SEARCH_MIN_WORD', 3);
+define('LUNA_SEARCH_MAX_WORD', 20);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('LUNA_ROOT', dirname(__FILE__).'/');
 
 // Load the version class
-require FORUM_ROOT.'include/version.php';
+require LUNA_ROOT.'include/version.php';
 
 // The number of items to process per page view
 define('PER_PAGE', 300);
 
 // Don't set to UTF-8 until after we've found out what the default character set is
-define('FORUM_NO_SET_NAMES', 1);
+define('LUNA_NO_SET_NAMES', 1);
 
 // Send the Content-type header in case the web server is setup to send something else
 header('Content-type: text/html; charset=utf-8');
 
 // Make sure we are running at least Version::MIN_PHP_VERSION
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '<'))
-	exit('You are running PHP version '.PHP_VERSION.'. Luna '.Version::FORUM_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
+	exit('You are running PHP version '.PHP_VERSION.'. Luna '.Version::LUNA_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
 
 // Attempt to load the configuration file config.php
-if (file_exists(FORUM_ROOT.'config.php'))
-	include FORUM_ROOT.'config.php';
+if (file_exists(LUNA_ROOT.'config.php'))
+	include LUNA_ROOT.'config.php';
 
 // This fixes incorrect defined PUN, from FluxBB 1.5 and ModernBB 1.6
 if (defined('PUN'))
@@ -43,17 +43,17 @@ if (!defined('FORUM')) {
 }
 
 // Enable debug mode
-if (!defined('FORUM_DEBUG'))
-	define('FORUM_DEBUG', 1);
+if (!defined('LUNA_DEBUG'))
+	define('LUNA_DEBUG', 1);
 
 // Load the functions script
-require FORUM_ROOT.'include/functions.php';
-require FORUM_ROOT.'include/notifications.php';
-require FORUM_ROOT.'include/draw_functions.php';
-require FORUM_ROOT.'include/general_functions.php';
+require LUNA_ROOT.'include/functions.php';
+require LUNA_ROOT.'include/notifications.php';
+require LUNA_ROOT.'include/draw_functions.php';
+require LUNA_ROOT.'include/general_functions.php';
 
 // Load UTF-8 functions
-require FORUM_ROOT.'include/utf8/utf8.php';
+require LUNA_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
@@ -88,24 +88,24 @@ if (empty($cookie_name))
 	$cookie_name = 'luna_cookie';
 
 // If the cache directory is not specified, we use the default setting
-if (!defined('FORUM_CACHE_DIR'))
-	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
+if (!defined('LUNA_CACHE_DIR'))
+	define('LUNA_CACHE_DIR', LUNA_ROOT.'cache/');
 
 // Turn off PHP time limit
 @set_time_limit(0);
 
 // Define a few commonly used constants
-define('FORUM_UNVERIFIED', 0);
-define('FORUM_ADMIN', 1);
-define('FORUM_MOD', 2);
-define('FORUM_GUEST', 3);
-define('FORUM_MEMBER', 4);
+define('LUNA_UNVERIFIED', 0);
+define('LUNA_ADMIN', 1);
+define('LUNA_MOD', 2);
+define('LUNA_GUEST', 3);
+define('LUNA_MEMBER', 4);
 
 // Load DB abstraction layer and try to connect
-require FORUM_ROOT.'include/dblayer/common_db.php';
+require LUNA_ROOT.'include/dblayer/common_db.php';
 
 // Check what the default character set is - since 1.2 didn't specify any we will use whatever the default was (usually latin1)
-$old_connection_charset = defined('FORUM_DEFAULT_CHARSET') ? FORUM_DEFAULT_CHARSET : $db->get_names();
+$old_connection_charset = defined('LUNA_DEFAULT_CHARSET') ? LUNA_DEFAULT_CHARSET : $db->get_names();
 
 // Set the connection to UTF-8 now
 $db->set_names('utf8');
@@ -116,15 +116,15 @@ while ($cur_config_item = $db->fetch_row($result))
 	$luna_config[$cur_config_item[0]] = $cur_config_item[1];
 
 // Load l10n
-require_once FORUM_ROOT.'include/pomo/MO.php';
-require_once FORUM_ROOT.'include/l10n.php';
+require_once LUNA_ROOT.'include/pomo/MO.php';
+require_once LUNA_ROOT.'include/l10n.php';
 
 // Load language file
 $default_lang = $luna_config['o_default_lang'];
-if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/luna.mo'))
+if (!file_exists(LUNA_ROOT.'lang/'.$default_lang.'/luna.mo'))
 	$default_lang = 'English';
 
-load_textdomain('luna', FORUM_ROOT.'lang/'.$default_lang.'/luna.mo');
+load_textdomain('luna', LUNA_ROOT.'lang/'.$default_lang.'/luna.mo');
 
 // Do some DB type specific checks
 $mysql = false;
@@ -135,7 +135,7 @@ switch ($db_type) {
 	case 'mysqli_innodb':
 		$mysql_info = $db->get_version();
 		if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
-			error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
+			error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::LUNA_VERSION, Version::MIN_MYSQL_VERSION));
 
 		$mysql = true;
 		break;
@@ -143,23 +143,23 @@ switch ($db_type) {
 	case 'pgsql':
 		$pgsql_info = $db->get_version();
 		if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-			error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+			error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::LUNA_VERSION, Version::MIN_PGSQL_VERSION));
 
 		break;
 }
 
 // Check the database, search index and parser revision and the current version
-if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION &&
-		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
-		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
-		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '>=')) {
+if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::LUNA_DB_VERSION &&
+		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::LUNA_SI_VERSION &&
+		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::LUNA_PARSER_VERSION &&
+		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::LUNA_CORE_VERSION, '>=')) {
 	draw_wall_error(__('Your forum is already as up-to-date as this script can make it', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">'.__('Continue', 'luna').'</a>', __('Let\'s get started', 'luna'));
 	exit;
 }
 
 // Check style
 $default_style = $luna_config['o_default_style'];
-if (!file_exists(FORUM_ROOT.'themes/'.$default_style.'/style.css'))
+if (!file_exists(LUNA_ROOT.'themes/'.$default_style.'/style.css'))
 	$default_style = 'Fifteen';
 
 // Empty all output buffers and stop buffering
@@ -172,7 +172,7 @@ $query_str = '';
 
 // Show form
 if (empty($stage)) {
-	if (file_exists(FORUM_CACHE_DIR.'db_update.lock')) {
+	if (file_exists(LUNA_CACHE_DIR.'db_update.lock')) {
 		// Deal with newlines, tabs and multiple spaces
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
@@ -191,19 +191,17 @@ if (empty($stage)) {
 switch ($stage) {
 	// Start by updating the database structure
 	case 'start':
-		$query_str = '?stage=preparse_posts';
+		$query_str = '?stage=preparse_comments';
 
 		// If we don't need to update the database, skip this stage
-		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION)
+		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::LUNA_DB_VERSION)
 			break;
 
 		// Change the default style if the old doesn't exist anymore
-		if (!file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
+		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 			
 		// Legacy support: FluxBB 1.4
-		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
-		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
 		// Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $luna_config))
@@ -217,9 +215,6 @@ switch ($stage) {
 		$db->query('UPDATE '.$db->prefix.'groups SET g_send_email = 0 WHERE g_id = 3') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
-
-		// Rename the subscription table
-		$db->rename_table('subscriptions', 'topic_subscriptions');
 
 		// if we don't have the forum_subscriptions table, create it
 		if (!$db->table_exists('forum_subscriptions'))
@@ -247,10 +242,6 @@ switch ($stage) {
 		if (!array_key_exists('o_forum_subscriptions', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
 
-		// Rename config option o_subscriptions to o_topic_subscriptions
-		if (!array_key_exists('o_topic_subscriptions', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_topic_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
-
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
@@ -258,9 +249,9 @@ switch ($stage) {
 		// Legacy support: FluxBB 1.5
 		$db->drop_field($db->prefix.'groups', 'g_promote_min_posts', 'INT(10) UNSIGNED', false, 0, 'g_user_title') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_topics') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_threads') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'groups', 'g_mod_promote_users', 'TINYINT(1)', false, 0, 'g_mod_ban_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
-		if (!$db->table_exists('search_cache')) {
+		if (!$db->table_exists('ranks')) {
 			$schema = array(
 				'FIELDS'		=> array(
 					'id'			=> array(
@@ -272,7 +263,7 @@ switch ($stage) {
 						'allow_null'	=> false,
 						'default'		=> '\'\''
 					),
-					'min_posts'		=> array(
+					'min_comments'	=> array(
 						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
 						'allow_null'	=> false,
 						'default'		=> '0'
@@ -283,11 +274,9 @@ switch ($stage) {
 		
 			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
 		}
-		if (!array_key_exists('o_ranks', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_ranks', '1');
 
 		// ModernBB 2.0 upgrade support
-		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 		build_config(0, 'o_quickjump');
 		build_config(0, 'o_show_dot');
 
@@ -295,7 +284,6 @@ switch ($stage) {
 		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
 		build_config(1, 'o_first_run_guests', '1');
 		build_config(1, 'o_first_run_message');
-		build_config(1, 'o_has_posted', '1');
 		build_config(0, 'o_redirect_delay');
 		build_config(1, 'o_show_first_run', '1');
 
@@ -322,22 +310,16 @@ switch ($stage) {
 		// ModernBB 3.5 upgrade support
 		$db->add_field('forums', 'parent_id', 'INT', true, 0) or error('Unable to add parent_id field', __FILE__, __LINE__, $db->error());
 		build_config(0, 'o_antispam_api');
-		build_config(1, 'o_core_version', Version::FORUM_CORE_VERSION);
+		build_config(1, 'o_core_version', Version::LUNA_CORE_VERSION);
 		build_config(0, 'o_index_update_check');
 
 		// Luna 1.0 upgrade support
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_pm', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_pm" to table "groups"', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_pm_limit', 'INT', false, '20', 'g_pm') or error('Unable to add column "g_pm_limit" to table "groups"', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_soft_delete_posts', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_posts field', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
@@ -451,17 +433,17 @@ switch ($stage) {
 						'allow_null'		=> false,
 						'default'			=> '0'
 					),
-					'last_post'			=> array(
+					'last_comment'			=> array(
 						'datatype'			=> 'INT(10)',
 						'allow_null'		=> true,
 						'default'			=> '0'
 					),
-					'last_post_id'		=> array(
+					'last_comment_id'		=> array(
 						'datatype'			=> 'INT(10)',
 						'allow_null'		=> true,
 						'default'			=> '0'
 					),
-					'last_poster'		=> array(
+					'last_commenter'		=> array(
 						'datatype'			=> 'VARCHAR(255)',
 						'allow_null'		=> false,
 						'default'			=> '0'
@@ -511,7 +493,7 @@ switch ($stage) {
 						'datatype'			=> 'VARCHAR(39)',
 						'allow_null'		=> true
 					),
-					'posted'	=> array(
+					'commented'	=> array(
 						'datatype'			=> 'INT(10)',
 						'allow_null'		=> false,
 					),
@@ -585,7 +567,6 @@ switch ($stage) {
 			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
 		// Luna 1.1 upgrade support
-		$db->add_field('topics', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'accent', 'INT(10)', false, '2') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
 
@@ -601,37 +582,118 @@ switch ($stage) {
 		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
+		
+		// Luna 1.3 upgrade support
+		$db->rename_table('subscriptions', 'thread_subscriptions');
+		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
+		$db->rename_table('topics', 'threads');
+		$db->rename_table('posts', 'comments');
+		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
+		$db->rename_field('posts', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_create_threads', 'g_create_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_replies', 'g_comment', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_flood', 'g_comment_flood', 'SMALLINT(6)');
+		$db->rename_field('groups', 'g_pm', 'g_inbox', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_pm_limit', 'g_inbox_limit', 'INT');
+		$db->rename_field('forum_perms', 'post_topics', 'create_threads', 'TINYINT(1)');
+		$db->rename_field('forum_perms', 'post_replies', 'comment', 'TINYINT(1)');
+		$db->rename_field('forums', 'num_posts', 'num_comments', 'MEDIUMINT(8)');
+		$db->rename_field('forums', 'num_topics', 'num_threads', 'MEDIUMINT(8)');
+		$db->rename_field('users', 'num_posts', 'num_comments', 'INT(10)');
+		$db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
+		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
+		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
+		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('forums', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
+		$db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('threads', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
+		$db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
+		$db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('messages', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
+		$db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
+		$db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
+		$db->rename_field('comments', 'poster_ip', 'commenter_ip', 'VARCHAR(39)');
+		$db->rename_field('comments', 'poster_email', 'commenter_email', 'VARCHAR(80)');
+		$db->rename_field('threads', 'poster', 'commenter', 'VARCHAR(200)');
+		$db->rename_field('comments', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
+		$db->rename_field('reports', 'comment_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'comment_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
+		
+		build_config(0, 'o_topic_review');
+		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
+		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
+		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
+		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
+		build_config(2, 'o_thread_views', 'o_topic_views');
+		build_config(2, 'o_show_comment_count', 'o_show_post_count');
+		build_config(2, 'o_has_commented', 'o_has_posted');
+
+			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
+
+			//ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
+			//ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			build_config(1, 'o_has_commented', '1');
+
+			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
+			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
+			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		
+			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
+			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
 
 		break;
 
-	// Preparse posts
-	case 'preparse_posts':
+	// Preparse comments
+	case 'preparse_comments':
 		$query_str = '?stage=preparse_sigs';
 
 		// If we don't need to parse the comments, skip this stage
-		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION)
+		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::LUNA_PARSER_VERSION)
 			break;
 
-		require FORUM_ROOT.'include/parser.php';
+		require LUNA_ROOT.'include/parser.php';
 
-		// Fetch posts to process this cycle
-		$result = $db->query('SELECT id, message FROM '.$db->prefix.'posts WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		// Fetch comments to process this cycle
+		$result = $db->query('SELECT id, message FROM '.$db->prefix.'comments WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$temp = array();
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
-			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update comment', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
 		}
 
 		// Check if there is more work to do
 		if ($end_at > 0) {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)
-				$query_str = '?stage=preparse_posts&start_at='.$end_at;
+				$query_str = '?stage=preparse_comments&start_at='.$end_at;
 		}
 
 		break;
@@ -642,10 +704,10 @@ switch ($stage) {
 		$query_str = '?stage=rebuild_idx';
 
 		// If we don't need to parse the sigs, skip this stage
-		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION)
+		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::LUNA_PARSER_VERSION)
 			break;
 
-		require FORUM_ROOT.'include/parser.php';
+		require LUNA_ROOT.'include/parser.php';
 
 		// Fetch users to process this cycle
 		$result = $db->query('SELECT id, signature FROM '.$db->prefix.'users WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch users', __FILE__, __LINE__, $db->error());
@@ -674,7 +736,7 @@ switch ($stage) {
 		$query_str = '?stage=finish';
 
 		// If we don't need to update the search index, skip this stage
-		if (isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION)
+		if (isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::LUNA_SI_VERSION)
 			break;
 
 		if ($start_at == 0) {
@@ -698,26 +760,26 @@ switch ($stage) {
 			}
 		}
 
-		require FORUM_ROOT.'include/search_idx.php';
+		require LUNA_ROOT.'include/search_idx.php';
 
-		// Fetch posts to process this cycle
-		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		// Fetch comments to process this cycle
+		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 
-			if ($cur_item['id'] == $cur_item['first_post_id'])
-				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
+			if ($cur_item['id'] == $cur_item['first_comment_id'])
+				update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
 			else
-				update_search_index('post', $cur_item['id'], $cur_item['message']);
+				update_search_index('comment', $cur_item['id'], $cur_item['message']);
 
 			$end_at = $cur_item['id'];
 		}
 
 		// Check if there is more work to do
 		if ($end_at > 0) {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)
 				$query_str = '?stage=rebuild_idx&start_at='.$end_at;
@@ -729,29 +791,29 @@ switch ($stage) {
 	case 'finish':
 		
 		// Give a "Success" notifcation
-		if ($luna_config['o_cur_version'] != Version::FORUM_VERSION)
-			new_notification('2', 'backstage/index.php', 'Luna has been updated to '.Version::FORUM_VERSION, 'fa-cloud-upload');
+		if ($luna_config['o_cur_version'] != Version::LUNA_VERSION)
+			new_notification('2', 'backstage/index.php', 'Luna has been updated to '.Version::LUNA_VERSION, 'fa-cloud-upload');
 
 		// We update the version numbers
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CODE_NAME.'\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
 
 		// And the database revision number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
 
 		// And the search index revision number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_SI_VERSION.'\' WHERE conf_name = \'o_searchindex_revision\'') or error('Unable to update search index revision number', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_SI_VERSION.'\' WHERE conf_name = \'o_searchindex_revision\'') or error('Unable to update search index revision number', __FILE__, __LINE__, $db->error());
 
 		// And the parser revision number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_PARSER_VERSION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_PARSER_VERSION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
 
 		// Check the default language still exists!
-		if (!file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/common.php'))
+		if (!file_exists(LUNA_ROOT.'lang/'.$luna_config['o_default_lang'].'/common.php'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
 
 		// Check the default style still exists!
-		if (!file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
+		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Fifteen\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 		// This feels like a good time to synchronize the forums
@@ -764,7 +826,7 @@ switch ($stage) {
 		forum_clear_cache();
 
 		// Delete the update lock file
-		@unlink(FORUM_CACHE_DIR.'db_update.lock');
+		@unlink(LUNA_CACHE_DIR.'db_update.lock');
 
 		header('Location: index.php');
 		break;

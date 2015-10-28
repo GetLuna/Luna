@@ -7,26 +7,26 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_SEARCH_MIN_WORD', 3);
-define('FORUM_SEARCH_MAX_WORD', 20);
+define('LUNA_SEARCH_MIN_WORD', 3);
+define('LUNA_SEARCH_MAX_WORD', 20);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('LUNA_ROOT', dirname(__FILE__).'/');
 
 // Send the Content-type header in case the web server is setup to send something else
 header('Content-type: text/html; charset=utf-8');
 
 // Load the functions script
-require FORUM_ROOT.'include/functions.php';
-require FORUM_ROOT.'include/draw_functions.php';
+require LUNA_ROOT.'include/functions.php';
+require LUNA_ROOT.'include/draw_functions.php';
 
 // Load Version class
-require FORUM_ROOT.'include/version.php';
+require LUNA_ROOT.'include/version.php';
 
 // Load Installer class
-require FORUM_ROOT.'include/class/luna_install.php';
+require LUNA_ROOT.'include/class/luna_install.php';
 
 // Load UTF-8 functions
-require FORUM_ROOT.'include/utf8/utf8.php';
+require LUNA_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
@@ -69,19 +69,19 @@ $install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_
 $install_lang = preg_replace('%[\.\\\/]%', '', $install_lang); 
 
 // Load l10n
-require_once FORUM_ROOT.'include/pomo/MO.php';
-require_once FORUM_ROOT.'include/l10n.php';
+require_once LUNA_ROOT.'include/pomo/MO.php';
+require_once LUNA_ROOT.'include/l10n.php';
 
 // Attempt to load the language file
-if (file_exists(FORUM_ROOT.'lang/English/luna.mo'))
-	load_textdomain('luna', FORUM_ROOT.'lang/English/luna.mo');
+if (file_exists(LUNA_ROOT.'lang/English/luna.mo'))
+	load_textdomain('luna', LUNA_ROOT.'lang/English/luna.mo');
 else
 	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
 
 // If a config file is in place
-if (file_exists(FORUM_ROOT.'config.php')) {
+if (file_exists(LUNA_ROOT.'config.php')) {
 	// Check to see whether Luna is already installed
-	include FORUM_ROOT.'config.php';
+	include LUNA_ROOT.'config.php';
 
 	// This fixes incorrect defined PUN, FluxBB 1.4 and 1.5 and ModernBB 1.6
 	if (defined('PUN'))
@@ -97,12 +97,12 @@ if (file_exists(FORUM_ROOT.'config.php')) {
 define('FORUM', 1);
 
 // If the cache directory is not specified, we use the default setting
-if (!defined('FORUM_CACHE_DIR'))
-	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
+if (!defined('LUNA_CACHE_DIR'))
+	define('LUNA_CACHE_DIR', LUNA_ROOT.'cache/');
 
 // Make sure we are running at least Version::MIN_PHP_VERSION
 if (!Installer::is_supported_php_version())
-	exit(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PHP', PHP_VERSION, Version::FORUM_VERSION, Version::MIN_PHP_VERSION));
+	exit(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PHP', PHP_VERSION, Version::LUNA_VERSION, Version::MIN_PHP_VERSION));
 
 
 if (isset($_POST['generate_config'])) {
@@ -153,12 +153,12 @@ if (!isset($_POST['form_sent'])) {
 }
 
 // Check if the cache directory is writable
-if (!forum_is_writable(FORUM_CACHE_DIR))
-	$alerts[] = sprintf(__('<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), FORUM_CACHE_DIR);
+if (!forum_is_writable(LUNA_CACHE_DIR))
+	$alerts[] = sprintf(__('<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), LUNA_CACHE_DIR);
 
 // Check if default avatar directory is writable
-if (!forum_is_writable(FORUM_ROOT.'img/avatars/'))
-	$alerts[] = sprintf(__('<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), FORUM_ROOT.'img/avatars/');
+if (!forum_is_writable(LUNA_ROOT.'img/avatars/'))
+	$alerts[] = sprintf(__('<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), LUNA_ROOT.'img/avatars/');
 
 if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	// Determine available database extensions
@@ -214,7 +214,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;" onunload="">
 		<div class="container">
-			<h1 class="background-title"><?php echo sprintf(__('Install Luna %s', 'luna'), Version::FORUM_VERSION) ?></h1>
+			<h1 class="background-title"><?php echo sprintf(__('Install Luna %s', 'luna'), Version::LUNA_VERSION) ?></h1>
 			<?php if (count($languages) > 1): ?>
 			<form  class="form-horizontal" id="install" method="post" action="install.php">
 				<div class="panel panel-default">
@@ -452,8 +452,8 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 	// Attempt to write config.php and serve it up for download if writing fails
 	$written = false;
-	if (forum_is_writable(FORUM_ROOT)) {
-		$fh = @fopen(FORUM_ROOT.'config.php', 'wb');
+	if (forum_is_writable(LUNA_ROOT)) {
+		$fh = @fopen(LUNA_ROOT.'config.php', 'wb');
 		if ($fh) {
 			fwrite($fh, $config);
 			fclose($fh);

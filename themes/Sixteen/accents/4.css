@@ -1,0 +1,48 @@
+/*
+ * Sunrise Purple 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #b679d4 #a268bf #8b54a7
+ */
+
+#header, .editor {
+	background: #b679d4;
+	background: linear-gradient(to bottom left, #b679d4, #8b54a7);
+}
+
+.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
+	background: #b679d4;
+	background: linear-gradient(to top right, #b679d4, #8b54a7);
+}
+
+.panel-default .panel-heading {
+	background: #b679d4;
+	background: linear-gradient(to right, #b679d4, #8b54a7);
+}
+
+.comment-arrow {
+	border-right-color: #b679d4;
+}
+
+.btn-primary {
+	background-color: #b679d4;
+}
+
+.btn-primary:active {
+	background-color: #b679d4 !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color: #a268bf;
+}
+
+.modal-form .modal-header {
+	background: #b679d4;
+	background: linear-gradient(to bottom left, #b679d4, #a268bf);
+}
+
+.modal-form .modal-footer {
+	background: #a268bf;
+	background: linear-gradient(to bottom left, #a268bf, #8b54a7);
+}

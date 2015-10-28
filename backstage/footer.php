@@ -12,7 +12,7 @@ if (!defined('FORUM'))
 	exit;
 
 // Display debug info (if enabled/defined)
-if (defined('FORUM_DEBUG')) {
+if (defined('LUNA_DEBUG')) {
 	echo '<p id="debug">[ ';
 
 	// Calculate script generation time

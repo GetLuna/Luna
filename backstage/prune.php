@@ -7,10 +7,10 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 // Tell common.php that we don't want output buffering
-define('FORUM_DISABLE_BUFFERING', 1);
+define('LUNA_DISABLE_BUFFERING', 1);
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -18,7 +18,7 @@ $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'prune') {
 	$prune_from = luna_trim($_POST['prune_from']);
-	$prune_sticky = intval($_POST['prune_sticky']);
+	$prune_pinned = intval($_POST['prune_pinned']);
 
 	if (isset($_POST['prune_comply'])) {
 		confirm_referrer('backstage/prune.php');
@@ -35,24 +35,24 @@ if ($action == 'prune') {
 			for ($i = 0; $i < $num_forums; ++$i) {
 				$fid = $db->result($result, $i);
 
-				prune($fid, $prune_sticky, $prune_date);
+				prune($fid, $prune_pinned, $prune_date);
 				update_forum($fid);
 			}
 		} else {
 			$prune_from = intval($prune_from);
-			prune($prune_from, $prune_sticky, $prune_date);
+			prune($prune_from, $prune_pinned, $prune_date);
 			update_forum($prune_from);
 		}
 
-		// Locate any "orphaned redirect topics" and delete them
-		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		// Locate any "orphaned redirect threads" and delete them
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'threads AS t1 LEFT JOIN '.$db->prefix.'threads AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect threads', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
 		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
-			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect threads', __FILE__, __LINE__, $db->error());
 		}
 
 		redirect('backstage/prune.php');
@@ -65,10 +65,10 @@ if ($action == 'prune') {
 	$prune_date = time() - ($prune_days * 86400);
 
 	// Concatenate together the query for counting number of threads to prune
-	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'topics WHERE last_post<'.$prune_date.' AND moved_to IS NULL';
+	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'threads WHERE last_comment<'.$prune_date.' AND moved_to IS NULL';
 
-	if ($prune_sticky == '0')
-		$sql .= ' AND sticky=0';
+	if ($prune_pinned == '0')
+		$sql .= ' AND pinned=0';
 
 	if ($prune_from != 'all') {
 		$prune_from = intval($prune_from);
@@ -80,14 +80,14 @@ if ($action == 'prune') {
 	} else
 		$forum = __('All forums', 'luna');
 
-	$result = $db->query($sql) or error('Unable to fetch topic prune count', __FILE__, __LINE__, $db->error());
-	$num_topics = $db->result($result);
+	$result = $db->query($sql) or error('Unable to fetch thread prune count', __FILE__, __LINE__, $db->error());
+	$num_threads = $db->result($result);
 
-	if (!$num_topics)
+	if (!$num_threads)
 		message_backstage(sprintf(__('There are no threads that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 
@@ -100,11 +100,11 @@ if ($action == 'prune') {
 		<form method="post" action="prune.php">
 			<input type="hidden" name="action" value="prune" />
 			<input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
-			<input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
+			<input type="hidden" name="prune_pinned" value="<?php echo $prune_pinned ?>" />
 			<input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
 			<fieldset>
 				<h3><?php _e('Confirm prune comments', 'luna') ?></h3>
-				<p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_topics)) ?></p>
+				<p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
 				<p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
 			</fieldset>
 			<div class="btn-group">
@@ -119,8 +119,8 @@ if ($action == 'prune') {
 	exit;
 }
 
-if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-	require FORUM_ROOT.'include/cache.php';
+if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+	require LUNA_ROOT.'include/cache.php';
 
 if (isset($_POST['notiprune'])) {
 	if ($_POST['prune_type'] == 1)
@@ -162,7 +162,7 @@ if (isset($_POST['notiprune'])) {
 
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
-	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
+	if ((trim($_POST['days']) == '') || trim($_POST['comments']) == '')
 		message_backstage('You need to set all settings!');
 
 	if ($_POST['admods_delete'])
@@ -180,7 +180,7 @@ if (isset($_POST['userprune'])) {
 	$prune = ($_POST['prune_by'] == 1) ? 'registered' : 'last_visit';
 
 	$user_time = time() - ($_POST['days'] * 86400);
-	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_posts < '.intval($_POST['posts']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_comments < '.intval($_POST['comments']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
 	
 	$user_ids = array();
 	while ($id = $db->result($result))
@@ -188,7 +188,7 @@ if (isset($_POST['userprune'])) {
 	
 	if (!empty($user_ids)) {
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark posts as guest posts', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to mark comments as guest comments', __FILE__, __LINE__, $db->error());
 	}
 	
 	// Regenerate the users info cache
@@ -199,13 +199,13 @@ if (isset($_POST['userprune'])) {
 }
 
 
-// Get the first post ID from the db
-$result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 1') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+// Get the first comment ID from the db
+$result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 ?>
@@ -265,11 +265,11 @@ require 'header.php';
 					<label class="col-sm-3 control-label"><?php _e('Prune pinned threads', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
-							<input type="radio" name="prune_sticky" value="1" tabindex="6" checked />
+							<input type="radio" name="prune_pinned" value="1" tabindex="6" checked />
 							<?php _e('Yes', 'luna') ?>
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="prune_sticky" value="0" />
+							<input type="radio" name="prune_pinned" value="0" />
 							<?php _e('No', 'luna') ?>
 						</label>
 					</div>
@@ -335,7 +335,7 @@ require 'header.php';
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna') ?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="number" class="form-control" name="posts" value="1"  tabindex="1" />
+						<input type="number" class="form-control" name="comments" value="1"  tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">

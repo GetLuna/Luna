@@ -7,14 +7,14 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Help', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'help');
+define('LUNA_ACTIVE_PAGE', 'help');
 require load_page('header.php');
 
 require load_page('help.php');

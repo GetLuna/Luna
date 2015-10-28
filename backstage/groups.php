@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -38,7 +38,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 	$required_fields = array('req_title' => __('Group title', 'luna'));
 	$focus_element = array('groups2', 'req_title');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'groups');
 ?>
@@ -65,7 +65,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						<input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo luna_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
+	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"> <?php echo __('Moderator privileges', 'luna') ?></label>
@@ -123,7 +123,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Show deleted content', 'luna') ?></label>
@@ -141,7 +141,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="soft_delete_posts" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_comments" value="1" <?php if ($group['g_soft_delete_comments'] == '1') echo ' checked' ?> />
 								<?php echo __('Allow users to soft delete comments from all users.', 'luna') ?>
 							</label>
 						</div>
@@ -152,21 +152,21 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="soft_delete_topics" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_threads" value="1" <?php if ($group['g_soft_delete_threads'] == '1') echo ' checked' ?> />
 								<?php echo __('Allow users to soft delete threads from all users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Use Inbox', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_inbox'] == '1') echo ' checked' ?> />
 								<?php echo __('Allow users to send messages with Inbox.', 'luna') ?>
 							</label>
 						</div>
@@ -175,7 +175,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Inbox', 'luna') ?></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_pm_limit'] ?>" />
+						<input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_inbox_limit'] ?>" />
 						<p class="help-block"><?php echo __('The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.', 'luna') ?></p>
 					</div>
 				</div>
@@ -208,7 +208,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked' ?> tabindex="19" />
+								<input type="checkbox" name="comment" value="1"<?php if ($group['g_comment'] == '1') echo ' checked' ?> tabindex="19" />
 								<?php echo __('Allow users to comment in threads.', 'luna') ?>
 							</label>
 						</div>
@@ -219,20 +219,20 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked' ?> tabindex="21" />
+								<input type="checkbox" name="create_threads" value="1"<?php if ($group['g_create_threads'] == '1') echo ' checked' ?> tabindex="21" />
 								<?php echo __('Allow users to create new threads.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Edit comment', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked' ?> tabindex="23" />
+								<input type="checkbox" name="edit_comments" value="1"<?php if ($group['g_edit_comments'] == '1') echo ' checked' ?> tabindex="23" />
 								<?php echo __('Allow users to edit their own comments.', 'luna') ?>
 							</label>
 						</div>
@@ -243,7 +243,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked' ?> tabindex="25" />
+								<input type="checkbox" name="delete_comments" value="1"<?php if ($group['g_delete_comments'] == '1') echo ' checked' ?> tabindex="25" />
 								<?php echo __('Allow users to delete their own comments.', 'luna') ?>
 							</label>
 						</div>
@@ -254,14 +254,14 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked' ?> tabindex="27" />
+								<input type="checkbox" name="delete_threads" value="1"<?php if ($group['g_delete_threads'] == '1') echo ' checked' ?> tabindex="27" />
 								<?php echo __('Allow users to delete their own threads (including any comments).', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 	<?php endif;
-	if ($group['g_id'] != FORUM_GUEST): ?>
+	if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Set own user title', 'luna') ?></label>
@@ -298,7 +298,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						</div>
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Send e-mails', 'luna') ?></label>
@@ -317,7 +317,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<label class="col-sm-3 control-label"><?php echo __('Comment flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between comments', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="post_flood" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />
+							<input type="text" class="form-control" name="comment_flood" maxlength="4" value="<?php echo $group['g_comment_flood'] ?>" tabindex="35" />
 							<span class="input-group-addon"><?php echo __('seconds', 'luna') ?></span>
 						</div>
 					</div>
@@ -331,7 +331,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						</div>
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Email flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between emails', 'luna') ?></span></label>
 					<div class="col-sm-9">
@@ -370,7 +370,7 @@ elseif (isset($_POST['add_edit_group'])) {
 	$title = luna_trim($_POST['req_title']);
 	$user_title = luna_trim($_POST['user_title']);
 
-	if ($_POST['group_id'] != FORUM_ADMIN) {
+	if ($_POST['group_id'] != LUNA_ADMIN) {
 		$moderator = isset($_POST['moderator']) ? '1' : '0';
 		$mod_edit_users = $moderator == '1' && isset($_POST['mod_edit_users']) ? '1' : '0';
 		$mod_rename_users = $moderator == '1' && isset($_POST['mod_rename_users']) ? '1' : '0';
@@ -380,25 +380,25 @@ elseif (isset($_POST['add_edit_group'])) {
 		$inbox_limit = (isset($_POST['inbox_limit']) && $_POST['inbox_limit'] >= 0) ? intval($_POST['inbox_limit']) : '0';
 		$read_board = isset($_POST['read_board']) ? '1' : '0';
 		$view_users = isset($_POST['view_users']) ? '1' : '0';
-		$post_replies = isset($_POST['post_replies']) ? '1' : '0';
-		$post_topics = isset($_POST['post_topics']) ? '1' : '0';
-		$edit_posts = isset($_POST['edit_posts']) ? '1' : '0';
-		$delete_posts = isset($_POST['delete_posts']) ? '1' : '0';
-		$delete_topics = isset($_POST['delete_topics']) ? '1' : '0';
+		$comment = isset($_POST['comment']) ? '1' : '0';
+		$create_threads = isset($_POST['create_threads']) ? '1' : '0';
+		$edit_comments = isset($_POST['edit_comments']) ? '1' : '0';
+		$delete_comments = isset($_POST['delete_comments']) ? '1' : '0';
+		$delete_threads = isset($_POST['delete_threads']) ? '1' : '0';
 		$set_title = isset($_POST['set_title']) ? '1' : '0';
 		$search = isset($_POST['search']) ? '1' : '0';
 		$search_users = isset($_POST['search_users']) ? '1' : '0';
 		$send_email = isset($_POST['send_email']) ? '1' : '0';
-		$post_flood = (isset($_POST['post_flood']) && $_POST['post_flood'] >= 0) ? intval($_POST['post_flood']) : '0';
+		$comment_flood = (isset($_POST['comment_flood']) && $_POST['comment_flood'] >= 0) ? intval($_POST['comment_flood']) : '0';
 		$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
 		$email_flood = (isset($_POST['email_flood']) && $_POST['email_flood'] >= 0) ? intval($_POST['email_flood']) : '0';
 		$report_flood = (isset($_POST['report_flood']) && $_POST['report_flood'] >= 0) ? intval($_POST['report_flood']) : '0';
 		$soft_delete_view = isset($_POST['soft_delete_view']) ? '1' : '0';
-		$soft_delete_posts = isset($_POST['soft_delete_posts']) ? '1' : '0';
-		$soft_delete_topics = isset($_POST['soft_delete_topics']) ? '1' : '0';
+		$soft_delete_comments = isset($_POST['soft_delete_comments']) ? '1' : '0';
+		$soft_delete_threads = isset($_POST['soft_delete_threads']) ? '1' : '0';
 	} else {
-		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_posts = $soft_delete_topics = $inbox_allow = '1';
-		$moderator = $post_flood = $search_flood = $email_flood = $report_flood = $inbox_limit = '0';
+		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $comment = $create_threads = $edit_comments = $delete_comments = $delete_threads = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_comments = $soft_delete_threads = $inbox_allow = '1';
+		$moderator = $comment_flood = $search_flood = $email_flood = $report_flood = $inbox_limit = '0';
 	}
 
 	if ($title == '')
@@ -411,19 +411,19 @@ elseif (isset($_POST['add_edit_group'])) {
 		if ($db->num_rows($result))
 			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
-		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_pm, g_pm_limit, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$post_replies.', '.$post_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_topics.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$inbox_allow.', '.$inbox_limit.', '.$soft_delete_view.', '.$soft_delete_posts.', '.$soft_delete_topics.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_inbox, g_inbox_limit, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$comment.', '.$create_threads.', '.$edit_comments.', '.$delete_comments.', '.$delete_threads.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$comment_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$inbox_allow.', '.$inbox_limit.', '.$soft_delete_view.', '.$soft_delete_comments.', '.$soft_delete_threads.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
 
 		// Now lets copy the forum specific permissions from the group which this group is based on
-		$result = $db->query('SELECT forum_id, read_forum, post_replies, post_topics FROM '.$db->prefix.'forum_perms WHERE group_id='.intval($_POST['base_group'])) or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT forum_id, read_forum, comment, create_threads FROM '.$db->prefix.'forum_perms WHERE group_id='.intval($_POST['base_group'])) or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 		while ($cur_forum_perm = $db->fetch_assoc($result))
-			$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, post_replies, post_topics) VALUES('.$new_group_id.', '.$cur_forum_perm['forum_id'].', '.$cur_forum_perm['read_forum'].', '.$cur_forum_perm['post_replies'].', '.$cur_forum_perm['post_topics'].')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, comment, create_threads) VALUES('.$new_group_id.', '.$cur_forum_perm['forum_id'].', '.$cur_forum_perm['read_forum'].', '.$cur_forum_perm['comment'].', '.$cur_forum_perm['create_threads'].')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
 	} else {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
-		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_post_replies='.$post_replies.', g_post_topics='.$post_topics.', g_edit_posts='.$edit_posts.', g_delete_posts='.$delete_posts.', g_delete_topics='.$delete_topics.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_post_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_pm='.$inbox_allow.', g_pm_limit='.$inbox_limit.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_posts='.$soft_delete_posts.', g_soft_delete_topics='.$soft_delete_topics.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_comment='.$comment.', g_create_threads='.$create_threads.', g_edit_comments='.$edit_comments.', g_delete_comments='.$delete_comments.', g_delete_threads='.$delete_threads.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_comment_flood='.$comment_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_inbox='.$inbox_allow.', g_inbox_limit='.$inbox_limit.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_comments='.$soft_delete_comments.', g_soft_delete_threads='.$soft_delete_threads.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/groups.php');
@@ -437,7 +437,7 @@ elseif (isset($_POST['set_default_group'])) {
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
-	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
+	if ($group_id == LUNA_ADMIN || $group_id == LUNA_GUEST)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Make sure it's not a moderator group
@@ -448,8 +448,8 @@ elseif (isset($_POST['set_default_group'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 
@@ -490,7 +490,7 @@ elseif (isset($_GET['del_group'])) {
 			$group_title = $db->result($result);
 
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-			define('FORUM_ACTIVE_PAGE', 'admin');
+			define('LUNA_ACTIVE_PAGE', 'admin');
 			require 'header.php';
 				load_admin_nav('users', 'groups');
 
@@ -518,7 +518,7 @@ elseif (isset($_GET['del_group'])) {
 	list($group_title, $group_members) = $db->fetch_row($result);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 
 ?>
@@ -534,10 +534,10 @@ elseif (isset($_GET['del_group'])) {
 					<select class="form-control" name="move_to_group">
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result)) {
-		if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
+		if ($cur_group['g_id'] == LUNA_MEMBER) // Pre-select the pre-defined Members group
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 		else
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
@@ -559,7 +559,7 @@ elseif (isset($_GET['del_group'])) {
 } else {
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('users', 'groups');
 
@@ -577,7 +577,7 @@ elseif (isset($_GET['del_group'])) {
 						<select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
-$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_ADMIN.' AND g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result)) {
 	if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
@@ -603,7 +603,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 						<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
-$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.LUNA_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result)) {
 	if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
@@ -640,7 +640,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 						</td>
 						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
 						<td>
-							<?php if ($cur_group['g_id'] > FORUM_MEMBER) { ?>
+							<?php if ($cur_group['g_id'] > LUNA_MEMBER) { ?>
 								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-minus"></span> <?php echo __('Delete', 'luna') ?></a>
 							<?php } ?>
 						</td>
