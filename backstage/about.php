@@ -28,6 +28,16 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.2.1</span></p><h2>Cornflower Blue Update</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Replaces Javascript redirects</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a security flaw when deleting avatars</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a bug with the PostgreSQL database layer</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a visual glitch on the users page for Fifteen</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes multiple issues in the language files</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.2.0</span></p><h2>Cornflower Blue</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark topics as solved</li>
