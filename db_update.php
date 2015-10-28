@@ -774,7 +774,6 @@ $db->end_transaction();
 $db->close();
 
 if ($query_str != '') {
-	ob_end_clean();  
-	header('Location: db_update.php'.$query_str.'&uid='.$uid);  
+	header('Location: db_update.php'.$query_str);  
 	exit;  
 } 
