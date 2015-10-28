@@ -38,7 +38,7 @@ if (!defined('FORUM'))
 			</div>
 		</div>
 		<div class="col-sm-9">
-			<div class="list-group list-group-topic">
+			<div class="list-group list-group-thread">
 				<?php draw_threads_list(); ?>
 			</div>
 		</div>

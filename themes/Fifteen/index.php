@@ -82,7 +82,7 @@ if ($luna_user['first_run'] == '0') {
         <div class="alert alert-info alert-section alert-all">
             <h3><?php _e('Recent activity', 'luna') ?></h3>
         </div>
-		<div class="list-group list-group-topic">
+		<div class="list-group list-group-thread">
 <?php
 			draw_index_threads_list();
 ?>
