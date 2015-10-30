@@ -591,12 +591,12 @@ switch ($stage) {
 		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
-		$db->rename_field('posts', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('comments', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_create_threads', 'g_create_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
@@ -635,7 +635,7 @@ switch ($stage) {
 		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
 		$db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
-		$db->rename_field('search_matches', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
+		$db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
