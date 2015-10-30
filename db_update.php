@@ -613,16 +613,16 @@ switch ($stage) {
 		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
 		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
 		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('forums', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
 		$db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('threads', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
 		$db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
 		$db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('messages', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
 		$db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
 		$db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
@@ -633,8 +633,8 @@ switch ($stage) {
 		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
-		$db->rename_field('reports', 'comment_id', 'comment_id', 'INT(10)');
-		$db->rename_field('search_matches', 'comment_id', 'comment_id', 'INT(10)');
+		$db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
@@ -649,10 +649,10 @@ switch ($stage) {
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
-			//ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-			//ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			// ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			build_config(1, 'o_has_commented', '1');
 
 			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
