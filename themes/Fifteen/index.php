@@ -36,7 +36,7 @@ if ($luna_user['first_run'] == '0') {
 				<a href="#" data-toggle="modal" data-target="#reqpass" class="list-group-item"><?php _e('Forgotten password', 'luna') ?></a>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-xs-7">
+		<div class="col-md-4 col-sm-6 col-xs-12">
 			<form class="form form-first-run" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
 				<fieldset>
 					<h3><?php _e('Login', 'luna') ?></h3>
