@@ -632,6 +632,7 @@ h2.forum-title .btn {
 .first-run {
 	border: none;
 	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 }
 
 .first-run-content {
@@ -1213,6 +1214,7 @@ a.label {
 .alert-section {
 	color: #fff;
 	border: none;
+	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
