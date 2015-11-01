@@ -508,7 +508,7 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 							</select>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked' ?> />
+									<input type="checkbox" name="with_redirect" value="1" />
 									<?php _e('Leave redirect thread(s)', 'luna') ?>
 								</label>
 							</div>
