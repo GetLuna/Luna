@@ -1186,12 +1186,15 @@ a.label {
 }
 
 .label-primary {
-	color: #8e8e8e;
-	background-color: #e8e8e8;
+	background-color: #c377ef;
 }
 
 .label-default {
 	background-color: #b8b8b8;
+}
+
+a.label-default {
+	background-color: #b8b8b8 !important;
 }
 
 .label-success {
