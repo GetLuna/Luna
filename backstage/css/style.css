@@ -26,10 +26,14 @@ th {
 	vertical-align: middle !important;
 }
 
-@media all and (max-width:767px) {
+@media all and (max-width:991px) {
 	.container:not(.navbar-container) {
 		padding-right: 0;
 		padding-left: 0;
+	}
+
+	.container {
+		width: 100%;
 	}
 }
 
@@ -180,7 +184,7 @@ label .help-block {
 }
 
 /* Heading - jumbotron and navtabs */
-@media all and (max-width: 767px) {
+@media all and (max-width: 991px) {
 	.jumbotron {
 		padding-left: 0;
 		padding-right: 0;
@@ -200,7 +204,7 @@ label .help-block {
 	margin-left: 0;
 }
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 991px) {
 	.container:not(.navbar-container) {
 		padding-right: 0;
 		padding-left: 0;
@@ -260,9 +264,7 @@ label .help-block {
 	.row .col-lg-12 {
 		padding-right: 0 !important;
 	}
-}
 
-@media all and (max-width: 767px) {
 	.jumboheader {
 		margin-bottom: 0;
 	}
@@ -402,7 +404,7 @@ h3.panel-title {
 	}
 }
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 991px) {
 	.panel {
 		margin-bottom: 0;
 	}
@@ -612,7 +614,7 @@ fieldset[disabled] .form-control {
 	}
 }
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 991px) {
     .alert {
 		margin-bottom: 0;
 	}
