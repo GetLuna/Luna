@@ -732,7 +732,6 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 	}
 }
 
-
 // Pin a thread
 elseif (isset($_GET['pin'])) {
 	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
@@ -762,6 +761,37 @@ elseif (isset($_GET['unpin'])) {
 	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'0\' WHERE id='.$unpin.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
 
 	redirect('thread.php?id='.$unpin);
+} 
+
+// Mark as important
+elseif (isset($_GET['important'])) {
+	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+	
+	check_csrf($_GET['csrf_token']);
+
+	$important = intval($_GET['important']);
+	if ($important < 1)
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+	$db->query('UPDATE '.$db->prefix.'threads SET important=\'1\' WHERE id='.$important.' AND forum_id='.$fid) or error('Unable to mark thread as important', __FILE__, __LINE__, $db->error());
+
+	redirect('thread.php?id='.$important);
+}
+
+
+// Mark as unimportant
+elseif (isset($_GET['unimportant'])) {
+	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+	
+	check_csrf($_GET['csrf_token']);
+
+	$unimportant = intval($_GET['unimportant']);
+	if ($unimportant < 1)
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+	$db->query('UPDATE '.$db->prefix.'threads SET important=\'0\' WHERE id='.$unimportant.' AND forum_id='.$fid) or error('Unable to mark thread as unimportant', __FILE__, __LINE__, $db->error());
+
+	redirect('thread.php?id='.$unimportant);
 } 
 
 // If absolutely none of them are going on

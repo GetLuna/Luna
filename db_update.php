@@ -588,8 +588,6 @@ switch ($stage) {
 		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
 		$db->rename_table('topics', 'threads');
 		$db->rename_table('posts', 'comments');
-		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
 		$db->rename_field('comments', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
@@ -646,6 +644,8 @@ switch ($stage) {
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(2, 'o_has_commented', 'o_has_posted');
 
+		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
+
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
@@ -663,6 +663,10 @@ switch ($stage) {
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
+			
+			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+			$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 
 		break;
 
