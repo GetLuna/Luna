@@ -31,12 +31,14 @@ require 'header.php';
 						<p class="meta"><span class="release-version">1.3 Preview 1</span></p><h2>Denim</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sixteen is a new default theme</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Major naming convention updates</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen now has an updated sidebar</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved mobile interface for Fifteen and Backstage</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 2 bugs</li>
 							<hr />
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna G Preview 0</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna F Preview 0</li>
 						</ul>
 					</div>
 				</section>
