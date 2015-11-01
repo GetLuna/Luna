@@ -179,7 +179,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                             <td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
                         </tr>
 						<tr>
-							<td><span class="label label-default"><span class="fa fa-fw fa-bell"></span></span></td>
+							<td><span class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></span></td>
 							<td><?php _e('This thread has received a new comment since you last visited the board..', 'luna') ?></td>
 						</tr>
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
