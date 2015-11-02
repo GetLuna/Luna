@@ -111,7 +111,7 @@ function output_rss($feed) {
 
 	// Send XML/no cache headers
 	header('Content-Type: application/xml; charset=utf-8');
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Expires: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 
@@ -122,7 +122,7 @@ function output_rss($feed) {
 	echo "\t\t".'<title><![CDATA['.escape_cdata($feed['title']).']]></title>'."\n";
 	echo "\t\t".'<link>'.luna_htmlspecialchars($feed['link']).'</link>'."\n";
 	echo "\t\t".'<description><![CDATA['.escape_cdata($feed['description']).']]></description>'."\n";
-	echo "\t\t".'<lastBuildDate>'.gmdate('r', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</lastBuildDate>'."\n";
+	echo "\t\t".'<lastBuildDate>'.date('r', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</lastBuildDate>'."\n";
 	echo "\t\t".'<generator>Luna '.$luna_config['o_cur_version'].'</generator>'."\n";
 
 	foreach ($feed['items'] as $item) {
@@ -131,7 +131,7 @@ function output_rss($feed) {
 		echo "\t\t\t".'<link>'.luna_htmlspecialchars($item['link']).'</link>'."\n";
 		echo "\t\t\t".'<description><![CDATA['.escape_cdata($item['description']).']]></description>'."\n";
 		echo "\t\t\t".'<author><![CDATA['.(isset($item['author']['email']) ? escape_cdata($item['author']['email']) : 'dummy@example.com').' ('.escape_cdata($item['author']['name']).')]]></author>'."\n";
-		echo "\t\t\t".'<pubDate>'.gmdate('r', $item['pubdate']).'</pubDate>'."\n";
+		echo "\t\t\t".'<pubDate>'.date('r', $item['pubdate']).'</pubDate>'."\n";
 		echo "\t\t\t".'<guid>'.luna_htmlspecialchars($item['link']).'</guid>'."\n";
 
 		echo "\t\t".'</item>'."\n";
@@ -150,7 +150,7 @@ function output_atom($feed) {
 
 	// Send XML/no cache headers
 	header('Content-Type: application/atom+xml; charset=utf-8');
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Expires: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 
@@ -160,7 +160,7 @@ function output_atom($feed) {
 	echo "\t".'<title type="html"><![CDATA['.escape_cdata($feed['title']).']]></title>'."\n";
 	echo "\t".'<link rel="self" href="'.luna_htmlspecialchars(get_current_url()).'"/>'."\n";
 	echo "\t".'<link href="'.luna_htmlspecialchars($feed['link']).'"/>'."\n";
-	echo "\t".'<updated>'.gmdate('Y-m-d\TH:i:s\Z', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</updated>'."\n";
+	echo "\t".'<updated>'.date('Y-m-d\TH:i:s\Z', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</updated>'."\n";
 	echo "\t".'<generator version="'.$luna_config['o_cur_version'].'">Luna</generator>'."\n";
 
 	echo "\t".'<id>'.luna_htmlspecialchars($feed['link']).'</id>'."\n";
@@ -182,7 +182,7 @@ function output_atom($feed) {
 			echo "\t\t\t".'<uri>'.luna_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
 
 		echo "\t\t".'</author>'."\n";
-		echo "\t\t".'<updated>'.gmdate('Y-m-d\TH:i:s\Z', $item['pubdate']).'</updated>'."\n";
+		echo "\t\t".'<updated>'.date('Y-m-d\TH:i:s\Z', $item['pubdate']).'</updated>'."\n";
 
 		echo "\t\t".'<id>'.luna_htmlspecialchars($item['link']).'</id>'."\n";
 		echo "\t".'</entry>'."\n";
@@ -200,7 +200,7 @@ function output_xml($feed) {
 
 	// Send XML/no cache headers
 	header('Content-Type: application/xml; charset=utf-8');
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Expires: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 
@@ -226,7 +226,7 @@ function output_xml($feed) {
 			echo "\t\t\t".'<uri>'.luna_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
 
 		echo "\t\t".'</author>'."\n";
-		echo "\t\t".'<commented>'.gmdate('r', $item['pubdate']).'</commented>'."\n";
+		echo "\t\t".'<commented>'.date('r', $item['pubdate']).'</commented>'."\n";
 
 		echo "\t".'</'.$forum_tag.'>'."\n";
 	}
@@ -242,7 +242,7 @@ function output_html($feed) {
 
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Expires: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 
@@ -451,7 +451,7 @@ elseif ($action == 'online' || $action == 'online_full') {
 
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Expires: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 
@@ -484,7 +484,7 @@ elseif ($action == 'stats') {
 
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Expires: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 

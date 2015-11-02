@@ -21,8 +21,7 @@ if (isset($_POST['form_sent'])) {
 		'default_lang'			=> luna_trim($_POST['form']['default_lang']),
 		'board_tags'			=> luna_trim($_POST['form']['board_tags']),
 		'base_url'				=> luna_trim($_POST['form']['base_url']),
-		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
-		'default_dst'			=> isset($_POST['form']['default_dst']) ? '1' : '0',
+		'timezone'				=> luna_trim($_POST['form']['timezone']),
 		'time_format'			=> luna_trim($_POST['form']['time_format']),
 		'date_format'			=> luna_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
@@ -130,8 +129,7 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/settings.php?saved=true');
 }
 
-$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
-$timestamp = time() + $diff;
+$timestamp = time();
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Global settings', 'luna'));
 define('LUNA_ACTIVE_PAGE', 'admin');
@@ -212,13 +210,13 @@ if (isset($_GET['saved']))
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Time format', 'luna') ?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Time format', 'luna') ?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Date format', 'luna') ?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), gmdate($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Date format', 'luna') ?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
 					</div>
@@ -226,54 +224,16 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Default time zone', 'luna') ?></label>
 					<div class="col-sm-9">
-						<select class="form-control" name="form[default_timezone]">
-							<option value="-12"<?php if ($luna_config['o_default_timezone'] == -12) echo ' selected' ?>><?php _e('(UTC-12:00) International Date Line West', 'luna') ?></option>
-							<option value="-11"<?php if ($luna_config['o_default_timezone'] == -11) echo ' selected' ?>><?php _e('(UTC-11:00) Niue, Samoa', 'luna') ?></option>
-							<option value="-10"<?php if ($luna_config['o_default_timezone'] == -10) echo ' selected' ?>><?php _e('(UTC-10:00) Hawaii-Aleutian, Cook Island', 'luna') ?></option>
-							<option value="-9.5"<?php if ($luna_config['o_default_timezone'] == -9.5) echo ' selected' ?>><?php _e('(UTC-09:30) Marquesas Islands', 'luna') ?></option>
-							<option value="-9"<?php if ($luna_config['o_default_timezone'] == -9) echo ' selected' ?>><?php _e('(UTC-09:00) Alaska, Gambier Island', 'luna') ?></option>
-							<option value="-8.5"<?php if ($luna_config['o_default_timezone'] == -8.5) echo ' selected' ?>><?php _e('(UTC-08:30) Pitcairn Islands', 'luna') ?></option>
-							<option value="-8"<?php if ($luna_config['o_default_timezone'] == -8) echo ' selected' ?>><?php _e('(UTC-08:00) Pacific', 'luna') ?></option>
-							<option value="-7"<?php if ($luna_config['o_default_timezone'] == -7) echo ' selected' ?>><?php _e('(UTC-07:00) Mountain', 'luna') ?></option>
-							<option value="-6"<?php if ($luna_config['o_default_timezone'] == -6) echo ' selected' ?>><?php _e('(UTC-06:00) Central', 'luna') ?></option>
-							<option value="-5"<?php if ($luna_config['o_default_timezone'] == -5) echo ' selected' ?>><?php _e('(UTC-05:00) Eastern', 'luna') ?></option>
-							<option value="-4"<?php if ($luna_config['o_default_timezone'] == -4) echo ' selected' ?>><?php _e('(UTC-04:00) Atlantic', 'luna') ?></option>
-							<option value="-3.5"<?php if ($luna_config['o_default_timezone'] == -3.5) echo ' selected' ?>><?php _e('(UTC-03:30) Newfoundland', 'luna') ?></option>
-							<option value="-3"<?php if ($luna_config['o_default_timezone'] == -3) echo ' selected' ?>><?php _e('(UTC-03:00) Amazon, Central Greenland', 'luna') ?></option>
-							<option value="-2"<?php if ($luna_config['o_default_timezone'] == -2) echo ' selected' ?>><?php _e('(UTC-02:00) Mid-Atlantic', 'luna') ?></option>
-							<option value="-1"<?php if ($luna_config['o_default_timezone'] == -1) echo ' selected' ?>><?php _e('(UTC-01:00) Azores, Cape Verde, Eastern Greenland', 'luna') ?></option>
-							<option value="0"<?php if ($luna_config['o_default_timezone'] == 0) echo ' selected' ?>><?php _e('(UTC) Western European, Greenwich', 'luna') ?></option>
-							<option value="1"<?php if ($luna_config['o_default_timezone'] == 1) echo ' selected' ?>><?php _e('(UTC+01:00) Central European, West African', 'luna') ?></option>
-							<option value="2"<?php if ($luna_config['o_default_timezone'] == 2) echo ' selected' ?>><?php _e('(UTC+02:00) Eastern European, Central African', 'luna') ?></option>
-							<option value="3"<?php if ($luna_config['o_default_timezone'] == 3) echo ' selected' ?>><?php _e('(UTC+03:00) Eastern African', 'luna') ?></option>
-							<option value="3.5"<?php if ($luna_config['o_default_timezone'] == 3.5) echo ' selected' ?>><?php _e('(UTC+03:30) Iran', 'luna') ?></option>
-							<option value="4"<?php if ($luna_config['o_default_timezone'] == 4) echo ' selected' ?>><?php _e('(UTC+04:00) Moscow, Gulf, Samara', 'luna') ?></option>
-							<option value="4.5"<?php if ($luna_config['o_default_timezone'] == 4.5) echo ' selected' ?>><?php _e('(UTC+04:30) Afghanistan', 'luna') ?></option>
-							<option value="5"<?php if ($luna_config['o_default_timezone'] == 5) echo ' selected' ?>><?php _e('(UTC+05:00) Pakistan', 'luna') ?></option>
-							<option value="5.5"<?php if ($luna_config['o_default_timezone'] == 5.5) echo ' selected' ?>><?php _e('(UTC+05:30) India, Sri Lanka', 'luna') ?></option>
-							<option value="5.75"<?php if ($luna_config['o_default_timezone'] == 5.75) echo ' selected' ?>><?php _e('(UTC+05:45) Nepal', 'luna') ?></option>
-							<option value="6"<?php if ($luna_config['o_default_timezone'] == 6) echo ' selected' ?>><?php _e('(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg', 'luna') ?></option>
-							<option value="6.5"<?php if ($luna_config['o_default_timezone'] == 6.5) echo ' selected' ?>><?php _e('(UTC+06:30) Cocos Islands, Myanmar', 'luna') ?></option>
-							<option value="7"<?php if ($luna_config['o_default_timezone'] == 7) echo ' selected' ?>><?php _e('(UTC+07:00) Indochina, Novosibirsk', 'luna') ?></option>
-							<option value="8"<?php if ($luna_config['o_default_timezone'] == 8) echo ' selected' ?>><?php _e('(UTC+08:00) Greater China, Australian Western, Krasnoyarsk', 'luna') ?></option>
-							<option value="8.75"<?php if ($luna_config['o_default_timezone'] == 8.75) echo ' selected' ?>><?php _e('(UTC+08:45) Southeastern Western Australia', 'luna') ?></option>
-							<option value="9"<?php if ($luna_config['o_default_timezone'] == 9) echo ' selected' ?>><?php _e('(UTC+09:00) Japan, Korea, Chita, Irkutsk', 'luna') ?></option>
-							<option value="9.5"<?php if ($luna_config['o_default_timezone'] == 9.5) echo ' selected' ?>><?php _e('(UTC+09:30) Australian Central', 'luna') ?></option>
-							<option value="10"<?php if ($luna_config['o_default_timezone'] == 10) echo ' selected' ?>><?php _e('(UTC+10:00) Australian Eastern', 'luna') ?></option>
-							<option value="10.5"<?php if ($luna_config['o_default_timezone'] == 10.5) echo ' selected' ?>><?php _e('(UTC+10:30) Lord Howe', 'luna') ?></option>
-							<option value="11"<?php if ($luna_config['o_default_timezone'] == 11) echo ' selected' ?>><?php _e('(UTC+11:00) Solomon Island, Vladivostok', 'luna') ?></option>
-							<option value="11.5"<?php if ($luna_config['o_default_timezone'] == 11.5) echo ' selected' ?>><?php _e('(UTC+11:30) Norfolk Island', 'luna') ?></option>
-							<option value="12"<?php if ($luna_config['o_default_timezone'] == 12) echo ' selected' ?>><?php _e('(UTC+12:00) New Zealand, Fiji, Magadan', 'luna') ?></option>
-							<option value="12.75"<?php if ($luna_config['o_default_timezone'] == 12.75) echo ' selected' ?>><?php _e('(UTC+12:45) Chatham Islands', 'luna') ?></option>
-							<option value="13"<?php if ($luna_config['o_default_timezone'] == 13) echo ' selected' ?>><?php _e('(UTC+13:00) Tonga, Phoenix Islands, Kamchatka', 'luna') ?></option>
-							<option value="14"<?php if ($luna_config['o_default_timezone'] == 14) echo ' selected' ?>><?php _e('(UTC+14:00) Line Islands', 'luna') ?></option>
+						<select class="form-control" name="form[timezone]">
+<?php
+$timezones = DateTimeZone::listIdentifiers();
+foreach ($timezones as $timezone) {
+?>
+								<option value="<?php echo $timezone ?>"<?php if ($luna_config['o_timezone'] == $timezone) echo ' selected' ?>><?php echo $timezone ?></option>
+<?php
+}
+?>
 						</select>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked' ?> />
-								<?php _e('Advance time by 1 hour for daylight saving.', 'luna') ?>
-							</label>
-						</div>
 					</div>
 				</div>
 				<hr />

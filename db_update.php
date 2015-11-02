@@ -667,6 +667,12 @@ switch ($stage) {
 			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 			$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		
+		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, 'UTC') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_default_timezone');
+		build_config(1, 'o_timezone', 'UTC');
 
 		break;
 

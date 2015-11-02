@@ -33,6 +33,8 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sixteen is a new default theme</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Major naming convention updates</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Timezone settings have been reworked</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Daylight Saving is now handled by Luna</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen now has an updated sidebar</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved mobile interface for Fifteen and Backstage</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten</li>

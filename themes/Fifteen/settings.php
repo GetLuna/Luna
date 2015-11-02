@@ -375,54 +375,16 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Time zone', 'luna') ?></label>
 						<div class="col-sm-9">
-							<select class="form-control" name="form[timezone]">
-								<option value="-12"<?php if ($user['timezone'] == -12) echo ' selected' ?>><?php _e('(UTC-12:00) International Date Line West', 'luna') ?></option>
-								<option value="-11"<?php if ($user['timezone'] == -11) echo ' selected' ?>><?php _e('(UTC-11:00) Niue, Samoa', 'luna') ?></option>
-								<option value="-10"<?php if ($user['timezone'] == -10) echo ' selected' ?>><?php _e('(UTC-10:00) Hawaii-Aleutian, Cook Island', 'luna') ?></option>
-								<option value="-9.5"<?php if ($user['timezone'] == -9.5) echo ' selected' ?>><?php _e('(UTC-09:30) Marquesas Islands', 'luna') ?></option>
-								<option value="-9"<?php if ($user['timezone'] == -9) echo ' selected' ?>><?php _e('(UTC-09:00) Alaska, Gambier Island', 'luna') ?></option>
-								<option value="-8.5"<?php if ($user['timezone'] == -8.5) echo ' selected' ?>><?php _e('(UTC-08:30) Pitcairn Islands', 'luna') ?></option>
-								<option value="-8"<?php if ($user['timezone'] == -8) echo ' selected' ?>><?php _e('(UTC-08:00) Pacific', 'luna') ?></option>
-								<option value="-7"<?php if ($user['timezone'] == -7) echo ' selected' ?>><?php _e('(UTC-07:00) Mountain', 'luna') ?></option>
-								<option value="-6"<?php if ($user['timezone'] == -6) echo ' selected' ?>><?php _e('(UTC-06:00) Central', 'luna') ?></option>
-								<option value="-5"<?php if ($user['timezone'] == -5) echo ' selected' ?>><?php _e('(UTC-05:00) Eastern', 'luna') ?></option>
-								<option value="-4"<?php if ($user['timezone'] == -4) echo ' selected' ?>><?php _e('(UTC-04:00) Atlantic', 'luna') ?></option>
-								<option value="-3.5"<?php if ($user['timezone'] == -3.5) echo ' selected' ?>><?php _e('(UTC-03:30) Newfoundland', 'luna') ?></option>
-								<option value="-3"<?php if ($user['timezone'] == -3) echo ' selected' ?>><?php _e('(UTC-03:00) Amazon, Central Greenland', 'luna') ?></option>
-								<option value="-2"<?php if ($user['timezone'] == -2) echo ' selected' ?>><?php _e('(UTC-02:00) Mid-Atlantic', 'luna') ?></option>
-								<option value="-1"<?php if ($user['timezone'] == -1) echo ' selected' ?>><?php _e('(UTC-01:00) Azores, Cape Verde, Eastern Greenland', 'luna') ?></option>
-								<option value="0"<?php if ($user['timezone'] == 0) echo ' selected' ?>><?php _e('(UTC) Western European, Greenwich', 'luna') ?></option>
-								<option value="1"<?php if ($user['timezone'] == 1) echo ' selected' ?>><?php _e('(UTC+01:00) Central European, West African', 'luna') ?></option>
-								<option value="2"<?php if ($user['timezone'] == 2) echo ' selected' ?>><?php _e('(UTC+02:00) Eastern European, Central African', 'luna') ?></option>
-								<option value="3"<?php if ($user['timezone'] == 3) echo ' selected' ?>><?php _e('(UTC+03:00) Eastern African', 'luna') ?></option>
-								<option value="3.5"<?php if ($user['timezone'] == 3.5) echo ' selected' ?>><?php _e('(UTC+03:30) Iran', 'luna') ?></option>
-								<option value="4"<?php if ($user['timezone'] == 4) echo ' selected' ?>><?php _e('(UTC+04:00) Moscow, Gulf, Samara', 'luna') ?></option>
-								<option value="4.5"<?php if ($user['timezone'] == 4.5) echo ' selected' ?>><?php _e('(UTC+04:30) Afghanistan', 'luna') ?></option>
-								<option value="5"<?php if ($user['timezone'] == 5) echo ' selected' ?>><?php _e('(UTC+05:00) Pakistan', 'luna') ?></option>
-								<option value="5.5"<?php if ($user['timezone'] == 5.5) echo ' selected' ?>><?php _e('(UTC+05:30) India, Sri Lanka', 'luna') ?></option>
-								<option value="5.75"<?php if ($user['timezone'] == 5.75) echo ' selected' ?>><?php _e('(UTC+05:45) Nepal', 'luna') ?></option>
-								<option value="6"<?php if ($user['timezone'] == 6) echo ' selected' ?>><?php _e('(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg', 'luna') ?></option>
-								<option value="6.5"<?php if ($user['timezone'] == 6.5) echo ' selected' ?>><?php _e('(UTC+06:30) Cocos Islands, Myanmar', 'luna') ?></option>
-								<option value="7"<?php if ($user['timezone'] == 7) echo ' selected' ?>><?php _e('(UTC+07:00) Indochina, Novosibirsk', 'luna') ?></option>
-								<option value="8"<?php if ($user['timezone'] == 8) echo ' selected' ?>><?php _e('(UTC+08:00) Greater China, Australian Western, Krasnoyarsk', 'luna') ?></option>
-								<option value="8.75"<?php if ($user['timezone'] == 8.75) echo ' selected' ?>><?php _e('(UTC+08:45) Southeastern Western Australia', 'luna') ?></option>
-								<option value="9"<?php if ($user['timezone'] == 9) echo ' selected' ?>><?php _e('(UTC+09:00) Japan, Korea, Chita, Irkutsk', 'luna') ?></option>
-								<option value="9.5"<?php if ($user['timezone'] == 9.5) echo ' selected' ?>><?php _e('(UTC+09:30) Australian Central', 'luna') ?></option>
-								<option value="10"<?php if ($user['timezone'] == 10) echo ' selected' ?>><?php _e('(UTC+10:00) Australian Eastern', 'luna') ?></option>
-								<option value="10.5"<?php if ($user['timezone'] == 10.5) echo ' selected' ?>><?php _e('(UTC+10:30) Lord Howe', 'luna') ?></option>
-								<option value="11"<?php if ($user['timezone'] == 11) echo ' selected' ?>><?php _e('(UTC+11:00) Solomon Island, Vladivostok', 'luna') ?></option>
-								<option value="11.5"<?php if ($user['timezone'] == 11.5) echo ' selected' ?>><?php _e('(UTC+11:30) Norfolk Island', 'luna') ?></option>
-								<option value="12"<?php if ($user['timezone'] == 12) echo ' selected' ?>><?php _e('(UTC+12:00) New Zealand, Fiji, Magadan', 'luna') ?></option>
-								<option value="12.75"<?php if ($user['timezone'] == 12.75) echo ' selected' ?>><?php _e('(UTC+12:45) Chatham Islands', 'luna') ?></option>
-								<option value="13"<?php if ($user['timezone'] == 13) echo ' selected' ?>><?php _e('(UTC+13:00) Tonga, Phoenix Islands, Kamchatka', 'luna') ?></option>
-								<option value="14"<?php if ($user['timezone'] == 14) echo ' selected' ?>><?php _e('(UTC+14:00) Line Islands', 'luna') ?></option>
+							<select class="form-control" name="form[php_timezone]">
+<?php
+$timezones = DateTimeZone::listIdentifiers();
+foreach ($timezones as $timezone) {
+?>
+								<option value="<?php echo $timezone ?>"<?php if ($user['php_timezone'] == $timezone) echo ' selected' ?>><?php echo $timezone ?></option>
+<?php
+}
+?>
 							</select>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked' ?> />
-									<?php _e('Advance time by 1 hour for daylight saving.', 'luna') ?>
-								</label>
-							</div>
 						</div>
 					</div>
 					<div class="form-group">
