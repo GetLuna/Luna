@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.2\n"
-"POT-Creation-Date: 2015-10-28 15:46+0100\n"
-"PO-Revision-Date: 2015-10-28 15:46+0100\n"
+"POT-Creation-Date: 2015-11-02 15:59+0100\n"
+"PO-Revision-Date: 2015-11-02 15:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: backstage/about.php:16 backstage/appearance.php:72 backstage/bans.php:83
-#: backstage/bans.php:332 backstage/bans.php:395 backstage/board.php:79
+#: backstage/about.php:16 backstage/appearance.php:71 backstage/bans.php:82
+#: backstage/bans.php:328 backstage/bans.php:391 backstage/board.php:79
 #: backstage/board.php:213 backstage/board.php:450 backstage/board.php:508
 #: backstage/censoring.php:76 backstage/database.php:509 backstage/email.php:61
 #: backstage/features.php:64 backstage/groups.php:38 backstage/groups.php:492
@@ -26,15 +26,15 @@ msgstr ""
 #: backstage/moderate.php:44 backstage/moderate.php:131
 #: backstage/moderate.php:222 backstage/moderate.php:297
 #: backstage/moderate.php:472 backstage/moderate.php:595
-#: backstage/moderate.php:680 backstage/moderate.php:804
+#: backstage/moderate.php:680 backstage/moderate.php:834
 #: backstage/permissions.php:50 backstage/prune.php:89 backstage/prune.php:182
 #: backstage/ranks.php:85 backstage/registration.php:59
-#: backstage/reports.php:42 backstage/settings.php:136 backstage/system.php:87
+#: backstage/reports.php:42 backstage/settings.php:134 backstage/system.php:87
 #: backstage/theme.php:33 backstage/tools.php:113 backstage/update.php:68
 #: backstage/users.php:34 backstage/users.php:105 backstage/users.php:272
-#: backstage/users.php:410 backstage/users.php:524 backstage/users.php:694
-#: backstage/users.php:788 include/functions.php:1053
-#: themes/Fifteen/settings.php:38
+#: backstage/users.php:410 backstage/users.php:521 backstage/users.php:691
+#: backstage/users.php:785 include/functions.php:1052
+#: themes/Fifteen/settings.php:37 themes/Sixteen/settings.php:40
 msgid "Admin"
 msgstr ""
 
@@ -53,26 +53,26 @@ msgid ""
 "by deleting all .php files in the /cache directory."
 msgstr ""
 
-#: backstage/appearance.php:72 include/backstage_functions.php:51
+#: backstage/appearance.php:71 include/backstage_functions.php:51
 #: include/backstage_functions.php:181
 msgid "Appearance"
 msgstr ""
 
-#: backstage/appearance.php:78 backstage/board.php:514 backstage/email.php:67
+#: backstage/appearance.php:77 backstage/board.php:514 backstage/email.php:67
 #: backstage/features.php:70 backstage/index.php:88
 #: backstage/maintenance.php:168 backstage/permissions.php:56
-#: backstage/registration.php:65 backstage/settings.php:142
+#: backstage/registration.php:65 backstage/settings.php:140
 #: backstage/theme.php:39 backstage/tools.php:119 backstage/update.php:74
-#: backstage/users.php:795
+#: backstage/users.php:792
 msgid "Your settings have been saved."
 msgstr ""
 
-#: backstage/appearance.php:84
+#: backstage/appearance.php:83
 msgid "Display settings"
 msgstr ""
 
-#: backstage/appearance.php:84 backstage/appearance.php:197
-#: backstage/appearance.php:229 backstage/board.php:222 backstage/board.php:327
+#: backstage/appearance.php:83 backstage/appearance.php:190
+#: backstage/appearance.php:222 backstage/board.php:222 backstage/board.php:327
 #: backstage/board.php:607 backstage/board.php:653 backstage/email.php:72
 #: backstage/email.php:93 backstage/email.php:120 backstage/features.php:75
 #: backstage/features.php:148 backstage/features.php:175
@@ -81,179 +81,181 @@ msgstr ""
 #: backstage/maintenance.php:175 backstage/menu.php:101
 #: backstage/permissions.php:61 backstage/permissions.php:110
 #: backstage/permissions.php:148 backstage/ranks.php:123
-#: backstage/registration.php:70 backstage/settings.php:147
-#: backstage/settings.php:188 backstage/settings.php:210
-#: backstage/settings.php:304 backstage/settings.php:346
-#: backstage/settings.php:378 backstage/settings.php:404
-#: backstage/settings.php:457 backstage/update.php:83 backstage/users.php:294
+#: backstage/registration.php:70 backstage/settings.php:145
+#: backstage/settings.php:186 backstage/settings.php:208
+#: backstage/settings.php:264 backstage/settings.php:306
+#: backstage/settings.php:338 backstage/settings.php:364
+#: backstage/settings.php:417 backstage/update.php:83 backstage/users.php:294
 #: themes/Fifteen/me-modals.php:17 themes/Fifteen/me-modals.php:43
-#: themes/Fifteen/settings.php:28 themes/Fifteen/settings.php:496
+#: themes/Fifteen/settings.php:28 themes/Fifteen/settings.php:459
+#: themes/Sixteen/me-modals.php:17 themes/Sixteen/me-modals.php:43
+#: themes/Sixteen/settings.php:30 themes/Sixteen/settings.php:464
 msgid "Save"
 msgstr ""
 
-#: backstage/appearance.php:89
+#: backstage/appearance.php:88
 msgid "Theme settings"
 msgstr ""
 
-#: backstage/appearance.php:94
+#: backstage/appearance.php:93
 msgid "Allow users to set their own accent color."
 msgstr ""
 
-#: backstage/appearance.php:100
+#: backstage/appearance.php:99
 msgid "Allow users to change the night mode settings."
 msgstr ""
 
-#: backstage/appearance.php:107 themes/Fifteen/settings.php:118
+#: backstage/appearance.php:106 themes/Fifteen/settings.php:117
+#: themes/Sixteen/settings.php:121
 msgid "Color"
 msgstr ""
 
-#: backstage/appearance.php:125
+#: backstage/appearance.php:124
 msgid "User profile"
 msgstr ""
 
-#: backstage/appearance.php:130
+#: backstage/appearance.php:129
 msgid "Show information about the commenter under the username in threads."
 msgstr ""
 
-#: backstage/appearance.php:136
+#: backstage/appearance.php:135
 msgid ""
 "Show the number of comments a user has made in threads, profile and the user "
 "list."
 msgstr ""
 
-#: backstage/appearance.php:142
+#: backstage/appearance.php:141
 msgid "Index settings"
 msgstr ""
 
-#: backstage/appearance.php:147
+#: backstage/appearance.php:146
 msgid ""
 "Show the \"Moderated by\" list when moderators are set on a per-forum base "
 "(requires theme support)."
 msgstr ""
 
-#: backstage/appearance.php:154
+#: backstage/appearance.php:153
 msgid "Emoji"
 msgstr ""
 
-#: backstage/appearance.php:159
+#: backstage/appearance.php:158
 msgid "Use emojis instead of emoticons."
 msgstr ""
 
-#: backstage/appearance.php:165
+#: backstage/appearance.php:164
 msgid "Smilie size"
 msgstr ""
 
-#: backstage/appearance.php:165
+#: backstage/appearance.php:164
 msgid ""
 "The emoticons and emojis are shown, don't go above 29 pixels when using "
 "normal emoticons"
 msgstr ""
 
-#: backstage/appearance.php:169 backstage/settings.php:430
-#: backstage/settings.php:439 settings.php:510
+#: backstage/appearance.php:168 backstage/settings.php:390
+#: backstage/settings.php:399 settings.php:510 themes/Sixteen/me-modals.php:62
 msgid "pixels"
 msgstr ""
 
-#: backstage/appearance.php:175
-msgid "Thread review"
-msgstr ""
-
-#: backstage/appearance.php:175
-msgid "Maximum amount of comments showed when commenting"
-msgstr ""
-
-#: backstage/appearance.php:181 themes/Fifteen/settings.php:359
+#: backstage/appearance.php:174 themes/Fifteen/settings.php:360
+#: themes/Sixteen/settings.php:365
 msgid "Threads per page"
 msgstr ""
 
-#: backstage/appearance.php:181
+#: backstage/appearance.php:174
 msgid "Default amount of threads per page"
 msgstr ""
 
-#: backstage/appearance.php:187 themes/Fifteen/settings.php:365
+#: backstage/appearance.php:180 themes/Fifteen/settings.php:366
+#: themes/Sixteen/settings.php:371
 msgid "Comments per page"
 msgstr ""
 
-#: backstage/appearance.php:187
+#: backstage/appearance.php:180
 msgid "Default amount of comments per page"
 msgstr ""
 
-#: backstage/appearance.php:197
+#: backstage/appearance.php:190
 msgid "Header settings"
 msgstr ""
 
-#: backstage/appearance.php:202 footer.php:16 footer.php:19
+#: backstage/appearance.php:195 footer.php:16 footer.php:19
 #: include/general_functions.php:50 include/me_functions.php:22
 #: include/me_functions.php:36 themes/Fifteen/notifications.php:19
+#: themes/Sixteen/notifications.php:21
 msgid "Notifications"
 msgstr ""
 
-#: backstage/appearance.php:207
+#: backstage/appearance.php:200
 msgid ""
 "Show a fly-out when clicking the notification icon instead of going to the "
 "notification page. Disableing this feature might improve performance."
 msgstr ""
 
-#: backstage/appearance.php:214 backstage/bans.php:423
-#: backstage/features.php:127 backstage/users.php:802
+#: backstage/appearance.php:207 backstage/bans.php:419
+#: backstage/features.php:127 backstage/users.php:799
 #: include/backstage_functions.php:34 include/backstage_functions.php:170
 #: search.php:438 search.php:500 search.php:512 themes/Fifteen/help.php:147
 #: themes/Fifteen/search-advanced.php:13 themes/Fifteen/search-advanced.php:15
 #: themes/Fifteen/search-results.php:11 themes/Fifteen/search.php:11
 #: themes/Fifteen/search.php:23 themes/Fifteen/users.php:23
+#: themes/Sixteen/help.php:137 themes/Sixteen/search-advanced.php:10
+#: themes/Sixteen/search-results.php:8 themes/Sixteen/search.php:8
+#: themes/Sixteen/search.php:14 themes/Sixteen/users.php:21
 msgid "Search"
 msgstr ""
 
-#: backstage/appearance.php:219
+#: backstage/appearance.php:212
 msgid "Show the search bar in the heading."
 msgstr ""
 
-#: backstage/appearance.php:229
+#: backstage/appearance.php:222
 msgid "Footer settings"
 msgstr ""
 
-#: backstage/appearance.php:234 backstage/index.php:200
+#: backstage/appearance.php:227 backstage/index.php:200
 msgid "Statistics"
 msgstr ""
 
-#: backstage/appearance.php:239
+#: backstage/appearance.php:232
 msgid "Show the board statistics."
 msgstr ""
 
-#: backstage/appearance.php:245
+#: backstage/appearance.php:238
 msgid "Back to top"
 msgstr ""
 
-#: backstage/appearance.php:250
+#: backstage/appearance.php:243
 msgid "Show a \"Back to top\" link in the footer."
 msgstr ""
 
-#: backstage/appearance.php:257 themes/Fifteen/footer.php:130
+#: backstage/appearance.php:250 themes/Fifteen/footer.php:130
+#: themes/Sixteen/footer.php:91
 msgid "Copyright"
 msgstr ""
 
-#: backstage/appearance.php:262
+#: backstage/appearance.php:255
 msgid "Show the copyright notice in the footer."
 msgstr ""
 
-#: backstage/appearance.php:268
+#: backstage/appearance.php:261
 msgid "Copyright content"
 msgstr ""
 
-#: backstage/appearance.php:273
+#: backstage/appearance.php:266
 msgid "Show default copyright"
 msgstr ""
 
-#: backstage/appearance.php:279
+#: backstage/appearance.php:272
 msgid "Show personalized copyright notices:"
 msgstr ""
 
-#: backstage/appearance.php:281
+#: backstage/appearance.php:274
 msgid "Your copyright"
 msgstr ""
 
 #: backstage/bans.php:23 backstage/bans.php:69 backstage/bans.php:75
-#: backstage/bans.php:262 backstage/board.php:22 backstage/board.php:42
+#: backstage/bans.php:258 backstage/board.php:22 backstage/board.php:42
 #: backstage/board.php:128 backstage/board.php:148 backstage/board.php:202
 #: backstage/board.php:409 backstage/board.php:490 backstage/loader.php:19
 #: backstage/menu.php:33 backstage/menu.php:43 backstage/moderate.php:28
@@ -266,11 +268,13 @@ msgstr ""
 #: backstage/moderate.php:427 backstage/moderate.php:463
 #: backstage/moderate.php:533 backstage/moderate.php:542
 #: backstage/moderate.php:636 backstage/moderate.php:644
-#: backstage/moderate.php:727 backstage/moderate.php:744
-#: backstage/moderate.php:760 backstage/moderate.php:776 backstage/ranks.php:48
-#: backstage/registration.php:35 backstage/settings.php:64
-#: backstage/settings.php:100 backstage/settings.php:103
-#: backstage/settings.php:106 backstage/users.php:19 delete.php:18
+#: backstage/moderate.php:727 backstage/moderate.php:743
+#: backstage/moderate.php:759 backstage/moderate.php:774
+#: backstage/moderate.php:790 backstage/moderate.php:806 backstage/ranks.php:48
+#: backstage/registration.php:35 backstage/settings.php:63
+#: backstage/settings.php:99 backstage/settings.php:102
+#: backstage/settings.php:105 backstage/users.php:19 comment.php:19
+#: comment.php:28 comment.php:462 comment.php:466 comment.php:525 delete.php:18
 #: delete.php:25 edit.php:19 edit.php:24 extern.php:280 extern.php:500
 #: inbox.php:97 misc.php:43 misc.php:56 misc.php:60 misc.php:148 misc.php:167
 #: misc.php:174 misc.php:225 misc.php:248 misc.php:272 misc.php:298
@@ -278,14 +282,14 @@ msgstr ""
 #: new_inbox.php:54 new_inbox.php:67 new_inbox.php:74 new_inbox.php:89
 #: new_inbox.php:102 new_inbox.php:107 new_inbox.php:125 new_inbox.php:318
 #: new_inbox.php:365 new_inbox.php:378 notifications.php:25
-#: notifications.php:29 post.php:19 post.php:28 post.php:467 post.php:471
-#: post.php:530 profile.php:23 profile.php:27 search.php:43 search.php:70
-#: search.php:78 search.php:323 search.php:349 search.php:453 settings.php:239
-#: settings.php:293 settings.php:536 settings.php:571 settings.php:717
-#: settings.php:725 settings.php:740 viewforum.php:19 viewforum.php:28
+#: notifications.php:29 profile.php:23 profile.php:27 search.php:43
+#: search.php:70 search.php:78 search.php:323 search.php:349 search.php:453
+#: settings.php:239 settings.php:293 settings.php:538 settings.php:573
+#: settings.php:718 settings.php:726 settings.php:741 thread.php:21
+#: thread.php:27 thread.php:78 viewforum.php:19 viewforum.php:28
 #: viewinbox.php:45 viewinbox.php:76 viewinbox.php:88 viewinbox.php:96
 #: viewinbox.php:104 viewinbox.php:127 viewinbox.php:181 viewinbox.php:196
-#: viewinbox.php:219 viewtopic.php:21 viewtopic.php:27 viewtopic.php:78
+#: viewinbox.php:219
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
@@ -301,241 +305,248 @@ msgid ""
 "specific username just leave the username blank."
 msgstr ""
 
-#: backstage/bans.php:45 backstage/bans.php:170
+#: backstage/bans.php:45 backstage/bans.php:169
 #, php-format
 msgid ""
 "The user %s is an administrator and can't be banned. If you want to ban an "
 "administrator, you must first demote him/her."
 msgstr ""
 
-#: backstage/bans.php:51 backstage/bans.php:176
+#: backstage/bans.php:51 backstage/bans.php:175
 #, php-format
 msgid ""
 "The user %s is a moderator and can't be banned. If you want to ban a "
 "moderator, you must first demote him/her."
 msgstr ""
 
-#: backstage/bans.php:83 backstage/bans.php:332 backstage/bans.php:395
-#: backstage/users.php:524 include/backstage_functions.php:44
+#: backstage/bans.php:82 backstage/bans.php:328 backstage/bans.php:391
+#: backstage/users.php:521 include/backstage_functions.php:44
 #: include/backstage_functions.php:175
 msgid "Bans"
 msgstr ""
 
-#: backstage/bans.php:93
+#: backstage/bans.php:92
 msgid "Ban range"
 msgstr ""
 
-#: backstage/bans.php:93 backstage/bans.php:123 backstage/users.php:534
-#: backstage/users.php:712 backstage/users.php:772
+#: backstage/bans.php:92 backstage/bans.php:122 backstage/users.php:531
+#: backstage/users.php:709 backstage/users.php:769
 msgid "Ban"
 msgstr ""
 
-#: backstage/bans.php:100 backstage/bans.php:348 backstage/bans.php:431
-#: backstage/bans.php:454 backstage/login.php:21 backstage/tools.php:133
-#: backstage/users.php:121 backstage/users.php:726 backstage/users.php:810
-#: backstage/users.php:890 install.php:188 install.php:305 install.php:332
+#: backstage/bans.php:99 backstage/bans.php:344 backstage/bans.php:427
+#: backstage/bans.php:450 backstage/login.php:21 backstage/tools.php:133
+#: backstage/users.php:121 backstage/users.php:723 backstage/users.php:807
+#: backstage/users.php:887 install.php:188 install.php:305 install.php:332
 #: register.php:244 themes/Fifteen/index.php:46 themes/Fifteen/login.php:13
-#: themes/Fifteen/register.php:26 themes/Fifteen/settings.php:46
+#: themes/Fifteen/register.php:26 themes/Fifteen/settings.php:45
+#: themes/Sixteen/index.php:46 themes/Sixteen/login.php:13
+#: themes/Sixteen/register.php:20 themes/Sixteen/settings.php:48
 #: themes/Sunrise/index.php:46
 msgid "Username"
 msgstr ""
 
-#: backstage/bans.php:100
+#: backstage/bans.php:99
 msgid "The username to ban"
 msgstr ""
 
-#: backstage/bans.php:106 backstage/bans.php:433
+#: backstage/bans.php:105 backstage/bans.php:429
 msgid "IP address/IP-ranges"
 msgstr ""
 
-#: backstage/bans.php:106
+#: backstage/bans.php:105
 msgid "The IP you wish to ban, separate addresses with spaces"
 msgstr ""
 
-#: backstage/bans.php:109
+#: backstage/bans.php:108
 #, php-format
 msgid "Click %s to see IP statistics for this user."
 msgstr ""
 
-#: backstage/bans.php:109
+#: backstage/bans.php:108
 msgid "here"
 msgstr ""
 
-#: backstage/bans.php:113 backstage/bans.php:349 backstage/bans.php:437
-#: backstage/bans.php:456 backstage/settings.php:359 backstage/tools.php:139
-#: backstage/users.php:122 backstage/users.php:727 backstage/users.php:891
-#: include/backstage_functions.php:55 include/backstage_functions.php:183
-#: include/draw_functions.php:656 include/draw_functions.php:658
-#: include/draw_functions.php:688 include/draw_functions.php:827
-#: include/draw_functions.php:829 include/draw_functions.php:855
-#: install.php:191 install.php:351 post.php:534 register.php:244
-#: themes/Fifteen/login.php:42 themes/Fifteen/post.php:34
-#: themes/Fifteen/register.php:47 themes/Fifteen/settings.php:60
-#: themes/Fifteen/thread.php:57 themes/Fifteen/thread.php:61 viewtopic.php:127
+#: backstage/bans.php:112 backstage/bans.php:345 backstage/bans.php:433
+#: backstage/bans.php:452 backstage/settings.php:319 backstage/tools.php:139
+#: backstage/users.php:122 backstage/users.php:724 backstage/users.php:888
+#: comment.php:529 include/backstage_functions.php:55
+#: include/backstage_functions.php:183 include/draw_functions.php:664
+#: include/draw_functions.php:666 include/draw_functions.php:696
+#: include/draw_functions.php:835 include/draw_functions.php:837
+#: include/draw_functions.php:863 install.php:191 install.php:351
+#: register.php:244 themes/Fifteen/comment.php:34 themes/Fifteen/login.php:42
+#: themes/Fifteen/register.php:47 themes/Fifteen/settings.php:59
+#: themes/Fifteen/thread.php:63 themes/Fifteen/thread.php:67
+#: themes/Sixteen/comment.php:30 themes/Sixteen/login.php:42
+#: themes/Sixteen/register.php:41 themes/Sixteen/settings.php:62
+#: themes/Sixteen/thread.php:35 themes/Sixteen/thread.php:39 thread.php:127
 msgid "Email"
 msgstr ""
 
-#: backstage/bans.php:113
+#: backstage/bans.php:112
 msgid "The email or email domain you wish to ban"
 msgstr ""
 
-#: backstage/bans.php:123
+#: backstage/bans.php:122
 msgid "Ban details"
 msgstr ""
 
-#: backstage/bans.php:128 backstage/users.php:540
+#: backstage/bans.php:127 backstage/users.php:537
 msgid "Ban message"
 msgstr ""
 
-#: backstage/bans.php:128 backstage/users.php:543
+#: backstage/bans.php:127 backstage/users.php:540
 msgid "A message for banned users"
 msgstr ""
 
-#: backstage/bans.php:134 backstage/bans.php:457 backstage/users.php:547
+#: backstage/bans.php:133 backstage/bans.php:453 backstage/users.php:544
 msgid "Expire date"
 msgstr ""
 
-#: backstage/bans.php:134 backstage/users.php:550
+#: backstage/bans.php:133 backstage/users.php:547
 msgid "When does the ban expire, blank for manually"
 msgstr ""
 
-#: backstage/bans.php:136 backstage/bans.php:444 backstage/bans.php:446
-#: backstage/users.php:870 backstage/users.php:872 backstage/users.php:876
-#: backstage/users.php:878 backstage/users.php:882 backstage/users.php:884
+#: backstage/bans.php:135 backstage/bans.php:440 backstage/bans.php:442
+#: backstage/users.php:867 backstage/users.php:869 backstage/users.php:873
+#: backstage/users.php:875 backstage/users.php:879 backstage/users.php:881
 msgid "(yyyy-mm-dd)"
 msgstr ""
 
-#: backstage/bans.php:159
+#: backstage/bans.php:158
 msgid ""
 "You must enter either a username, an IP address or an email address (at "
 "least)."
 msgstr ""
 
-#: backstage/bans.php:161
+#: backstage/bans.php:160
 msgid "The guest user cannot be banned."
 msgstr ""
 
-#: backstage/bans.php:194 backstage/bans.php:206
+#: backstage/bans.php:193 backstage/bans.php:205
 msgid "You entered an invalid IP/IP-range."
 msgstr ""
 
-#: backstage/bans.php:220
+#: backstage/bans.php:219
 msgid ""
 "The email address (e.g. user@domain.com) or partial email address domain (e."
 "g. domain.com) you entered is invalid."
 msgstr ""
 
-#: backstage/bans.php:227 backstage/bans.php:233 backstage/bans.php:297
-#: backstage/bans.php:306 backstage/users.php:481 backstage/users.php:487
+#: backstage/bans.php:226 backstage/bans.php:229 backstage/bans.php:293
+#: backstage/bans.php:302 backstage/users.php:481 backstage/users.php:484
 msgid "You entered an invalid expire date."
 msgstr ""
 
-#: backstage/bans.php:227 backstage/bans.php:233 backstage/users.php:481
-#: backstage/users.php:487
+#: backstage/bans.php:226 backstage/bans.php:229 backstage/users.php:481
+#: backstage/users.php:484
 msgid ""
 "The format should be YYYY-MM-DD and the date must be at least one day in the "
 "future."
 msgstr ""
 
-#: backstage/bans.php:332 backstage/bans.php:340 backstage/users.php:34
+#: backstage/bans.php:328 backstage/bans.php:336 backstage/users.php:34
 #: backstage/users.php:42 backstage/users.php:105 backstage/users.php:113
-#: backstage/users.php:694 backstage/users.php:703
+#: backstage/users.php:691 backstage/users.php:700
 msgid "Search Results"
 msgstr ""
 
-#: backstage/bans.php:350 backstage/bans.php:455
+#: backstage/bans.php:346 backstage/bans.php:451
 msgid "IP"
 msgstr ""
 
-#: backstage/bans.php:351
+#: backstage/bans.php:347
 msgid "Expires"
 msgstr ""
 
-#: backstage/bans.php:352 backstage/bans.php:439 backstage/index.php:146
-#: backstage/reports.php:59 backstage/reports.php:116 edit.php:131 misc.php:134
-#: new_inbox.php:388 post.php:534 themes/Fifteen/inbox-new.php:72
-#: themes/Fifteen/settings.php:33 viewinbox.php:202 viewtopic.php:123
+#: backstage/bans.php:348 backstage/bans.php:435 backstage/index.php:146
+#: backstage/reports.php:59 backstage/reports.php:116 comment.php:529
+#: edit.php:131 misc.php:134 new_inbox.php:388 themes/Fifteen/inbox-new.php:72
+#: themes/Fifteen/settings.php:33 themes/Sixteen/inbox-new.php:75
+#: themes/Sixteen/settings.php:35 thread.php:123 viewinbox.php:202
 msgid "Message"
 msgstr ""
 
-#: backstage/bans.php:353
+#: backstage/bans.php:349
 msgid "By"
 msgstr ""
 
-#: backstage/bans.php:354 backstage/ranks.php:137 backstage/reports.php:60
-#: backstage/users.php:126 backstage/users.php:731
+#: backstage/bans.php:350 backstage/ranks.php:137 backstage/reports.php:60
+#: backstage/users.php:126 backstage/users.php:728
 msgid "Actions"
 msgstr ""
 
-#: backstage/bans.php:364 backstage/board.php:635 backstage/groups.php:639
-#: include/draw_functions.php:720 include/draw_functions.php:747
+#: backstage/bans.php:360 backstage/board.php:635 backstage/groups.php:639
+#: include/draw_functions.php:728 include/draw_functions.php:755
 msgid "Edit"
 msgstr ""
 
-#: backstage/bans.php:364 backstage/board.php:95 backstage/board.php:467
+#: backstage/bans.php:360 backstage/board.php:95 backstage/board.php:467
 #: backstage/board.php:571 backstage/board.php:635 backstage/censoring.php:141
 #: backstage/ranks.php:152
 msgid "Remove"
 msgstr ""
 
-#: backstage/bans.php:374
+#: backstage/bans.php:370
 msgid "Unknown"
 msgstr ""
 
-#: backstage/bans.php:381 backstage/users.php:761
+#: backstage/bans.php:377 backstage/users.php:758
 msgid "No match"
 msgstr ""
 
-#: backstage/bans.php:404
+#: backstage/bans.php:400
 msgid "Add ban"
 msgstr ""
 
-#: backstage/bans.php:412 backstage/board.php:525 backstage/board.php:554
+#: backstage/bans.php:408 backstage/board.php:525 backstage/board.php:554
 #: backstage/censoring.php:88 backstage/groups.php:572 backstage/menu.php:77
 #: backstage/ranks.php:102 backstage/tools.php:128
 msgid "Add"
 msgstr ""
 
-#: backstage/bans.php:415
+#: backstage/bans.php:411
 msgid ""
 "The username you want to ban. If you want to ban a specific IP/IP-range or "
 "email, leave it blank."
 msgstr ""
 
-#: backstage/bans.php:423
+#: backstage/bans.php:419
 msgid "Ban search"
 msgstr ""
 
-#: backstage/bans.php:427
+#: backstage/bans.php:423
 msgid ""
 "Search for bans in the database. You can enter one or more terms to search "
 "for. Wildcards in the form of asterisks (*) are accepted. To show all bans "
 "leave all fields empty."
 msgstr ""
 
-#: backstage/bans.php:443
+#: backstage/bans.php:439
 msgid "Expire after"
 msgstr ""
 
-#: backstage/bans.php:445
+#: backstage/bans.php:441
 msgid "Expire before"
 msgstr ""
 
-#: backstage/bans.php:449 backstage/users.php:887
+#: backstage/bans.php:445 backstage/users.php:884
 msgid "Order by"
 msgstr ""
 
-#: backstage/bans.php:462 backstage/users.php:897
-#: themes/Fifteen/search-advanced.php:39
+#: backstage/bans.php:458 backstage/users.php:894
+#: themes/Fifteen/search-advanced.php:39 themes/Sixteen/search-advanced.php:30
 msgid "Ascending"
 msgstr ""
 
-#: backstage/bans.php:463 backstage/users.php:898
-#: themes/Fifteen/search-advanced.php:38
+#: backstage/bans.php:459 backstage/users.php:895
+#: themes/Fifteen/search-advanced.php:38 themes/Sixteen/search-advanced.php:29
 msgid "Descending"
 msgstr ""
 
-#: backstage/board.php:79 backstage/board.php:213 themes/Fifteen/help.php:215
+#: backstage/board.php:79 backstage/board.php:213 themes/Fifteen/help.php:223
+#: themes/Sixteen/help.php:203
 msgid "Forums"
 msgstr ""
 
@@ -588,8 +599,8 @@ msgstr ""
 msgid "Sort threads by"
 msgstr ""
 
-#: backstage/board.php:290 backstage/users.php:893 profile.php:46
-#: themes/Fifteen/inbox.php:54
+#: backstage/board.php:290 backstage/users.php:890 profile.php:46
+#: themes/Fifteen/inbox.php:54 themes/Sixteen/inbox.php:55
 msgid "Last comment"
 msgstr ""
 
@@ -597,9 +608,11 @@ msgstr ""
 msgid "Thread start"
 msgstr ""
 
-#: backstage/board.php:292 edit.php:131 include/draw_functions.php:1038
-#: misc.php:134 new_inbox.php:392 post.php:534 themes/Fifteen/inbox-new.php:65
-#: themes/Fifteen/post.php:40 themes/Fifteen/search-advanced.php:34
+#: backstage/board.php:292 comment.php:529 edit.php:131
+#: include/draw_functions.php:1045 misc.php:134 new_inbox.php:392
+#: themes/Fifteen/comment.php:40 themes/Fifteen/inbox-new.php:65
+#: themes/Fifteen/search-advanced.php:34 themes/Sixteen/comment.php:36
+#: themes/Sixteen/inbox-new.php:68 themes/Sixteen/search-advanced.php:25
 msgid "Subject"
 msgstr ""
 
@@ -655,8 +668,7 @@ msgstr ""
 msgid "Read forum"
 msgstr ""
 
-#: backstage/board.php:339 backstage/groups.php:207 viewtopic.php:91
-#: viewtopic.php:98
+#: backstage/board.php:339 backstage/groups.php:207 thread.php:91 thread.php:98
 msgid "Comment"
 msgstr ""
 
@@ -693,9 +705,9 @@ msgid "Add forum"
 msgstr ""
 
 #: backstage/board.php:541 backstage/board.php:560 backstage/board.php:659
-#: backstage/menu.php:83 backstage/menu.php:106 install.php:187 install.php:299
-#: post.php:540 themes/Fifteen/post.php:33 themes/Fifteen/thread.php:60
-#: viewtopic.php:125
+#: backstage/menu.php:83 backstage/menu.php:106 comment.php:535 install.php:187
+#: install.php:299 themes/Fifteen/comment.php:33 themes/Fifteen/thread.php:66
+#: themes/Sixteen/comment.php:29 themes/Sixteen/thread.php:38 thread.php:125
 msgid "Name"
 msgstr ""
 
@@ -846,14 +858,16 @@ msgid "Gzip compression"
 msgstr ""
 
 #: backstage/database.php:544 backstage/prune.php:238 backstage/prune.php:315
-#: backstage/users.php:558 themes/Fifteen/answer.php:19
-#: themes/Fifteen/unsolved.php:19
+#: backstage/users.php:555 themes/Fifteen/answer.php:19
+#: themes/Fifteen/unsolved.php:19 themes/Sixteen/answer.php:19
+#: themes/Sixteen/unsolved.php:19
 msgid "Yes"
 msgstr ""
 
 #: backstage/database.php:548 backstage/prune.php:242 backstage/prune.php:318
-#: backstage/users.php:562 themes/Fifteen/answer.php:18
-#: themes/Fifteen/unsolved.php:18
+#: backstage/users.php:559 themes/Fifteen/answer.php:18
+#: themes/Fifteen/unsolved.php:18 themes/Sixteen/answer.php:18
+#: themes/Sixteen/unsolved.php:18
 msgid "No"
 msgstr ""
 
@@ -892,12 +906,12 @@ msgstr ""
 msgid "Optimize all tables"
 msgstr ""
 
-#: backstage/email.php:36 backstage/settings.php:89
+#: backstage/email.php:36 backstage/settings.php:88
 msgid ""
 "You need to enter the SMTP password twice exactly the same to change it."
 msgstr ""
 
-#: backstage/email.php:61 backstage/settings.php:136
+#: backstage/email.php:61 backstage/settings.php:134
 msgid "Global settings"
 msgstr ""
 
@@ -922,7 +936,7 @@ msgid "The email where the boards mails will be addressed from"
 msgstr ""
 
 #: backstage/email.php:93 backstage/email.php:99
-#: themes/Fifteen/settings.php:249
+#: themes/Fifteen/settings.php:248 themes/Sixteen/settings.php:255
 msgid "Subscriptions"
 msgstr ""
 
@@ -1032,8 +1046,11 @@ msgstr ""
 
 #: backstage/features.php:148 backstage/groups.php:176 inbox.php:93
 #: include/inbox_functions.php:21 include/me_functions.php:20
-#: include/me_functions.php:34 themes/Fifteen/inbox-delete-post.php:13
-#: themes/Fifteen/inbox.php:44 themes/Fifteen/settings.php:212
+#: include/me_functions.php:34 themes/Fifteen/inbox-delete-comment.php:13
+#: themes/Fifteen/inbox.php:44 themes/Fifteen/settings.php:211
+#: themes/Sixteen/inbox-delete-comment.php:13 themes/Sixteen/inbox-new.php:7
+#: themes/Sixteen/inbox.php:24 themes/Sixteen/inbox.php:45
+#: themes/Sixteen/settings.php:218
 msgid "Inbox"
 msgstr ""
 
@@ -1081,6 +1098,7 @@ msgstr ""
 
 #: backstage/features.php:208 backstage/permissions.php:67
 #: backstage/permissions.php:115 themes/Fifteen/help.php:30
+#: themes/Sixteen/help.php:23
 msgid "BBCode"
 msgstr ""
 
@@ -1125,7 +1143,7 @@ msgid "Width of an embedded video"
 msgstr ""
 
 #: backstage/features.php:260 backstage/features.php:266
-#: themes/Fifteen/search.php:13
+#: themes/Fifteen/search.php:13 themes/Sixteen/search.php:8
 msgid "Advanced"
 msgstr ""
 
@@ -1138,16 +1156,19 @@ msgid ""
 msgstr ""
 
 #: backstage/footer.php:20 themes/Fifteen/footer.php:167
+#: themes/Sixteen/footer.php:128
 #, php-format
 msgid "Generated in %1$s seconds, %2$s queries executed"
 msgstr ""
 
 #: backstage/footer.php:23 themes/Fifteen/footer.php:170
+#: themes/Sixteen/footer.php:131
 #, php-format
 msgid "Memory usage: %1$s"
 msgstr ""
 
 #: backstage/footer.php:26 themes/Fifteen/footer.php:173
+#: themes/Sixteen/footer.php:134
 #, php-format
 msgid "(Peak: %1$s)"
 msgstr ""
@@ -1217,7 +1238,7 @@ msgid ""
 "If moderator privileges are enabled, allow users to change user passwords."
 msgstr ""
 
-#: backstage/groups.php:115 backstage/users.php:534
+#: backstage/groups.php:115 backstage/users.php:531
 msgid "Ban users"
 msgstr ""
 
@@ -1245,7 +1266,8 @@ msgstr ""
 msgid "Allow users to soft delete threads from all users."
 msgstr ""
 
-#: backstage/groups.php:170 themes/Fifteen/settings.php:217
+#: backstage/groups.php:170 themes/Fifteen/settings.php:216
+#: themes/Sixteen/settings.php:223
 msgid "Allow users to send messages with Inbox."
 msgstr ""
 
@@ -1344,8 +1366,8 @@ msgid "Time users have to wait between comments"
 msgstr ""
 
 #: backstage/groups.php:321 backstage/groups.php:330 backstage/groups.php:340
-#: backstage/groups.php:349 backstage/settings.php:285
-#: backstage/settings.php:295
+#: backstage/groups.php:349 backstage/settings.php:245
+#: backstage/settings.php:255
 msgid "seconds"
 msgstr ""
 
@@ -1381,7 +1403,7 @@ msgid ""
 msgstr ""
 
 #: backstage/groups.php:405 backstage/ranks.php:21 backstage/ranks.php:55
-#: backstage/settings.php:48
+#: backstage/settings.php:47
 msgid "You must enter a title."
 msgstr ""
 
@@ -1408,11 +1430,14 @@ msgstr ""
 #: backstage/groups.php:508 backstage/groups.php:644 backstage/menu.php:110
 #: backstage/menu.php:134 backstage/menu.php:136 backstage/moderate.php:140
 #: backstage/moderate.php:392 backstage/moderate.php:689
-#: backstage/moderate.php:927 backstage/users.php:434 backstage/users.php:714
-#: backstage/users.php:774 include/draw_functions.php:712
-#: include/draw_functions.php:742 include/draw_functions.php:912
-#: themes/Fifteen/inbox-delete-post.php:17 themes/Fifteen/inbox-delete.php:12
-#: themes/Fifteen/inbox.php:29 themes/Fifteen/me-delete.php:13
+#: backstage/moderate.php:957 backstage/users.php:434 backstage/users.php:711
+#: backstage/users.php:771 include/draw_functions.php:720
+#: include/draw_functions.php:750 include/draw_functions.php:920
+#: themes/Fifteen/inbox-delete-comment.php:17
+#: themes/Fifteen/inbox-delete.php:12 themes/Fifteen/inbox.php:29
+#: themes/Fifteen/me-delete.php:13 themes/Sixteen/inbox-delete-comment.php:17
+#: themes/Sixteen/inbox-delete.php:12 themes/Sixteen/inbox.php:34
+#: themes/Sixteen/me-delete.php:13
 msgid "Delete"
 msgstr ""
 
@@ -1537,7 +1562,8 @@ msgstr ""
 #: backstage/index.php:157 backstage/index.php:158 backstage/index.php:160
 #: backstage/reports.php:71 backstage/reports.php:72 backstage/reports.php:74
 #: backstage/reports.php:127 backstage/reports.php:128
-#: backstage/reports.php:130 themes/Fifteen/inbox.php:99 viewinbox.php:191
+#: backstage/reports.php:130 themes/Fifteen/inbox.php:99
+#: themes/Sixteen/inbox.php:103 viewinbox.php:191
 msgid "Deleted"
 msgstr ""
 
@@ -1577,15 +1603,15 @@ msgstr ""
 
 #: backstage/loader.php:24 backstage/moderate.php:20 backstage/moderate.php:70
 #: backstage/moderate.php:650 backstage/users.php:197 backstage/users.php:311
-#: backstage/users.php:446 delete.php:44 delete.php:47 edit.php:44 edit.php:47
-#: inbox.php:17 inbox.php:21 inbox.php:25 misc.php:22 misc.php:37 misc.php:52
-#: misc.php:144 misc.php:243 misc.php:267 misc.php:291 misc.php:302
-#: misc.php:320 misc.php:337 misc.php:348 misc.php:361 new_inbox.php:17
-#: new_inbox.php:21 new_inbox.php:25 new_inbox.php:113 post.php:45
+#: backstage/users.php:446 comment.php:45 delete.php:44 delete.php:47
+#: edit.php:44 edit.php:47 inbox.php:17 inbox.php:21 inbox.php:25 misc.php:22
+#: misc.php:37 misc.php:52 misc.php:144 misc.php:243 misc.php:267 misc.php:291
+#: misc.php:302 misc.php:320 misc.php:337 misc.php:348 misc.php:361
+#: new_inbox.php:17 new_inbox.php:21 new_inbox.php:25 new_inbox.php:113
 #: search.php:74 search.php:280 search.php:510 settings.php:28 settings.php:33
 #: settings.php:76 settings.php:93 settings.php:178 settings.php:235
 #: settings.php:244 settings.php:289 settings.php:298 settings.php:439
-#: settings.php:525 settings.php:581 userlist.php:16 viewinbox.php:19
+#: settings.php:525 settings.php:583 userlist.php:16 viewinbox.php:19
 #: viewinbox.php:23 viewinbox.php:27 viewinbox.php:117 viewinbox.php:147
 #: viewinbox.php:167 viewinbox.php:210
 msgid "You do not have permission to access this page."
@@ -1604,8 +1630,9 @@ msgstr ""
 #: backstage/login.php:16 backstage/login.php:30
 #: include/general_functions.php:32 themes/Fifteen/index.php:42
 #: themes/Fifteen/index.php:51 themes/Fifteen/login.php:6
-#: themes/Fifteen/login.php:20 themes/Sunrise/index.php:42
-#: themes/Sunrise/index.php:51
+#: themes/Fifteen/login.php:20 themes/Sixteen/index.php:42
+#: themes/Sixteen/login.php:6 themes/Sixteen/login.php:20
+#: themes/Sunrise/index.php:42 themes/Sunrise/index.php:51
 msgid "Login"
 msgstr ""
 
@@ -1613,12 +1640,16 @@ msgstr ""
 #: install.php:338 register.php:244 settings.php:428
 #: themes/Fifteen/index.php:47 themes/Fifteen/login.php:14
 #: themes/Fifteen/me-modals.php:12 themes/Fifteen/register.php:33
-#: themes/Fifteen/settings.php:53 themes/Sunrise/index.php:47
+#: themes/Fifteen/settings.php:52 themes/Sixteen/index.php:47
+#: themes/Sixteen/login.php:14 themes/Sixteen/me-modals.php:12
+#: themes/Sixteen/register.php:27 themes/Sixteen/settings.php:55
+#: themes/Sunrise/index.php:47
 msgid "Password"
 msgstr ""
 
 #: backstage/login.php:27 themes/Fifteen/index.php:49
-#: themes/Fifteen/login.php:17 themes/Sunrise/index.php:49
+#: themes/Fifteen/login.php:17 themes/Sixteen/index.php:49
+#: themes/Sixteen/login.php:17 themes/Sunrise/index.php:49
 msgid "Remember me"
 msgstr ""
 
@@ -1640,7 +1671,7 @@ msgid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
 #: backstage/maintenance.php:129 db_update.php:179
-#: include/class/luna_install.php:1498
+#: include/class/luna_install.php:1497
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -1649,7 +1680,7 @@ msgstr ""
 #: backstage/maintenance.php:162 backstage/maintenance.php:175
 #: backstage/maintenance.php:181 backstage/prune.php:182 db_update.php:181
 #: include/backstage_functions.php:62 include/backstage_functions.php:95
-#: include/backstage_functions.php:189 include/functions.php:1364
+#: include/backstage_functions.php:189 include/functions.php:1361
 msgid "Maintenance"
 msgstr ""
 
@@ -1773,13 +1804,14 @@ msgstr ""
 #: backstage/moderate.php:222 backstage/moderate.php:297
 #: backstage/moderate.php:312 backstage/moderate.php:387
 #: backstage/moderate.php:472 backstage/moderate.php:595
-#: backstage/moderate.php:680 backstage/moderate.php:804
-#: include/backstage_functions.php:27
+#: backstage/moderate.php:680 backstage/moderate.php:834
+#: include/backstage_functions.php:27 themes/Sixteen/forum.php:29
+#: themes/Sixteen/forum.php:51 themes/Sixteen/thread.php:47
 msgid "Moderate"
 msgstr ""
 
 #: backstage/moderate.php:52 backstage/moderate.php:305
-#: backstage/moderate.php:812
+#: backstage/moderate.php:842
 msgid "Moderate content"
 msgstr ""
 
@@ -1797,11 +1829,11 @@ msgstr ""
 msgid "Are you sure you want to delete the selected comments?"
 msgstr ""
 
-#: backstage/moderate.php:186 edit.php:66 new_inbox.php:200 post.php:69
+#: backstage/moderate.php:186 comment.php:64 edit.php:66 new_inbox.php:200
 msgid "Threads must contain a subject."
 msgstr ""
 
-#: backstage/moderate.php:188 edit.php:70 new_inbox.php:202 post.php:73
+#: backstage/moderate.php:188 comment.php:68 edit.php:70 new_inbox.php:202
 msgid "Subjects cannot be longer than 70 characters."
 msgstr ""
 
@@ -1822,12 +1854,13 @@ msgid "New subject"
 msgstr ""
 
 #: backstage/moderate.php:353 backstage/tools.php:40 backstage/users.php:170
-#: include/class/luna_install.php:1550 include/functions.php:480
-#: include/functions.php:895 search.php:222 settings.php:670
+#: include/class/luna_install.php:1548 include/functions.php:479
+#: include/functions.php:894 search.php:222 settings.php:671
 msgid "Guest"
 msgstr ""
 
 #: backstage/moderate.php:370 themes/Fifteen/objects/comment.php:13
+#: themes/Sixteen/objects/comment.php:25
 msgid "Last edited by"
 msgstr ""
 
@@ -1856,7 +1889,8 @@ msgstr ""
 msgid "Move threads"
 msgstr ""
 
-#: backstage/moderate.php:481 backstage/moderate.php:926
+#: backstage/moderate.php:481 backstage/moderate.php:956
+#: themes/Sixteen/thread.php:53
 msgid "Move"
 msgstr ""
 
@@ -1872,7 +1906,7 @@ msgstr ""
 msgid "Merge threads"
 msgstr ""
 
-#: backstage/moderate.php:604 backstage/moderate.php:928
+#: backstage/moderate.php:604 backstage/moderate.php:958
 msgid "Merge"
 msgstr ""
 
@@ -1880,50 +1914,50 @@ msgstr ""
 msgid "Are you sure you want to delete the selected threads?"
 msgstr ""
 
-#: backstage/moderate.php:815
+#: backstage/moderate.php:845
 #, php-format
 msgid "Moderating \"%s\""
 msgstr ""
 
-#: backstage/moderate.php:847 backstage/moderate.php:863
-#: backstage/moderate.php:867 backstage/moderate.php:869
+#: backstage/moderate.php:877 backstage/moderate.php:893
+#: backstage/moderate.php:897 backstage/moderate.php:899
 #: include/draw_functions.php:261 include/draw_functions.php:263
-#: include/draw_functions.php:283 include/draw_functions.php:396
-#: include/draw_functions.php:398 include/draw_functions.php:536
-#: include/draw_functions.php:538 include/draw_functions.php:571
-#: include/draw_functions.php:992 include/draw_functions.php:1023
-#: include/draw_functions.php:1025 themes/Fifteen/inbox.php:76
+#: include/draw_functions.php:288 include/draw_functions.php:400
+#: include/draw_functions.php:402 include/draw_functions.php:540
+#: include/draw_functions.php:542 include/draw_functions.php:580
+#: include/draw_functions.php:1000 include/draw_functions.php:1030
+#: include/draw_functions.php:1032 themes/Fifteen/inbox.php:76
+#: themes/Sixteen/inbox.php:80
 msgid "by"
 msgstr ""
 
-#: backstage/moderate.php:864
+#: backstage/moderate.php:894 themes/Sixteen/help.php:164
 msgid "Moved"
 msgstr ""
 
-#: backstage/moderate.php:870
+#: backstage/moderate.php:900 themes/Sixteen/help.php:160
 msgid "Closed"
 msgstr ""
 
-#: backstage/moderate.php:878 include/draw_functions.php:303
-#: include/draw_functions.php:590 include/draw_functions.php:1008
+#: backstage/moderate.php:908 include/draw_functions.php:308
+#: include/draw_functions.php:599 include/draw_functions.php:1016
 msgid "Go to the first new comment in the thread."
 msgstr ""
 
-#: backstage/moderate.php:878 include/draw_functions.php:303
-#: include/draw_functions.php:366 include/draw_functions.php:449
-#: include/draw_functions.php:590 include/draw_functions.php:1008
+#: backstage/moderate.php:908 header.php:56 include/draw_functions.php:370
+#: include/draw_functions.php:453
 msgid "New"
 msgstr ""
 
-#: backstage/moderate.php:919
+#: backstage/moderate.php:949
 msgid "This forum has s yet."
 msgstr ""
 
-#: backstage/moderate.php:931
+#: backstage/moderate.php:961 themes/Sixteen/thread.php:55
 msgid "Open"
 msgstr ""
 
-#: backstage/moderate.php:932
+#: backstage/moderate.php:962 themes/Sixteen/thread.php:57
 msgid "Close"
 msgstr ""
 
@@ -1952,7 +1986,7 @@ msgstr ""
 msgid "Allow a subject to contain only capital letters."
 msgstr ""
 
-#: backstage/permissions.php:95 include/class/luna_install.php:1571
+#: backstage/permissions.php:95 include/class/luna_install.php:1569
 msgid "Guests"
 msgstr ""
 
@@ -2073,10 +2107,12 @@ msgid "All notifications"
 msgstr ""
 
 #: backstage/prune.php:206 themes/Fifteen/notifications.php:34
+#: themes/Sixteen/notifications.php:43
 msgid "Seen notifications"
 msgstr ""
 
 #: backstage/prune.php:210 themes/Fifteen/notifications.php:21
+#: themes/Sixteen/notifications.php:24
 msgid "New notifications"
 msgstr ""
 
@@ -2256,13 +2292,13 @@ msgstr ""
 msgid "Hide email address and disallow form email."
 msgstr ""
 
-#: backstage/reports.php:42 backstage/settings.php:346
+#: backstage/reports.php:42 backstage/settings.php:306
 #: include/backstage_functions.php:31 include/backstage_functions.php:166
 msgid "Reports"
 msgstr ""
 
-#: backstage/reports.php:85 include/draw_functions.php:1158 search.php:392
-#: themes/Fifteen/inbox.php:25 viewforum.php:91
+#: backstage/reports.php:85 include/draw_functions.php:1165 search.php:392
+#: themes/Fifteen/inbox.php:25 themes/Sixteen/inbox.php:30 viewforum.php:91
 msgid "Mark as read"
 msgstr ""
 
@@ -2282,438 +2318,278 @@ msgstr ""
 msgid "There are no read reports."
 msgstr ""
 
-#: backstage/settings.php:57
+#: backstage/settings.php:56
 msgid ""
 "Your installation does not support automatic conversion of internationalized "
 "domain names. As your base URL contains special characters, you "
 "<strong>must</strong> use an online converter."
 msgstr ""
 
-#: backstage/settings.php:95
+#: backstage/settings.php:94
 msgid "Enter your announcement here."
 msgstr ""
 
-#: backstage/settings.php:109
+#: backstage/settings.php:108
 msgid ""
 "The value of \"Timeout online\" must be smaller than the value of \"Timeout "
 "visit\"."
 msgstr ""
 
-#: backstage/settings.php:147
+#: backstage/settings.php:145
 msgid "Essentials"
 msgstr ""
 
-#: backstage/settings.php:153 install.php:192 install.php:366
+#: backstage/settings.php:151 install.php:192 install.php:366
 msgid "Board title"
 msgstr ""
 
-#: backstage/settings.php:159 install.php:372
+#: backstage/settings.php:157 install.php:372
 msgid "Board description"
 msgstr ""
 
-#: backstage/settings.php:159
+#: backstage/settings.php:157
 msgid "What's this board about?"
 msgstr ""
 
-#: backstage/settings.php:165 install.php:384
+#: backstage/settings.php:163 install.php:384
 msgid "Default language"
 msgstr ""
 
-#: backstage/settings.php:165
+#: backstage/settings.php:163
 msgid "The default language"
 msgstr ""
 
-#: backstage/settings.php:188
+#: backstage/settings.php:186
 msgid "Meta"
 msgstr ""
 
-#: backstage/settings.php:194
+#: backstage/settings.php:192
 msgid "Board tags"
 msgstr ""
 
-#: backstage/settings.php:194
+#: backstage/settings.php:192
 msgid "Add some words that describe your board, separated by a comma"
 msgstr ""
 
-#: backstage/settings.php:200 install.php:378
+#: backstage/settings.php:198 install.php:378
 msgid "Board URL"
 msgstr ""
 
-#: backstage/settings.php:210
+#: backstage/settings.php:208
 msgid "Time and timeouts"
 msgstr ""
 
-#: backstage/settings.php:215 themes/Fifteen/settings.php:428
+#: backstage/settings.php:213 themes/Fifteen/settings.php:391
+#: themes/Sixteen/settings.php:396
 msgid "Time format"
 msgstr ""
 
-#: backstage/settings.php:215 backstage/settings.php:221
+#: backstage/settings.php:213 backstage/settings.php:219
 #, php-format
 msgid "Now: %s. See %s for more info"
 msgstr ""
 
-#: backstage/settings.php:215 backstage/settings.php:221
+#: backstage/settings.php:213 backstage/settings.php:219
 msgid "PHP manual"
 msgstr ""
 
-#: backstage/settings.php:221 themes/Fifteen/settings.php:446
+#: backstage/settings.php:219 themes/Fifteen/settings.php:409
+#: themes/Sixteen/settings.php:414
 msgid "Date format"
 msgstr ""
 
-#: backstage/settings.php:227
+#: backstage/settings.php:225
 msgid "Default time zone"
 msgstr ""
 
-#: backstage/settings.php:230 themes/Fifteen/settings.php:378
-msgid "(UTC-12:00) International Date Line West"
-msgstr ""
-
-#: backstage/settings.php:231 themes/Fifteen/settings.php:379
-msgid "(UTC-11:00) Niue, Samoa"
-msgstr ""
-
-#: backstage/settings.php:232 themes/Fifteen/settings.php:380
-msgid "(UTC-10:00) Hawaii-Aleutian, Cook Island"
-msgstr ""
-
-#: backstage/settings.php:233 themes/Fifteen/settings.php:381
-msgid "(UTC-09:30) Marquesas Islands"
-msgstr ""
-
-#: backstage/settings.php:234 themes/Fifteen/settings.php:382
-msgid "(UTC-09:00) Alaska, Gambier Island"
-msgstr ""
-
-#: backstage/settings.php:235 themes/Fifteen/settings.php:383
-msgid "(UTC-08:30) Pitcairn Islands"
-msgstr ""
-
-#: backstage/settings.php:236 themes/Fifteen/settings.php:384
-msgid "(UTC-08:00) Pacific"
-msgstr ""
-
-#: backstage/settings.php:237 themes/Fifteen/settings.php:385
-msgid "(UTC-07:00) Mountain"
-msgstr ""
-
-#: backstage/settings.php:238 themes/Fifteen/settings.php:386
-msgid "(UTC-06:00) Central"
-msgstr ""
-
-#: backstage/settings.php:239 themes/Fifteen/settings.php:387
-msgid "(UTC-05:00) Eastern"
-msgstr ""
-
-#: backstage/settings.php:240 themes/Fifteen/settings.php:388
-msgid "(UTC-04:00) Atlantic"
-msgstr ""
-
-#: backstage/settings.php:241 themes/Fifteen/settings.php:389
-msgid "(UTC-03:30) Newfoundland"
-msgstr ""
-
-#: backstage/settings.php:242 themes/Fifteen/settings.php:390
-msgid "(UTC-03:00) Amazon, Central Greenland"
-msgstr ""
-
-#: backstage/settings.php:243 themes/Fifteen/settings.php:391
-msgid "(UTC-02:00) Mid-Atlantic"
-msgstr ""
-
-#: backstage/settings.php:244 themes/Fifteen/settings.php:392
-msgid "(UTC-01:00) Azores, Cape Verde, Eastern Greenland"
-msgstr ""
-
-#: backstage/settings.php:245 themes/Fifteen/settings.php:393
-msgid "(UTC) Western European, Greenwich"
-msgstr ""
-
-#: backstage/settings.php:246 themes/Fifteen/settings.php:394
-msgid "(UTC+01:00) Central European, West African"
-msgstr ""
-
-#: backstage/settings.php:247 themes/Fifteen/settings.php:395
-msgid "(UTC+02:00) Eastern European, Central African"
-msgstr ""
-
-#: backstage/settings.php:248 themes/Fifteen/settings.php:396
-msgid "(UTC+03:00) Eastern African"
-msgstr ""
-
-#: backstage/settings.php:249 themes/Fifteen/settings.php:397
-msgid "(UTC+03:30) Iran"
-msgstr ""
-
-#: backstage/settings.php:250 themes/Fifteen/settings.php:398
-msgid "(UTC+04:00) Moscow, Gulf, Samara"
-msgstr ""
-
-#: backstage/settings.php:251 themes/Fifteen/settings.php:399
-msgid "(UTC+04:30) Afghanistan"
-msgstr ""
-
-#: backstage/settings.php:252 themes/Fifteen/settings.php:400
-msgid "(UTC+05:00) Pakistan"
-msgstr ""
-
-#: backstage/settings.php:253 themes/Fifteen/settings.php:401
-msgid "(UTC+05:30) India, Sri Lanka"
-msgstr ""
-
-#: backstage/settings.php:254 themes/Fifteen/settings.php:402
-msgid "(UTC+05:45) Nepal"
-msgstr ""
-
-#: backstage/settings.php:255 themes/Fifteen/settings.php:403
-msgid "(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg"
-msgstr ""
-
-#: backstage/settings.php:256 themes/Fifteen/settings.php:404
-msgid "(UTC+06:30) Cocos Islands, Myanmar"
-msgstr ""
-
-#: backstage/settings.php:257 themes/Fifteen/settings.php:405
-msgid "(UTC+07:00) Indochina, Novosibirsk"
-msgstr ""
-
-#: backstage/settings.php:258 themes/Fifteen/settings.php:406
-msgid "(UTC+08:00) Greater China, Australian Western, Krasnoyarsk"
-msgstr ""
-
-#: backstage/settings.php:259 themes/Fifteen/settings.php:407
-msgid "(UTC+08:45) Southeastern Western Australia"
-msgstr ""
-
-#: backstage/settings.php:260 themes/Fifteen/settings.php:408
-msgid "(UTC+09:00) Japan, Korea, Chita, Irkutsk"
-msgstr ""
-
-#: backstage/settings.php:261 themes/Fifteen/settings.php:409
-msgid "(UTC+09:30) Australian Central"
-msgstr ""
-
-#: backstage/settings.php:262 themes/Fifteen/settings.php:410
-msgid "(UTC+10:00) Australian Eastern"
-msgstr ""
-
-#: backstage/settings.php:263 themes/Fifteen/settings.php:411
-msgid "(UTC+10:30) Lord Howe"
-msgstr ""
-
-#: backstage/settings.php:264 themes/Fifteen/settings.php:412
-msgid "(UTC+11:00) Solomon Island, Vladivostok"
-msgstr ""
-
-#: backstage/settings.php:265 themes/Fifteen/settings.php:413
-msgid "(UTC+11:30) Norfolk Island"
-msgstr ""
-
-#: backstage/settings.php:266 themes/Fifteen/settings.php:414
-msgid "(UTC+12:00) New Zealand, Fiji, Magadan"
-msgstr ""
-
-#: backstage/settings.php:267 themes/Fifteen/settings.php:415
-msgid "(UTC+12:45) Chatham Islands"
-msgstr ""
-
-#: backstage/settings.php:268 themes/Fifteen/settings.php:416
-msgid "(UTC+13:00) Tonga, Phoenix Islands, Kamchatka"
-msgstr ""
-
-#: backstage/settings.php:269 themes/Fifteen/settings.php:417
-msgid "(UTC+14:00) Line Islands"
-msgstr ""
-
-#: backstage/settings.php:274 themes/Fifteen/settings.php:422
-msgid "Advance time by 1 hour for daylight saving."
-msgstr ""
-
-#: backstage/settings.php:281
+#: backstage/settings.php:241
 msgid "Visit timeout"
 msgstr ""
 
-#: backstage/settings.php:281
+#: backstage/settings.php:241
 msgid "Time before a visit ends"
 msgstr ""
 
-#: backstage/settings.php:290
+#: backstage/settings.php:250
 msgid "Online timeout"
 msgstr ""
 
-#: backstage/settings.php:290
+#: backstage/settings.php:250
 msgid "Time before someone isn't online anymore"
 msgstr ""
 
-#: backstage/settings.php:304
+#: backstage/settings.php:264
 msgid "Syndication"
 msgstr ""
 
-#: backstage/settings.php:309
+#: backstage/settings.php:269
 msgid "Default feed type"
 msgstr ""
 
-#: backstage/settings.php:309
+#: backstage/settings.php:269
 msgid "Select a feed"
 msgstr ""
 
-#: backstage/settings.php:313
+#: backstage/settings.php:273
 msgid "None"
 msgstr ""
 
-#: backstage/settings.php:317
+#: backstage/settings.php:277
 msgid "RSS"
 msgstr ""
 
-#: backstage/settings.php:321
+#: backstage/settings.php:281
 msgid "Atom"
 msgstr ""
 
-#: backstage/settings.php:326
+#: backstage/settings.php:286
 msgid "Duration to cache feeds"
 msgstr ""
 
-#: backstage/settings.php:326
+#: backstage/settings.php:286
 msgid "Reduce sources by caching feeds"
 msgstr ""
 
-#: backstage/settings.php:329
+#: backstage/settings.php:289
 msgid "Don't cache"
 msgstr ""
 
-#: backstage/settings.php:335
+#: backstage/settings.php:295
 #, php-format
 msgid "%d minutes"
 msgstr ""
 
-#: backstage/settings.php:351
+#: backstage/settings.php:311
 msgid "Reporting method"
 msgstr ""
 
-#: backstage/settings.php:351
+#: backstage/settings.php:311
 msgid "How should we handle reports?"
 msgstr ""
 
-#: backstage/settings.php:355
+#: backstage/settings.php:315
 msgid "Internal"
 msgstr ""
 
-#: backstage/settings.php:363
+#: backstage/settings.php:323
 msgid "Both"
 msgstr ""
 
-#: backstage/settings.php:368
+#: backstage/settings.php:328
 msgid "Mailing list"
 msgstr ""
 
-#: backstage/settings.php:368
+#: backstage/settings.php:328
 msgid ""
 "A comma separated list of subscribers who get e-mails when new reports are "
 "made"
 msgstr ""
 
-#: backstage/settings.php:378 backstage/settings.php:383
+#: backstage/settings.php:338 backstage/settings.php:343
 msgid "Cookie bar"
 msgstr ""
 
-#: backstage/settings.php:383 themes/Fifteen/footer.php:149
+#: backstage/settings.php:343 themes/Fifteen/footer.php:149
+#: themes/Sixteen/footer.php:110
 msgid "More info"
 msgstr ""
 
-#: backstage/settings.php:388
+#: backstage/settings.php:348
 msgid "Show a bar with information about cookies at the bottom of the page."
 msgstr ""
 
-#: backstage/settings.php:394
+#: backstage/settings.php:354
 msgid "Cookie bar URL"
 msgstr ""
 
-#: backstage/settings.php:394
+#: backstage/settings.php:354
 msgid ""
 "Use your own URL for cookie information, by default, we provide our own page"
 msgstr ""
 
-#: backstage/settings.php:404
+#: backstage/settings.php:364
 msgid "Avatars"
 msgstr ""
 
-#: backstage/settings.php:409
+#: backstage/settings.php:369
 msgid "Use avatars"
 msgstr ""
 
-#: backstage/settings.php:414
+#: backstage/settings.php:374
 msgid "Enable so users can upload avatars."
 msgstr ""
 
-#: backstage/settings.php:420
+#: backstage/settings.php:380
 msgid "Upload directory"
 msgstr ""
 
-#: backstage/settings.php:420
+#: backstage/settings.php:380
 msgid ""
 "Where avatars will be stored relative to Lunas root, write permission "
 "required"
 msgstr ""
 
-#: backstage/settings.php:426
+#: backstage/settings.php:386
 msgid "Max width"
 msgstr ""
 
-#: backstage/settings.php:435
+#: backstage/settings.php:395
 msgid "Max height"
 msgstr ""
 
-#: backstage/settings.php:444
+#: backstage/settings.php:404
 msgid "Max size"
 msgstr ""
 
-#: backstage/settings.php:448 settings.php:486
+#: backstage/settings.php:408 settings.php:486 themes/Sixteen/me-modals.php:62
 msgid "bytes"
 msgstr ""
 
-#: backstage/settings.php:457 backstage/settings.php:462
+#: backstage/settings.php:417 backstage/settings.php:422
 msgid "Announcements"
 msgstr ""
 
-#: backstage/settings.php:467
+#: backstage/settings.php:427
 msgid "Enable this to display the below message in the board."
 msgstr ""
 
-#: backstage/settings.php:474
+#: backstage/settings.php:434
 msgid "Announcement title"
 msgstr ""
 
-#: backstage/settings.php:474
+#: backstage/settings.php:434
 msgid "You can leave this empty if there is no title"
 msgstr ""
 
-#: backstage/settings.php:480
+#: backstage/settings.php:440
 msgid "Announcement type"
 msgstr ""
 
-#: backstage/settings.php:484 themes/Fifteen/settings.php:438
-#: themes/Fifteen/settings.php:456
+#: backstage/settings.php:444 themes/Fifteen/settings.php:401
+#: themes/Fifteen/settings.php:419 themes/Sixteen/settings.php:406
+#: themes/Sixteen/settings.php:424
 msgid "Default"
 msgstr ""
 
-#: backstage/settings.php:488 include/backstage_functions.php:69
-#: include/functions.php:1027 include/functions.php:1053
-#: include/functions.php:1061
+#: backstage/settings.php:448 include/backstage_functions.php:69
+#: include/functions.php:1026 include/functions.php:1052
+#: include/functions.php:1060
 msgid "Info"
 msgstr ""
 
-#: backstage/settings.php:492
+#: backstage/settings.php:452
 msgid "Success"
 msgstr ""
 
-#: backstage/settings.php:496
+#: backstage/settings.php:456
 msgid "Warning"
 msgstr ""
 
-#: backstage/settings.php:500
+#: backstage/settings.php:460
 msgid "Danger"
 msgstr ""
 
-#: backstage/settings.php:505
+#: backstage/settings.php:465
 msgid "Announcement message"
 msgstr ""
 
@@ -2907,7 +2783,7 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-#: backstage/tools.php:37 include/functions.php:477
+#: backstage/tools.php:37 include/functions.php:476
 msgid ""
 "Usernames must be at least 2 characters long. Please choose another (longer) "
 "username."
@@ -2919,33 +2795,33 @@ msgid ""
 "password."
 msgstr ""
 
-#: backstage/tools.php:41 include/functions.php:481
+#: backstage/tools.php:41 include/functions.php:480
 msgid "The username guest is reserved. Please choose another username."
 msgstr ""
 
-#: backstage/tools.php:43 include/functions.php:483
+#: backstage/tools.php:43 include/functions.php:482
 msgid ""
 "Usernames may not be in the form of an IP address. Please choose another "
 "username."
 msgstr ""
 
-#: backstage/tools.php:45 include/functions.php:485
+#: backstage/tools.php:45 include/functions.php:484
 msgid ""
 "Usernames may not contain all the characters ', \" and [ or ] at once. "
 "Please choose another username."
 msgstr ""
 
-#: backstage/tools.php:47 include/functions.php:487
+#: backstage/tools.php:47 include/functions.php:486
 msgid ""
 "Usernames may not contain any of the text formatting tags (BBCode) that the "
 "forum uses. Please choose another username."
 msgstr ""
 
-#: backstage/tools.php:54 include/functions.php:500
+#: backstage/tools.php:54 include/functions.php:499
 msgid "Someone is already registered with the username"
 msgstr ""
 
-#: backstage/tools.php:54 include/functions.php:500
+#: backstage/tools.php:54 include/functions.php:499
 msgid ""
 "The username you entered is too similar. The username must differ from that "
 "by at least one alphanumerical character (a-z or 0-9). Please choose a "
@@ -2970,9 +2846,11 @@ msgid ""
 msgstr ""
 
 #: backstage/tools.php:113 backstage/users.php:34 backstage/users.php:105
-#: backstage/users.php:272 backstage/users.php:410 backstage/users.php:694
-#: backstage/users.php:788 extern.php:491 include/backstage_functions.php:93
-#: themes/Fifteen/help.php:217 themes/Fifteen/users.php:11
+#: backstage/users.php:272 backstage/users.php:410 backstage/users.php:691
+#: backstage/users.php:785 extern.php:491 include/backstage_functions.php:93
+#: themes/Fifteen/help.php:225 themes/Fifteen/users.php:11
+#: themes/Sixteen/help.php:205 themes/Sixteen/users.php:8
+#: themes/Sixteen/users.php:34
 msgid "Users"
 msgstr ""
 
@@ -3094,22 +2972,23 @@ msgstr ""
 msgid "The supplied IP address is not correctly formatted."
 msgstr ""
 
-#: backstage/users.php:123 backstage/users.php:728
+#: backstage/users.php:123 backstage/users.php:725
 msgid "Title/Status"
 msgstr ""
 
-#: backstage/users.php:124 backstage/users.php:152 backstage/users.php:729
-#: backstage/users.php:746 extern.php:494 profile.php:43
-#: themes/Fifteen/search-advanced.php:43 themes/Fifteen/settings.php:541
+#: backstage/users.php:124 backstage/users.php:152 backstage/users.php:726
+#: backstage/users.php:743 extern.php:494 profile.php:43
+#: themes/Fifteen/search-advanced.php:43 themes/Fifteen/settings.php:504
+#: themes/Sixteen/search-advanced.php:34 themes/Sixteen/settings.php:509
 msgid "Comments"
 msgstr ""
 
-#: backstage/users.php:125 backstage/users.php:730 backstage/users.php:859
-#: themes/Fifteen/settings.php:548
+#: backstage/users.php:125 backstage/users.php:727 backstage/users.php:856
+#: themes/Fifteen/settings.php:511 themes/Sixteen/settings.php:516
 msgid "Admin note"
 msgstr ""
 
-#: backstage/users.php:152 backstage/users.php:746
+#: backstage/users.php:152 backstage/users.php:743
 msgid "IP stats"
 msgstr ""
 
@@ -3155,6 +3034,7 @@ msgid "Delete users"
 msgstr ""
 
 #: backstage/users.php:424 themes/Fifteen/me-delete.php:16
+#: themes/Sixteen/me-delete.php:16
 msgid ""
 "Deleted users and/or comments cannot be restored. If you choose not to "
 "delete the comments made by this user, the comments can only be deleted "
@@ -3162,6 +3042,7 @@ msgid ""
 msgstr ""
 
 #: backstage/users.php:428 themes/Fifteen/me-delete.php:20
+#: themes/Sixteen/me-delete.php:20
 msgid "Delete all comments and threads this user has made"
 msgstr ""
 
@@ -3177,159 +3058,321 @@ msgid ""
 "them to a different user group."
 msgstr ""
 
-#: backstage/users.php:554
+#: backstage/users.php:551
 msgid "Ban IP addresses"
 msgstr ""
 
-#: backstage/users.php:564
+#: backstage/users.php:561
 msgid ""
 "Also ban the IP addresses of the banned users to make registering a new "
 "account more difficult for them."
 msgstr ""
 
-#: backstage/users.php:598
+#: backstage/users.php:595
 msgid "You entered a non-numeric value into a numeric only column."
 msgstr ""
 
-#: backstage/users.php:606 backstage/users.php:615 backstage/users.php:624
-#: backstage/users.php:633 backstage/users.php:642 backstage/users.php:651
+#: backstage/users.php:603 backstage/users.php:612 backstage/users.php:621
+#: backstage/users.php:630 backstage/users.php:639 backstage/users.php:648
 msgid "You entered an invalid date/time."
 msgstr ""
 
-#: backstage/users.php:716 backstage/users.php:776
+#: backstage/users.php:713 backstage/users.php:773
 msgid "Change group"
 msgstr ""
 
-#: backstage/users.php:743 include/functions.php:889 settings.php:670
+#: backstage/users.php:740 include/functions.php:888 settings.php:671
 msgid "Banned"
 msgstr ""
 
-#: backstage/users.php:744
+#: backstage/users.php:741
 msgid "Not verified"
 msgstr ""
 
-#: backstage/users.php:797
+#: backstage/users.php:794
 msgid "The user has been deleted."
 msgstr ""
 
-#: backstage/users.php:802
+#: backstage/users.php:799
 msgid "User search"
 msgstr ""
 
-#: backstage/users.php:806
+#: backstage/users.php:803
 msgid ""
 "Enter a username to search for and/or a user group to filter by. Use the "
 "wildcard character * for partial matches."
 msgstr ""
 
-#: backstage/users.php:812
+#: backstage/users.php:809
 msgid "Email address"
 msgstr ""
 
-#: backstage/users.php:816 profile.php:41 themes/Fifteen/settings.php:78
+#: backstage/users.php:813 profile.php:41 themes/Fifteen/settings.php:77
+#: themes/Sixteen/settings.php:80
 msgid "Title"
 msgstr ""
 
-#: backstage/users.php:818 profile.php:55 themes/Fifteen/settings.php:71
+#: backstage/users.php:815 profile.php:55 themes/Fifteen/settings.php:70
+#: themes/Sixteen/settings.php:73
 msgid "Real name"
 msgstr ""
 
-#: backstage/users.php:822 include/draw_functions.php:664
-#: include/draw_functions.php:837 themes/Fifteen/settings.php:272
+#: backstage/users.php:819 include/draw_functions.php:672
+#: include/draw_functions.php:845 themes/Fifteen/settings.php:266
+#: themes/Sixteen/settings.php:278
 msgid "Website"
 msgstr ""
 
-#: backstage/users.php:824 themes/Fifteen/settings.php:289
+#: backstage/users.php:821 themes/Fifteen/settings.php:285
+#: themes/Sixteen/settings.php:295
 msgid "Facebook"
 msgstr ""
 
-#: backstage/users.php:828 themes/Fifteen/settings.php:281
+#: backstage/users.php:825 themes/Fifteen/settings.php:276
+#: themes/Sixteen/settings.php:287
 msgid "Microsoft Account"
 msgstr ""
 
-#: backstage/users.php:830 themes/Fifteen/settings.php:297
+#: backstage/users.php:827 themes/Fifteen/settings.php:294
+#: themes/Sixteen/settings.php:303
 msgid "Twitter"
 msgstr ""
 
-#: backstage/users.php:834 themes/Fifteen/settings.php:305
+#: backstage/users.php:831 themes/Fifteen/settings.php:303
+#: themes/Sixteen/settings.php:311
 msgid "Google+"
 msgstr ""
 
-#: backstage/users.php:836 profile.php:58 themes/Fifteen/settings.php:85
+#: backstage/users.php:833 profile.php:58 themes/Fifteen/settings.php:84
+#: themes/Sixteen/settings.php:87
 msgid "Location"
 msgstr ""
 
-#: backstage/users.php:840 themes/Fifteen/profile.php:45
-#: themes/Fifteen/settings.php:99
+#: backstage/users.php:837 themes/Fifteen/profile.php:45
+#: themes/Fifteen/settings.php:98 themes/Sixteen/profile.php:48
+#: themes/Sixteen/settings.php:101
 msgid "Signature"
 msgstr ""
 
-#: backstage/users.php:842
+#: backstage/users.php:839
 msgid "User group"
 msgstr ""
 
-#: backstage/users.php:845
+#: backstage/users.php:842
 msgid "All groups"
 msgstr ""
 
-#: backstage/users.php:846
+#: backstage/users.php:843
 msgid "Unverified users"
 msgstr ""
 
-#: backstage/users.php:863
+#: backstage/users.php:860
 msgid "Number of comments less than"
 msgstr ""
 
-#: backstage/users.php:865
+#: backstage/users.php:862
 msgid "Number of comments greater than"
 msgstr ""
 
-#: backstage/users.php:869
+#: backstage/users.php:866
 msgid "Last comment is before"
 msgstr ""
 
-#: backstage/users.php:871
+#: backstage/users.php:868
 msgid "Last comment is after"
 msgstr ""
 
-#: backstage/users.php:875
+#: backstage/users.php:872
 msgid "Last visit is before"
 msgstr ""
 
-#: backstage/users.php:877
+#: backstage/users.php:874
 msgid "Last visit is after"
 msgstr ""
 
-#: backstage/users.php:881
+#: backstage/users.php:878
 msgid "Registered before"
 msgstr ""
 
-#: backstage/users.php:883
+#: backstage/users.php:880
 msgid "Registered after"
 msgstr ""
 
-#: backstage/users.php:892
+#: backstage/users.php:889
 msgid "Number of comments"
 msgstr ""
 
-#: backstage/users.php:894 profile.php:52
+#: backstage/users.php:891 profile.php:52
 msgid "Last visit"
 msgstr ""
 
-#: backstage/users.php:895 profile.php:48
+#: backstage/users.php:892 profile.php:48
 msgid "Registered"
 msgstr ""
 
-#: backstage/users.php:908
+#: backstage/users.php:905
 msgid "IP search"
 msgstr ""
 
-#: backstage/users.php:916
+#: backstage/users.php:913
 msgid "Find IP address"
 msgstr ""
 
-#: backstage/users.php:919
+#: backstage/users.php:916
 msgid "The IP address to search for in the comment database."
+msgstr ""
+
+#: comment.php:14 delete.php:14 edit.php:15 extern.php:74 help.php:14
+#: index.php:14 search.php:19 thread.php:15 userlist.php:14 viewforum.php:15
+msgid "You do not have permission to view this page."
+msgstr ""
+
+#: comment.php:54
+#, php-format
+msgid ""
+"At least %s seconds have to pass between comments. Please wait %s seconds "
+"and try commenting again."
+msgstr ""
+
+#: comment.php:66 edit.php:68
+msgid ""
+"Threads must contain a subject. After applying censoring filters, your "
+"subject was empty."
+msgstr ""
+
+#: comment.php:70 edit.php:72
+msgid "Subjects cannot contain only capital letters."
+msgstr ""
+
+#: comment.php:91 login.php:104 register.php:68 settings.php:327
+#: settings.php:650
+msgid "The email address you entered is invalid."
+msgstr ""
+
+#: comment.php:97 register.php:75 settings.php:332
+msgid ""
+"The email address you entered is banned in this forum. Please choose another "
+"email address."
+msgstr ""
+
+#: comment.php:109 edit.php:80 new_inbox.php:215
+#, php-format
+msgid "Comments cannot be longer than %s bytes."
+msgstr ""
+
+#: comment.php:111 edit.php:82
+msgid "Comments cannot contain only capital letters."
+msgstr ""
+
+#: comment.php:119 edit.php:90 misc.php:77 new_inbox.php:211
+msgid "You must enter a message."
+msgstr ""
+
+#: comment.php:125 edit.php:96
+msgid ""
+"You must enter a message. After applying censoring filters, your message was "
+"empty."
+msgstr ""
+
+#: comment.php:203
+msgid ""
+"Subject: Reply to thread: \"<thread_subject>\"\n"
+"\n"
+"<replier> has replied to the thread \"<thread_subject>\" to which you are "
+"subscribed. There may be more new replies, but this is the only notification "
+"you will receive until you visit the board again.\n"
+"\n"
+"The comment is located at <comment_url>\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:216
+msgid ""
+"Subject: Reply to thread: \"<thread_subject>\"\n"
+"\n"
+"<replier> has replied to the thread \"<thread_subject>\" to which you are "
+"subscribed. There may be more new replies, but this is the only notification "
+"you will receive until you visit the board again.\n"
+"\n"
+"The comment is located at <comment_url>\n"
+"\n"
+"The message reads as follows:\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"<message>\n"
+"\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:331
+msgid ""
+"Subject: New thread in forum: \"<forum_name>\"\n"
+"\n"
+"<commenter> has commented a new thread \"<thread_subject>\" in the forum "
+"\"<forum_name>\", to which you are subscribed.\n"
+"\n"
+"The thread is located at <thread_url>\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:344
+msgid ""
+"Subject: New thread in forum: \"<forum_name>\"\n"
+"\n"
+"<commenter> has commented a new thread \"<thread_subject>\" in the forum "
+"\"<forum_name>\", to which you are subscribed.\n"
+"\n"
+"The thread is located at <thread_url>\n"
+"\n"
+"The message reads as follows:\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"<message>\n"
+"\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:414
+msgid ""
+"Subject: Alert - Banned email detected\n"
+"\n"
+"User \"<username>\" commented with banned email address: <email>\n"
+"\n"
+"Comment URL: <comment_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:455
+msgid "Add comment"
+msgstr ""
+
+#: comment.php:522 viewforum.php:53
+msgid "Create thread"
 msgstr ""
 
 #: db_update.php:138 db_update.php:146 include/class/luna_install.php:161
@@ -3365,67 +3408,33 @@ msgstr ""
 msgid "Update Luna"
 msgstr ""
 
-#: db_update.php:623 db_update.php:656
+#: db_update.php:695 db_update.php:728
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr ""
 
-#: db_update.php:623 db_update.php:708
+#: db_update.php:695 db_update.php:780 include/draw_functions.php:468
 msgid "comment"
 msgstr ""
 
-#: db_update.php:656
+#: db_update.php:728
 msgid "signature"
 msgstr ""
 
-#: db_update.php:708
+#: db_update.php:780
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
-msgstr ""
-
-#: delete.php:14 edit.php:15 extern.php:74 help.php:14 index.php:14 post.php:14
-#: search.php:19 userlist.php:14 viewforum.php:15 viewtopic.php:15
-msgid "You do not have permission to view this page."
 msgstr ""
 
 #: delete.php:123
 msgid "Delete comment"
 msgstr ""
 
-#: edit.php:56 post.php:59
+#: edit.php:56
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: edit.php:68 post.php:71
-msgid ""
-"Threads must contain a subject. After applying censoring filters, your "
-"subject was empty."
-msgstr ""
-
-#: edit.php:72 post.php:75
-msgid "Subjects cannot contain only capital letters."
-msgstr ""
-
-#: edit.php:80 new_inbox.php:215 post.php:114
-#, php-format
-msgid "Comments cannot be longer than %s bytes."
-msgstr ""
-
-#: edit.php:82 post.php:116
-msgid "Comments cannot contain only capital letters."
-msgstr ""
-
-#: edit.php:90 misc.php:77 new_inbox.php:211 post.php:124
-msgid "You must enter a message."
-msgstr ""
-
-#: edit.php:96 post.php:130
-msgid ""
-"You must enter a message. After applying censoring filters, your message was "
-"empty."
-msgstr ""
-
-#: extern.php:290 extern.php:343 include/functions.php:632
+#: extern.php:290 extern.php:343 include/functions.php:631
 msgid " / "
 msgstr ""
 
@@ -3447,7 +3456,7 @@ msgstr ""
 msgid "The most recent threads at %s."
 msgstr ""
 
-#: extern.php:458
+#: extern.php:458 themes/Sixteen/footer.php:76
 msgid "Guests online"
 msgstr ""
 
@@ -3455,17 +3464,20 @@ msgstr ""
 msgid "Users online"
 msgstr ""
 
-#: extern.php:492 themes/Fifteen/footer.php:83
+#: extern.php:492 themes/Fifteen/footer.php:83 themes/Sixteen/footer.php:58
 msgid "Newest user"
 msgstr ""
 
-#: extern.php:493 themes/Fifteen/help.php:216
-#: themes/Fifteen/search-advanced.php:42 themes/Fifteen/settings.php:35
+#: extern.php:493 themes/Fifteen/help.php:224
+#: themes/Fifteen/search-advanced.php:42 themes/Fifteen/settings.php:34
+#: themes/Sixteen/help.php:204 themes/Sixteen/search-advanced.php:33
+#: themes/Sixteen/settings.php:37
 msgid "Threads"
 msgstr ""
 
 #: footer.php:21 footer.php:46 include/general_functions.php:50
 #: themes/Fifteen/notifications.php:23 themes/Fifteen/notifications.php:36
+#: themes/Sixteen/notifications.php:28 themes/Sixteen/notifications.php:47
 msgid "No new notifications"
 msgstr ""
 
@@ -3473,8 +3485,17 @@ msgstr ""
 msgid "More"
 msgstr ""
 
+#: header.php:61
+msgid "Active"
+msgstr ""
+
+#: header.php:62
+msgid "Unanswered"
+msgstr ""
+
 #: help.php:16 include/backstage_functions.php:130
 #: include/general_functions.php:78 themes/Fifteen/help.php:11
+#: themes/Sixteen/help.php:8
 msgid "Help"
 msgstr ""
 
@@ -3509,7 +3530,8 @@ msgstr ""
 #: include/backstage_functions.php:47 include/backstage_functions.php:94
 #: include/backstage_functions.php:128 include/backstage_functions.php:179
 #: include/general_functions.php:74 include/me_functions.php:25
-#: include/me_functions.php:37 settings.php:814 themes/Fifteen/settings.php:28
+#: include/me_functions.php:37 settings.php:815 themes/Fifteen/settings.php:28
+#: themes/Sixteen/settings.php:30
 msgid "Settings"
 msgstr ""
 
@@ -3531,8 +3553,9 @@ msgstr ""
 
 #: include/backstage_functions.php:127 include/general_functions.php:70
 #: include/me_functions.php:15 include/me_functions.php:31 notifications.php:64
-#: profile.php:117 settings.php:171 settings.php:427 settings.php:814
+#: profile.php:117 settings.php:171 settings.php:427 settings.php:815
 #: themes/Fifteen/help.php:146 themes/Fifteen/settings.php:31
+#: themes/Sixteen/help.php:136 themes/Sixteen/settings.php:33
 msgid "Profile"
 msgstr ""
 
@@ -3642,51 +3665,51 @@ msgstr ""
 msgid "j M Y"
 msgstr ""
 
-#: include/class/luna_install.php:1478
+#: include/class/luna_install.php:1477
 msgid ""
 "Wow, it's great to have you here, welcome and thanks for joining us. We've "
 "set up your account and you're ready to go. Though we like to point out some "
 "actions you might want to do first."
 msgstr ""
 
-#: include/class/luna_install.php:1492
+#: include/class/luna_install.php:1491
 msgid "Announcement"
 msgstr ""
 
-#: include/class/luna_install.php:1496
+#: include/class/luna_install.php:1495
 msgid "Rules"
 msgstr ""
 
-#: include/class/luna_install.php:1567
+#: include/class/luna_install.php:1565
 msgid "Administrators"
 msgstr ""
 
-#: include/class/luna_install.php:1567 settings.php:670
+#: include/class/luna_install.php:1565 settings.php:671
 msgid "Administrator"
 msgstr ""
 
-#: include/class/luna_install.php:1569
+#: include/class/luna_install.php:1567
 msgid "Moderators"
 msgstr ""
 
-#: include/class/luna_install.php:1569 settings.php:670
+#: include/class/luna_install.php:1567 settings.php:671
 msgid "Moderator"
 msgstr ""
 
-#: include/class/luna_install.php:1573
+#: include/class/luna_install.php:1571
 msgid "Members"
 msgstr ""
 
-#: include/class/luna_install.php:1602
+#: include/class/luna_install.php:1600
 msgid "New member"
 msgstr ""
 
-#: include/class/luna_install.php:1605 include/functions.php:907
-#: settings.php:670
+#: include/class/luna_install.php:1603 include/functions.php:906
+#: settings.php:671
 msgid "Member"
 msgstr ""
 
-#: include/common.php:193
+#: include/common.php:196
 msgid ""
 "You appear to have logged in successfully, however a cookie has not been "
 "set. Please check your settings and if applicable, enable cookies for this "
@@ -3694,14 +3717,16 @@ msgid ""
 msgstr ""
 
 #: include/draw_functions.php:16 themes/Fifteen/inbox-new.php:12
+#: themes/Sixteen/inbox-new.php:15
 msgid "Comment errors"
 msgstr ""
 
 #: include/draw_functions.php:41 themes/Fifteen/inbox-new.php:30
+#: themes/Sixteen/inbox-new.php:33
 msgid "Comment preview"
 msgstr ""
 
-#: include/draw_functions.php:66
+#: include/draw_functions.php:66 themes/Fifteen/thread.php:46
 msgid "Pin thread"
 msgstr ""
 
@@ -3743,12 +3768,13 @@ msgstr ""
 msgid "Superscript"
 msgstr ""
 
-#: include/draw_functions.php:100 include/draw_functions.php:724
-#: include/draw_functions.php:749 include/draw_functions.php:860
+#: include/draw_functions.php:100 include/draw_functions.php:732
+#: include/draw_functions.php:757 include/draw_functions.php:868
 msgid "Quote"
 msgstr ""
 
 #: include/draw_functions.php:101 themes/Fifteen/help.php:38
+#: themes/Sixteen/help.php:30
 msgid "Code"
 msgstr ""
 
@@ -3833,6 +3859,7 @@ msgid "Oh yeah"
 msgstr ""
 
 #: include/draw_functions.php:137 themes/Fifteen/help.php:40
+#: themes/Sixteen/help.php:32
 msgid "Smilies"
 msgstr ""
 
@@ -3840,173 +3867,171 @@ msgstr ""
 msgid "Start typing..."
 msgstr ""
 
-#: include/draw_functions.php:179 include/draw_functions.php:1077
-#: themes/Fifteen/login.php:44
+#: include/draw_functions.php:179 include/draw_functions.php:1084
+#: themes/Fifteen/login.php:44 themes/Sixteen/login.php:44
 msgid "Submit"
 msgstr ""
 
-#: include/draw_functions.php:325
+#: include/draw_functions.php:329
 #, php-format
 msgid ""
-"There are no threads in this forum yet, but you can <a href=\"post.php?fid=%s"
-"\">start the first one</a>."
+"There are no threads in this forum yet, but you can <a href=\"comment.php?"
+"fid=%s\">start the first one</a>."
 msgstr ""
 
-#: include/draw_functions.php:400 include/functions.php:1100
+#: include/draw_functions.php:404 include/functions.php:1099
 msgid "Never"
 msgstr ""
 
-#: include/draw_functions.php:411
+#: include/draw_functions.php:415
 msgid "There are no forums in this board yet."
 msgstr ""
 
-#: include/draw_functions.php:463
-msgid "topic"
+#: include/draw_functions.php:467
+msgid "thread"
 msgstr ""
 
-#: include/draw_functions.php:464
-msgid "post"
-msgstr ""
-
-#: include/draw_functions.php:551
+#: include/draw_functions.php:555
 msgid "in"
 msgstr ""
 
-#: include/draw_functions.php:610
+#: include/draw_functions.php:618
 msgid "The board is empty, select a forum and create a thread to begin."
 msgstr ""
 
-#: include/draw_functions.php:648 include/draw_functions.php:817
+#: include/draw_functions.php:656 include/draw_functions.php:825
 msgid "From:"
 msgstr ""
 
-#: include/draw_functions.php:669 include/draw_functions.php:685
-#: include/draw_functions.php:842 include/draw_functions.php:852
+#: include/draw_functions.php:677 include/draw_functions.php:693
+#: include/draw_functions.php:850 include/draw_functions.php:860
 msgid "IP log"
 msgstr ""
 
-#: include/draw_functions.php:676 include/draw_functions.php:845
+#: include/draw_functions.php:684 include/draw_functions.php:853
 msgid "Note:"
 msgstr ""
 
-#: include/draw_functions.php:703 include/draw_functions.php:705
-#: include/draw_functions.php:737 include/draw_functions.php:739
-#: include/draw_functions.php:1062
+#: include/draw_functions.php:711 include/draw_functions.php:713
+#: include/draw_functions.php:745 include/draw_functions.php:747
+#: include/draw_functions.php:1069
 msgid "Report"
 msgstr ""
 
-#: include/draw_functions.php:715 include/draw_functions.php:744
-#: include/draw_functions.php:926
+#: include/draw_functions.php:723 include/draw_functions.php:752
+#: include/draw_functions.php:934
 msgid "Soft delete"
 msgstr ""
 
-#: include/draw_functions.php:717 include/draw_functions.php:746
+#: include/draw_functions.php:725 include/draw_functions.php:754
 msgid "Soft reset"
 msgstr ""
 
-#: include/draw_functions.php:729 include/draw_functions.php:753
-#: themes/Fifteen/unsolved.php:11
+#: include/draw_functions.php:737 include/draw_functions.php:761
+#: themes/Fifteen/unsolved.php:11 themes/Sixteen/unsolved.php:11
 msgid "Unsolved"
 msgstr ""
 
-#: include/draw_functions.php:731 include/draw_functions.php:755
-#: themes/Fifteen/answer.php:11
+#: include/draw_functions.php:739 include/draw_functions.php:763
+#: themes/Fifteen/answer.php:11 themes/Sixteen/answer.php:11
 msgid "Answer"
 msgstr ""
 
-#: include/draw_functions.php:802
+#: include/draw_functions.php:810
 msgid "Online:"
 msgstr ""
 
-#: include/draw_functions.php:802
+#: include/draw_functions.php:810
 msgid "Offline"
 msgstr ""
 
-#: include/draw_functions.php:820 profile.php:50
+#: include/draw_functions.php:828 profile.php:50
 msgid "Registered since"
 msgstr ""
 
-#: include/draw_functions.php:823
+#: include/draw_functions.php:831
 msgid "Comments:"
 msgstr ""
 
-#: include/draw_functions.php:833
+#: include/draw_functions.php:841
 msgid "PM"
 msgstr ""
 
-#: include/draw_functions.php:901 search.php:97 search.php:147 search.php:269
+#: include/draw_functions.php:909 search.php:97 search.php:147 search.php:269
 #: search.php:494
 msgid "Your search returned no hits."
 msgstr ""
 
-#: include/draw_functions.php:909 include/draw_functions.php:923
+#: include/draw_functions.php:917 include/draw_functions.php:931
 msgid ""
 "This is the first comment in the thread, the whole thread will be "
 "permanently deleted."
 msgstr ""
 
-#: include/draw_functions.php:909
+#: include/draw_functions.php:917
 msgid ""
 "The comment you have chosen to delete is set out below for you to review "
 "before proceeding."
 msgstr ""
 
-#: include/draw_functions.php:911 include/draw_functions.php:925
-#: include/draw_functions.php:939 include/draw_functions.php:1076
-#: themes/Fifteen/edit.php:13 themes/Fifteen/inbox-delete-post.php:18
-#: themes/Fifteen/post.php:14 themes/Fifteen/post.php:16
+#: include/draw_functions.php:919 include/draw_functions.php:933
+#: include/draw_functions.php:947 include/draw_functions.php:1083
+#: themes/Fifteen/comment.php:14 themes/Fifteen/comment.php:16
+#: themes/Fifteen/edit.php:13 themes/Fifteen/inbox-delete-comment.php:18
+#: themes/Sixteen/comment.php:13 themes/Sixteen/comment.php:15
+#: themes/Sixteen/edit.php:12 themes/Sixteen/inbox-delete-comment.php:18
 msgid "Cancel"
 msgstr ""
 
-#: include/draw_functions.php:923
+#: include/draw_functions.php:931
 msgid ""
 "The comment you have chosen to delete is set out below for you to review "
 "before proceeding. Deleting this comment is not permanent. If you want to "
 "delete a comment permanently, please use delete instead."
 msgstr ""
 
-#: include/draw_functions.php:937
+#: include/draw_functions.php:945
 msgid ""
 "This comment has been soft deleted. We'll enable it again with a click on "
 "the button."
 msgstr ""
 
-#: include/draw_functions.php:940
+#: include/draw_functions.php:948
 msgid "Reset comment"
 msgstr ""
 
-#: include/draw_functions.php:949
+#: include/draw_functions.php:957
 #, php-format
 msgid "Thread started by %s - %s"
 msgstr ""
 
-#: include/draw_functions.php:949
+#: include/draw_functions.php:957
 #, php-format
 msgid "Comment by %s - %s"
 msgstr ""
 
-#: include/draw_functions.php:959
+#: include/draw_functions.php:967
 msgid "You must agree to the following in order to register"
 msgstr ""
 
-#: include/draw_functions.php:967
+#: include/draw_functions.php:975
 msgid "Agree"
 msgstr ""
 
-#: include/draw_functions.php:1046
+#: include/draw_functions.php:1053
 msgid "Send"
 msgstr ""
 
-#: include/draw_functions.php:1068
+#: include/draw_functions.php:1075
 msgid "Tell us why you are reporting this"
 msgstr ""
 
-#: include/draw_functions.php:1095 include/draw_functions.php:1123
-#: themes/Fifteen/search-advanced.php:35
+#: include/draw_functions.php:1102 include/draw_functions.php:1130
+#: themes/Fifteen/search-advanced.php:35 themes/Sixteen/search-advanced.php:26
 msgid "Forum"
 msgstr ""
 
-#: include/draw_functions.php:1167
+#: include/draw_functions.php:1174
 msgid "Luna"
 msgstr ""
 
@@ -4015,72 +4040,72 @@ msgstr ""
 msgid "%s Mailer"
 msgstr ""
 
-#: include/functions.php:449
+#: include/functions.php:448
 msgid "You are banned from this forum."
 msgstr ""
 
-#: include/functions.php:449
+#: include/functions.php:448
 msgid "The ban expires at the end of"
 msgstr ""
 
-#: include/functions.php:449
+#: include/functions.php:448
 msgid ""
 "The administrator or moderator that banned you left the following message:"
 msgstr ""
 
-#: include/functions.php:449
+#: include/functions.php:448
 msgid "Please direct any inquiries to the forum administrator at"
 msgstr ""
 
-#: include/functions.php:479
+#: include/functions.php:478
 msgid ""
 "Usernames must not be more than 25 characters long. Please choose another "
 "(shorter) username."
 msgstr ""
 
-#: include/functions.php:491
+#: include/functions.php:490
 msgid ""
 "The username you entered contains one or more censored words. Please choose "
 "a different username."
 msgstr ""
 
-#: include/functions.php:506
+#: include/functions.php:505
 msgid ""
 "The username you entered is banned in this forum. Please choose another "
 "username."
 msgstr ""
 
-#: include/functions.php:630
+#: include/functions.php:629
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: include/functions.php:941 include/functions.php:956
-#: include/functions.php:991 include/functions.php:1006
+#: include/functions.php:940 include/functions.php:955
+#: include/functions.php:990 include/functions.php:1005
 msgid "…"
 msgstr ""
 
-#: include/functions.php:1033
+#: include/functions.php:1032
 msgid "We've got us a situation here."
 msgstr ""
 
-#: include/functions.php:1118
+#: include/functions.php:1115
 msgid "Today"
 msgstr ""
 
-#: include/functions.php:1120
+#: include/functions.php:1117
 msgid "Yesterday"
 msgstr ""
 
-#: include/functions.php:1137
+#: include/functions.php:1134
 msgid "."
 msgstr ""
 
-#: include/functions.php:1137
+#: include/functions.php:1134
 msgid ","
 msgstr ""
 
-#: include/functions.php:1174 include/functions.php:1194
+#: include/functions.php:1171 include/functions.php:1191
 msgid ""
 "Bad HTTP_REFERER. You were referred to this page from an unauthorized "
 "source. If the problem persists please make sure that \"Base URL\" is "
@@ -4089,29 +4114,29 @@ msgid ""
 "found in the Luna documentation."
 msgstr ""
 
-#: include/functions.php:1235
+#: include/functions.php:1232
 msgid ""
 "Bad CSRF hash. You were referred to this page from an unauthorized source."
 msgstr ""
 
-#: include/functions.php:1593
+#: include/functions.php:1590
 #, php-format
 msgid "%s "
 msgstr ""
 
-#: include/functions.php:1999
+#: include/functions.php:1996
 msgid "Debug information"
 msgstr ""
 
-#: include/functions.php:2004
+#: include/functions.php:2001
 msgid "Time (s)"
 msgstr ""
 
-#: include/functions.php:2005
+#: include/functions.php:2002
 msgid "Query"
 msgstr ""
 
-#: include/functions.php:2026
+#: include/functions.php:2023
 #, php-format
 msgid "Total query time: %s"
 msgstr ""
@@ -4119,7 +4144,10 @@ msgstr ""
 #: include/general_functions.php:28 register.php:23 register.php:243
 #: themes/Fifteen/index.php:35 themes/Fifteen/login.php:21
 #: themes/Fifteen/login.php:26 themes/Fifteen/register.php:11
-#: themes/Fifteen/register.php:19 themes/Sunrise/index.php:35
+#: themes/Fifteen/register.php:19 themes/Sixteen/index.php:35
+#: themes/Sixteen/login.php:21 themes/Sixteen/login.php:26
+#: themes/Sixteen/register.php:8 themes/Sixteen/register.php:13
+#: themes/Sunrise/index.php:35
 msgid "Register"
 msgstr ""
 
@@ -4128,11 +4156,12 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: include/inbox_functions.php:32 themes/Fifteen/inbox-view.php:22
-#: viewinbox.php:221
+#: themes/Sixteen/inbox.php:38 viewinbox.php:221
 msgid "Reply"
 msgstr ""
 
 #: include/inbox_functions.php:34 themes/Fifteen/inbox.php:33
+#: themes/Sixteen/inbox.php:40
 msgid "Compose"
 msgstr ""
 
@@ -4186,11 +4215,11 @@ msgstr ""
 msgid "No users online"
 msgstr ""
 
-#: index.php:45 themes/Fifteen/footer.php:23
+#: index.php:45 themes/Fifteen/footer.php:23 themes/Sixteen/footer.php:22
 msgid "RSS active thread feed"
 msgstr ""
 
-#: index.php:47 themes/Fifteen/footer.php:23
+#: index.php:47 themes/Fifteen/footer.php:23 themes/Sixteen/footer.php:22
 msgid "Atom active thread feed"
 msgstr ""
 
@@ -4368,12 +4397,9 @@ msgid "Wrong username and/or password."
 msgstr ""
 
 #: login.php:39 themes/Fifteen/index.php:36 themes/Fifteen/login.php:26
+#: themes/Sixteen/index.php:36 themes/Sixteen/login.php:26
 #: themes/Sunrise/index.php:36
 msgid "Forgotten password"
-msgstr ""
-
-#: login.php:104 post.php:96 register.php:68 settings.php:327 settings.php:649
-msgid "The email address you entered is invalid."
 msgstr ""
 
 #: login.php:114
@@ -4452,7 +4478,7 @@ msgid ""
 "<board_mailer> Mailer"
 msgstr ""
 
-#: misc.php:133 themes/Fifteen/mail.php:11
+#: misc.php:133 themes/Fifteen/mail.php:11 themes/Sixteen/mail.php:11
 msgid "Send email to"
 msgstr ""
 
@@ -4581,120 +4607,6 @@ msgstr ""
 msgid "Send a message"
 msgstr ""
 
-#: post.php:54
-#, php-format
-msgid ""
-"At least %s seconds have to pass between comments. Please wait %s seconds "
-"and try posting again."
-msgstr ""
-
-#: post.php:102 register.php:75 settings.php:332
-msgid ""
-"The email address you entered is banned in this forum. Please choose another "
-"email address."
-msgstr ""
-
-#: post.php:208
-msgid ""
-"Subject: Reply to thread: \"<thread_subject>\"\n"
-"\n"
-"<replier> has replied to the thread \"<thread_subject>\" to which you are "
-"subscribed. There may be more new replies, but this is the only notification "
-"you will receive until you visit the board again.\n"
-"\n"
-"The comment is located at <comment_url>\n"
-"\n"
-"You can unsubscribe by going to <unsubscribe_url>\n"
-"\n"
-"--\n"
-"<board_mailer> Mailer\n"
-"(Do not reply to this message)"
-msgstr ""
-
-#: post.php:221
-msgid ""
-"Subject: Reply to thread: \"<thread_subject>\"\n"
-"\n"
-"<replier> has replied to the thread \"<thread_subject>\" to which you are "
-"subscribed. There may be more new replies, but this is the only notification "
-"you will receive until you visit the board again.\n"
-"\n"
-"The comment is located at <comment_url>\n"
-"\n"
-"The message reads as follows:\n"
-"-----------------------------------------------------------------------\n"
-"\n"
-"<message>\n"
-"\n"
-"-----------------------------------------------------------------------\n"
-"\n"
-"You can unsubscribe by going to <unsubscribe_url>\n"
-"\n"
-"--\n"
-"<board_mailer> Mailer\n"
-"(Do not reply to this message)"
-msgstr ""
-
-#: post.php:336
-msgid ""
-"Subject: New thread in forum: \"<forum_name>\"\n"
-"\n"
-"<commenter> has commented a new thread \"<thread_subject>\" in the forum "
-"\"<forum_name>\", to which you are subscribed.\n"
-"\n"
-"The thread is located at <thread_url>\n"
-"\n"
-"You can unsubscribe by going to <unsubscribe_url>\n"
-"\n"
-"--\n"
-"<board_mailer> Mailer\n"
-"(Do not reply to this message)"
-msgstr ""
-
-#: post.php:349
-msgid ""
-"Subject: New thread in forum: \"<forum_name>\"\n"
-"\n"
-"<commenter> has commented a new thread \"<thread_subject>\" in the forum "
-"\"<forum_name>\", to which you are subscribed.\n"
-"\n"
-"The thread is located at <thread_url>\n"
-"\n"
-"The message reads as follows:\n"
-"-----------------------------------------------------------------------\n"
-"\n"
-"<message>\n"
-"\n"
-"-----------------------------------------------------------------------\n"
-"\n"
-"You can unsubscribe by going to <unsubscribe_url>\n"
-"\n"
-"--\n"
-"<board_mailer> Mailer\n"
-"(Do not reply to this message)"
-msgstr ""
-
-#: post.php:419
-msgid ""
-"Subject: Alert - Banned email detected\n"
-"\n"
-"User \"<username>\" commented with banned email address: <email>\n"
-"\n"
-"Comment URL: <comment_url>\n"
-"\n"
-"--\n"
-"<board_mailer> Mailer\n"
-"(Do not reply to this message)"
-msgstr ""
-
-#: post.php:460
-msgid "Add comment"
-msgstr ""
-
-#: post.php:527 viewforum.php:53
-msgid "Create thread"
-msgstr ""
-
 #: profile.php:64
 msgid "Show threads"
 msgstr ""
@@ -4707,7 +4619,7 @@ msgstr ""
 msgid "Show subscriptions"
 msgstr ""
 
-#: profile.php:83 settings.php:547
+#: profile.php:83 settings.php:549
 msgid "Send email"
 msgstr ""
 
@@ -4716,6 +4628,7 @@ msgid "This forum is not accepting new registrations."
 msgstr ""
 
 #: register.php:23 themes/Fifteen/help.php:21 themes/Fifteen/rules.php:9
+#: themes/Sixteen/help.php:12 themes/Sixteen/rules.php:8
 msgid "Forum rules"
 msgstr ""
 
@@ -4811,7 +4724,7 @@ msgid ""
 msgstr ""
 
 #: search.php:286
-msgid "There are no topics with new comments since your last visit."
+msgid "There are no threads with new comments since your last visit."
 msgstr ""
 
 #: search.php:294
@@ -4823,7 +4736,7 @@ msgid "There are no comments by this user in this forum."
 msgstr ""
 
 #: search.php:315
-msgid "There are no topics by this user in this forum."
+msgid "There are no threads by this user in this forum."
 msgstr ""
 
 #: search.php:329
@@ -4949,12 +4862,13 @@ msgid ""
 "forum administrator at"
 msgstr ""
 
-#: settings.php:427 settings.php:554 settings.php:559
-#: themes/Fifteen/me-modals.php:5
+#: settings.php:427 settings.php:556 settings.php:561
+#: themes/Fifteen/me-modals.php:5 themes/Sixteen/me-modals.php:5
 msgid "Change email address"
 msgstr ""
 
 #: settings.php:428 themes/Fifteen/me-modals.php:11
+#: themes/Sixteen/me-modals.php:11
 msgid "New email"
 msgstr ""
 
@@ -5005,83 +4919,95 @@ msgstr ""
 msgid "An unknown error occurred. Please try again."
 msgstr ""
 
-#: settings.php:556
+#: settings.php:558
 msgid "Unverified"
 msgstr ""
 
-#: settings.php:657
+#: settings.php:658
 msgid "The website URL you entered is invalid."
 msgstr ""
 
-#: settings.php:673
+#: settings.php:674
 msgid ""
 "The title you entered contains a forbidden word. You must choose a different "
 "title."
 msgstr ""
 
-#: settings.php:683
+#: settings.php:684
 #, php-format
 msgid ""
 "Signatures cannot be longer than %1$s characters. Please reduce your "
 "signature by %2$s characters."
 msgstr ""
 
-#: settings.php:685
+#: settings.php:686
 #, php-format
 msgid "Signatures cannot have more than %s lines."
 msgstr ""
 
-#: settings.php:796 themes/Fifteen/me-modals.php:54
+#: settings.php:797 themes/Fifteen/me-modals.php:54
+#: themes/Sixteen/me-modals.php:54
 msgid "Change avatar"
 msgstr ""
 
-#: settings.php:802
+#: settings.php:803
 msgid "Delete avatar"
 msgstr ""
 
-#: settings.php:804
+#: settings.php:805
 msgid "Upload avatar"
 msgstr ""
 
-#: settings.php:809
+#: settings.php:810
 msgid "No signature currently stored in profile."
 msgstr ""
 
-#: themes/Fifteen/answer.php:16
+#: themes/Fifteen/answer.php:16 themes/Sixteen/answer.php:16
 msgid "Are you certain that this comment is the solution to your thread?"
 msgstr ""
 
-#: themes/Fifteen/edit.php:13
+#: themes/Fifteen/comment.php:14 themes/Sixteen/comment.php:13
+#, php-format
+msgid "New thread in \"%s\""
+msgstr ""
+
+#: themes/Fifteen/comment.php:16 themes/Sixteen/comment.php:15
+#, php-format
+msgid "New comment in \"%s\""
+msgstr ""
+
+#: themes/Fifteen/edit.php:13 themes/Sixteen/edit.php:12
 #, php-format
 msgid "Edit \"%s\""
 msgstr ""
 
-#: themes/Fifteen/footer.php:26 viewforum.php:77
+#: themes/Fifteen/footer.php:26 themes/Sixteen/footer.php:25 viewforum.php:77
 msgid "RSS forum feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:26 viewforum.php:79
+#: themes/Fifteen/footer.php:26 themes/Sixteen/footer.php:25 viewforum.php:79
 msgid "Atom forum feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:29 viewtopic.php:137
+#: themes/Fifteen/footer.php:29 themes/Sixteen/footer.php:28 thread.php:137
 msgid "RSS thread feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:29 viewtopic.php:139
+#: themes/Fifteen/footer.php:29 themes/Sixteen/footer.php:28 thread.php:139
 msgid "Atom thread feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:137
+#: themes/Fifteen/footer.php:137 themes/Sixteen/footer.php:98
 #, php-format
 msgid "Powered by %s"
 msgstr ""
 
-#: themes/Fifteen/footer.php:146
+#: themes/Fifteen/footer.php:146 themes/Sixteen/footer.php:107
 msgid "We use cookies to give you the best experience on this board."
 msgstr ""
 
 #: themes/Fifteen/footer.php:149 themes/Fifteen/index.php:27
+#: themes/Sixteen/footer.php:110 themes/Sixteen/index.php:27
 #: themes/Sunrise/index.php:27
 msgid "Don't show again"
 msgstr ""
@@ -5090,19 +5016,21 @@ msgstr ""
 msgid "Back to index"
 msgstr ""
 
-#: themes/Fifteen/forum.php:23 themes/Sunrise/forum.php:23
+#: themes/Fifteen/forum.php:23 themes/Sixteen/forum.php:13
+#: themes/Sunrise/forum.php:23
 msgid "Subforums"
 msgstr ""
 
-#: themes/Fifteen/forum.php:36 themes/Sunrise/forum.php:32
+#: themes/Fifteen/forum.php:38 themes/Sunrise/forum.php:32
 msgid "Moderate forum"
 msgstr ""
 
-#: themes/Fifteen/header.php:48 themes/Sunrise/header.php:48
+#: themes/Fifteen/header.php:48 themes/Sixteen/header.php:47
+#: themes/Sunrise/header.php:48
 msgid "Search in comments"
 msgstr ""
 
-#: themes/Fifteen/help.php:33
+#: themes/Fifteen/help.php:33 themes/Sixteen/help.php:24
 msgid ""
 "BBCode is a collection of tags that are used to change the look of text in "
 "this forum. Below you can find all the available BBCodes and how to use "
@@ -5110,27 +5038,27 @@ msgid ""
 "BBCode is disabled whenever you comment a message or edit your signature."
 msgstr ""
 
-#: themes/Fifteen/help.php:35
+#: themes/Fifteen/help.php:35 themes/Sixteen/help.php:27
 msgid "Text style"
 msgstr ""
 
-#: themes/Fifteen/help.php:36
+#: themes/Fifteen/help.php:36 themes/Sixteen/help.php:28
 msgid "Multimedia"
 msgstr ""
 
-#: themes/Fifteen/help.php:37
+#: themes/Fifteen/help.php:37 themes/Sixteen/help.php:29
 msgid "Quotes"
 msgstr ""
 
-#: themes/Fifteen/help.php:39
+#: themes/Fifteen/help.php:39 themes/Sixteen/help.php:31
 msgid "Lists"
 msgstr ""
 
-#: themes/Fifteen/help.php:44
+#: themes/Fifteen/help.php:44 themes/Sixteen/help.php:36
 msgid "The following tags change the appearance of text:"
 msgstr ""
 
-#: themes/Fifteen/help.php:45
+#: themes/Fifteen/help.php:45 themes/Sixteen/help.php:37
 msgid "Bold text"
 msgstr ""
 
@@ -5142,101 +5070,110 @@ msgstr ""
 #: themes/Fifteen/help.php:58 themes/Fifteen/help.php:59
 #: themes/Fifteen/help.php:60 themes/Fifteen/help.php:61
 #: themes/Fifteen/help.php:63 themes/Fifteen/help.php:127
-#: themes/Fifteen/help.php:129
+#: themes/Fifteen/help.php:129 themes/Sixteen/help.php:37
+#: themes/Sixteen/help.php:38 themes/Sixteen/help.php:39
+#: themes/Sixteen/help.php:40 themes/Sixteen/help.php:41
+#: themes/Sixteen/help.php:42 themes/Sixteen/help.php:43
+#: themes/Sixteen/help.php:44 themes/Sixteen/help.php:45
+#: themes/Sixteen/help.php:46 themes/Sixteen/help.php:50
+#: themes/Sixteen/help.php:51 themes/Sixteen/help.php:52
+#: themes/Sixteen/help.php:53 themes/Sixteen/help.php:55
+#: themes/Sixteen/help.php:119 themes/Sixteen/help.php:121
 msgid "produces"
 msgstr ""
 
-#: themes/Fifteen/help.php:46
+#: themes/Fifteen/help.php:46 themes/Sixteen/help.php:38
 msgid "Underlined text"
 msgstr ""
 
-#: themes/Fifteen/help.php:47
+#: themes/Fifteen/help.php:47 themes/Sixteen/help.php:39
 msgid "Italic text"
 msgstr ""
 
-#: themes/Fifteen/help.php:48
+#: themes/Fifteen/help.php:48 themes/Sixteen/help.php:40
 msgid "Strike-through text"
 msgstr ""
 
-#: themes/Fifteen/help.php:49
+#: themes/Fifteen/help.php:49 themes/Sixteen/help.php:41
 msgid "Inserted text"
 msgstr ""
 
-#: themes/Fifteen/help.php:50
+#: themes/Fifteen/help.php:50 themes/Sixteen/help.php:42
 msgid "Red text"
 msgstr ""
 
-#: themes/Fifteen/help.php:51
+#: themes/Fifteen/help.php:51 themes/Sixteen/help.php:43
 msgid "Blue text"
 msgstr ""
 
-#: themes/Fifteen/help.php:52
+#: themes/Fifteen/help.php:52 themes/Sixteen/help.php:44
 msgid "Subscript text"
 msgstr ""
 
-#: themes/Fifteen/help.php:53
+#: themes/Fifteen/help.php:53 themes/Sixteen/help.php:45
 msgid "Superscript text"
 msgstr ""
 
-#: themes/Fifteen/help.php:54
+#: themes/Fifteen/help.php:54 themes/Sixteen/help.php:46
 msgid "Heading text"
 msgstr ""
 
-#: themes/Fifteen/help.php:57
+#: themes/Fifteen/help.php:57 themes/Sixteen/help.php:49
 msgid ""
 "You can create links to other locations or to email addresses using the "
 "following tags:"
 msgstr ""
 
-#: themes/Fifteen/help.php:61
+#: themes/Fifteen/help.php:61 themes/Sixteen/help.php:53
 msgid "My email address"
 msgstr ""
 
-#: themes/Fifteen/help.php:62
+#: themes/Fifteen/help.php:62 themes/Sixteen/help.php:54
 msgid ""
 "If you want to display an image you can use the img tag. The text appearing "
 "after the \"=\" sign in the opening tag is used for the alt attribute and "
 "should be included whenever possible."
 msgstr ""
 
-#: themes/Fifteen/help.php:63
+#: themes/Fifteen/help.php:63 themes/Sixteen/help.php:55
 msgid "Luna BBCode Test"
 msgstr ""
 
-#: themes/Fifteen/help.php:65
+#: themes/Fifteen/help.php:65 themes/Sixteen/help.php:57
 msgid ""
 "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode "
 "below, you can embed one of those services videos."
 msgstr ""
 
-#: themes/Fifteen/help.php:66
+#: themes/Fifteen/help.php:66 themes/Sixteen/help.php:58
 msgid "Put the link to the video here"
 msgstr ""
 
-#: themes/Fifteen/help.php:69
+#: themes/Fifteen/help.php:69 themes/Sixteen/help.php:61
 msgid "If you want to quote someone, you should use the quote tag."
 msgstr ""
 
 #: themes/Fifteen/help.php:70 themes/Fifteen/help.php:72
+#: themes/Sixteen/help.php:62 themes/Sixteen/help.php:64
 msgid "This is the text I want to quote."
 msgstr ""
 
-#: themes/Fifteen/help.php:71
+#: themes/Fifteen/help.php:71 themes/Sixteen/help.php:63
 msgid "produces a quote box like this:"
 msgstr ""
 
-#: themes/Fifteen/help.php:72
+#: themes/Fifteen/help.php:72 themes/Sixteen/help.php:64
 msgid "wrote"
 msgstr ""
 
-#: themes/Fifteen/help.php:73
+#: themes/Fifteen/help.php:73 themes/Sixteen/help.php:65
 msgid ""
 "If you don't want to quote anyone in particular, you can use the quote tag "
 "without specifying a name. If a username contains the characters [ or ] you "
 "can enclose it in quote marks."
 msgstr ""
 
-#: themes/Fifteen/help.php:76
+#: themes/Fifteen/help.php:76 themes/Sixteen/help.php:68
 msgid ""
 "When displaying source code you should make sure that you use the code tag. "
 "Text displayed with the code tag will use a monospaced font and will not be "
@@ -5244,16 +5181,18 @@ msgid ""
 msgstr ""
 
 #: themes/Fifteen/help.php:77 themes/Fifteen/help.php:79
-#: themes/Fifteen/help.php:95
+#: themes/Fifteen/help.php:95 themes/Sixteen/help.php:69
+#: themes/Sixteen/help.php:71 themes/Sixteen/help.php:87
 msgid "This is some code."
 msgstr ""
 
 #: themes/Fifteen/help.php:78 themes/Fifteen/help.php:90
-#: themes/Fifteen/help.php:95
+#: themes/Fifteen/help.php:95 themes/Sixteen/help.php:70
+#: themes/Sixteen/help.php:82 themes/Sixteen/help.php:87
 msgid "produces a code box like this:"
 msgstr ""
 
-#: themes/Fifteen/help.php:80
+#: themes/Fifteen/help.php:80 themes/Sixteen/help.php:72
 msgid ""
 "You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, "
 "Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be "
@@ -5261,7 +5200,7 @@ msgid ""
 "<code>[code]</code>."
 msgstr ""
 
-#: themes/Fifteen/help.php:98
+#: themes/Fifteen/help.php:98 themes/Sixteen/help.php:90
 msgid ""
 "To create a list you can use the list tag. You can create 2 types of lists "
 "using the list tag."
@@ -5269,72 +5208,80 @@ msgstr ""
 
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
 #: themes/Fifteen/help.php:104 themes/Fifteen/help.php:107
+#: themes/Sixteen/help.php:91 themes/Sixteen/help.php:94
+#: themes/Sixteen/help.php:96 themes/Sixteen/help.php:99
 msgid "Example list item 1."
 msgstr ""
 
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
 #: themes/Fifteen/help.php:104 themes/Fifteen/help.php:107
+#: themes/Sixteen/help.php:91 themes/Sixteen/help.php:94
+#: themes/Sixteen/help.php:96 themes/Sixteen/help.php:99
 msgid "Example list item 2."
 msgstr ""
 
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
 #: themes/Fifteen/help.php:104 themes/Fifteen/help.php:107
+#: themes/Sixteen/help.php:91 themes/Sixteen/help.php:94
+#: themes/Sixteen/help.php:96 themes/Sixteen/help.php:99
 msgid "Example list item 3."
 msgstr ""
 
-#: themes/Fifteen/help.php:100
+#: themes/Fifteen/help.php:100 themes/Sixteen/help.php:92
 msgid "produces a bulleted list."
 msgstr ""
 
-#: themes/Fifteen/help.php:105
+#: themes/Fifteen/help.php:105 themes/Sixteen/help.php:97
 msgid "produces a numbered list."
 msgstr ""
 
-#: themes/Fifteen/help.php:111
+#: themes/Fifteen/help.php:111 themes/Sixteen/help.php:103
 msgid ""
 "If enabled, the forum can convert a series of smilies to graphical "
 "representations. The following smilies you can use are:"
 msgstr ""
 
 #: themes/Fifteen/help.php:127 themes/Fifteen/help.php:129
+#: themes/Sixteen/help.php:119 themes/Sixteen/help.php:121
+#: themes/Sixteen/me-modals.php:62
 msgid "and"
 msgstr ""
 
-#: themes/Fifteen/help.php:140
+#: themes/Fifteen/help.php:140 themes/Sixteen/help.php:131
 msgid "General use"
 msgstr ""
 
-#: themes/Fifteen/help.php:143
+#: themes/Fifteen/help.php:143 themes/Sixteen/help.php:132
 msgid "Explains some of the basics on how to work with this forum software."
 msgstr ""
 
-#: themes/Fifteen/help.php:145
+#: themes/Fifteen/help.php:145 themes/Sixteen/help.php:135
 msgid "Forums and threads"
 msgstr ""
 
-#: themes/Fifteen/help.php:151
+#: themes/Fifteen/help.php:151 themes/Sixteen/help.php:141
 msgid "What do the labels in front of thread titles mean?"
 msgstr ""
 
-#: themes/Fifteen/help.php:152
+#: themes/Fifteen/help.php:152 themes/Sixteen/help.php:142
 msgid ""
 "You'll see that some of the threads are labeled, different labels have "
 "different meanings."
 msgstr ""
 
-#: themes/Fifteen/help.php:156
+#: themes/Fifteen/help.php:156 themes/Sixteen/help.php:146
 msgid "Label"
 msgstr ""
 
-#: themes/Fifteen/help.php:157
+#: themes/Fifteen/help.php:157 themes/Sixteen/help.php:147
 msgid "Explanation"
 msgstr ""
 
-#: themes/Fifteen/help.php:163
+#: themes/Fifteen/help.php:163 themes/Sixteen/help.php:153
 msgid "Threads marked with a check are solved according to the author."
 msgstr ""
 
-#: themes/Fifteen/help.php:167
+#: themes/Fifteen/help.php:167 themes/Sixteen/help.php:157
 msgid ""
 "Pinned threads are usually important to read. It's worth it to take a look "
 "there."
@@ -5342,27 +5289,38 @@ msgstr ""
 
 #: themes/Fifteen/help.php:171
 msgid ""
+"Much like pinned threads, these are important, however, they do not stay on "
+"the top of the list."
+msgstr ""
+
+#: themes/Fifteen/help.php:175 themes/Sixteen/help.php:161
+msgid ""
 "When a you see a closed label, it means you can't comment on that thread any "
 "more, unless you have a permission that overwrites this. The thread is still "
 "available to read, though."
 msgstr ""
 
-#: themes/Fifteen/help.php:175
+#: themes/Fifteen/help.php:179 themes/Sixteen/help.php:165
 msgid ""
 "This thread has been moved to another forum. Admins and moderators can "
 "choose to show this notification, or simply not show it. The original forum "
 "where this thread was located in, won't show and thread stats anymore."
 msgstr ""
 
-#: themes/Fifteen/help.php:180
+#: themes/Fifteen/help.php:183
+msgid ""
+"This thread has received a new comment since you last visited the board.."
+msgstr ""
+
+#: themes/Fifteen/help.php:188 themes/Sixteen/help.php:170
 msgid "This little dot appears when you have made a comment in this thread."
 msgstr ""
 
-#: themes/Fifteen/help.php:185
+#: themes/Fifteen/help.php:193 themes/Sixteen/help.php:175
 msgid "Smilies, signatures, avatars and images are not visible?"
 msgstr ""
 
-#: themes/Fifteen/help.php:186
+#: themes/Fifteen/help.php:194 themes/Sixteen/help.php:176
 msgid ""
 "You can change the behavior of the thread view in your profile settings. "
 "There you can enable smilies, signatures, avatars and images in comments, "
@@ -5370,36 +5328,37 @@ msgid ""
 "those features."
 msgstr ""
 
-#: themes/Fifteen/help.php:187
+#: themes/Fifteen/help.php:195 themes/Sixteen/help.php:177
 msgid "Why can't I see and threads or forums?"
 msgstr ""
 
-#: themes/Fifteen/help.php:188 themes/Fifteen/help.php:192
+#: themes/Fifteen/help.php:196 themes/Fifteen/help.php:200
+#: themes/Sixteen/help.php:178 themes/Sixteen/help.php:182
 msgid ""
 "You might not have the correct permissions to do so, ask the forum "
 "administrator for more help."
 msgstr ""
 
-#: themes/Fifteen/help.php:191
+#: themes/Fifteen/help.php:199 themes/Sixteen/help.php:181
 msgid "Why can't I see any profiles?"
 msgstr ""
 
-#: themes/Fifteen/help.php:193
+#: themes/Fifteen/help.php:201 themes/Sixteen/help.php:183
 msgid "My profile doesn't contain as much as others?"
 msgstr ""
 
-#: themes/Fifteen/help.php:194
+#: themes/Fifteen/help.php:202 themes/Sixteen/help.php:184
 msgid ""
 "You're profile will only display fields that are enabled and filled in on "
 "your profile personality page. You might want to see if you missed some "
 "fields."
 msgstr ""
 
-#: themes/Fifteen/help.php:197
+#: themes/Fifteen/help.php:205 themes/Sixteen/help.php:187
 msgid "Are there more options to search?"
 msgstr ""
 
-#: themes/Fifteen/help.php:198
+#: themes/Fifteen/help.php:206 themes/Sixteen/help.php:188
 msgid ""
 "When you go to the search page, you'll find yourself on a page with 1 search "
 "box. Below that search box there is a link to Advanced search, here you can "
@@ -5407,31 +5366,31 @@ msgid ""
 "if disabled by the forum admin."
 msgstr ""
 
-#: themes/Fifteen/help.php:199
+#: themes/Fifteen/help.php:207 themes/Sixteen/help.php:189
 msgid "Why can't search in more then 1 forum at once?"
 msgstr ""
 
-#: themes/Fifteen/help.php:200
+#: themes/Fifteen/help.php:208 themes/Sixteen/help.php:190
 msgid ""
 "You might not have the correct permissions to do so, ask the forums "
 "administrator for more help."
 msgstr ""
 
-#: themes/Fifteen/help.php:210
+#: themes/Fifteen/help.php:218 themes/Sixteen/help.php:199
 msgid "Moderating"
 msgstr ""
 
-#: themes/Fifteen/help.php:213
+#: themes/Fifteen/help.php:221 themes/Sixteen/help.php:200
 msgid ""
 "Admins and moderators need help sometimes, too! The basics of moderating are "
 "explained here."
 msgstr ""
 
-#: themes/Fifteen/help.php:221
+#: themes/Fifteen/help.php:229 themes/Sixteen/help.php:209
 msgid "How do I moderate a forum?"
 msgstr ""
 
-#: themes/Fifteen/help.php:222
+#: themes/Fifteen/help.php:230 themes/Sixteen/help.php:210
 msgid ""
 "The moderation options are available at the bottom of the page. Those "
 "features aren't available for all moderators. When you click this button, "
@@ -5439,11 +5398,11 @@ msgid ""
 "there, you can move, delete, merge, close and open multiple threads at once."
 msgstr ""
 
-#: themes/Fifteen/help.php:225
+#: themes/Fifteen/help.php:233 themes/Sixteen/help.php:213
 msgid "How do I moderate a thread?"
 msgstr ""
 
-#: themes/Fifteen/help.php:226
+#: themes/Fifteen/help.php:234 themes/Sixteen/help.php:214
 msgid ""
 "The moderation options are available at the bottom of the page. Those "
 "features aren't available for all moderators. When you click this button, "
@@ -5452,24 +5411,24 @@ msgid ""
 "thread at once."
 msgstr ""
 
-#: themes/Fifteen/help.php:227
+#: themes/Fifteen/help.php:235 themes/Sixteen/help.php:215
 msgid ""
 "Next to the \"Moderate thread\" button, you can find options to move, open "
 "or close the thread. You can also pin the thread from there, or unpin it."
 msgstr ""
 
-#: themes/Fifteen/help.php:230
+#: themes/Fifteen/help.php:238 themes/Sixteen/help.php:218
 msgid "How do I moderate an user?"
 msgstr ""
 
-#: themes/Fifteen/help.php:231
+#: themes/Fifteen/help.php:239 themes/Sixteen/help.php:219
 msgid ""
 "Moderating options are available in the users profile. You can find the "
 "moderation options under \"Administration\" in the users profile menu. Those "
 "features aren't available for all moderators."
 msgstr ""
 
-#: themes/Fifteen/help.php:232
+#: themes/Fifteen/help.php:240 themes/Sixteen/help.php:220
 msgid ""
 "The Administration page allow you to check if the user has an admin note, "
 "and you can also change that note if required. You can also change the "
@@ -5478,120 +5437,127 @@ msgid ""
 "moderator account to be able to actually use those permissions."
 msgstr ""
 
-#: themes/Fifteen/help.php:233
+#: themes/Fifteen/help.php:241 themes/Sixteen/help.php:221
 msgid ""
 "Finally, you can ban or delete a user from his profile. If you want to ban "
 "and/or delete multiple users at once, you're probably better off with the "
 "advanced user management features in the Backstage."
 msgstr ""
 
-#: themes/Fifteen/inbox-delete-post.php:16
+#: themes/Fifteen/inbox-delete-comment.php:16
 msgid "Are you sure that you want to delete the message(s) from your inbox?"
 msgstr ""
 
-#: themes/Fifteen/inbox-delete.php:12
+#: themes/Fifteen/inbox-delete.php:12 themes/Sixteen/inbox-delete.php:12
 msgid "Confirm deletion"
 msgstr ""
 
-#: themes/Fifteen/inbox-delete.php:18
+#: themes/Fifteen/inbox-delete.php:18 themes/Sixteen/inbox-delete.php:18
 msgid "Are you sure you want to delete the selected messages?"
 msgstr ""
 
-#: themes/Fifteen/inbox-new.php:46
+#: themes/Fifteen/inbox-new.php:46 themes/Sixteen/inbox-new.php:49
 msgid "Write message"
 msgstr ""
 
-#: themes/Fifteen/inbox-new.php:59
+#: themes/Fifteen/inbox-new.php:59 themes/Sixteen/inbox-new.php:62
 msgid "Send to"
 msgstr ""
 
-#: themes/Fifteen/inbox-new.php:59
+#: themes/Fifteen/inbox-new.php:59 themes/Sixteen/inbox-new.php:62
 #, php-format
 msgid "Separate names with commas, maximum %s names"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:26
+#: themes/Fifteen/inbox.php:26 themes/Sixteen/inbox.php:31
 msgid "Mark as unread"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:51
+#: themes/Fifteen/inbox.php:51 themes/Sixteen/inbox.php:52
 msgid "Messages"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:52
+#: themes/Fifteen/inbox.php:52 themes/Sixteen/inbox.php:53
 msgid "Sender"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:53
+#: themes/Fifteen/inbox.php:53 themes/Sixteen/inbox.php:54
 msgid "Receiver(s)"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:116
+#: themes/Fifteen/inbox.php:116 themes/Sixteen/inbox.php:120
 msgid "No messages"
 msgstr ""
 
-#: themes/Fifteen/index.php:12 themes/Sunrise/index.php:12
+#: themes/Fifteen/index.php:12 themes/Sixteen/index.php:12
+#: themes/Sunrise/index.php:12
 #, php-format
 msgid "Hi there, %s"
 msgstr ""
 
 #: themes/Fifteen/index.php:19 themes/Fifteen/index.php:33
+#: themes/Sixteen/index.php:19 themes/Sixteen/index.php:33
 #: themes/Sunrise/index.php:19 themes/Sunrise/index.php:33
 #, php-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: themes/Fifteen/index.php:24 themes/Sunrise/index.php:24
+#: themes/Fifteen/index.php:24 themes/Sixteen/index.php:24
+#: themes/Sunrise/index.php:24
 msgid "Extend your details"
 msgstr ""
 
-#: themes/Fifteen/index.php:25 themes/Sunrise/index.php:25
+#: themes/Fifteen/index.php:25 themes/Sixteen/index.php:25
+#: themes/Sunrise/index.php:25
 msgid "Get help"
 msgstr ""
 
-#: themes/Fifteen/index.php:26 themes/Sunrise/index.php:26
+#: themes/Fifteen/index.php:26 themes/Sixteen/index.php:26
+#: themes/Sunrise/index.php:26
 msgid "Search the board"
 msgstr ""
 
-#: themes/Fifteen/index.php:83
+#: themes/Fifteen/index.php:87
 msgid "Recent activity"
 msgstr ""
 
-#: themes/Fifteen/login.php:35
+#: themes/Fifteen/login.php:35 themes/Sixteen/login.php:35
 msgid "Request password"
 msgstr ""
 
-#: themes/Fifteen/login.php:51
+#: themes/Fifteen/login.php:51 themes/Sixteen/login.php:51
 msgid "Back"
 msgstr ""
 
-#: themes/Fifteen/me-delete.php:13
+#: themes/Fifteen/me-delete.php:13 themes/Sixteen/me-delete.php:13
 msgid "Please confirm that you want to delete the user"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:13
+#: themes/Fifteen/me-modals.php:13 themes/Sixteen/me-modals.php:13
 msgid ""
 "An email will be sent to your new address with an activation link. You must "
 "click the link in the email you receive to activate the new address."
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:28 themes/Fifteen/settings.php:55
+#: themes/Fifteen/me-modals.php:28 themes/Fifteen/settings.php:54
+#: themes/Sixteen/me-modals.php:28 themes/Sixteen/settings.php:57
 msgid "Change password"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:35
+#: themes/Fifteen/me-modals.php:35 themes/Sixteen/me-modals.php:35
 msgid "Old password"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:37
+#: themes/Fifteen/me-modals.php:37 themes/Sixteen/me-modals.php:37
 msgid "New password"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:38
+#: themes/Fifteen/me-modals.php:38 themes/Sixteen/me-modals.php:38
 msgid "Confirm new password"
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:39 themes/Fifteen/register.php:33
+#: themes/Sixteen/me-modals.php:39 themes/Sixteen/register.php:27
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
 
@@ -5602,15 +5568,15 @@ msgid ""
 "your comments. It has to be smaller than %s by %s pixels and %s bytes."
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:66
+#: themes/Fifteen/me-modals.php:66 themes/Sixteen/me-modals.php:66
 msgid "Upload"
 msgstr ""
 
-#: themes/Fifteen/notifications.php:21
+#: themes/Fifteen/notifications.php:21 themes/Sixteen/notifications.php:24
 msgid "Mark as seen"
 msgstr ""
 
-#: themes/Fifteen/notifications.php:34
+#: themes/Fifteen/notifications.php:34 themes/Sixteen/notifications.php:43
 msgid "Delete notifications"
 msgstr ""
 
@@ -5627,215 +5593,209 @@ msgstr ""
 msgid "comments since"
 msgstr ""
 
-#: themes/Fifteen/post.php:14
-#, php-format
-msgid "New thread in \"%s\""
-msgstr ""
-
-#: themes/Fifteen/post.php:16
-#, php-format
-msgid "New comment in \"%s\""
-msgstr ""
-
-#: themes/Fifteen/profile.php:22
+#: themes/Fifteen/profile.php:22 themes/Sixteen/profile.php:25
 msgid "About user"
 msgstr ""
 
-#: themes/Fifteen/profile.php:31 themes/Fifteen/settings.php:34
+#: themes/Fifteen/profile.php:31 themes/Sixteen/profile.php:34
+#: themes/Sixteen/settings.php:36
 msgid "Contact"
 msgstr ""
 
-#: themes/Fifteen/register.php:19
+#: themes/Fifteen/register.php:19 themes/Sixteen/register.php:13
 msgid "Enter the requested data"
 msgstr ""
 
-#: themes/Fifteen/register.php:24
+#: themes/Fifteen/register.php:24 themes/Sixteen/register.php:18
 msgid "If you are human please leave this field blank!"
 msgstr ""
 
-#: themes/Fifteen/register.php:26
+#: themes/Fifteen/register.php:26 themes/Sixteen/register.php:20
 msgid "Enter a username between 2 and 25 characters long"
 msgstr ""
 
-#: themes/Fifteen/register.php:47
+#: themes/Fifteen/register.php:47 themes/Sixteen/register.php:41
 msgid "Your password will be sent to this address, make sure it's valid"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:24
+#: themes/Fifteen/search-advanced.php:24 themes/Sixteen/search-advanced.php:15
 msgid "Keyword"
 msgstr ""
 
 #: themes/Fifteen/search-advanced.php:25 themes/Fifteen/search-advanced.php:33
+#: themes/Sixteen/search-advanced.php:16 themes/Sixteen/search-advanced.php:24
 msgid "Author"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:27
+#: themes/Fifteen/search-advanced.php:27 themes/Sixteen/search-advanced.php:18
 msgid "Message text and thread subject"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:28
+#: themes/Fifteen/search-advanced.php:28 themes/Sixteen/search-advanced.php:19
 msgid "Message text only"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:29
+#: themes/Fifteen/search-advanced.php:29 themes/Sixteen/search-advanced.php:20
 msgid "Thread subject only"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:32
+#: themes/Fifteen/search-advanced.php:32 themes/Sixteen/search-advanced.php:23
 msgid "Comment time"
 msgstr ""
 
-#: themes/Fifteen/settings.php:32
+#: themes/Fifteen/settings.php:32 themes/Sixteen/settings.php:34
 msgid "Personalize"
 msgstr ""
 
-#: themes/Fifteen/settings.php:36
+#: themes/Fifteen/settings.php:35 themes/Sixteen/settings.php:38
 msgid "Time"
 msgstr ""
 
-#: themes/Fifteen/settings.php:78
+#: themes/Fifteen/settings.php:77 themes/Sixteen/settings.php:80
 msgid "Leave blank to use default"
 msgstr ""
 
-#: themes/Fifteen/settings.php:92
+#: themes/Fifteen/settings.php:91 themes/Sixteen/settings.php:94
 msgid "Avatar"
 msgstr ""
 
-#: themes/Fifteen/settings.php:92
+#: themes/Fifteen/settings.php:91 themes/Sixteen/settings.php:94
 msgid "Upload an image to represent you"
 msgstr ""
 
-#: themes/Fifteen/settings.php:99
+#: themes/Fifteen/settings.php:98 themes/Sixteen/settings.php:101
 msgid "Write a small piece to attach to every comment you make"
 msgstr ""
 
-#: themes/Fifteen/settings.php:102
+#: themes/Fifteen/settings.php:101 themes/Sixteen/settings.php:104
 #, php-format
 msgid "Max length: %s characters / Max lines: %s"
 msgstr ""
 
-#: themes/Fifteen/settings.php:106
+#: themes/Fifteen/settings.php:105 themes/Sixteen/settings.php:108
 msgid "Signature preview"
 msgstr ""
 
-#: themes/Fifteen/settings.php:135
+#: themes/Fifteen/settings.php:134 themes/Sixteen/settings.php:138
 msgid "Enforce the accent on the board."
 msgstr ""
 
-#: themes/Fifteen/settings.php:142
+#: themes/Fifteen/settings.php:141 themes/Sixteen/settings.php:146
 msgid "Night mode"
 msgstr ""
 
-#: themes/Fifteen/settings.php:147
+#: themes/Fifteen/settings.php:146 themes/Sixteen/settings.php:151
 msgid "Never use night mode."
 msgstr ""
 
-#: themes/Fifteen/settings.php:153
+#: themes/Fifteen/settings.php:152 themes/Sixteen/settings.php:157
 msgid "Always use night mode."
 msgstr ""
 
-#: themes/Fifteen/settings.php:159
+#: themes/Fifteen/settings.php:158 themes/Sixteen/settings.php:163
 msgid "Enable night mode automatically."
 msgstr ""
 
-#: themes/Fifteen/settings.php:166
+#: themes/Fifteen/settings.php:165 themes/Sixteen/settings.php:171
 msgid "Backstage accent"
 msgstr ""
 
-#: themes/Fifteen/settings.php:191
+#: themes/Fifteen/settings.php:190 themes/Sixteen/settings.php:197
 msgid "Language"
 msgstr ""
 
-#: themes/Fifteen/settings.php:225
+#: themes/Fifteen/settings.php:224 themes/Sixteen/settings.php:231
 msgid "Email settings"
 msgstr ""
 
-#: themes/Fifteen/settings.php:230
+#: themes/Fifteen/settings.php:229 themes/Sixteen/settings.php:236
 msgid "Display your email address."
 msgstr ""
 
-#: themes/Fifteen/settings.php:236
+#: themes/Fifteen/settings.php:235 themes/Sixteen/settings.php:242
 msgid "Hide your email address but allow form email."
 msgstr ""
 
-#: themes/Fifteen/settings.php:242
+#: themes/Fifteen/settings.php:241 themes/Sixteen/settings.php:248
 msgid "Hide your email address and disallow form email."
 msgstr ""
 
-#: themes/Fifteen/settings.php:254
+#: themes/Fifteen/settings.php:253 themes/Sixteen/settings.php:260
 msgid ""
 "Include a plain text version of new comments in subscription notification "
 "emails."
 msgstr ""
 
-#: themes/Fifteen/settings.php:260
+#: themes/Fifteen/settings.php:259 themes/Sixteen/settings.php:266
 msgid "Automatically subscribe to every thread you comment in."
 msgstr ""
 
-#: themes/Fifteen/settings.php:316
+#: themes/Fifteen/settings.php:317 themes/Sixteen/settings.php:322
 msgid "Comment display"
 msgstr ""
 
-#: themes/Fifteen/settings.php:322
+#: themes/Fifteen/settings.php:323 themes/Sixteen/settings.php:328
 msgid "Show smilies as graphic icons."
 msgstr ""
 
-#: themes/Fifteen/settings.php:329
+#: themes/Fifteen/settings.php:330 themes/Sixteen/settings.php:335
 msgid "Show user signatures."
 msgstr ""
 
-#: themes/Fifteen/settings.php:336
+#: themes/Fifteen/settings.php:337 themes/Sixteen/settings.php:342
 msgid "Show user avatars in comments."
 msgstr ""
 
-#: themes/Fifteen/settings.php:343
+#: themes/Fifteen/settings.php:344 themes/Sixteen/settings.php:349
 msgid "Show images in comments."
 msgstr ""
 
-#: themes/Fifteen/settings.php:350
+#: themes/Fifteen/settings.php:351 themes/Sixteen/settings.php:356
 msgid "Show images in user signatures."
 msgstr ""
 
-#: themes/Fifteen/settings.php:375
+#: themes/Fifteen/settings.php:376 themes/Sixteen/settings.php:381
 msgid "Time zone"
 msgstr ""
 
-#: themes/Fifteen/settings.php:470 themes/Fifteen/settings.php:504
+#: themes/Fifteen/settings.php:433 themes/Fifteen/settings.php:467
+#: themes/Sixteen/settings.php:438 themes/Sixteen/settings.php:472
 msgid "Delete or ban user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:472 themes/Fifteen/settings.php:507
+#: themes/Fifteen/settings.php:435 themes/Fifteen/settings.php:470
+#: themes/Sixteen/settings.php:440 themes/Sixteen/settings.php:475
 msgid "Ban user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:478
+#: themes/Fifteen/settings.php:441 themes/Sixteen/settings.php:446
 msgid "Choose user group"
 msgstr ""
 
-#: themes/Fifteen/settings.php:506
+#: themes/Fifteen/settings.php:469 themes/Sixteen/settings.php:474
 msgid "Delete user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:513
+#: themes/Fifteen/settings.php:476 themes/Sixteen/settings.php:481
 msgid "Set moderator access"
 msgstr ""
 
-#: themes/Fifteen/settings.php:513
+#: themes/Fifteen/settings.php:476 themes/Sixteen/settings.php:481
 msgid "Update forums"
 msgstr ""
 
-#: themes/Fifteen/settings.php:515
+#: themes/Fifteen/settings.php:478 themes/Sixteen/settings.php:483
 msgid ""
 "Choose which forums this user should be allowed to moderate. Note: This only "
 "applies to moderators. Administrators always have full permissions in all "
 "forums."
 msgstr ""
 
-#: themes/Fifteen/thread.php:23 viewforum.php:86 viewtopic.php:147
+#: themes/Fifteen/thread.php:23 thread.php:147 viewforum.php:86
 msgid "Unsubscribe"
 msgstr ""
 
-#: themes/Fifteen/thread.php:25 viewforum.php:88 viewtopic.php:149
+#: themes/Fifteen/thread.php:25 thread.php:149 viewforum.php:88
 msgid "Subscribe"
 msgstr ""
 
@@ -5843,40 +5803,62 @@ msgstr ""
 msgid "Moderate thread"
 msgstr ""
 
-#: themes/Fifteen/thread.php:34
-msgid "Show all posts"
+#: themes/Fifteen/thread.php:34 themes/Sixteen/thread.php:49
+msgid "Show all comments"
 msgstr ""
 
 #: themes/Fifteen/thread.php:38
-msgid "Open topic"
+msgid "Open thread"
 msgstr ""
 
 #: themes/Fifteen/thread.php:40
-msgid "Close topic"
+msgid "Close thread"
 msgstr ""
 
 #: themes/Fifteen/thread.php:44
-msgid "Unpin topic"
+msgid "Unpin thread"
 msgstr ""
 
-#: themes/Fifteen/thread.php:46
-msgid "Pin topic"
+#: themes/Fifteen/thread.php:50
+msgid "Unimportant thread"
 msgstr ""
 
-#: themes/Fifteen/unsolved.php:16
+#: themes/Fifteen/thread.php:52
+msgid "Important thread"
+msgstr ""
+
+#: themes/Fifteen/unsolved.php:16 themes/Sixteen/unsolved.php:16
 msgid "Are you certain that this comment isn't the solution to your thread?"
 msgstr ""
 
-#: themes/Fifteen/users.php:16
+#: themes/Fifteen/users.php:16 themes/Sixteen/users.php:14
 msgid "Sort by username"
 msgstr ""
 
-#: themes/Fifteen/users.php:17
+#: themes/Fifteen/users.php:17 themes/Sixteen/users.php:15
 msgid "Sort by registration date"
 msgstr ""
 
-#: themes/Fifteen/users.php:18
+#: themes/Fifteen/users.php:18 themes/Sixteen/users.php:16
 msgid "Sort by number of comments"
+msgstr ""
+
+#: themes/Sixteen/inbox-delete-comment.php:16
+msgid "Are you sure that you want to delete the message(s) from your inbox??"
+msgstr ""
+
+#: themes/Sixteen/me-modals.php:62
+msgid ""
+"An avatar is a small image that will be displayed under your username in "
+"your comments. It must not be any bigger than"
+msgstr ""
+
+#: themes/Sixteen/thread.php:61
+msgid "Unpin"
+msgstr ""
+
+#: themes/Sixteen/thread.php:63
+msgid "Pin"
 msgstr ""
 
 #: userlist.php:53
