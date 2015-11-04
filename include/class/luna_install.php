@@ -1104,11 +1104,6 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				// 'salt'			=> array(
-				// 	'datatype'		=> 'VARCHAR(10)',
-				// 	'allow_null'	=> false,
-				// 	'default'		=> NULL,
-				// ),
 				'email'				=> array(
 					'datatype'		=> 'VARCHAR(80)',
 					'allow_null'	=> false,
@@ -1198,10 +1193,10 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'php_timezone'			=> array(
+				'php_timezone'		=> array(
 					'datatype'		=> 'VARCHAR(100)',
 					'allow_null'	=> false,
-					'default'		=> 'UTC'
+					'default'		=> '\'UTC\''
 				),
 				'time_format'		=> array(
 					'datatype'		=> 'TINYINT(1)',

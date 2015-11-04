@@ -670,7 +670,7 @@ switch ($stage) {
 		
 		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, 'UTC') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, '\'UTC\'') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
 		build_config(0, 'o_default_timezone');
 		build_config(1, 'o_timezone', 'UTC');
 
