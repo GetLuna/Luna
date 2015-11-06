@@ -104,6 +104,9 @@ define('FORUM_MEMBER', 4);
 // Load DB abstraction layer and try to connect
 require FORUM_ROOT.'include/dblayer/common_db.php';
 
+// Start transaction
+$db->start_transaction();
+
 // Check what the default character set is - since 1.2 didn't specify any we will use whatever the default was (usually latin1)
 $old_connection_charset = defined('FORUM_DEFAULT_CHARSET') ? FORUM_DEFAULT_CHARSET : $db->get_names();
 
@@ -182,10 +185,10 @@ if (empty($stage)) {
 	} else {
 		draw_wall_error(__('There is an update ready to be installed', 'luna'), '<form id="install" method="post" action="db_update.php"><input type="hidden" name="stage" value="start" /><input class="btn btn-default btn-lg" type="submit" name="start" value="'. __('Start update', 'luna').'" /></form>', __('Update Luna', 'luna'));
 	}
+
 	$db->end_transaction();
 	$db->close();
 	exit;
-
 }
 
 switch ($stage) {
