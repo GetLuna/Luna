@@ -525,13 +525,15 @@ To change your email address, please visit the following page:
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('settings.php');
+	
+	check_csrf($_GET['csrf_token']);
 
 	delete_avatar($id);
 
 	redirect('settings.php?id='.$id);
 } else {
 	
-	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_pm, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_pm, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.style, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
@@ -598,8 +600,7 @@ To change your email address, please visit the following page:
 			'enforce_accent'	=> isset($_POST['form']['enforce_accent']) ? '1' : '0',
 			'adapt_time'		=> intval($_POST['form']['adapt_time']),
 			'accent'			=> luna_trim($_POST['form']['accent']),
-			'timezone'			=> floatval($_POST['form']['timezone']),
-			'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
+			'php_timezone'		=> luna_trim($_POST['form']['php_timezone']),
 			'time_format'		=> intval($_POST['form']['time_format']),
 			'date_format'		=> intval($_POST['form']['date_format']),
 			'disp_threads'		=> luna_trim($_POST['form']['disp_threads']),
@@ -799,7 +800,7 @@ To change your email address, please visit the following page:
 	$avatar_user_card = draw_user_avatar($id);
 	$avatar_set = check_avatar($id);
 	if ($avatar_user && $avatar_set)
-		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'">'.__('Delete avatar', 'luna').'</a>';
+		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'&amp;csrf_token='.luna_csrf_token().'">'.__('Delete avatar', 'luna').'</a>';
 	else
 		$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Upload avatar', 'luna').'</a>';
 	

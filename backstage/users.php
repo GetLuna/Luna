@@ -480,9 +480,6 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			if ($ban_expire == -1 || !$ban_expire)
 				message_backstage(__('You entered an invalid expire date.', 'luna').' '.__('The format should be YYYY-MM-DD and the date must be at least one day in the future.', 'luna'));
 
-			$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
-			$ban_expire -= $diff;
-
 			if ($ban_expire <= time())
 				message_backstage(__('You entered an invalid expire date.', 'luna').' '.__('The format should be YYYY-MM-DD and the date must be at least one day in the future.', 'luna'));
 		} else

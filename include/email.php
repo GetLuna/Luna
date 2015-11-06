@@ -240,7 +240,7 @@ function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name
 	$from = '"'.encode_mail_text($from_name).'" <'.$from_email.'>';
 	$subject = encode_mail_text($subject);
 
-	$headers = 'From: '.$from.LUNA_EOL.'Date: '.gmdate('r').LUNA_EOL.'MIME-Version: 1.0'.LUNA_EOL.'Content-transfer-encoding: 8bit'.LUNA_EOL.'Content-type: text/plain; charset=utf-8'.LUNA_EOL.'X-Mailer: Luna Mailer';
+	$headers = 'From: '.$from.LUNA_EOL.'Date: '.date('r').LUNA_EOL.'MIME-Version: 1.0'.LUNA_EOL.'Content-transfer-encoding: 8bit'.LUNA_EOL.'Content-type: text/plain; charset=utf-8'.LUNA_EOL.'X-Mailer: Luna Mailer';
 
 	// If we specified a reply-to email, we deal with it here
 	if (!empty($reply_to_email)) {

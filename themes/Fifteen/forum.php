@@ -26,16 +26,19 @@ if (!defined('FORUM'))
 				</div>
 				<hr />
 			<?php endif; ?>
-			<div class="list-group list-group-forum">
-				<?php draw_forum_list('forum.php', 1, 'category.php', '') ?>
+			<div class="forum-list hidden-xs">
+				<div class="list-group list-group-forum">
+					<?php draw_forum_list('forum.php', 1, 'category.php', '') ?>
+				</div>
+				<hr />
 			</div>
-			<hr />
 			<div class="list-group list-group-forum">
 				<?php draw_mark_read('list-group-item', 'forumview') ?>
 				<?php if ($id != '0' && $is_admmod) { ?>
 					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate forum', 'luna') ?></a>
 				<?php } ?>
 			</div>
+			<div class="visible-xs-block"><hr /></div>
 		</div>
 		<div class="col-sm-9">
 			<div class="list-group list-group-thread">

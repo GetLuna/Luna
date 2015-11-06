@@ -47,10 +47,10 @@ class Installer {
 		}
 
 		if (function_exists('sqlite_open'))
-			$db_extensions[] = array('sqlite', 'SQLite');
+			$db_extensions[] = array('sqlite', 'SQLite 2');
 
 		if (class_exists('SQLite3'))
-			$db_extensions[] = array('sqlite3', 'SQLite3');
+			$db_extensions[] = array('sqlite3', 'SQLite 3');
 
 		if (function_exists('pg_connect'))
 			$db_extensions[] = array('pgsql', 'PostgreSQL');
@@ -149,6 +149,7 @@ class Installer {
 	}
 	
 	private static function validate_database_version($db_type, $db) {
+		global $db_prefix;
 		
 		// Do some DB type specific checks
 		switch ($db_type) {
@@ -1046,6 +1047,11 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
+				'important'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '0'
+				),
 				'moved_to'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> true
@@ -1099,11 +1105,6 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
-				// 'salt'			=> array(
-				// 	'datatype'		=> 'VARCHAR(10)',
-				// 	'allow_null'	=> false,
-				// 	'default'		=> NULL,
-				// ),
 				'email'				=> array(
 					'datatype'		=> 'VARCHAR(80)',
 					'allow_null'	=> false,
@@ -1193,15 +1194,10 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'timezone'			=> array(
-					'datatype'		=> 'FLOAT',
+				'php_timezone'		=> array(
+					'datatype'		=> 'VARCHAR(100)',
 					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'dst'				=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
+					'default'		=> '\'UTC\''
 				),
 				'time_format'		=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1433,7 +1429,7 @@ class Installer {
 			'o_board_title'				=> $title,
 			'o_board_desc'				=> $description,
 			'o_board_tags'				=> NULL,
-			'o_default_timezone'		=> 0,
+			'o_timezone'				=> 'UTC',
 			'o_time_format'				=> __('H:i', 'luna'),
 			'o_date_format'				=> __('j M Y', 'luna'),
 			'o_timeout_visit'			=> 1800,
@@ -1495,7 +1491,6 @@ class Installer {
 			'o_rules_message'			=> __('Rules', 'luna'),
 			'o_maintenance'				=> 0,
 			'o_maintenance_message'		=> __('The forums are temporarily down for maintenance. Please try again in a few minutes.', 'luna'),
-			'o_default_dst'				=> 0,
 			'o_feed_type'				=> 2,
 			'o_feed_ttl'				=> 0,
 			'o_cookie_bar'				=> 0,

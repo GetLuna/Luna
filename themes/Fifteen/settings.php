@@ -4,7 +4,7 @@
 if (!defined('FORUM'))
 	exit;
 
-$sections = array( 'profile', 'personalize', 'email', 'contact', 'threads', 'time', 'admin' );
+$sections = array( 'profile', 'personalize', 'message', 'threads', 'time', 'admin' );
 if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 	$section = luna_htmlspecialchars( $_GET['section'] );
 } else {
@@ -30,8 +30,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 		<ul id="profilenav" class="nav nav-tabs" role="tablist">
 			<li role="presentation"<?php if ( 'profile' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=profile#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="fa fa-fw fa-user"></span><span class="hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
 			<li role="presentation"<?php if ( 'personalize' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=personalize#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Personalize', 'luna') ?></span></a></li>
-			<li role="presentation"<?php if ( 'email' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=email#email" aria-controls="email" role="tab" data-toggle="tab"><span class="fa fa-fw fa-envelope-o"></span><span class="hidden-xs"> <?php _e('Message', 'luna') ?></span></a></li>
-			<li role="presentation"<?php if ( 'contact' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=contact#contact" aria-controls="contact" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
+			<li role="presentation"<?php if ( 'message' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=message#message" aria-controls="message" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Message', 'luna') ?></span></a></li>
 			<li role="presentation"<?php if ( 'threads' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=threads#threads" aria-controls="threads" role="tab" data-toggle="tab"><span class="fa fa-fw fa-list"></span><span class="hidden-xs"> <?php _e('Threads', 'luna') ?></span></a></li>
 			<li role="presentation"<?php if ( 'time' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=time#time" aria-controls="time" role="tab" data-toggle="tab"><span class="fa fa-fw fa-clock-o"></span><span class="hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
 			<?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
@@ -205,7 +204,7 @@ if (count($languages) > 1) {
 <?php } ?>
 				</fieldset>
 			</div>
-			<div role="tabpanel" class="tab-pane<?php if ( 'email' === $section ) { ?> active<?php } ?>" id="email">
+			<div role="tabpanel" class="tab-pane<?php if ( 'message' === $section ) { ?> active<?php } ?>" id="message">
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_config['o_pms_enabled'] == 1) { ?>
 					<div class="form-group">
@@ -262,47 +261,49 @@ if (count($languages) > 1) {
 							</div>
 						</div>
 					</div>
-				</fieldset>
-			</div>
-			<div role="tabpanel" class="tab-pane<?php if ( 'contact' === $section ) { ?> active<?php } ?>" id="contact">
-				<fieldset class="form-horizontal form-setting">
+					<hr />
 					<div class="form-group">
-						<div class="col-sm-12">
+						<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
+						<div class="col-sm-9">
 							<div class="input-group input">
-								<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span> <?php _e('Website', 'luna') ?></span>
+								<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span>
 								<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
 							</div>
 						</div>
 					</div>
 					<hr />
 					<div class="form-group">
-						<div class="col-sm-12">
+						<label class="col-sm-3 control-label"><?php _e('Microsoft Account', 'luna') ?></label>
+						<div class="col-sm-9">
 							<div class="input-group input">
-								<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span> <?php _e('Microsoft Account', 'luna') ?></span>
+								<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span>
 								<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-12">
+						<label class="col-sm-3 control-label"><?php _e('Facebook', 'luna') ?></label>
+						<div class="col-sm-9">
 							<div class="input-group">
-								<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span> <?php _e('Facebook', 'luna') ?></span>
+								<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></span>
 								<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-12">
+						<label class="col-sm-3 control-label"><?php _e('Twitter', 'luna') ?></label>
+						<div class="col-sm-9">
 							<div class="input-group">
-								<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span> <?php _e('Twitter', 'luna') ?></span>
+								<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></span>
 								<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-12">
+						<label class="col-sm-3 control-label"><?php _e('Google+', 'luna') ?></label>
+						<div class="col-sm-9">
 							<div class="input-group">
-								<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span> <?php _e('Google+', 'luna') ?></span>
+								<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span>
 								<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
 							</div>
 						</div>
@@ -374,54 +375,16 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Time zone', 'luna') ?></label>
 						<div class="col-sm-9">
-							<select class="form-control" name="form[timezone]">
-								<option value="-12"<?php if ($user['timezone'] == -12) echo ' selected' ?>><?php _e('(UTC-12:00) International Date Line West', 'luna') ?></option>
-								<option value="-11"<?php if ($user['timezone'] == -11) echo ' selected' ?>><?php _e('(UTC-11:00) Niue, Samoa', 'luna') ?></option>
-								<option value="-10"<?php if ($user['timezone'] == -10) echo ' selected' ?>><?php _e('(UTC-10:00) Hawaii-Aleutian, Cook Island', 'luna') ?></option>
-								<option value="-9.5"<?php if ($user['timezone'] == -9.5) echo ' selected' ?>><?php _e('(UTC-09:30) Marquesas Islands', 'luna') ?></option>
-								<option value="-9"<?php if ($user['timezone'] == -9) echo ' selected' ?>><?php _e('(UTC-09:00) Alaska, Gambier Island', 'luna') ?></option>
-								<option value="-8.5"<?php if ($user['timezone'] == -8.5) echo ' selected' ?>><?php _e('(UTC-08:30) Pitcairn Islands', 'luna') ?></option>
-								<option value="-8"<?php if ($user['timezone'] == -8) echo ' selected' ?>><?php _e('(UTC-08:00) Pacific', 'luna') ?></option>
-								<option value="-7"<?php if ($user['timezone'] == -7) echo ' selected' ?>><?php _e('(UTC-07:00) Mountain', 'luna') ?></option>
-								<option value="-6"<?php if ($user['timezone'] == -6) echo ' selected' ?>><?php _e('(UTC-06:00) Central', 'luna') ?></option>
-								<option value="-5"<?php if ($user['timezone'] == -5) echo ' selected' ?>><?php _e('(UTC-05:00) Eastern', 'luna') ?></option>
-								<option value="-4"<?php if ($user['timezone'] == -4) echo ' selected' ?>><?php _e('(UTC-04:00) Atlantic', 'luna') ?></option>
-								<option value="-3.5"<?php if ($user['timezone'] == -3.5) echo ' selected' ?>><?php _e('(UTC-03:30) Newfoundland', 'luna') ?></option>
-								<option value="-3"<?php if ($user['timezone'] == -3) echo ' selected' ?>><?php _e('(UTC-03:00) Amazon, Central Greenland', 'luna') ?></option>
-								<option value="-2"<?php if ($user['timezone'] == -2) echo ' selected' ?>><?php _e('(UTC-02:00) Mid-Atlantic', 'luna') ?></option>
-								<option value="-1"<?php if ($user['timezone'] == -1) echo ' selected' ?>><?php _e('(UTC-01:00) Azores, Cape Verde, Eastern Greenland', 'luna') ?></option>
-								<option value="0"<?php if ($user['timezone'] == 0) echo ' selected' ?>><?php _e('(UTC) Western European, Greenwich', 'luna') ?></option>
-								<option value="1"<?php if ($user['timezone'] == 1) echo ' selected' ?>><?php _e('(UTC+01:00) Central European, West African', 'luna') ?></option>
-								<option value="2"<?php if ($user['timezone'] == 2) echo ' selected' ?>><?php _e('(UTC+02:00) Eastern European, Central African', 'luna') ?></option>
-								<option value="3"<?php if ($user['timezone'] == 3) echo ' selected' ?>><?php _e('(UTC+03:00) Eastern African', 'luna') ?></option>
-								<option value="3.5"<?php if ($user['timezone'] == 3.5) echo ' selected' ?>><?php _e('(UTC+03:30) Iran', 'luna') ?></option>
-								<option value="4"<?php if ($user['timezone'] == 4) echo ' selected' ?>><?php _e('(UTC+04:00) Moscow, Gulf, Samara', 'luna') ?></option>
-								<option value="4.5"<?php if ($user['timezone'] == 4.5) echo ' selected' ?>><?php _e('(UTC+04:30) Afghanistan', 'luna') ?></option>
-								<option value="5"<?php if ($user['timezone'] == 5) echo ' selected' ?>><?php _e('(UTC+05:00) Pakistan', 'luna') ?></option>
-								<option value="5.5"<?php if ($user['timezone'] == 5.5) echo ' selected' ?>><?php _e('(UTC+05:30) India, Sri Lanka', 'luna') ?></option>
-								<option value="5.75"<?php if ($user['timezone'] == 5.75) echo ' selected' ?>><?php _e('(UTC+05:45) Nepal', 'luna') ?></option>
-								<option value="6"<?php if ($user['timezone'] == 6) echo ' selected' ?>><?php _e('(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg', 'luna') ?></option>
-								<option value="6.5"<?php if ($user['timezone'] == 6.5) echo ' selected' ?>><?php _e('(UTC+06:30) Cocos Islands, Myanmar', 'luna') ?></option>
-								<option value="7"<?php if ($user['timezone'] == 7) echo ' selected' ?>><?php _e('(UTC+07:00) Indochina, Novosibirsk', 'luna') ?></option>
-								<option value="8"<?php if ($user['timezone'] == 8) echo ' selected' ?>><?php _e('(UTC+08:00) Greater China, Australian Western, Krasnoyarsk', 'luna') ?></option>
-								<option value="8.75"<?php if ($user['timezone'] == 8.75) echo ' selected' ?>><?php _e('(UTC+08:45) Southeastern Western Australia', 'luna') ?></option>
-								<option value="9"<?php if ($user['timezone'] == 9) echo ' selected' ?>><?php _e('(UTC+09:00) Japan, Korea, Chita, Irkutsk', 'luna') ?></option>
-								<option value="9.5"<?php if ($user['timezone'] == 9.5) echo ' selected' ?>><?php _e('(UTC+09:30) Australian Central', 'luna') ?></option>
-								<option value="10"<?php if ($user['timezone'] == 10) echo ' selected' ?>><?php _e('(UTC+10:00) Australian Eastern', 'luna') ?></option>
-								<option value="10.5"<?php if ($user['timezone'] == 10.5) echo ' selected' ?>><?php _e('(UTC+10:30) Lord Howe', 'luna') ?></option>
-								<option value="11"<?php if ($user['timezone'] == 11) echo ' selected' ?>><?php _e('(UTC+11:00) Solomon Island, Vladivostok', 'luna') ?></option>
-								<option value="11.5"<?php if ($user['timezone'] == 11.5) echo ' selected' ?>><?php _e('(UTC+11:30) Norfolk Island', 'luna') ?></option>
-								<option value="12"<?php if ($user['timezone'] == 12) echo ' selected' ?>><?php _e('(UTC+12:00) New Zealand, Fiji, Magadan', 'luna') ?></option>
-								<option value="12.75"<?php if ($user['timezone'] == 12.75) echo ' selected' ?>><?php _e('(UTC+12:45) Chatham Islands', 'luna') ?></option>
-								<option value="13"<?php if ($user['timezone'] == 13) echo ' selected' ?>><?php _e('(UTC+13:00) Tonga, Phoenix Islands, Kamchatka', 'luna') ?></option>
-								<option value="14"<?php if ($user['timezone'] == 14) echo ' selected' ?>><?php _e('(UTC+14:00) Line Islands', 'luna') ?></option>
+							<select class="form-control" name="form[php_timezone]">
+<?php
+$timezones = DateTimeZone::listIdentifiers();
+foreach ($timezones as $timezone) {
+?>
+								<option value="<?php echo $timezone ?>"<?php if ($user['php_timezone'] == $timezone) echo ' selected' ?>><?php echo $timezone ?></option>
+<?php
+}
+?>
 							</select>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked' ?> />
-									<?php _e('Advance time by 1 hour for daylight saving.', 'luna') ?>
-								</label>
-							</div>
 						</div>
 					</div>
 					<div class="form-group">

@@ -74,8 +74,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		else
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
-		$ban_expire = ($ban_expire != '') ? gmdate('Y-m-d', $ban_expire + $diff) : '';
+		$ban_expire = ($ban_expire != '') ? date('Y-m-d', $ban_expire) : '';
 
 		$mode = 'edit';
 	}
@@ -225,9 +224,6 @@ elseif (isset($_POST['add_edit_ban'])) {
 
 		if ($ban_expire == -1 || !$ban_expire)
 			message_backstage(__('You entered an invalid expire date.', 'luna').' '.__('The format should be YYYY-MM-DD and the date must be at least one day in the future.', 'luna'));
-
-		$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
-		$ban_expire -= $diff;
 
 		if ($ban_expire <= time())
 			message_backstage(__('You entered an invalid expire date.', 'luna').' '.__('The format should be YYYY-MM-DD and the date must be at least one day in the future.', 'luna'));

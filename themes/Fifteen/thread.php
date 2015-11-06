@@ -45,6 +45,12 @@ if (!defined('FORUM'))
 			<?php } else { ?>
 				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin thread', 'luna') ?></a>
 			<?php } ?>
+			
+			<?php if ($cur_thread['important'] == '1') { ?>
+				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unimportant=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-map-marker"></span> <?php _e('Unimportant thread', 'luna') ?></a>
+			<?php } else { ?>
+				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&important=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-map-marker"></span> <?php _e('Important thread', 'luna') ?></a>
+			<?php } ?>
 		</div>
 		<?php endif; ?>
 	</div>

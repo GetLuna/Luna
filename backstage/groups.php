@@ -505,21 +505,17 @@ elseif (isset($_GET['del_group'])) {
 			<p><?php echo __('<b>Warning:</b> After you deleted a group you cannot restore it.', 'luna') ?></p>
 		</div>
 		<div class="panel-footer">
-			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-fw fa-minus"></span> <?php echo __('Delete', 'luna') ?></button>
+			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
 		</div>
 	</div>
 </form>
 <?php
-
-			require 'footer.php';
 		}
-	}
+	} else {
 
-	list($group_title, $group_members) = $db->fetch_row($result);
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
+		define('LUNA_ACTIVE_PAGE', 'admin');
+		require 'header.php';
 
 ?>
 <div class="panel panel-default">
@@ -533,28 +529,26 @@ elseif (isset($_GET['del_group'])) {
 				<label><?php echo __('Move users to', 'luna') ?>
 					<select class="form-control" name="move_to_group">
 <?php
-
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-
-	while ($cur_group = $db->fetch_assoc($result)) {
-		if ($cur_group['g_id'] == LUNA_MEMBER) // Pre-select the pre-defined Members group
-			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-		else
-			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-	}
-
+		$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	
+		while ($cur_group = $db->fetch_assoc($result)) {
+			if ($cur_group['g_id'] == LUNA_MEMBER) // Pre-select the pre-defined Members group
+				echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+		}
 ?>
 					</select>
 				</label>
 			</fieldset>
 			<p class="control-group">
-				<input class="btn btn-danger" type="submit" name="del_group" value="<?php echo __('Delete group', 'luna') ?>" />
+				<button class="btn btn-danger" type="submit" name="del_group"><span class="fa fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
 			</p>
 		</form>
 	</div>
 </div>
 <?php
-
+	}
 	require 'footer.php';
 } else {
 	
@@ -641,7 +635,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
 						<td>
 							<?php if ($cur_group['g_id'] > LUNA_MEMBER) { ?>
-								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-minus"></span> <?php echo __('Delete', 'luna') ?></a>
+								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></a>
 							<?php } ?>
 						</td>
 					</tr>

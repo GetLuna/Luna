@@ -180,7 +180,13 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 		while ($row = $db->fetch_row($result))
 			$comment_ids .= (($comment_ids != '') ? ',' : '').$row[0];
 
+<<<<<<< HEAD
 		if ($comment_ids != '') {
+=======
+		if ($post_ids != '') {
+			// Decrease the commentcount for users
+			decrease_post_counts($post_ids); 
+>>>>>>> version1.2
 			// Delete threads
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions
@@ -312,8 +318,7 @@ function set_default_user() {
 
 	$luna_user['disp_threads'] = $luna_config['o_disp_threads'];
 	$luna_user['disp_comments'] = $luna_config['o_disp_comments'];
-	$luna_user['timezone'] = $luna_config['o_default_timezone'];
-	$luna_user['dst'] = $luna_config['o_default_dst'];
+	$luna_user['php_timezone'] = $luna_config['o_timezone'];
 	$luna_user['language'] = $luna_config['o_default_lang'];
 	$luna_user['style'] = $luna_config['o_default_style'];
 	$luna_user['is_guest'] = true;
@@ -1099,8 +1104,6 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 	if ($timestamp == '')
 		return __('Never', 'luna');
 
-	$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
-	$timestamp += $diff;
 	$now = time();
 
 	if(is_null($date_format))
@@ -1109,9 +1112,9 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 	if(is_null($time_format))
 		$time_format = $forum_time_formats[$luna_user['time_format']];
 
-	$date = gmdate($date_format, $timestamp);
-	$today = gmdate($date_format, $now+$diff);
-	$yesterday = gmdate($date_format, $now+$diff-86400);
+	$date = date($date_format, $timestamp);
+	$today = date($date_format, $now);
+	$yesterday = date($date_format, $now-86400);
 
 	if(!$no_text) {
 		if ($date == $today)
@@ -1123,9 +1126,9 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 	if ($date_only)
 		return $date;
 	elseif ($time_only)
-		return gmdate($time_format, $timestamp);
+		return date($time_format, $timestamp);
 	else
-		return $date.' '.gmdate($time_format, $timestamp);
+		return $date.' '.date($time_format, $timestamp);
 }
 
 
@@ -1223,8 +1226,10 @@ function luna_sha2($str, $salt) {
 // 
 function luna_csrf_token() {
 	global $luna_user;
+	static $token;
 
-	return luna_hash($luna_user['id'].luna_hash(get_remote_address()));
+	if (!isset($token))
+		return luna_hash($luna_user['id'].$luna_user['password'].luna_hash(get_remote_address()));
 }
 
 //
@@ -1350,7 +1355,7 @@ function maintenance_message() {
 
 	// Send no-cache headers
 	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
-	header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Last-Modified: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: post-check=0, pre-check=0', false);
 	header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 
@@ -1425,7 +1430,7 @@ function error($message, $file = null, $line = null, $db_error = false) {
 
 	// Send no-cache headers
 	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
-	header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Last-Modified: '.date('D, d M Y H:i:s').' GMT');
 	header('Cache-Control: post-check=0, pre-check=0', false);
 	header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 

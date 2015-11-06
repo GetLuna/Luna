@@ -352,11 +352,11 @@ if (isset($_POST['backupstart'])) {
 	if($do_gzip_compress) {
 		@ob_start();
 		@ob_implicit_flush(0);
-		header("Content-Type: application/x-gzip; name=\"luna_backup." . gmdate("Y-m-d") . ".sql.gz\"");
-		header("Content-disposition: attachment; filename=luna_backup." . gmdate("Y-m-d") . ".sql.gz");
+		header("Content-Type: application/x-gzip; name=\"luna_backup." . date("Y-m-d") . ".sql.gz\"");
+		header("Content-disposition: attachment; filename=luna_backup." . date("Y-m-d") . ".sql.gz");
 	} else {
-		header("Content-Type: text/x-delimtext; name=\"luna_backup." . gmdate("Y-m-d") . ".sql\"");
-		header("Content-disposition: attachment; filename=luna_backup." . gmdate("Y-m-d") . ".sql");
+		header("Content-Type: text/x-delimtext; name=\"luna_backup." . date("Y-m-d") . ".sql\"");
+		header("Content-disposition: attachment; filename=luna_backup." . date("Y-m-d") . ".sql");
 	}
 	//
 	// Build the sql script file
@@ -364,7 +364,7 @@ if (isset($_POST['backupstart'])) {
 	echo "#\n";
 	echo "# Luna Backup Script\n";
 	echo "# Dump of tables for $db_name\n";
-	echo "#\n# DATE : " .  gmdate("d-m-Y H:i:s", time()) . " GMT\n";
+	echo "#\n# DATE : " .  date("d-m-Y H:i:s", time()) . " GMT\n";
 	echo "#\n";
 	for($i = 0; $i < count($tables); $i++) {
 		$table_name = $tables[$i];

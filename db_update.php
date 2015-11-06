@@ -104,6 +104,9 @@ define('LUNA_MEMBER', 4);
 // Load DB abstraction layer and try to connect
 require LUNA_ROOT.'include/dblayer/common_db.php';
 
+// Start transaction
+$db->start_transaction();
+
 // Check what the default character set is - since 1.2 didn't specify any we will use whatever the default was (usually latin1)
 $old_connection_charset = defined('LUNA_DEFAULT_CHARSET') ? LUNA_DEFAULT_CHARSET : $db->get_names();
 
@@ -182,10 +185,10 @@ if (empty($stage)) {
 	} else {
 		draw_wall_error(__('There is an update ready to be installed', 'luna'), '<form id="install" method="post" action="db_update.php"><input type="hidden" name="stage" value="start" /><input class="btn btn-default btn-lg" type="submit" name="start" value="'. __('Start update', 'luna').'" /></form>', __('Update Luna', 'luna'));
 	}
+
 	$db->end_transaction();
 	$db->close();
 	exit;
-
 }
 
 switch ($stage) {
@@ -588,15 +591,13 @@ switch ($stage) {
 		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
 		$db->rename_table('topics', 'threads');
 		$db->rename_table('posts', 'comments');
-		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
-		$db->rename_field('posts', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('comments', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_create_threads', 'g_create_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
@@ -613,16 +614,16 @@ switch ($stage) {
 		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
 		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
 		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('forums', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
 		$db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('threads', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
 		$db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
 		$db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
-		$db->rename_field('messages', 'last_comment_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
 		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
 		$db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
 		$db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
@@ -633,9 +634,9 @@ switch ($stage) {
 		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
 		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
-		$db->rename_field('reports', 'comment_id', 'comment_id', 'INT(10)');
-		$db->rename_field('search_matches', 'comment_id', 'comment_id', 'INT(10)');
-		$db->rename_field('search_matches', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
+		$db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
+		$db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
@@ -646,13 +647,15 @@ switch ($stage) {
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(2, 'o_has_commented', 'o_has_posted');
 
+		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
+
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
-			//ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-			//ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			// ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			build_config(1, 'o_has_commented', '1');
 
 			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
@@ -663,6 +666,16 @@ switch ($stage) {
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
+			
+			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+			$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		
+		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, '\'UTC\'') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_default_timezone');
+		build_config(1, 'o_timezone', 'UTC');
 
 		break;
 
@@ -835,5 +848,7 @@ switch ($stage) {
 $db->end_transaction();
 $db->close();
 
-if ($query_str != '')
-	exit('<script type="text/javascript">window.location="db_update.php'.$query_str.'"</script><noscript><meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /></noscript>');
+if ($query_str != '') {
+	header('Location: db_update.php'.$query_str);  
+	exit;  
+} 
