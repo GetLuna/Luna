@@ -34,6 +34,12 @@ if (file_exists(FORUM_ROOT.'config.php'))
 if (defined('PUN'))
 	define('FORUM', PUN);
 
+// If FORUM isn't defined, config.php is missing or corrupt
+if (!defined('FORUM')) {
+	header('Location: install.php');
+	exit;
+}
+
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
 
@@ -48,12 +54,6 @@ forum_remove_bad_characters();
 
 // Reverse the effect of register_globals
 forum_unregister_globals();
-
-// If FORUM isn't defined, config.php is missing or corrupt
-if (!defined('FORUM')) {
-	header('Location: install.php');
-	exit;
-}
 
 // Record the start time (will be used to calculate the generation time for the page)
 $luna_start = get_microtime();
