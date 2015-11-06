@@ -510,16 +510,14 @@ elseif (isset($_GET['del_group'])) {
 	</div>
 </form>
 <?php
-
-			require 'footer.php';
 		}
-	}
+	} else {
 
-	list($group_title, $group_members) = $db->fetch_row($result);
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
-	require 'header.php';
+		list($group_title, $group_members) = $db->fetch_row($result);
+	
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
+		define('FORUM_ACTIVE_PAGE', 'admin');
+		require 'header.php';
 
 ?>
 <div class="panel panel-default">
@@ -534,14 +532,14 @@ elseif (isset($_GET['del_group'])) {
 					<select class="form-control" name="move_to_group">
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-
-	while ($cur_group = $db->fetch_assoc($result)) {
-		if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
-			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-		else
-			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-	}
+		$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	
+		while ($cur_group = $db->fetch_assoc($result)) {
+			if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
+				echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+		}
 
 ?>
 					</select>
@@ -554,7 +552,7 @@ elseif (isset($_GET['del_group'])) {
 	</div>
 </div>
 <?php
-
+	}
 	require 'footer.php';
 } else {
 	
