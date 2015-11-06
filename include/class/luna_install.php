@@ -149,6 +149,7 @@ class Installer {
 	}
 	
 	private static function validate_database_version($db_type, $db) {
+		global $db_prefix;
 		
 		// Do some DB type specific checks
 		switch ($db_type) {
