@@ -180,7 +180,13 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 		while ($row = $db->fetch_row($result))
 			$comment_ids .= (($comment_ids != '') ? ',' : '').$row[0];
 
+<<<<<<< HEAD
 		if ($comment_ids != '') {
+=======
+		if ($post_ids != '') {
+			// Decrease the commentcount for users
+			decrease_post_counts($post_ids); 
+>>>>>>> version1.2
 			// Delete threads
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions
@@ -1220,8 +1226,10 @@ function luna_sha2($str, $salt) {
 // 
 function luna_csrf_token() {
 	global $luna_user;
+	static $token;
 
-	return luna_hash($luna_user['id'].luna_hash(get_remote_address()));
+	if (!isset($token))
+		return luna_hash($luna_user['id'].$luna_user['password'].luna_hash(get_remote_address()));
 }
 
 //
