@@ -47,10 +47,10 @@ class Installer {
 		}
 
 		if (function_exists('sqlite_open'))
-			$db_extensions[] = array('sqlite', 'SQLite');
+			$db_extensions[] = array('sqlite', 'SQLite 2');
 
 		if (class_exists('SQLite3'))
-			$db_extensions[] = array('sqlite3', 'SQLite3');
+			$db_extensions[] = array('sqlite3', 'SQLite 3');
 
 		if (function_exists('pg_connect'))
 			$db_extensions[] = array('pgsql', 'PostgreSQL');
