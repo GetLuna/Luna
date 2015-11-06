@@ -28,6 +28,22 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.2.3</span></p><h2>Cornflower Blue Update 3</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved security on token hash</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Pruning forums will now also decrease the comment count</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>General UI improvements in Backstage</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes multiple issues with SQLite 3 support</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 5 other bugs</li>
+						</ul>
+					</div>
+					<div class="container">
+						<p class="meta"><span class="release-version">1.2.2</span></p><h2>Cornflower Blue Update 2</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Reissues the 1.2.1 update</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.2.1</span></p><h2>Cornflower Blue Update</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Replaces Javascript redirects</li>
