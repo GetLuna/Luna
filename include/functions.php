@@ -1224,7 +1224,7 @@ function luna_sha2($str, $salt) {
 function luna_csrf_token() {
 	global $luna_user;
 
-	return luna_hash($luna_user['id'].luna_hash(get_remote_address()));
+	return luna_hash($luna_user['id'].$luna_user['password'].luna_hash(get_remote_address()));
 }
 
 //
