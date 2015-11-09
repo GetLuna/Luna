@@ -48,9 +48,6 @@ function is_valid_email($email) {
 			if (!preg_match('/^"(\\\\"|[^"])+"$/', str_replace("\\\\", "", $local)))
 				$is_valid = false;
 		}
-
-		if ($is_valid && !(checkdnsrr($domain, "MX") || checkdnsrr($domain, "A"))) // If the domain isn't found in DNS
-			$is_valid = false;
 	}
 
 	return $is_valid;
