@@ -1025,6 +1025,9 @@ function message($message, $no_back_link = false, $http_status = null) {
 	if(!is_null($http_status)) {
 		header('HTTP/1.1 ' . $http_status);
 	}
+	require LUNA_ROOT.'include/general_functions.php';
+	require LUNA_ROOT.'include/draw_functions.php';
+	require LUNA_ROOT.'include/statistic_functions.php';
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Info', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'index');
