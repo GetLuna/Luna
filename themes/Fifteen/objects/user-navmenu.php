@@ -45,10 +45,6 @@ if (!empty($items['guest'])) {
 										<li><a href="<?php echo $item['logout']['url']; ?>"><?php echo $item['logout']['title']; ?></a></li>
 									</ul>
 								</li>
-								<li id="navlogout" class="hide-if-js">
-									<a href="<?php echo $item['logout']['url']; ?>" title="<?php echo $item['logout']['title']; ?>">
-										<span class="fa fa-fw fa-sign-out"></span>
-									</a>
-								</li>
+								<li id="navlogout" class="hide-if-js"><a href="<?php echo $item['logout']['url']; ?>"><?php echo $item['logout']['title']; ?>"></a></li>
 <?php } ?>
 							</ul>
