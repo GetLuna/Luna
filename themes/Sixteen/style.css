@@ -1013,29 +1013,31 @@ hr {
 
 /* Labels */
 .label-primary {
-	background: #e8e8e8;
-	color: #8e8e8e;
+	background-color: #c58be2;
+}
+
+.label-default {
+	background-color: #b8b8b8;
+}
+
+a.label-new {
+	background-color: #b8b8b8 !important;
 }
 
 .label-success {
-	background: #95c636;
+	background-color: #95c636;
 }
 
 .label-info {
-	background: #2ac6e2;
+	background-color: #2ac6e2;
 }
 
 .label-warning {
-	background: #ffae00;
+	background-color: #ffae00;
 }
 
 .label-danger {
-	background: #ea4322;
-}
-
-.glyphicon-asterisk {
-	color: #c9c9c9;
-	font-size: 80%;
+	background-color: #ea4322;
 }
 
 /* Alerts */
