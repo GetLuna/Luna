@@ -1,0 +1,57 @@
+/*
+ * Sunrise Orange 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #ff7521 #ff5a21 #ff4021
+ */
+
+#header,
+.editor {
+	background: #ff7521;
+	background: linear-gradient(to bottom left, #ff7521, #ff4021);
+}
+
+.first-run.panel,
+.profile-card-head,
+.nav-tabs,
+.nav-tab-info {
+	background: #ff7521;
+	background: linear-gradient(to top right, #ff7521, #ff4021);
+}
+
+.panel-default .panel-heading {
+	background: #ff7521;
+	background: linear-gradient(to right, #ff7521, #ff4021);
+}
+
+.comment-arrow {
+	border-right-color: #ff7521;
+}
+
+.btn-primary {
+	background-color: #ff7521;
+}
+
+.btn-primary:active {
+	background-color: #ff7521 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+	background-color: #ff5a21;
+}
+
+.modal-form .modal-header {
+	background: #ff7521;
+	background: linear-gradient(to bottom left, #ff7521, #ff5a21);
+}
+
+.modal-form .modal-footer {
+	background: #ff5a21;
+	background: linear-gradient(to bottom left, #ff5a21, #ff4021);
+}
