@@ -7,19 +7,19 @@ $xmlstr = <<<XML
 
 /*
  * Copyright (C) 2014-2015 Studio 384
- * Licensed under MIT
+ * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 -->
 
 <style engine="1.0">
-	<id>fifteen</id>
-	<name>Fifteen</name>
+	<id>sunrise</id>
+	<name>Sunrise</name>
 	<developer>Studio 384</developer>
 	<date>15 November 2015</date>
-	<version>1.3 Preview</version>
-	<minversion>1.3 Preview 1</minversion>
+	<version>2.0 Preview</version>
+	<minversion>1.3 Preview 3</minversion>
 	<maxversion>1.3 Preview 3</maxversion>
-	<description>Fifteen is the default theme of the Luna. This modern, fresh, yet colorfull design makes your board an unique piece!</description>
+	<description>Sunrise is a more classic take on the look and feel of forum software.</description>
 </style>
 XML;
 ?>
