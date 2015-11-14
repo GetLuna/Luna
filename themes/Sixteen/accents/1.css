@@ -6,12 +6,16 @@
  * #14a3ff #0b95ed #0589de
  */
 
-#header, .editor {
+#header,
+.editor {
 	background: #14a3ff;
 	background: linear-gradient(to bottom left, #14a3ff, #0589de);
 }
 
-.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
+.first-run.panel,
+.profile-card-head,
+.nav-tabs,
+.nav-tab-info {
 	background: #14a3ff;
 	background: linear-gradient(to top right, #14a3ff, #0589de);
 }
@@ -33,7 +37,11 @@
 	background-color: #14a3ff !important;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
 	background-color: #0b95ed;
 }
 

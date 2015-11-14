@@ -6,12 +6,16 @@
  * #2788cb #1a79bc #136cab
  */
 
-#header, .editor {
+#header,
+.editor {
 	background: #2788cb;
 	background: linear-gradient(to bottom left, #2788cb, #136cab);
 }
 
-.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
+.first-run.panel,
+.profile-card-head,
+.nav-tabs,
+.nav-tab-info {
 	background: #2788cb;
 	background: linear-gradient(to top right, #2788cb, #136cab);
 }
@@ -33,7 +37,12 @@
 	background-color: #2788cb !important;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
 	background-color: #1a79bc;
 }
 
