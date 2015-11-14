@@ -52,15 +52,21 @@ if (!defined('FORUM'))
 			<div class="btn-group">
 				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&move_threads=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move', 'luna') ?></a>
 				<?php if ($cur_thread['closed'] == '1') { ?>
-					<a class="btn btn-success" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&open=<?php echo $id ?>"><span class="fa fa-fw fa-unlock"></span> <?php _e('Open', 'luna') ?></a>
+					<a class="btn btn-success" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&open=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-unlock"></span> <?php _e('Open', 'luna') ?></a>
 				<?php } else { ?>
-					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?>"><span class="fa fa-fw fa-lock"></span> <?php _e('Close', 'luna') ?></a>
+					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-lock"></span> <?php _e('Close', 'luna') ?></a>
 				<?php } ?>
 				
 				<?php if ($cur_thread['pinned'] == '1') { ?>
-					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unpin', 'luna') ?></a>
+					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unpin', 'luna') ?></a>
 				<?php } else { ?>
-					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin', 'luna') ?></a>
+					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Pin', 'luna') ?></a>
+				<?php } ?>
+				
+				<?php if ($cur_thread['important'] == '1') { ?>
+					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unimportant=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-map-marker"></span> <?php _e('Unimportant', 'luna') ?></a>
+				<?php } else { ?>
+					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&important=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-map-marker"></span> <?php _e('Important', 'luna') ?></a>
 				<?php } ?>
 			</div>
 		<?php endif; ?>
