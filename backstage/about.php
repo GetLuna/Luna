@@ -40,7 +40,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 2 bugs</li>
 							<hr />
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna F Preview 0</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna 2.0 Fallow build 6126</li>
 						</ul>
 					</div>
 				</section>
