@@ -56,7 +56,7 @@ $cur_index = 1;
 				<input type="hidden" name="req_subject" value="<?php echo luna_htmlspecialchars($p_subject) ?>" />
 				<?php if ($r != '1') { ?>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Send to', 'luna') ?><span class="help-block"><?php printf(__('Separate names with commas, maximum %s names', 'luna'), ($luna_config['o_pms_max_receiver']-1)) ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Send to', 'luna') ?><span class="help-block"><?php printf(__('Separate names with commas, maximum %s names', 'luna'), ($luna_config['o_max_receivers']-1)) ?></span></label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="p_username" id="p_username" size="30" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" tabindex="<?php echo $cur_index++ ?>" autofocus />
 					</div>

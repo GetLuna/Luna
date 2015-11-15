@@ -16,12 +16,12 @@ require LUNA_ROOT.'include/me_functions.php';
 if ($luna_user['is_guest'])
 	message(__('You do not have permission to access this page.', 'luna'));
 	
-// User enable PM ?
-if (!$luna_user['use_pm'] == '1')
+// User enable Inbox ?
+if (!$luna_user['use_inbox'] == '1')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
-if (!$luna_config['o_pms_enabled'] == '1' || $luna_user['g_inbox'] == '0')
+if (!$luna_config['o_enable_inbox'] == '1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 $p_destinataire = '';
@@ -133,7 +133,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			$errors[] = sprintf( __('At least % seconds have to pass between sends. Please wait a little while and try send the message again.', 'luna'), $luna_user['g_comment_flood'] );
 		
 	// Check users boxes
-	if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_inbox_limit'])
+	if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_inbox'] >= $luna_user['g_inbox_limit'])
 		$errors[] = __('Can\'t save message, your boxes are full.', 'luna');
 	
 	// Build receivers list
@@ -156,15 +156,15 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
 	 if (count($dest_list) < '1' && $edit == '0')
 		$errors[] = __('You must give at least one receiver', 'luna');
-		elseif (count($dest_list) > $luna_config['o_pms_max_receiver'])
-		$errors[] = sprintf(__('You can send a message at the same time only to %s receivers maximum.', 'luna'), $luna_config['o_pms_max_receiver']-1);
+		elseif (count($dest_list) > $luna_config['o_max_receivers'])
+		$errors[] = sprintf(__('You can send a message at the same time only to %s receivers maximum.', 'luna'), $luna_config['o_max_receivers']-1);
 
 	$destinataires = array(); $i = '0';
 	$list_ids = array();
 	$list_usernames = array();
 	foreach ($dest_list as $destinataire) {
 		// Get receiver infos
-		$result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_pm, u.notify_pm_full, u.use_pm, u.num_pms, g.g_id, g.g_inbox_limit, g.g_inbox FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS pm ON (pm.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
+		$result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_inbox, u.notify_inbox_full, u.use_inbox, u.num_inbox, g.g_id, g.g_inbox_limit, g.g_inbox FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS ib ON (ib.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
 
 		// List users infos
 		if ($destinataires[$i] = $db->fetch_assoc($result_username)) {
@@ -178,11 +178,11 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			}
 			// Begin to build usernames' list
 			$list_usernames[] = $destinataires[$i]['username'];
-			// Receivers enable PM ?
-			if (!$destinataires[$i]['use_pm'] == '1' || !$destinataires[$i]['g_inbox'] == '1')
+			// Receivers enable Inbox ?
+			if (!$destinataires[$i]['use_inbox'] == '1' || !$destinataires[$i]['g_inbox'] == '1')
 				$errors[] = sprintf(__('%s disabled the private messages.', 'luna'), luna_htmlspecialchars($destinataire));			
 			// Check receivers boxes
-			elseif ($destinataires[$i]['g_id'] > LUNA_GUEST && $destinataires[$i]['g_inbox_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_inbox_limit'])
+			elseif ($destinataires[$i]['g_id'] > LUNA_GUEST && $destinataires[$i]['g_inbox_limit'] != '0' && $destinataires[$i]['num_inbox'] >= $destinataires[$i]['g_inbox_limit'])
 				$errors[] = sprintf(__('%s inbox is full, you can not send you message to this user.', 'luna'), luna_htmlspecialchars($destinataire));	
 		} else
 			$errors[] = sprintf(__('There\'s no user with the username "%s".', 'luna'), luna_htmlspecialchars($destinataire));
@@ -227,15 +227,15 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if (empty($errors) && !isset($_POST['preview'])) {
 		$_SESSION['last_session_request'] = $now = time();
 		
-		if ($luna_config['o_pms_notification'] == '1') {
+		if ($luna_config['o_inbox_notification'] == '1') {
 			require_once LUNA_ROOT.'include/email.php';
 			
-			// Load the new_pm templates
+			// Load the new_inbox templates
 			$mail_tpl = trim(__('Subject: You received a new private message on <board_title>
 
 <sender> sent a private message to you.
 
-You can read this private message at this address: <pm_url>
+You can read this private message at this address: <inbox_url>
 
 -- 
 <board_mailer>
@@ -251,7 +251,7 @@ The message reads as follows:
 
 -----------------------------------------------------------------------
 
-You can read this private message at this address: <pm_url>
+You can read this private message at this address: <inbox_url>
 
 --
 <board_mailer> Mailer
@@ -298,14 +298,14 @@ You can read this private message at this address: <pm_url>
 				$db->query('INSERT INTO '.$db->prefix.'messages (shared_id, last_shared_id, owner, subject, message, sender, receiver, sender_id, receiver_id, sender_ip, hide_smilies, commented, show_message, showed) VALUES(\''.$shared_id.'\', \''.$shared_id.'\', \''.$dest['id'].'\', \''.$db->escape($p_subject).'\', \''.$db->escape($p_message).'\', \''.$db->escape($luna_user['username']).'\', \''.$db->escape($usernames_list).'\', \''.$luna_user['id'].'\', \''.$db->escape($ids_list).'\', \''.get_remote_address().'\', \''.$hide_smilies.'\',  \''.$now.'\', \'1\', \''.$val_showed.'\')') or error('Unable to send the message.', __FILE__, __LINE__, $db->error());
 				$new_mp = $db->insert_id();
 				$db->query('UPDATE '.$db->prefix.'messages SET last_comment_id='.$new_mp.', last_comment='.$now.', last_commenter=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$shared_id.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms+1 WHERE id='.$dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox+1 WHERE id='.$dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 				// E-mail notification
-				if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) {
-					$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
-					$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
+				if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
+					$mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
+					$mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 					
-					if ($dest['notify_pm_full'] == '1')
+					if ($dest['notify_inbox_full'] == '1')
 						luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
 					else
 						luna_mail($dest['email'], $mail_subject, $mail_message);
@@ -334,11 +334,11 @@ You can read this private message at this address: <pm_url>
 					}
 
 					// E-mail notification
-					if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) {
-						$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
-						$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
+					if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
+						$mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
+						$mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 						
-						if ($dest['notify_pm_full'] == '1')
+						if ($dest['notify_inbox_full'] == '1')
 							luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
 						else
 							luna_mail($dest['email'], $mail_subject, $mail_message);

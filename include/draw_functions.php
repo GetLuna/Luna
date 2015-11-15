@@ -836,7 +836,7 @@ function draw_response_list() {
 				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_comment['sender_id'].'">'.__('Email', 'luna').'</a></span>';
 					
-				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_inbox'] == '1' && $luna_user['use_pm'] == '1' && $cur_comment['use_pm'] == '1') {
+				if ($luna_config['o_enable_inbox'] == '1' && !$luna_user['is_guest'] && $luna_user['g_inbox'] == '1' && $luna_user['use_inbox'] == '1' && $cur_comment['use_inbox'] == '1') {
 					$pid = isset($cur_comment['sender_id']) ? $cur_comment['sender_id'] : $cur_comment['sender_id'];
 					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
 				}

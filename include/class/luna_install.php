@@ -1267,22 +1267,22 @@ class Installer {
 					'datatype'		=> 'VARCHAR(8)',
 					'allow_null'	=> true
 				),
-				'use_pm'		=> array(
+				'use_inbox'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'notify_pm'		=> array(
+				'notify_inbox'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'notify_pm_full'=> array(
+				'notify_inbox_full'=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'num_pms'	=> array(
+				'num_inbox'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
 					'default'		=> '0'
@@ -1497,10 +1497,10 @@ class Installer {
 			'o_cookie_bar_url'			=> 'http://getluna.org/docs/cookies.php',
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
-			'o_pms_enabled'				=> 1,
-			'o_pms_mess_per_page'		=> 10,
-			'o_pms_max_receiver'		=> 5,
-			'o_pms_notification'		=> 1,
+			'o_enable_inbox'				=> 1,
+			'o_message_per_page'		=> 10,
+			'o_max_receivers'		=> 5,
+			'o_inbox_notification'		=> 1,
 			'o_emoji'					=> 0,
 			'o_emoji_size'				=> 16,
 			'o_back_to_top'				=> 1,

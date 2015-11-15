@@ -19,11 +19,11 @@ if ($luna_user['is_guest'])
 	message(__('You do not have permission to access this page.', 'luna'));
 	
 // User enable PM ?
-if (!$luna_user['use_pm'] == '1')
+if (!$luna_user['use_inbox'] == '1')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
-if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_inbox'] == '0')
+if (!$luna_config['o_enable_inbox'] =='1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // User block
@@ -132,12 +132,12 @@ if ($action == 'delete') {
 					
 					$ids_users = implode(',', $ids_users);
 					
-					$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-1 WHERE id IN('.$ids_users.')') or error('Unable to update user', __FILE__, __LINE__, $db->error());
+					$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-1 WHERE id IN('.$ids_users.')') or error('Unable to update user', __FILE__, __LINE__, $db->error());
 					$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id='.$tid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 				} else {
 					$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND owner='.$luna_user['id']) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 					$db->query('UPDATE '.$db->prefix.'messages SET receiver=REPLACE(receiver,\''.$db->escape($luna_user['username']).'\',\''.$db->escape($luna_user['username'].' Deleted').'\') WHERE receiver LIKE \'%'.$db->escape($luna_user['username']).'%\' AND shared_id='.$tid) or error('Unable to update private messages', __FILE__, __LINE__, $db->error());
-					$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-1 WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+					$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-1 WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 				}
 			} else {
 				$result = $db->query('SELECT owner FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
@@ -147,7 +147,7 @@ if ($action == 'delete') {
 					message(__('You do not have permission to access this page.', 'luna'));
 					
 				$db->query('DELETE FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-1 WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-1 WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 			}
 		}
 		
@@ -213,7 +213,7 @@ if ($action == 'delete') {
 	
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());
 	
-	$result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.commented, m.showed, m.sender, m.sender_id, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_comments, u.admin_note, u.signature, u.use_pm, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.commented LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.commented, m.showed, m.sender, m.sender_id, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_comments, u.admin_note, u.signature, u.use_inbox, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.commented LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));

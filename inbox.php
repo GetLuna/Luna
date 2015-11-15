@@ -16,12 +16,12 @@ require LUNA_ROOT.'include/me_functions.php';
 if ($luna_user['is_guest'])
 	message(__('You do not have permission to access this page.', 'luna'));
 
-// User enable PM ?
-if (!$luna_user['use_pm'] == '1')
+// User enable Inbox ?
+if (!$luna_user['use_inbox'] == '1')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
-if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_inbox'] == '0')
+if (!$luna_config['o_enable_inbox'] =='1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
 // User block
@@ -74,7 +74,7 @@ if (isset($_REQUEST['markread'])) {
 	$number = count($number);
 
 	$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\'') or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
-	$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-'.$number.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-'.$number.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 	
 	redirect('inbox.php');
 } else {
@@ -84,10 +84,10 @@ $result = $db->query("SELECT COUNT(*) FROM ".$db->prefix."messages WHERE show_me
 list($num_messages) = $db->fetch_row($result);
 
 // What page are we on ?
-$num_pages = ceil($num_messages/$luna_config['o_pms_mess_per_page']);
+$num_pages = ceil($num_messages/$luna_config['o_message_per_page']);
 if ($page > $num_pages) $page = 1;
-$start_from = intval($luna_config['o_pms_mess_per_page'])*($page-1);
-$limit = $start_from.','.$luna_config['o_pms_mess_per_page'];
+$start_from = intval($luna_config['o_message_per_page'])*($page-1);
+$limit = $start_from.','.$luna_config['o_message_per_page'];
 
 // Start building page
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('Inbox', 'luna'));
@@ -101,7 +101,7 @@ $user = $db->fetch_assoc($result);
 $user_username = luna_htmlspecialchars($user['username']);
 $user_usertitle = get_title($user);
 
-define('LUNA_ACTIVE_PAGE', 'pm');
+define('LUNA_ACTIVE_PAGE', 'inbox');
 require load_page('header.php');
 
 ?>

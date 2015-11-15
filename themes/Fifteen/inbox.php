@@ -35,7 +35,7 @@ if (!defined('FORUM'))
 			</div>
 			<?php
 			if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod']) {
-				$per_cent_box = ceil($luna_user['num_pms'] / $luna_user['g_inbox_limit'] * '100');	
+				$per_cent_box = ceil($luna_user['num_inbox'] / $luna_user['g_inbox_limit'] * '100');	
 				echo '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$per_cent_box.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$per_cent_box.'%;"><span class="progress-text">'.$per_cent_box.'%</span></div></div>';
 			}
 			?>
@@ -57,7 +57,7 @@ if (!defined('FORUM'))
 					<tbody>
 <?php
 // Fetch messages
-$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_comment DESC LIMIT ".$limit) or error("Unable to find the list of the pms.", __FILE__, __LINE__, $db->error()); 
+$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_comment DESC LIMIT ".$limit) or error("Unable to find the list of the Inbox messages.", __FILE__, __LINE__, $db->error()); 
 
 // If there are messages in this folder.
 if ($db->num_rows($result)) {
