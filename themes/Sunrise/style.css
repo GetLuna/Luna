@@ -939,7 +939,7 @@ hr {
 .thread-row.roweven.new-item,
 .forum-row.rowodd.new-item,
 .thread-row.rowodd.new-item {
-	background-color: #f2f2f2 !important;
+	background-color: #e0e0e0 !important;
 }
 
 .table > tbody > tr > td {
