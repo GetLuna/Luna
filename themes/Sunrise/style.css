@@ -793,6 +793,11 @@ hr {
 	padding: 6px;
 }
 
+.textarea-toolbar.textarea-top .btn,
+.textarea-toolbar.textarea-bottom .btn {
+	margin-right: 1px;
+}
+
 .emoji,
 .emoji-ed {
 	font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", "Android Emoji", "NotoColorEmoji", "EmojiSymbols" !important;
