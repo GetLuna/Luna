@@ -64,10 +64,15 @@ if ($luna_user['first_run'] == '0') {
 <?php
 }
 ?>
-<div class="list-group list-group-thread">
+<div class="panel panel-default panel-board">
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php _e('Recent activity', 'luna') ?></h3>
+	</div>
+	<div class="list-group list-group-thread">
 <?php
 	draw_index_threads_list(5, 'thread2.php');
 ?>
+	</div>
 </div>
 <?php
 draw_forum_list('forum.php', 1, 'category.php', '</div></div>');
