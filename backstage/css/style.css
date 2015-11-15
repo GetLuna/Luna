@@ -398,7 +398,7 @@ h3.panel-title {
 	margin-bottom: 0;
 }
 
-@media all and (min-width: 768px) {
+@media all and (min-width: 992px) {
 	.panel {
 		margin-top: 11px;
 	}
@@ -608,7 +608,7 @@ fieldset[disabled] .form-control {
 	border: none;
 }
 
-@media all and (min-width: 768px) {
+@media all and (min-width: 992px) {
     .alert {
 		margin-top: 11px;
 	}

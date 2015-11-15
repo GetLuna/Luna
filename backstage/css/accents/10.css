@@ -89,7 +89,7 @@
 	text-shadow: 0 0 5px 1px rgba(100,100,100,.5);
 }
 
-@media all and (max-width:767px) {
+@media all and (max-width:991px) {
 	.nav-tabs > li.active > a,
 	.nav-tabs > li.active > a:hover,
 	.nav-tabs > li.active > a:focus {
