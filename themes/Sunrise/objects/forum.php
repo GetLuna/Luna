@@ -1,4 +1,4 @@
-<div class="row forum-row <?php echo $item_status ?>">
+<div class="row forum-row <?php echo $item_status ?>" style="border-left: 5px solid <?php echo $cur_forum['color'] ?>;">
 	<div class="col-md-4 col-sm-4 col-xs-5">
 		<strong><a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></strong><br />
 		<?php echo $forum_desc ?>

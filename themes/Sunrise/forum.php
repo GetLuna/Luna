@@ -34,7 +34,7 @@ if (!defined('FORUM'))
 		</span>
 	</div>
 	<div class="panel panel-default panel-board">
-		<div class="panel-heading">
+		<div class="panel-heading" style="background: <?php echo $cur_forum['color'] ?>;">
 			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3>
 		</div>
 		<div class="panel-body">

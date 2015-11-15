@@ -8,7 +8,7 @@
 /* General fixes */
 body,
 html {
-	background-color: #f2f2f2;
+	background-color: #eaeaea;
 	font-family: "Segoe UI", Arial;
 }
 
@@ -900,17 +900,11 @@ hr {
 	color: #232323;
 	background-color: #fff;
 	padding: 8px 0;
-	border-bottom: 1px #eaeaea solid;
-}
-
-.forum-row:last-child,
-.thread-row:last-child {
-	border-bottom: none;
 }
 
 .forum-row.roweven,
 .thread-row.roweven {
-	background-color: #fbfbfb;
+	background-color: #f2f2f2;
 }
 
 .forum-row.roweven.new-item,
