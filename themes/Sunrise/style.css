@@ -738,6 +738,29 @@ hr {
 	border-top: 1px solid #c3dea5;
 }
 
+/* List group threads */
+.list-group-thread .list-group-item {
+	background-color: #fbfbfb;
+	border: none;
+	border-left: 5px solid #f8f8f8;
+	margin-top: 2px;
+	border-radius: 0;
+}
+
+.list-group-thread .list-group-item:first-child {
+	margin-top: 0 !important;
+}
+
+.list-group-thread .list-group-item.new-item {
+	background-color: #f3f3f3;
+	border-left: 5px solid #e3e3e3;
+}
+
+.list-group-thread .list-group-item:hover {
+	background-color: #f8f8f8;
+	border-left-color: #e8e8e8;
+}
+
 /* Quick comment and comment */
 .comment-field textarea,
 .comment-field textarea:focus {
@@ -1011,6 +1034,10 @@ hr {
 }
 
 /* Labels */
+.label {
+	border-radius: 0;
+}
+
 .label-primary {
 	background-color: #c58be2;
 }

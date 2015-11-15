@@ -57,12 +57,18 @@ if ($luna_user['first_run'] == '0') {
 	// Announcement
 	if ($luna_config['o_announcement'] == '1') {
 ?>
-		<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
-			<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
-			<?php echo $luna_config['o_announcement_message']; ?>
-		</div>
+<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
+	<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
+	<?php echo $luna_config['o_announcement_message']; ?>
+</div>
 <?php
 }
-
+?>
+<div class="list-group list-group-thread">
+<?php
+	draw_index_threads_list(5, 'thread2.php');
+?>
+</div>
+<?php
 draw_forum_list('forum.php', 1, 'category.php', '</div></div>');
 ?>

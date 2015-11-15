@@ -479,11 +479,11 @@ function draw_subforum_list($object_name = 'forum.php') {
 	}
 }
 
-function draw_index_threads_list() {
+function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php') {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_comment DESC LIMIT 30') or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_comment DESC LIMIT '.$limit) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
@@ -611,7 +611,7 @@ function draw_index_threads_list() {
 			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
 			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
 	
-			require get_view_path('thread.php');
+			require get_view_path($thread_object_name);
 	
 		}
 	} else
