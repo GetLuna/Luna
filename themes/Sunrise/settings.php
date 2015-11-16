@@ -131,15 +131,8 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 				}
 		?>
 									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[enforce_accent]" value="1"<?php if ($user['enforce_accent'] == '1') echo ' checked' ?> />
-											<?php _e('Enforce the accent on the board.', 'luna') ?>
-										</label>
-									</div>
 								</div>
 							</div>
-							<hr />
 		<?php } if ($luna_config['o_allow_night_mode'] == '1') { ?>
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Night mode', 'luna') ?></label>
