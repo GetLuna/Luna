@@ -1973,11 +1973,11 @@ html.night {
 	background: rgba(0,0,0,.1);
 }
 
-.navbar-default .navbar-form .form-control,
-.first-run-login .form-control {
+.night .navbar-default .navbar-form .form-control,
+.night .first-run-login .form-control {
 	background: rgba(0,0,0,.3);
 }
 
-.navbar-default .navbar-form .btn {
+.night .navbar-default .navbar-form .btn {
 	background: rgba(0,0,0,.3);
 }
