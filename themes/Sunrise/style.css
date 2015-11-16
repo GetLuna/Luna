@@ -201,7 +201,7 @@ hr {
 	max-height: 120px;
 	max-width: 120px;
 	margin: 0 auto;
-	margin-top: 18px;
+	margin-top: 2px;
 	vertical-align: bottom;
 }
 
@@ -1728,4 +1728,256 @@ blockquote footer {
 		margin-bottom: 0;
 		padding: 0 15px;
 	}
+}
+
+
+/* Night mode */
+.night body,
+html.night {
+	color: #ddd;
+	background-color: #333;
+}
+
+.night .container-main {
+	background-color: #444;
+	box-shadow: 0 0 30px #222;
+}
+
+.night hr {
+	border-top-color: #555;
+}
+
+.night .accent-group .btn {
+	border-color: #444 !important;
+}
+
+.night .accent-group .btn:hover,
+.night .accent-group .btn:focus,
+.night .accent-group .btn:active,
+.night .accent-group .active.btn {
+	border-color: #666 !important;
+}
+
+.night .nav-tabs,
+.night .panel-border .panel-body,
+.night .panel-border .comment-field,
+.night .panel-border .panel-footer {
+	border-color: #555;
+}
+
+.night .panel-default,
+.night .tab-pane,
+.night .profile-card-body {
+	background-color: #444;
+	border-color: #555;
+}
+
+.night .list-group-item {
+	background-color: #444;
+}
+
+.night .list-group-item,
+.night .list-group-item.active,
+.night .list-group-item.active:hover {
+	color: #fff;
+	border-color: #555;
+}
+
+.night .list-group-item:hover {
+	background-color: #404040;
+}
+
+.night a.list-group-item:hover,
+.night .col-sm-9 a,
+.night a:focus {
+	color: #fff;
+}
+
+.night .list-group-forum .list-group-item.new-item {
+	background-color: #3b3b3b;
+	border-color: #333;
+}
+
+.night #search .panel-body,
+.night .user-entry {
+	background-color: #555;
+}
+
+.night .list-group-forum a.list-group-item {
+	border-color: #3f3f3f;
+}
+
+.night .label-default {
+	background-color: #333;
+}
+
+.night .well-comment .media {
+	background-color: #333;
+}
+
+.night .comment .panel-default {
+	background-color: #3b3b3b;
+}
+
+.night .list-group-thread .list-group-item {
+	background-color: #404040;
+	border-color: #3e3e3e;
+}
+
+.night .list-group-thread .list-group-item.new-item {
+	background-color: #3b3b3b;
+	border-color: #333;
+}
+
+.night .list-group-thread .list-group-item:hover {
+	background-color: #3b3b3b;
+}
+
+.night .panel-editor .btn-default {
+	background-color: #333;
+}
+
+.night .panel-editor .btn-default:hover {
+	background-color: #3f3f3f;
+}
+
+.night .textarea-toolbar .btn-group,
+.night .textarea-top,
+.night .textarea-bottom {
+	border-color: #555;
+}
+
+.night .panel-default .editor {
+	background-color: #333;
+}
+
+.night .panel-editor .btn-default {
+	color: #fff;
+}
+
+.night .input-group-addon {
+	border-color: #222;
+}
+
+.night .form-control {
+	color: #ddd;
+	background-color: #333;
+	border-color: #222;
+}
+
+.night .well {
+	background-color: #3d3d3d;
+	border-color: #333;
+}
+
+.night .btn-search {
+	color: #ddd;
+	background-color: #333;
+}
+
+.night .btn-search:hover {
+	background-color: #393939;
+}
+
+.night .table > tbody > tr > td {
+	color: #fff;
+	background-color: #444;
+}
+
+.night .table > thead > tr > th {
+	border-color: #555;
+}
+
+.night .marked .well-content {
+	background-color: #6e4e40;
+}
+
+.night .marked .well .media {
+	background-color: #60301a;
+}
+
+.night .marked .well hr {
+	border-top: 1px solid #5f311e;
+}
+
+.night .soft .well-content {
+	background-color: #4e4b3b;
+}
+
+.night .soft .well .media {
+	background-color: #665e34;
+}
+
+.night .soft .well hr {
+	border-top: 1px solid #655a24;
+}
+
+.night .answer .well-content {
+	background-color: #3f4b34;
+}
+
+.night .answer .well .media {
+	background-color: #2e3d20;
+}
+
+.night .answer .well hr {
+	border-top: 1px solid #2e3d20;
+}
+
+.night .list-group-enabled {
+	background-color: #2e3d20;
+	border-left-color: #27301f !important;
+}
+
+.night .list-group-enabled:hover {
+	background-color: #27301f !important;
+	border-left-color: #22271e !important;
+}
+
+.night .list-group-disabled {
+	background-color: #60301a;
+	border-left-color: #4d3023 !important;
+}
+
+.night .list-group-disabled:hover {
+	background-color: #4d3023 !important;
+	border-left-color: #443027 !important;
+}
+
+.night .nav-tabs > li.active > a,
+.night .nav-tabs > li.active > a:focus,
+.night .nav-tabs > li.active > a:hover,
+.night .nav-tabs > li > a:hover,
+.night .nav-tabs > li > a:focus {
+	background-color: rgba(68,68,68,.3);
+}
+
+.night .list-group-transparent .list-group-item,
+.night .list-group-transparent a.list-group-item.list-group-item-danger  {
+	background: rgba(0,0,0,.2);
+	border: none;
+}
+
+.night .list-group-transparent a.list-group-item:focus,
+.night .list-group-transparent a.list-group-item:hover,
+.night .list-group-transparent a.list-group-item.active {
+	background: rgba(0,0,0,.4);
+}
+
+.night .list-group-transparent a.list-group-item.list-group-item-danger:focus,
+.night .list-group-transparent a.list-group-item.list-group-item-danger:hover {
+	background: rgba(0,0,0,.6);
+}
+
+.night .navbar-default {
+	background: rgba(0,0,0,.1);
+}
+
+.navbar-default .navbar-form .form-control,
+.first-run-login .form-control {
+	background: rgba(0,0,0,.3);
+}
+
+.navbar-default .navbar-form .btn {
+	background: rgba(0,0,0,.3);
 }
