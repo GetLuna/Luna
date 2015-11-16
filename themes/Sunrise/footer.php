@@ -46,19 +46,19 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>: <strong><?php total_users(); ?></strong></div>
+									<div class="statistic-item text-center"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>: <strong><?php total_users(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>: <strong><?php total_threads(); ?></strong></div>
+									<div class="statistic-item text-center"><?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>: <strong><?php total_threads(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php echo _n( 'Comment', 'Comments', get_total_comments(), 'luna' ) ?>: <strong><?php total_comments(); ?></strong></div>
+									<div class="statistic-item text-center"><?php echo _n( 'Comment', 'Comments', get_total_comments(), 'luna' ) ?>: <strong><?php total_comments(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php _e('Newest user', 'luna') ?>: <strong><?php newest_user(); ?></strong></div>
+									<div class="statistic-item text-center"><?php _e('Newest user', 'luna') ?>: <strong><?php newest_user(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item">
+									<div class="statistic-item text-center">
 												<?php if ($luna_config['o_users_online']) { ?>
 												<div class="dropup">
 													<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -73,7 +73,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 													echo _n('User online', 'Users online', num_users_online(), 'luna').' <strong>'.users_online().'</strong>';  } ?></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php _e('Guests online', 'luna') ?>: <strong><?php guests_online(); ?></strong></div>
+									<div class="statistic-item text-center"><?php _e('Guests online', 'luna') ?>: <strong><?php guests_online(); ?></strong></div>
 								</div>
 							</div>
 						</div>
@@ -84,7 +84,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 					<div class="container">
 						<hr />
 						<div class="row">
-							<div class="col-sm-5 col-xs-12">
+							<div class="col-sm-5 col-xs-10">
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
@@ -94,8 +94,8 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 	}
 ?>
 							</div>
-							<div class="col-sm-2 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
-							<div class="col-sm-5 col-xs-12"><span class="pull-right" id="poweredby"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
+							<div class="col-sm-2 col-xs-2"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center" id="backtotop"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
+							<div class="col-sm-5 col-xs-12"><span id="poweredby"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
 						</div>
 					</div>
 				</div>

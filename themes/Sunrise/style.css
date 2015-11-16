@@ -87,6 +87,11 @@ hr {
 	border-color: #ddd;
 }
 
+.copyright hr {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
 /* Header */
 #header {
 	background: #b14bbd;
@@ -325,6 +330,27 @@ hr {
 
 .col-md-10 .panel {
 	margin-right: -14px;
+}
+
+/* Footer */
+.footer {
+	margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+	.footer .copyright .col-sm-2 {
+		width: 16.66%;
+	}
+	
+	.footer #poweredby {
+		float: right;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer #backtotop {
+		text-align: right;
+	}
 }
 
 /* Navbar */
