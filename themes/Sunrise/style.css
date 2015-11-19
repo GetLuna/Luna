@@ -754,16 +754,27 @@ hr {
 	background-color: #fff1eb;
 }
 
+.marked .panel-body,
 .marked .panel-body hr {
-	border-top: 1px solid #ffc8b3;
+	border-color: #ffc8b3;
+}
+
+.soft .panel-body {
+	background-color: #fffbe7;
+}
+
+.soft .panel-body,
+.soft .panel-body hr {
+	border-color: #fbeb91;
 }
 
 .answer .panel-body {
 	background-color: #e3f8cd;
 }
 
+.answer .panel-body,
 .answer .panel-body hr {
-	border-top: 1px solid #c3dea5;
+	border-color: #c3dea5;
 }
 
 /* List group threads */
@@ -1900,24 +1911,27 @@ html.night {
 	background-color: #6e4e40;
 }
 
+.night .marked .panel-body,
 .night .marked .panel-body hr {
-	border-top: 1px solid #5f311e;
+	border-color: #5f311e;
 }
 
 .night .soft .panel-body {
 	background-color: #4e4b3b;
 }
 
+.night .soft .panel-body,
 .night .soft .panel-body hr {
-	border-top: 1px solid #655a24;
+	border-color: #655a24;
 }
 
 .night .answer .panel-body {
 	background-color: #3f4b34;
 }
 
+.night .answer .panel-body,
 .night .answer .panel-body hr {
-	border-top: 1px solid #2e3d20;
+	border-color: #2e3d20;
 }
 
 .night .list-group-enabled {
