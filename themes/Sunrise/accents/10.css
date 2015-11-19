@@ -1,0 +1,102 @@
+/*
+ * Sunrise White 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #eeeeee #dddddd #cccccc
+ */
+ 
+ *,
+.panel-title,
+.navbar,
+.navbar-brand,
+.navbar-brand:hover,
+.list-group-item {
+	 color: #555 !important;
+ }
+ 
+ .dropdown-menu .fa,
+.label .fa,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	 color: #fff !important;
+ }
+
+.navbar-default .navbar-form ::-webkit-input-placeholder,
+.first-run-login ::-webkit-input-placeholder {
+   color: rgba(33,33,33,.6);
+}
+
+.navbar-default .navbar-form ::-moz-placeholder,
+.first-run-login ::-moz-placeholder {
+   color: rgba(33,33,33,.6);
+}
+
+.navbar-default .navbar-form :-ms-input-placeholder,
+.first-run-login :-ms-input-placeholder {  
+   color: rgba(33,33,33,.6);
+}
+
+#header,
+.editor {
+	background: #eeeeee;
+	background: linear-gradient(to bottom left,
+#eeeeee,
+#cccccc);
+}
+
+.first-run.panel,
+.profile-card-head,
+.nav-tabs,
+.nav-tab-info {
+	background: #eeeeee;
+	background: linear-gradient(to top right,
+#eeeeee,
+#cccccc);
+}
+
+.panel-default .panel-heading {
+	background: #eeeeee;
+	background: linear-gradient(to right,
+#eeeeee,
+#cccccc);
+}
+
+.comment-arrow {
+	border-right-color: #eeeeee;
+}
+
+.btn-primary {
+	background-color: #eeeeee;
+}
+
+.btn-primary:active {
+	background-color: #eeeeee !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+	background-color: #dddddd;
+}
+
+.modal-form .modal-header {
+	background: #eeeeee;
+	background: linear-gradient(to bottom left,
+#eeeeee,
+#dddddd);
+}
+
+.modal-form .modal-footer {
+	background: #dddddd;
+	background: linear-gradient(to bottom left,
+#dddddd,
+#cccccc);
+}

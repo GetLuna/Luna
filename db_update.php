@@ -320,10 +320,6 @@ switch ($stage) {
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
@@ -350,10 +346,6 @@ switch ($stage) {
 		build_config(0, 'o_menu_title');
 		build_config(0, 'o_notifications');
 		build_config(1, 'o_notification_flyout', '1');
-		build_config(1, 'o_pms_enabled', '1');
-		build_config(1, 'o_pms_max_receiver', '5');
-		build_config(1, 'o_pms_mess_per_page', '10');
-		build_config(1, 'o_pms_notification', '1');
 		build_config(0, 'o_post_responsive');
 		build_config(0, 'o_private_message');
 		build_config(0, 'o_quickpost');
@@ -637,6 +629,10 @@ switch ($stage) {
 		$db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
+		$db->rename_field('users', 'use_pm', 'use_inbox', 'TINYINT(1)');
+		$db->rename_field('users', 'notify_pm', 'notify_inbox', 'TINYINT(1)');
+		$db->rename_field('users', 'notify_pm_full', 'notify_inbox_full', 'TINYINT(1)');
+		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
@@ -646,6 +642,10 @@ switch ($stage) {
 		build_config(2, 'o_thread_views', 'o_topic_views');
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(2, 'o_has_commented', 'o_has_posted');
+		build_config(2, 'o_pms_enabled', 'o_enable_inbox');
+		build_config(2, 'o_pms_max_receiver', 'o_max_receivers');
+		build_config(2, 'o_pms_mess_per_page', 'o_message_per_page');
+		build_config(2, 'o_pms_notification', 'o_inbox_notification');
 
 		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
 
@@ -659,9 +659,18 @@ switch ($stage) {
 			build_config(1, 'o_has_commented', '1');
 
 			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			build_config(1, 'o_enable_inbox', '1');
+			build_config(1, 'o_max_receivers', '5');
+			build_config(1, 'o_message_per_page', '10');
+			build_config(1, 'o_inbox_notification', '1');
+		
 			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
 			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'use_inbox', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_inbox" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'notify_inbox', 'TINYINT(1)', false, '1', 'use_inbox') or error('Unable to add column "notify_inbox" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'notify_inbox_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "notify_inbox_full" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'num_inbox', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_inbox" to table "users"', __FILE__, __LINE__, $db->error());
 		
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());

@@ -45,7 +45,7 @@
 	border-color: #0b3c75;
 }
 
-@media all and (max-width:767px) {
+@media all and (max-width:991px) {
 	.nav-tabs > li.active > a,
 	.nav-tabs > li.active > a:hover,
 	.nav-tabs > li.active > a:focus {

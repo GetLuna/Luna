@@ -1,0 +1,57 @@
+/*
+ * Sunrise Dark Grey 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #afafaf #9e9e9e #8e8e8e
+ */
+
+#header,
+.editor {
+	background: #afafaf;
+	background: linear-gradient(to bottom left, #afafaf, #8e8e8e);
+}
+
+.first-run.panel,
+.profile-card-head,
+.nav-tabs,
+.nav-tab-info {
+	background: #afafaf;
+	background: linear-gradient(to top right, #afafaf, #8e8e8e);
+}
+
+.panel-default .panel-heading {
+	background: #afafaf;
+	background: linear-gradient(to right, #afafaf, #8e8e8e);
+}
+
+.comment-arrow {
+	border-right-color: #afafaf;
+}
+
+.btn-primary {
+	background-color: #afafaf;
+}
+
+.btn-primary:active {
+	background-color: #afafaf !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+	background-color: #9e9e9e;
+}
+
+.modal-form .modal-header {
+	background: #afafaf;
+	background: linear-gradient(to bottom left, #afafaf, #9e9e9e);
+}
+
+.modal-form .modal-footer {
+	background: #9e9e9e;
+	background: linear-gradient(to bottom left, #9e9e9e, #8e8e8e);
+}

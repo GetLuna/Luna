@@ -206,13 +206,13 @@ if (count($languages) > 1) {
 			</div>
 			<div role="tabpanel" class="tab-pane<?php if ( 'message' === $section ) { ?> active<?php } ?>" id="message">
 				<fieldset class="form-horizontal form-setting">
-					<?php if ($luna_config['o_pms_enabled'] == 1) { ?>
+					<?php if ($luna_config['o_enable_inbox'] == 1) { ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Inbox', 'luna') ?></label>
 						<div class="col-sm-9">
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="form[use_pm]" value="1"<?php if ($user['use_pm'] == '1') echo ' checked' ?> />
+									<input type="checkbox" name="form[use_inbox]" value="1"<?php if ($user['use_inbox'] == '1') echo ' checked' ?> />
 									<?php _e('Allow users to send messages with Inbox.', 'luna') ?>
 								</label>
 							</div>

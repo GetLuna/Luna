@@ -6,36 +6,52 @@ if (!defined('FORUM'))
 
 ?>
 </div>
-<div class="jumbotron">
-	<div class="container">
-		<h2 class="forum-title"><?php echo $faicon.luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right naviton"><?php echo $paging_links ?><?php echo $comment_link ?></span>
-		<div class="forum-desc"><?php echo $cur_forum['forum_desc'] ?></div>
-	</div>
-</div>
 <div class="container">
-	<div class="row forumview">
-		<div class="col-sm-3">
-			<div class="list-group list-group-forum">
-				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Back to index', 'luna') ?></a>
+	<?php if ((is_subforum($id, '1') && $id != '0')): ?>
+		<div class="panel panel-default panel-board" id="idx<?php echo $cat_count ?>">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php _e('Subforums', 'luna') ?></h3>
 			</div>
-			<hr />
-			<?php if ((is_subforum($id) && $id != '0')): ?>
-				<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
-				<div class="list-group list-group-forum">
-					<?php draw_subforum_list('subforum.php') ?>
-				</div>
-				<hr />
-			<?php endif; ?>
-			<div class="list-group list-group-forum">
-				<?php draw_mark_read('list-group-item', 'forumview') ?>
-				<?php if ($id != '0' && $is_admmod) { ?>
-					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate forum', 'luna') ?></a>
-				<?php } ?>
+			<div class="panel-body">
+				<?php draw_subforum_list('subforum.php') ?>
 			</div>
 		</div>
-		<div class="col-sm-9">
-			<div class="list-group list-group-thread">
-				<?php draw_threads_list(); ?>
-			</div>
+		<hr class="subforum-devider" />
+	<?php endif; ?>
+	<h2 class="profile-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
+	<div class="forum-navigation btn-toolbar">
+		<span class="btn-group">
+			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
+			<a href="viewforum.php?id=<?php echo $id ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+		</span>
+		<?php if ($id != '0' && $is_admmod) { ?>
+			<span class="btn-group">
+				<a class="btn btn-default" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate', 'luna') ?></a>
+			</span>
+		<?php } ?>
+		<span class="btn-group pull-right">
+			<?php echo $comment_link ?><?php echo $paging_links ?>
+		</span>
+	</div>
+	<div class="panel panel-default panel-board">
+		<div class="panel-heading" style="background: <?php echo $cur_forum['color'] ?>;">
+			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3>
 		</div>
+		<div class="panel-body">
+		<?php draw_threads_list(); ?>
+		</div>
+	</div>
+	<div class="forum-navigation btn-toolbar">
+		<span class="btn-group">
+			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
+			<a href="viewforum.php?id=<?php echo $id ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+		</span>
+		<?php if ($id != '0' && $is_admmod) { ?>
+			<span class="btn-group">
+				<a class="btn btn-default" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate', 'luna') ?></a>
+			</span>
+		<?php } ?>
+		<span class="btn-group pull-right">
+			<?php echo $comment_link ?><?php echo $paging_links ?>
+		</span>
 	</div>

@@ -28,9 +28,9 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.3 Preview 1</span></p><h2>Denim</h2>
+						<p class="meta"><span class="release-version">1.3 Preview 3</span></p><h2>Denim</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sixteen is a new default theme</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sunrise is a new default theme</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Major naming convention updates</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Timezone settings have been reworked</li>
@@ -38,9 +38,9 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen now has an updated sidebar</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved mobile interface for Fifteen and Backstage</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 2 bugs</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 4 bugs</li>
 							<hr />
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna F Preview 0</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna 2.0 Fallow build 6126</li>
 						</ul>
 					</div>
 				</section>
