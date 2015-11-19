@@ -7,9 +7,9 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const LUNA_VERSION = '1.3-alpha.3';
-	const LUNA_CORE_VERSION = '1.3.5191';
-	const LUNA_CORE_REVISION = '130a3';
+	const LUNA_VERSION = '1.3-alpha.4';
+	const LUNA_CORE_VERSION = '1.3.5194';
+	const LUNA_CORE_REVISION = '130a4';
 
 	// The Luna Core code name
 	const LUNA_CODE_NAME = 'denim';
