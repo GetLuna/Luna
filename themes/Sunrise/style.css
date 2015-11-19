@@ -1991,3 +1991,34 @@ html.night {
 .night .navbar-default .navbar-form .btn {
 	background: rgba(0,0,0,.3);
 }
+
+.night .forum-row,
+.night .thread-row {
+	color: #fff;
+	background-color: #484848;
+}
+
+.night .forum-row.roweven,
+.night .thread-row.roweven {
+	background-color: #3f3f3f;
+}
+
+.night a {
+	color: #4d9ee4;
+}
+
+.night a:hover {
+	color: #337ab7;
+}
+
+.night .btn,
+.night .btn:hover,
+.night a.label,
+.night a.label:hover {
+	color: #fff;
+}
+
+.night .btn-default,
+.night .btn-default:hover {
+	color: #444;
+}
