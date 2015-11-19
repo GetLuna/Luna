@@ -131,8 +131,9 @@ hr {
 }
 
 .dropdown-menu {
-	border-width: 0 1px 1px;
 	padding: 0;
+	border-width: 0 1px 1px;
+	border-radius: 0;
 }
 
 .dropdown-menu .divider {
@@ -553,6 +554,7 @@ hr {
 	background: rgba(255,255,255,.3);
 	color: #fff;
 	border-color: transparent;
+	margin-bottom: 1px;
 }
 
 .tab-pane {
@@ -1789,8 +1791,14 @@ html.night {
 
 .night a.list-group-item:hover,
 .night .col-sm-9 a,
-.night a:focus {
+.night a:focus,
+.night .footer a {
 	color: #fff;
+}
+
+.night .panel .btn-default,
+.night .footer .dropdown-menu > li > a {
+	color: #444 !important;
 }
 
 .night .list-group-forum .list-group-item.new-item {
@@ -1888,39 +1896,27 @@ html.night {
 	border-color: #555;
 }
 
-.night .marked .well-content {
+.night .marked .panel-body {
 	background-color: #6e4e40;
 }
 
-.night .marked .well .media {
-	background-color: #60301a;
-}
-
-.night .marked .well hr {
+.night .marked .panel-body hr {
 	border-top: 1px solid #5f311e;
 }
 
-.night .soft .well-content {
+.night .soft .panel-body {
 	background-color: #4e4b3b;
 }
 
-.night .soft .well .media {
-	background-color: #665e34;
-}
-
-.night .soft .well hr {
+.night .soft .panel-body hr {
 	border-top: 1px solid #655a24;
 }
 
-.night .answer .well-content {
+.night .answer .panel-body {
 	background-color: #3f4b34;
 }
 
-.night .answer .well .media {
-	background-color: #2e3d20;
-}
-
-.night .answer .well hr {
+.night .answer .panel-body hr {
 	border-top: 1px solid #2e3d20;
 }
 
@@ -1949,7 +1945,7 @@ html.night {
 .night .nav-tabs > li.active > a:hover,
 .night .nav-tabs > li > a:hover,
 .night .nav-tabs > li > a:focus {
-	background-color: rgba(68,68,68,.3);
+	background-color: rgba(0,0,0,.3);
 }
 
 .night .list-group-transparent .list-group-item,
