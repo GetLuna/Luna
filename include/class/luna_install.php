@@ -1300,7 +1300,7 @@ class Installer {
 				'color_scheme'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '2'
+					'default'		=> rand(1, 12)
 				),
 				'adapt_time'		=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1310,7 +1310,7 @@ class Installer {
 				'accent'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '2'
+					'default'		=> rand(1, 12)
 				),
 				'enforce_accent'	=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1446,7 +1446,7 @@ class Installer {
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
 			'o_default_style'			=> $default_style,
-			'o_default_accent'			=> 2,
+			'o_default_accent'			=> rand(1, 12),
 			'o_allow_accent_color'		=> 1,
 			'o_allow_night_mode'		=> 1,
 			'o_default_user_group'		=> 4,
