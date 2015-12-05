@@ -185,7 +185,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	$tags_quotes = array('url', 'email', 'img', 'video');
 	// Tags we limit bbcode in
 	$tags_limit_bbcode = array(
-		'*' 	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email', 'list', 'img', 'code', 'sup', 'sub', 'video'),
+		'*' 	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email', 'list', 'sup', 'sub'),
 		'list' 	=> array('*'),
 		'url' 	=> array('img', 'sup', 'sub'),
 		'email' => array('img', 'sup', 'sub'),
