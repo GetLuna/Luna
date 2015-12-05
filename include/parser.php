@@ -683,11 +683,11 @@ function do_bbcode($text, $is_signature = false) {
 		$replace[] = '<span style="font-size: $1%">$2</span>';
 
 	// DailyMotion videos
-	$replace[] = '<iframe class="player" width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://www.dailymotion.com/embed/video/$3"></iframe>';
+	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.dailymotion.com/embed/video/$3"></iframe></div>';
 	// Youtube Videos
-	$replace[] = '<iframe class="player" width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://www.youtube.com/embed/$4"></iframe>';
+	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.youtube.com/embed/$4"></iframe></div>';
 	// Vimeo Videos
-	$replace[] = '<iframe class="player" width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://player.vimeo.com/video/$4"></iframe>';
+	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.vimeo.com/video/$4"></iframe></div>';
 
 	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1')) {
 		$pattern_callback[] = '%\[img\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
