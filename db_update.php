@@ -859,8 +859,5 @@ switch ($stage) {
 
 $db->end_transaction();
 $db->close();
-
-if ($query_str != '') {
-	header('Location: db_update.php'.$query_str);  
-	exit;  
-} 
+if ($query_str != '')
+	exit('<meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'&uid='.$uid.'" /><hr /><p>'._e('Automatic redirect failed.', 'luna').'<a href="db_update.php'.$query_str.'&uid='.$uid.'">'._e('Click here', 'luna').'</a></p>');
