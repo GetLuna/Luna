@@ -178,6 +178,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/accents/<?php echo rand(1, 12) ?>.css" />
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		function process_form(the_form) {
