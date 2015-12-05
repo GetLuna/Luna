@@ -15,10 +15,10 @@ $xmlstr = <<<XML
 	<id>fifteen</id>
 	<name>Fifteen</name>
 	<developer>Studio 384</developer>
-	<date>19 November 2015</date>
+	<date>6 December 2015</date>
 	<version>1.3 Preview</version>
-	<minversion>1.3 Preview 1</minversion>
-	<maxversion>1.3 Preview 4</maxversion>
+	<minversion>1.3 Preview 5</minversion>
+	<maxversion>1.3 Preview 5</maxversion>
 	<description>Fifteen is the default theme of the Luna. This modern, fresh, yet colorfull design makes your board an unique piece!</description>
 </style>
 XML;

@@ -40,7 +40,8 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved mobile interface for Fifteen and Backstage</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The behavior of some markup tags have been changed</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Embedded videos are now fully responsive</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten to reflect our new coding conventions</li>
+							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>You can no longer determine the size of embedded videos</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 9 bugs</li>
 							<hr />
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna 2.0 Fallow Preview 1</li>
