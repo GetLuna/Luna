@@ -191,7 +191,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 		'email' => array('img', 'sup', 'sub'),
 		'img' 	=> array(),
 		'h'		=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email'),
-		'video'	=> array('url')
+		'video'	=> array('url'),
 		'center'=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email', 'img'),
 		'size'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email')
 	);
