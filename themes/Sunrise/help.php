@@ -44,6 +44,11 @@ if (!defined('FORUM'))
 			<p><code>[sub]<?php _e('Subscript text', 'luna') ?>[/sub]</code> <?php _e('produces', 'luna') ?> <sub><?php _e('Subscript text', 'luna') ?></sub></p>
 			<p><code>[sup]<?php _e('Superscript text', 'luna') ?>[/sup]</code> <?php _e('produces', 'luna') ?> <sup><?php _e('Superscript text', 'luna') ?></sup></p>
 			<p><code>[h]<?php _e('Heading text', 'luna') ?>[/h]</code> <?php _e('produces', 'luna') ?></p> <h4><?php _e('Heading text', 'luna') ?></h4>
+			<?php if($luna_config['o_allow_size'] == 1) { ?>
+                <p><code>[size=200]<?php _e('Sized text', 'luna') ?>[/size]</code> <?php _e('produces', 'luna') ?></p> <p style="font-size: 200%"><?php _e('Sized text', 'luna') ?></p>
+            <?php } if($luna_config['o_allow_center'] == 1) { ?>
+                <p><code>[center]<?php _e('Centered text', 'luna') ?>[/center]</code> <?php _e('produces', 'luna') ?></p> <p style="text-align: center"><?php _e('Centered text', 'luna') ?></p>
+            <?php } ?>
 		</div>
 		<div class="tab-pane" id="links">
 			<p><?php _e('You can create links to other locations or to email addresses using the following tags:', 'luna') ?></p>
