@@ -178,7 +178,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
 	$tags_block = array('quote', 'code', 'list', 'h', '*');
 	// Inline tags, we do not allow new lines in these
-	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub', 'video');
+	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub');
 	// Tags we trim interior space
 	$tags_trim = array('img', 'video');
 	// Tags we remove quotes from the argument
