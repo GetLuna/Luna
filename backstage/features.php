@@ -27,6 +27,8 @@ if (isset($_POST['form_sent'])) {
 		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
 		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
+		'allow_center'					=> isset($_POST['form']['allow_center']) ? '1' : '0',
+		'allow_size'					=> isset($_POST['form']['allow_size']) ? '1' : '0',
 		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'video_width'					=> (intval($_POST['form']['video_width']) > 0) ? intval($_POST['form']['video_width']) : 640,
@@ -222,6 +224,23 @@ if (isset($_GET['saved']))
 							<label>
 								<input type="checkbox" name="form[make_links]" value="1" <?php if ($luna_config['o_make_links'] == '1') echo ' checked' ?> />
 								<?php _e('Convert URLs automatically to clickable hyperlinks.', 'luna') ?>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Optional tags', 'luna') ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[allow_center]" value="1" <?php if ($luna_config['o_allow_center'] == '1') echo ' checked' ?> />
+								<?php _e('Allow users to use the center tag within threads and their signature.', 'luna') ?>
+							</label>
+						</div>   
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[allow_size]" value="1" <?php if ($luna_config['o_allow_size'] == '1') echo ' checked' ?> />
+								<?php _e('Allow users to use the size tag within threads and their signature.', 'luna') ?>
 							</label>
 						</div>
 					</div>
