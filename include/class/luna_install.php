@@ -1449,6 +1449,8 @@ class Installer {
 			'o_disp_comments'			=> 25,
 			'o_indent_num_spaces'		=> 4,
 			'o_quote_depth'				=> 3,
+			'o_allow_center'			=> 0,
+			'o_allow_size'				=> 0,
 			'o_users_online'			=> 1,
 			'o_censoring'				=> 0,
 			'o_ranks'					=> 1,

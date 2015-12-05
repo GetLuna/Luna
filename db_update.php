@@ -635,6 +635,8 @@ switch ($stage) {
 		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
+		build_config(1, 'o_allow_center', 0);
+		build_config(1, 'o_allow_size', 0);
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
 		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
 		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
