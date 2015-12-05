@@ -68,7 +68,7 @@ if (!defined('FORUM'))
 				<p><code>[img=<?php _e('Luna BBCode Test', 'luna') ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php _e('produces', 'luna') ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php _e('Luna BBCode Test', 'luna') ?>" /></p>
 				<br />
 				<p><?php _e('Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.', 'luna') ?></p>
-				<p><code>[video][url]<?php _e('Put the link to the video here', 'luna') ?>[/url][/video]</code>
+				<p><code>[video]<?php _e('Put the link to the video here', 'luna') ?>[/video]</code>
 			</div>
 			<div class="tab-pane" id="quotes">
 				<p><?php _e('If you want to quote someone, you should use the quote tag.', 'luna') ?></p>
