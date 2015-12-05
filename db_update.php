@@ -298,8 +298,6 @@ switch ($stage) {
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 		build_config(1, 'o_cookie_bar', '0');
 		build_config(1, 'o_moderated_by', '1');
-		build_config(1, 'o_video_height', '640');
-		build_config(1, 'o_video_width', '360');
 
 		// ModernBB 3.4 Update 1 upgrade support
 		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
@@ -635,6 +633,8 @@ switch ($stage) {
 		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
+		build_config(0, 'o_video_height');
+		build_config(0, 'o_video_width');
 		build_config(1, 'o_allow_center', 0);
 		build_config(1, 'o_allow_size', 0);
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
