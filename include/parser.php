@@ -655,9 +655,9 @@ function do_bbcode($text, $is_signature = false) {
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
 	$pattern[] = '%\[sup\](.*?)\[/sup\]%ms';
 	$pattern[] = '%\[sub\](.*?)\[/sub\]%ms';
-	if ($luna_config['o_use_center'] == 1)
+	if ($luna_config['o_allow_center'] == 1)
 		$pattern[] = '%\[center\](.*?)\[/center\]%ms';
-	if ($luna_config['o_use_size'] == 1)
+	if ($luna_config['o_allow_size'] == 1)
 		$pattern[] = '%\[size=([50-250]*)](.*?)\[/size\]%ms';
 
 	// DailyMotion Videos
@@ -677,9 +677,9 @@ function do_bbcode($text, $is_signature = false) {
 	$replace[] = '<h3>$1</h3>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
-	if ($luna_config['o_use_center'] == 1)
+	if ($luna_config['o_allow_center'] == 1)
 		$replace[] = '</p><p style="text-align: center">$1</p><p>';
-	if ($luna_config['o_use_size'] == 1)
+	if ($luna_config['o_allow_size'] == 1)
 		$replace[] = '<span style="font-size: $1%">$2</span>';
 
 	// DailyMotion videos
