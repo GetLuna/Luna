@@ -42,6 +42,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Embedded videos are now fully responsive</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten to reflect our new coding conventions</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Multiple improvement for High-DPI screens have been applied</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Bootstrap and Font Awesome have been updated to their latest versions</li>
 							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>The license has been changed from GPLv3 to GPLv2</li>
 							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>You can no longer determine the size of embedded videos</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 9 bugs</li>
