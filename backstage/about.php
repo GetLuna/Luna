@@ -28,24 +28,25 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.3 Preview 5</span></p><h2>Denim</h2>
+						<p class="meta"><span class="release-version">1.3 Preview 6</span></p><h2>Denim</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sunrise is a new default theme</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sunrise has received a fully reimagned design</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Optional center and size markup tags</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Major naming convention updates</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Timezone settings have been reworked</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>The license has been changed from GPLv3 to GPLv2</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Daylight Saving is now handled by Luna</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen now has an updated sidebar</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved mobile interface for Fifteen and Backstage</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The behavior of some markup tags have been changed</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Embedded videos are now fully responsive</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten to reflect our new coding conventions</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Multiple improvement for High-DPI screens have been applied</li>
+							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>The license has been changed from GPLv3 to GPLv2</li>
 							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>You can no longer determine the size of embedded videos</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 9 bugs</li>
 							<hr />
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for Luna 2.0 Fallow Preview 1</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Partial support for Luna 2.0 Fallow Preview 1</li>
 						</ul>
 					</div>
 				</section>
