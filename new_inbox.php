@@ -3,7 +3,7 @@
 /*
  * Copyright (C) 2014-2015 Luna
  * Based on work by Adaur (2010), Vincent Garnier, Connorhd and David 'Chacmool' Djurback
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 define('LUNA_ROOT', dirname(__FILE__).'/');

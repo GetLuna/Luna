@@ -7,7 +7,7 @@ $xmlstr = <<<XML
 
 /*
  * Copyright (C) 2014-2015 Studio 384
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 -->
 
