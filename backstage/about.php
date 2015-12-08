@@ -28,6 +28,17 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.2.4</span></p><h2>Cornflower Blue Update 4</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Luna will now assign a random accent color for new installations</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes bug in email validity check</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a markup error in the login links</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes wrong links on the Update page</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes errors not being shown when required</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a migration issue from ModernBB</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.2.3</span></p><h2>Cornflower Blue Update 3</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved security on token hash</li>
