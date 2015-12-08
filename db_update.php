@@ -338,10 +338,10 @@ switch ($stage) {
 		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, rand(1, 12)) or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0') or error('Unable to add column "notify_pm_full" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
