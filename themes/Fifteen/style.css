@@ -932,6 +932,10 @@ a.active.list-group-item:focus {
 	margin-bottom: 5px;
 }
 
+.user-card-avatar .img-responsive, .img-responsive.visible-lg-inline {
+	max-height: 128px;
+}
+
 .profile-settings-head {
 	padding-top: 10px;
 }
