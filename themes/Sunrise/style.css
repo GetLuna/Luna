@@ -2048,3 +2048,10 @@ html.night {
 .night .btn-default:hover {
 	color: #444;
 }
+
+.night .forum-row.roweven.new-item,
+.night .thread-row.roweven.new-item,
+.night .forum-row.rowodd.new-item,
+.night .thread-row.rowodd.new-item {
+	background-color: #505050 !important;
+}
