@@ -1136,7 +1136,6 @@ a.label-new {
 	border: none;
 	border-radius: 0;
 	margin-bottom: 10px;
-	background-color: #ffffff;
 	border-left: #555 5px solid;
 }
 
@@ -1161,11 +1160,14 @@ a.label-new {
 
 .announcement {
 	border: none;
-	color: #fff;
-	background: rgba(255,255,255,.2);
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-bottom: 0;
 	padding: 5px 8px;
+}
+
+.announcement.alert-default {
+	color: #fff;
+	background: rgba(255,255,255,.2);
 }
 
 .col-md-10 .alert {

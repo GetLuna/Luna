@@ -65,6 +65,17 @@ $body_classes = check_style_mode();
 				</span>
 				<p class="board-desc"><?php echo $luna_config['o_board_desc']; ?></p>
 				<?php echo $tpl_temp ?>
+<?php
+	// Announcement
+	if ($luna_config['o_announcement'] == '1') {
+?>
+<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
+	<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
+	<?php echo $luna_config['o_announcement_message']; ?>
+</div>
+<?php
+}
+?>
 			</div>
 		</div>
 		<div class="container" id="main">
