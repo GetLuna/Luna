@@ -15,10 +15,10 @@ $xmlstr = <<<XML
 	<id>sunrise</id>
 	<name>Sunrise</name>
 	<developer>Studio 384</developer>
-	<date>15 December 2015</date>
-	<version>2.0 Beta</version>
-	<minversion>1.3 Beta 1</minversion>
-	<maxversion>1.3 Beta 1</maxversion>
+	<date>19 December 2015</date>
+	<version>2.0 RC</version>
+	<minversion>1.3 RC 1</minversion>
+	<maxversion>1.3 RC 1</maxversion>
 	<description>Sunrise is a more classic take on the look and feel of forum software.</description>
 </style>
 XML;

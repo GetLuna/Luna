@@ -28,7 +28,7 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.3 Preview 6</span></p><h2>Denim</h2>
+						<p class="meta"><span class="release-version">1.3 Preview 7</span></p><h2>Denim</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sunrise has received a fully reimagned design</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>
@@ -45,9 +45,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Bootstrap and Font Awesome have been updated to their latest versions</li>
 							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>The license has been changed from GPLv3 to GPLv2</li>
 							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>You can no longer determine the size of embedded videos</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 9 bugs</li>
-							<hr />
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Partial support for Luna 2.0 Fallow Preview 1</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 11 bugs</li>
 						</ul>
 					</div>
 				</section>
