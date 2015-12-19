@@ -50,7 +50,7 @@ class Installer {
 			$db_extensions[] = array('sqlite', 'SQLite 2');
 
 		if (class_exists('SQLite3'))
-			$db_extensions[] = array('sqlite3', 'SQLite 3');
+			$db_extensions[] = array('sqlite3', 'SQLite 3 Experimental');
 
 		if (function_exists('pg_connect'))
 			$db_extensions[] = array('pgsql', 'PostgreSQL');
