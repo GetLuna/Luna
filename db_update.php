@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2015 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 define('LUNA_SEARCH_MIN_WORD', 3);
@@ -298,8 +298,6 @@ switch ($stage) {
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 		build_config(1, 'o_cookie_bar', '0');
 		build_config(1, 'o_moderated_by', '1');
-		build_config(1, 'o_video_height', '640');
-		build_config(1, 'o_video_width', '360');
 
 		// ModernBB 3.4 Update 1 upgrade support
 		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
@@ -319,7 +317,7 @@ switch ($stage) {
 		// Luna 1.0 upgrade support
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'color_scheme', 'INT(25)', false, rand(1, 12)) or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
@@ -562,7 +560,7 @@ switch ($stage) {
 			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
 		// Luna 1.1 upgrade support
-		$db->add_field('users', 'accent', 'INT(10)', false, '2') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'accent', 'INT(10)', false, rand(1, 12)) or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
 
 		build_config(1, 'o_allow_accent_color', '1');
@@ -635,6 +633,10 @@ switch ($stage) {
 		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 		
 		build_config(0, 'o_topic_review');
+		build_config(0, 'o_video_height');
+		build_config(0, 'o_video_width');
+		build_config(1, 'o_allow_center', 0);
+		build_config(1, 'o_allow_size', 0);
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
 		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
 		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
@@ -675,6 +677,7 @@ switch ($stage) {
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
+			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 			
 			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
@@ -856,8 +859,5 @@ switch ($stage) {
 
 $db->end_transaction();
 $db->close();
-
-if ($query_str != '') {
-	header('Location: db_update.php'.$query_str);  
-	exit;  
-} 
+if ($query_str != '')
+	exit('<meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /><hr /><p>'._e('Automatic redirect failed.', 'luna').'<a href="db_update.php'.$query_str.'">'._e('Click here', 'luna').'</a></p>');

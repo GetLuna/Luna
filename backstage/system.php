@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2015 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 define('LUNA_ROOT', '../');
@@ -108,13 +108,13 @@ load_admin_nav('backstage', 'stats');
 				<td><?php _e('Software version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_cur_version']; ?></td>
 				<td><?php _e('Bootstrap version', 'luna') ?></td>
-				<td>3.3.5</td>
+				<td>3.3.6</td>
 			</tr>
 			<tr>
 				<td><?php _e('Core version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_core_version']; ?></td>
 				<td><?php _e('Font Awesome version', 'luna') ?></td>
-				<td>4.4.0</td>
+				<td>4.5.0</td>
 			</tr>
 			<tr>
 				<td><?php _e('Database version', 'luna') ?></td>

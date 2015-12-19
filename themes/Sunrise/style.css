@@ -1,8 +1,8 @@
 /*
- * Sixteen 1.0
+ * Sunrise 2.0
  * Based on Trent 1.0
- * Based on Bootstrap 3.3.5
- * Based on Font Awesome 4.4.0
+ * Based on Bootstrap 3.3.6
+ * Based on Font Awesome 4.5.0
  */
 
 /* General fixes */
@@ -613,7 +613,7 @@ hr {
 /* Pagination */
 .pagination {
 	margin: 0;
-	float: right;
+	margin-left: 10px;
 }
 
 .pagination-fix {
@@ -621,14 +621,36 @@ hr {
 	margin-bottom: 5px;
 }
 
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus,
+.pagination > li > a,
+.pagination > li > span,
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-	border: 1px solid #0073c4;
-	background-color: #0073c4;
+	border-color: transparent;
+	margin-left: 1px;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 /* Profile */
@@ -664,6 +686,10 @@ hr {
 
 .tab-pane .img-responsive {
 	border-radius: 999px;
+}
+
+.img-responsive.visible-lg-inline {
+	max-height: 128px;
 }
 
 /* Addons */
@@ -1110,7 +1136,6 @@ a.label-new {
 	border: none;
 	border-radius: 0;
 	margin-bottom: 10px;
-	background-color: #ffffff;
 	border-left: #555 5px solid;
 }
 
@@ -1135,11 +1160,14 @@ a.label-new {
 
 .announcement {
 	border: none;
-	color: #fff;
-	background: rgba(255,255,255,.2);
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-bottom: 0;
 	padding: 5px 8px;
+}
+
+.announcement.alert-default {
+	color: #fff;
+	background: rgba(255,255,255,.2);
 }
 
 .col-md-10 .alert {
@@ -2021,4 +2049,11 @@ html.night {
 .night .btn-default,
 .night .btn-default:hover {
 	color: #444;
+}
+
+.night .forum-row.roweven.new-item,
+.night .thread-row.roweven.new-item,
+.night .forum-row.rowodd.new-item,
+.night .thread-row.rowodd.new-item {
+	background-color: #505050 !important;
 }

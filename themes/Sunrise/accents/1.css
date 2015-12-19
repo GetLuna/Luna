@@ -39,9 +39,16 @@
 
 .btn-primary:hover,
 .btn-primary:focus,
+.btn-primary:active,
 .btn-primary.active,
 .btn-primary.disabled,
-.btn-primary[disabled] {
+.btn-primary[disabled],
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
 	background-color: #0b95ed;
 }
 

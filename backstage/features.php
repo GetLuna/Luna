@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2015 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 define('LUNA_ROOT', '../');
@@ -27,16 +27,16 @@ if (isset($_POST['form_sent'])) {
 		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
 		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
+		'allow_center'					=> isset($_POST['form']['allow_center']) ? '1' : '0',
+		'allow_size'					=> isset($_POST['form']['allow_size']) ? '1' : '0',
 		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
-		'video_width'					=> (intval($_POST['form']['video_width']) > 0) ? intval($_POST['form']['video_width']) : 640,
-		'video_height'					=> (intval($_POST['form']['video_height']) > 0) ? intval($_POST['form']['video_height']) : 360,
 		'gzip'							=> isset($_POST['form']['gzip']) ? '1' : '0',
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
 		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
 		'inbox_enabled'					=> isset($_POST['form']['inbox_enabled']) ? '1' : '0',
-		'inbox_notification'				=> isset($_POST['form']['inbox_notification']) ? '1' : '0',
-		'inbox_max_receiver'				=> (intval($_POST['form']['inbox_max_receiver']) > 0) ? intval($_POST['form']['inbox_max_receiver']) : 5
+		'inbox_notification'			=> isset($_POST['form']['inbox_notification']) ? '1' : '0',
+		'inbox_max_receiver'			=> (intval($_POST['form']['inbox_max_receiver']) > 0) ? intval($_POST['form']['inbox_max_receiver']) : 5
 	);
 
 	foreach ($form as $key => $input) {
@@ -226,6 +226,23 @@ if (isset($_GET['saved']))
 						</div>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Optional tags', 'luna') ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[allow_center]" value="1" <?php if ($luna_config['o_allow_center'] == '1') echo ' checked' ?> />
+								<?php _e('Allow users to use the center tag within threads and their signature.', 'luna') ?>
+							</label>
+						</div>   
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[allow_size]" value="1" <?php if ($luna_config['o_allow_size'] == '1') echo ' checked' ?> />
+								<?php _e('Allow users to use the size tag within threads and their signature.', 'luna') ?>
+							</label>
+						</div>
+					</div>
+				</div>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Indent size', 'luna') ?><span class="help-block"><?php _e('Amount of spaces that represent a tab', 'luna') ?></span></label>
@@ -237,19 +254,6 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Maximum [quote] depth', 'luna') ?><span class="help-block"><?php _e('Maximum [quote] can be used in [quote]', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="number" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Video height', 'luna') ?><span class="help-block"><?php _e('Height of an embedded video', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[video_width]" maxlength="4" value="<?php echo $luna_config['o_video_width'] ?>" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Video width', 'luna') ?><span class="help-block"><?php _e('Width of an embedded video', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
 					</div>
 				</div>
 			</fieldset>

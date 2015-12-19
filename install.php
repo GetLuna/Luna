@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2015 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 define('LUNA_SEARCH_MIN_WORD', 3);
@@ -178,6 +178,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/accents/<?php echo rand(1, 12) ?>.css" />
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		function process_form(the_form) {

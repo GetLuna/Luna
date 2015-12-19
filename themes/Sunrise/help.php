@@ -44,6 +44,11 @@ if (!defined('FORUM'))
 			<p><code>[sub]<?php _e('Subscript text', 'luna') ?>[/sub]</code> <?php _e('produces', 'luna') ?> <sub><?php _e('Subscript text', 'luna') ?></sub></p>
 			<p><code>[sup]<?php _e('Superscript text', 'luna') ?>[/sup]</code> <?php _e('produces', 'luna') ?> <sup><?php _e('Superscript text', 'luna') ?></sup></p>
 			<p><code>[h]<?php _e('Heading text', 'luna') ?>[/h]</code> <?php _e('produces', 'luna') ?></p> <h4><?php _e('Heading text', 'luna') ?></h4>
+			<?php if($luna_config['o_allow_size'] == 1) { ?>
+                <p><code>[size=200]<?php _e('Sized text', 'luna') ?>[/size]</code> <?php _e('produces', 'luna') ?></p> <p style="font-size: 200%"><?php _e('Sized text', 'luna') ?></p>
+            <?php } if($luna_config['o_allow_center'] == 1) { ?>
+                <p><code>[center]<?php _e('Centered text', 'luna') ?>[/center]</code> <?php _e('produces', 'luna') ?></p> <p style="text-align: center"><?php _e('Centered text', 'luna') ?></p>
+            <?php } ?>
 		</div>
 		<div class="tab-pane" id="links">
 			<p><?php _e('You can create links to other locations or to email addresses using the following tags:', 'luna') ?></p>
@@ -55,7 +60,7 @@ if (!defined('FORUM'))
 			<p><code>[img=<?php _e('Luna BBCode Test', 'luna') ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php _e('produces', 'luna') ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php _e('Luna BBCode Test', 'luna') ?>" /></p>
 			<br />
 			<p><?php _e('Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.', 'luna') ?></p>
-			<p><code>[video][url]<?php _e('Put the link to the video here', 'luna') ?>[/url][/video]</code>
+			<p><code>[video]<?php _e('Put the link to the video here', 'luna') ?>[/video]</code>
 		</div>
 		<div class="tab-pane" id="quotes">
 			<p><?php _e('If you want to quote someone, you should use the quote tag.', 'luna') ?></p>

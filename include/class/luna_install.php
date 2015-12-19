@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2015 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 class Installer {
@@ -50,7 +50,7 @@ class Installer {
 			$db_extensions[] = array('sqlite', 'SQLite 2');
 
 		if (class_exists('SQLite3'))
-			$db_extensions[] = array('sqlite3', 'SQLite 3');
+			$db_extensions[] = array('sqlite3', 'SQLite 3 Experimental');
 
 		if (function_exists('pg_connect'))
 			$db_extensions[] = array('pgsql', 'PostgreSQL');
@@ -1295,7 +1295,7 @@ class Installer {
 				'color_scheme'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '2'
+					'default'		=> rand(1, 12)
 				),
 				'adapt_time'		=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1305,7 +1305,7 @@ class Installer {
 				'accent'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '2'
+					'default'		=> rand(1, 12)
 				),
 				'enforce_accent'	=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1441,7 +1441,7 @@ class Installer {
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
 			'o_default_style'			=> $default_style,
-			'o_default_accent'			=> 2,
+			'o_default_accent'			=> rand(1, 12),
 			'o_allow_accent_color'		=> 1,
 			'o_allow_night_mode'		=> 1,
 			'o_default_user_group'		=> 4,
@@ -1449,6 +1449,8 @@ class Installer {
 			'o_disp_comments'			=> 25,
 			'o_indent_num_spaces'		=> 4,
 			'o_quote_depth'				=> 3,
+			'o_allow_center'			=> 0,
+			'o_allow_size'				=> 0,
 			'o_users_online'			=> 1,
 			'o_censoring'				=> 0,
 			'o_ranks'					=> 1,
@@ -1480,8 +1482,6 @@ class Installer {
 			'o_smtp_ssl'				=> 0,
 			'o_regs_allow'				=> 1,
 			'o_regs_verify'				=> 0,
-			'o_video_width'				=> 640,
-			'o_video_height'			=> 360,
 			'o_enable_advanced_search'	=> 1,
 			'o_announcement'			=> 0,
 			'o_announcement_message'	=> __('Announcement', 'luna'),

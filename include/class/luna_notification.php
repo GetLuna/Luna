@@ -2,7 +2,7 @@
 
 /*
  * Copyright (C) 2013-2015 CaerCam
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 class LunaNotification {

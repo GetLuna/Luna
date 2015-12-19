@@ -53,17 +53,7 @@ if ($luna_user['first_run'] == '0') {
 		<?php } ?>
 	</div>
 </div>
-<?php }
-	// Announcement
-	if ($luna_config['o_announcement'] == '1') {
-?>
-<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
-	<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
-	<?php echo $luna_config['o_announcement_message']; ?>
-</div>
-<?php
-}
-?>
+<?php } ?>
 <div class="panel panel-default panel-board">
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php _e('Recent activity', 'luna') ?></h3>

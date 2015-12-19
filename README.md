@@ -3,19 +3,10 @@
 [![Join the chat at https://gitter.im/GetLuna/Luna](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GetLuna/Luna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## About
-Luna is an open source board software web app released under the GPLv3 license. Our vision is to bring you a small (in size) and light forum solution and to provide an experience that is both desktop-first and mobile-first, as manny seem to forget about the first one. Luna is the successor to ModernBB, one of the first forum software projects to provide a full featured build-in mobile experience without compromises.
-
-## New in Denim
-- Sunrise has been revamped
-- Improvements to Fifteen, including categories and mobile interface
-- New CSS coding conventions
-- Major update to the Luna database
-- Mark threads as important
-- Improvements to thread tags
-- Improved mobile interface in Backstage
+Luna is an open source board software web app released under the GPLv2 license. Our vision is to bring you a small (in size) and light forum solution and to provide an experience that is both desktop-first and mobile-first, as manny seem to forget about the first one. Luna is the successor to ModernBB, one of the first forum software projects to provide a full featured build-in mobile experience without compromises.
 
 ## Requirements
-- A webserver with 2,85 MB free disk space
+- A webserver
 - PHP 5.3 or later
 - A database running either
  - MySQL 5.0 or later 

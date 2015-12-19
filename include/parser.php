@@ -58,7 +58,6 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 	}
 
 	if ($is_signature) {
-
 		if (preg_match('%\[/?(?:quote|code|video|list|h)\b[^\]]*\]%i', $text))
 			$errors[] = __('The quote, code, list, video, and heading BBCodes are not allowed in signatures.', 'luna');
 	}
@@ -126,7 +125,7 @@ function strip_empty_bbcode($text) {
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|size|center|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
 		if ($new_text != $text)
 			$text = $new_text;
 		else
@@ -165,7 +164,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'size', 'center', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video');
 	// List of tags that we need to check are open (You could not put b, i, u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -179,20 +178,22 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
 	$tags_block = array('quote', 'code', 'list', 'h', '*');
 	// Inline tags, we do not allow new lines in these
-	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub', 'video');
+	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub');
 	// Tags we trim interior space
 	$tags_trim = array('img', 'video');
 	// Tags we remove quotes from the argument
 	$tags_quotes = array('url', 'email', 'img', 'video');
 	// Tags we limit bbcode in
 	$tags_limit_bbcode = array(
-		'*' 	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email', 'list', 'img', 'code', 'sup', 'sub', 'video'),
+		'*' 	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email', 'list', 'sup', 'sub'),
 		'list' 	=> array('*'),
-		'url' 	=> array('img', 'sup', 'sub'),
-		'email' => array('img', 'sup', 'sub'),
+		'url' 	=> array('img'),
+		'email' => array('img'),
 		'img' 	=> array(),
-		'h'		=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'video'	=> array('url')
+		'h'		=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email'),
+		'video'	=> array('url'),
+		'center'=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email', 'img'),
+		'size'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email')
 	);
 	// Tags we can automatically fix bad nesting
 	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'color', 'url', 'email', 'h');
@@ -654,6 +655,10 @@ function do_bbcode($text, $is_signature = false) {
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
 	$pattern[] = '%\[sup\](.*?)\[/sup\]%ms';
 	$pattern[] = '%\[sub\](.*?)\[/sub\]%ms';
+	if ($luna_config['o_allow_center'] == 1)
+		$pattern[] = '%\[center\](.*?)\[/center\]%ms';
+	if ($luna_config['o_allow_size'] == 1)
+		$pattern[] = '%\[size=([50-250]*)](.*?)\[/size\]%ms';
 
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -672,13 +677,17 @@ function do_bbcode($text, $is_signature = false) {
 	$replace[] = '<h3>$1</h3>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
+	if ($luna_config['o_allow_center'] == 1)
+		$replace[] = '</p><p style="text-align: center">$1</p><p>';
+	if ($luna_config['o_allow_size'] == 1)
+		$replace[] = '<span style="font-size: $1%">$2</span>';
 
 	// DailyMotion videos
-	$replace[] = '<iframe class="player" width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://www.dailymotion.com/embed/video/$3"></iframe>';
+	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.dailymotion.com/embed/video/$3"></iframe></div>';
 	// Youtube Videos
-	$replace[] = '<iframe class="player" width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://www.youtube.com/embed/$4"></iframe>';
+	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.youtube.com/embed/$4"></iframe></div>';
 	// Vimeo Videos
-	$replace[] = '<iframe class="player" width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://player.vimeo.com/video/$4"></iframe>';
+	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.vimeo.com/video/$4"></iframe></div>';
 
 	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1')) {
 		$pattern_callback[] = '%\[img\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
