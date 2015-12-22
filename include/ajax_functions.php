@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2015 CaerCam
+ * Copyright (C) 2013-2015 Luna Group
  * License: http://opensource.org/licenses/MIT MIT
  */
 
