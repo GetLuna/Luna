@@ -312,29 +312,15 @@ if (count($languages) > 1) {
 			</div>
 			<div role="tabpanel" class="tab-pane<?php if ( 'threads' === $section ) { ?> active<?php } ?>" id="threads">
 				<fieldset class="form-horizontal form-setting">
-					<?php if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
+					<?php if ($luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php _e('Comment display', 'luna') ?></label>
+							<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
 							<div class="col-sm-9">
-								<?php if ($luna_config['o_smilies_sig'] == '1'): ?>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
-											<?php _e('Show smilies as graphic icons.', 'luna') ?>
-										</label>
-									</div>
-								<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked' ?> />
-											<?php _e('Show user signatures.', 'luna') ?>
-										</label>
-									</div>
-								<?php endif; if ($luna_config['o_avatars'] == '1'): ?>
+								<?php if ($luna_config['o_avatars'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked' ?> />
-											<?php _e('Show user avatars in comments.', 'luna') ?>
+											<?php _e('Show user avatars with their comments.', 'luna') ?>
 										</label>
 									</div>
 								<?php endif; if ($luna_config['p_message_img_tag'] == '1'): ?>
@@ -344,11 +330,32 @@ if (count($languages) > 1) {
 											<?php _e('Show images in comments.', 'luna') ?>
 										</label>
 									</div>
+								<?php endif; ?>
+							</div>
+						</div>
+					<?php endif; if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1'): ?>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><?php _e('Signatures', 'luna') ?></label>
+							<div class="col-sm-9">
+								<?php if ($luna_config['o_signatures'] == '1'): ?>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked' ?> />
+											<?php _e('Show user signatures.', 'luna') ?>
+										</label>
+									</div>
 								<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked' ?> />
 											<?php _e('Show images in user signatures.', 'luna') ?>
+										</label>
+									</div>
+								<?php endif; if ($luna_config['o_smilies_sig'] == '1'): ?>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
+											<?php _e('Show smilies as graphic icons.', 'luna') ?>
 										</label>
 									</div>
 								<?php endif; ?>
