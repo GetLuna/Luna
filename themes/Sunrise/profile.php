@@ -34,7 +34,7 @@ if (!defined('FORUM'))
 				<h3 class="panel-title"><?php _e('Contact', 'luna'); ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?></p>
+				<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?>
 			</div>
 		</div>
 	<?php

@@ -1,15 +1,13 @@
 <?php
 
-/**
+/*
+ * Copyright (C) 2013-2015 Luna Group
+ * License: http://opensource.org/licenses/MIT MIT
+ */
+
+/*
  * Luna Nonces Utility Class.
- * 
  * Handles the generation and validity check of nonces.
- * 
- * @package   Luna
- * @author    Charlie MERLAND <charlie@caercam.org>
- * @license   GPL-3.0
- * @link      http://www.caercam.org/
- * @copyright 2014 CaerCam
  */
 class LunaNonces {
 
