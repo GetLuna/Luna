@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.3\n"
-"POT-Creation-Date: 2015-12-23 11:36+0100\n"
-"PO-Revision-Date: 2015-12-23 11:38+0100\n"
+"POT-Creation-Date: 2015-12-23 18:57+0100\n"
+"PO-Revision-Date: 2015-12-23 18:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -27,7 +27,7 @@ msgstr ""
 #: backstage/moderate.php:222 backstage/moderate.php:297
 #: backstage/moderate.php:472 backstage/moderate.php:595
 #: backstage/moderate.php:680 backstage/moderate.php:834
-#: backstage/permissions.php:50 backstage/prune.php:89 backstage/prune.php:182
+#: backstage/permissions.php:50 backstage/prune.php:89 backstage/prune.php:207
 #: backstage/ranks.php:85 backstage/registration.php:59
 #: backstage/reports.php:42 backstage/settings.php:134 backstage/system.php:87
 #: backstage/theme.php:33 backstage/tools.php:113 backstage/update.php:68
@@ -87,9 +87,9 @@ msgstr ""
 #: backstage/settings.php:338 backstage/settings.php:364
 #: backstage/settings.php:417 backstage/update.php:83 backstage/users.php:294
 #: themes/Fifteen/me-modals.php:17 themes/Fifteen/me-modals.php:43
-#: themes/Fifteen/settings.php:28 themes/Fifteen/settings.php:459
+#: themes/Fifteen/settings.php:28 themes/Fifteen/settings.php:466
 #: themes/Sunrise/me-modals.php:17 themes/Sunrise/me-modals.php:43
-#: themes/Sunrise/settings.php:30 themes/Sunrise/settings.php:458
+#: themes/Sunrise/settings.php:30 themes/Sunrise/settings.php:465
 msgid "Save"
 msgstr ""
 
@@ -157,8 +157,8 @@ msgstr ""
 msgid "pixels"
 msgstr ""
 
-#: backstage/appearance.php:174 themes/Fifteen/settings.php:360
-#: themes/Sunrise/settings.php:359
+#: backstage/appearance.php:174 themes/Fifteen/settings.php:367
+#: themes/Sunrise/settings.php:366
 msgid "Threads per page"
 msgstr ""
 
@@ -166,8 +166,8 @@ msgstr ""
 msgid "Default amount of threads per page"
 msgstr ""
 
-#: backstage/appearance.php:180 themes/Fifteen/settings.php:366
-#: themes/Sunrise/settings.php:365
+#: backstage/appearance.php:180 themes/Fifteen/settings.php:373
+#: themes/Sunrise/settings.php:372
 msgid "Comments per page"
 msgstr ""
 
@@ -858,14 +858,14 @@ msgstr ""
 msgid "Gzip compression"
 msgstr ""
 
-#: backstage/database.php:544 backstage/prune.php:238 backstage/prune.php:315
+#: backstage/database.php:544 backstage/prune.php:269 backstage/prune.php:346
 #: backstage/users.php:555 themes/Fifteen/answer.php:19
 #: themes/Fifteen/unsolved.php:19 themes/Sunrise/answer.php:19
 #: themes/Sunrise/unsolved.php:19
 msgid "Yes"
 msgstr ""
 
-#: backstage/database.php:548 backstage/prune.php:242 backstage/prune.php:318
+#: backstage/database.php:548 backstage/prune.php:273 backstage/prune.php:349
 #: backstage/users.php:559 themes/Fifteen/answer.php:18
 #: themes/Fifteen/unsolved.php:18 themes/Sunrise/answer.php:18
 #: themes/Sunrise/unsolved.php:18
@@ -1581,7 +1581,7 @@ msgstr ""
 msgid "Create new backup"
 msgstr ""
 
-#: backstage/index.php:205 db_update.php:714 db_update.php:799
+#: backstage/index.php:205 db_update.php:711 db_update.php:796
 #: include/draw_functions.php:385 include/draw_functions.php:468
 msgid "comment"
 msgstr ""
@@ -1687,7 +1687,7 @@ msgid ""
 msgstr ""
 
 #: backstage/maintenance.php:162 backstage/maintenance.php:175
-#: backstage/maintenance.php:181 backstage/prune.php:182 db_update.php:184
+#: backstage/maintenance.php:181 backstage/prune.php:207 db_update.php:184
 #: include/backstage_functions.php:62 include/backstage_functions.php:95
 #: include/backstage_functions.php:189 include/functions.php:1365
 msgid "Maintenance"
@@ -2003,7 +2003,8 @@ msgstr ""
 msgid "Require guests to supply an email address when commenting."
 msgstr ""
 
-#: backstage/permissions.php:110
+#: backstage/permissions.php:110 themes/Fifteen/settings.php:338
+#: themes/Sunrise/settings.php:337
 msgid "Signatures"
 msgstr ""
 
@@ -2053,19 +2054,19 @@ msgstr ""
 msgid "Days to prune must be a positive integer value."
 msgstr ""
 
-#: backstage/prune.php:81 backstage/prune.php:250
+#: backstage/prune.php:81 backstage/prune.php:281
 msgid "All forums"
 msgstr ""
 
 #: backstage/prune.php:87
 #, php-format
 msgid ""
-"There are s that are %s days old. Please decrease the value of \"Days old\" "
-"and try again."
+"There are no threads that are %s days old. Please decrease the value of "
+"\"Days old\" and try again."
 msgstr ""
 
 #: backstage/prune.php:89 backstage/prune.php:97 backstage/prune.php:111
-#: backstage/prune.php:191 backstage/prune.php:221 backstage/prune.php:280
+#: backstage/prune.php:216 backstage/prune.php:252 backstage/prune.php:311
 #: include/backstage_functions.php:64 include/backstage_functions.php:190
 msgid "Prune"
 msgstr ""
@@ -2085,119 +2086,123 @@ msgstr ""
 msgid "Pruning comments deletes them permanently."
 msgstr ""
 
-#: backstage/prune.php:135
+#: backstage/prune.php:160
 msgid "Pruning complete. Notifications pruned."
 msgstr ""
 
-#: backstage/prune.php:173
+#: backstage/prune.php:198
 msgid ""
 "Pruning complete, all users that matched the requirements have been pruned."
 msgstr ""
 
-#: backstage/prune.php:191
+#: backstage/prune.php:216
 msgid "Prune notifications"
 msgstr ""
 
-#: backstage/prune.php:196 backstage/prune.php:226 backstage/prune.php:284
+#: backstage/prune.php:221 backstage/prune.php:257 backstage/prune.php:315
 #, php-format
 msgid "It's recommended to activate %s during pruning."
 msgstr ""
 
-#: backstage/prune.php:196 backstage/prune.php:226 backstage/prune.php:284
+#: backstage/prune.php:221 backstage/prune.php:257 backstage/prune.php:315
 msgid "maintenance mode"
 msgstr ""
 
-#: backstage/prune.php:198 install.php:186 install.php:277
+#: backstage/prune.php:223 backstage/prune.php:259
+msgid "Days old"
+msgstr ""
+
+#: backstage/prune.php:223
+msgid "The number of days old a notification must be to be pruned"
+msgstr ""
+
+#: backstage/prune.php:229 install.php:186 install.php:277
 msgid "Type"
 msgstr ""
 
-#: backstage/prune.php:202
+#: backstage/prune.php:233
 msgid "All notifications"
 msgstr ""
 
-#: backstage/prune.php:206 themes/Fifteen/notifications.php:34
+#: backstage/prune.php:237 themes/Fifteen/notifications.php:34
 #: themes/Sunrise/notifications.php:43
 msgid "Seen notifications"
 msgstr ""
 
-#: backstage/prune.php:210 themes/Fifteen/notifications.php:21
+#: backstage/prune.php:241 themes/Fifteen/notifications.php:21
 #: themes/Sunrise/notifications.php:24
 msgid "New notifications"
 msgstr ""
 
-#: backstage/prune.php:221
+#: backstage/prune.php:252
 msgid "Prune old comments"
 msgstr ""
 
-#: backstage/prune.php:228
-msgid "Days old"
-msgstr ""
-
-#: backstage/prune.php:228
+#: backstage/prune.php:259
 msgid "The number of days old a thread must be to be pruned"
 msgstr ""
 
-#: backstage/prune.php:234
+#: backstage/prune.php:265
 msgid "Prune pinned threads"
 msgstr ""
 
-#: backstage/prune.php:247
+#: backstage/prune.php:278
 msgid "Prune from"
 msgstr ""
 
-#: backstage/prune.php:280
+#: backstage/prune.php:311
 msgid "Prune users"
 msgstr ""
 
-#: backstage/prune.php:286
+#: backstage/prune.php:317
 msgid "Prune by"
 msgstr ""
 
-#: backstage/prune.php:286
+#: backstage/prune.php:317
 msgid "What should we count to prune?"
 msgstr ""
 
-#: backstage/prune.php:290
+#: backstage/prune.php:321
 msgid "Registered date"
 msgstr ""
 
-#: backstage/prune.php:294
+#: backstage/prune.php:325
 msgid "Last login"
 msgstr ""
 
-#: backstage/prune.php:299
+#: backstage/prune.php:330
 msgid "Minimum days since registration/last login"
 msgstr ""
 
-#: backstage/prune.php:299
+#: backstage/prune.php:330
 msgid "The minimum amount of days since event specified above"
 msgstr ""
 
-#: backstage/prune.php:305
+#: backstage/prune.php:336
 msgid "Maximum number of comments"
 msgstr ""
 
-#: backstage/prune.php:305
+#: backstage/prune.php:336
 msgid "How many comments do you require before an users isn't pruned"
 msgstr ""
 
-#: backstage/prune.php:311
+#: backstage/prune.php:342
 msgid "Delete admins and mods"
 msgstr ""
 
-#: backstage/prune.php:323
+#: backstage/prune.php:354
 msgid "User status"
 msgstr ""
 
-#: backstage/prune.php:327
+#: backstage/prune.php:358
 msgid "Delete any"
 msgstr ""
 
-#: backstage/prune.php:331
+#: backstage/prune.php:362
 msgid "Delete only verified"
 msgstr ""
 
-#: backstage/prune.php:335
+#: backstage/prune.php:366
 msgid "Delete only unverified"
 msgstr ""
 
@@ -2388,8 +2393,8 @@ msgstr ""
 msgid "Time and timeouts"
 msgstr ""
 
-#: backstage/settings.php:213 themes/Fifteen/settings.php:391
-#: themes/Sunrise/settings.php:390
+#: backstage/settings.php:213 themes/Fifteen/settings.php:398
+#: themes/Sunrise/settings.php:397
 msgid "Time format"
 msgstr ""
 
@@ -2402,8 +2407,8 @@ msgstr ""
 msgid "PHP manual"
 msgstr ""
 
-#: backstage/settings.php:219 themes/Fifteen/settings.php:409
-#: themes/Sunrise/settings.php:408
+#: backstage/settings.php:219 themes/Fifteen/settings.php:416
+#: themes/Sunrise/settings.php:415
 msgid "Date format"
 msgstr ""
 
@@ -2574,9 +2579,9 @@ msgstr ""
 msgid "Announcement type"
 msgstr ""
 
-#: backstage/settings.php:444 themes/Fifteen/settings.php:401
-#: themes/Fifteen/settings.php:419 themes/Sunrise/settings.php:400
-#: themes/Sunrise/settings.php:418
+#: backstage/settings.php:444 themes/Fifteen/settings.php:408
+#: themes/Fifteen/settings.php:426 themes/Sunrise/settings.php:407
+#: themes/Sunrise/settings.php:425
 msgid "Default"
 msgstr ""
 
@@ -2942,7 +2947,7 @@ msgstr ""
 msgid ""
 "We release every now and then a new build for Luna, one more stable then the "
 "other, for you to check out. You can keep track of this at <a href=\"http://"
-"getluna.org/releaste-notes-preview.php\">our website</a>. New builds can "
+"getluna.org/release-notes-preview.php\">our website</a>. New builds can "
 "contain new features, improved features, and/or bugfixes."
 msgstr ""
 
@@ -2987,13 +2992,14 @@ msgstr ""
 
 #: backstage/users.php:124 backstage/users.php:152 backstage/users.php:726
 #: backstage/users.php:743 extern.php:494 profile.php:43
-#: themes/Fifteen/search-advanced.php:43 themes/Fifteen/settings.php:504
-#: themes/Sunrise/search-advanced.php:34 themes/Sunrise/settings.php:503
+#: themes/Fifteen/search-advanced.php:43 themes/Fifteen/settings.php:317
+#: themes/Fifteen/settings.php:511 themes/Sunrise/search-advanced.php:34
+#: themes/Sunrise/settings.php:316 themes/Sunrise/settings.php:510
 msgid "Comments"
 msgstr ""
 
 #: backstage/users.php:125 backstage/users.php:727 backstage/users.php:856
-#: themes/Fifteen/settings.php:511 themes/Sunrise/settings.php:510
+#: themes/Fifteen/settings.php:518 themes/Sunrise/settings.php:517
 msgid "Admin note"
 msgstr ""
 
@@ -3417,25 +3423,25 @@ msgstr ""
 msgid "Update Luna"
 msgstr ""
 
-#: db_update.php:714 db_update.php:747
+#: db_update.php:711 db_update.php:744
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr ""
 
-#: db_update.php:747
+#: db_update.php:744
 msgid "signature"
 msgstr ""
 
-#: db_update.php:799
+#: db_update.php:796
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr ""
 
-#: db_update.php:867
+#: db_update.php:864
 msgid "Automatic redirect failed."
 msgstr ""
 
-#: db_update.php:867
+#: db_update.php:864
 msgid "Click here"
 msgstr ""
 
@@ -4056,7 +4062,7 @@ msgstr ""
 msgid "Luna"
 msgstr ""
 
-#: include/email.php:228 new_inbox.php:267 new_inbox.php:279
+#: include/email.php:225 new_inbox.php:267 new_inbox.php:279
 #, php-format
 msgid "%s Mailer"
 msgstr ""
@@ -5767,61 +5773,57 @@ msgstr ""
 msgid "Automatically subscribe to every thread you comment in."
 msgstr ""
 
-#: themes/Fifteen/settings.php:317 themes/Sunrise/settings.php:316
-msgid "Comment display"
-msgstr ""
-
 #: themes/Fifteen/settings.php:323 themes/Sunrise/settings.php:322
-msgid "Show smilies as graphic icons."
+msgid "Show user avatars with their comments."
 msgstr ""
 
 #: themes/Fifteen/settings.php:330 themes/Sunrise/settings.php:329
-msgid "Show user signatures."
-msgstr ""
-
-#: themes/Fifteen/settings.php:337 themes/Sunrise/settings.php:336
-msgid "Show user avatars in comments."
+msgid "Show images in comments."
 msgstr ""
 
 #: themes/Fifteen/settings.php:344 themes/Sunrise/settings.php:343
-msgid "Show images in comments."
+msgid "Show user signatures."
 msgstr ""
 
 #: themes/Fifteen/settings.php:351 themes/Sunrise/settings.php:350
 msgid "Show images in user signatures."
 msgstr ""
 
-#: themes/Fifteen/settings.php:376 themes/Sunrise/settings.php:375
+#: themes/Fifteen/settings.php:358 themes/Sunrise/settings.php:357
+msgid "Show smilies as graphic icons."
+msgstr ""
+
+#: themes/Fifteen/settings.php:383 themes/Sunrise/settings.php:382
 msgid "Time zone"
 msgstr ""
 
-#: themes/Fifteen/settings.php:433 themes/Fifteen/settings.php:467
-#: themes/Sunrise/settings.php:432 themes/Sunrise/settings.php:466
+#: themes/Fifteen/settings.php:440 themes/Fifteen/settings.php:474
+#: themes/Sunrise/settings.php:439 themes/Sunrise/settings.php:473
 msgid "Delete or ban user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:435 themes/Fifteen/settings.php:470
-#: themes/Sunrise/settings.php:434 themes/Sunrise/settings.php:469
+#: themes/Fifteen/settings.php:442 themes/Fifteen/settings.php:477
+#: themes/Sunrise/settings.php:441 themes/Sunrise/settings.php:476
 msgid "Ban user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:441 themes/Sunrise/settings.php:440
+#: themes/Fifteen/settings.php:448 themes/Sunrise/settings.php:447
 msgid "Choose user group"
 msgstr ""
 
-#: themes/Fifteen/settings.php:469 themes/Sunrise/settings.php:468
+#: themes/Fifteen/settings.php:476 themes/Sunrise/settings.php:475
 msgid "Delete user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:476 themes/Sunrise/settings.php:475
+#: themes/Fifteen/settings.php:483 themes/Sunrise/settings.php:482
 msgid "Set moderator access"
 msgstr ""
 
-#: themes/Fifteen/settings.php:476 themes/Sunrise/settings.php:475
+#: themes/Fifteen/settings.php:483 themes/Sunrise/settings.php:482
 msgid "Update forums"
 msgstr ""
 
-#: themes/Fifteen/settings.php:478 themes/Sunrise/settings.php:477
+#: themes/Fifteen/settings.php:485 themes/Sunrise/settings.php:484
 msgid ""
 "Choose which forums this user should be allowed to moderate. Note: This only "
 "applies to moderators. Administrators always have full permissions in all "
