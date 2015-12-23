@@ -106,10 +106,6 @@ if ($user['signature'] != '') {
 
 $last_comment = format_time($user['last_comment']);
 
-if ($user['signature'] != '') {
-	$parsed_signature = parse_signature($user['signature']);
-}
-
 if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
 	$user_signature = $parsed_signature;
 
