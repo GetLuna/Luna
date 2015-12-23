@@ -643,11 +643,12 @@ switch ($stage) {
 		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
 		build_config(2, 'o_thread_views', 'o_topic_views');
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
-		build_config(2, 'o_has_commented', 'o_has_posted');
+		build_config(1, 'o_has_commented', (isset($luna_config['o_has_posted']) ? $luna_config['o_has_posted'] : '1'));
 		build_config(2, 'o_pms_enabled', 'o_enable_inbox');
 		build_config(2, 'o_pms_max_receiver', 'o_max_receivers');
 		build_config(2, 'o_pms_mess_per_page', 'o_message_per_page');
 		build_config(2, 'o_pms_notification', 'o_inbox_notification');
+		build_config(0, 'o_has_posted');
 
 		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
 
