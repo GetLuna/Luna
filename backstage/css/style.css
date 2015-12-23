@@ -435,10 +435,6 @@ fieldset[disabled] .form-control {
 }
 
 /* Buttons */
-.btn {
-	border: none !important;
-}
-
 .panel-title .btn {
 	padding: 9px 14px;
 	border: none;
