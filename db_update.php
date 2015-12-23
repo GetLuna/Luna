@@ -649,6 +649,9 @@ switch ($stage) {
 		build_config(2, 'o_pms_mess_per_page', 'o_message_per_page');
 		build_config(2, 'o_pms_notification', 'o_inbox_notification');
 		build_config(0, 'o_has_posted');
+		
+		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments=0 WHERE num_comments=null') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 
 		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
 
