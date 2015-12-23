@@ -661,9 +661,6 @@ switch ($stage) {
 			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-			// ModernBB 3.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
-			build_config(1, 'o_has_commented', '1');
-
 			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			build_config(1, 'o_enable_inbox', '1');
 			build_config(1, 'o_max_receivers', '5');
