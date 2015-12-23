@@ -179,6 +179,7 @@ h6 {
 .dropdown-menu > li > a,
 .dropdown-header {
 	padding: 9px 20px;
+	white-space: normal;
 }
 
 @media screen and (max-width: 767px) {
