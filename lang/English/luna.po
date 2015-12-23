@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.3\n"
-"POT-Creation-Date: 2015-12-23 18:57+0100\n"
-"PO-Revision-Date: 2015-12-23 18:57+0100\n"
+"POT-Creation-Date: 2015-12-23 19:03+0100\n"
+"PO-Revision-Date: 2015-12-23 19:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -3438,7 +3438,7 @@ msgid "Rebuilding index for %1$s %2$s"
 msgstr ""
 
 #: db_update.php:864
-msgid "Automatic redirect failed."
+msgid "If this takes to long, the automatic redirect might have failed."
 msgstr ""
 
 #: db_update.php:864

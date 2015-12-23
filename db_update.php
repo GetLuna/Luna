@@ -861,4 +861,4 @@ switch ($stage) {
 $db->end_transaction();
 $db->close();
 if ($query_str != '')
-	exit('<meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /><hr /><p>'._e('Automatic redirect failed.', 'luna').'<a href="db_update.php'.$query_str.'">'._e('Click here', 'luna').'</a></p>');
+	exit('<meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /><hr /><p>'._e('If this takes to long, the automatic redirect might have failed.', 'luna').' <a href="db_update.php'.$query_str.'">'._e('Click here', 'luna').'</a></p>');
