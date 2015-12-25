@@ -23,12 +23,12 @@ require 'header.php';
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.3 Denim Preview</h3>
+				<h3 class="panel-title">About Luna 1.3 Denim</h3>
 			</div>
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.3 Preview 8</span></p><h2>Denim</h2>
+						<p class="meta"><span class="release-version">1.3</span></p><h2>Denim</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sunrise has received a fully reimagned design</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>

@@ -1,4 +1,4 @@
-# Luna 1.3 "Denim" Preview
+# Luna 1.3 "Denim"
 
 [![Join the chat at https://gitter.im/GetLuna/Luna](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GetLuna/Luna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
