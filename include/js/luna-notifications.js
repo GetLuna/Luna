@@ -275,7 +275,7 @@ _.extend( notifications.View, {
 
 			if ( ! _.isUndefined( this.model ) && _.isFunction( this.model.toJSON ) ) {
 				var model = this.model.toJSON();
-				    model.time = model.time.getUTCHours() + ':' + model.time.getUTCMinutes()
+				    model.time = model.time.getUTCHours() + ':' + ('0' + model.time.getUTCMinutes()).slice(-2)
 				return model;
 			} else {
 				return {};
