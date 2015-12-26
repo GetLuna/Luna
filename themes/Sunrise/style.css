@@ -945,8 +945,23 @@ hr {
 	margin-left: 0;
 }
 
-.textarea-toolbar .btn:hover {
+.textarea-toolbar .btn:hover,
+.textarea-toolbar .btn:active,
+.textarea-toolbar .btn-primary:active,
+.textarea-toolbar .btn-primary:focus,
+.textarea-toolbar .btn-primary:focus {
 	background: rgba(255,255,255,.4);
+}
+
+.textarea-toolbar .btn-primary:hover:active,
+.textarea-toolbar .btn-primary.active:hover,
+.textarea-toolbar .btn-primary:focus:active,
+.textarea-toolbar .btn-primary.active:focus,
+.textarea-toolbar .btn-primary.focus:active,
+.textarea-toolbar .btn-primary.active.focus {
+	background: rgba(255,255,255,.4) !important;
+	border-color: transparent;
+	box-shadow: none;
 }
 
 .fa-fw {
@@ -1031,6 +1046,15 @@ hr {
 /* Buttons */
 .btn {
 	border-radius: 0;
+	border-color: transparent;
+}
+
+.btn-primary:hover:active,
+.btn-primary.active:hover,
+.btn-primary:focus:active,
+.btn-primary.active:focus,
+.btn-primary.focus:active,
+.btn-primary.active.focus {
 	border-color: transparent;
 }
 
