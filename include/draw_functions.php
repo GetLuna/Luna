@@ -566,14 +566,14 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if ($cur_thread['important']) {
-				$item_status .= ' important-item';
-				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
-			}
-	
 			if (isset($cur_thread['answer'])) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
+			}
+	
+			if (isset($cur_thread['important'])) {
+				$item_status .= ' important-item';
+				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
 
 			$url = 'thread.php?id='.$thread_id;
