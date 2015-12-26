@@ -175,7 +175,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 					</tr>
 					<tr>
 						<td><span class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></span></td>
-						<td><?php _e('This thread has received a new comment since you last visited the board..', 'luna') ?></td>
+						<td><?php _e('This thread has received a new comment since you last visited the board.', 'luna') ?></td>
 					</tr>
 					<?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
 					<tr>
@@ -187,7 +187,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 			</table>
 			<h3><?php _e('Smilies, signatures, avatars and images are not visible?', 'luna') ?></h3>
 			<p><?php _e('You can change the behavior of the thread view in your profile settings. There you can enable smilies, signatures, avatars and images in comments, but they should be enabled by default unless your forum admin has disabled those features.', 'luna') ?></p>
-			<h3><?php _e('Why can\'t I see and threads or forums?', 'luna') ?></h3>
+			<h3><?php _e('Why can\'t I see some threads or forums?', 'luna') ?></h3>
 			<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
 		</div>
 		<div class="tab-pane" id="profile">

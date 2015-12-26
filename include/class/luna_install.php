@@ -1435,7 +1435,7 @@ class Installer {
 			'o_timeout_visit'			=> 1800,
 			'o_timeout_online'			=> 300,
 			'o_show_user_info'			=> 1,
-			'o_show_comment_count'			=> 1,
+			'o_show_comment_count'		=> 1,
 			'o_signatures'				=> 1,
 			'o_smilies_sig'				=> 1,
 			'o_make_links'				=> 1,
