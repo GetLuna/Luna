@@ -283,22 +283,15 @@ function draw_threads_list() {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
-
-			$url = 'thread.php?id='.$thread_id;
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
-			} elseif ($cur_thread['closed'] == '1') {
+			}
+			
+			if ($cur_thread['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
-			}
-	
-			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
-				if ($cur_thread['has_commented'] == $luna_user['id']) {
-					$item_status .= ' commented-item';
-				}
 			}
 	
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
@@ -306,6 +299,15 @@ function draw_threads_list() {
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+			}
+
+			$url = 'thread.php?id='.$thread_id;
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
+	
+			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
+				if ($cur_thread['has_commented'] == $luna_user['id']) {
+					$item_status .= ' commented-item';
+				}
 			}
 
 			$subject_status = implode(' ', $status_text);
@@ -575,28 +577,30 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
-
-			$url = 'thread.php?id='.$thread_id;
-			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 	
 			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
-			} elseif ($cur_thread['closed'] == '1') {
+			}
+			
+			if ($cur_thread['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
-			}
-	
-			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
-				if ($cur_thread['has_commented'] == $luna_user['id']) {
-					$item_status .= ' commented-item';
-				}
 			}
 	
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+			}
+
+			$url = 'thread.php?id='.$thread_id;
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
+	
+			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
+				if ($cur_thread['has_commented'] == $luna_user['id']) {
+					$item_status .= ' commented-item';
+				}
 			}
 	
 			$subject_status = implode(' ', $status_text);
