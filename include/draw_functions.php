@@ -1003,6 +1003,16 @@ function draw_search_results() {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
+	
+			if (isset($cur_thread['answer'])) {
+				$item_status .= ' solved-item';
+				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
+			}
+	
+			if (isset($cur_thread['important'])) {
+				$item_status .= ' important-item';
+				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
+			}
 			
 			if ($cur_search['closed'] != '0') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
