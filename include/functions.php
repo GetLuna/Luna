@@ -1213,7 +1213,7 @@ function luna_hash($str) {
 //
 // Compute a hash of $str with SHA512
 //
-function luna_sha2($str, $salt) {
+function luna_sha512($str, $salt) {
 	return hash("sha512", $salt . hash("sha512", $str));
 }
 

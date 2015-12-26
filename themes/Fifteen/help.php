@@ -209,7 +209,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 			<div class="tab-pane" id="searching">
 				<h3><?php _e('Are there more options to search?', 'luna') ?></h3>
 				<p><?php _e('When you go to the search page, you\'ll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin.', 'luna') ?></p>
-				<h3><?php _e('Why can\'t search in more then 1 forum at once?', 'luna') ?></h3>
+				<h3><?php _e('Why can\'t I search in more than one forum at once?', 'luna') ?></h3>
 				<p><?php _e('You might not have the correct permissions to do so, ask the forums administrator for more help.', 'luna') ?></p>
 			</div>
 		</div>
