@@ -1008,12 +1008,12 @@ function draw_search_results() {
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if (isset($cur_thread['answer'])) {
+			if (isset($cur_search['answer'])) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 	
-			if (isset($cur_thread['important'])) {
+			if (isset($cur_search['important'])) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
