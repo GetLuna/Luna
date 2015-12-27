@@ -279,7 +279,7 @@ function draw_threads_list() {
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			if (isset($cur_thread['important'])) {
+			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
@@ -573,7 +573,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			if (isset($cur_thread['important'])) {
+			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
@@ -1013,7 +1013,7 @@ function draw_search_results() {
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
 
-			if (isset($cur_search['important'])) {
+			if ($cur_search['important']) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
