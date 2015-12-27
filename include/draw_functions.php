@@ -1008,7 +1008,7 @@ function draw_search_results() {
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 
-			if (isset($cur_search['answer'])) {
+			if (isset($cur_search['solved'])) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
