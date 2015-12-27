@@ -678,7 +678,6 @@ switch ($stage) {
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
-			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 
 			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
