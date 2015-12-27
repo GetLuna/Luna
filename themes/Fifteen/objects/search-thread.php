@@ -5,7 +5,7 @@
 	</span>
 	<?php echo $subject_status ?> <?php echo $subject ?><span class="hidden-xs"> <?php echo $by ?></span> <?php echo $subject_multipage ?>
 	<?php if ($cur_thread['moved_to'] == 0) { ?>
-		<span class="text-muted"> &middot; 
+		<span class="text-muted"> &middot;
 			<?php echo $last_comment_date ?>
 			<span class="hidden-xs">
 				<?php echo $last_commenter ?>

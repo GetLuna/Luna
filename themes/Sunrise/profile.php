@@ -39,7 +39,7 @@ if (!defined('FORUM'))
 		</div>
 	<?php
 	endif;
-	
+
 	if ($luna_config['o_signatures'] == '1') {
 		if (isset($parsed_signature)) {
 	?>

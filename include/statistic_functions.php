@@ -8,7 +8,7 @@
 
 if (!defined('LUNA_CACHE_DIR'))
 	define('LUNA_CACHE_DIR', LUNA_ROOT.'cache/');
-	
+
 if (file_exists(LUNA_CACHE_DIR.'cache_users_info.php'))
 	include LUNA_CACHE_DIR.'cache_users_info.php';
 
@@ -80,10 +80,10 @@ function online_list() {
 	global $luna_config, $db, $luna_user;
 
 	if ($luna_config['o_users_online'] == '1') {
-	
+
 		// Fetch users online info and generate strings for output
 		$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
-	
+
 		if ($db->num_rows($result) > 0) {
 			$ctr = 1;
 			while ($luna_user_online = $db->fetch_assoc($result)) {

@@ -44,7 +44,7 @@ function generate_update_cache() {
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
 	elseif ($luna_config['o_update_ring'] == 3)
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/nightly/version.txt'));
-		
+
 	if (file_exists('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/drop.md'))
 		$support = 'none';
 	else

@@ -14,7 +14,7 @@ if (!$is_admin)
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/permissions.php');
-	
+
 	$form = array(
 		'message_img_tag'		=> isset($_POST['form']['message_img_tag']) ? '1' : '0',
 		'message_all_caps'		=> isset($_POST['form']['message_all_caps']) ? '1' : '0',

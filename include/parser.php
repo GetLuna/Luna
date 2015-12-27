@@ -788,7 +788,7 @@ function get_smilies() {
 			'^.^' => 'happy.png'
 		);
 	}
-	
+
 	return $smilies;
 }
 

@@ -60,9 +60,9 @@ class DBLayer {
 		else
 			return $this->link_id;
 	}
-	
-	
-	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {  
+
+
+	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
 		$this->__construct($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect);
 	}
 
@@ -405,7 +405,7 @@ class DBLayer {
 
 		if (!$allow_null)
 			$query .= ' NOT NULL';
-		
+
 		if ($default_value === '')
 			$default_value = '\'\'';
 
@@ -425,7 +425,7 @@ class DBLayer {
 			$offset = count($table['columns']);
 		elseif ($offset < 0)
 			$offset = 0;
-	
+
 		if (!is_null($field_name) && $field_name !== '')
 			$table['columns'] = array_merge(array_slice($table['columns'], 0, $offset), array($field_name => $query), array_slice($table['columns'], $offset));
 
@@ -468,8 +468,8 @@ class DBLayer {
 		// Unneeded for SQLite
 		return true;
 	}
-	
-	
+
+
 	function rename_field($table_name, $field_name, $new_field_name, $field_type, $no_prefix = false) {
 		if (!$this->field_exists($table_name, $field_name, $no_prefix))
 			return true;

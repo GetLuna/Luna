@@ -49,14 +49,14 @@ if ($action == 'check_update') {
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 		require LUNA_ROOT.'include/cache.php';
 
-	// Regenerate the update cache		
+	// Regenerate the update cache
 	generate_update_cache();
 	header("Location: update.php");
 }
 
 if (file_exists(LUNA_CACHE_DIR.'cache_update.php'))
 	include LUNA_CACHE_DIR.'cache_update.php';
-	
+
 if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 		require LUNA_ROOT.'include/cache.php';
@@ -105,7 +105,7 @@ if (isset($_GET['saved']))
 				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><?php if ($luna_config['o_update_ring'] != 3) { ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span><?php } ?></h3>
 			</div>
 			<div class="panel-body">
-<?php 
+<?php
 if ($luna_config['o_update_ring'] != 3) {
 	if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>

@@ -180,7 +180,7 @@ if (empty($stage)) {
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
 		$message = str_replace($pattern, $replace, __('The forums are temporarily down for maintenance. Please try again in a few minutes.', 'luna'));
-		
+
 		draw_wall_error($message, NULL, __('Maintenance', 'luna'));
 	} else {
 		draw_wall_error(__('There is an update ready to be installed', 'luna'), '<form id="install" method="post" action="db_update.php"><input type="hidden" name="stage" value="start" /><input class="btn btn-default btn-lg" type="submit" name="start" value="'. __('Start update', 'luna').'" /></form>', __('Update Luna', 'luna'));
@@ -203,7 +203,7 @@ switch ($stage) {
 		// Change the default style if the old doesn't exist anymore
 		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
-			
+
 		// Legacy support: FluxBB 1.4
 
 		// Insert new config option o_feed_ttl
@@ -248,7 +248,7 @@ switch ($stage) {
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
-			
+
 		// Legacy support: FluxBB 1.5
 		$db->drop_field($db->prefix.'groups', 'g_promote_min_posts', 'INT(10) UNSIGNED', false, 0, 'g_user_title') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
@@ -274,7 +274,7 @@ switch ($stage) {
 				),
 				'PRIMARY KEY'	=> array('id')
 			);
-		
+
 			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
 		}
 		build_config(1, 'o_ranks', '1');
@@ -395,15 +395,15 @@ switch ($stage) {
 				),
 				'PRIMARY KEY'	=> array('id')
 			);
-		
+
 			$db->create_table('menu', $schema) or error('Unable to create menu table', __FILE__, __LINE__, $db->error());
 
 			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'index.php\', \'Index\', 1, \'1\', 1)')
 				or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
+
 			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'userlist.php\', \'Users\', 2, \'1\', 1)')
 				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
+
 			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
@@ -498,7 +498,7 @@ switch ($stage) {
 				),
 				'PRIMARY KEY'		=> array('id'),
 			);
-			
+
 			$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
 		}
 
@@ -543,7 +543,7 @@ switch ($stage) {
 				),
 				'PRIMARY KEY'		=> array('id'),
 			);
-			
+
 			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
 		}
 
@@ -570,12 +570,12 @@ switch ($stage) {
 		build_config(1, 'o_board_tags', '');
 		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies.php');
 		build_config(1, 'o_default_accent', '2');
-		
+
 		// Luna 1.2 upgrade support
 		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
-		
+
 		// Luna 1.3 upgrade support
 		$db->rename_table('subscriptions', 'thread_subscriptions');
 		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
@@ -631,7 +631,7 @@ switch ($stage) {
 		$db->rename_field('users', 'notify_pm', 'notify_inbox', 'TINYINT(1)');
 		$db->rename_field('users', 'notify_pm_full', 'notify_inbox_full', 'TINYINT(1)');
 		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
-		
+
 		build_config(0, 'o_topic_review');
 		build_config(0, 'o_video_height');
 		build_config(0, 'o_video_width');
@@ -649,7 +649,7 @@ switch ($stage) {
 		build_config(2, 'o_pms_mess_per_page', 'o_message_per_page');
 		build_config(2, 'o_pms_notification', 'o_inbox_notification');
 		build_config(0, 'o_has_posted');
-		
+
 		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'users SET num_comments=0 WHERE num_comments=null') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 
@@ -666,7 +666,7 @@ switch ($stage) {
 			build_config(1, 'o_max_receivers', '5');
 			build_config(1, 'o_message_per_page', '10');
 			build_config(1, 'o_inbox_notification', '1');
-		
+
 			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
 			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
@@ -674,16 +674,16 @@ switch ($stage) {
 			$db->add_field('users', 'notify_inbox', 'TINYINT(1)', false, '1', 'use_inbox') or error('Unable to add column "notify_inbox" to table "users"', __FILE__, __LINE__, $db->error());
 			$db->add_field('users', 'notify_inbox_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "notify_inbox_full" to table "users"', __FILE__, __LINE__, $db->error());
 			$db->add_field('users', 'num_inbox', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-		
+
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
 			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
 			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-			
+
 			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 			$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-		
+
 		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, '\'UTC\'') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
@@ -815,7 +815,7 @@ switch ($stage) {
 
 	// Show results page
 	case 'finish':
-		
+
 		// Give a "Success" notifcation
 		if ($luna_config['o_cur_version'] != Version::LUNA_VERSION)
 			new_notification('2', 'backstage/index.php', 'Luna has been updated to '.Version::LUNA_VERSION, 'fa-cloud-upload');

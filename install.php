@@ -65,8 +65,8 @@ if (get_magic_quotes_gpc()) {
 // If we've been passed a default language, use it
 $install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_lang']) : Installer::DEFAULT_LANG;
 
-// Make sure we got a valid language string 
-$install_lang = preg_replace('%[\.\\\/]%', '', $install_lang); 
+// Make sure we got a valid language string
+$install_lang = preg_replace('%[\.\\\/]%', '', $install_lang);
 
 // Load l10n
 require_once LUNA_ROOT.'include/pomo/MO.php';

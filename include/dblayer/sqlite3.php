@@ -57,9 +57,9 @@ class DBLayer {
 		else
 			return $this->link_id;
 	}
-	
-	
-	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {  
+
+
+	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
 		$this->__construct($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect);
 	}
 
@@ -125,16 +125,16 @@ class DBLayer {
 			while ($cur_result_row = @$query_id->fetchArray(SQLITE3_NUM))
 				$result_rows[] = $cur_result_row;
 
-			$cur_row = $result_rows[$row];  
-			if (!empty($result_rows) && array_key_exists($row, $result_rows))  
-				$cur_row = $result_rows[$row];  
-    
-			return $cur_row[$col];  
+			$cur_row = $result_rows[$row];
+			if (!empty($result_rows) && array_key_exists($row, $result_rows))
+				$cur_row = $result_rows[$row];
 
-			if (isset($cur_row))  
-				return $cur_row[$col];  
-			else  
-				return false;  
+			return $cur_row[$col];
+
+			if (isset($cur_row))
+				return $cur_row[$col];
+			else
+				return false;
 		}
 		else
 			return false;
@@ -449,7 +449,7 @@ class DBLayer {
 
 		if (!$allow_null)
 			$query .= ' NOT NULL';
-		
+
 		if ($default_value === '')
 			$default_value = '\'\'';
 
@@ -512,8 +512,8 @@ class DBLayer {
 		// Unneeded for SQLite
 		return true;
 	}
-	
-	
+
+
 	function rename_field($table_name, $field_name, $new_field_name, $field_type, $no_prefix = false) {
 		if (!$this->field_exists($table_name, $field_name, $no_prefix))
 			return true;

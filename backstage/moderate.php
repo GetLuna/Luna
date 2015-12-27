@@ -45,7 +45,7 @@ if ($fid < 1) {
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
-	
+
 	?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -56,7 +56,7 @@ if ($fid < 1) {
 		</div>
 	</div>
 	<?php
-	
+
 	require 'footer.php';
 	exit;
 }
@@ -104,7 +104,7 @@ if (isset($_GET['tid'])) {
 
 			if ($db->num_rows($result) != substr_count($comments, ',') + 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-			
+
 			decrease_comment_counts($comments);
 
 			// Delete the comments
@@ -127,12 +127,12 @@ if (isset($_GET['tid'])) {
 
 			redirect('thread.php?id='.$tid);
 		}
-		
+
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
 		define('LUNA_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
-		
+
 		?>
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-danger">
@@ -148,7 +148,7 @@ if (isset($_GET['tid'])) {
 			</div>
 		</form>
 		<?php
-		
+
 		require 'footer.php';
 
 	} elseif (isset($_POST['split_comments']) || isset($_POST['split_comments_comply'])) {
@@ -224,7 +224,7 @@ if (isset($_GET['tid'])) {
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		?>
-		
+
 		<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -238,20 +238,20 @@ if (isset($_GET['tid'])) {
 							<div class="col-sm-10">
 								<select class="form-control" name="move_to_forum">
 		<?php
-		
+
 			$cur_category = 0;
 			while ($cur_forum = $db->fetch_assoc($result)) {
 				if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 					if ($cur_category)
 						echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-		
+
 					echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
 					$cur_category = $cur_forum['cid'];
 				}
-		
+
 				echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 			}
-		
+
 		?>
 									</optgroup>
 								</select>
@@ -267,9 +267,9 @@ if (isset($_GET['tid'])) {
 				</div>
 			</div>
 		</form>
-		
+
 		<?php
-		
+
 		require 'footer.php';
 		exit;
 	}
@@ -298,7 +298,7 @@ if (isset($_GET['tid'])) {
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
-	
+
 	?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -312,7 +312,7 @@ if (isset($_GET['tid'])) {
 				<a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna') ?></a>
 			</div>
 			<span class="pull-right"><?php echo $paging_links ?></span>
-		
+
 			<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
@@ -396,7 +396,7 @@ if (isset($_GET['tid'])) {
 	</div>
 </div>
 <?php
-	
+
 	require 'footer.php';
 	exit;
 }
@@ -468,7 +468,7 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.create_threads IS NULL OR fp.create_threads=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) < 2)
 		message_backstage(__('There are no forums into which you can move threads.', 'luna'));
-	
+
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -488,21 +488,21 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 						<div class="col-sm-10">
 							<select class="form-control" name="move_to_forum">
 	<?php
-	
+
 		$cur_category = 0;
 		while ($cur_forum = $db->fetch_assoc($result)) {
 			if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 				if ($cur_category)
 					echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-	
+
 				echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
 				$cur_category = $cur_forum['cid'];
 			}
-	
+
 			if ($cur_forum['fid'] != $fid)
 				echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 		}
-	
+
 	?>
 								</optgroup>
 							</select>
@@ -518,9 +518,9 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 			</div>
 		</div>
 	</form>
-	
+
 	<?php
-	
+
 	require 'footer.php';
 }
 
@@ -616,9 +616,9 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 				</div>
 			</div>
 		</form>
-		
+
 		<?php
-		
+
 		require 'footer.php';
 	}
 }
@@ -676,7 +676,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 
 		redirect('viewforum.php?id='.$fid);
 	}
-	
+
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -696,7 +696,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 			</div>
 		</div>
 	</form>
-	
+
 	<?php
 	require 'footer.php';
 }
@@ -719,7 +719,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		redirect('backstage/moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
 		confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-		
+
 		check_csrf($_GET['csrf_token']);
 
 		$thread_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
@@ -735,7 +735,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 // Pin a thread
 elseif (isset($_GET['pin'])) {
 	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$pin = intval($_GET['pin']);
@@ -751,7 +751,7 @@ elseif (isset($_GET['pin'])) {
 // unpin a thread
 elseif (isset($_GET['unpin'])) {
 	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$unpin = intval($_GET['unpin']);
@@ -761,12 +761,12 @@ elseif (isset($_GET['unpin'])) {
 	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'0\' WHERE id='.$unpin.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
 
 	redirect('thread.php?id='.$unpin);
-} 
+}
 
 // Mark as important
 elseif (isset($_GET['important'])) {
 	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$important = intval($_GET['important']);
@@ -782,7 +782,7 @@ elseif (isset($_GET['important'])) {
 // Mark as unimportant
 elseif (isset($_GET['unimportant'])) {
 	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$unimportant = intval($_GET['unimportant']);
@@ -792,21 +792,21 @@ elseif (isset($_GET['unimportant'])) {
 	$db->query('UPDATE '.$db->prefix.'threads SET important=\'0\' WHERE id='.$unimportant.' AND forum_id='.$fid) or error('Unable to mark thread as unimportant', __FILE__, __LINE__, $db->error());
 
 	redirect('thread.php?id='.$unimportant);
-} 
+}
 
 // If absolutely none of them are going on
 elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_threads']) && !isset($_POST['delete_threads_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_threads']) && !isset($_POST['merge_threads_comply'])) {
 
 	// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
-	
+
 	// Fetch some info about the forum
 	$result = $db->query('SELECT f.forum_name, f.num_threads, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
-	
+
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-	
+
 	$cur_forum = $db->fetch_assoc($result);
-	
+
 	switch ($cur_forum['sort_by']) {
 		case 0:
 			$sort_by = 'last_comment DESC';
@@ -821,13 +821,13 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 			$sort_by = 'last_comment DESC';
 			break;
 	}
-	
+
 	// Determine the thread offset (based on $_GET['p'])
 	$num_pages = ceil($cur_forum['num_threads'] / $luna_user['disp_threads']);
-	
+
 	$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
 	$start_from = $luna_user['disp_threads'] * ($p - 1);
-	
+
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
@@ -835,7 +835,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
-	
+
 	?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -933,8 +933,8 @@ if ($db->num_rows($result)) {
 						</span>
 						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_comments ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 						<?php if ($cur_thread['moved_to'] == 0) { ?>
-							<span class="text-muted"> &middot; 
-								<span class="text-muted"><?php echo $last_comment ?></span> &middot; 
+							<span class="text-muted"> &middot;
+								<span class="text-muted"><?php echo $last_comment ?></span> &middot;
 								<?php if ($cur_thread['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_thread['num_replies']) ?></span><?php } ?>
 							</span>
 						<?php } ?>
@@ -966,6 +966,6 @@ if ($db->num_rows($result)) {
 		</div>
 	</div>
 	<?php
-	
+
 	require 'footer.php';
 }

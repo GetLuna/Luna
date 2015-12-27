@@ -13,7 +13,7 @@ if (!$is_admin)
 // Add a new item
 if (isset($_POST['add_item'])) {
 	confirm_referrer('backstage/menu.php');
-	
+
 	$item_name = luna_trim($_POST['name']);
 	$item_url = luna_trim($_POST['url']);
 
@@ -27,7 +27,7 @@ if (isset($_POST['add_item'])) {
 	redirect('backstage/menu.php');
 } elseif (isset($_GET['del_item'])) {
 	confirm_referrer('backstage/menu.php');
-	
+
 	$item_id = intval($_GET['del_item']);
 	if ($item_id < 4)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -37,7 +37,7 @@ if (isset($_POST['add_item'])) {
 	redirect('backstage/menu.php');
 } elseif (isset($_POST['update'])) {
 	confirm_referrer('backstage/menu.php');
-	
+
 	$menu_items = $_POST['item'];
 	if (empty($menu_items))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -48,7 +48,7 @@ if (isset($_POST['add_item'])) {
 		$cur_item['order'] = luna_trim($cur_item['order']);
 		if (!isset($cur_item['visible']))
 			$cur_item['visible'] = 0;
-		
+
 		if ($cur_item['name'] == '')
 			message_backstage(__('You must give your menu item a title.', 'luna'));
 		elseif ($cur_item['url'] == '')
@@ -61,7 +61,7 @@ if (isset($_POST['add_item'])) {
 
 	redirect('backstage/menu.php');
 }
-	
+
 $result = $db->query('SELECT * FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 require 'header.php';

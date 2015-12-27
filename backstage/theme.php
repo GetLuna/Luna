@@ -14,7 +14,7 @@ if (!$is_admin)
 	header("Location: login.php");
 if (isset($_GET['default_style'])) {
 	confirm_referrer('backstage/theme.php');
-	
+
 	$default_style = htmlspecialchars($_GET["default_style"]);
 
 	$db->query('UPDATE '.$db->prefix.'users SET style=\''.$default_style.'\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
@@ -90,7 +90,7 @@ if (file_exists(LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 
 		foreach ($styles as $temp) {
 ?>
-					<?php include LUNA_ROOT.'/themes/'.$temp.'/information.php'; $theme_info = new SimpleXMLElement($xmlstr); ?> 
+					<?php include LUNA_ROOT.'/themes/'.$temp.'/information.php'; $theme_info = new SimpleXMLElement($xmlstr); ?>
 					<div class="col-xs-12 col-sm-6 col-md-4 style-entry">
 						<div class="modal fade" id="<?php echo $temp ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $temp ?>" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
@@ -130,14 +130,14 @@ if (file_exists(LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 											echo '<a class="btn btn-primary disabled">'.__('In use', 'luna').'</a>';
 										else
 											echo '<a class="btn btn-primary" href="theme.php?default_style='.$theme_info->name.'">'.__('Use', 'luna').'</a>';
-										
+
 										echo '<a class="btn btn-primary" data-toggle="modal" href="#" data-target="#'.$temp.'"><span class="fa fa-fw fa-info-circle"></span></a>';
 									?>
 								</div>
 							</div>
 						</div>
 					</div>
-<?php				
+<?php
 		}
 ?>
 				</div>

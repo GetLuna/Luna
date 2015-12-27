@@ -34,18 +34,18 @@ $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUE
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 $id = $luna_user['id'];
-	
+
 // Mark as read multiple comments
 if (isset($_REQUEST['markread'])) {
 	confirm_referrer('inbox.php');
 
 	if (empty($_POST['selected_messages']))
 		message(__('You must select some messages', 'luna'));
-		
+
 	$idlist = array_values($_POST['selected_messages']);
 	$idlist = array_map('intval', $idlist);
 	$idlist = implode(',', array_values($idlist));
-	
+
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
 } elseif (isset($_REQUEST['markunread'])) { // Mark as unread
@@ -53,11 +53,11 @@ if (isset($_REQUEST['markread'])) {
 
 	if (empty($_POST['selected_messages']))
 		message(__('You must select some messages', 'luna'));
-		
+
 	$idlist = array_values($_POST['selected_messages']);
 	$idlist = array_map('intval', $idlist);
 	$idlist = implode(',', array_values($idlist));
-	
+
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
 } elseif (isset($_REQUEST['delete_multiple'])) { // Delete comments
@@ -75,7 +75,7 @@ if (isset($_REQUEST['markread'])) {
 
 	$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\'') or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
 	$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-'.$number.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
-	
+
 	redirect('inbox.php');
 } else {
 
@@ -109,7 +109,7 @@ require load_page('header.php');
 /* <![CDATA[ */
 function checkAll(checkWhat,command){
 	var inputs = document.getElementsByTagName('input');
-   
+
 	for(index = 0; index < inputs.length; index++){
 		if(inputs[index].name == checkWhat){
 			inputs[index].checked=document.getElementById(command).checked;

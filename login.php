@@ -70,7 +70,7 @@ elseif ($action == 'out') {
 		header('Location: index.php');
 		exit;
 	}
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	// Remove user from "users online" list

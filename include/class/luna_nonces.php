@@ -13,15 +13,15 @@ class LunaNonces {
 
 	/**
 	 * Action name
-	 * 
+	 *
 	 * @since    1.1
 	 * @var      string
 	 */
 	protected $action = -1;
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @since    1.1
 	 * @var      string
 	 */
@@ -29,9 +29,9 @@ class LunaNonces {
 
 	/**
 	 * Period in which the nonce is considered valid.
-	 * 
+	 *
 	 * 43200 seconds = 12 hours
-	 * 
+	 *
 	 * @since    1.1
 	 * @var      string
 	 */
@@ -39,7 +39,7 @@ class LunaNonces {
 
 	/**
 	 * Calculated tick value
-	 * 
+	 *
 	 * @since    1.1
 	 * @var      string
 	 */
@@ -47,7 +47,7 @@ class LunaNonces {
 
 	/**
 	 * Current user ID
-	 * 
+	 *
 	 * @since    1.1
 	 * @var      string
 	 */
@@ -55,7 +55,7 @@ class LunaNonces {
 
 	/**
 	 * Nonce seed to harden hash
-	 * 
+	 *
 	 * @since    1.1
 	 * @var      string
 	 */
@@ -63,9 +63,9 @@ class LunaNonces {
 
 	/**
 	 * Class constructor.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string    $action Action name (optional)
 	 */
 	public function __construct($action = 1) {
@@ -77,9 +77,9 @@ class LunaNonces {
 
 	/**
 	 * Class initialisation.
-	 * 
+	 *
 	 * Set the required values.
-	 * 
+	 *
 	 * @since    1.1
 	 */
 	private function init() {
@@ -91,9 +91,9 @@ class LunaNonces {
 
 	/**
 	 * Create the tick.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   int    Tick
 	 */
 	private function set_ticker() {
@@ -103,11 +103,11 @@ class LunaNonces {
 
 	/**
 	 * Set the current User ID.
-	 * 
+	 *
 	 * If no user is logged in (guest nonce) ID is set to -1.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   string    Current User ID if any, -1 else.
 	 */
 	private function set_current_user_id() {
@@ -124,12 +124,12 @@ class LunaNonces {
 
 	/**
 	 * Set the nonce seed.
-	 * 
+	 *
 	 * We currently use the forum's cookie_seed value, but this should
 	 * be update to use a different, more complexe string value.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   string    Nonce seed
 	 */
 	private function set_cookie_seed() {
@@ -147,12 +147,12 @@ class LunaNonces {
 
 	/**
 	 * Create a nonce.
-	 * 
+	 *
 	 * Build a secret string with previously set values, hash it and return
 	 * a truncated, 12 chars long string.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   string    Nonce value
 	 */
 	private function _create() {
@@ -166,15 +166,15 @@ class LunaNonces {
 
 	/**
 	 * Output a nonce field.
-	 * 
+	 *
 	 * Create a HTML <INPUT> field to store the nonce. If no name is set for
 	 * the field, generate a default one based on the action.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string     $action Nonce action
 	 * @param    string     $name Name of the field
-	 * 
+	 *
 	 * @return   void
 	 */
 	private function _field($name = null) {
@@ -189,14 +189,14 @@ class LunaNonces {
 
 	/**
 	 * Check a nonce validity.
-	 * 
+	 *
 	 * Create a temporary valid nonce, match it against the submitted nonce
 	 * and return the result.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string     $nonce Nonce to validate
-	 * 
+	 *
 	 * @return   boolean    Validation result
 	 */
 	private function _verify($nonce) {
@@ -212,13 +212,13 @@ class LunaNonces {
 
 	/**
 	 * Create a nonce.
-	 * 
+	 *
 	 * This method is static and can be called publicly.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string    $action Nonce action
-	 * 
+	 *
 	 * @return   string    Newly created nonce
 	 */
 	public static function create($action = -1) {
@@ -230,14 +230,14 @@ class LunaNonces {
 
 	/**
 	 * Validate a nonce.
-	 * 
+	 *
 	 * This method is static and can be called publicly.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string     $nonce Nonce value to validate
 	 * @param    string     $action Nonce action
-	 * 
+	 *
 	 * @return   boolean    Validation result
 	 */
 	public static function verify($nonce, $action = -1) {
@@ -254,14 +254,14 @@ class LunaNonces {
 
 	/**
 	 * Output a nonce field.
-	 * 
+	 *
 	 * This method is static and can be called publicly.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string     $action Nonce action
 	 * @param    string     $name Name of the field
-	 * 
+	 *
 	 * @return   void
 	 */
 	public static function field($action = -1, $name = null) {
@@ -272,12 +272,12 @@ class LunaNonces {
 
 	/**
 	 * Match to hash againts each other to determine if they're identical.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    string     $a First hash
 	 * @param    string     $b Second hash
-	 * 
+	 *
 	 * @return   boolean    Comparison result
 	 */
 	protected function compare($a, $b) {

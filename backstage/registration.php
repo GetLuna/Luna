@@ -14,7 +14,7 @@ if (!$is_admin)
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/registration.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
-	
+
 	$form = array(
 		'regs_allow'			=> isset($_POST['form']['regs_allow']) ? '1' : '0',
 		'regs_verify'			=> isset($_POST['form']['regs_verify']) ? '1' : '0',

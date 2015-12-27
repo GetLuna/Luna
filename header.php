@@ -20,7 +20,7 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 // Send the Content-type header in case the web server is setup to send something else
 header('Content-type: text/html; charset=utf-8');
 
-// Prevent site from being embedded in a frame 
+// Prevent site from being embedded in a frame
 $frame_options = defined('LUNA_FRAME_OPTIONS') ? LUNA_FRAME_OPTIONS : 'deny';
 header('X-Frame-Options: '.$frame_options);
 

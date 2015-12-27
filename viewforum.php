@@ -64,7 +64,7 @@ $num_pages = ceil($cur_forum['num_threads'] / $luna_user['disp_threads']);
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
 $start_from = $luna_user['disp_threads'] * ($p - 1);
 
-// Get the icon			
+// Get the icon
 if ($cur_forum['icon'] != NULL)
 	$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 else

@@ -52,9 +52,9 @@ class DBLayer {
 
 		return $this->link_id;
 	}
-	
-	
-	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {  
+
+
+	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
 		$this->__construct($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect);
 	}
 
@@ -310,8 +310,8 @@ class DBLayer {
 
 		return $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' MODIFY '.$field_name.' '.$field_type.($allow_null ? '' : ' NOT NULL').(!is_null($default_value) ? ' DEFAULT '.$default_value : '').(!is_null($after_field) ? ' AFTER '.$after_field : '')) ? true : false;
 	}
-	
-	
+
+
 	function rename_field($table_name, $field_name, $new_field_name, $field_type, $no_prefix = false) {
 		if (!$this->field_exists($table_name, $field_name, $no_prefix))
 			return true;

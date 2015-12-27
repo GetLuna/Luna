@@ -77,7 +77,7 @@ if (!defined('FORUM'))
 			<p><?php _e('You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.', 'luna') ?></p>
 			<pre>
 [code]
-[[php]]	
+[[php]]
 if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')

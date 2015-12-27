@@ -58,7 +58,7 @@ include load_page('inbox-delete-comment.php');
 						<tbody>
 <?php
 // Fetch messages
-$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_comment DESC LIMIT ".$limit) or error("Unable to find the list of the Inbox messages.", __FILE__, __LINE__, $db->error()); 
+$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_comment DESC LIMIT ".$limit) or error("Unable to find the list of the Inbox messages.", __FILE__, __LINE__, $db->error());
 
 // If there are messages in this folder.
 if ($db->num_rows($result)) {
@@ -76,7 +76,7 @@ if ($db->num_rows($result)) {
 					   luna_htmlspecialchars($cur_mess['subject']).
 					   '</a>';
 		}
-		
+
 		$last_comment = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_comment_id'].'#p'.$cur_mess['last_comment_id'].'">'.format_time($cur_mess['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_commenter']).'</span>';
 ?>
 							<tr class="<?php echo $item_status ?>">
@@ -101,13 +101,13 @@ if ($db->num_rows($result)) {
 				$ids_list = explode(', ', $cur_mess['receiver_id']);
 				$sender_list = explode(', ', $cur_mess['receiver']);
 				$sender_list = str_replace('Deleted', __('Deleted', 'luna'), $sender_list);
-				
+
 				for($i = '0'; $i < count($ids_list); $i++){
 				echo '<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($sender_list[$i]).'</a>';
-				
+
 				if($ids_list[$i][count($ids_list[$i])-'1'])
 					echo'<br />';
-				} 
+				}
 			} else
 				echo luna_htmlspecialchars($cur_mess['receiver']);
 		?>

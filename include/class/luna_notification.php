@@ -16,49 +16,49 @@ class LunaNotification {
 
 	/**
 	 * ID of notification owner.
-	 * 
+	 *
 	 * @var int
 	 */
 	public $user_id = 0;
 
 	/**
 	 * Notification message content.
-	 * 
+	 *
 	 * @var string
 	 */
 	public $message = '';
 
 	/**
 	 * Notification icon
-	 * 
+	 *
 	 * @var string
 	 */
 	public $icon = '';
 
 	/**
 	 * Notification custom link
-	 * 
+	 *
 	 * @var string
 	 */
 	public $link = '';
 
 	/**
 	 * Notification date
-	 * 
+	 *
 	 * @var int
 	 */
 	public $time = 0;
 
 	/**
 	 * Notification status
-	 * 
+	 *
 	 * @var int
 	 */
 	public $viewed = 0;
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @since    1.1
 	 *
 	 * @param    object    $notification LunaNotification object.
@@ -78,7 +78,7 @@ class LunaNotification {
 
 	/**
 	 * Initialize the class
-	 * 
+	 *
 	 * @since    1.1
 	 */
 	private function init() {
@@ -94,9 +94,9 @@ class LunaNotification {
 
 	/**
 	 * Create a new notification.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   int|boolean    Notification ID or false
 	 */
 	private function create() {
@@ -120,12 +120,12 @@ class LunaNotification {
 
 	/**
 	 * Delete a notification.
-	 * 
+	 *
 	 * This method always returns true except when the notification does not
 	 * exist.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   int|boolean
 	 */
 	private function remove() {
@@ -148,12 +148,12 @@ class LunaNotification {
 
 	/**
 	 * Set a notification as viewed.
-	 * 
+	 *
 	 * This method always returns true except when the notification does not
 	 * exist.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @return   int|boolean
 	 */
 	private function viewed() {
@@ -176,11 +176,11 @@ class LunaNotification {
 
 	/**
 	 * Get a specific notification. Static method.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    int    $id Notification ID.
-	 * 
+	 *
 	 * @return   object|boolean    LunaNotification object or false
 	 */
 	public static function get_instance($id) {
@@ -200,14 +200,14 @@ class LunaNotification {
 
 	/**
 	 * Get a specific notification. Static method.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    int    $user Notification owner ID.
 	 * @param    int    $message Notification content.
 	 * @param    int    $link Notification link (optional).
 	 * @param    int    $icon Notification icon (optional).
-	 * 
+	 *
 	 * @return   int    Notification ID is success, 0 else
 	 */
 	public static function add($user, $message, $link = '', $icon = '') {
@@ -225,11 +225,11 @@ class LunaNotification {
 
 	/**
 	 * Mark a specific notification as read. Static method.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    int    $id Notification ID.
-	 * 
+	 *
 	 * @return   boolean
 	 */
 	public static function read($id) {
@@ -244,11 +244,11 @@ class LunaNotification {
 
 	/**
 	 * Delete a specific notification. Static method.
-	 * 
+	 *
 	 * @since    1.1
-	 * 
+	 *
 	 * @param    int    $id Notification ID.
-	 * 
+	 *
 	 * @return   boolean    Deletion status
 	 */
 	public static function delete($id) {

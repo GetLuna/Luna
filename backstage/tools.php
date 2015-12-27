@@ -17,7 +17,7 @@ if (isset($_POST['add_user'])) {
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
-		
+
 	$trimpassword = trim($_POST['password']);
 
 	if (isset($_POST['random_pass']))
@@ -106,7 +106,7 @@ Login at <login_url> to activate the account.
 		require LUNA_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
-	
+
 	redirect('backstage/users.php?user_created=true');
 }
 

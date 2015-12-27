@@ -504,7 +504,7 @@ if (isset($_POST['backupstart'])) {
 
 	message_backstage('All tables optimized');
 } else {
-	
+
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Database', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');

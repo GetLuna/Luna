@@ -343,7 +343,7 @@ hr {
 	.footer .copyright .col-sm-2 {
 		width: 16.66%;
 	}
-	
+
 	.footer #poweredby {
 		float: right;
 	}
@@ -390,7 +390,7 @@ hr {
 .navbar-default .navbar-nav > li > a:hover {
 	color: rgba(255,255,255,1);
 	background: none;
-}	
+}
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:focus,
@@ -450,7 +450,7 @@ hr {
 }
 
 .navbar-default .navbar-form :-ms-input-placeholder,
-.first-run-login :-ms-input-placeholder {  
+.first-run-login :-ms-input-placeholder {
    color: rgba(255,255,255,.6);
 }
 
@@ -852,7 +852,7 @@ hr {
 	#quickcommentform > .panel > .panel-heading {
 		display: none;
 	}
-	
+
 	.profile-card-quickcomment {
 		margin-bottom: -10px;
 		border-radius: 0 !important;
@@ -1661,34 +1661,34 @@ blockquote footer {
 	.panel-title .btn {
 		border-radius: 0;
 	}
-	
+
 	.category-box,
 	.comment {
 		margin-bottom: 0;
 	}
-	
+
 	.forum-row,
 	.thread-row {
 		border-left: none;
 		border-right: none;
 	}
-	
+
 	footer,
 	h2,
 	.row-nav {
 		margin-left: 15px;
 		margin-right: 15px;
 	}
-	
+
 	.comment > :last-child,
 	.modcontrols .btn-toolbar .btn-group > :first-child {
 		margin-bottom: 10px;
 	}
-	
+
 	.comment .profile-card {
 		margin-top: 0;
 	}
-	
+
 	.panel-body {
 		border: none;
 	}

@@ -67,7 +67,7 @@ function load_admin_nav($section, $page) {
 
 	elseif ($page == 'info')
 		$page_title = '<span class="fa fa-fw fa-info-circle"></span> '.__('Info', 'luna');
-		
+
 	else
 		$page_title = $page;
 ?>
@@ -204,6 +204,6 @@ function check_is_admin() {
 	global $luna_user;
 
 	$is_admin = $luna_user['g_id'] == LUNA_ADMIN ? true : false;
-	
+
 	return $is_admin;
 }

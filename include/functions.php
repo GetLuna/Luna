@@ -182,7 +182,7 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 
 		if ($comment_ids != '') {
 			// Decrease the commentcount for users
-			decrease_comment_counts($post_ids); 
+			decrease_comment_counts($post_ids);
 			// Delete threads
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions
@@ -566,12 +566,12 @@ function draw_user_avatar($user_id, $responsive = true, $class = '') {
 
 	$filetypes = array('jpg', 'gif', 'png');
 	$avatar_markup = '';
-	
+
 	if ($responsive == true)
 		$responsive_class = 'img-responsive';
 	else
 		$responsive_class = '';
-	
+
 	if (!empty($class))
 		$class = ' '.$class;
 	else
@@ -1036,7 +1036,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 </div>
 <?php
 	require load_page('footer.php');
-	
+
 	exit;
 }
 
@@ -1078,11 +1078,11 @@ function is_subforum($id, $self_subforum = '0') {
 
 	$result = $db->query('SELECT count(*) FROM '.$db->prefix.'forums WHERE parent_id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 	$num_subforums = $db->result($result);
-	
+
 	if ($num_subforums == '0') {
 		$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 		$forum_is_subforum = $db->result($result);
-		
+
 		if ($forum_is_subforum != '0' && $self_subforum == '0')
 			return true;
 		else
@@ -1218,8 +1218,8 @@ function luna_sha512($str, $salt) {
 }
 
 //
-// Compute a random hash used against CSRF attacks  
-// 
+// Compute a random hash used against CSRF attacks
+//
 function luna_csrf_token() {
 	global $luna_user;
 	static $token;
@@ -1622,7 +1622,7 @@ function forum_list_styles() {
 //
 function forum_list_accents($stage) {
 	global $luna_config;
-	
+
 	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 
@@ -2069,10 +2069,10 @@ function get_template_path($tpl_file) {
 //
 function get_view_path($object) {
 	global $luna_user, $luna_config;
-	
+
 	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
-	
+
 	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
 		return LUNA_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object;
 	else
@@ -2084,10 +2084,10 @@ function get_view_path($object) {
 //
 function load_page($page) {
 	global $luna_user, $luna_config;
-	
+
 	include LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
-	
+
 	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
 		return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page;
 	else
@@ -2099,14 +2099,14 @@ function load_page($page) {
 //
 function load_css() {
 	global $luna_config, $luna_user;
-	
+
 	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
-	
+
 	// If there is a parent theme, we need to load its CSS too
 	if ($theme_info->parent_theme != '') {
 		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/style.css" />'."\n";
-		
+
 		// Also load a color scheme
 		if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css'))) {
 			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
@@ -2115,7 +2115,7 @@ function load_css() {
 				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
 		}
 	}
-	
+
 	// Load the themes actual CSS
 	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/style.css" />'."\n";
 
@@ -2142,7 +2142,7 @@ function load_meta() {
 
 	// Allow childs
 	load_css();
-	
+
 	if (!empty($luna_config['o_board_tags']))
 		echo '<meta name="keywords" content="'.$luna_config['o_board_tags'].'">'."\n";
 	if (!defined('LUNA_ALLOW_INDEX'))
@@ -2163,12 +2163,12 @@ function check_style_mode() {
 	global $luna_user, $body_classes, $luna_config;
 
 	$hour = date('G', time());
-	
+
 	if (($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19)))) && $luna_config['o_allow_night_mode'] == '1')
 		$body_classes .= ' night';
 	else
 		$body_classes .= ' normal';
-	
+
 	if ($luna_user['enforce_accent'] == 1)
 		$body_classes .= ' enforce';
 
@@ -2203,11 +2203,11 @@ function delete_all($path) {
 //
 function validate_redirect($redirect_url, $fallback_url) {
 	$referrer = parse_url(strtolower($redirect_url));
-	
-	// Make sure the host component exists  
-	if (!isset($referrer['host']))  
-		$referrer['host'] = '';  
-	
+
+	// Make sure the host component exists
+	if (!isset($referrer['host']))
+		$referrer['host'] = '';
+
 	// Remove www subdomain if it exists
 	if (strpos($referrer['host'], 'www.') === 0)
 		$referrer['host'] = substr($referrer['host'], 4);

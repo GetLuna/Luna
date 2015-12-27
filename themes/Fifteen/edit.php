@@ -14,7 +14,7 @@ $jumbo_style = ' style="background:'.$cur_comment['color'].';"';
 	</div>
 </div>
 <div class="container">
-<?php 
+<?php
 if (isset($errors))
 	draw_error_panel($errors);
 if (isset($message))

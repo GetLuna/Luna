@@ -20,9 +20,9 @@ $cur_index = 1;
 if ($action == 'markread') {
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-	
+
 	check_csrf($_GET['csrf_token']);
-	
+
 	$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$luna_user['logged'].' WHERE id='.$luna_user['id']) or error('Unable to update user last visit data', __FILE__, __LINE__, $db->error());
 
 	// Reset tracked threads
@@ -35,7 +35,7 @@ if ($action == 'markread') {
 elseif ($action == 'markforumread') {
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
@@ -289,7 +289,7 @@ Reason: <reason>
 } elseif ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$thread_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
@@ -335,7 +335,7 @@ Reason: <reason>
 } elseif ($action == 'unsubscribe') {
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-	
+
 	check_csrf($_GET['csrf_token']);
 
 	$thread_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;

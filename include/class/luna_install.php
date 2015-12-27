@@ -8,23 +8,23 @@
  */
 
 class Installer {
-	
+
 	const DEFAULT_LANG = 'English';
 	const DEFAULT_STYLE = 'Fifteen';
-	
+
 	public static function is_supported_php_version() {
 		return function_exists('version_compare') && version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '>=');
 	}
-	
+
 	public static function guess_base_url() {
 		// Make an educated guess regarding base_url
 		$base_url  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';	// protocol
 		$base_url .= preg_replace('%:(80|443)$%', '', $_SERVER['HTTP_HOST']);							// host[:port]
 		$base_url .= str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));							// path
-		
+
 		return $base_url;
 	}
-	
+
 	public static function determine_database_extensions() {
 		// Determine available database extensions
 		$dual_mysql = false;
@@ -41,7 +41,7 @@ class Installer {
 			$db_extensions[] = array('mysql', 'MySQL Standard');
 			$db_extensions[] = array('mysql_innodb', 'MySQL Standard (InnoDB)');
 			$mysql_innodb = true;
-	
+
 			if (count($db_extensions) > 2)
 				$dual_mysql = true;
 		}
@@ -54,20 +54,20 @@ class Installer {
 
 		if (function_exists('pg_connect'))
 			$db_extensions[] = array('pgsql', 'PostgreSQL');
-			
+
 		return $db_extensions;
 	}
-	
+
 	public static function generate_config_file($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix = '', $cookie_name = false, $cookie_seed = false) {
 		if ($cookie_name === false)
 		$cookie_name = 'luna_cookie_'.random_key(6, false, true);
-		
+
 		if ($cookie_seed === false)
 		$cookie_seed = random_key(16, false, true);
-		
+
 		return '<?php'."\n\n".'$db_type = \''.$db_type."';\n".'$db_host = \''.$db_host."';\n".'$db_name = \''.addslashes($db_name)."';\n".'$db_username = \''.addslashes($db_username)."';\n".'$db_password = \''.addslashes($db_password)."';\n".'$db_prefix = \''.addslashes($db_prefix)."';\n".'$p_connect = false;'."\n\n".'$cookie_name = '."'".$cookie_name."';\n".'$cookie_domain = '."'';\n".'$cookie_path = '."'/';\n".'$cookie_secure = 0;'."\n".'$cookie_seed = \''.$cookie_seed."';\n\ndefine('PUN', 1);\n";
 	}
-	
+
 	public static function validate_config($username, $password1, $password2, $email, $title, $default_lang, $default_style) {
 
 		$alerts = array();
@@ -85,56 +85,56 @@ class Installer {
 			$alerts[] = __('Usernames may not contain all the characters \', " and [ or ] at once.', 'luna');
 		elseif (preg_match('%(?:\[/?(?:b|u|i|h|colou?r|quote|code|img|url|email|list)\]|\[(?:code|quote|list)=)%i', $username))
 			$alerts[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses.', 'luna');
-	
+
 		if (luna_strlen($password1) < 4)
 			$alerts[] = __('Passwords must be at least 6 characters long.', 'luna');
 		elseif ($password1 != $password2)
 			$alerts[] = __('Passwords do not match.', 'luna');
-	
+
 		// Validate email
 		require LUNA_ROOT.'include/email.php';
-	
+
 		if (!is_valid_email($email))
 			$alerts[] = __('The administrator email address you entered is invalid.', 'luna');
-	
+
 		if ($title == '')
 			$alerts[] = __('You must enter a board title.', 'luna');
-	
+
 		$languages = forum_list_langs();
 		if (!in_array($default_lang, $languages))
 			$alerts[] = __('The default language chosen doesn\'t seem to exist.', 'luna');
-	
+
 		$styles = forum_list_styles();
 		if (!in_array($default_style, $styles))
 			$alerts[] = __('The default style chosen doesn\'t seem to exist.', 'luna');
-			
+
 		return $alerts;
 	}
-	
+
 	private static function load_database_driver($db_type) {
-		
+
 		// Load the appropriate DB layer class
 		switch ($db_type) {
 			case 'mysql':
 				require LUNA_ROOT.'include/dblayer/mysql.php';
 				break;
-	
+
 			case 'mysql_innodb':
 				require LUNA_ROOT.'include/dblayer/mysql_innodb.php';
 				break;
-	
+
 			case 'mysqli':
 				require LUNA_ROOT.'include/dblayer/mysqli.php';
 				break;
-	
+
 			case 'mysqli_innodb':
 				require LUNA_ROOT.'include/dblayer/mysqli_innodb.php';
 				break;
-	
+
 			case 'pgsql':
 				require FORUM_ROOT.'include/dblayer/pgsql.php';
 				break;
-	
+
 			case 'sqlite':
 				require LUNA_ROOT.'include/dblayer/sqlite.php';
 				break;
@@ -142,15 +142,15 @@ class Installer {
 			case 'sqlite3':
 				require LUNA_ROOT.'include/dblayer/sqlite3.php';
 				break;
-	
+
 			default:
 				error(sprintf(__('"%s" is not a valid database type', 'luna'), luna_htmlspecialchars($db_type)));
 		}
 	}
-	
+
 	private static function validate_database_version($db_type, $db) {
 		global $db_prefix;
-		
+
 		// Do some DB type specific checks
 		switch ($db_type) {
 			case 'mysql':
@@ -161,13 +161,13 @@ class Installer {
 				if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
 					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::LUNA_VERSION, Version::MIN_MYSQL_VERSION));
 				break;
-	
+
 			case 'pgsql':
 				$pgsql_info = $db->get_version();
 				if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
 					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::LUNA_VERSION, Version::MIN_PGSQL_VERSION));
 				break;
-	
+
 			case 'sqlite':
 			case 'sqlite3':
 				if (strtolower($db_prefix) == 'sqlite_')
@@ -183,30 +183,30 @@ class Installer {
 				error(__('InnoDB does not seem to be enabled. Please choose a database layer that does not have InnoDB support, or enable InnoDB on your MySQL server', 'luna'));
 		}
 	}
-	
+
 	public static function create_database($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $title, $description, $default_lang, $default_style, $email, $avatars, $base_url) {
 
 		// Validate prefix
 		if (strlen($db_prefix) > 0 && (!preg_match('%^[a-zA-Z_][a-zA-Z0-9_]*$%', $db_prefix) || strlen($db_prefix) > 40))
 		error(sprintf(__('The table prefix \'%s\' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix', 'luna'), $db->prefix));
-		
+
 		// Load the appropriate DB layer class
 		Installer::load_database_driver($db_type);
-		
+
 		// Create the database object (and connect/select db)
 		$db = new DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, false);
-		
+
 		// Do some DB type specific checks
 		Installer::validate_database_version($db_type, $db);
-		
+
 		// Make sure FluxBB isn't already installed
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id=1');
 		if ($db->num_rows($result))
 		error(sprintf(__('A table called "%susers" is already present in the database "%s". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix', 'luna'), $db->prefix, $db_name));
-		
+
 		// Start a transaction
 		$db->start_transaction();
-		
+
 		// Create all tables
 		$schema = array(
 			'FIELDS'		=> array(
@@ -245,13 +245,13 @@ class Installer {
 				'username_idx'	=> array('username')
 			)
 		);
-	
+
 		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
 			$schema['INDEXES']['username_idx'] = array('username(25)');
-	
+
 		$db->create_table('bans', $schema) or error('Unable to create bans table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -271,10 +271,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id')
 		);
-	
+
 		$db->create_table('categories', $schema) or error('Unable to create categories table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -294,10 +294,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id')
 		);
-	
+
 		$db->create_table('censoring', $schema) or error('Unable to create censoring table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'conf_name'		=> array(
@@ -312,10 +312,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('conf_name')
 		);
-	
+
 		$db->create_table('config', $schema) or error('Unable to create config table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'group_id'		=> array(
@@ -346,10 +346,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('group_id', 'forum_id')
 		);
-	
+
 		$db->create_table('forum_perms', $schema) or error('Unable to create forum_perms table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -430,10 +430,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id')
 		);
-	
+
 		$db->create_table('forums', $schema) or error('Unable to create forums table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'g_id'						=> array(
@@ -577,9 +577,9 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('g_id')
 		);
-		
+
 		$db->create_table('groups', $schema) or error('Unable to create groups table', __FILE__, __LINE__, $db->error());
-	
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -614,10 +614,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id')
 		);
-	
+
 		$db->create_table('menu', $schema) or error('Unable to create menu table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'			=> array(
 				'id'				=> array(
@@ -657,10 +657,10 @@ class Installer {
 			),
 			'PRIMARY KEY'		=> array('id'),
 		);
-		
+
 		$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'user_id'		=> array(
@@ -692,7 +692,7 @@ class Installer {
 					'allow_null'	=> true
 				),
 			),
-	
+
 			'UNIQUE KEYS'	=> array(
 				'user_id_ident_idx'	=> array('user_id', 'ident')
 			),
@@ -701,18 +701,18 @@ class Installer {
 				'logged_idx'	=> array('logged')
 			)
 		);
-	
+
 		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb') {
 			$schema['UNIQUE KEYS']['user_id_ident_idx'] = array('user_id', 'ident(25)');
 			$schema['INDEXES']['ident_idx'] = array('ident(25)');
 		}
-	
+
 		if ($db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
 			$schema['ENGINE'] = 'InnoDB';
-	
+
 		$db->create_table('online', $schema) or error('Unable to create online table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -781,10 +781,10 @@ class Installer {
 				'multi_idx'		=> array('commenter_id', 'thread_id')
 			)
 		);
-	
+
 		$db->create_table('comments', $schema) or error('Unable to create comments table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -804,10 +804,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('id')
 		);
-	
+
 		$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -857,10 +857,10 @@ class Installer {
 				'zapped_idx'	=> array('zapped')
 			)
 		);
-	
+
 		$db->create_table('reports', $schema) or error('Unable to create reports table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -883,13 +883,13 @@ class Installer {
 				'ident_idx'	=> array('ident')
 			)
 		);
-	
+
 		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
 			$schema['INDEXES']['ident_idx'] = array('ident(8)');
-	
+
 		$db->create_table('search_cache', $schema) or error('Unable to create search_cache table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'comment_id'		=> array(
@@ -913,10 +913,10 @@ class Installer {
 				'comment_id_idx'	=> array('comment_id')
 			)
 		);
-	
+
 		$db->create_table('search_matches', $schema) or error('Unable to create search_matches table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -935,15 +935,15 @@ class Installer {
 				'id_idx'	=> array('id')
 			)
 		);
-	
+
 		if ($db_type == 'sqlite' || $db_type == 'sqlite3') {
 			$schema['PRIMARY KEY'] = array('id');
 			$schema['UNIQUE KEYS'] = array('word_idx'	=> array('word'));
 		}
-	
+
 		$db->create_table('search_words', $schema) or error('Unable to create search_words table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'user_id'		=> array(
@@ -959,10 +959,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('user_id', 'thread_id')
 		);
-	
+
 		$db->create_table('thread_subscriptions', $schema) or error('Unable to create thread subscriptions table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'user_id'		=> array(
@@ -978,10 +978,10 @@ class Installer {
 			),
 			'PRIMARY KEY'	=> array('user_id', 'forum_id')
 		);
-	
+
 		$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
-	
-	
+
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'			=> array(
@@ -1081,9 +1081,9 @@ class Installer {
 				'first_comment_id_idx'	=> array('first_comment_id')
 			)
 		);
-	
+
 		$db->create_table('threads', $schema) or error('Unable to create threads table', __FILE__, __LINE__, $db->error());
-	
+
 		$schema = array(
 			'FIELDS'		=> array(
 				'id'				=> array(
@@ -1321,12 +1321,12 @@ class Installer {
 				'registered_idx'	=> array('registered')
 			)
 		);
-	
+
 		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
 			$schema['UNIQUE KEYS']['username_idx'] = array('username(25)');
-	
+
 		$db->create_table('users', $schema) or error('Unable to create users table', __FILE__, __LINE__, $db->error());
-		
+
 		$schema = array(
 			'FIELDS'			=> array(
 				'id'				=> array(
@@ -1415,7 +1415,7 @@ class Installer {
 			),
 			'PRIMARY KEY'		=> array('id'),
 		);
-		
+
 		$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
 
 		// Insert config data
@@ -1522,86 +1522,86 @@ class Installer {
 			'p_allow_dupe_email'		=> 0,
 			'p_force_guest_email'		=> 1
 		);
-	
+
 		foreach ($luna_config as $conf_name => $conf_value) {
 			$db->query('INSERT INTO '.$db_prefix.'config (conf_name, conf_value) VALUES(\''.$conf_name.'\', '.(is_null($conf_value) ? 'NULL' : '\''.$db->escape($conf_value).'\'').')')
 				or error('Unable to insert into table '.$db_prefix.'config. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
-		
+
 		$db->end_transaction();
 
 		return $db;
 	}
-	
+
 	public static function insert_default_users($username, $password, $email, $language, $style) {
 		global $db, $db_type;
-		
+
 		$now = time();
-		
+
 		$db->start_transaction();
 
 		// Insert guest and first admin user
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_comment, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 			or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
+
 		$db->end_transaction();
 	}
-	
+
 	public static function insert_default_groups() {
 		global $db, $db_type;
-		
+
 		$now = time();
-		
+
 		$db->start_transaction();
 
 		// Insert the first 4 groups
 		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape(__('Administrators', 'luna')).'\', \''.$db->escape(__('Administrator', 'luna')).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape(__('Moderators', 'luna')).'\', \''.$db->escape(__('Moderator', 'luna')).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape(__('Guests', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape(__('Members', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
-		
+
 		$db->end_transaction();
 	}
-	
+
 	public static function instert_default_menu() {
 		global $db;
-		
+
 		$db->start_transaction();
 
 		$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'index.php\', \'Index\', 1, \'1\', 1)')
 			or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'userlist.php\', \'Users\', 2, \'1\', 1)')
 			or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
 			or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
+
 		$db->end_transaction();
 	}
-	
+
 	public static function insert_default_data() {
 		global $db, $db_type;
-		
+
 		$now = time();
-		
+
 		$db->start_transaction();
 
 		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('New member', 'luna')).'\', 0)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-	
+
 		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-		require LUNA_ROOT.'include/notifications.php';		
+		require LUNA_ROOT.'include/notifications.php';
 		new_notification('2', 'backstage/about.php', 'Welcome to Luna, discover the possibilities!', 'fa-moon-o');
-		
+
 		$db->end_transaction();
 	}
 }

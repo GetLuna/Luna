@@ -37,5 +37,5 @@ function load_me_nav($page = '', $list_group_class = '', $list_item_class = '') 
 	<li class="<?php if ($page == 'settings') echo 'active'; ?>"><a href="settings.php?id=<?php echo $id ?>"><?php _e('Settings', 'luna') ?></a></li>
 <?php endif; ?>
 </ul>
-<?php 
+<?php
 }

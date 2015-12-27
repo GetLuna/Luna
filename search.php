@@ -501,7 +501,7 @@ if (!$search_id) {
 		$focus_element = array('search', 'keywords');
 		define('LUNA_ACTIVE_PAGE', 'search');
 		require load_page('header.php');
-	
+
 		require load_page('search.php');
 
 		require load_page('footer.php');
@@ -513,7 +513,7 @@ if (!$search_id) {
 			$focus_element = array('search', 'keywords');
 			define('LUNA_ACTIVE_PAGE', 'search');
 			require load_page('header.php');
-	
+
 			require load_page('search-advanced.php');
 
 			require load_page('footer.php');

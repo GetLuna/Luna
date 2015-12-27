@@ -15,7 +15,7 @@ if (!$is_admin)
 // Add a censor word
 if (isset($_POST['add_word'])) {
 	confirm_referrer('backstage/censoring.php');
-	
+
 	$search_for = luna_trim($_POST['new_search_for']);
 	$replace_with = luna_trim($_POST['new_replace_with']);
 
@@ -36,7 +36,7 @@ if (isset($_POST['add_word'])) {
 // Update a censor word
 elseif (isset($_POST['update'])) {
 	confirm_referrer('backstage/censoring.php');
-	
+
 	$id = intval(key($_POST['update']));
 
 	$search_for = luna_trim($_POST['search_for'][$id]);
@@ -59,7 +59,7 @@ elseif (isset($_POST['update'])) {
 // Remove a censor word
 elseif (isset($_POST['remove'])) {
 	confirm_referrer('backstage/censoring.php');
-	
+
 	$id = intval(key($_POST['remove']));
 
 	$db->query('DELETE FROM '.$db->prefix.'censoring WHERE id='.$id) or error('Unable to delete censor word', __FILE__, __LINE__, $db->error());

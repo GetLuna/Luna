@@ -26,7 +26,7 @@ function get_locale() {
  *
  * @param    string     $domain Text domain. Unique identifier for retrieving translated strings.
  * @param    string     $mofile Path to the .mo file.
- * 
+ *
  * @return   boolean    True on success, false on failure.
  */
 function load_textdomain($domain, $mofile) {

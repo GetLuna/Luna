@@ -17,7 +17,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Ad
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'about');
-	
+
 	?>
 <div class="row">
 	<div class="col-sm-12">

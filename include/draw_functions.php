@@ -34,7 +34,7 @@ function draw_preview_panel($message) {
 	if (!empty($message)) {
 		require_once LUNA_ROOT.'include/parser.php';
 		$preview_message = parse_message($message);
-	
+
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -51,7 +51,7 @@ function draw_preview_panel($message) {
 // Show the editor panel
 function draw_editor($height) {
 	global $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_comment, $message, $luna_config, $cur_index, $p_message;
-	
+
 	$pin_btn = $silence_btn = '';
 
 	if (isset($_POST['pin_thread']) || $cur_comment['pinned'] == '1') {
@@ -70,7 +70,7 @@ function draw_editor($height) {
 			$silence_status = ' checked';
 			$silence_active = ' active';
 		}
-	
+
 		if ($is_admmod)
 			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Mute edit', 'luna').'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
 	}
@@ -211,19 +211,19 @@ window.onbeforeunload = function() {
 
 function draw_threads_list() {
 	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_threads, $cur_forum;
-	
+
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
 		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	else
 		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
-	
+
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
 		$thread_ids = array();
 		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
 			$thread_ids[] = $cur_thread_id;
-	
+
 		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
 			// When not showing a commented label
@@ -238,12 +238,12 @@ function draw_threads_list() {
 
 			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.important, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
-	
+
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
-	
+
 		$thread_count = 0;
 		while ($cur_thread = $db->fetch_assoc($result)) {
-	
+
 			++$thread_count;
 			$status_text = array();
 			$item_status = ($thread_count % 2 == 0) ? 'roweven' : 'rowodd';
@@ -265,35 +265,35 @@ function draw_threads_list() {
 				$last_commenter = '';
 				$thread_id = $cur_thread['moved_to'];
 			}
-	
+
 			if ($luna_config['o_censoring'] == '1')
 				$cur_thread['subject'] = censor_words($cur_thread['subject']);
-	
+
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
-	
+
 			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
-	
+
 			if (isset($cur_thread['important'])) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
-	
+
 			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
 			}
-			
+
 			if ($cur_thread['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
-	
+
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
@@ -303,7 +303,7 @@ function draw_threads_list() {
 
 			$url = 'thread.php?id='.$thread_id;
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
-	
+
 			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
 				if ($cur_thread['has_commented'] == $luna_user['id']) {
 					$item_status .= ' commented-item';
@@ -311,32 +311,32 @@ function draw_threads_list() {
 			}
 
 			$subject_status = implode(' ', $status_text);
-	
+
 			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
-	
+
 			if ($num_pages_thread > 1)
 				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
-	
+
 			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
 			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
-	
+
 			require get_view_path('thread.php');
-	
+
 		}
-	
+
 	} else {
 		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
 		printf(__('There are no threads in this forum yet, but you can <a href="comment.php?fid=%s">start the first one</a>.', 'luna'), $id);
 		echo '</h3></div></div>';
 	}
-	
+
 }
 
 function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
 	global $db, $luna_config, $luna_user, $id, $new_threads;
-	
+
 	// Print the categories and forums
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_threads, f.num_comments, f.last_comment, f.last_comment_id, f.last_commenter_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_commenter_id=u.id LEFT JOIN '.$db->prefix.'threads AS t ON t.last_comment_id=f.last_comment_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
@@ -346,7 +346,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 	while ($cur_forum = $db->fetch_assoc($result)) {
 		if(!isset($cur_forum['parent_id']) || $cur_forum['parent_id'] == 0) {
 			$moderators = '';
-			
+
 			if ($cur_forum['cid'] != $cur_category && $use_cat == 1) {
 				if ($cur_category != 0)
 					echo $close_tags;
@@ -358,34 +358,34 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 
 				$cur_category = $cur_forum['cid'];
 			}
-	
+
 			++$forum_count;
 			$item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$forum_field_new = '';
 			$forum_desc = '';
 			$icon_type = 'icon';
 			$last_comment = '';
-		
+
 			// Are there new comments since our last visit?
 			if (isset($new_threads[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
 				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
-			
+
 			if ($cur_forum['icon'] != NULL)
 				$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 			else
 				$faicon = '';
-		
+
 			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
-		
+
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
-		
+
 			$thread_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = _n('comment', 'comments', $cur_forum['num_comments'], 'luna');
-			
+
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
 				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
@@ -397,18 +397,18 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			if ($cur_forum['last_comment'] != '') {
 				if (luna_strlen($cur_forum['subject']) > 53)
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
-		
+
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
 						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
 						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} else
 				$last_comment = __('Never', 'luna');
-		
+
 			require get_view_path($forum_object_name);
 		}
 	}
-			
+
 	// Any need to close of a category?
 	if ($use_cat == 1) {
 		if ($cur_category > 0)
@@ -420,15 +420,15 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 
 function draw_subforum_list($object_name = 'forum.php') {
 	global $db, $luna_config, $luna_user, $id, $new_threads;
-	
+
 	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 	$cur_parent = $db->fetch_assoc($result);
-	
+
 	if ($cur_parent['parent_id'] == '0')
 		$subforum_parent_id = $id;
 	else
 		$subforum_parent_id = $cur_parent['parent_id'];
-	
+
 	// Print the categories and forums
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_threads, f.num_comments, f.last_comment, f.last_comment_id, f.last_commenter_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_commenter_id=u.id LEFT JOIN '.$db->prefix.'threads AS t ON t.last_comment_id=f.last_comment_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_id='.$subforum_parent_id.' ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
@@ -441,41 +441,41 @@ function draw_subforum_list($object_name = 'forum.php') {
 
 		if($cur_forum['parent_id'] == $parent_id) {
 			$moderators = '';
-	
+
 			++$forum_count;
 			$item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$forum_field_new = '';
 			$forum_desc = '';
 			$icon_type = 'icon';
 			$last_comment = '';
-		
+
 			// Are there new comments since our last visit?
 			if (isset($new_threads[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
 				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
-			
+
 			if ($cur_forum['icon'] != NULL)
 				$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 			else
 				$faicon = '';
-		
+
 			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
-		
+
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
-		
+
 			$thread_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = __('comment', 'comments', $cur_forum['num_comments'], 'luna');
-			
+
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
 				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
 			} else {
 				$item_style = '';
 			}
-		
+
 			require get_view_path($object_name);
 		}
 	}
@@ -483,10 +483,10 @@ function draw_subforum_list($object_name = 'forum.php') {
 
 function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php') {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
-	
+
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_comment DESC LIMIT '.$limit) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
-	
+
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
 		$thread_ids = array();
@@ -507,24 +507,24 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.important, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.last_comment DESC';
 		}
-	
+
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
 
 		// Load cached forums
 		if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
 			include LUNA_CACHE_DIR.'cache_forums.php';
-		
+
 		if (!defined('LUNA_LIST_LOADED')) {
 			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 				require LUNA_ROOT.'include/cache.php';
-		
+
 			generate_forum_cache();
 			require LUNA_CACHE_DIR.'cache_forums.php';
 		}
-	
+
 		$thread_count = 0;
 		while ($cur_thread = $db->fetch_assoc($result)) {
-			
+
 			++$thread_count;
 			$status_text = array();
 			$item_status = ($thread_count % 2 == 0) ? 'roweven' : 'rowodd';
@@ -542,7 +542,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 					$last_commenter = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_commenter_id'].'">'.luna_htmlspecialchars($cur_thread['last_commenter']).'</a></span>';
 				else
 					$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_commenter']).'</span>';
-				
+
 				foreach ($luna_forums as $cur_forum) {
 					if ($cur_thread['forum_id'] == $cur_forum['id']) {
 						$forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
@@ -553,41 +553,41 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 							$faicon = '';
 					}
 				}
-				
+
 				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.'<span class="hidden-xs hidden-sm">'.$forum_name.'</span></a></span>';
 			} else {
 				$last_commenter = '';
 				$thread_id = $cur_thread['moved_to'];
 			}
-	
+
 			if ($luna_config['o_censoring'] == '1')
 				$cur_thread['subject'] = censor_words($cur_thread['subject']);
-	
+
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
-	
+
 			if (isset($cur_thread['answer'])) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
-	
+
 			if (isset($cur_thread['important'])) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
-	
+
 			if ($cur_thread['moved_to'] != 0) {
 				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
 			}
-			
+
 			if ($cur_thread['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
-	
+
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
@@ -596,27 +596,27 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			$url = 'thread.php?id='.$thread_id;
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
-	
+
 			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
 				if ($cur_thread['has_commented'] == $luna_user['id']) {
 					$item_status .= ' commented-item';
 				}
 			}
-	
+
 			$subject_status = implode(' ', $status_text);
-	
+
 			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
-	
+
 			if ($num_pages_thread > 1)
 				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
-	
+
 			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
 			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
-	
+
 			require get_view_path($thread_object_name);
-	
+
 		}
 	} else
 		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a thread to begin.', 'luna').'</h3>';
@@ -635,54 +635,54 @@ function draw_comment_list() {
 		$comment_actions = array();
 		$is_online = '';
 		$signature = '';
-	
+
 		// If the commenter is a registered user
 		if ($cur_comment['commenter_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
 				$username = '<a href="profile.php?id='.$cur_comment['commenter_id'].'">'.luna_htmlspecialchars($cur_comment['username']).'</a>';
 			else
 				$username = luna_htmlspecialchars($cur_comment['username']);
-	
+
 			$user_title = get_title($cur_comment);
-	
+
 			if ($luna_config['o_censoring'] == '1')
 				$user_title = censor_words($user_title);
-	
+
 			// Format the online indicator, those are ment as CSS classes
 			$is_online = ($cur_comment['is_online'] == $cur_comment['commenter_id']) ? 'is-online' : 'is-offline';
-	
+
 			// We only show location, register date, comment count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
 				if ($cur_comment['location'] != '') {
 					if ($luna_config['o_censoring'] == '1')
 						$cur_comment['location'] = censor_words($cur_comment['location']);
-	
+
 					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_comment['location']).'</span></dd>';
 				}
-	
+
 				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
 					$user_info[] = '<dd><span>'._n('Comment:', 'Comments:', $cur_comment['num_comments'], 'luna').' '.forum_number_format($cur_comment['num_comments']).'</span></dd>';
-	
+
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_comment['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_comment['email']).'">'.__('Email', 'luna').'</a>';
 				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_comment['commenter_id'].'">'.__('Email', 'luna').'</a>';
-	
+
 				if ($cur_comment['url'] != '') {
 					if ($luna_config['o_censoring'] == '1')
 						$cur_comment['url'] = censor_words($cur_comment['url']);
-	
+
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_comment['url']).'" rel="nofollow">'.__('Website', 'luna').'</a>';
 				}
-	
-	
+
+
 				if ($luna_user['is_admmod']) {
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['commenter_ip']).'">'.__('IP log', 'luna').'</a>';
 				}
 			}
-	
-	
+
+
 			if ($luna_user['is_admmod']) {
 				if ($cur_comment['admin_note'] != '')
 					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_comment['admin_note']).'</strong></span></dd>';
@@ -692,14 +692,14 @@ function draw_comment_list() {
 		else {
 			$username = luna_htmlspecialchars($cur_comment['username']);
 			$user_title = get_title($cur_comment);
-	
+
 			if ($luna_user['is_admmod'])
 				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['id'].'" title="'.luna_htmlspecialchars($cur_comment['commenter_ip']).'">'.__('IP log', 'luna').'</a></span></dd>';
-	
+
 			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['commenter_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_comment['commenter_email']).'">'.__('Email', 'luna').'</a></span>';
 		}
-	
+
 		// Get us the avatar
 		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
 			if (isset($user_avatar_cache[$cur_comment['commenter_id']]))
@@ -707,7 +707,7 @@ function draw_comment_list() {
 			else
 				$user_avatar = draw_user_avatar($cur_comment['commenter_id'], false, 'media-object media-avatar');
 		}
-	
+
 		// Generation comment action array (quote, edit, delete etc.)
 		if (!$is_admmod) {
 			if (!$luna_user['is_guest']) {
@@ -717,7 +717,7 @@ function draw_comment_list() {
 					$comment_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
 				}
 			}
-	
+
 			if ($cur_thread['closed'] == 0) {
 				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
@@ -731,7 +731,7 @@ function draw_comment_list() {
 					if ($luna_user['g_edit_comments'] == 1)
 						$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 				}
-	
+
 				if (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)
 					$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
 
@@ -759,7 +759,7 @@ function draw_comment_list() {
 				$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
 			}
 			$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
-			
+
 			if ($cur_forum['solved'] == 1) {
 				if ($cur_comment['id'] == $cur_thread['answer'])
 					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
@@ -767,10 +767,10 @@ function draw_comment_list() {
 					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
 			}
 		}
-	
+
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_comment['message'] = parse_message($cur_comment['message']);
-	
+
 		// Do signature parsing/caching
 		if ($luna_config['o_signatures'] == '1' && $cur_comment['signature'] != '' && $luna_user['show_sig'] != '0') {
 			if (isset($signature_cache[$cur_comment['commenter_id']]))
@@ -780,7 +780,7 @@ function draw_comment_list() {
 				$signature_cache[$cur_comment['commenter_id']] = $signature;
 			}
 		}
-	
+
 		require get_view_path('comment.php');
 	}
 
@@ -789,7 +789,7 @@ function draw_comment_list() {
 function draw_response_list() {
 	global $result, $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $inbox;
 
-	while ($cur_comment = $db->fetch_assoc($result)) {	
+	while ($cur_comment = $db->fetch_assoc($result)) {
 		$comment_count++;
 		$user_avatar = '';
 		$user_info = array();
@@ -797,83 +797,83 @@ function draw_response_list() {
 		$comment_actions = array();
 		$is_online = '';
 		$signature = '';
-		
+
 		// If the commenter is a registered user
 		if ($cur_comment['id']) {
 			if ($luna_user['g_view_users'] == '1')
 				$username = '<a href="profile.php?id='.$cur_comment['sender_id'].'">'.luna_htmlspecialchars($cur_comment['sender']).'</a>';
 			else
 				$username = luna_htmlspecialchars($cur_comment['sender']);
-				
+
 			$user_title = get_title($cur_comment);
-	
+
 			if ($luna_config['o_censoring'] == '1')
 				$user_title = censor_words($user_title);
-	
+
 			// Format the online indicator
 			$is_online = ($cur_comment['is_online'] == $cur_comment['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
-	
+
 			if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
 				if (isset($user_avatar_cache[$cur_comment['sender_id']]))
 					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']];
 				else
 					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']] = generate_avatar_markup($cur_comment['sender_id']);
 			}
-	
+
 			// We only show location, register date, comment count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
 				if ($cur_comment['location'] != '') {
 					if ($luna_config['o_censoring'] == '1')
 						$cur_comment['location'] = censor_words($cur_comment['location']);
-	
+
 					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_comment['location']).'</span></dd>';
 				}
-	
+
 				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_comment['registered'], true).'</span></dd>';
-	
+
 				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
 					$user_info[] = '<dd><span>'.__('Comments:', 'luna').' '.forum_number_format($cur_comment['num_comments']).'</span></dd>';
-	
+
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_comment['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
 					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['email'].'">'.__('Email', 'luna').'</a></span>';
 				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_comment['sender_id'].'">'.__('Email', 'luna').'</a></span>';
-					
+
 				if ($luna_config['o_enable_inbox'] == '1' && !$luna_user['is_guest'] && $luna_user['g_inbox'] == '1' && $luna_user['use_inbox'] == '1' && $cur_comment['use_inbox'] == '1') {
 					$pid = isset($cur_comment['sender_id']) ? $cur_comment['sender_id'] : $cur_comment['sender_id'];
 					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
 				}
-	
+
 				if ($cur_comment['url'] != '')
 					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_comment['url']).'">'.__('Website', 'luna').'</a></span>';
-					
+
 			}
-	
+
 			if ($luna_user['is_admmod']) {
 				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_ip'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
-	
+
 				if ($cur_comment['admin_note'] != '')
 					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_comment['admin_note']).'</strong></span></dd>';
 			}
 		} else { // If the commenter is a guest (or a user that has been deleted)
 			$username = luna_htmlspecialchars($cur_comment['username']);
 			$user_title = get_title($cur_comment);
-	
+
 			if ($luna_user['is_admmod'])
 				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_id'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
-	
+
 			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['commenter_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['commenter_email'].'">'.__('Email', 'luna').'</a></span>';
 		}
-		
+
 		$username_quickreply = luna_htmlspecialchars($cur_comment['username']);
 
 		$comment_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'">'.__('Quote', 'luna').'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_comment['message'] = parse_message($cur_comment['message']);
-	
+
 		// Do signature parsing/caching
 		if ($luna_config['o_signatures'] == '1' && $cur_comment['signature'] != '' && $luna_user['show_sig'] != '0') {
 			if (isset($signature_cache[$cur_comment['id']]))
@@ -883,31 +883,31 @@ function draw_response_list() {
 				$signature_cache[$cur_comment['id']] = $signature;
 			}
 		}
-	
+
 		require get_view_path('comment.php');
 	}
 }
 
 function draw_user_list() {
 	global $db, $where_sql, $sort_query, $start_from;
-	
+
 	// Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.LUNA_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_query.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
-	
+
 	if ($db->num_rows($result)) {
 		$user_ids = array();
 		for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)
 			$user_ids[] = $cur_user_id;
-	
+
 		// Grab the users
 		$result = $db->query('SELECT u.id, u.username, u.title, u.num_comments, u.registered, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id IN('.implode(',', $user_ids).') ORDER BY '.$sort_query.', u.id ASC') or error('Unable to fetch user list', __FILE__, __LINE__, $db->error());
-	
+
 		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title_field = get_title($user_data);
 			$user_avatar = draw_user_avatar($user_data['id'], true, 'media-object');
-	
+
 			require get_view_path('user.php');
-	
+
 		}
 	} else
 		echo '<p>'.__('Your search returned no hits.', 'luna').'</p>';
@@ -999,47 +999,47 @@ function draw_search_results() {
 			$status_text = array();
 			$item_status = ($thread_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			
+
 			$subject = '<a href="thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a>';
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['commenter']).'</span>';
-			
+
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
-	
+
 			if (isset($cur_search['answer'])) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
-	
+
 			if (isset($cur_search['important'])) {
 				$item_status .= ' important-item';
 				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
 			}
-			
+
 			if ($cur_search['closed'] != '0') {
 				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
-			
+
 			if (!$luna_user['is_guest'] && $cur_search['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_search['tid']]) || $tracked_threads['threads'][$cur_search['tid']] < $cur_search['last_comment']) && (!isset($tracked_threads['forums'][$cur_search['forum_id']]) || $tracked_threads['forums'][$cur_search['forum_id']] < $cur_search['last_comment'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
 			}
-			
+
 			// Insert the status text before the subject
 			$subject = implode(' ', $status_text).' '.$subject;
-			
+
 			$num_pages_thread = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_comments']);
-			
+
 			if ($num_pages_thread > 1)
 				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
 			else
 				$subject_multipage = null;
-			
+
 			if ($cur_search['last_commenter_id'] > '1' && $luna_user['g_view_users'] == '1')
 				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_comment_id'].'#p'.$cur_search['last_comment_id'].'">'.format_time($cur_search['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_commenter_id'].'">'.luna_htmlspecialchars($cur_search['last_commenter']).'</a>';
 			else
@@ -1116,7 +1116,7 @@ function draw_search_forum_list() {
 		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.__('Forum', 'luna').'</b>'."\n";
 		echo "\t\t\t\t\t\t".'<br />'."\n";
 		echo "\t\t\t\t\t\t".'<div>'."\n";
-	
+
 		$cur_category = 0;
 		while ($cur_forum = $db->fetch_assoc($result)) {
 			if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
@@ -1130,12 +1130,12 @@ function draw_search_forum_list() {
 			}
 			echo "\t\t\t\t\t\t\t\t".'<input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
 		}
-	
+
 		if ($cur_category) {
 			echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
 			echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
 		}
-	
+
 		echo "\t\t\t\t\t\t".'</div>'."\n";
 		echo "\t\t\t\t\t\t".'</div></div>'."\n";
 	}
@@ -1144,20 +1144,20 @@ function draw_search_forum_list() {
 		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.__('Forum', 'luna')."\n";
 		echo "\t\t\t\t\t\t".'<br />'."\n";
 		echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
-	
+
 		$cur_category = 0;
 		while ($cur_forum = $db->fetch_assoc($result)) {
 			if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 				if ($cur_category)
 					echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-	
+
 				echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
 				$cur_category = $cur_forum['cid'];
 			}
-	
+
 			echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 		}
-	
+
 		echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 		echo "\t\t\t\t\t\t".'</select>'."\n";
 		echo "\t\t\t\t\t\t".'<br /></label></div>'."\n";
@@ -1166,10 +1166,10 @@ function draw_search_forum_list() {
 
 function draw_mark_read($class, $page) {
 	global $luna_user, $id;
-	
+
 	if (!empty($class))
 		$classes = ' class="'.$class.'"';
-		
+
 	if ($page == 'index')
 		$url = 'misc.php?action=markread&amp;csrf_token='.luna_csrf_token();
 	elseif ($page == 'forumview')

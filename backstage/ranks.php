@@ -42,7 +42,7 @@ if (isset($_POST['add_rank'])) {
 // Update a rank
 elseif (isset($_POST['update'])) {
 	confirm_referrer('backstage/ranks.php');
-	
+
 	$rank = $_POST['rank'];
 	if (empty($rank))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');

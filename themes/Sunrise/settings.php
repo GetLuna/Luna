@@ -122,7 +122,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 									<div class="btn-group accent-group" data-toggle="buttons">
 		<?php
 				$accents = forum_list_accents('main');
-		
+
 				foreach ($accents as $temp) {
 					if ($luna_user['color_scheme'] == $temp)
 						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
@@ -165,7 +165,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 									<div class="btn-group accent-group" data-toggle="buttons">
 		<?php
 				$accents = forum_list_accents('back');
-		
+
 				foreach ($accents as $temp) {
 					if ($luna_user['accent'] == $temp)
 						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
@@ -178,9 +178,9 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 							</div>
 		<?php
 		}
-		
+
 		$languages = forum_list_langs();
-		
+
 		// Only display the language selection box if there's more than one language available
 		if (count($languages) > 1) {
 		?>
@@ -449,21 +449,21 @@ foreach ($timezones as $timezone) {
 										<div class="input-group">
 											<select id="group_id" class="form-control" name="group_id">
 		<?php
-		
+
 					$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-		
+
 					while ($cur_group = $db->fetch_assoc($result)) {
 						if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
 							echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 						else
 							echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 					}
-		
+
 		?>
-											</select> 
-											<span class="input-group-btn"> 
-												<input type="submit" class="btn btn-primary" name="update_group_membership" value="<?php _e('Save', 'luna') ?>" /> 
-											</span> 
+											</select>
+											<span class="input-group-btn">
+												<input type="submit" class="btn btn-primary" name="update_group_membership" value="<?php _e('Save', 'luna') ?>" />
+											</span>
 										</div>
 									</div>
 								</div>
@@ -483,22 +483,22 @@ foreach ($timezones as $timezone) {
 									<div class="col-sm-9">
 										<p><?php _e('Choose which forums this user should be allowed to moderate. Note: This only applies to moderators. Administrators always have full permissions in all forums.', 'luna') ?></p>
 		<?php
-		
+
 					$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
-		
+
 					$cur_category = 0;
 					while ($cur_forum = $db->fetch_assoc($result)) {
 						if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
-		
+
 							echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'</div>';
 							$cur_category = $cur_forum['cid'];
 						}
-		
+
 						$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-		
+
 						echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
 					}
-		
+
 		?>
 										</div>
 									</div>

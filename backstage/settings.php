@@ -49,8 +49,8 @@ if (isset($_POST['form_sent'])) {
 	// Make sure base_url doesn't end with a slash
 	if (substr($form['base_url'], -1) == '/')
 		$form['base_url'] = substr($form['base_url'], 0, -1);
-		
-	// Convert IDN to Punycode if needed  
+
+	// Convert IDN to Punycode if needed
 	if (preg_match('/[^\x00-\x7F]/', $form['base_url'])) {
 		if (!function_exists('idn_to_ascii'))
 			message_backstage(__('Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter.', 'luna'));

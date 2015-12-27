@@ -65,7 +65,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		$mode = 'add';
 	} else { // We are editing a ban
 		$ban_id = intval($_GET['edit_ban']);
-		if ($ban_id < 1) 
+		if ($ban_id < 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$result = $db->query('SELECT username, ip, email, message, expire FROM '.$db->prefix.'bans WHERE id='.$ban_id) or error('Unable to fetch ban info', __FILE__, __LINE__, $db->error());
@@ -147,7 +147,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 // Add/edit a ban (stage 2)
 elseif (isset($_POST['add_edit_ban'])) {
 	confirm_referrer('backstage/bans.php');
-	
+
 	$ban_user = luna_trim($_POST['ban_user']);
 	$ban_ip = luna_trim($_POST['ban_ip']);
 	$ban_email = strtolower(luna_trim($_POST['ban_email']));
@@ -252,7 +252,7 @@ elseif (isset($_POST['add_edit_ban'])) {
 // Remove a ban
 elseif (isset($_GET['del_ban'])) {
 	confirm_referrer('backstage/bans.php');
-	
+
 	$ban_id = intval($_GET['del_ban']);
 	if ($ban_id < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -393,7 +393,7 @@ elseif (isset($_GET['find_ban'])) {
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('users', 'bans');
-	
+
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">

@@ -85,19 +85,19 @@ if (isset($_GET['saved']))
 								<input type="checkbox" name="form[censoring]" value="1" <?php if ($luna_config['o_censoring'] == '1') echo ' checked' ?> />
 								<?php printf(__('Censor words in comments. See %s for more info.', 'luna'), '<a href="censoring.php">'.__('Censoring', 'luna').'</a>') ?>
 							</label>
-						</div>   
+						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[thread_views]" value="1" <?php if ($luna_config['o_thread_views'] == '1') echo ' checked' ?> />
 								<?php _e('Show the number of views for each thread.', 'luna') ?>
 							</label>
-						</div>  
+						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[has_commented]" value="1" <?php if ($luna_config['o_has_commented'] == '1') echo ' checked' ?> />
 								<?php _e('Show a label in front of the thread where users have commented.', 'luna') ?>
 							</label>
-						</div>					
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -217,7 +217,7 @@ if (isset($_GET['saved']))
 								<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked' ?> />
 								<?php _e('Convert smilies to small graphic icons in user signatures.', 'luna') ?>
 							</label>
-						</div>   
+						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[make_links]" value="1" <?php if ($luna_config['o_make_links'] == '1') echo ' checked' ?> />
@@ -234,7 +234,7 @@ if (isset($_GET['saved']))
 								<input type="checkbox" name="form[allow_center]" value="1" <?php if ($luna_config['o_allow_center'] == '1') echo ' checked' ?> />
 								<?php _e('Allow users to use the center tag within threads and their signature.', 'luna') ?>
 							</label>
-						</div>   
+						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[allow_size]" value="1" <?php if ($luna_config['o_allow_size'] == '1') echo ' checked' ?> />

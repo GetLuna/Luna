@@ -186,11 +186,11 @@ h6 {
 	.navbar-nav .open .dropdown-menu {
 		background-color: rgba(255,255,255,.1);
 	}
-	
+
 	.navbar-nav .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-menu .dropdown-header {
 		padding: 10px 15px 10px 25px;
 	}
-	
+
 	.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
 		background-color: rgba(255,255,255,.1);
 	}
@@ -265,7 +265,7 @@ h6 {
 		border: none;
 		box-shadow: none;
 	}
-	
+
 	.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
 		color: #fff !important;
 	}
@@ -389,7 +389,7 @@ h6 {
 	.footer .copyright .col-sm-2 {
 		width: 16.66%;
 	}
-	
+
 	.footer #poweredby {
 		float: right;
 	}
@@ -1099,7 +1099,7 @@ a.active.list-group-item:focus {
 }
 
 .well .media-heading {
-	margin-top: 13px; 
+	margin-top: 13px;
 	margin-right: 10px;
 }
 
@@ -1515,7 +1515,7 @@ pre[class*='language-'] {
 	.modcontrols .btn-toolbar .btn-group > :first-child {
 		margin-bottom: 10px;
 	}
-	
+
 	.panel-body {
 		border: none;
 	}

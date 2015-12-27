@@ -22,7 +22,7 @@ if ($action == 'prune') {
 
 	if (isset($_POST['prune_comply'])) {
 		confirm_referrer('backstage/prune.php');
-		
+
 		$prune_days = intval($_POST['prune_days']);
 		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
 
@@ -133,7 +133,7 @@ if (isset($_POST['notiprune'])) {
 	$prune_days = intval($_POST['prune_days']);
 	if ($prune_days != 0) {
 		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
-	
+
 		$prune_date_sql = ($prune_date != -1) ? ' WHERE time<'.$prune_date : '';
 	} else
 		$prune_date_sql = '';
@@ -156,7 +156,7 @@ if (isset($_POST['notiprune'])) {
 		if ($notification_ids != '')
 			$db->query('DELETE FROM '.$db->prefix.'notifications WHERE id IN('.$notification_ids.')') or error('Unable to prune notifications', __FILE__, __LINE__, $db->error());
 	}
-	
+
 	message_backstage(__('Pruning complete. Notifications pruned.', 'luna'));
 }
 
@@ -181,16 +181,16 @@ if (isset($_POST['userprune'])) {
 
 	$user_time = time() - ($_POST['days'] * 86400);
 	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_comments < '.intval($_POST['comments']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
-	
+
 	$user_ids = array();
 	while ($id = $db->result($result))
 		$user_ids[] = $id;
-	
+
 	if (!empty($user_ids)) {
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'comments SET commenter_id=1 WHERE commenter_id IN ('.implode(',', $user_ids).')') or error('Unable to mark comments as guest comments', __FILE__, __LINE__, $db->error());
 	}
-	
+
 	// Regenerate the users info cache
 	generate_users_info_cache();
 

@@ -15,8 +15,8 @@ if (!$is_admin)
 // Add a "default" forum
 if (isset($_POST['add_forum'])) {
 	confirm_referrer('backstage/board.php');
-	
-	$forum_name = luna_trim($_POST['new_forum']); 
+
+	$forum_name = luna_trim($_POST['new_forum']);
 	$add_to_cat = intval($_POST['add_to_cat']);
 	if ($add_to_cat < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -27,7 +27,7 @@ if (isset($_POST['add_forum'])) {
 	// Regenerate the forum cache
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 		require LUNA_ROOT.'include/cache.php';
-	
+
 	generate_forum_cache();
 
 	redirect('backstage/board.php?edit_forum='.$new_fid);
@@ -36,7 +36,7 @@ if (isset($_POST['add_forum'])) {
 // Delete a forum
 elseif (isset($_GET['del_forum'])) {
 	confirm_referrer('backstage/board.php');
-	
+
 	$forum_id = intval($_GET['del_forum']);
 	if ($forum_id < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -68,7 +68,7 @@ elseif (isset($_GET['del_forum'])) {
 		// Regenerate the forum cache
 		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 			require LUNA_ROOT.'include/cache.php';
-		
+
 		generate_forum_cache();
 
 		redirect('backstage/board.php?saved=true');
@@ -106,7 +106,7 @@ elseif (isset($_GET['del_forum'])) {
 // Update forum positions
 elseif (isset($_POST['update_positions'])) {
 	confirm_referrer('backstage/board.php');
-	
+
 	foreach ($_POST['position'] as $forum_id => $disp_position) {
 		$disp_position = trim($disp_position);
 		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position))
@@ -114,11 +114,11 @@ elseif (isset($_POST['update_positions'])) {
 
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
-	
+
 	// Regenerate the forum cache
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 		require LUNA_ROOT.'include/cache.php';
-	
+
 	generate_forum_cache();
 
 	redirect('backstage/board.php?saved=true');
@@ -130,7 +130,7 @@ elseif (isset($_POST['update_positions'])) {
 	// Update group permissions for $forum_id
 	if (isset($_POST['save'])) {
 		confirm_referrer('backstage/board.php');
-	
+
 		// Start with the forum details
 		$forum_name = luna_trim($_POST['forum_name']);
 		$forum_desc = luna_linebreaks(luna_trim($_POST['forum_desc']));
@@ -150,7 +150,7 @@ elseif (isset($_POST['update_positions'])) {
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
 		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', icon=\''.$db->escape($icon).'\', color=\''.$color.'\', solved='.$solved.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
-		
+
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
 			$result = $db->query('SELECT g_id, g_read_board, g_comment, g_create_threads FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_ADMIN) or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -177,19 +177,19 @@ elseif (isset($_POST['update_positions'])) {
 		// Regenerate the forum cache
 		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 			require LUNA_ROOT.'include/cache.php';
-		
+
 		generate_forum_cache();
 
 		redirect('backstage/board.php?saved=true');
 	} elseif (isset($_POST['revert_perms'])) {
 		confirm_referrer('backstage/board.php');
-	
+
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the forum cache
 		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 			require LUNA_ROOT.'include/cache.php';
-		
+
 		generate_forum_cache();
 
 		redirect('backstage/board.php?edit_forum='.$forum_id);
@@ -207,9 +207,9 @@ elseif (isset($_POST['update_positions'])) {
 	$result = $db->query('SELECT DISTINCT parent_id FROM '.$db->prefix.'forums WHERE parent_id != 0');
 	while ($r = $db->fetch_row($result))
 		$parent_forums[] = $r[0];
-	
+
 	$cur_index = 7;
-	
+
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -390,7 +390,7 @@ elseif (isset($_POST['update_positions'])) {
 // Add a new category
 elseif (isset($_POST['add_cat'])) {
 	confirm_referrer('backstage/board.php');
-	
+
 	$new_cat_name = luna_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
 		message_backstage(__('You must enter a name', 'luna'));
@@ -403,7 +403,7 @@ elseif (isset($_POST['add_cat'])) {
 // Delete a category
 elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	confirm_referrer('backstage/board.php');
-	
+
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -478,38 +478,38 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	// Generate an array with all categories
 	$result = $db->query('SELECT id, cat_name, disp_position FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
 	$num_cats = $db->num_rows($result);
-	
+
 	for ($i = 0; $i < $num_cats; ++$i)
 		$cat_list[] = $db->fetch_assoc($result);
-	
+
 	if (isset($_POST['update'])) { // Change position and name of the categories
 		confirm_referrer('backstage/board.php');
-		
+
 		$categories = $_POST['cat'];
 		if (empty($categories))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-	
+
 		foreach ($categories as $cat_id => $cur_cat) {
 			$cur_cat['name'] = luna_trim($cur_cat['name']);
 			$cur_cat['order'] = luna_trim($cur_cat['order']);
-	
+
 			if ($cur_cat['name'] == '')
 				message_backstage(__('You must enter a name', 'luna'));
-	
+
 			if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
 				message_backstage(__('Position must be a positive integer value.', 'luna'));
-	
+
 			$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
 		}
-	
+
 		redirect('backstage/board.php?saved=true');
 	}
-	
+
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Board', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('content', 'board');
-	
+
 	if (isset($_GET['saved']))
 		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
@@ -682,7 +682,7 @@ foreach ($cat_list as $cur_cat) {
 		</form>
 	</div>
 </div>
-<?php endif; 
+<?php endif;
 	}
 
 require 'footer.php';

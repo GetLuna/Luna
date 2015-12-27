@@ -92,7 +92,7 @@ function required_fields() {
 
 	if (isset($required_fields)) {
 	// Output JavaScript to validate form (make sure required fields are filled out)
-	
+
 ?>
 	<script type="text/javascript">
 	/* <![CDATA[ */
@@ -122,12 +122,12 @@ function required_fields() {
 	/* ]]> */
 	</script>
 <?php
-	
+
 	}
 }
 
 function check_url() {
 	$redirect_url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-	
+
 	return $redirect_url;
 }

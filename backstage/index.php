@@ -12,7 +12,7 @@ require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
-	
+
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 // Check if install.php is a thing

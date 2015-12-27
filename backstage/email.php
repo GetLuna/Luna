@@ -14,7 +14,7 @@ if (!$is_admin)
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/email.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
-	
+
 	$form = array(
 		'admin_email'			=> strtolower(luna_trim($_POST['form']['admin_email'])),
 		'webmaster_email'		=> strtolower(luna_trim($_POST['form']['webmaster_email'])),
@@ -24,7 +24,7 @@ if (isset($_POST['form_sent'])) {
 		'smtp_user'				=> luna_trim($_POST['form']['smtp_user']),
 		'smtp_ssl'				=> isset($_POST['form']['smtp_ssl']) ? '1' : '0',
 	);
-	
+
 	// Change or enter a SMTP password
 	if (isset($_POST['form']['smtp_change_pass'])) {
 		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? luna_trim($_POST['form']['smtp_pass1']) : '';

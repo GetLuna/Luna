@@ -461,10 +461,10 @@ foreach ($timezones as $timezone) {
 			}
 
 ?>
-									</select> 
-									<span class="input-group-btn"> 
-										<input type="submit" class="btn btn-primary" name="update_group_membership" value="<?php _e('Save', 'luna') ?>" /> 
-									</span> 
+									</select>
+									<span class="input-group-btn">
+										<input type="submit" class="btn btn-primary" name="update_group_membership" value="<?php _e('Save', 'luna') ?>" />
+									</span>
 								</div>
 							</div>
 						</div>

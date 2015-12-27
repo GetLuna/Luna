@@ -17,7 +17,7 @@ if (!$is_admin)
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild') {
-	ob_start(); 
+	ob_start();
 	$per_page = isset($_GET['i_per_page']) ? intval($_GET['i_per_page']) : 0;
 	$start_at = isset($_GET['i_start_at']) ? intval($_GET['i_start_at']) : 0;
 
@@ -30,7 +30,7 @@ if ($action == 'rebuild') {
 	// If this is the first cycle of comments we empty the search index before we proceed
 	if (isset($_GET['i_empty_index'])) {
 		confirm_referrer('backstage/maintenance.php');
-	
+
 		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
 
@@ -62,7 +62,7 @@ if ($action == 'rebuild') {
 				color: #333333;
 				background-color: #FFFFFF
 			}
-			
+
 			h1 {
 				font-size: 16px;
 				font-weight: normal;
@@ -104,10 +104,10 @@ if ($action == 'rebuild') {
 	$db->end_transaction();
 	$db->close();
 
-	ob_end_clean();  
-	ob_start();  
-	header('Location: backstage/maintenance.php'.$query_str);  
-	exit;  
+	ob_end_clean();
+	ob_start();
+	header('Location: backstage/maintenance.php'.$query_str);
+	exit;
 }
 
 // Get the first comment ID from the db
@@ -144,7 +144,7 @@ if (isset($_POST['form_sent'])) {
 
 	if ($action == 'clear_cache') {
 		confirm_referrer('backstage/maintenance.php');
-	
+
 		delete_all(LUNA_ROOT.'cache');
 		redirect('backstage/maitenance.php?cache_cleared=true');
 	}

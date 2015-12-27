@@ -26,12 +26,12 @@ if (isset($_GET['sort'])) {
 		$sort_query = 'registered ASC';
 	else
 		$sort_query = 'num_comments DESC';
-		
+
 	$sort_by = $_GET['sort'];
 } else {
 	$sort_query = 'username ASC';
 	$sort_by = '';
-}	
+}
 
 // Create any SQL for the WHERE clause
 $where_sql = array();

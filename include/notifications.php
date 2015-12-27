@@ -4,14 +4,14 @@ require LUNA_ROOT.'include/class/luna_notification.php';
 
 /**
  * Create a notification.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int    $user Notification owner ID.
  * @param    int    $message Notification content.
  * @param    int    $link Notification link (optional).
  * @param    int    $icon Notification icon (optional).
- * 
+ *
  * @return   int    Notification ID on success, 0 on fail
  */
 function new_notification($user, $link = '', $message, $icon = '') {
@@ -21,11 +21,11 @@ function new_notification($user, $link = '', $message, $icon = '') {
 
 /**
  * Delete a specific notification.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int    Notification ID
- * 
+ *
  * @return   boolean
  */
 function delete_notification($id) {
@@ -35,11 +35,11 @@ function delete_notification($id) {
 
 /**
  * Mark a specific notification as viewed.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int    Notification ID
- * 
+ *
  * @return   boolean
  */
 function read_notification($id) {
@@ -49,13 +49,13 @@ function read_notification($id) {
 
 /**
  * Get a specific notification.
- * 
+ *
  * Simple standalone function to avoid calling the class.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    mixed    Either a notification ID, a notification object or a notification array
- * 
+ *
  * @return   object|null    LunaNotification if available, null else
  */
 function get_notification($notification = null) {
@@ -79,17 +79,17 @@ function get_notification($notification = null) {
 
 /**
  * Delete a user's notifications.
- * 
+ *
  * If no User ID is set, falls back to current user. If none, drop.
- * 
+ *
  * Default behavior is to remove all notifications. Be SURE to specify WHICH ONES
  * shouldn't be deleted if you only want to remove viewed/unviewed ones!
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int    $user_id Notification owner ID.
  * @param    int    $viewed Notification status.
- * 
+ *
  * @return   int    Number of affected rows
  */
 function delete_user_notifications($user_id = null, $viewed = null) {
@@ -121,15 +121,15 @@ function delete_user_notifications($user_id = null, $viewed = null) {
 
 /**
  * Mark a user's notifications as viewed.
- * 
+ *
  * This affects all unviewed notifications.
- * 
+ *
  * If no User ID is set, falls back to current user. If none, drop.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int    $user_id Notification owner ID.
- * 
+ *
  * @return   int    Number of affected rows
  */
 function set_user_notifications_viewed($user_id) {
@@ -154,19 +154,19 @@ function set_user_notifications_viewed($user_id) {
 
 /**
  * Retrieve a user's notifications.
- * 
+ *
  * If no User ID is set, falls back to current user. If none, drop.
- * 
+ *
  * If $count is set to true, the function will only count the notifications and
  * will not return their content.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
  * @param    int            $viewed Notification status.
  * @param    boolean        $count Shall we simply count the results?
  * @param    int|boolean    $limit Shall we limit the results?
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function get_user_notifications($user_id = null, $viewed = null, $count = false, $limit = false) {
@@ -234,12 +234,12 @@ function get_user_notifications($user_id = null, $viewed = null, $count = false,
 
 /**
  * Get total number of notifications for a specific user.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
  * @param    int            $viewed Notification status.
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function get_user_notifications_total($user_id = null, $viewed = null) {
@@ -249,11 +249,11 @@ function get_user_notifications_total($user_id = null, $viewed = null) {
 
 /**
  * Get viewed notifications for a specific user.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function get_user_viewed_notifications($user_id = null) {
@@ -263,11 +263,11 @@ function get_user_viewed_notifications($user_id = null) {
 
 /**
  * Get unviewed notifications for a specific user.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function get_user_unviewed_notifications($user_id = null) {
@@ -277,12 +277,12 @@ function get_user_unviewed_notifications($user_id = null) {
 
 /**
  * Check if a specific user has any notification available.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
  * @param    int            $viewed Notification status.
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function has_notifications($user_id = null, $viewed = null) {
@@ -292,11 +292,11 @@ function has_notifications($user_id = null, $viewed = null) {
 
 /**
  * Check if a specific user has any viewed notification.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function has_viewed_notifications($user_id = null) {
@@ -306,11 +306,11 @@ function has_viewed_notifications($user_id = null) {
 
 /**
  * Check if a specific user has any unviewed notification.
- * 
+ *
  * @since    1.1
- * 
+ *
  * @param    int            $user_id Notification owner ID.
- * 
+ *
  * @return   array|null     Retrieved notifications
  */
 function has_unviewed_notifications($user_id = null) {

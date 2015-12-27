@@ -8,7 +8,7 @@
  */
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
- 
+
 /* General fixes */
 * {
 	border-radius: 0 !important;
@@ -209,7 +209,7 @@ label .help-block {
 		padding-right: 0;
 		padding-left: 0;
 	}
-	
+
 	.row {
 		margin-right: 0;
 	}
@@ -537,10 +537,10 @@ fieldset[disabled] .form-control {
 	border: none;
 }
 
-/* Form groups */ 
-.form-group:last-child { 
-	margin-bottom: 0; 
-} 
+/* Form groups */
+.form-group:last-child {
+	margin-bottom: 0;
+}
 
 /* Pills */
 .nav-pills > li.active > a,

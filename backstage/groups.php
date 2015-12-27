@@ -25,7 +25,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 		$group_id = intval($_GET['edit_group']);
 		if ($group_id < 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-	
+
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -352,7 +352,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 				</div>
 	<?php endif; endif; ?>
 	<?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo __('Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?></p>
-	<?php endif; ?>	
+	<?php endif; ?>
 			</fieldset>
 		</div>
 	</div>
@@ -433,7 +433,7 @@ elseif (isset($_POST['add_edit_group'])) {
 // Set default group
 elseif (isset($_POST['set_default_group'])) {
 	confirm_referrer('backstage/groups.php');
-	
+
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
@@ -460,7 +460,7 @@ elseif (isset($_POST['set_default_group'])) {
 // Remove a group
 elseif (isset($_GET['del_group'])) {
 	confirm_referrer('backstage/groups.php');
-	
+
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -530,7 +530,7 @@ elseif (isset($_GET['del_group'])) {
 					<select class="form-control" name="move_to_group">
 <?php
 		$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-	
+
 		while ($cur_group = $db->fetch_assoc($result)) {
 			if ($cur_group['g_id'] == LUNA_MEMBER) // Pre-select the pre-defined Members group
 				echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
@@ -551,7 +551,7 @@ elseif (isset($_GET['del_group'])) {
 	}
 	require 'footer.php';
 } else {
-	
+
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -648,6 +648,6 @@ while ($cur_group = $db->fetch_assoc($result)) {
 	</div>
 </div>
 <?php
-	
+
 	require 'footer.php';
 }
