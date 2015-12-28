@@ -555,33 +555,32 @@ fieldset[disabled] .form-control {
 	padding: .4em .6em .3em;
 }
 
-.label-default {
-	background-color: #ddd;
-	color: #6e6e6e;
+.label-primary {
+	background-color: #c58be2;
 }
 
-.label-primary {
-	background-color: #0072dc;
+.label-default {
+	background-color: #b8b8b8;
+}
+
+a.label-new {
+	background-color: #b8b8b8 !important;
 }
 
 .label-success {
-	background-color: #76b900;
-}
-
-.label-warning {
-	background-color: #ffc000;
-}
-
-.label-danger {
-	background-color: #ff5400;
+	background-color: #95c636;
 }
 
 .label-info {
-	background-color: #14a3ff;
+	background-color: #2ac6e2;
 }
 
-.label-kaput {
-	background-color: #111;
+.label-warning {
+	background-color: #ffae00;
+}
+
+.label-danger {
+	background-color: #ea4322;
 }
 
 /* Pagination */
