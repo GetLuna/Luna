@@ -34,11 +34,14 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improves strings in the language files</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Small visual improvements to Sunrise 2</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Removed multiple instances of trailing whitespaces</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved behavior on small viewports</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The notification fly-out now show notifications from new to old</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue that caused the "solved" and "important" label to not appear in search results</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where new installations would assign a wrong announcement type</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where a closed and moved thread would only show one of both icons</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where the leading zero for minutes wouldn't be displayed in notifications</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where the updater would attempt twice to create the same column</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue with labels in the moderation view</li>
 						</ul>
 					</div>
 				</section>
