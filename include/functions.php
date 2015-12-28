@@ -2138,7 +2138,7 @@ function load_meta() {
 	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
 	echo '<meta charset="utf-8">'."\n";
 	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">'."\n";
-	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n";
+	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">'."\n";
 
 	// Allow childs
 	load_css();
