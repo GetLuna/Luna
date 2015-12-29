@@ -125,7 +125,7 @@ if (isset($_GET['tid'])) {
 
 			update_forum($fid);
 
-			redirect('thread.php?id='.$tid);
+			redirect('../thread.php?id='.$tid);
 		}
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
@@ -214,7 +214,7 @@ if (isset($_GET['tid'])) {
 			update_forum($fid);
 			update_forum($move_to_forum);
 
-			redirect('thread.php?id='.$new_tid);
+			redirect('../thread.php?id='.$new_tid);
 		}
 
 		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.create_threads IS NULL OR fp.create_threads=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -718,7 +718,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		redirect('backstage/moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
-		confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+		confirm_referrer(array('../thread.php', 'backstage/moderate.php'));
 
 		check_csrf($_GET['csrf_token']);
 
@@ -728,13 +728,13 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'threads SET closed='.$action.' WHERE id='.$thread_id.' AND forum_id='.$fid) or error('Unable to Close thread', __FILE__, __LINE__, $db->error());
 
-		redirect('thread.php?id='.$thread_id);
+		redirect('../thread.php?id='.$thread_id);
 	}
 }
 
 // Pin a thread
 elseif (isset($_GET['pin'])) {
-	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+	confirm_referrer(array('../thread.php', 'backstage/moderate.php'));
 
 	check_csrf($_GET['csrf_token']);
 
@@ -744,13 +744,13 @@ elseif (isset($_GET['pin'])) {
 
 	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'1\' WHERE id='.$pin.' AND forum_id='.$fid) or error('Unable to Pin thread', __FILE__, __LINE__, $db->error());
 
-	redirect('thread.php?id='.$pin);
+	redirect('../thread.php?id='.$pin);
 }
 
 
 // unpin a thread
 elseif (isset($_GET['unpin'])) {
-	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+	confirm_referrer(array('../thread.php', 'backstage/moderate.php'));
 
 	check_csrf($_GET['csrf_token']);
 
@@ -760,12 +760,12 @@ elseif (isset($_GET['unpin'])) {
 
 	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'0\' WHERE id='.$unpin.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
 
-	redirect('thread.php?id='.$unpin);
+	redirect('../thread.php?id='.$unpin);
 }
 
 // Mark as important
 elseif (isset($_GET['important'])) {
-	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+	confirm_referrer(array('../thread.php', 'backstage/moderate.php'));
 
 	check_csrf($_GET['csrf_token']);
 
@@ -775,13 +775,13 @@ elseif (isset($_GET['important'])) {
 
 	$db->query('UPDATE '.$db->prefix.'threads SET important=\'1\' WHERE id='.$important.' AND forum_id='.$fid) or error('Unable to mark thread as important', __FILE__, __LINE__, $db->error());
 
-	redirect('thread.php?id='.$important);
+	redirect('../thread.php?id='.$important);
 }
 
 
 // Mark as unimportant
 elseif (isset($_GET['unimportant'])) {
-	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
+	confirm_referrer(array('../thread.php', 'backstage/moderate.php'));
 
 	check_csrf($_GET['csrf_token']);
 
@@ -791,7 +791,7 @@ elseif (isset($_GET['unimportant'])) {
 
 	$db->query('UPDATE '.$db->prefix.'threads SET important=\'0\' WHERE id='.$unimportant.' AND forum_id='.$fid) or error('Unable to mark thread as unimportant', __FILE__, __LINE__, $db->error());
 
-	redirect('thread.php?id='.$unimportant);
+	redirect('../thread.php?id='.$unimportant);
 }
 
 // If absolutely none of them are going on
@@ -876,7 +876,7 @@ if ($db->num_rows($result)) {
 			$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
 		else
 			$subject = luna_htmlspecialchars($cur_thread['subject']);
-		$last_comment_date = '<a href="thread.php?pid='.$cur_thread['last_comment_id'].'#p'.$cur_thread['last_comment_id'].'">'.format_time($cur_thread['last_comment']).'</a>';
+		$last_comment_date = '<a href="../thread.php?pid='.$cur_thread['last_comment_id'].'#p'.$cur_thread['last_comment_id'].'">'.format_time($cur_thread['last_comment']).'</a>';
 
 		if (is_null($cur_thread['moved_to'])) {
 			$thread_id = $cur_thread['id'];
@@ -922,10 +922,10 @@ if ($db->num_rows($result)) {
 			$item_status .= ' new-item';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';
-			$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+			$status_text[] = '<a href="../thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
 		}
 
-		$url = 'thread.php?id='.$thread_id;
+		$url = '../thread.php?id='.$thread_id;
 		$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 
 		if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
@@ -939,7 +939,7 @@ if ($db->num_rows($result)) {
 		$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 
 		if ($num_pages_thread > 1)
-			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
+			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, '../thread.php?id='.$cur_thread['id']).'</span>';
 		else
 			$subject_multipage = null;
 

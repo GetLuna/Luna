@@ -5,7 +5,7 @@ notifications = luna.notifications = {
 
 	/**
 	 * Runner for the notification module
-	 * 
+	 *
 	 * Creates required Views and Models.
 	 */
 	run: function() {
@@ -27,9 +27,9 @@ _.extend( notifications.Model, {
 
 	/**
 	 * luna.notifications.Model.Notification
-	 * 
+	 *
 	 * Contains the notification's data
-	 * 
+	 *
 	 * @param    string    [id]      Notification ID
 	 * @param    string    [user_id] Notification User ID
 	 * @param    string    [message] Notification Content
@@ -69,12 +69,12 @@ _.extend( notifications.Model, {
 
 		/**
 		 * Parse model's attributes.
-		 * 
+		 *
 		 * Currently only format the notification's time into standard
 		 * JS Time value.
-		 * 
+		 *
 		 * @param    array    resp XHR Response
-		 * 
+		 *
 		 * @return   array    Parse response
 		 */
 		parse: function( resp ) {
@@ -90,11 +90,11 @@ _.extend( notifications.Model, {
 
 		/**
 		 * Override Backbone.sync()
-		 * 
+		 *
 		 * @param    string    method
 		 * @param    object    Backbone.Collection
 		 * @param    object    options
-		 * 
+		 *
 		 * @return   Promise
 		 */
 		sync: function( method, models, options ) {
@@ -149,7 +149,7 @@ _.extend( notifications.Model, {
 {
 	/**
 	 * luna.notifications.Model.Notification
-	 * 
+	 *
 	 * Contains the notification's data
 	 */
 	Notifications: Backbone.Collection.extend({
@@ -159,9 +159,9 @@ _.extend( notifications.Model, {
 		/**
 		 * Parse XHR responses into suitable notification models
 		 * for the Collection.
-		 * 
+		 *
 		 * @param    array    resp XHR Response
-		 * 
+		 *
 		 * @return   array    Parse response
 		 */
 		parse: function( resp ) {
@@ -182,11 +182,11 @@ _.extend( notifications.Model, {
 
 		/**
 		 * Override Backbone.sync()
-		 * 
+		 *
 		 * @param    string    method
 		 * @param    object    Backbone.Collection
 		 * @param    object    options
-		 * 
+		 *
 		 * @return   Promise
 		 */
 		sync: function( method, models, options ) {
@@ -307,7 +307,7 @@ _.extend( notifications.View, {
 
 		/**
 		 * Find out what to do: mark as read or delete (or do nothing)?
-		 * 
+		 *
 		 * @param    object    JS 'click' event
 		 */
 		action: function( event ) {
@@ -371,9 +371,9 @@ _.extend( notifications.View, {
 
 		/**
 		 * Render the view.
-		 * 
+		 *
 		 * @since    1.1
-		 * 
+		 *
 		 * @return   Return itself to allow chaining.
 		 */
 		render: function() {
@@ -404,7 +404,7 @@ _.extend( notifications.View, {
 
 		/**
 		 * Initialize the View
-		 * 
+		 *
 		 * @param    object    [options]
 		 * @param    object    [options.notifications] Backbone.Collection
 		 */
@@ -441,7 +441,7 @@ _.extend( notifications.View, {
 
 		/**
 		 * Refetch the collection when opening the flyout.
-		 * 
+		 *
 		 * @param    object    JS 'click' Event
 		 */
 		_refresh: function( event ) {
@@ -455,7 +455,7 @@ _.extend( notifications.View, {
 
 		/**
 		 * Update the collection on heartbeat.
-		 * 
+		 *
 		 * @param    object    Event
 		 * @param    object    XHR Response
 		 * @param    string    XHG Status
@@ -472,10 +472,10 @@ _.extend( notifications.View, {
 
 		/**
 		 * Render part of the view.
-		 * 
+		 *
 		 * We should override the complete view to avoid messing with
 		 * Bootstrap on handling the flyout dropdown.
-		 * 
+		 *
 		 * @return   Return itself to allow chaining.
 		 */
 		render: function() {
