@@ -955,7 +955,7 @@ if ($db->num_rows($result)) {
 						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_comments ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 						<?php if ($cur_thread['moved_to'] == 0) { ?>
 							<span class="text-muted"> &middot;
-								<span class="text-muted"><?php echo $last_comment ?></span> &middot;
+								<span class="text-muted"><?php echo $last_comment_date ?></span> &middot;
 								<?php if ($cur_thread['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_thread['num_replies']) ?></span><?php } ?>
 							</span>
 						<?php } ?>
