@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.3\n"
-"POT-Creation-Date: 2015-12-30 10:41+0100\n"
-"PO-Revision-Date: 2015-12-30 10:41+0100\n"
+"POT-Creation-Date: 2015-12-30 23:25+0100\n"
+"PO-Revision-Date: 2015-12-30 23:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -1024,7 +1024,14 @@ msgid ""
 msgstr ""
 
 #: backstage/features.php:115
-msgid "Allow users to attach a signature to their comments."
+#, php-format
+msgid ""
+"Allow users to attach a signature to their comments. See %s for more info."
+msgstr ""
+
+#: backstage/features.php:115 backstage/permissions.php:50
+#: include/backstage_functions.php:42 include/backstage_functions.php:174
+msgid "Permissions"
 msgstr ""
 
 #: backstage/features.php:121
@@ -1964,11 +1971,6 @@ msgstr ""
 
 #: backstage/moderate.php:984 themes/Sunrise/thread.php:57
 msgid "Close"
-msgstr ""
-
-#: backstage/permissions.php:50 include/backstage_functions.php:42
-#: include/backstage_functions.php:174
-msgid "Permissions"
 msgstr ""
 
 #: backstage/permissions.php:61

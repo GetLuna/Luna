@@ -112,7 +112,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[signatures]" value="1" <?php if ($luna_config['o_signatures'] == '1') echo ' checked' ?> />
-								<?php _e('Allow users to attach a signature to their comments.', 'luna') ?>
+								<?php printf(__('Allow users to attach a signature to their comments. See %s for more info.', 'luna'), '<a href="permissions.php">'.__('Permissions', 'luna').'</a>') ?>
 							</label>
 						</div>
 						<div class="checkbox">
