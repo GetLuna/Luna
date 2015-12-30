@@ -86,6 +86,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 							<input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
 						</div>
 					</div>
+					<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_signatures'] == '1') { ?>
 					<hr />
 					<?php } if ($luna_config['o_avatars'] == '1') { ?>
 					<div class="form-group">
@@ -95,6 +96,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 							<?php echo $avatar_field ?>
 						</div>
 					</div>
+					<?php } if ($luna_config['o_signatures'] == '1') { ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
 						<div class="col-sm-9">
@@ -110,6 +112,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 							</div>
 						</div>
 					</div>
+					<?php } ?>
 				</fieldset>
 			</div>
 			<div role="tabpanel" class="tab-pane<?php if ( 'personalize' === $section ) { ?> active<?php } ?>" id="personalize">
@@ -334,18 +337,17 @@ if (count($languages) > 1) {
 								<?php endif; ?>
 							</div>
 						</div>
-					<?php endif; if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1'): ?>
+					<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php _e('Signatures', 'luna') ?></label>
 							<div class="col-sm-9">
-								<?php if ($luna_config['o_signatures'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked' ?> />
 											<?php _e('Show user signatures.', 'luna') ?>
 										</label>
 									</div>
-								<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
+								<?php if ($luna_config['p_sig_img_tag'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked' ?> />
