@@ -80,7 +80,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked' ?> />
-								<?php _e('Allow a message to contain only capital letters.', 'luna') ?>
+								<?php _e('Allow a comment to contain only capital letters.', 'luna') ?>
 							</label>
 						</div>
 						<div class="checkbox">
