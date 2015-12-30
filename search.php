@@ -326,7 +326,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('This user is currently not subscribed to and threads.', 'luna'));
+					message(__('This user is currently not subscribed to any threads.', 'luna'));
 
 				// Pass on user ID so that we can later know whose subscriptions we're searching for
 				$search_type[2] = $user_id;
