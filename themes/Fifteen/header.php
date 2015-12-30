@@ -39,7 +39,7 @@ $body_classes = check_style_mode();
 						</div>
 						<div class="navbar-primary-collapse navbar-collapse collapse">
 							<ul class="nav navbar-nav hidden-lg hidden-md hidden-sm"><?php echo implode("\n\t\t\t\t", $links); ?></ul>
-							<?php if ($luna_config['o_header_search']): ?>
+							<?php if ($luna_config['o_header_search'] && $luna_user['g_search'] == '1'): ?>
 							<form id="search" class="navbar-form navbar-left hidden-xs" method="get" action="search.php?section=simple">
 								<fieldset>
 									<input type="hidden" name="action" value="search" />
