@@ -185,6 +185,14 @@ if (!defined('LUNA_BANS_LOADED')) {
 	require LUNA_CACHE_DIR.'cache_bans.php';
 }
 
+// Are we admins?
+require_once LUNA_ROOT.'include/backstage_functions.php';
+$is_admin = check_is_admin();
+
+require LUNA_ROOT.'include/general_functions.php';
+require LUNA_ROOT.'include/draw_functions.php';
+require LUNA_ROOT.'include/statistic_functions.php';
+
 // Check if current user is banned
 check_bans();
 
@@ -206,13 +214,5 @@ if (!defined('LUNA_SEARCH_MAX_WORD'))
 
 if (!defined('LUNA_MAX_COOKIE_SIZE'))
 	define('LUNA_MAX_COOKIE_SIZE', 4048);
-
-// Are we admins?
-require_once LUNA_ROOT.'include/backstage_functions.php';
-$is_admin = check_is_admin();
-
-require LUNA_ROOT.'include/general_functions.php';
-require LUNA_ROOT.'include/draw_functions.php';
-require LUNA_ROOT.'include/statistic_functions.php';
 
 require LUNA_ROOT.'include/notifications.php';
