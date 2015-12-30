@@ -6,7 +6,7 @@ $xmlstr = <<<XML
 <!--
 
 /*
- * Copyright (C) 2014-2015 Studio 384
+ * Copyright (C) 2014-2016 Studio 384
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 -->
@@ -15,7 +15,7 @@ $xmlstr = <<<XML
   <id>sunrise</id>
   <name>Sunrise</name>
   <developer>Studio 384</developer>
-  <date>30 December 2015</date>
+	<date>1 January 2016</date>
   <version>2.0.1</version>
   <minversion>1.3.0</minversion>
   <maxversion>1.3.1</maxversion>

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2015 Luna Group
+ * Copyright (C) 2013-2016 Luna
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2015 Luna
+ * Copyright (C) 2013-2016 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -14,7 +14,7 @@ if (!$is_admin)
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/features.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
-	
+
 	$form = array(
 		'users_online'					=> isset($_POST['form']['users_online']) ? '1' : '0',
 		'censoring'						=> isset($_POST['form']['censoring']) ? '1' : '0',

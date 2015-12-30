@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2015 Luna
+ * Copyright (C) 2013-2016 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -76,7 +76,7 @@ require 'header.php';
 				</section>
 			</div>
 			<div class="panel-footer">
-				<p>Luna is developed by the <a href="http://getluna.org/">Luna Group</a>. Copyright 2013-2015. Released under the GPLv2 license.</p>
+				<p>Luna is developed by the <a href="http://getluna.org/">Luna Group</a>. Copyright 2013-2016. Released under the GPLv2 license.</p>
 			</div>
 		</div>
 	</div>

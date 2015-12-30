@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2015 Luna Group
+ * Copyright (C) 2013-2016 Luna
  * License: http://opensource.org/licenses/MIT MIT
  */
 
