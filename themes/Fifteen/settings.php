@@ -87,6 +87,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 						</div>
 					</div>
 					<hr />
+					<?php } if ($luna_config['o_avatars'] == '1') { ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Avatar', 'luna') ?><span class="help-block"><?php _e('Upload an image to represent you', 'luna') ?></span></label>
 						<div class="col-sm-9">
