@@ -197,7 +197,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
-								<?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance.', 'luna') ?>
+								<?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disabling this feature might improve performance.', 'luna') ?>
 							</label>
 						</div>
 					</div>
