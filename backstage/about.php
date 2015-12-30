@@ -30,18 +30,23 @@ require 'header.php';
 					<div class="container">
 						<p class="meta"><span class="release-version">1.3.1</span></p><h2>Denim Update 1</h2>
 						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now access your subscriptions from your profile</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Labels now appear in a consistent order everywhere</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improves strings in the language files</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Small visual improvements to Sunrise 2</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Removed multiple instances of trailing whitespaces</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved behavior on small viewports</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The notification fly-out now show notifications from new to old</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue that caused the "solved" and "important" label to not appear in search results</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where new installations would assign a wrong announcement type</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where a closed and moved thread would only show one of both icons</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where the leading zero for minutes wouldn't be displayed in notifications</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue where the updater would attempt twice to create the same column</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issue with labels in the moderation view</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The profile will now hide avatar and signature settings when disabled</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The "solved" and "important" label now appear search results</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>New installations will no longer assign a wrong announcement type</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Closed and moved thread will now show both icons</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The leading zero for minutes will now be displayed in notifications</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The updater will no longer attempt to create the same column twice</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes multiple issue with labels in the moderation view</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>When logging in with a banned account, the error will be displayed correctly</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Changing a threads state won't cause an error anymore in some occasions</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Breadcrumbs will now have a correct markup in reports</li>
 						</ul>
 					</div>
 				</section>
