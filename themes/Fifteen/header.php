@@ -6,13 +6,14 @@ $body_classes = check_style_mode();
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>">
 	<head>
+		<?php load_meta(); ?>
 		<link rel="stylesheet" href="include/css/bootstrap.min.css">
 		<link rel="stylesheet" href="include/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
+		<?php load_css(); ?>
 		<script src="include/js/vendor/jquery.js"></script>
 		<script src="include/js/vendor/bootstrap.min.js"></script>
 		<script src="include/js/vendor/prism.js"></script>
-		<?php load_meta(); ?>
 		<style>
 		.emoji {
 			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;

@@ -2135,13 +2135,11 @@ function load_meta() {
 	global $id, $page_title, $p, $luna_config;
 
 	// We need these tags no matter what
-	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
 	echo '<meta charset="utf-8">'."\n";
 	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">'."\n";
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">'."\n";
 
-	// Allow childs
-	load_css();
+	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
 
 	if (!empty($luna_config['o_board_tags']))
 		echo '<meta name="keywords" content="'.$luna_config['o_board_tags'].'">'."\n";
