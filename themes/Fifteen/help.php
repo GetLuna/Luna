@@ -204,7 +204,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 				<h3><?php _e('Why can\'t I see any profiles?', 'luna') ?></h3>
 				<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
 				<h3><?php _e('My profile doesn\'t contain as much as others?', 'luna') ?></h3>
-				<p><?php _e('You\'re profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields.', 'luna') ?></p>
+				<p><?php _e('Your profile will only display fields that are enabled and filled in in your settings. You might want to see if you missed some fields.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="searching">
 				<h3><?php _e('Are there more options to search?', 'luna') ?></h3>
