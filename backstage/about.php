@@ -38,6 +38,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved behavior on small viewports</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The notification fly-out now show notifications from new to old</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The profile will now hide avatar and signature settings when disabled</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Luna now hides search fields when an user doesn't have permission to use them</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The "solved" and "important" label now appear search results</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>New installations will no longer assign a wrong announcement type</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Closed and moved thread will now show both icons</li>
