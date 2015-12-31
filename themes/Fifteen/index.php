@@ -62,7 +62,7 @@ if ($luna_user['first_run'] == '0') {
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list('forum.php', 1, 'category.php', ''); ?>
 		</div>
-		<?php if ($luna_user['s_search'] == '1') { ?>
+		<?php if ($luna_user['g_search'] == '1') { ?>
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php echo implode('', $page_threadsearches) ?>
