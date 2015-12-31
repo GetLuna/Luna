@@ -62,10 +62,12 @@ if ($luna_user['first_run'] == '0') {
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list('forum.php', 1, 'category.php', ''); ?>
 		</div>
+		<?php if ($luna_user['s_search'] == '1') { ?>
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php echo implode('', $page_threadsearches) ?>
 		</div>
+		<?php } ?>
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php draw_mark_read('list-group-item', 'index'); ?>
