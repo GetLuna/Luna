@@ -257,12 +257,14 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 											<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 										</label>
 									</div>
+									<?php if ($luna_config['o_thread_subscriptions'] == '1') { ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked' ?> />
 											<?php _e('Automatically subscribe to every thread you comment in.', 'luna') ?>
 										</label>
 									</div>
+									<?php } ?>
 								</div>
 							</div>
 							<?php } ?>
