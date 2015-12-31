@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <form class="form-inline" id="userlist" method="get" action="userlist.php">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<?php if ($luna_user['g_search_users'] == '0') { ?>
+			<?php if ($luna_user['g_search_users'] == '1') { ?>
 			<div class="form-group">
 				<select class="form-control hidden-xs" name="sort">
 					<option value="username"<?php if ($sort_by == 'username') echo ' selected' ?>><?php _e('Sort by username', 'luna') ?></option>

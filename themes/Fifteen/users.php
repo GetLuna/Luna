@@ -11,7 +11,7 @@ if (!defined('FORUM'))
 		<h2 class="forum-title"><span class="fa fa-fw fa-users"></span> <?php _e('Users', 'luna') ?></h2>
 		<span class="pull-right naviton">
 			<form class="navbar-form navbar-right" id="userlist" method="get" action="userlist.php">
-				<?php if ($luna_user['g_search_users'] == '0') { ?>
+				<?php if ($luna_user['g_search_users'] == '1') { ?>
 				<div class="form-group">
 					<select class="form-control hidden-xs" name="sort">
 						<option value="username"<?php if ($sort_by == 'username') echo ' selected' ?>><?php _e('Sort by username', 'luna') ?></option>
