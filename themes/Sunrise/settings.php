@@ -246,6 +246,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 									</div>
 								</div>
 							</div>
+							<?php if ($luna_config['o_forum_subscriptions'] == '1' || $luna_config['o_thread_subscriptions'] == '1') { ?>
 							<hr />
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Subscriptions', 'luna') ?></label>
@@ -264,6 +265,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 									</div>
 								</div>
 							</div>
+							<?php } ?>
 							<hr />
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
