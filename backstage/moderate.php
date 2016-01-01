@@ -939,7 +939,7 @@ if ($db->num_rows($result)) {
 		$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 
 		if ($num_pages_thread > 1)
-			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, '../thread.php?id='.$cur_thread['id']).'</span>';
+			$subject_multipage = '<span class="inline-pagination"> &middot; '.simple_paginate($num_pages_thread, -1, '../thread.php?id='.$cur_thread['id']).'</span>';
 		else
 			$subject_multipage = null;
 

@@ -315,7 +315,7 @@ function draw_threads_list() {
 			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 
 			if ($num_pages_thread > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> &middot; '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 
@@ -608,7 +608,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
 
 			if ($num_pages_thread > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> &middot; '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
 			else
 				$subject_multipage = null;
 
@@ -1036,7 +1036,7 @@ function draw_search_results() {
 			$num_pages_thread = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_comments']);
 
 			if ($num_pages_thread > 1)
-				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> &middot;'.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
 			else
 				$subject_multipage = null;
 
