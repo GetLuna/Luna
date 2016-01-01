@@ -40,6 +40,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The profile will now hide avatar and signature settings when disabled</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Luna now hides search fields when an user doesn't have permission to use them</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Subscriptions settings won't show up when subscriptions aren't available</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>On mobile devices, announcements will now appear on top of the page</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The "solved" and "important" label now appear search results</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>New installations will no longer assign a wrong announcement type</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Closed and moved thread will now show both icons</li>
@@ -49,6 +50,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>When logging in with a banned account, the error will be displayed correctly</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Changing a threads state won't cause an error anymore in some occasions</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Breadcrumbs will now have a correct markup in reports</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>There is no longer a trailing dot in search results on mobile devices</li>
 						</ul>
 					</div>
 				</section>
