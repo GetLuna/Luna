@@ -715,7 +715,7 @@ h2.forum-title .btn {
 .announcement {
 	border: none;
 	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-bottom: 0;
 }
 
 .alert.announcement {

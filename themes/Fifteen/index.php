@@ -57,6 +57,17 @@ if ($luna_user['first_run'] == '0') {
 	</div>
 </div>
 <?php } ?>
+<?php
+	// Announcement
+	if ($luna_config['o_announcement'] == '1') {
+?>
+		<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
+			<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
+			<?php echo $luna_config['o_announcement_message']; ?>
+		</div>
+<?php
+	}
+?>
 <div class="row index">
 	<div class="col-sm-3 col-xs-12">
 		<div class="list-group list-group-forum">
@@ -74,17 +85,6 @@ if ($luna_user['first_run'] == '0') {
 		</div>
 	</div>
 	<div class="col-sm-9 col-xs-12">
-<?php
-	// Announcement
-	if ($luna_config['o_announcement'] == '1') {
-?>
-		<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
-			<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
-			<?php echo $luna_config['o_announcement_message']; ?>
-		</div>
-<?php
-	}
-?>
         <div class="alert alert-info alert-section alert-all">
             <h3><?php _e('Recent activity', 'luna') ?></h3>
         </div>
