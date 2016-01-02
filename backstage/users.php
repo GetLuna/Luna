@@ -44,7 +44,7 @@ if (isset($_GET['ip_stats'])) {
 	<div class="panel-body">
 		<?php echo $paging_links ?>
 	</div>
-	<table class="table table-striped table-hover">
+	<table class="table table-js table-striped table-hover">
 		<thead>
 			<tr>
 				<th><?php _e('IP/IP-ranges', 'luna') ?></th>
@@ -115,7 +115,7 @@ if (isset($_GET['ip_stats'])) {
 	<div class="panel-body">
 		<?php echo $paging_links ?>
 	</div>
-	<table class="table table-striped table-hover">
+	<table class="table table-js table-striped table-hover">
 		<thead>
 			<tr>
 				<th><?php _e('Username', 'luna') ?></th>
@@ -716,7 +716,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				</span>
 			<?php endif; ?>
 		</div>
-		<table class="table table-striped table-hover">
+		<table class="table table-js table-striped table-hover">
 			<thead>
 				<tr>
 					<?php if ($can_action): ?><th style="width: 25px;"><input type="checkbox" id="checkall" /></th><?php endif; ?>

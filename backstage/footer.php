@@ -60,7 +60,7 @@ $db->end_transaction();
 				});
 
 				// Make it possible to click anywhere within a row to select the checkbox
-				$('.table tr').click(function(event) {
+				$('.table-js tr').click(function(event) {
 					if (event.target.type !== 'checkbox') {
 						$(':checkbox', this).trigger('click');
 					}
