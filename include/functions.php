@@ -591,6 +591,27 @@ function draw_user_avatar($user_id, $responsive = true, $class = '') {
 	return $avatar_markup;
 }
 
+// New version of the above
+function get_avatar($user_id) {
+	global $luna_config;
+
+	$filetypes = array('jpg', 'gif', 'png');
+	$file_exists = false;
+
+	foreach ($filetypes as $cur_type) {
+		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
+
+		if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
+			return luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path));
+			$file_exists = true;
+		} 
+	}
+	
+	if ($file_exists == false) {
+		return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png';
+	}
+}
+
 
 //
 // Outputs info if avatar is available
@@ -1030,9 +1051,11 @@ function message($message, $no_back_link = false, $http_status = null) {
 	require load_page('header.php');
 
 ?>
-<div class="error-message">
-	<h2><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
-	<p><?php echo $message ?></p>
+<div class="main container">
+	<div class="error-message">
+		<h2><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
+		<p><?php echo $message ?></p>
+	</div>
 </div>
 <?php
 	require load_page('footer.php');

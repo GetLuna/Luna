@@ -40,90 +40,51 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 
 ?>
 			</div>
-			<footer class="footer">
-				<div class="container">
-					<?php if ($luna_config['o_board_statistics'] == 1): ?>
-					<div class="row stats">
-						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_users(); ?></div>
-								</div>
-								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?></div>
-								</div>
+			<footer>
+				<?php if ($luna_config['o_board_statistics'] == 1): ?>
+					<div class="stats container">
+						<div class="row">
+							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
+								<h4><?php total_users(); ?></h4>
+								<?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>
 							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_threads() ?></div>
-								</div>
-								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?></div>
-								</div>
+							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
+								<h4><?php total_threads() ?></h4>
+								<?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>
 							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_comments() ?></div>
-								</div>
-								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?></div>
-								</div>
+							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
+								<h4><?php total_comments() ?></h4>
+								<?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?>
 							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="statistic-item"><?php newest_user() ?></div>
-								</div>
-								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php _e('Newest user', 'luna') ?></div>
-								</div>
+							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
+								<h4><?php newest_user() ?></h4>
+								<?php _e('Newest user', 'luna') ?></h4>
 							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="statistic-item"><?php users_online() ?></div>
+							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
+								<h4><?php users_online() ?></h4>
+								<?php if ($luna_config['o_users_online']) { ?>
+								<div class="dropup">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+										<?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up hide-if-no-js"></span>
+										<span class="sr-only">Toggle Dropdown</span>
+									</a>
+									<ul class="dropdown-menu" role="menu">
+										<?php echo online_list() ?>
+									</ul>
 								</div>
-								<div class="col-xs-6">
-									<div class="statistic-item-stat">
-										<?php if ($luna_config['o_users_online']) { ?>
-										<div class="dropup">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up hide-if-no-js"></span>
-												<span class="sr-only">Toggle Dropdown</span>
-											</a>
-											<ul class="dropdown-menu" role="menu">
-												<?php echo online_list() ?>
-											</ul>
-										</div>
-										<?php } else
-											echo _n('User online', 'Users online', num_users_online(), 'luna'); ?>
-									</div>
-								</div>
+								<?php } else
+									echo _n('User online', 'Users online', num_users_online(), 'luna'); ?>
 							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="statistic-item"><?php guests_online() ?></div>
-								</div>
-								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?></div>
-								</div>
+							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
+								<h4><?php guests_online() ?></h4>
+								<?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?>
 							</div>
 						</div>
 					</div>
-					<?php endif; ?>
 				</div>
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-5 col-xs-10">
+				<?php endif; ?>
+				<div class="footer container">
+					<span class="pull-left">
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
@@ -132,11 +93,9 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
-							</div>
-							<div class="col-sm-2 col-xs-2"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center" id="backtotop"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
-							<div class="col-sm-5 col-xs-12"><span id="poweredby"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
-						</div>
-					</div>
+					<?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
+					</span>
+					<span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
 				</div>
 			</footer>
 		</div>

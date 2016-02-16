@@ -5,25 +5,27 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-</div>
-<div class="jumbotron">
-	<div class="container">
-		<h2 class="forum-title"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></h2>
-		<?php if ($luna_config['o_enable_advanced_search'] == '1') { ?>
-		<span class="pull-right naviton">
-			<a class="btn btn-default" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a>
-		</span>
-		<?php } ?>
-	</div>
-</div>
-<div class="container">
-<form id="search" method="get" action="search.php?section=simple">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<fieldset>
-				<input type="hidden" name="action" value="search" />
-				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></div>
-			</fieldset>
+<div class="main container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="title-block title-block-primary">
+				<h2>
+					<i class="fa fa-fw fa-search"></i> <?php _e('Search', 'luna') ?>
+					<?php if ($luna_config['o_enable_advanced_search'] == '1') { ?>
+						<span class="pull-right">
+							<a class="btn btn-default" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a>
+						</span>
+					<?php } ?>
+				</h2>
+			</div>
+			<div class="tab-content">
+				<form id="search" method="get" action="search.php?section=simple">
+					<fieldset>
+						<input type="hidden" name="action" value="search" />
+						<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></div>
+					</fieldset>
+				</form>
+			</div>
 		</div>
 	</div>
-</form>
+</div>

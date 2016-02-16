@@ -1,6 +1,5 @@
 /* Accent 12 - Black */
 .navbar-inverse,
-.footer,
 .alert-all,
 .modal-form .modal-header,
 .modal-form .modal-footer,
@@ -9,17 +8,16 @@
 .navbar-inverse .navbar-toggle:focus,
 .btn-primary,
 .modal-backdrop,
-.enforce {
+.enforce,
+.stats {
 	background-color: #555555;
 }
 
-.navbar-secondary,
-.first-run-profile,
-.footer .copyright,
 .panel-default .panel-heading,
 .thread-jumbotron,
 .jumbotron,
-.user-card-profile,
+.footer,
+.editor,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -32,7 +30,10 @@
 .btn-primary.active,
 .btn-primary.disabled,
 [disabled].btn-primary,
-.category-header {
+.category-header,
+.profile-header .jumbotron,
+.title-block-primary,
+.list-group.list-group-luna .list-group-item.active {
 	background-color: #444444;
 }
 
@@ -45,8 +46,17 @@
 a.list-group-item.active,
 a.list-group-item.active:hover,
 a.list-group-item.active:focus,
-.list-group-forum .list-group-item.active.new-item {
+.list-group-forum .list-group-item.active.new-item,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:hover {
 	background-color: #333333;
+}
+
+@media all and (min-width:768px) {
+	.dropdown-menu {
+		background-color: #333333;
+	}
 }
 
 .list-group-forum a.list-group-item:hover,
@@ -54,11 +64,13 @@ a.list-group-item.active:focus,
 	border-color: #555555;
 }
 
-.btn-primary {
+.btn-primary,
+.tab-content-primary,
+.tab-content {
 	border-color: #444444;
 }
 
-.btn-primary:hover,
+.btn-primary,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
@@ -74,8 +86,14 @@ a.list-group-item.active:focus,
 
 a.list-group-item:hover,
 a:focus,
+.editor .btn,
 .pagination > li > a,
-.pagination > li > span {
+.pagination > li > span,
+.title-block-nav .nav-tabs > .active > a,
+.title-block-nav .nav-tabs > .active > a:focus,
+.title-block-nav .nav-tabs > .active > a:hover,
+a,
+.title-block-primary .btn {
 	color:#444444;
 }
 

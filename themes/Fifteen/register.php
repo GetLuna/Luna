@@ -5,62 +5,57 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-</div>
-<div class="jumbotron">
-	<div class="container">
-		<h2 class="forum-title"><span class="fa fa-fw fa-user"></span> <?php _e('Register', 'luna') ?></h2>
-	</div>
-</div>
-<div class="container">
-<?php draw_error_panel($errors); ?>
-<form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Enter the requested data', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php _e('Register', 'luna') ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<input type="hidden" name="form_sent" value="1" />
-				<label class="required hidden"><?php _e('If you are human please leave this field blank!', 'luna') ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Enter a username between 2 and 25 characters long', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
-					</div>
+<div class="main container">
+	<div class="row">
+		<div class="col-xs-12">
+			<?php draw_error_panel($errors); ?>
+			<form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
+				<div class="title-block title-block-primary">
+				<h2><i class="fa fa-fw fa-user"></i> <?php _e('Register', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-default" name="register"><span class="fa fa-fw fa-check"></span> <?php _e('Register', 'luna') ?></button></span></h2>
 				</div>
-<?php if ($luna_config['o_regs_verify'] == '0'): ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?><span class="help-block"><?php _e('Passwords must be at least 6 characters long and are case sensitive', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<div class="row">
-							<div class="col-sm-6">
-								<input id="password" type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
-							</div>
-							<div class="col-sm-6">
-								<input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
+				<div class="tab-content">
+					<input type="hidden" name="form_sent" value="1" />
+					<label class="required hidden"><?php _e('If you are human please leave this field blank!', 'luna') ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Enter a username between 2 and 25 characters long', 'luna') ?></span></label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
+						</div>
+					</div>
+	<?php if ($luna_config['o_regs_verify'] == '0'): ?>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?><span class="help-block"><?php _e('Passwords must be at least 6 characters long and are case sensitive', 'luna') ?></span></label>
+						<div class="col-sm-9">
+							<div class="row">
+								<div class="col-sm-6">
+									<input id="password" type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
+								</div>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-<?php endif; ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php _e('Your password will be sent to this address, make sure it\'s valid', 'luna') ?></span><?php endif; ?></label>
-					<div class="col-sm-9">
-						<?php if ($luna_config['o_regs_verify'] == '1'): ?>
-						<div class="row">
-							<div class="col-sm-6">
-						<?php endif; ?>
-								<input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
-						<?php if ($luna_config['o_regs_verify'] == '1'): ?>
+	<?php endif; ?>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php _e('Your password will be sent to this address, make sure it\'s valid', 'luna') ?></span><?php endif; ?></label>
+						<div class="col-sm-9">
+							<?php if ($luna_config['o_regs_verify'] == '1'): ?>
+							<div class="row">
+								<div class="col-sm-6">
+							<?php endif; ?>
+									<input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
+							<?php if ($luna_config['o_regs_verify'] == '1'): ?>
+								</div>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
+								</div>
 							</div>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
-							</div>
+							<?php endif; ?>
 						</div>
-						<?php endif; ?>
 					</div>
 				</div>
-			</fieldset>
+			</form>
 		</div>
 	</div>
-</form>
+</div>

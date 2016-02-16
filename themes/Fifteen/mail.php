@@ -5,11 +5,15 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-</div>
-<div class="jumbotron">
-	<div class="container">
-		<h2><?php _e('Send email to', 'luna') ?> <?php echo luna_htmlspecialchars($recipient) ?></h2>
+<div class="main container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="title-block title-block-primary">
+				<h2><i class="fa fa-fw fa-envelope"></i> <?php _e('Send an email', 'luna') ?></h2>
+			</div>
+			<div class="tab-content">
+				<?php draw_mail_form($recipient_id); ?>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="container">
-<?php draw_mail_form($recipient_id); ?>

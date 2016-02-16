@@ -49,8 +49,8 @@ function draw_preview_panel($message) {
 }
 
 // Show the editor panel
-function draw_editor($height) {
-	global $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_comment, $message, $luna_config, $cur_index, $p_message;
+function draw_editor($height, $meta_enabled = null) {
+	global $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_comment, $message, $luna_config, $cur_index, $p_message, $luna_user;
 
 	$pin_btn = $silence_btn = '';
 
@@ -76,110 +76,86 @@ function draw_editor($height) {
 	}
 
 ?>
-<div class="panel panel-default panel-editor">
-	<fieldset class="comment-field editor">
-		<input type="hidden" name="form_sent" value="1" />
-		<div class="alert alert-warning hide-if-js" role="alert">
-			<p><?php _e('The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though.', 'luna' ); ?></p>
-		</div>
-		<div class="btn-toolbar textarea-toolbar textarea-top hide-if-no-js">
-			<?php echo $pin_btn ?>
-			<?php echo $silence_btn ?>
-			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-bold fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-underline fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-header fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-link fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-play-circle fa-fw"></span></a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
-			</div>
-			<div class="btn-group">
-<?php if ($luna_config['o_emoji'] == 1) { ?>
-				<a class="btn btn-default btn-editor btn-emoji dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					<span class="fa fa-fw text-emoji emoji-ed">&#x263a;</span>
-				</a>
-				<ul class="dropdown-menu dropdown-menu-right dropdown-emoji" role="menu">
-					<li><a href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x263a;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f611;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f629;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f604;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f632;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f609;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f612;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f60b;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f600;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f620;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f606;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f60e;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f605;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f607;</span></a></li>
-					<li><a href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f60f;</span></a></li>
-				</ul>
-<?php } else { ?>
-				<a class="btn btn-default btn-editor emoticon-ed dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt="<?php _e('Smilies', 'luna') ?>" width="15" height="15" />
-				</a>
-				<ul class="dropdown-menu dropdown-menu-right dropdown-emoticon" role="menu">
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
-					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
-				</ul>
+<div class="editor">
+	<input type="hidden" name="form_sent" value="1" />
+	<div class="alert alert-warning hide-if-js" role="alert">
+		<p><?php _e('The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though.', 'luna' ); ?></p>
+	</div>
+<?php
+	if ($luna_user['is_guest'] && $meta_enabled) {
+?>
+		<label class="required hidden"><?php _e('Name', 'luna') ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Name', 'luna') ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" autofocus />
+		<label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Email', 'luna') ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php } ?>
-			</div>
+	<div class="btn-toolbar btn-toolbar-top hide-if-no-js">
+		<?php echo $pin_btn ?>
+		<?php echo $silence_btn ?>
+		<div class="btn-group">
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-bold fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-underline fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="comment_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
-			if (LUNA_ACTIVE_PAGE == 'comment')
-				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
-			elseif (LUNA_ACTIVE_PAGE == 'edit')
-				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_comment['message']);
-			elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
-				echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
-		?></textarea>
-		<?php
-			if (LUNA_ACTIVE_PAGE == 'edit')
-				$action = 'edit-comment';
-			elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
-				$action = 'message';
-			else
-				$action = ($fid ? 'thread' : 'comment');
-			LunaNonces::field($action);
-		?>
-		<div class="btn-toolbar textarea-toolbar textarea-bottom">
-			<div class="btn-group pull-right">
-				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
-				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
-			</div>
+		<div class="btn-group">
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-header fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
 		</div>
-	</fieldset>
+		<div class="btn-group">
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
+		</div>
+		<div class="btn-group">
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-link fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span></a>
+			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-play fa-fw"></span></a>
+		</div>
+		<div class="btn-group">
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
+		</div>
+		<div class="btn-group pull-right hidden-lg">
+			<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				<span class="fa fa-fw fa-ellipsis-h"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu">
+				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span> <?php _e('Italic', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span> <?php _e('Code', 'luna'); ?></a></li>
+				<li class="hidden-lg"><a href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span> <?php _e('Inline code', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span> <?php _e('Image', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-play fa-fw"></span> <?php _e('Video', 'luna'); ?></a></li>
+				<li><a href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span> <?php _e('Strike', 'luna'); ?></a></li>
+				<li><a href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span> <?php _e('Subscript', 'luna'); ?></a></li>
+				<li><a href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span> <?php _e('Superscript', 'luna'); ?></a></li>
+			</ul>
+		</div>
+	</div>
+	<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="comment_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
+		if (LUNA_ACTIVE_PAGE == 'comment')
+			echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
+		elseif (LUNA_ACTIVE_PAGE == 'edit')
+			echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_comment['message']);
+		elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
+			echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
+	?></textarea>
+	<?php
+		if (LUNA_ACTIVE_PAGE == 'edit')
+			$action = 'edit-comment';
+		elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
+			$action = 'message';
+		else
+			$action = ($fid ? 'thread' : 'comment');
+		LunaNonces::field($action);
+	?>
+	<div class="btn-toolbar btn-toolbar-bottom">
+		<div class="btn-group">
+			<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
+		</div>
+		<div class="btn-group pull-right">
+			<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
+		</div>
+	</div>
 </div>
 <script>
 function AddTag(type, tag) {
@@ -271,26 +247,26 @@ function draw_threads_list() {
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
+				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-stack"></i>';
 			}
 
 			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
+				$status_text[] = '<i style="color: #64b450;" class="fa fa-fw fa-check"></i>';
 			}
 
 			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
+				$status_text[] = '<i style="color: #826eb4;" class="fa fa-fw fa-map-marker"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
-				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
+				$status_text[] = '<i style="color: #2788cb;" class="fa fa-fw fa-arrows-alt"></i>';
 				$item_status .= ' moved-item';
 			}
 
 			if ($cur_thread['closed'] == '1') {
-				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
+				$status_text[] = '<i style="color: #dc3232;" class="fa fa-fw fa-lock"></i>';
 				$item_status .= ' closed-item';
 			}
 
@@ -327,9 +303,9 @@ function draw_threads_list() {
 		}
 
 	} else {
-		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
-		printf(__('There are no threads in this forum yet, but you can <a href="comment.php?fid=%s">start the first one</a>.', 'luna'), $id);
-		echo '</h3></div></div>';
+		echo '<h3 class="text-center">';
+		printf(__('<a href="comment.php?fid=%s">Start the first thread in this forum</a>', 'luna'), $id);
+		echo '</h3>';
 	}
 
 }
@@ -554,7 +530,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 					}
 				}
 
-				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.'<span class="hidden-xs hidden-sm">'.$forum_name.'</span></a></span>';
+				$forum_name = '<a class="in-forum" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="color: '.$forum_color.';">'.$faicon.' '.$forum_name.'</a>';
 			} else {
 				$last_commenter = '';
 				$thread_id = $cur_thread['moved_to'];
@@ -565,26 +541,26 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
+				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-stack"></i>';
 			}
 
 			if (isset($cur_thread['answer'])) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
+				$status_text[] = '<i style="color: #64b450;" class="fa fa-fw fa-check"></i>';
 			}
 
 			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
+				$status_text[] = '<i style="color: #826eb4;" class="fa fa-fw fa-map-marker"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
-				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
+				$status_text[] = '<i style="color: #2788cb;" class="fa fa-fw fa-arrows-alt"></i>';
 				$item_status .= ' moved-item';
 			}
 
 			if ($cur_thread['closed'] == '1') {
-				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
+				$status_text[] = '<i style="color: #dc3232;" class="fa fa-fw fa-lock"></i>';
 				$item_status .= ' closed-item';
 			}
 
@@ -1005,21 +981,21 @@ function draw_search_results() {
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
+				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-stack"></i>';
 			}
 
 			if (isset($cur_search['solved'])) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
+				$status_text[] = '<i style="color: #64b450;" class="fa fa-fw fa-check"></i>';
 			}
 
 			if ($cur_search['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
+				$status_text[] = '<i style="color: #826eb4;" class="fa fa-fw fa-map-marker"></i>';
 			}
 
 			if ($cur_search['closed'] != '0') {
-				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
+				$status_text[] = '<i style="color: #dc3232;" class="fa fa-fw fa-lock"></i>';
 				$item_status .= ' closed-item';
 			}
 
@@ -1056,18 +1032,16 @@ function draw_mail_form($recipient_id) {
 ?>
 
 <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-	<input class="info-textfield form-control" placeholder="<?php _e('Subject', 'luna') ?>" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" autofocus />
-	<div class="panel panel-default panel-editor">
-		<fieldset class="comment-field">
-			<input type="hidden" name="form_sent" value="1" />
-			<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
-			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="<?php echo $cur_index++ ?>"></textarea>
-			<div class="btn-toolbar textarea-toolbar textarea-bottom">
-				<div class="btn-group pull-right">
-					<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php _e('Send', 'luna') ?></button>
-				</div>
+	<div class="editor">
+		<input type="hidden" name="form_sent" value="1" />
+		<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
+		<input class="info-textfield form-control" placeholder="<?php _e('Subject', 'luna') ?>" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" autofocus />
+		<textarea name="req_message" class="form-control textarea" placeholder="<?php _e('Mail', 'luna') ?>" rows="10" tabindex="<?php echo $cur_index++ ?>"></textarea>
+		<div class="btn-toolbar btn-toolbar-bottom">
+			<div class="btn-group pull-right">
+				<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php _e('Send', 'luna') ?></button>
 			</div>
-		</fieldset>
+		</div>
 	</div>
 </form>
 <?php
@@ -1113,8 +1087,7 @@ function draw_search_forum_list() {
 
 	// We either show a list of forums of which multiple can be selected
 	if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod']) {
-		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.__('Forum', 'luna').'</b>'."\n";
-		echo "\t\t\t\t\t\t".'<br />'."\n";
+		echo "\t\t\t\t\t\t".'<div class="conl multiselect"><h3>'.__('Forums to search in', 'luna').'</h3>'."\n";
 		echo "\t\t\t\t\t\t".'<div>'."\n";
 
 		$cur_category = 0;
@@ -1124,11 +1097,11 @@ function draw_search_forum_list() {
 					echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
 					echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
 				}
-				echo "\t\t\t\t\t\t\t".'<fieldset><h3><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h3>'."\n";
+				echo "\t\t\t\t\t\t\t".'<fieldset><h4><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h4>'."\n";
 				echo "\t\t\t\t\t\t\t\t".'<div>';
 				$cur_category = $cur_forum['cid'];
 			}
-			echo "\t\t\t\t\t\t\t\t".'<input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
+			echo "\t\t\t\t\t\t\t\t".'<label><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'</label><br />'."\n";
 		}
 
 		if ($cur_category) {
@@ -1137,13 +1110,12 @@ function draw_search_forum_list() {
 		}
 
 		echo "\t\t\t\t\t\t".'</div>'."\n";
-		echo "\t\t\t\t\t\t".'</div></div>'."\n";
+		echo "\t\t\t\t\t\t".'</div>'."\n";
 	}
 	// ... or a simple select list for one forum only
 	else {
-		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.__('Forum', 'luna')."\n";
-		echo "\t\t\t\t\t\t".'<br />'."\n";
-		echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
+		echo "\t\t\t\t\t\t".'<h3>'.__('Forum to search in', 'luna').'</h3>'."\n";
+		echo "\t\t\t\t\t\t".'<select id="forum" name="forum" class="form-control">'."\n";
 
 		$cur_category = 0;
 		while ($cur_forum = $db->fetch_assoc($result)) {
@@ -1160,7 +1132,6 @@ function draw_search_forum_list() {
 
 		echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 		echo "\t\t\t\t\t\t".'</select>'."\n";
-		echo "\t\t\t\t\t\t".'<br /></label></div>'."\n";
 	}
 }
 

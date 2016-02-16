@@ -6,20 +6,19 @@ if (!defined('FORUM'))
 
 ?>
 
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php draw_delete_title(); ?></h3>
-	</div>
-	<div class="panel-body">
-		<?php draw_soft_reset_form($id); ?>
-	</div>
-</div>
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_comment['commenter']) ?></h3>
-	</div>
-	<div class="panel-body">
-		<?php echo $cur_comment['message'] ?>
+<div class="main container">
+	<div class="row">
+		<div class="col-xs-12">
+			<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
+				<div class="title-block title-block-primary">
+					<h2><i class="fa fa-fw fa-trash"></i> <?php draw_delete_title(); ?><span class="pull-right"><button type="submit" class="btn btn-default" name="reset"><span class="fa fa-fw fa-trash"></span> <?php _e('Reset comment', 'luna') ?></button></span></h2>
+				</div>
+				<div class="tab-content">
+					<p><?php _e('This comment has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
+					<hr />
+					<?php echo $cur_comment['message'] ?>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>

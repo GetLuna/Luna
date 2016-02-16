@@ -12,10 +12,10 @@ if (!defined('FORUM'))
 			<div class="modal-header">
 				<h4 class="modal-title"><?php _e('Inbox', 'luna') ?></h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body clearfix">
 				<p><?php _e('Are you sure that you want to delete the message(s) from your inbox?', 'luna') ?></p>
 				<button type="submit" name="delete_multiple" class="btn btn-danger btn-block"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
-				<a class="btn btn-primary btn-block" data-dismiss="modal" href="#"><?php _e('Cancel', 'luna') ?></a>
+				<a class="btn btn-default btn-block" data-dismiss="modal" href="#"><?php _e('Cancel', 'luna') ?></a>
 			</div>
 		</div>
 	</div>

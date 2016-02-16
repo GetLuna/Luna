@@ -23,58 +23,24 @@ require 'header.php';
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.3 Denim</h3>
+				<h3 class="panel-title">About Luna 1.4 Emerald</h3>
 			</div>
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.3.1</span></p><h2>Denim Update 1</h2>
+						<p class="meta"><span class="release-version">1.4 Preview 1</span></p><h2>Emerald</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now access your subscriptions from your profile</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Labels now appear in a consistent order everywhere</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improves strings in the language files</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Small visual improvements to Sunrise 2</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Removed multiple instances of trailing whitespaces</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved behavior on small viewports</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The notification fly-out now show notifications from new to old</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The profile will now hide avatar and signature settings when disabled</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Luna now hides search fields when an user doesn't have permission to use them</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Subscriptions settings won't show up when subscriptions aren't available</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>On mobile devices, announcements will now appear on top of the page</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The "solved" and "important" label now appear search results</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>New installations will no longer assign a wrong announcement type</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Closed and moved thread will now show both icons</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The leading zero for minutes will now be displayed in notifications</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>The updater will no longer attempt to create the same column twice</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes multiple issue with labels in the moderation view</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>When logging in with a banned account, the error will be displayed correctly</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Changing a threads state won't cause an error anymore in some occasions</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Breadcrumbs will now have a correct markup in reports</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>There is no longer a trailing dot in search results on mobile devices</li>
-						</ul>
-					</div>
-				</section>
-
-				<section class="release-notes">
-					<div class="container">
-						<p class="meta"><span class="release-version">1.3</span></p><h2>Denim</h2>
-						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sunrise has received a fully reimagned design</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now mark a thread as important</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Optional center and size markup tags</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Major naming convention updates</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Timezone settings have been reworked</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Daylight Saving is now handled by Luna</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen now has an updated sidebar</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved mobile interface for Fifteen and Backstage</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The behavior of some markup tags have been changed</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Embedded videos are now fully responsive</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>CSS files have been rewritten to reflect our new coding conventions</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Multiple improvement for High-DPI screens have been applied</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Bootstrap and Font Awesome have been updated to their latest versions</li>
-							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>The license has been changed from GPLv3 to GPLv2</li>
-							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>You can no longer determine the size of embedded videos</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 21 bugs</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Fifteen has received a fully reimagned design based on Airalin</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The editor will now items under a button if the screen becomes to small</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Advanced search has an improved UI</li>
+							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The editor no longer has an emoticon menu</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 2 bugs</li>
+							<hr />
+							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>The main profile view in Fifteen has yet to receive a new UI</li>
+							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>Night mode has yet to be implemented in Fifteen</li>
+							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>The light grey accent has yet to be implemented in Fifteen</li>
+							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>Forces accents has yet to be implemented in Fifteen</li>
+							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>Sunrise has multiple visual issues in this Preview</li>
 						</ul>
 					</div>
 				</section>
