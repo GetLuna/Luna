@@ -247,7 +247,7 @@ function draw_threads_list() {
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-stack"></i>';
+				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-tack"></i>';
 			}
 
 			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
@@ -274,7 +274,7 @@ function draw_threads_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i style="color: #b8b8b8;" class="fa fa-fw fa-bell"></i></a>';
 			}
 
 			$url = 'thread.php?id='.$thread_id;
@@ -375,9 +375,9 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
 
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} else
 				$last_comment = __('Never', 'luna');
 
@@ -541,7 +541,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-stack"></i>';
+				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-tack"></i>';
 			}
 
 			if (isset($cur_thread['answer'])) {
@@ -567,7 +567,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i style="color: #b8b8b8;" class="fa fa-fw fa-bell"></i></a>';
 			}
 
 			$url = 'thread.php?id='.$thread_id;
@@ -981,7 +981,7 @@ function draw_search_results() {
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-stack"></i>';
+				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-tack"></i>';
 			}
 
 			if (isset($cur_search['solved'])) {
@@ -1003,7 +1003,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i style="color: #b8b8b8;" class="fa fa-fw fa-bell"></i></a>';
 			}
 
 			// Insert the status text before the subject
@@ -1022,7 +1022,7 @@ function draw_search_results() {
 				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_comment_id'].'#p'.$cur_search['last_comment_id'].'">'.format_time($cur_search['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_commenter']);
 
 			require get_view_path('search-thread.php');
-		// }
+		//}
 	}
 
 }
