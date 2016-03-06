@@ -5,6 +5,11 @@
  * Based on Font Awesome 4.4.0
  * #eeeeee #dddddd #cccccc
  */
+
+body,
+html {
+	background-color: #fafafa !important;
+}
  
  *,
 .panel-title,
@@ -44,26 +49,21 @@
 #header,
 .editor {
 	background: #eeeeee;
-	background: linear-gradient(to bottom left,
-#eeeeee,
-#cccccc);
+	background: linear-gradient(to bottom left,#eeeeee,#cccccc);
 }
 
 .first-run.panel,
 .profile-card-head,
 .nav-tabs,
-.nav-tab-info {
+.nav-tab-info,
+.container .navbar {
 	background: #eeeeee;
-	background: linear-gradient(to top right,
-#eeeeee,
-#cccccc);
+	background: linear-gradient(to top right,#eeeeee,#cccccc);
 }
 
 .panel-default .panel-heading {
 	background: #eeeeee;
-	background: linear-gradient(to right,
-#eeeeee,
-#cccccc);
+	background: linear-gradient(to right,#eeeeee,#cccccc);
 }
 
 .comment-arrow {
@@ -95,14 +95,10 @@
 
 .modal-form .modal-header {
 	background: #eeeeee;
-	background: linear-gradient(to bottom left,
-#eeeeee,
-#dddddd);
+	background: linear-gradient(to bottom left,#eeeeee,#dddddd);
 }
 
 .modal-form .modal-footer {
 	background: #dddddd;
-	background: linear-gradient(to bottom left,
-#dddddd,
-#cccccc);
+	background: linear-gradient(to bottom left,#dddddd,#cccccc);
 }

@@ -15,7 +15,8 @@
 .first-run.panel,
 .profile-card-head,
 .nav-tabs,
-.nav-tab-info {
+.nav-tab-info,
+.container .navbar {
 	background: #ff4444;
 	background: linear-gradient(to top right, #ff4444, #d42f2f);
 }

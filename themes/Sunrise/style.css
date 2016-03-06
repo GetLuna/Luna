@@ -500,6 +500,12 @@ hr {
 	border-radius: 100px;
 }
 
+.container .navbar {
+    border-radius: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* Navs */
 .nav-tabs {
 	background: #b14bbd;
@@ -1987,22 +1993,22 @@ html.night {
 	border-color: #2e3d20;
 }
 
-.night .list-group-enabled {
+.night .list-group-item-success {
 	background-color: #2e3d20;
 	border-left-color: #27301f !important;
 }
 
-.night .list-group-enabled:hover {
+.night .list-group-item-success:hover {
 	background-color: #27301f !important;
 	border-left-color: #22271e !important;
 }
 
-.night .list-group-disabled {
+.night .list-group-item-danger {
 	background-color: #60301a;
 	border-left-color: #4d3023 !important;
 }
 
-.night .list-group-disabled:hover {
+.night .list-group-item-danger:hover {
 	background-color: #4d3023 !important;
 	border-left-color: #443027 !important;
 }
