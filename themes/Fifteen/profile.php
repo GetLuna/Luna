@@ -25,41 +25,31 @@ if (!defined('FORUM'))
 			<?php load_me_nav('profile'); ?>
 		</div>
 		<div class="col-xs-12 col-sm-9">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('About user', 'luna') ?></h3>
-				</div>
-				<div class="panel-body">
-					<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
-				</div>
-			</div>
-		<?php if (!empty($user_messaging)): ?>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Contact', 'luna'); ?></h3>
-				</div>
-				<div class="panel-body">
-					<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?>
-				</div>
-			</div>
-		<?php
-		endif;
-		
-		if ($luna_config['o_signatures'] == '1') {
-			if (isset($parsed_signature)) {
-		?>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Signature', 'luna'); ?></h3>
-				</div>
-				<div class="panel-body">
-					<?php echo $user_signature ?>
-				</div>
-			</div>
-		<?php
-			}
-		}
-		?>
+            <div class="title-block title-block-primary">
+                <h2><i class="fa fa-fw fa-user"></i> <?php _e('About', 'luna') ?></h2>
+            </div>
+            <div class="tab-content">
+                <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
+            </div>
+            <?php if (!empty($user_messaging)): ?>
+                <div class="title-block title-block-primary">
+                    <h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Contact', 'luna') ?></h2>
+                </div>
+                <div class="tab-content">
+                    <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?>
+                </div>
+            <?php
+            endif;
+
+            if ($luna_config['o_signatures'] == '1' && isset($parsed_signature)) {
+            ?>
+                <div class="title-block title-block-primary">
+                    <h2><i class="fa fa-fw fa-map-signs"></i> <?php _e('Signature', 'luna') ?></h2>
+                </div>
+                <div class="tab-content">
+                    <?php echo $user_signature ?>
+                </div>
+            <?php } ?>
 		</div>
 	</div>
 </div>

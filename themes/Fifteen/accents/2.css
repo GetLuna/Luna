@@ -8,13 +8,18 @@
 .navbar-inverse .navbar-toggle:focus,
 .btn-primary,
 .modal-backdrop,
-.enforce {
+.list-group-item.new-item .label-default,
+.list-group-item.new-item:hover .label-default,
+.enforce,
+.stats {
 	background-color: #2788cb;
 }
 
 .panel-default .panel-heading,
 .thread-jumbotron,
 .jumbotron,
+.footer,
+.editor,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -29,7 +34,8 @@
 [disabled].btn-primary,
 .category-header,
 .profile-header .jumbotron,
-.title-block-primary {
+.title-block-primary,
+.list-group.list-group-luna .list-group-item.active {
 	background-color: #1a79bc;
 }
 
@@ -55,6 +61,8 @@ a.list-group-item.active:focus,
 	}
 }
 
+blockquote,
+.list-group.list-group-thread .list-group-item.new-item,
 .list-group-forum a.list-group-item:hover,
 .list-group-thread .list-group-item:hover {
 	border-color: #2788cb;

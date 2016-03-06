@@ -273,6 +273,11 @@ p {
 	background-color: #444 !important;
 }
 
+/* Buttons */
+.btn {
+    border-color: transparent !important;
+}
+
 /* Tabpanels */
 .tab-content {
 	padding: 10px;
@@ -525,12 +530,9 @@ hr {
 }
 
 /* Comment */
-.omment {
-}
-
 .comment-default {
 	background-color: #efefef;
-	margin-bottom: 1px;
+	margin-top: 1px;
 }
 
 .comment-default .comment-heading {
@@ -561,6 +563,16 @@ hr {
 .comment-avatar {
 	height: 60px;
 	width: auto;
+}
+
+#comment input[type="text"] {
+    background-color: #eee;
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding: 12px;
+    height: 44px;
+    border: #ddd;
+    box-shadow: none;
 }
 
 /* Jumbotron */
@@ -655,6 +667,26 @@ hr {
 	.profile-header .jumbotron .col-sm-12 {
 		padding: 0;
 	}
+}
+
+.jumbotron.edit-title {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+.jumbotron.edit-title .container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.jumbotron.edit-title h2 {
+    margin: 0;
+}
+
+.jumbotron.edit-title h2 .naviton {
+    line-height: .7;
 }
 
 /* First run avatar */
@@ -851,8 +883,16 @@ hr {
 .editor {
 	padding: 10px;
 	background: #2788cb;
-	margin-top: 10px;
+    margin-top: 0;
 	margin-bottom: 10px;
+}
+
+:not(:first-child.editor) {
+	margin-top: 10px;
+}
+
+.editor-only .editor {
+    margin-top: 0;
 }
 
 .tab-content .editor:last-child {
@@ -905,14 +945,13 @@ hr {
 	margin-bottom: 10px;
 }
 
+.editor .btn-success {
+    color: #fff !important;
+}
+
 /* List groups */
 .list-group {
 	margin-bottom: 10px;
-}
-
-.list-group-item {
-	padding-top: 8px;
-	padding-bottom: 11px;
 }
 
 .list-group-item h4 {
@@ -922,6 +961,13 @@ hr {
 .list-group.list-group-luna .list-group-item {
 	border: none;
 	margin-top: 1px;
+    margin-bottom: 0;
+}
+
+.list-group.list-group-luna .list-group-item .label {
+    font-size: 100%;
+    padding: .3em .45em .4em;
+    border-radius: 6px !important;
 }
 
 .list-group.list-group-luna .list-group-item.active {
@@ -946,11 +992,11 @@ hr {
 	background-color: #f9f9f9;
 	border: none;
 	border-left: 6px solid #efefef;
+    margin-bottom: 1px;
 }
 
 .list-group.list-group-thread .list-group-item.active {
 	background-color: #f3f3f3;
-	border: none;
 	border-left: 6px solid #e8e8e8;
 }
 
@@ -1042,7 +1088,7 @@ footer a:hover {
 	}
 }
 
-/* Footer */
+/* BBCode */
 .underline {
 	text-decoration: underline;
 }
