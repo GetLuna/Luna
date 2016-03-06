@@ -8,7 +8,7 @@
 class Version {
 	// See http://getluna.org/docs/version.php for more info
 	const LUNA_VERSION = '1.4-alpha.0.1';
-	const LUNA_CORE_VERSION = '1.4.5302';
+	const LUNA_CORE_VERSION = '1.4.5303';
 	const LUNA_CORE_REVISION = '140a01';
 
 	// The Luna Core code name
