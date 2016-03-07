@@ -75,14 +75,13 @@ if (!defined('FORUM'))
 					<pre><code><?php _e('This is some code.', 'luna') ?></code></pre>
 					<p><?php _e('You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.', 'luna') ?></p>
 					<pre>
-	[code]
-	[[php]]
-	if ($db->num_rows($result) > 0)
-		while ($cur_item = $db->fetch_assoc($result))
-			if ($cur_item['visible'] == '1')
-				$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
-	[/code]
-					</pre>
+[code]
+[[php]]
+if ($db->num_rows($result) > 0)
+    while ($cur_item = $db->fetch_assoc($result))
+        if ($cur_item['visible'] == '1')
+            $links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
+[/code]</pre>
 					<p><?php _e('produces a code box like this:', 'luna') ?></p>
 					<div class="codebox"><pre><code class="language-php">if ($db->num_rows($result) > 0)
 		while ($cur_item = $db->fetch_assoc($result))
@@ -151,27 +150,27 @@ if (!defined('FORUM'))
 						</thead>
 						<tbody>
 							<tr>
-								<td><span class="label label-success"><span class="fa fa-fw fa-check"></span></span></td>
+								<td><span class="fa fa-fw fa-check status-solved"></span></td>
 								<td><?php _e('Threads marked with a check are solved according to the author.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span></td>
+								<td><span class="fa fa-fw fa-thumb-tack status-pinned"></span></td>
 								<td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span></td>
+								<td><span class="fa fa-fw fa-map-marker status-important"></span></td>
 								<td><?php _e('Much like pinned threads, these are important, however, they do not stay on the top of the list.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span></td>
+								<td><span class="fa fa-fw fa-lock status-closed"></span></td>
 								<td><?php _e('When a you see a closed label, it means you can\'t comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span></td>
+								<td><span class="fa fa-fw fa-arrows-alt status-moved"></span></td>
 								<td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></span></td>
+								<td><span class="fa fa-fw fa-bell status-new"></span></td>
 								<td><?php _e('This thread has received a new comment since you last visited the board.', 'luna') ?></td>
 							</tr>
 							<?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>

@@ -247,26 +247,26 @@ function draw_threads_list() {
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-tack"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
 			}
 
 			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<i style="color: #64b450;" class="fa fa-fw fa-check"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
 			}
 
 			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<i style="color: #826eb4;" class="fa fa-fw fa-map-marker"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
-				$status_text[] = '<i style="color: #2788cb;" class="fa fa-fw fa-arrows-alt"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-arrows-alt status-moved"></i>';
 				$item_status .= ' moved-item';
 			}
 
 			if ($cur_thread['closed'] == '1') {
-				$status_text[] = '<i style="color: #dc3232;" class="fa fa-fw fa-lock"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
 				$item_status .= ' closed-item';
 			}
 
@@ -274,7 +274,7 @@ function draw_threads_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i style="color: #b8b8b8;" class="fa fa-fw fa-bell"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 			}
 
 			$url = 'thread.php?id='.$thread_id;
@@ -541,33 +541,33 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-tack"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
 			}
 
 			if (isset($cur_thread['answer'])) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<i style="color: #64b450;" class="fa fa-fw fa-check"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
 			}
 
 			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<i style="color: #826eb4;" class="fa fa-fw fa-map-marker"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
-				$status_text[] = '<i style="color: #2788cb;" class="fa fa-fw fa-arrows-alt"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-arrows-alt status-moved"></i>';
 				$item_status .= ' moved-item';
 			}
 
 			if ($cur_thread['closed'] == '1') {
-				$status_text[] = '<i style="color: #dc3232;" class="fa fa-fw fa-lock"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
 				$item_status .= ' closed-item';
 			}
 
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i style="color: #b8b8b8;" class="fa fa-fw fa-bell"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 			}
 
 			$url = 'thread.php?id='.$thread_id;
@@ -981,21 +981,21 @@ function draw_search_results() {
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i style="color: #ffb900;" class="fa fa-fw fa-thumb-tack"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
 			}
 
 			if (isset($cur_search['solved'])) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<i style="color: #64b450;" class="fa fa-fw fa-check"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
 			}
 
 			if ($cur_search['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<i style="color: #826eb4;" class="fa fa-fw fa-map-marker"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_search['closed'] != '0') {
-				$status_text[] = '<i style="color: #dc3232;" class="fa fa-fw fa-lock"></i>';
+				$status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
 				$item_status .= ' closed-item';
 			}
 
@@ -1003,7 +1003,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i style="color: #b8b8b8;" class="fa fa-fw fa-bell"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 			}
 
 			// Insert the status text before the subject
