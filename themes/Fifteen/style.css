@@ -210,6 +210,35 @@ p {
 	background: #fff;
 }
 
+.title-block .pagination {
+    margin: 0;
+}
+
+.pagination > .active > a, 
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > li > a,
+.pagination > li > span {
+    border-color: transparent !important;
+}
+
+.pagination li a {
+    margin-left: 1px;
+}
+
 /* Color choise */
 .color-accent {
 	padding: 21px;
@@ -290,11 +319,11 @@ p {
 }
 
 .tab-content-danger {
-	border-color: #dc3232;
+	border-color: #dc3232 !important;
 }
 
 .tab-content-success {
-	border-color: #64b450;
+	border-color: #64b450 !important;
 }
 
 .tab-content :first-child {
