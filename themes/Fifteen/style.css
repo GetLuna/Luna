@@ -1148,4 +1148,166 @@ blockquote {
 blockquote footer {
 	font-size: 17px;
 }
+
+/* Night mode */
+.night body {
+    background: #393939;
+    color: #fff;
+}
+
+.night body .help-block {
+    color: #bbb;
+}
+
+.night .container.main {
+    background: #555;
+}
+
+.night hr {
+    border-color: #4d4d4d;
+}
+
+.night .list-group.list-group-thread .list-group-item {
+    background-color: #666;
+    border-left: 6px solid #5f5f5f;
+}
+
+.night .list-group.list-group-thread .list-group-item:hover {
+    background-color: #6b6b6b;
+    border-left: 6px solid #636363;
+}
+
+.night .list-group-thread .list-group-item .label {
+    background: #5a5a5a;
+}
+
+.night .list-group-item {
+    background: #4b4b4b;
+}
+
+.night .list-group.list-group-luna :not(.active).list-group-item:hover {
+    background: #464646;
+}
+
+.night .list-group-item {
+    color: #fff;
+}
+
+.night .nav-tabs li.active a,
+.night .nav-tabs li.active a:hover,
+.night .nav-tabs li.active a:focus {
+    background: #555;
+    color: #fff;
+}
+
+.night .list-group-luna .list-group-item:hover {
+    color: #fff;
+}
+
+.night .form-control {
+    background: #555;
+    color: #fff;
+    border-color: #484848;
+}
+
+.night .well {
+    background: #595959;
+    border-color: #505050;
+}
+
+.night .accent-group .btn {
+    border-color: #555 !important;
+}
+
+.night .accent-group .btn.active,
+.night .accent-group .btn:hover {
+    border-color: #656565 !important;
+}
+
+.night .comment-default {
+    background-color: #5f5f5f;
+}
+
+.night .comment-default .comment-heading,
+.night .user-entry {
+    background-color: #5a5a5a;
+}
+
+.night #comment input[type='text'],
+.night #edit input[type='text'] {
+    background-color: #646464;
+}
+
+.night .table-striped > tbody > tr:nth-of-type(2n+1) {
+    background: #5f5f5f;
+}
+
+.night .table > thead > tr > th,
+.night .table > tbody > tr > th,
+.night .table > tfoot > tr > th,
+.night .table > thead > tr > td,
+.night .table > tbody > tr > td,
+.night .table > tfoot > tr > td {
+    border-color: #696969;
+}
+
+.night .table-hover > tbody > tr:hover,
+.night .table > thead > tr > td.active,
+.night .table > tbody > tr > td.active,
+.night .table > tfoot > tr > td.active,
+.night .table > thead > tr > th.active,
+.night .table > tbody > tr > th.active,
+.night .table > tfoot > tr > th.active,
+.night .table > thead > tr.active > td,
+.night .table > tbody > tr.active > td,
+.night .table > tfoot > tr.active > td,
+.night .table > thead > tr.active > th,
+.night .table > tbody > tr.active > th,
+.night .table > tfoot > tr.active > th {
+    background: #606060;
+}
+
+.night pre {
+    border: #333;
+}
+
+.night .status-solved {
+    color: #77ca62;
+}
+
+.night .status-pinned {
+    color: #ffd800;
+}
+
+.night .status-new {
+    color: #dddddd;
+}
+
+.night .status-important {
+    color: #9985cb;
+}
+
+.night .status-moved {
+    color: #38a2eb;
+}
+
+.night .status-closed {
+    color: #f34040;
+}
+
+.night .search-form {
+    border-color: #666;
+}
+
+.night .search-form input[type='text'],
+.night .search-form .btn {
+    background: #666;
+}
+
+.night .search-form .btn {
+    color: #fff;
+}
+
+.night .search-form .form-control {
+    border-color: transparent;
 }
