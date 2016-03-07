@@ -210,8 +210,12 @@ p {
 	background: #fff;
 }
 
-.title-block .pagination {
+.pagination {
     margin: 0;
+}
+
+:not(.title-block).pagination {
+    margin-top: 1px;
 }
 
 .pagination > .active > a, 
@@ -522,8 +526,16 @@ hr {
     color: #64b450;
 }
 
+.comment.answer {
+    border-left: 6px solid #64b450 !important;
+}
+
 .status-pinned {
     color: #ffb900;
+}
+
+.comment.soft {
+    border-left: 6px solid #ffb900 !important;
 }
 
 .status-new {
@@ -540,6 +552,10 @@ hr {
 
 .status-closed {
     color: #dc3232;
+}
+
+.comment.marked {
+    border-left: 6px solid #dc3232 !important;
 }
 
 /* Labels */	
@@ -954,6 +970,10 @@ hr {
 
 :not(:first-child.editor) {
 	margin-top: 10px;
+}
+
+.thread .editor {
+    margin-top: 1px;
 }
 
 .editor-only .editor {

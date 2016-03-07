@@ -20,11 +20,11 @@ if (isset($errors))
 if (isset($message))
 	draw_preview_panel($message);
 
-echo $form;
 
 if ($luna_user['is_guest']) {
 	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
+echo $form;
 ?>
 			<label class="required hidden"><?php _e('Name', 'luna') ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Name', 'luna') ?>" name="req_username" value="<?php if (isset($_POST['req_username'])) echo luna_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" autofocus />
 			<label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php _e('Email', 'luna') ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Email', 'luna') ?>" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo luna_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
