@@ -160,6 +160,31 @@ hr {
 	margin-right: 15px;
 }
 
+/* Forum status indicators */
+.status-solved {
+    color: #64b450;
+}
+
+.status-pinned {
+    color: #ffb900;
+}
+
+.status-new {
+    color: #b8b8b8;
+}
+
+.status-important {
+    color: #826eb4;
+}
+
+.status-moved {
+    color: #2788cb;
+}
+
+.status-closed {
+    color: #dc3232;
+}
+
 /* First run */
 .first-run {
 	border-radius: 0;
