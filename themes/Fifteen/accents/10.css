@@ -20,6 +20,7 @@
 .jumbotron,
 .footer,
 .editor,
+#comment,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -63,8 +64,12 @@ a.list-group-item.active:focus,
 
 blockquote,
 .list-group.list-group-thread .list-group-item.new-item,
-.list-group-forum a.list-group-item:hover,
+.list-group-forum a.list-group-item:hover
 .list-group-thread .list-group-item:hover,
+.form-control:focus,
+.night .search-form:hover,
+.night .night .search-form:focus,
+.night .search-form:active,
 .btn-primary,
 .btn-primary.active,
 .btn-primary.focus,
@@ -193,4 +198,12 @@ a.btn.btn-danger,
 a.btn.btn-warning,
 .profile-nav a.list-group-item.active:hover {
 	color: #333 !important;
+}
+
+.night .comment-default a,
+.night .list-group-thread a,
+.night .list-group-thread a:focus,
+.night .table a,
+.night .user-entry a {
+    color: #ccc;
 }

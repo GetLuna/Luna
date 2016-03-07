@@ -20,6 +20,7 @@
 .jumbotron,
 .footer,
 .editor,
+#comment,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -64,7 +65,11 @@ a.list-group-item.active:focus,
 blockquote,
 .list-group.list-group-thread .list-group-item.new-item,
 .list-group-forum a.list-group-item:hover,
-.list-group-thread .list-group-item:hover {
+.list-group-thread .list-group-item:hover,
+.form-control:focus,
+.night .search-form:hover,
+.night .night .search-form:focus,
+.night .search-form:active  {
 	border-color: #ffcb1a;
 }
 
@@ -97,7 +102,10 @@ a:focus,
 .title-block-nav .nav-tabs > .active > a:focus,
 .title-block-nav .nav-tabs > .active > a:hover,
 a,
-.title-block-primary .btn {
+.title-block-primary .btn,
+blockquote footer,
+blockquote small,
+blockquote .small {
 	color:#ffb61a;
 }
 
