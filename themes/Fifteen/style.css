@@ -108,6 +108,10 @@ body {
 	border-radius: 0 !important;
 }
 
+.form-control:focus {
+    box-shadow: none;
+}
+
 /* Fonts */
 body {
 	font-family: "Segoe UI","Open Sans",Helvetica,Arial,sans-serif;
@@ -484,6 +488,31 @@ hr {
 	padding-bottom: 10px;
 }
 
+/* Forum status indicators */
+.status-solved {
+    color: #64b450;
+}
+
+.status-pinned {
+    color: #ffb900;
+}
+
+.status-new {
+    color: #b8b8b8;
+}
+
+.status-important {
+    color: #826eb4;
+}
+
+.status-moved {
+    color: #2788cb;
+}
+
+.status-closed {
+    color: #dc3232;
+}
+
 /* Labels */	
 .list-group-thread .list-group-item .label {
 	background-color: #ccc;
@@ -565,7 +594,8 @@ hr {
 	width: auto;
 }
 
-#comment input[type="text"] {
+#comment input[type="text"],
+#edit input[type="text"] {
     background-color: #eee;
     margin-bottom: 10px;
     font-size: 20px;
@@ -811,6 +841,12 @@ hr {
 .error h3 {
 	margin-top: 0;
 	margin-bottom: 25px;
+}
+
+/* In box */
+.new-inbox .form-group,
+.new-inbox .editor {
+    margin-bottom: 0;
 }
 
 /* Modal forms */
@@ -1111,4 +1147,5 @@ blockquote {
 
 blockquote footer {
 	font-size: 17px;
+}
 }
