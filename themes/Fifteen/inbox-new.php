@@ -66,7 +66,7 @@ $cur_index = 1;
 				<div class="title-block title-block-primary">
 					<h2><i class="fa fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
 				</div>
-				<div class="tab-content">
+				<div class="tab-content new-inbox">
 					<fieldset>
 						<input type="hidden" name="form_sent" value="1" />
 						<input type="hidden" name="form_user" value="<?php echo luna_htmlspecialchars($luna_user['username']) ?>" />
