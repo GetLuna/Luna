@@ -697,6 +697,38 @@ hr {
 	margin-bottom: 0;
 }
 
+.first-run .form-control {
+    border-color: rgba(255,255,255,.4);
+    background: rgba(255,255,255,.2);
+    margin-bottom: 2px;
+    color: #fff;
+}
+
+.first-run .form-control:focus {
+    border-color: rgba(255,255,255,.6);
+}
+
+.first-run .form-control::-moz-placeholder{
+    color: rgba(255,255,255,.6);
+    opacity:1;
+}
+
+.first-run .form-control:-ms-input-placeholder{
+    color: rgba(255,255,255,.6);
+}
+
+.first-run .form-control::-webkit-input-placeholder{
+    color: rgba(255,255,255,.6);
+}
+
+.first-run .btn {
+    background-color: rgba(255,255,255,.2);
+}
+
+.first-run .btn:hover {
+    background-color: rgba(255,255,255,.4);
+}
+
 .profile-header .jumbotron {
 	color: #000;
 	background-size: cover;
