@@ -1101,7 +1101,12 @@ class Installer {
 					'default'		=> '\'\''
 				),
 				'password'			=> array(
-					'datatype'		=> 'VARCHAR(256)',
+					'datatype'		=> 'VARCHAR(512)',
+					'allow_null'	=> false,
+					'default'		=> '\'\''
+				),
+				'salt'			=> array(
+					'datatype'		=> 'VARCHAR(8)',
 					'allow_null'	=> false,
 					'default'		=> '\'\''
 				),
@@ -1539,12 +1544,14 @@ class Installer {
 		$now = time();
 
 		$db->start_transaction();
+        
+        $salt = random_pass(8);
 
 		// Insert guest and first admin user
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_comment, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_comments, last_comment, registered, registration_ip, last_visit, salt) VALUES(1, \''.$db->escape($username).'\', \''.luna_sha512($password, $salt).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', \''.$salt.'\')')
 			or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 		$db->end_transaction();

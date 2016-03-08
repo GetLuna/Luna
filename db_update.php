@@ -295,7 +295,6 @@ switch ($stage) {
 		build_config(1, 'o_enable_advanced_search', '1');
 
 		// ModernBB 3.4 upgrade support
-		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 		build_config(1, 'o_cookie_bar', '0');
 		build_config(1, 'o_moderated_by', '1');
 
@@ -688,6 +687,10 @@ switch ($stage) {
 		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, '\'UTC\'') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
 		build_config(0, 'o_default_timezone');
 		build_config(1, 'o_timezone', 'UTC');
+        
+        // Luna 1.4 upgrade support
+		$db->alter_field('users', 'password', 'VARCHAR(512)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'salt', 'VARCHAR(8)', true) or error('Unable to add salt field to user table', __FILE__, __LINE__, $db->error());
 
 		break;
 

@@ -102,10 +102,11 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 			$now = time();
 
 			$intial_group_id = ($luna_config['o_regs_verify'] == '0') ? $luna_config['o_default_user_group'] : LUNA_UNVERIFIED;
-			$password_hash = luna_hash($password1);
+            $salt = random_pass(8);
+			$password_hash = luna_sha512($password1, $salt);
 
 			// Add the user
-			$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, color_scheme, registered, registration_ip, last_visit, php_timezone) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$luna_config['o_default_lang'].'\', \''.$luna_config['o_default_style'].'\', \''.$luna_config['o_default_accent'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', \''.$luna_config['o_timezone'].'\')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, color_scheme, registered, registration_ip, last_visit, php_timezone, salt) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$luna_config['o_default_lang'].'\', \''.$luna_config['o_default_style'].'\', \''.$luna_config['o_default_accent'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', \''.$luna_config['o_timezone'].'\', \''.$salt.'\')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 			$new_uid = $db->insert_id();
 
 			if ($luna_config['o_regs_verify'] == '0') {
