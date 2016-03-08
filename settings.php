@@ -260,11 +260,16 @@ if (isset($_POST['update_group_membership'])) {
 
 		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch password', __FILE__, __LINE__, $db->error());
 		$cur_user = $db->fetch_assoc($result);
+        
+        if (!isset($cur_user['salt']))
+            $salt = random_pass(8);
+        else
+            $salt = $cur_user['salt'];
 
 		$authorized = false;
 
 		if (!empty($cur_user['password'])) {
-			$old_password_hash = luna_hash($old_password);
+			$old_password_hash = luna_sha512($old_password, $salt);
 
 			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
 				$authorized = true;
@@ -273,9 +278,9 @@ if (isset($_POST['update_group_membership'])) {
 		if (!$authorized)
 			message(__('Wrong old password.', 'luna'));
 
-		$new_password_hash = luna_hash($new_password1);
+		$new_password_hash = luna_sha512($new_password1, $salt);
 
-		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\''.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\', salt=\''.$salt.'\' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
 
 		if ($luna_user['id'] == $id)
 			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
