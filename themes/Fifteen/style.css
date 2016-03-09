@@ -1241,25 +1241,28 @@ blockquote footer {
 }
 
 .night .container.main {
-    background: #444;
+    background: #404040;
 }
 
 .night hr {
-    border-color: #3d3d3d;
+    border-color: #333;
 }
 
 .night .list-group.list-group-thread .list-group-item {
-    background-color: #555;
+    background-color: #505050;
     border-left: 6px solid #4a4a4a;
 }
 
 .night .list-group.list-group-thread .list-group-item:hover {
-    background-color: #636363;
-    border-left: 6px solid #4d4d4d;
+    background-color: #4a4a4a;
 }
 
 .night .list-group-thread .list-group-item .label {
-    background: #4a4a4a;
+    background: #464646;
+}
+
+.night .list-group-thread .list-group-item:hover .label {
+    background: #404040;
 }
 
 .night .list-group-item {
@@ -1277,7 +1280,7 @@ blockquote footer {
 .night .nav-tabs li.active a,
 .night .nav-tabs li.active a:hover,
 .night .nav-tabs li.active a:focus {
-    background: #444;
+    background: #404040;
     color: #fff;
 }
 
@@ -1286,9 +1289,9 @@ blockquote footer {
 }
 
 .night .form-control {
-    background: #444;
+    background: #404040;
     color: #fff;
-    border-color: #383838;
+    border-color: #333;
 }
 
 .night .well {
