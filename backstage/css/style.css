@@ -105,7 +105,6 @@ label .help-block {
 .navbar-default {
 	background: #1f62b0;
 	border-bottom: none;
-	box-shadow: 0 0 20px rgba(0,0,0,.2) !important;
 }
 
 .navbar-default .navbar-brand,
@@ -832,7 +831,6 @@ a.label-new {
 	background-color: white;
 	width: 20px;
 	height: 20px;
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
 	float: right;
 }
 
@@ -845,7 +843,6 @@ a.label-new {
 	display: inline-block;
 	max-width: 266px !important;
 	border: 1px solid rgba(0,0,0,.15);
-	box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	float: left;
 }
 
@@ -879,12 +876,10 @@ a.label-new {
 	margin-top: 9px;
 	width: 42px;
 	height: 42px;
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
 	float: left;
 }
 
 .color-popup span:hover {
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,.5), 0px 2px 2px -2px rgba(0,0,0,.4);
 }
 
 .color-picker {
@@ -911,7 +906,6 @@ a.label-new {
 	background-color: #ebebeb;
 	border-color: #adadad;
 	outline: 0;
-	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
 .color-picker.disabled,
@@ -1037,7 +1031,6 @@ html.night,
 
 .night .container-main {
 	background: #444;
-	box-shadow: 0 0 30px #222;
 }
 
 .night .first-run-content {
