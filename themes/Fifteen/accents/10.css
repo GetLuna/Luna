@@ -65,6 +65,7 @@ blockquote,
 .list-group.list-group-thread .list-group-item.new-item,
 .list-group-forum a.list-group-item:hover
 .list-group-thread .list-group-item:hover,
+.night .list-group-thread .list-group-item:hover,
 .form-control:focus,
 .night .search-form:hover,
 .night .night .search-form:focus,
