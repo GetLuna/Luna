@@ -69,19 +69,19 @@ if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' ||
 
 // Check for the existence of various PHP opcode caches/optimizers
 if (function_exists('mmcache'))
-	$php_accelerator = '<a href="http://'.__('turck-mmcache.sourceforge.net/', 'luna').'">'.__('Turck MMCache', 'luna').'</a>';
+	$php_accelerator = '<a href="http://turck-mmcache.sourceforge.net/">'.__('Turck MMCache', 'luna').'</a>';
 elseif (isset($_PHPA))
-	$php_accelerator = '<a href="http://'.__('www.php-accelerator.co.uk/', 'luna').'">'.__('ionCube PHP Accelerator', 'luna').'</a>';
+	$php_accelerator = '<a href="http://www.php-accelerator.co.uk/">'.__('ionCube PHP Accelerator', 'luna').'</a>';
 elseif (ini_get('apc.enabled'))
-	$php_accelerator ='<a href="http://'.__('www.php.net/apc/', 'luna').'">'.__('Alternative PHP Cache (APC)', 'luna').'</a>';
+	$php_accelerator ='<a href="http://www.php.net/apc/">'.__('Alternative PHP Cache (APC)', 'luna').'</a>';
 elseif (ini_get('zend_optimizer.optimization_level'))
-	$php_accelerator = '<a href="http://'.__('www.zend.com/products/guard/zend-optimizer/', 'luna').'">'.__('Zend Optimizer', 'luna').'</a>';
+	$php_accelerator = '<a href="http://www.zend.com/products/guard/zend-optimizer/">'.__('Zend Optimizer', 'luna').'</a>';
 elseif (ini_get('eaccelerator.enable'))
-	$php_accelerator = '<a href="http://'.__('www.eaccelerator.net/', 'luna').'">'.__('eAccelerator', 'luna').'</a>';
+	$php_accelerator = '<a href="http://www.eaccelerator.net/">'.__('eAccelerator', 'luna').'</a>';
 elseif (ini_get('xcache.cacher'))
-	$php_accelerator = '<a href="http://'.__('xcache.lighttpd.net/', 'luna').'">'.__('XCache', 'luna').'</a>';
+	$php_accelerator = '<a href="http://xcache.lighttpd.net/">'.__('XCache', 'luna').'</a>';
 else
-	$php_accelerator = __('N/A', 'luna');
+	$php_accelerator = __('Non available', 'luna');
 
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Server statistics', 'luna'));
