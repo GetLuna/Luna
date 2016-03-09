@@ -28,18 +28,19 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.4 Preview 1</span></p><h2>Emerald</h2>
+						<p class="meta"><span class="release-version">1.4 Preview 2</span></p><h2>Emerald</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Fifteen has received a fully reimagned design based on Airalin</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Luna now uses salts and SHA-512 to save passwords</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The editor will now put items under a button if the screen becomes to small</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Advanced search has an improved UI</li>
-							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The editor no longer has an emoticon menu</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 3 bugs</li>
+                            <li><div class="stater"><em class="state state-new">New</em></div>Fifteen has received a fully reimagned design based on Airalin</li>
+                            <li><div class="stater"><em class="state state-new">New</em></div>Luna now uses salts and SHA-512 to save passwords</li>
+                            <li><div class="stater"><em class="state state-system">System</em></div>The editor will now put items under a button if the screen becomes to small</li>
+                            <li><div class="stater"><em class="state state-improved">Improved</em></div>Advanced search has an improved UI</li>
+                            <li><div class="stater"><em class="state state-improved">Improved</em></div>Improved Backstage UI and night mode</li>
+                            <li><div class="stater"><em class="state state-removed">Removed</em></div>The editor no longer has an emoticon menu</li>
+                            <li><div class="stater"><em class="state state-fixed">Fixed</em></div>Fixes 3 bugs</li>
 							<hr />
-							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>The light grey accent has yet to be implemented correctly in Fifteen</li>
-							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>"Forces accents" has yet to be implemented in Fifteen</li>
-							<li><div class="change-label-container"><em class="change-label change-note">Note</em></div>Sunrise has multiple visual issues in this Preview</li>
+							<li><div class="stater"><em class="state state-note">Note</em></div>The light grey accent has yet to be implemented correctly in Fifteen</li>
+							<li><div class="stater"><em class="state state-note">Note</em></div>"Forces accents" has yet to be implemented in Fifteen</li>
+							<li><div class="stater"><em class="state state-note">Note</em></div>Sunrise has multiple visual issues in this Preview</li>
 						</ul>
 					</div>
 				</section>
