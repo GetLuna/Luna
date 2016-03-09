@@ -1,0 +1,6025 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luna 1.4\n"
+"POT-Creation-Date: 2016-03-08 22:01+0100\n"
+"PO-Revision-Date: 2016-03-09 19:35+0100\n"
+"Last-Translator: \n"
+"Language-Team: Luna Group\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: backstage/about.php:16 backstage/appearance.php:71 backstage/bans.php:82
+#: backstage/bans.php:328 backstage/bans.php:391 backstage/board.php:79
+#: backstage/board.php:213 backstage/board.php:450 backstage/board.php:508
+#: backstage/censoring.php:76 backstage/database.php:509 backstage/email.php:61
+#: backstage/features.php:64 backstage/groups.php:38 backstage/groups.php:492
+#: backstage/groups.php:516 backstage/groups.php:555 backstage/index.php:82
+#: backstage/loader.php:34 backstage/maintenance.php:162
+#: backstage/moderate.php:44 backstage/moderate.php:131
+#: backstage/moderate.php:222 backstage/moderate.php:297
+#: backstage/moderate.php:472 backstage/moderate.php:595
+#: backstage/moderate.php:680 backstage/moderate.php:834
+#: backstage/permissions.php:50 backstage/prune.php:89 backstage/prune.php:207
+#: backstage/ranks.php:85 backstage/registration.php:59
+#: backstage/reports.php:42 backstage/settings.php:134 backstage/system.php:87
+#: backstage/theme.php:33 backstage/tools.php:113 backstage/update.php:68
+#: backstage/users.php:34 backstage/users.php:105 backstage/users.php:272
+#: backstage/users.php:410 backstage/users.php:521 backstage/users.php:691
+#: backstage/users.php:785 include/functions.php:1077
+#: themes/Fifteen/settings.php:43 themes/Sunrise/settings.php:39
+msgid "Admin"
+msgstr "Admin"
+
+#: backstage/about.php:16 backstage/censoring.php:140 backstage/update.php:68
+#: include/backstage_functions.php:159
+msgid "Update"
+msgstr "Update"
+
+#: backstage/appearance.php:16 backstage/email.php:16 backstage/features.php:16
+#: backstage/registration.php:16 backstage/settings.php:16
+#: backstage/update.php:34
+msgid ""
+"Bad HTTP_REFERER. If you have moved these forums from one location to "
+"another or switched domains, you need to update the Base URL manually in the "
+"database (look for o_base_url in the config table) and then clear the cache "
+"by deleting all .php files in the /cache directory."
+msgstr ""
+"Foute HTTP_REFERER. Als je dit forum hebt verplaatst van de ene locatie naar "
+"de andere of je hebt een nieuw domein aangenomen moet de Basis URL handmatig "
+"worden aangepast in de database (zoek naar o_base_url in de config tabel) en "
+"moet de cache vervolgens verwijderd worden door alle .php-bestanden in de /"
+"cache-map te verwijderen."
+
+#: backstage/appearance.php:71 include/backstage_functions.php:51
+#: include/backstage_functions.php:181
+msgid "Appearance"
+msgstr "Weergave"
+
+#: backstage/appearance.php:77 backstage/board.php:514 backstage/email.php:67
+#: backstage/features.php:70 backstage/index.php:88
+#: backstage/maintenance.php:168 backstage/permissions.php:56
+#: backstage/registration.php:65 backstage/settings.php:140
+#: backstage/theme.php:39 backstage/tools.php:119 backstage/update.php:74
+#: backstage/users.php:792
+msgid "Your settings have been saved."
+msgstr "De wijzigingen zijn opgeslagen."
+
+#: backstage/appearance.php:83
+msgid "Display settings"
+msgstr "Weergave instellingen"
+
+#: backstage/appearance.php:83 backstage/appearance.php:190
+#: backstage/appearance.php:222 backstage/board.php:222 backstage/board.php:327
+#: backstage/board.php:607 backstage/board.php:653 backstage/email.php:72
+#: backstage/email.php:93 backstage/email.php:120 backstage/features.php:75
+#: backstage/features.php:148 backstage/features.php:175
+#: backstage/features.php:208 backstage/features.php:264
+#: backstage/groups.php:48 backstage/groups.php:591 backstage/index.php:232
+#: backstage/maintenance.php:175 backstage/menu.php:101
+#: backstage/permissions.php:61 backstage/permissions.php:110
+#: backstage/permissions.php:148 backstage/ranks.php:123
+#: backstage/registration.php:70 backstage/settings.php:145
+#: backstage/settings.php:186 backstage/settings.php:208
+#: backstage/settings.php:264 backstage/settings.php:306
+#: backstage/settings.php:338 backstage/settings.php:364
+#: backstage/settings.php:417 backstage/update.php:83 backstage/users.php:294
+#: themes/Fifteen/me-modals.php:17 themes/Fifteen/me-modals.php:43
+#: themes/Fifteen/settings.php:36 themes/Fifteen/settings.php:479
+#: themes/Sunrise/me-modals.php:17 themes/Sunrise/me-modals.php:43
+#: themes/Sunrise/settings.php:30 themes/Sunrise/settings.php:472
+msgid "Save"
+msgstr "Opslaan"
+
+#: backstage/appearance.php:88
+msgid "Theme settings"
+msgstr "Thema instellingen"
+
+#: backstage/appearance.php:93
+msgid "Allow users to set their own accent color."
+msgstr "Laat gebruikers hun eigen accentkleur kiezen."
+
+#: backstage/appearance.php:99
+msgid "Allow users to change the night mode settings."
+msgstr "Laat gebruikers kiezen om nacht modus aan te zetten."
+
+#: backstage/appearance.php:106 themes/Fifteen/settings.php:127
+#: themes/Sunrise/settings.php:124
+msgid "Color"
+msgstr "Kleur"
+
+#: backstage/appearance.php:124
+msgid "User profile"
+msgstr "Gebruikersprofiel"
+
+#: backstage/appearance.php:129
+msgid "Show information about the commenter under the username in threads."
+msgstr "Toon info over de gebruiker onder hun gebruikersnaam in conversaties."
+
+#: backstage/appearance.php:135
+msgid ""
+"Show the number of comments a user has made in threads, profile and the user "
+"list."
+msgstr ""
+"Toon het aantal reacties van een gebruiker on zijn gebruikersnaam in "
+"conversaties, profielen en de gebruikerslijst."
+
+#: backstage/appearance.php:141
+msgid "Index settings"
+msgstr "Index instellingen"
+
+#: backstage/appearance.php:146
+msgid ""
+"Show the \"Moderated by\" list when moderators are set on a per-forum base "
+"(requires theme support)."
+msgstr ""
+"Toon de \"Gemodereerd door\" lijst als moderatoren zijn ingesteld op basis "
+"van individuele forums (vereist ondersteuning door het thema)."
+
+#: backstage/appearance.php:153 themes/Fifteen/help.php:30
+msgid "Emoji"
+msgstr "Emoji"
+
+#: backstage/appearance.php:158
+msgid "Use emojis instead of emoticons."
+msgstr "Gebruik emoji's in plaats van emoticons."
+
+#: backstage/appearance.php:164
+msgid "Smilie size"
+msgstr "Emoticon grootte"
+
+#: backstage/appearance.php:164
+msgid ""
+"The emoticons and emojis are shown, don't go above 29 pixels when using "
+"normal emoticons"
+msgstr ""
+"De manier waarop emoticons en emoji's worden getoond, ga niet boven 29 "
+"pixels als je gebruik maakt van normale emoticons."
+
+#: backstage/appearance.php:168 backstage/settings.php:390
+#: backstage/settings.php:399 settings.php:515 themes/Sunrise/me-modals.php:62
+msgid "pixels"
+msgstr "pixels"
+
+#: backstage/appearance.php:174 themes/Fifteen/settings.php:380
+#: themes/Sunrise/settings.php:373
+msgid "Threads per page"
+msgstr "Conversaties per pagina"
+
+#: backstage/appearance.php:174
+msgid "Default amount of threads per page"
+msgstr "Standaard aantal conversaties per pagina"
+
+#: backstage/appearance.php:180 themes/Fifteen/settings.php:386
+#: themes/Sunrise/settings.php:379
+msgid "Comments per page"
+msgstr "Reacties per pagina"
+
+#: backstage/appearance.php:180
+msgid "Default amount of comments per page"
+msgstr "Standaard aantal reacties per pagina"
+
+#: backstage/appearance.php:190
+msgid "Header settings"
+msgstr "Hoofding instellingen"
+
+#: backstage/appearance.php:195 footer.php:16 footer.php:19
+#: include/general_functions.php:50 include/me_functions.php:19
+#: themes/Fifteen/notifications.php:28 themes/Sunrise/notifications.php:21
+msgid "Notifications"
+msgstr "Notificaties"
+
+#: backstage/appearance.php:200
+msgid ""
+"Show a fly-out when clicking the notification icon instead of going to the "
+"notification page. Disabling this feature might improve performance."
+msgstr ""
+"Toon een fly-out als er geklikt wordt op het notificatie-icoon in plaats van "
+"de notificatie-pagina the laden. Dit uitschakelen levert mogelijk betere "
+"prestaties."
+
+#: backstage/appearance.php:207 backstage/bans.php:419
+#: backstage/features.php:127 backstage/users.php:799
+#: include/backstage_functions.php:34 include/backstage_functions.php:170
+#: search.php:438 search.php:500 search.php:512 themes/Fifteen/help.php:137
+#: themes/Fifteen/search-advanced.php:15 themes/Fifteen/search-advanced.php:18
+#: themes/Fifteen/search.php:13 themes/Fifteen/search.php:25
+#: themes/Fifteen/users.php:30 themes/Sunrise/help.php:142
+#: themes/Sunrise/search-advanced.php:10 themes/Sunrise/search-results.php:8
+#: themes/Sunrise/search.php:8 themes/Sunrise/search.php:14
+#: themes/Sunrise/users.php:22
+msgid "Search"
+msgstr "Zoeken"
+
+#: backstage/appearance.php:212
+msgid "Show the search bar in the heading."
+msgstr "Toon een zoekvak in de hoofding."
+
+#: backstage/appearance.php:222
+msgid "Footer settings"
+msgstr "Voet instellingen"
+
+#: backstage/appearance.php:227 backstage/index.php:200
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: backstage/appearance.php:232
+msgid "Show the board statistics."
+msgstr "Toon forum statistieken."
+
+#: backstage/appearance.php:238
+msgid "Back to top"
+msgstr "Terug omhoog"
+
+#: backstage/appearance.php:243
+msgid "Show a \"Back to top\" link in the footer."
+msgstr "Toon een \"Terug omhoog\" link in de voet"
+
+#: backstage/appearance.php:250 themes/Fifteen/footer.php:91
+#: themes/Sunrise/footer.php:91
+msgid "Copyright"
+msgstr "Copyright"
+
+#: backstage/appearance.php:255
+msgid "Show the copyright notice in the footer."
+msgstr "Toon een copyright melding in de voet."
+
+#: backstage/appearance.php:261
+msgid "Copyright content"
+msgstr "Copyright melding"
+
+#: backstage/appearance.php:266
+msgid "Show default copyright"
+msgstr "Toon de standaard copyright info."
+
+#: backstage/appearance.php:272
+msgid "Show personalized copyright notices:"
+msgstr "Toon gepersonaliseerde copyright info."
+
+#: backstage/appearance.php:274
+msgid "Your copyright"
+msgstr "Jou copyright"
+
+#: backstage/bans.php:23 backstage/bans.php:69 backstage/bans.php:75
+#: backstage/bans.php:258 backstage/board.php:22 backstage/board.php:42
+#: backstage/board.php:128 backstage/board.php:148 backstage/board.php:202
+#: backstage/board.php:409 backstage/board.php:490 backstage/loader.php:19
+#: backstage/menu.php:33 backstage/menu.php:43 backstage/moderate.php:28
+#: backstage/moderate.php:32 backstage/moderate.php:80
+#: backstage/moderate.php:85 backstage/moderate.php:99
+#: backstage/moderate.php:106 backstage/moderate.php:163
+#: backstage/moderate.php:167 backstage/moderate.php:175
+#: backstage/moderate.php:180 backstage/moderate.php:411
+#: backstage/moderate.php:416 backstage/moderate.php:422
+#: backstage/moderate.php:427 backstage/moderate.php:463
+#: backstage/moderate.php:533 backstage/moderate.php:542
+#: backstage/moderate.php:636 backstage/moderate.php:644
+#: backstage/moderate.php:727 backstage/moderate.php:743
+#: backstage/moderate.php:759 backstage/moderate.php:774
+#: backstage/moderate.php:790 backstage/moderate.php:806 backstage/ranks.php:48
+#: backstage/registration.php:35 backstage/settings.php:63
+#: backstage/settings.php:99 backstage/settings.php:102
+#: backstage/settings.php:105 backstage/users.php:19 comment.php:19
+#: comment.php:28 comment.php:462 comment.php:466 comment.php:525 delete.php:18
+#: delete.php:25 edit.php:19 edit.php:24 extern.php:280 extern.php:500
+#: inbox.php:97 misc.php:43 misc.php:56 misc.php:60 misc.php:148 misc.php:167
+#: misc.php:174 misc.php:225 misc.php:248 misc.php:272 misc.php:298
+#: misc.php:307 misc.php:325 misc.php:344 misc.php:372 new_inbox.php:48
+#: new_inbox.php:54 new_inbox.php:67 new_inbox.php:74 new_inbox.php:89
+#: new_inbox.php:102 new_inbox.php:107 new_inbox.php:125 new_inbox.php:318
+#: new_inbox.php:365 new_inbox.php:378 notifications.php:25
+#: notifications.php:29 profile.php:23 profile.php:27 search.php:43
+#: search.php:70 search.php:78 search.php:323 search.php:349 search.php:453
+#: settings.php:239 settings.php:298 settings.php:543 settings.php:578
+#: settings.php:723 settings.php:731 settings.php:746 thread.php:21
+#: thread.php:27 thread.php:78 viewforum.php:19 viewforum.php:28
+#: viewinbox.php:45 viewinbox.php:76 viewinbox.php:88 viewinbox.php:96
+#: viewinbox.php:104 viewinbox.php:127 viewinbox.php:181 viewinbox.php:196
+#: viewinbox.php:219
+msgid ""
+"Bad request. The link you followed is incorrect, outdated or you are simply "
+"not allowed to hang around here."
+msgstr ""
+"Ongeldige aanvraag. De link die je naar hier leiden is niet correct, "
+"verouderd of je hebt simpelweg geen toestemming om hier te zijn."
+
+#: backstage/bans.php:29
+msgid "No user by that ID registered."
+msgstr "Geen gebruiker met dat ID."
+
+#: backstage/bans.php:38
+msgid ""
+"No user by that username registered. If you want to add a ban not tied to a "
+"specific username just leave the username blank."
+msgstr ""
+"Geen gebruiker met die gebruikersnaam. Als je iemand wilt verbannen zonder "
+"een specifieke gebruikersnaam laat je het veld leeg."
+
+#: backstage/bans.php:45 backstage/bans.php:169
+#, php-format
+msgid ""
+"The user %s is an administrator and can't be banned. If you want to ban an "
+"administrator, you must first demote him/her."
+msgstr ""
+"De gebruiker %s is een administrator en kan daarom niet worden verbannen. Je "
+"moet eerst de permissies van de gebruiker beperken."
+
+#: backstage/bans.php:51 backstage/bans.php:175
+#, php-format
+msgid ""
+"The user %s is a moderator and can't be banned. If you want to ban a "
+"moderator, you must first demote him/her."
+msgstr ""
+"De gebruiker %s is een moderator en kan daarom niet worden verbannen. Je "
+"moet eerst de permissies van de gebruiker beperken."
+
+#: backstage/bans.php:82 backstage/bans.php:328 backstage/bans.php:391
+#: backstage/users.php:521 include/backstage_functions.php:44
+#: include/backstage_functions.php:175
+msgid "Bans"
+msgstr "Bans"
+
+#: backstage/bans.php:92
+msgid "Ban range"
+msgstr "Ban reeks"
+
+#: backstage/bans.php:92 backstage/bans.php:122 backstage/users.php:531
+#: backstage/users.php:709 backstage/users.php:769
+msgid "Ban"
+msgstr "Ban"
+
+#: backstage/bans.php:99 backstage/bans.php:344 backstage/bans.php:427
+#: backstage/bans.php:450 backstage/login.php:21 backstage/tools.php:133
+#: backstage/users.php:121 backstage/users.php:723 backstage/users.php:807
+#: backstage/users.php:887 install.php:189 install.php:306 install.php:333
+#: register.php:245 themes/Fifteen/index.php:56 themes/Fifteen/login.php:13
+#: themes/Fifteen/register.php:20 themes/Fifteen/settings.php:51
+#: themes/Sunrise/index.php:46 themes/Sunrise/login.php:13
+#: themes/Sunrise/register.php:20 themes/Sunrise/settings.php:47
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: backstage/bans.php:99
+msgid "The username to ban"
+msgstr "De te verbannen gebruikersnaam"
+
+#: backstage/bans.php:105 backstage/bans.php:429
+msgid "IP address/IP-ranges"
+msgstr "IP adres/IP reeks"
+
+#: backstage/bans.php:105
+msgid "The IP you wish to ban, separate addresses with spaces"
+msgstr ""
+"Als je verschillende IPs wilt verbannen kan dat door gebruikt te maken van "
+"spaties"
+
+#: backstage/bans.php:108
+#, php-format
+msgid "Click %s to see IP statistics for this user."
+msgstr "Klik %s om IP statistieken te zien voor deze gebruiker"
+
+#: backstage/bans.php:108
+msgid "here"
+msgstr "hier"
+
+#: backstage/bans.php:112 backstage/bans.php:345 backstage/bans.php:433
+#: backstage/bans.php:452 backstage/settings.php:319 backstage/tools.php:139
+#: backstage/users.php:122 backstage/users.php:724 backstage/users.php:888
+#: comment.php:529 include/backstage_functions.php:55
+#: include/backstage_functions.php:183 include/draw_functions.php:88
+#: include/draw_functions.php:644 include/draw_functions.php:646
+#: include/draw_functions.php:676 include/draw_functions.php:815
+#: include/draw_functions.php:817 include/draw_functions.php:843
+#: install.php:192 install.php:352 register.php:245
+#: themes/Fifteen/comment.php:35 themes/Fifteen/login.php:42
+#: themes/Fifteen/register.php:41 themes/Fifteen/settings.php:65
+#: themes/Sunrise/comment.php:30 themes/Sunrise/login.php:42
+#: themes/Sunrise/register.php:41 themes/Sunrise/settings.php:61
+#: themes/Sunrise/thread.php:35 themes/Sunrise/thread.php:39 thread.php:127
+msgid "Email"
+msgstr "E-mail"
+
+#: backstage/bans.php:112
+msgid "The email or email domain you wish to ban"
+msgstr "Het e-mailadres of e-maildomein dat je wilt verbannen"
+
+#: backstage/bans.php:122
+msgid "Ban details"
+msgstr "Ban details"
+
+#: backstage/bans.php:127 backstage/users.php:537
+msgid "Ban message"
+msgstr "Ban bericht"
+
+#: backstage/bans.php:127 backstage/users.php:540
+msgid "A message for banned users"
+msgstr "Een bericht voor de verbannen gebruiker"
+
+#: backstage/bans.php:133 backstage/bans.php:453 backstage/users.php:544
+msgid "Expire date"
+msgstr "Vervaldatum"
+
+#: backstage/bans.php:133 backstage/users.php:547
+msgid "When does the ban expire, blank for manually"
+msgstr "Wanneer verloopt de ban, laat leeg voor manueel"
+
+#: backstage/bans.php:135 backstage/bans.php:440 backstage/bans.php:442
+#: backstage/users.php:867 backstage/users.php:869 backstage/users.php:873
+#: backstage/users.php:875 backstage/users.php:879 backstage/users.php:881
+msgid "(yyyy-mm-dd)"
+msgstr "(yyyy-mm-dd)"
+
+#: backstage/bans.php:158
+msgid ""
+"You must enter either a username, an IP address or an email address (at "
+"least)."
+msgstr ""
+"Je moet (op zijn minst) of een gebruikersnaam, of een IP adres of een e-mail "
+"adres in vullen."
+
+#: backstage/bans.php:160
+msgid "The guest user cannot be banned."
+msgstr "Het gast-account kan niet worden verbannen."
+
+#: backstage/bans.php:193 backstage/bans.php:205
+msgid "You entered an invalid IP/IP-range."
+msgstr "Je hebt een ongeldig(e) IP/IP-reeks ingevoerd."
+
+#: backstage/bans.php:219
+msgid ""
+"The email address (e.g. user@domain.com) or partial email address domain (e."
+"g. domain.com) you entered is invalid."
+msgstr ""
+"Het e-mailadres (bv gebruiker@domein.be) of gedeeltelijk e-mailadres domein "
+"(bv domein.be) dat werd ingegeven was ongeldig."
+
+#: backstage/bans.php:226 backstage/bans.php:229 backstage/bans.php:293
+#: backstage/bans.php:302 backstage/users.php:481 backstage/users.php:484
+msgid "You entered an invalid expire date."
+msgstr "Je hebt een ongeldige vervaldatum ingegeven."
+
+#: backstage/bans.php:226 backstage/bans.php:229 backstage/users.php:481
+#: backstage/users.php:484
+msgid ""
+"The format should be YYYY-MM-DD and the date must be at least one day in the "
+"future."
+msgstr ""
+"Het formaat van de datum moet YYYY-MM-DD zijn en moet minstens 1 dag in de "
+"toekomst zijn."
+
+#: backstage/bans.php:328 backstage/bans.php:336 backstage/users.php:34
+#: backstage/users.php:42 backstage/users.php:105 backstage/users.php:113
+#: backstage/users.php:691 backstage/users.php:700
+msgid "Search Results"
+msgstr "Zoek resultaten"
+
+#: backstage/bans.php:346 backstage/bans.php:451
+msgid "IP"
+msgstr "IP"
+
+#: backstage/bans.php:347
+msgid "Expires"
+msgstr "Vervalt"
+
+#: backstage/bans.php:348 backstage/bans.php:435 backstage/index.php:146
+#: backstage/reports.php:59 backstage/reports.php:116 comment.php:529
+#: edit.php:131 misc.php:134 new_inbox.php:388 themes/Sunrise/inbox-new.php:75
+#: themes/Sunrise/settings.php:35 thread.php:123 viewinbox.php:202
+msgid "Message"
+msgstr "Bericht"
+
+#: backstage/bans.php:349
+msgid "By"
+msgstr "Door"
+
+#: backstage/bans.php:350 backstage/ranks.php:137 backstage/reports.php:60
+#: backstage/users.php:126 backstage/users.php:728
+msgid "Actions"
+msgstr "Acties"
+
+#: backstage/bans.php:360 backstage/board.php:635 backstage/groups.php:633
+#: include/draw_functions.php:708 include/draw_functions.php:735
+msgid "Edit"
+msgstr "Bewerken"
+
+#: backstage/bans.php:360 backstage/board.php:95 backstage/board.php:467
+#: backstage/board.php:571 backstage/board.php:635 backstage/censoring.php:141
+#: backstage/ranks.php:152
+msgid "Remove"
+msgstr "Verwijder"
+
+#: backstage/bans.php:370
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: backstage/bans.php:377 backstage/users.php:758
+msgid "No match"
+msgstr "Geen resultaat"
+
+#: backstage/bans.php:400
+msgid "Add ban"
+msgstr "Ban toevoegen"
+
+#: backstage/bans.php:408 backstage/board.php:525 backstage/board.php:554
+#: backstage/censoring.php:88 backstage/groups.php:566 backstage/menu.php:77
+#: backstage/ranks.php:102 backstage/tools.php:128
+msgid "Add"
+msgstr "Toevoegen"
+
+#: backstage/bans.php:411
+msgid ""
+"The username you want to ban. If you want to ban a specific IP/IP-range or "
+"email, leave it blank."
+msgstr ""
+"DE gebruikersnaam die je wilt verbannen. Als je een specifiek IP-adres of IP-"
+"range of e-mail wilt verbannen laat je dit leeg."
+
+#: backstage/bans.php:419
+msgid "Ban search"
+msgstr "Ban zoeken"
+
+#: backstage/bans.php:423
+msgid ""
+"Search for bans in the database. You can enter one or more terms to search "
+"for. Wildcards in the form of asterisks (*) are accepted. To show all bans "
+"leave all fields empty."
+msgstr ""
+"Zoek naar bans in de database. Je kan een of meer velden invullen. Om alle "
+"bans te tonen laat je alle velden leeg."
+
+#: backstage/bans.php:439
+msgid "Expire after"
+msgstr "Vervaldatum na"
+
+#: backstage/bans.php:441
+msgid "Expire before"
+msgstr "Vervaldatum voor"
+
+#: backstage/bans.php:445 backstage/users.php:884
+msgid "Order by"
+msgstr "Rankschik op"
+
+#: backstage/bans.php:458 backstage/users.php:894
+#: themes/Fifteen/search-advanced.php:50 themes/Sunrise/search-advanced.php:30
+msgid "Ascending"
+msgstr "Oplopend"
+
+#: backstage/bans.php:459 backstage/users.php:895
+#: themes/Fifteen/search-advanced.php:49 themes/Sunrise/search-advanced.php:29
+msgid "Descending"
+msgstr "Aflopend"
+
+#: backstage/board.php:79 backstage/board.php:213 themes/Fifteen/help.php:209
+#: themes/Sunrise/help.php:216
+msgid "Forums"
+msgstr "Forums"
+
+#: backstage/board.php:89
+msgid "Confirm delete forum"
+msgstr "Bevestig forum verwijderen"
+
+#: backstage/board.php:92
+#, php-format
+msgid "Are you sure that you want to delete the forum <strong>%s</strong>?"
+msgstr "Ben je zeker dat je het forum <strong>%s</strong> wilt verwijderen?"
+
+#: backstage/board.php:92
+msgid "Deleting a forum will delete all comments (if any) in that forum!"
+msgstr ""
+"Als je een forum verwijderd worden ook alle reacties en conversaties in dat "
+"forum verwijderd!"
+
+#: backstage/board.php:113 backstage/board.php:500 backstage/menu.php:57
+msgid "Position must be a positive integer value."
+msgstr "De positie moet een positief natuurlijk getal zijn."
+
+#: backstage/board.php:145 backstage/board.php:396 backstage/board.php:497
+msgid "You must enter a name"
+msgstr "Je moet een naam ingeven"
+
+#: backstage/board.php:222
+msgid "Forum details"
+msgstr "Forum details"
+
+#: backstage/board.php:227
+msgid "Forum name"
+msgstr "Forum naam"
+
+#: backstage/board.php:233
+msgid "Description"
+msgstr "Beschrijving"
+
+#: backstage/board.php:239
+msgid "Parent section"
+msgstr "Bovenliggende sectie"
+
+#: backstage/board.php:242
+msgid "No parent forum selected"
+msgstr "Geen bovenliggend forum geselecteerd"
+
+#: backstage/board.php:271
+msgid "Category"
+msgstr "Categorie"
+
+#: backstage/board.php:287
+msgid "Sort threads by"
+msgstr "Sorteer conversaties op"
+
+#: backstage/board.php:290 backstage/users.php:890 profile.php:46
+#: themes/Fifteen/inbox.php:62 themes/Sunrise/inbox.php:55
+msgid "Last comment"
+msgstr "Laatste reactie"
+
+#: backstage/board.php:291
+msgid "Thread start"
+msgstr "Conversatie gestart door"
+
+#: backstage/board.php:292 comment.php:529 edit.php:131
+#: include/draw_functions.php:1038 misc.php:134 new_inbox.php:392
+#: themes/Fifteen/comment.php:41 themes/Fifteen/inbox-new.php:83
+#: themes/Fifteen/search-advanced.php:43 themes/Sunrise/comment.php:36
+#: themes/Sunrise/inbox-new.php:68 themes/Sunrise/search-advanced.php:25
+msgid "Subject"
+msgstr "Onderwerp"
+
+#: backstage/board.php:297
+msgid "Icon"
+msgstr "Icoon"
+
+#: backstage/board.php:297
+#, php-format
+msgid ""
+"The Font Awesome icon you want to show next to the title, for a full "
+"overview, see the %s"
+msgstr ""
+"Het Font Awesome icoon dat je wilt gebruiken voor dit forum. Zie de %s."
+
+#: backstage/board.php:297
+msgid "Font Awesome icon guide"
+msgstr "Font Awesome icoon gids"
+
+#: backstage/board.php:306
+msgid "Forum color"
+msgstr "Forum kleur"
+
+#: backstage/board.php:312
+msgid "Solved"
+msgstr "Opgelost"
+
+#: backstage/board.php:317
+msgid "Threads in this forum can be marked as solved."
+msgstr "Conversaties in dit forum mogen als opgelost worden gemarkeerd."
+
+#: backstage/board.php:327
+msgid "Group permissions"
+msgstr "Groep permissies"
+
+#: backstage/board.php:331
+msgid ""
+"Here you can set the forum specific permissions for the different user "
+"groups. Administrators always have full permissions. Permission settings "
+"that differ from the default permissions for the user group are marked red. "
+"Some permissions are disabled under some conditions."
+msgstr ""
+"Hier can je forum-specifieke permissies instellen voor groepen. "
+"Administrators hebben altijd alle permissies. Permissie instellingen die "
+"niet overeenkomen met de standaard permissies van een groep zijn gemarkeerd "
+"in rood. In sommige omstandigheden zijn permissies mogelijk niet beschikbaar."
+
+#: backstage/board.php:331 backstage/groups.php:38 backstage/groups.php:492
+#: backstage/groups.php:516 backstage/groups.php:555
+msgid "User groups"
+msgstr "Groepen"
+
+#: backstage/board.php:332
+msgid "Revert to default"
+msgstr "Hetstel standaard instellingen"
+
+#: backstage/board.php:338
+msgid "Read forum"
+msgstr "Lees forum"
+
+#: backstage/board.php:339 backstage/groups.php:207
+#: themes/Fifteen/footer.php:57 themes/Sunrise/footer.php:55 thread.php:91
+#: thread.php:98
+msgid "Comment"
+msgstr "Reacties"
+
+#: backstage/board.php:340 backstage/groups.php:218
+msgid "Create threads"
+msgstr "Nieuwe conversatie"
+
+#: backstage/board.php:450
+msgid "Categories"
+msgstr "Categorieën"
+
+#: backstage/board.php:461
+msgid "Confirm delete category"
+msgstr "Bevestig verwijderen categorie"
+
+#: backstage/board.php:464
+#, php-format
+msgid "Are you sure that you want to delete the category <strong>%s</strong>?"
+msgstr "Ben je zeker dat je de categorie <strong>%s</strong> wilt verwijderen?"
+
+#: backstage/board.php:464
+msgid ""
+"Deleting a category will delete all forums and comments (if any) in this "
+"category!"
+msgstr ""
+"Het verwijderen van een categorie zal alle forums, conversaties en reacties "
+"in die categorie verwijderen!"
+
+#: backstage/board.php:508 include/backstage_functions.php:25
+#: include/backstage_functions.php:164
+msgid "Board"
+msgstr "Forum"
+
+#: backstage/board.php:525
+msgid "Add forum"
+msgstr "Nieuw forum"
+
+#: backstage/board.php:541 backstage/board.php:560 backstage/board.php:659
+#: backstage/menu.php:83 backstage/menu.php:106 comment.php:535
+#: include/draw_functions.php:87 install.php:188 install.php:300
+#: themes/Fifteen/comment.php:34 themes/Sunrise/comment.php:29
+#: themes/Sunrise/thread.php:38 thread.php:125
+msgid "Name"
+msgstr "Naam"
+
+#: backstage/board.php:554
+msgid "Add categories"
+msgstr "Categorie toevoegen"
+
+#: backstage/board.php:571
+msgid "Delete categories"
+msgstr "Verwijder categorie"
+
+#: backstage/board.php:607
+msgid "Edit forum"
+msgstr "Forum bewerken"
+
+#: backstage/board.php:653
+msgid "Edit categories"
+msgstr "Categorie bewerken"
+
+#: backstage/board.php:660 backstage/menu.php:108
+msgid "Position"
+msgstr "Positie"
+
+#: backstage/censoring.php:23 backstage/censoring.php:46
+msgid "You must enter a word to censor."
+msgstr "Je moet een woord ingeven om te censureren."
+
+#: backstage/censoring.php:76 backstage/features.php:86
+#: include/backstage_functions.php:29 include/backstage_functions.php:165
+msgid "Censoring"
+msgstr "Censureren"
+
+#: backstage/censoring.php:88
+msgid "Add word"
+msgstr "Woord toevoegen"
+
+#: backstage/censoring.php:92
+msgid ""
+"Enter a word that you want to censor and the replacement text for this word. "
+"Wildcards are accepted."
+msgstr ""
+"Geef een woord in dat je wilt censureren en geef een woord in dat het "
+"gecensureerde woord moet vervangen."
+
+#: backstage/censoring.php:97 backstage/censoring.php:118
+msgid "Censored word"
+msgstr "Te censureren woord"
+
+#: backstage/censoring.php:100 backstage/censoring.php:119
+msgid "Replacement word"
+msgstr "Vervanging"
+
+#: backstage/censoring.php:111
+msgid "Manage words"
+msgstr "Beheer woorden"
+
+#: backstage/censoring.php:120 backstage/users.php:53
+msgid "Action"
+msgstr "Acties"
+
+#: backstage/censoring.php:148
+msgid "No censor words in list."
+msgstr "Er wordt geen woord gecensureerd"
+
+#: backstage/database.php:399
+msgid ""
+"No file was uploaded or the upload failed, the database was not restored."
+msgstr ""
+"Er is geen bestand geüpload of de upload werd niet correct afgehandeld, de "
+"database werd niet hersteld."
+
+#: backstage/database.php:417
+msgid "Sorry the database could not be restored."
+msgstr "De database kon niet worden hersteld."
+
+#: backstage/database.php:422
+msgid ""
+"Error the file name or file format caused an error, the database was not "
+"restored."
+msgstr ""
+"De bestandsnaam of het bestandsformaat veroorzaakte een fout, de database "
+"werd niet herstelt."
+
+#: backstage/database.php:433
+msgid "Debug info"
+msgstr "Debug info"
+
+#: backstage/database.php:447
+msgid ""
+"Error imported backup file, the database probably has not been restored."
+msgstr "Kon de back-up niet importeren, de database is mogelijk niet hersteld."
+
+#: backstage/database.php:459
+msgid "Restore complete"
+msgstr "Herstel voltooid"
+
+#: backstage/database.php:462
+msgid "Restore completed"
+msgstr "Herstel voltooid"
+
+#: backstage/database.php:468
+msgid "Tables error, repair failed."
+msgstr "Tabel fout, herstel niet voltooid."
+
+#: backstage/database.php:481
+msgid "SQL error, repair failed."
+msgstr "SQL fout, herstel niet voltooid."
+
+#: backstage/database.php:489
+msgid "Tables error, optimize failed."
+msgstr "Tabel fout, optimalisatie niet voltooid."
+
+#: backstage/database.php:502
+msgid "SQL error, optimize failed."
+msgstr "SQL fout, optimalisatie niet voltooid."
+
+#: backstage/database.php:509 backstage/system.php:138
+#: include/backstage_functions.php:191
+msgid "Database"
+msgstr "Database"
+
+#: backstage/database.php:517
+msgid "Backup"
+msgstr "Back-up"
+
+#: backstage/database.php:517
+msgid "Start backup"
+msgstr "Start back-up"
+
+#: backstage/database.php:521
+msgid ""
+"If your server supports it, you may also gzip-compress the file to reduce "
+"its size."
+msgstr ""
+"Indien de server het ondersteund kan je gebruik maken van gzip-compressie om "
+"het bestand kleiner te maken."
+
+#: backstage/database.php:523
+msgid "Backup type"
+msgstr "Back-up type"
+
+#: backstage/database.php:527
+msgid "Full"
+msgstr "Volledig"
+
+#: backstage/database.php:531
+msgid "Structure only"
+msgstr "Enkel structuur"
+
+#: backstage/database.php:535
+msgid "Data only"
+msgstr "Enkel data"
+
+#: backstage/database.php:540
+msgid "Gzip compression"
+msgstr "Gzip compressie"
+
+#: backstage/database.php:544 backstage/prune.php:269 backstage/prune.php:346
+#: backstage/users.php:555 themes/Fifteen/answer.php:13
+#: themes/Fifteen/unsolved.php:12 themes/Sunrise/answer.php:19
+#: themes/Sunrise/unsolved.php:19
+msgid "Yes"
+msgstr "Ja"
+
+#: backstage/database.php:548 backstage/prune.php:273 backstage/prune.php:349
+#: backstage/users.php:559 themes/Sunrise/answer.php:18
+#: themes/Sunrise/unsolved.php:18
+msgid "No"
+msgstr "Nee"
+
+#: backstage/database.php:559
+msgid "Restore"
+msgstr "Herstellen"
+
+#: backstage/database.php:559
+msgid "Start restore"
+msgstr "Start herstel"
+
+#: backstage/database.php:563
+msgid ""
+"This will perform a full restore of all Luna tables from a saved file. If "
+"your server supports it, you may upload a gzip-compressed text file and it "
+"will automatically be decompressed. This will overwrite any existing data. "
+"The restore may take a long time to process, so please do not move from this "
+"page until it is complete."
+msgstr ""
+"Dit zal Luna volledig herstellen vanaf het gegeven bestand. Indien de server "
+"het ondersteund kan je gebruik maken van gzip-compressie om het bestand "
+"kleiner te maken. Deze actie overschrijft alle huidige data. Het herstellen "
+"kan enige tijd in beslag nemen, verlaat deze pagina niet."
+
+#: backstage/database.php:572
+msgid "Additional functions"
+msgstr "Geavanceerde functies"
+
+#: backstage/database.php:575
+msgid ""
+"Additional features to help run a database, optimize and repair both do what "
+"they say."
+msgstr ""
+"Geavanceerde functies helpen je de database te optimaliseren of herstellen."
+
+#: backstage/database.php:580
+msgid "Repair all tables"
+msgstr "Herstel alle tabellen"
+
+#: backstage/database.php:581
+msgid "Optimize all tables"
+msgstr "Optimaliseer alle tabellen"
+
+#: backstage/email.php:36 backstage/settings.php:88
+msgid ""
+"You need to enter the SMTP password twice exactly the same to change it."
+msgstr ""
+
+#: backstage/email.php:61 backstage/settings.php:134
+msgid "Global settings"
+msgstr "Globale instellingen"
+
+#: backstage/email.php:72
+msgid "Contact settings"
+msgstr "Contact instellingen"
+
+#: backstage/email.php:78
+msgid "Admin email"
+msgstr "Admin e-mail"
+
+#: backstage/email.php:78
+msgid "The admins email"
+msgstr "De administrator zijn e-mail"
+
+#: backstage/email.php:84
+msgid "Webmaster email"
+msgstr "Webmaster e-mail"
+
+#: backstage/email.php:84
+msgid "The email where the boards mails will be addressed from"
+msgstr ""
+
+#: backstage/email.php:93 backstage/email.php:99
+#: themes/Fifteen/settings.php:259 themes/Sunrise/settings.php:252
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: backstage/email.php:104
+msgid "Enable users to subscribe to forums."
+msgstr ""
+
+#: backstage/email.php:110
+msgid "Enable users to subscribe to threads."
+msgstr ""
+
+#: backstage/email.php:120
+msgid "SMTP settings"
+msgstr "SMTP instellingen"
+
+#: backstage/email.php:126
+msgid "SMTP server address"
+msgstr "SMTP server adres"
+
+#: backstage/email.php:126
+msgid "The address of an external SMTP server to send emails with"
+msgstr ""
+
+#: backstage/email.php:132
+msgid "SMTP username"
+msgstr "SMTP gebruikersnaam"
+
+#: backstage/email.php:132
+msgid "Username for SMTP server, only if required"
+msgstr ""
+
+#: backstage/email.php:138
+msgid "SMTP password"
+msgstr "SMTP wachtwoord"
+
+#: backstage/email.php:138
+msgid "Password and confirmation for SMTP server, only when required"
+msgstr ""
+
+#: backstage/email.php:143
+msgid ""
+"Check this if you want to change or delete the currently stored password."
+msgstr ""
+
+#: backstage/email.php:161
+msgid ""
+"Encrypts the connection to the SMTP server using SSL, only when required and "
+"supported."
+msgstr ""
+
+#: backstage/features.php:64 backstage/ranks.php:94
+#: include/backstage_functions.php:49 include/backstage_functions.php:180
+msgid "Features"
+msgstr "Functies"
+
+#: backstage/features.php:75
+msgid "General"
+msgstr "Algemeen"
+
+#: backstage/features.php:81 backstage/features.php:213
+msgid "Threads and comments"
+msgstr "Conversaties en reacties"
+
+#: backstage/features.php:86
+#, php-format
+msgid "Censor words in comments. See %s for more info."
+msgstr ""
+
+#: backstage/features.php:92
+msgid "Show the number of views for each thread."
+msgstr "Toon het aantal weergaven voor iedere conversatie."
+
+#: backstage/features.php:98
+msgid "Show a label in front of the thread where users have commented."
+msgstr ""
+
+#: backstage/features.php:104
+msgid "User features"
+msgstr "Gebruiker functies"
+
+#: backstage/features.php:109
+msgid ""
+"Display info on the index page about users currently browsing the board."
+msgstr ""
+
+#: backstage/features.php:115
+#, php-format
+msgid ""
+"Allow users to attach a signature to their comments. See %s for more info."
+msgstr ""
+"Sta toe dat gebruikers een handtekening aan reacties toevoegen. Zie %s voor "
+"meer info."
+
+#: backstage/features.php:115 backstage/permissions.php:50
+#: include/backstage_functions.php:42 include/backstage_functions.php:174
+msgid "Permissions"
+msgstr "Permissies"
+
+#: backstage/features.php:121
+#, php-format
+msgid "Use user ranks. See %s for more info."
+msgstr "Gebruik gebruiker rangen. Zie %s voor meer info."
+
+#: backstage/features.php:121 backstage/ranks.php:85
+#: include/backstage_functions.php:38 include/backstage_functions.php:172
+msgid "Ranks"
+msgstr "Rangen"
+
+#: backstage/features.php:132
+msgid "Allow users to use the advanced search options."
+msgstr ""
+
+#: backstage/features.php:138
+msgid "Allow search only in 1 forum at a time."
+msgstr "Limiteer zoeken tot een forum per keer."
+
+#: backstage/features.php:148 backstage/groups.php:176 inbox.php:93
+#: include/inbox_functions.php:21 include/me_functions.php:17
+#: themes/Fifteen/inbox-delete-comment.php:13 themes/Fifteen/inbox-new.php:67
+#: themes/Fifteen/inbox-view.php:28 themes/Fifteen/inbox.php:31
+#: themes/Fifteen/settings.php:221 themes/Sunrise/inbox-delete-comment.php:13
+#: themes/Sunrise/inbox-new.php:7 themes/Sunrise/inbox.php:24
+#: themes/Sunrise/inbox.php:45 themes/Sunrise/settings.php:214
+msgid "Inbox"
+msgstr "Inbox"
+
+#: backstage/features.php:154 backstage/groups.php:165
+msgid "Use Inbox"
+msgstr "Gebruik Inbox"
+
+#: backstage/features.php:159
+msgid "Allow users to use Inbox."
+msgstr "Laat gebruikers Inbox gebruiken."
+
+#: backstage/features.php:165 themes/Fifteen/inbox-new.php:80
+msgid "Receivers"
+msgstr "Ontvangers"
+
+#: backstage/features.php:165
+msgid "The number of receivers an Inbox message can have."
+msgstr "Het maxiumum aantal ontvangers voor een bericht in Inbox."
+
+#: backstage/features.php:175
+msgid "First run"
+msgstr "Welkom"
+
+#: backstage/features.php:181
+msgid "General settings"
+msgstr "Algemene instellingen"
+
+#: backstage/features.php:186
+msgid "Show the first run panel when an user logs in for the first time."
+msgstr "Toon een Welkom-paneel als de gebruiker inlogt voor de eerste keer."
+
+#: backstage/features.php:192
+msgid ""
+"Show the first run panel to guests with login field and registration button."
+msgstr "Toon het Welkom-paneel aan gasten met een login en registratie knop."
+
+#: backstage/features.php:198
+msgid "Welcome text"
+msgstr "Welkomst tekst"
+
+#: backstage/features.php:198
+msgid ""
+"The introduction to the forum displayed in the middle of the first run panel"
+msgstr ""
+"Een welkosmt tekst dat getoond word in het midden van het Welkom-paneel"
+
+#: backstage/features.php:208 backstage/permissions.php:67
+#: backstage/permissions.php:115 themes/Fifteen/help.php:22
+#: themes/Sunrise/help.php:23
+msgid "BBCode"
+msgstr "BBCode"
+
+#: backstage/features.php:218
+msgid "Convert smilies to small graphic icons in user signatures."
+msgstr ""
+
+#: backstage/features.php:224
+msgid "Convert URLs automatically to clickable hyperlinks."
+msgstr ""
+
+#: backstage/features.php:230
+msgid "Optional tags"
+msgstr "Optionele tags"
+
+#: backstage/features.php:235
+msgid "Allow users to use the center tag within threads and their signature."
+msgstr ""
+
+#: backstage/features.php:241
+msgid "Allow users to use the size tag within threads and their signature."
+msgstr ""
+
+#: backstage/features.php:248
+msgid "Indent size"
+msgstr "Inspringen"
+
+#: backstage/features.php:248
+msgid "Amount of spaces that represent a tab"
+msgstr ""
+
+#: backstage/features.php:254
+msgid "Maximum [quote] depth"
+msgstr ""
+
+#: backstage/features.php:254
+msgid "Maximum [quote] can be used in [quote]"
+msgstr ""
+
+#: backstage/features.php:264 backstage/features.php:270
+#: themes/Fifteen/search.php:16 themes/Sunrise/search.php:8
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: backstage/features.php:275
+msgid ""
+"Gzip output sent to the browser. This will reduce bandwidth usage, but use "
+"some more CPU. This feature requires that PHP is configured with zlib. If "
+"you already have one of the Apache modules (mod_gzip/mod_deflate) set up to "
+"compress PHP scripts, disable this feature."
+msgstr ""
+
+#: backstage/footer.php:20 themes/Fifteen/footer.php:126
+#: themes/Sunrise/footer.php:128
+#, php-format
+msgid "Generated in %1$s seconds, %2$s queries executed"
+msgstr ""
+
+#: backstage/footer.php:23 themes/Fifteen/footer.php:129
+#: themes/Sunrise/footer.php:131
+#, php-format
+msgid "Memory usage: %1$s"
+msgstr ""
+
+#: backstage/footer.php:26 themes/Fifteen/footer.php:132
+#: themes/Sunrise/footer.php:134
+#, php-format
+msgid "(Peak: %1$s)"
+msgstr "(Piek: %1$s)"
+
+#: backstage/groups.php:27 backstage/groups.php:31 backstage/groups.php:441
+#: backstage/groups.php:446 backstage/groups.php:466
+msgid ""
+"Bad request. The link you followed is incorrect, outdated or you're simply "
+"not allowed to hang around here."
+msgstr ""
+
+#: backstage/groups.php:39 backstage/groups.php:57
+msgid "Group title"
+msgstr "Groep titel"
+
+#: backstage/groups.php:48
+msgid "Setup group options and permissions"
+msgstr "Stel groep instellingen en permissies in"
+
+#: backstage/groups.php:55
+msgid ""
+"Below options and permissions are the default permissions for the user "
+"group. These options apply if no forum specific permissions are in effect."
+msgstr ""
+
+#: backstage/groups.php:63
+msgid "User title"
+msgstr "Gebruiker titel"
+
+#: backstage/groups.php:63
+msgid "The title will override the user rank"
+msgstr ""
+
+#: backstage/groups.php:71
+msgid "Moderator privileges"
+msgstr "Moderator privileges"
+
+#: backstage/groups.php:76
+msgid ""
+"In order for a user to have moderator abilities, they must be assigned to "
+"moderate one or more forums. This is done via the user administration page "
+"of the user's profile."
+msgstr ""
+
+#: backstage/groups.php:82
+msgid "Edit user profiles"
+msgstr "Profielen bewerken"
+
+#: backstage/groups.php:87
+msgid "If moderator privileges are enabled, allow users to edit user profiles."
+msgstr ""
+
+#: backstage/groups.php:93
+msgid "Rename users"
+msgstr "Gebruikers hernoemen"
+
+#: backstage/groups.php:98
+msgid "If moderator privileges are enabled, allow users to rename users."
+msgstr ""
+
+#: backstage/groups.php:104
+msgid "Change passwords"
+msgstr "Wachtwoord wijzigen"
+
+#: backstage/groups.php:109
+msgid ""
+"If moderator privileges are enabled, allow users to change user passwords."
+msgstr ""
+
+#: backstage/groups.php:115 backstage/users.php:531
+msgid "Ban users"
+msgstr "Verban gebruikers"
+
+#: backstage/groups.php:120
+msgid "If moderator privileges are enabled, allow users to ban users."
+msgstr ""
+
+#: backstage/groups.php:129
+msgid "Show deleted content"
+msgstr "Toon verwijderde reacties"
+
+#: backstage/groups.php:134
+msgid "Allow users to view threads and comments that have been soft deleted."
+msgstr ""
+
+#: backstage/groups.php:140 backstage/groups.php:151
+msgid "Soft delete comments"
+msgstr "Verberg reacties"
+
+#: backstage/groups.php:145
+msgid "Allow users to soft delete comments from all users."
+msgstr ""
+
+#: backstage/groups.php:156
+msgid "Allow users to soft delete threads from all users."
+msgstr ""
+
+#: backstage/groups.php:170 themes/Fifteen/settings.php:226
+#: themes/Sunrise/settings.php:219
+msgid "Allow users to send messages with Inbox."
+msgstr ""
+
+#: backstage/groups.php:179
+msgid ""
+"The maximum amount of messages a user in this group can have in his Inbox. 0 "
+"is no limit."
+msgstr ""
+
+#: backstage/groups.php:185
+msgid "Read board"
+msgstr "Lees forum"
+
+#: backstage/groups.php:190
+msgid "If this is disabled, users will only be able to login and logout."
+msgstr ""
+
+#: backstage/groups.php:196
+msgid "View user information"
+msgstr "Bekijk gebruikers info"
+
+#: backstage/groups.php:201
+msgid "Allow users to view the user list and user profiles."
+msgstr ""
+
+#: backstage/groups.php:212
+msgid "Allow users to comment in threads."
+msgstr "Sta toe dat gebruikers reageren op conversaties."
+
+#: backstage/groups.php:223
+msgid "Allow users to create new threads."
+msgstr "Sta toe dat gebruikers nieuwe conversaties starten."
+
+#: backstage/groups.php:231 edit.php:130
+msgid "Edit comment"
+msgstr "Reactie bewerken"
+
+#: backstage/groups.php:236
+msgid "Allow users to edit their own comments."
+msgstr "Sta toe dat gebruikers hun eigen reacties aanpassen."
+
+#: backstage/groups.php:242 backstage/moderate.php:140
+msgid "Delete comments"
+msgstr "Reactie verwijderen"
+
+#: backstage/groups.php:247
+msgid "Allow users to delete their own comments."
+msgstr "Sta toe dat gebruikers hun eigen reacties verwijderen."
+
+#: backstage/groups.php:253 backstage/moderate.php:689
+msgid "Delete threads"
+msgstr "Conversaties verwijderen"
+
+#: backstage/groups.php:258
+msgid "Allow users to delete their own threads (including any comments)."
+msgstr ""
+"Sta toe dat gebruikers hun eigen conversaties verwijderen (inclusief alle "
+"reacties)."
+
+#: backstage/groups.php:267
+msgid "Set own user title"
+msgstr "Stel eigen titel in"
+
+#: backstage/groups.php:272
+msgid "Allow users to set their own user title."
+msgstr ""
+
+#: backstage/groups.php:280
+msgid "Use search"
+msgstr "Zoeken toestaan"
+
+#: backstage/groups.php:285
+msgid "Allow users to use the search feature."
+msgstr "Laat gebruikers het forum doorzoeken"
+
+#: backstage/groups.php:291
+msgid "Search user list"
+msgstr "Gebruikers zoeken"
+
+#: backstage/groups.php:296
+msgid "Allow users to search for other users in the user list."
+msgstr "Laat gebruikers naar andere gebruikers zoeken"
+
+#: backstage/groups.php:304
+msgid "Send e-mails"
+msgstr "Stuur e-mails"
+
+#: backstage/groups.php:309
+msgid "Allow users to send e-mails to other users."
+msgstr ""
+
+#: backstage/groups.php:317
+msgid "Comment flood interval"
+msgstr "Reactie interval"
+
+#: backstage/groups.php:317
+msgid "Time users have to wait between comments"
+msgstr "De tijd dat gebruikers moeten wachten tussen reacties"
+
+#: backstage/groups.php:321 backstage/groups.php:330 backstage/groups.php:340
+#: backstage/groups.php:349 backstage/settings.php:245
+#: backstage/settings.php:255
+msgid "seconds"
+msgstr "seconden"
+
+#: backstage/groups.php:326
+msgid "Search flood interval"
+msgstr "Zoek interval"
+
+#: backstage/groups.php:326
+msgid "Time users have to wait between searches"
+msgstr "De tijd dat gebruikers moeten wachten tussen zoekacties"
+
+#: backstage/groups.php:336
+msgid "Email flood interval"
+msgstr "E-mail interval"
+
+#: backstage/groups.php:336
+msgid "Time users have to wait between emails"
+msgstr "De tijd dat gebruikers moeten wachten tussen het sturen van e-mails"
+
+#: backstage/groups.php:345
+msgid "Report flood interval"
+msgstr "Rapporteer interval"
+
+#: backstage/groups.php:345
+msgid "Time users have to wait between reports"
+msgstr ""
+"De tijd dat gebruikers moeten wachten tussen het rapporteren van reacties"
+
+#: backstage/groups.php:354
+msgid ""
+"Please note that in order for a user to have moderator abilities, they must "
+"be assigned to moderate one or more forums. This is done via the user "
+"administration page of the user's profile."
+msgstr ""
+
+#: backstage/groups.php:405 backstage/ranks.php:21 backstage/ranks.php:55
+#: backstage/settings.php:47
+msgid "You must enter a title."
+msgstr ""
+
+#: backstage/groups.php:412 backstage/groups.php:424
+#, php-format
+msgid "There is already a group with the title <strong>%s</strong>."
+msgstr ""
+
+#: backstage/groups.php:470
+msgid ""
+"The default group cannot be removed. In order to delete this group, you must "
+"first setup a different group as the default."
+msgstr ""
+
+#: backstage/groups.php:501
+#, php-format
+msgid "Are you sure that you want to delete the group <strong>%s</strong>?"
+msgstr ""
+
+#: backstage/groups.php:505
+msgid "<b>Warning:</b> After you deleted a group you cannot restore it."
+msgstr ""
+"<b>Warning:</b> Na het verwijderen van een groep kan deze niet herstelt "
+"worden."
+
+#: backstage/groups.php:508 backstage/groups.php:545 backstage/groups.php:638
+#: backstage/menu.php:110 backstage/menu.php:134 backstage/menu.php:136
+#: backstage/moderate.php:140 backstage/moderate.php:392
+#: backstage/moderate.php:689 backstage/moderate.php:979
+#: backstage/users.php:434 backstage/users.php:711 backstage/users.php:771
+#: include/draw_functions.php:700 include/draw_functions.php:730
+#: include/draw_functions.php:900 themes/Fifteen/delete.php:14
+#: themes/Fifteen/inbox-delete-comment.php:17
+#: themes/Fifteen/inbox-delete.php:12 themes/Fifteen/inbox.php:40
+#: themes/Fifteen/me-delete.php:13 themes/Sunrise/delete.php:18
+#: themes/Sunrise/inbox-delete-comment.php:17
+#: themes/Sunrise/inbox-delete.php:12 themes/Sunrise/inbox.php:34
+#: themes/Sunrise/me-delete.php:13
+msgid "Delete"
+msgstr "Verwijder"
+
+#: backstage/groups.php:523
+msgid "Delete group"
+msgstr "Groep verwijderen"
+
+#: backstage/groups.php:528
+#, php-format
+msgid ""
+"The group <strong>%s</strong> currently has <strong>%s</strong> members. "
+"Please select a group to which these members will be assigned upon deletion."
+msgstr ""
+
+#: backstage/groups.php:529
+msgid "Move users to"
+msgstr "Verplaats gebruikers naar"
+
+#: backstage/groups.php:566
+msgid "Add new group"
+msgstr "Nieuwe groep"
+
+#: backstage/groups.php:570
+msgid "Select a group the new group will be based on."
+msgstr "Selecteer een groep waar de nieuwe groep op gebaseerd moet zijn."
+
+#: backstage/groups.php:591
+msgid "Set default group"
+msgstr "Standaard groep"
+
+#: backstage/groups.php:596
+msgid "The default group in which new users will be placed."
+msgstr "De standaard groep waar nieuwe gebruikers in geplaatst worden."
+
+#: backstage/groups.php:619
+msgid "Manage groups"
+msgstr "Groepen beheren"
+
+#: backstage/header.php:39 include/backstage_functions.php:16
+#: include/backstage_functions.php:87 include/backstage_functions.php:157
+#: include/general_functions.php:40
+msgid "Backstage"
+msgstr "Backstage"
+
+#: backstage/header.php:72 include/general_functions.php:114 install.php:200
+msgid "is a required field in this form."
+msgstr "is een vereist veld in dit formulier."
+
+#: backstage/index.php:25
+msgid "Could not remove install.php. Please do so by hand."
+msgstr "Kon install.php niet verwijderen. Doe dit handmatig."
+
+#: backstage/index.php:82
+msgid "Index"
+msgstr "Index"
+
+#: backstage/index.php:91
+msgid ""
+"The config file is writeable at this moment, you might want to set the CHMOD "
+"to 640 or 644."
+msgstr ""
+
+#: backstage/index.php:96
+msgid "The file install.php still exists, but should be removed."
+msgstr ""
+
+#: backstage/index.php:96
+msgid "Delete it"
+msgstr "Verwijder"
+
+#: backstage/index.php:103
+msgid "Welcome to Luna"
+msgstr "Welkom bij Luna"
+
+#: backstage/index.php:107
+msgid "Got it"
+msgstr "Oké"
+
+#: backstage/index.php:115
+msgid ""
+"Welcome to the Backstage. Here, you can manage your newly set up board. "
+"We're ready to go now, but there might be a couple of settings you might "
+"want to change. So let us help you with that first!"
+msgstr ""
+"Welkom in de Backstage. Hier can je je forum beheren. We hebben alles al "
+"klaar gezet, maar er zijn mogelijk een paar instellingen die je wilt wijzgen "
+"of pagina's die je wilt bezoeken."
+
+#: backstage/index.php:119
+msgid "What's new"
+msgstr "Wat is nieuw"
+
+#: backstage/index.php:120
+msgid "Create new sections"
+msgstr "Voeg nieuwe secties toe"
+
+#: backstage/index.php:125
+msgid "Alter functionality"
+msgstr "Verander functionaliteit"
+
+#: backstage/index.php:126
+msgid "Change settings"
+msgstr "Verander instellingen"
+
+#: backstage/index.php:139 backstage/reports.php:50
+msgid "New reports"
+msgstr "Nieuwe rapporten"
+
+#: backstage/index.php:139
+msgid "View all"
+msgstr "Toon alles"
+
+#: backstage/index.php:144 backstage/reports.php:57 backstage/reports.php:113
+msgid "Reported by"
+msgstr "Gerapporteerd door"
+
+#: backstage/index.php:145 backstage/reports.php:58 backstage/reports.php:115
+msgid "Date and time"
+msgstr "Datum en tijd"
+
+#: backstage/index.php:156 backstage/reports.php:70 backstage/reports.php:126
+msgid "Deleted user"
+msgstr "Verwijderde gebruiker"
+
+#: backstage/index.php:157 backstage/index.php:158 backstage/index.php:160
+#: backstage/reports.php:71 backstage/reports.php:72 backstage/reports.php:74
+#: backstage/reports.php:127 backstage/reports.php:128
+#: backstage/reports.php:130 themes/Fifteen/inbox.php:107
+#: themes/Sunrise/inbox.php:103 viewinbox.php:191
+msgid "Deleted"
+msgstr "Verwijderd"
+
+#: backstage/index.php:160 backstage/reports.php:74 backstage/reports.php:130
+#, php-format
+msgid "Comment #%s"
+msgstr "Reactie #%s"
+
+#: backstage/index.php:176 backstage/reports.php:94
+msgid "There are no new reports."
+msgstr "Er zijn geen nieuwe rapporten."
+
+#: backstage/index.php:190
+msgid "Back-up"
+msgstr "Back-up"
+
+#: backstage/index.php:193
+msgid "Create new backup"
+msgstr "Maak een nieuwe back-up"
+
+#: backstage/index.php:205 db_update.php:713 db_update.php:798
+#: include/draw_functions.php:363 include/draw_functions.php:446
+msgid "comment"
+msgstr "reactie"
+
+#: backstage/index.php:206 include/draw_functions.php:362
+#: include/draw_functions.php:445
+msgid "thread"
+msgstr "conversatie"
+
+#: backstage/index.php:207
+msgid "user"
+msgstr "gebruiker"
+
+#: backstage/index.php:221
+#, php-format
+msgid "Luna v%s is available, %s!"
+msgstr "Luna v%s is beschikbaar, %s!"
+
+#: backstage/index.php:221
+msgid "update now"
+msgstr "update nu"
+
+#: backstage/index.php:232
+msgid "Admin notes"
+msgstr "Admin notas"
+
+#: backstage/index.php:235
+msgid "Add a note..."
+msgstr "Voeg een nota toe..."
+
+#: backstage/loader.php:24 backstage/moderate.php:20 backstage/moderate.php:70
+#: backstage/moderate.php:650 backstage/users.php:197 backstage/users.php:311
+#: backstage/users.php:446 comment.php:45 delete.php:44 delete.php:47
+#: edit.php:44 edit.php:47 inbox.php:17 inbox.php:21 inbox.php:25 misc.php:22
+#: misc.php:37 misc.php:52 misc.php:144 misc.php:243 misc.php:267 misc.php:291
+#: misc.php:302 misc.php:320 misc.php:337 misc.php:348 misc.php:361
+#: new_inbox.php:17 new_inbox.php:21 new_inbox.php:25 new_inbox.php:113
+#: search.php:74 search.php:280 search.php:510 settings.php:28 settings.php:33
+#: settings.php:76 settings.php:93 settings.php:178 settings.php:235
+#: settings.php:244 settings.php:294 settings.php:303 settings.php:444
+#: settings.php:530 settings.php:588 userlist.php:16 viewinbox.php:19
+#: viewinbox.php:23 viewinbox.php:27 viewinbox.php:117 viewinbox.php:147
+#: viewinbox.php:167 viewinbox.php:210
+msgid "You do not have permission to access this page."
+msgstr "Je hebt geen toegang tot deze pagina."
+
+#: backstage/loader.php:28
+#, php-format
+msgid "There is no plugin called %s in the plugin directory."
+msgstr "Er is geen plugin met de naam %s in de plugin-map."
+
+#: backstage/loader.php:43
+#, php-format
+msgid "Loading of the plugin - <strong>%s</strong> - failed."
+msgstr "Plugin - <strong>%s</strong - laden is gefaald.."
+
+#: backstage/login.php:16 backstage/login.php:30
+#: include/general_functions.php:32 themes/Fifteen/index.php:52
+#: themes/Fifteen/index.php:61 themes/Fifteen/login.php:6
+#: themes/Fifteen/login.php:20 themes/Sunrise/index.php:42
+#: themes/Sunrise/login.php:6 themes/Sunrise/login.php:20
+msgid "Login"
+msgstr "Aanmelden"
+
+#: backstage/login.php:24 backstage/tools.php:145 install.php:312
+#: install.php:339 register.php:245 settings.php:433
+#: themes/Fifteen/index.php:57 themes/Fifteen/login.php:14
+#: themes/Fifteen/me-modals.php:12 themes/Fifteen/register.php:27
+#: themes/Fifteen/settings.php:58 themes/Sunrise/index.php:47
+#: themes/Sunrise/login.php:14 themes/Sunrise/me-modals.php:12
+#: themes/Sunrise/register.php:27 themes/Sunrise/settings.php:54
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: backstage/login.php:27 themes/Fifteen/index.php:59
+#: themes/Fifteen/login.php:17 themes/Sunrise/index.php:49
+#: themes/Sunrise/login.php:17
+msgid "Remember me"
+msgstr "Onthoud mij"
+
+#: backstage/maintenance.php:26
+msgid "Comments per cycle must be a positive integer value."
+msgstr ""
+
+#: backstage/maintenance.php:51
+msgid "Rebuilding search index"
+msgstr "Hergenereren zoek index."
+
+#: backstage/maintenance.php:73
+msgid "Rebuilding index. This might be a good time to put on some coffee :-)"
+msgstr "Hergenereren index. Dit is een goed moment om wat koffie te pakken."
+
+#: backstage/maintenance.php:86
+#, php-format
+msgid "Processing comment <strong>%s</strong> …"
+msgstr ""
+
+#: backstage/maintenance.php:129 db_update.php:182
+#: include/class/luna_install.php:1498
+msgid ""
+"The forums are temporarily down for maintenance. Please try again in a few "
+"minutes."
+msgstr ""
+
+#: backstage/maintenance.php:162 backstage/maintenance.php:175
+#: backstage/maintenance.php:181 backstage/prune.php:207 db_update.php:184
+#: include/backstage_functions.php:62 include/backstage_functions.php:95
+#: include/backstage_functions.php:189 include/functions.php:1388
+msgid "Maintenance"
+msgstr "Onderhoud"
+
+#: backstage/maintenance.php:170
+msgid "The cache files have been removed."
+msgstr ""
+
+#: backstage/maintenance.php:181
+msgid "The message to tell users about the maintenance"
+msgstr ""
+
+#: backstage/maintenance.php:186
+msgid ""
+"Enable to activate maintenance mode, the board will only be available for "
+"admins. Do not log out when this feature is active!"
+msgstr ""
+
+#: backstage/maintenance.php:198 backstage/maintenance.php:202
+msgid "Cache"
+msgstr "Cache"
+
+#: backstage/maintenance.php:202
+msgid "Remove all cache files so the database has to return up-to-date values"
+msgstr ""
+"Verwijder alle cache bestanden zodat de database deze opnieuw op genereren "
+"met bijgewerkte waarden."
+
+#: backstage/maintenance.php:204
+msgid "Clear cache"
+msgstr "Cache opruimen"
+
+#: backstage/maintenance.php:212
+msgid "Rebuild search index"
+msgstr "Zoek index hergenereren"
+
+#: backstage/maintenance.php:212
+msgid "Rebuild index"
+msgstr "Index hergenereren"
+
+#: backstage/maintenance.php:217
+msgid ""
+"If you changes something about threads and comments in the database you "
+"should rebuild the search index. It's recommended to activate maintenance "
+"mode during rebuilding. This can take a while and can increase the server "
+"load during the process!"
+msgstr ""
+
+#: backstage/maintenance.php:219
+msgid "Comments per cycle"
+msgstr ""
+
+#: backstage/maintenance.php:219
+msgid ""
+"Number of comments per pageview, this prevents a timeout, 300 recommended"
+msgstr ""
+
+#: backstage/maintenance.php:225
+msgid "Starting comment ID"
+msgstr "Start reactie ID"
+
+#: backstage/maintenance.php:225
+msgid "The ID where to start, default is first ID found in database"
+msgstr ""
+
+#: backstage/maintenance.php:231
+msgid "Empty index"
+msgstr ""
+
+#: backstage/maintenance.php:236
+msgid ""
+"Select this if you want the search index to be emptied before rebuilding "
+"(see below)."
+msgstr ""
+
+#: backstage/maintenance.php:241
+msgid ""
+"Be sure to enable JavaScript during the rebuild (to start a new cycle "
+"automatically). When you have to abort the rebuilding, remember the last "
+"comment ID and enter that ID+1 in \"Starting comment ID\" if you want to "
+"continue (Uncheck \"Empty index\")."
+msgstr ""
+
+#: backstage/menu.php:21 backstage/menu.php:53
+msgid "You must give your menu item a title."
+msgstr ""
+
+#: backstage/menu.php:23 backstage/menu.php:55
+msgid "You must give your menu item an URL."
+msgstr ""
+
+#: backstage/menu.php:77
+msgid "New menu item"
+msgstr "Nieuw menu item"
+
+#: backstage/menu.php:88 backstage/menu.php:107 include/draw_functions.php:110
+msgid "URL"
+msgstr "URL"
+
+#: backstage/menu.php:101 include/backstage_functions.php:57
+#: include/backstage_functions.php:184
+msgid "Menu"
+msgstr "Menu"
+
+#: backstage/menu.php:109
+msgid "Show"
+msgstr "Toon"
+
+#: backstage/moderate.php:37
+#, php-format
+msgid "The IP address is: %s"
+msgstr ""
+
+#: backstage/moderate.php:37
+#, php-format
+msgid "The host name is: %s"
+msgstr ""
+
+#: backstage/moderate.php:37
+msgid "Show more users for this IP"
+msgstr ""
+
+#: backstage/moderate.php:44 backstage/moderate.php:131
+#: backstage/moderate.php:222 backstage/moderate.php:297
+#: backstage/moderate.php:312 backstage/moderate.php:387
+#: backstage/moderate.php:472 backstage/moderate.php:595
+#: backstage/moderate.php:680 backstage/moderate.php:834
+#: include/backstage_functions.php:27 themes/Sunrise/forum.php:29
+#: themes/Sunrise/forum.php:51 themes/Sunrise/thread.php:47
+msgid "Moderate"
+msgstr ""
+
+#: backstage/moderate.php:52 backstage/moderate.php:305
+#: backstage/moderate.php:842
+msgid "Moderate content"
+msgstr ""
+
+#: backstage/moderate.php:55
+msgid ""
+"Visit a forum or thread and choose \"Moderate\" in the moderator bar to "
+"moderate content."
+msgstr ""
+
+#: backstage/moderate.php:93 backstage/moderate.php:157
+msgid "You must select at least one comment for split/delete."
+msgstr ""
+
+#: backstage/moderate.php:145
+msgid "Are you sure you want to delete the selected comments?"
+msgstr ""
+
+#: backstage/moderate.php:186 comment.php:64 edit.php:66 new_inbox.php:200
+msgid "Threads must contain a subject."
+msgstr ""
+
+#: backstage/moderate.php:188 comment.php:68 edit.php:70 new_inbox.php:202
+msgid "Subjects cannot be longer than 70 characters."
+msgstr ""
+
+#: backstage/moderate.php:231
+msgid "Split comments"
+msgstr "Splits reacties"
+
+#: backstage/moderate.php:231 backstage/moderate.php:391
+msgid "Split"
+msgstr "Splits"
+
+#: backstage/moderate.php:237 backstage/moderate.php:487
+msgid "Move to"
+msgstr "Verplaats naar"
+
+#: backstage/moderate.php:261
+msgid "New subject"
+msgstr "Nieuw onderwerp"
+
+#: backstage/moderate.php:353 backstage/tools.php:40 backstage/users.php:170
+#: include/class/luna_install.php:1551 include/functions.php:481
+#: include/functions.php:917 search.php:222 settings.php:676
+msgid "Guest"
+msgstr "Gast"
+
+#: backstage/moderate.php:370 themes/Fifteen/objects/comment.php:15
+#: themes/Sunrise/objects/comment.php:25
+msgid "Last edited by"
+msgstr "Laatst bewerkt door"
+
+#: backstage/moderate.php:373
+msgid "Select"
+msgstr "Selecteer"
+
+#: backstage/moderate.php:373
+msgid "First comment cannot be selected for split/delete."
+msgstr ""
+
+#: backstage/moderate.php:456 backstage/moderate.php:630
+#: backstage/moderate.php:715
+msgid "You must select at least one thread for move/delete/open/close."
+msgstr ""
+
+#: backstage/moderate.php:470
+msgid "There are no forums into which you can move threads."
+msgstr ""
+
+#: backstage/moderate.php:481 themes/Fifteen/thread.php:31
+msgid "Move thread"
+msgstr "Verplaats conversatie"
+
+#: backstage/moderate.php:481
+msgid "Move threads"
+msgstr "Verplaats conversaties"
+
+#: backstage/moderate.php:481 backstage/moderate.php:978
+#: themes/Sunrise/thread.php:53
+msgid "Move"
+msgstr "Verplaats"
+
+#: backstage/moderate.php:512 backstage/moderate.php:612
+msgid "Leave redirect thread(s)"
+msgstr "Laat een doorverwijzing achter"
+
+#: backstage/moderate.php:537 backstage/moderate.php:593
+msgid "You must select at least two threads to merge."
+msgstr ""
+
+#: backstage/moderate.php:604
+msgid "Merge threads"
+msgstr "Conversaties samenvoegen"
+
+#: backstage/moderate.php:604 backstage/moderate.php:980
+msgid "Merge"
+msgstr "Samenvoegen"
+
+#: backstage/moderate.php:694
+msgid "Are you sure you want to delete the selected threads?"
+msgstr ""
+
+#: backstage/moderate.php:845
+#, php-format
+msgid "Moderating \"%s\""
+msgstr "Modereren van \"%s\""
+
+#: backstage/moderate.php:885 backstage/moderate.php:887
+#: backstage/moderate.php:929 include/draw_functions.php:237
+#: include/draw_functions.php:239 include/draw_functions.php:281
+#: include/draw_functions.php:378 include/draw_functions.php:380
+#: include/draw_functions.php:518 include/draw_functions.php:520
+#: include/draw_functions.php:574 include/draw_functions.php:980
+#: include/draw_functions.php:1020 include/draw_functions.php:1022
+#: themes/Fifteen/inbox.php:84 themes/Sunrise/inbox.php:80
+msgid "by"
+msgstr "door"
+
+#: backstage/moderate.php:925 include/draw_functions.php:277
+#: include/draw_functions.php:570 include/draw_functions.php:1006
+msgid "Go to the first new comment in the thread."
+msgstr "Ga naar de eerste nieuwe reactie in de conversatie."
+
+#: backstage/moderate.php:946 include/draw_functions.php:298
+#: include/draw_functions.php:591
+msgid "reply"
+msgstr "reactie"
+
+#: backstage/moderate.php:947 include/draw_functions.php:299
+#: include/draw_functions.php:592
+msgid "view"
+msgstr "weergave"
+
+#: backstage/moderate.php:971
+msgid "This forum has no threads yet."
+msgstr "Dit forum heeft geen conversaties."
+
+#: backstage/moderate.php:983 themes/Sunrise/thread.php:55
+msgid "Open"
+msgstr "Open"
+
+#: backstage/moderate.php:984 themes/Sunrise/thread.php:57
+msgid "Close"
+msgstr "Sluiten"
+
+#: backstage/permissions.php:61
+msgid "Commenting"
+msgstr "Reageren"
+
+#: backstage/permissions.php:72
+msgid "Allow the BBCode [img] tag in comments."
+msgstr "Sta het gebruik van de [img]-tag in reacties toe."
+
+#: backstage/permissions.php:78
+msgid "All caps"
+msgstr "Hoofdletters"
+
+#: backstage/permissions.php:83
+msgid "Allow a comment to contain only capital letters."
+msgstr "Sta toe dat reacties enkel uit hoofdletters bestaan."
+
+#: backstage/permissions.php:89
+msgid "Allow a subject to contain only capital letters."
+msgstr "Sta toe dat onderwerpen enkel uit hoofdletters bestaan."
+
+#: backstage/permissions.php:95 include/class/luna_install.php:1572
+msgid "Guests"
+msgstr "Gasten"
+
+#: backstage/permissions.php:100
+msgid "Require guests to supply an email address when commenting."
+msgstr ""
+
+#: backstage/permissions.php:110 themes/Fifteen/settings.php:352
+#: themes/Sunrise/settings.php:345
+msgid "Signatures"
+msgstr "Handtekeningen"
+
+#: backstage/permissions.php:120
+msgid "Allow the BBCode [img] tag in user signatures."
+msgstr "Sta het gebruik van de [img]-tag in handtekeningen toe."
+
+#: backstage/permissions.php:126
+msgid "Allow a signature to contain only capital letters."
+msgstr "Sta toe dat handtekeningen enkel uit hoofdletters bestaan."
+
+#: backstage/permissions.php:132
+msgid "Maximum signature length"
+msgstr ""
+
+#: backstage/permissions.php:132
+msgid "Maximum amount of characters a signature can have"
+msgstr ""
+
+#: backstage/permissions.php:138
+msgid "Maximum signature lines"
+msgstr ""
+
+#: backstage/permissions.php:138
+msgid "Maximum amount of lines a signature can have"
+msgstr ""
+
+#: backstage/permissions.php:148 backstage/permissions.php:153
+#: backstage/registration.php:59 backstage/registration.php:70
+#: include/backstage_functions.php:53 include/backstage_functions.php:182
+msgid "Registration"
+msgstr "Registratie"
+
+#: backstage/permissions.php:158
+msgid ""
+"Allow users to use a banned email address, mailing list will be warned when "
+"this happens."
+msgstr ""
+
+#: backstage/permissions.php:164
+msgid ""
+"Allow users to use an email address that is already used, mailing list will "
+"be warned when this happens."
+msgstr ""
+
+#: backstage/prune.php:63
+msgid "Days to prune must be a positive integer value."
+msgstr ""
+
+#: backstage/prune.php:81 backstage/prune.php:281
+msgid "All forums"
+msgstr "Alle forums"
+
+#: backstage/prune.php:87
+#, php-format
+msgid ""
+"There are no threads that are %s days old. Please decrease the value of "
+"\"Days old\" and try again."
+msgstr ""
+
+#: backstage/prune.php:89 backstage/prune.php:97 backstage/prune.php:111
+#: backstage/prune.php:216 backstage/prune.php:252 backstage/prune.php:311
+#: include/backstage_functions.php:64 include/backstage_functions.php:190
+msgid "Prune"
+msgstr "Opruimen"
+
+#: backstage/prune.php:106
+msgid "Confirm prune comments"
+msgstr ""
+
+#: backstage/prune.php:107
+#, php-format
+msgid ""
+"Are you sure that you want to prune all comments older than %s days from %s "
+"(%s threads)."
+msgstr ""
+
+#: backstage/prune.php:108
+msgid "Pruning comments deletes them permanently."
+msgstr ""
+
+#: backstage/prune.php:160
+msgid "Pruning complete. Notifications pruned."
+msgstr ""
+
+#: backstage/prune.php:198
+msgid ""
+"Pruning complete, all users that matched the requirements have been pruned."
+msgstr ""
+
+#: backstage/prune.php:216
+msgid "Prune notifications"
+msgstr "Notificaties opruimen"
+
+#: backstage/prune.php:221 backstage/prune.php:257 backstage/prune.php:315
+#, php-format
+msgid "It's recommended to activate %s during pruning."
+msgstr ""
+
+#: backstage/prune.php:221 backstage/prune.php:257 backstage/prune.php:315
+msgid "maintenance mode"
+msgstr "onderhoud modus"
+
+#: backstage/prune.php:223 backstage/prune.php:259
+msgid "Days old"
+msgstr "Dagen oud"
+
+#: backstage/prune.php:223
+msgid "The number of days old a notification must be to be pruned"
+msgstr ""
+
+#: backstage/prune.php:229 install.php:186 install.php:277
+msgid "Type"
+msgstr "Type"
+
+#: backstage/prune.php:233
+msgid "All notifications"
+msgstr "Alle notificaties"
+
+#: backstage/prune.php:237 themes/Sunrise/notifications.php:43
+msgid "Seen notifications"
+msgstr "Bekeken notificaties"
+
+#: backstage/prune.php:241 themes/Sunrise/notifications.php:24
+msgid "New notifications"
+msgstr "Nieuwe notificaties"
+
+#: backstage/prune.php:252
+msgid "Prune old comments"
+msgstr "Ruim oude reacties op"
+
+#: backstage/prune.php:259
+msgid "The number of days old a thread must be to be pruned"
+msgstr ""
+
+#: backstage/prune.php:265
+msgid "Prune pinned threads"
+msgstr "Ruim vastgemaakte conversaties op"
+
+#: backstage/prune.php:278
+msgid "Prune from"
+msgstr "Opruimen vanaf"
+
+#: backstage/prune.php:311
+msgid "Prune users"
+msgstr "Gebruikers opruimen"
+
+#: backstage/prune.php:317
+msgid "Prune by"
+msgstr "Opruimten op"
+
+#: backstage/prune.php:317
+msgid "What should we count to prune?"
+msgstr "Wat moeten we opruimen?"
+
+#: backstage/prune.php:321
+msgid "Registered date"
+msgstr "Registratie datum"
+
+#: backstage/prune.php:325
+msgid "Last login"
+msgstr "Laatste login"
+
+#: backstage/prune.php:330
+msgid "Minimum days since registration/last login"
+msgstr ""
+
+#: backstage/prune.php:330
+msgid "The minimum amount of days since event specified above"
+msgstr ""
+
+#: backstage/prune.php:336
+msgid "Maximum number of comments"
+msgstr ""
+
+#: backstage/prune.php:336
+msgid "How many comments do you require before an users isn't pruned"
+msgstr ""
+
+#: backstage/prune.php:342
+msgid "Delete admins and mods"
+msgstr "Verwijder administratoren en moderatoren"
+
+#: backstage/prune.php:354
+msgid "User status"
+msgstr "Gebruiker status"
+
+#: backstage/prune.php:358
+msgid "Delete any"
+msgstr "Verwijder alle"
+
+#: backstage/prune.php:362
+msgid "Delete only verified"
+msgstr "Verwijder alleen geverifieerde"
+
+#: backstage/prune.php:366
+msgid "Delete only unverified"
+msgstr "Verwijder alleen ongeverifieerde"
+
+#: backstage/ranks.php:24 backstage/ranks.php:57
+msgid "Minimum comments must be a positive integer value."
+msgstr ""
+
+#: backstage/ranks.php:29 backstage/ranks.php:61
+#, php-format
+msgid "There is already a rank with a minimum amount of %s comments."
+msgstr ""
+
+#: backstage/ranks.php:94
+#, php-format
+msgid "<strong>User ranks is disabled in %s.</strong>"
+msgstr "<strong>Rangen zijn uitgeschakeld in %s.</strong>"
+
+#: backstage/ranks.php:102
+msgid "Add rank"
+msgstr "Rang toevoegen"
+
+#: backstage/ranks.php:108 backstage/ranks.php:135
+msgid "Rank title"
+msgstr "Rang titel"
+
+#: backstage/ranks.php:111 backstage/ranks.php:136
+msgid "Minimum comments"
+msgstr "Minimum aantal reacties"
+
+#: backstage/ranks.php:123
+msgid "Manage ranks"
+msgstr "Rangen beheren"
+
+#: backstage/ranks.php:158
+msgid "No ranks in list"
+msgstr "Geen rangen ingesteld"
+
+#: backstage/registration.php:30
+msgid "Enter your rules here."
+msgstr "Geef hier de forum regels in."
+
+#: backstage/registration.php:76
+msgid "Allow new registrations"
+msgstr "Sta nieuwe registraties toe"
+
+#: backstage/registration.php:81
+msgid "Allow new users to be made by people."
+msgstr "Sta toe dat mensen zich registreren op dit forum."
+
+#: backstage/registration.php:87
+msgid "Verify registrations"
+msgstr "Verifieer registraties"
+
+#: backstage/registration.php:92
+msgid "Send a random password to users to verify their email address.  "
+msgstr ""
+"Stuur een e-mail met een willekeurig wachtwoord naar gebruikers om hun e-"
+"mail adres te verifiëren."
+
+#: backstage/registration.php:98
+msgid "Report new registrations"
+msgstr "Rapporteer nieuwe registratie"
+
+#: backstage/registration.php:103
+msgid "Notify people on the mailing list when new user registers.  "
+msgstr ""
+
+#: backstage/registration.php:110
+msgid "User forum rules"
+msgstr "Gebruik forum regels"
+
+#: backstage/registration.php:115
+msgid ""
+"Require users to agree with the rules. This will enable a \"Rules\" panel in "
+"Help."
+msgstr ""
+
+#: backstage/registration.php:121
+msgid "Enter your rules here"
+msgstr "Geef hier regels voor het forum op."
+
+#: backstage/registration.php:121
+msgid "Enter rules or useful information, required when rules are enabled"
+msgstr ""
+
+#: backstage/registration.php:128
+msgid "Default email setting"
+msgstr ""
+
+#: backstage/registration.php:130
+msgid "Default privacy setting for new registrations"
+msgstr ""
+
+#: backstage/registration.php:134
+msgid "Display email address to other users."
+msgstr ""
+
+#: backstage/registration.php:140
+msgid "Hide email address but allow form e-mail."
+msgstr ""
+
+#: backstage/registration.php:146
+msgid "Hide email address and disallow form email."
+msgstr ""
+
+#: backstage/reports.php:42 backstage/settings.php:306
+#: include/backstage_functions.php:31 include/backstage_functions.php:166
+msgid "Reports"
+msgstr "Rapporten"
+
+#: backstage/reports.php:85 include/draw_functions.php:1150 search.php:392
+#: themes/Fifteen/inbox.php:36 themes/Sunrise/inbox.php:30 viewforum.php:91
+msgid "Mark as read"
+msgstr "Markeer als gelezen"
+
+#: backstage/reports.php:108
+msgid "10 last read reports"
+msgstr "10 laatste rapporten"
+
+#: backstage/reports.php:114
+msgid "Marked as read by"
+msgstr "Gemarkeerd als gelezen door"
+
+#: backstage/reports.php:131 backstage/reports.php:132 backstage/system.php:84
+msgid "N/A"
+msgstr "Niet beschikbaar"
+
+#: backstage/reports.php:152
+msgid "There are no read reports."
+msgstr "Er is geen gelezen raport."
+
+#: backstage/settings.php:56
+msgid ""
+"Your installation does not support automatic conversion of internationalized "
+"domain names. As your base URL contains special characters, you "
+"<strong>must</strong> use an online converter."
+msgstr ""
+
+#: backstage/settings.php:94
+msgid "Enter your announcement here."
+msgstr "Geef het een aankondiging in."
+
+#: backstage/settings.php:108
+msgid ""
+"The value of \"Timeout online\" must be smaller than the value of \"Timeout "
+"visit\"."
+msgstr ""
+
+#: backstage/settings.php:145
+msgid "Essentials"
+msgstr "Essentieel"
+
+#: backstage/settings.php:151 install.php:193 install.php:367
+msgid "Board title"
+msgstr "Forum titel"
+
+#: backstage/settings.php:157 install.php:373
+msgid "Board description"
+msgstr "Forum beschrijving"
+
+#: backstage/settings.php:157
+msgid "What's this board about?"
+msgstr "Waar gaat dit forum over?"
+
+#: backstage/settings.php:163 install.php:385
+msgid "Default language"
+msgstr "Standaard taal"
+
+#: backstage/settings.php:163
+msgid "The default language"
+msgstr "De standaard taal"
+
+#: backstage/settings.php:186
+msgid "Meta"
+msgstr "Meta"
+
+#: backstage/settings.php:192
+msgid "Board tags"
+msgstr "Forum tags"
+
+#: backstage/settings.php:192
+msgid "Add some words that describe your board, separated by a comma"
+msgstr ""
+"Voeg enkele termen toe die je forum beschrijven, gescheiden door komma's"
+
+#: backstage/settings.php:198 install.php:379
+msgid "Board URL"
+msgstr "Forum URL"
+
+#: backstage/settings.php:208
+msgid "Time and timeouts"
+msgstr "Tijd en time-outs"
+
+#: backstage/settings.php:213 themes/Fifteen/settings.php:411
+#: themes/Sunrise/settings.php:404
+msgid "Time format"
+msgstr "Tijd formaat"
+
+#: backstage/settings.php:213 backstage/settings.php:219
+#, php-format
+msgid "Now: %s. See %s for more info"
+msgstr "Nu: %s. Zie %s voor meer info"
+
+#: backstage/settings.php:213 backstage/settings.php:219
+msgid "PHP manual"
+msgstr "PHP handleiding"
+
+#: backstage/settings.php:219 themes/Fifteen/settings.php:429
+#: themes/Sunrise/settings.php:422
+msgid "Date format"
+msgstr "Datum formaat"
+
+#: backstage/settings.php:225
+msgid "Default time zone"
+msgstr "Standaard tijdzone"
+
+#: backstage/settings.php:241
+msgid "Visit timeout"
+msgstr "Bezoek time-out"
+
+#: backstage/settings.php:241
+msgid "Time before a visit ends"
+msgstr "Tijd voordat een bezoek eindigt"
+
+#: backstage/settings.php:250
+msgid "Online timeout"
+msgstr "Online time-out"
+
+#: backstage/settings.php:250
+msgid "Time before someone isn't online anymore"
+msgstr "Tijd voordat iemand niet meer als online wordt getoond"
+
+#: backstage/settings.php:264
+msgid "Syndication"
+msgstr "Feeds"
+
+#: backstage/settings.php:269
+msgid "Default feed type"
+msgstr "Standaard feed type"
+
+#: backstage/settings.php:269
+msgid "Select a feed"
+msgstr "Selecteer een feed"
+
+#: backstage/settings.php:273
+msgid "None"
+msgstr "Geen"
+
+#: backstage/settings.php:277
+msgid "RSS"
+msgstr "RSS"
+
+#: backstage/settings.php:281
+msgid "Atom"
+msgstr "Atom"
+
+#: backstage/settings.php:286
+msgid "Duration to cache feeds"
+msgstr "Duur van cache feeds"
+
+#: backstage/settings.php:286
+msgid "Reduce sources by caching feeds"
+msgstr "Verminder vereiste door het cachen van feeds"
+
+#: backstage/settings.php:289
+msgid "Don't cache"
+msgstr "Niet cachen"
+
+#: backstage/settings.php:295
+#, php-format
+msgid "%d minutes"
+msgstr "%d minuten"
+
+#: backstage/settings.php:311
+msgid "Reporting method"
+msgstr "Rapporteer methode"
+
+#: backstage/settings.php:311
+msgid "How should we handle reports?"
+msgstr "Hoe moeten we rapporten behandelen."
+
+#: backstage/settings.php:315
+msgid "Internal"
+msgstr "Intern"
+
+#: backstage/settings.php:323
+msgid "Both"
+msgstr "Beide"
+
+#: backstage/settings.php:328
+msgid "Mailing list"
+msgstr "Mail lijst"
+
+#: backstage/settings.php:328
+msgid ""
+"A comma separated list of subscribers who get e-mails when new reports are "
+"made"
+msgstr "Je kan verschillende e-mail adressen scheiden met komma's"
+
+#: backstage/settings.php:338 backstage/settings.php:343
+msgid "Cookie bar"
+msgstr "Cookie balk"
+
+#: backstage/settings.php:343 themes/Fifteen/footer.php:108
+#: themes/Sunrise/footer.php:110
+msgid "More info"
+msgstr "Meer info"
+
+#: backstage/settings.php:348
+msgid "Show a bar with information about cookies at the bottom of the page."
+msgstr ""
+"Toon een balk met informatie over cookies aan de onderkant van de pagina."
+
+#: backstage/settings.php:354
+msgid "Cookie bar URL"
+msgstr "Cookie balk URL"
+
+#: backstage/settings.php:354
+msgid ""
+"Use your own URL for cookie information, by default, we provide our own page"
+msgstr ""
+"Gebruik je eigen URL voor info over cookies, standaard gebruikt Luna de "
+"documentatie (Engels)"
+
+#: backstage/settings.php:364
+msgid "Avatars"
+msgstr "Avatars"
+
+#: backstage/settings.php:369
+msgid "Use avatars"
+msgstr "Gebruik avatars"
+
+#: backstage/settings.php:374
+msgid "Enable so users can upload avatars."
+msgstr "Sta gebruikers toe om avatars te uploaden"
+
+#: backstage/settings.php:380
+msgid "Upload directory"
+msgstr "Avatar map"
+
+#: backstage/settings.php:380
+msgid ""
+"Where avatars will be stored relative to Lunas root, write permission "
+"required"
+msgstr ""
+"Waar avatars worden opgeslagen relatief aan Luna's hoofdmap, "
+"schrijfpermissies zijn vereist"
+
+#: backstage/settings.php:386
+msgid "Max width"
+msgstr "Maximum hoogte"
+
+#: backstage/settings.php:395
+msgid "Max height"
+msgstr "Maximum breedte"
+
+#: backstage/settings.php:404
+msgid "Max size"
+msgstr "Maximum grootte"
+
+#: backstage/settings.php:408 settings.php:491 themes/Sunrise/me-modals.php:62
+msgid "bytes"
+msgstr "bytes"
+
+#: backstage/settings.php:417 backstage/settings.php:422
+msgid "Announcements"
+msgstr "Aankondigingen"
+
+#: backstage/settings.php:427
+msgid "Enable this to display the below message in the board."
+msgstr "Schakel diti n om een bericht bovenaan het forum te tonen."
+
+#: backstage/settings.php:434
+msgid "Announcement title"
+msgstr "Titel"
+
+#: backstage/settings.php:434
+msgid "You can leave this empty if there is no title"
+msgstr "Je kan dit leeg laten als een titel niet nodig is"
+
+#: backstage/settings.php:440
+msgid "Announcement type"
+msgstr "Type"
+
+#: backstage/settings.php:444 themes/Fifteen/settings.php:421
+#: themes/Fifteen/settings.php:439 themes/Sunrise/settings.php:414
+#: themes/Sunrise/settings.php:432
+msgid "Default"
+msgstr "Standaard"
+
+#: backstage/settings.php:448 include/backstage_functions.php:69
+#: include/functions.php:1049 include/functions.php:1077
+#: include/functions.php:1085
+msgid "Info"
+msgstr "Info"
+
+#: backstage/settings.php:452
+msgid "Success"
+msgstr "Succes"
+
+#: backstage/settings.php:456
+msgid "Warning"
+msgstr "Waarschuwing"
+
+#: backstage/settings.php:460
+msgid "Danger"
+msgstr "Gevaar"
+
+#: backstage/settings.php:465
+msgid "Announcement message"
+msgstr "Bericht"
+
+#: backstage/system.php:22
+msgid "The PHP function phpinfo() has been disabled on this server."
+msgstr "De PHP functie phpinfo() is uitgeschakeld op deze server."
+
+#: backstage/system.php:43 backstage/system.php:47
+msgid "Not available"
+msgstr "Niet beschikbaar"
+
+#: backstage/system.php:72
+msgid "turck-mmcache.sourceforge.net/"
+msgstr "turck-mmcache.sourceforge.net/"
+
+#: backstage/system.php:72
+msgid "Turck MMCache"
+msgstr "Turck MMCache"
+
+#: backstage/system.php:74
+msgid "www.php-accelerator.co.uk/"
+msgstr "www.php-accelerator.co.uk/"
+
+#: backstage/system.php:74
+msgid "ionCube PHP Accelerator"
+msgstr "ionCube PHP Accelerator"
+
+#: backstage/system.php:76
+msgid "www.php.net/apc/"
+msgstr "www.php.net/apc/"
+
+#: backstage/system.php:76
+msgid "Alternative PHP Cache (APC)"
+msgstr "Alternative PHP Cache (APC)"
+
+#: backstage/system.php:78
+msgid "www.zend.com/products/guard/zend-optimizer/"
+msgstr "www.zend.com/products/guard/zend-optimizer/"
+
+#: backstage/system.php:78
+msgid "Zend Optimizer"
+msgstr "Zend Optimizer"
+
+#: backstage/system.php:80
+msgid "www.eaccelerator.net/"
+msgstr "www.eaccelerator.net/"
+
+#: backstage/system.php:80
+msgid "eAccelerator"
+msgstr "eAccelerator"
+
+#: backstage/system.php:82
+msgid "xcache.lighttpd.net/"
+msgstr "xcache.lighttpd.net/"
+
+#: backstage/system.php:82
+msgid "XCache"
+msgstr "XCache"
+
+#: backstage/system.php:87 backstage/system.php:130
+msgid "Server statistics"
+msgstr "Server statistieken"
+
+#: backstage/system.php:95
+msgid "Luna version information"
+msgstr "Luna versie informatie"
+
+#: backstage/system.php:101 backstage/system.php:103
+msgid "Version"
+msgstr "Versie"
+
+#: backstage/system.php:108
+msgid "Software version"
+msgstr "Software versie"
+
+#: backstage/system.php:110
+msgid "Bootstrap version"
+msgstr "Bootstrap versie"
+
+#: backstage/system.php:114
+msgid "Core version"
+msgstr "Core versie"
+
+#: backstage/system.php:116
+msgid "Font Awesome version"
+msgstr "Font Awesome versie"
+
+#: backstage/system.php:120
+msgid "Database version"
+msgstr "Database versie"
+
+#: backstage/system.php:122
+msgid "jQuery version"
+msgstr "jQuery versie"
+
+#: backstage/system.php:135
+msgid "Server load"
+msgstr "Server gebruik"
+
+#: backstage/system.php:137
+msgid "Environment"
+msgstr "Omgeving"
+
+#: backstage/system.php:144
+#, php-format
+msgid "%s - %s user(s) online"
+msgstr "%s - %s gebruiker(s) online"
+
+#: backstage/system.php:147
+#, php-format
+msgid "Operating system: %s"
+msgstr "Besturingssysteem: %s"
+
+#: backstage/system.php:148
+#, php-format
+msgid "PHP: %s - %s"
+msgstr "PHP: %s - %s"
+
+#: backstage/system.php:148
+msgid "Show info"
+msgstr "Toon info"
+
+#: backstage/system.php:149
+#, php-format
+msgid "Accelerator: %s"
+msgstr "Accelerator: %s"
+
+#: backstage/system.php:154
+#, php-format
+msgid "Rows: %s"
+msgstr "Rijen: %s"
+
+#: backstage/system.php:155
+#, php-format
+msgid "Size: %s"
+msgstr "Grootte: %s"
+
+#: backstage/theme.php:33
+msgid "Style"
+msgstr "Stijl"
+
+#: backstage/theme.php:45
+msgid "Current theme"
+msgstr "Huidige theme"
+
+#: backstage/theme.php:63
+#, php-format
+msgid "Theme settings for %s"
+msgstr "Thema instellingen voor %s"
+
+#: backstage/theme.php:71
+msgid "This theme has no settings available..."
+msgstr "Dit thema heeft geen eigen instellingen beschikbaar"
+
+#: backstage/theme.php:82 install.php:403
+msgid "Default style"
+msgstr "Standaard thema"
+
+#: backstage/theme.php:85
+msgid ""
+"Here are all themes we could find in the <code>/themes/</code>-folder of "
+"your Luna installation. You can choose them to become default here, we set, "
+"theme options will appear above."
+msgstr ""
+"Hier zijn alle thema's die we konden vinden in de <code>/themes/</code>-map "
+"van je Luna installatie. Je kan kiezen om ze als standaard in te stellen. "
+"Indien beschikbaar worden er hier boven instellingen getoond."
+
+#: backstage/theme.php:100
+#, php-format
+msgid "About %s"
+msgstr "Over %s"
+
+#: backstage/theme.php:108
+#, php-format
+msgid "version %s"
+msgstr "versie %s"
+
+#: backstage/theme.php:115
+#, php-format
+msgid "Released on %s"
+msgstr "Vrijgegeven op %s"
+
+#: backstage/theme.php:117
+#, php-format
+msgid "Designed for Luna %s to %s"
+msgstr "Ontworpen voor Luna %s tot %s"
+
+#: backstage/theme.php:130
+msgid "In use"
+msgstr "In gebruik"
+
+#: backstage/theme.php:132
+msgid "Use"
+msgstr "Gebruik"
+
+#: backstage/tools.php:37 include/functions.php:478
+msgid ""
+"Usernames must be at least 2 characters long. Please choose another (longer) "
+"username."
+msgstr ""
+
+#: backstage/tools.php:39 register.php:60 settings.php:259
+msgid ""
+"Passwords must be at least 6 characters long. Please choose another (longer) "
+"password."
+msgstr ""
+
+#: backstage/tools.php:41 include/functions.php:482
+msgid "The username guest is reserved. Please choose another username."
+msgstr ""
+
+#: backstage/tools.php:43 include/functions.php:484
+msgid ""
+"Usernames may not be in the form of an IP address. Please choose another "
+"username."
+msgstr ""
+
+#: backstage/tools.php:45 include/functions.php:486
+msgid ""
+"Usernames may not contain all the characters ', \" and [ or ] at once. "
+"Please choose another username."
+msgstr ""
+
+#: backstage/tools.php:47 include/functions.php:488
+msgid ""
+"Usernames may not contain any of the text formatting tags (BBCode) that the "
+"forum uses. Please choose another username."
+msgstr ""
+
+#: backstage/tools.php:54 include/functions.php:501
+msgid "Someone is already registered with the username"
+msgstr ""
+
+#: backstage/tools.php:54 include/functions.php:501
+msgid ""
+"The username you entered is too similar. The username must differ from that "
+"by at least one alphanumerical character (a-z or 0-9). Please choose a "
+"different username."
+msgstr ""
+
+#: backstage/tools.php:78 register.php:208
+msgid ""
+"Subject: Welcome to <board_title>!\n"
+"\n"
+"Thank you for registering in the forums at <base_url>. Your account details "
+"are:\n"
+"\n"
+"Username: <username>\n"
+"Password: <password>\n"
+"\n"
+"Login at <login_url> to activate the account.\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: backstage/tools.php:113 backstage/users.php:34 backstage/users.php:105
+#: backstage/users.php:272 backstage/users.php:410 backstage/users.php:691
+#: backstage/users.php:785 extern.php:491 include/backstage_functions.php:93
+#: themes/Fifteen/help.php:211 themes/Fifteen/users.php:12
+#: themes/Sunrise/help.php:218 themes/Sunrise/users.php:8
+#: themes/Sunrise/users.php:36
+msgid "Users"
+msgstr "Gebruikers"
+
+#: backstage/tools.php:121
+msgid "User created"
+msgstr "Gebruik aangemaakt"
+
+#: backstage/tools.php:123
+msgid "Failed to create user, no password was given."
+msgstr ""
+
+#: backstage/tools.php:128
+msgid "Add user"
+msgstr "Nieuwe gebruiker"
+
+#: backstage/tools.php:151
+msgid ""
+"Generate a random password, this will be emailed to the above address. When "
+"checked, leave \"Password\" empty."
+msgstr ""
+
+#: backstage/update.php:83
+msgid "Update ring"
+msgstr "Update ring"
+
+#: backstage/update.php:90
+msgid "Normal"
+msgstr "Normaal"
+
+#: backstage/update.php:91 include/draw_functions.php:153
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#: backstage/update.php:92
+msgid "Nightly"
+msgstr "Nightly"
+
+#: backstage/update.php:105
+msgid "Luna software updates"
+msgstr "Luna software updates"
+
+#: backstage/update.php:105
+msgid "Check for updates"
+msgstr ""
+
+#: backstage/update.php:112
+msgid "A new version is available!"
+msgstr "Een nieuwe versie is beschikbaar!"
+
+#: backstage/update.php:113
+#, php-format
+msgid ""
+"A new version, Luna %s has been released. It's a good idea to update to the "
+"latest version of Luna, as it contains not only new features, improvements "
+"and bugfixes, but also the latest security updates."
+msgstr ""
+"Een nieuwe versie, Luna %s, is beschikbaar. Het is altijd een goed idee om "
+"up-to-date te blijven met de laatste versie van Luna om gebruik te maken van "
+"de nieuwe functies, verbeteringen en bug fixes en natuurlijk "
+"beveiligingsupdates.."
+
+#: backstage/update.php:115
+#, php-format
+msgid "Download v%s"
+msgstr ""
+
+#: backstage/update.php:116
+msgid "Changelog"
+msgstr ""
+
+#: backstage/update.php:121
+msgid "You're using the latest version of Luna!"
+msgstr ""
+
+#: backstage/update.php:122
+msgid "You're on our latest release! Nothing to worry about."
+msgstr ""
+
+#: backstage/update.php:126 backstage/update.php:133
+msgid "You're using a development version of Luna. Be sure to stay up-to-date."
+msgstr ""
+
+#: backstage/update.php:127
+msgid ""
+"We release every now and then a new build for Luna, one more stable then the "
+"other, for you to check out. You can keep track of this at <a href=\"http://"
+"getluna.org/release-notes-preview.php\">our website</a>. New builds can "
+"contain new features, improved features, and/or bugfixes."
+msgstr ""
+
+#: backstage/update.php:128 backstage/update.php:134
+msgid ""
+"At this point, we can only tell you that you're beyond the latest release. "
+"We can't tell you if there is a new preview available. You'll have to find "
+"out for yourself."
+msgstr ""
+
+#: backstage/update.php:136
+msgid "Download"
+msgstr ""
+
+#: backstage/users.php:50
+msgid "IP/IP-ranges"
+msgstr "IP/IP-reeks"
+
+#: backstage/users.php:51
+msgid "Last used"
+msgstr "Laatst gebruikt"
+
+#: backstage/users.php:52
+msgid "Times found"
+msgstr "Keer gevonden"
+
+#: backstage/users.php:68
+msgid "Find more users for this ip"
+msgstr ""
+
+#: backstage/users.php:74
+msgid "There are currently no comments by that user in the forum."
+msgstr ""
+
+#: backstage/users.php:90
+msgid "The supplied IP address is not correctly formatted."
+msgstr ""
+
+#: backstage/users.php:123 backstage/users.php:725
+msgid "Title/Status"
+msgstr "Titel/status"
+
+#: backstage/users.php:124 backstage/users.php:152 backstage/users.php:726
+#: backstage/users.php:743 extern.php:494 profile.php:43
+#: themes/Fifteen/search-advanced.php:56 themes/Fifteen/settings.php:331
+#: themes/Fifteen/settings.php:524 themes/Sunrise/search-advanced.php:34
+#: themes/Sunrise/settings.php:324 themes/Sunrise/settings.php:517
+msgid "Comments"
+msgstr ""
+
+#: backstage/users.php:125 backstage/users.php:727 backstage/users.php:856
+#: themes/Fifteen/settings.php:531 themes/Sunrise/settings.php:524
+msgid "Admin note"
+msgstr "Admin nota"
+
+#: backstage/users.php:152 backstage/users.php:743
+msgid "IP stats"
+msgstr "IP statistieken"
+
+#: backstage/users.php:180
+msgid "The supplied IP address could not be found in the database."
+msgstr ""
+
+#: backstage/users.php:211 backstage/users.php:325 backstage/users.php:460
+msgid "No users selected."
+msgstr "Geen gebruikers geselecteerd."
+
+#: backstage/users.php:216
+msgid ""
+"For security reasons, you are not allowed to move multiple administrators to "
+"another group. If you want to move these administrators, you can do so on "
+"their respective user profiles."
+msgstr ""
+
+#: backstage/users.php:228
+msgid "Invalid group ID."
+msgstr "Ongeldig groep ID."
+
+#: backstage/users.php:272 backstage/users.php:280
+msgid "Change user group"
+msgstr ""
+
+#: backstage/users.php:287
+msgid "New group"
+msgstr "Nieuwe groep"
+
+#: backstage/users.php:287
+msgid "Select a new user group"
+msgstr "Selecteer een nieuwe groep"
+
+#: backstage/users.php:330
+msgid ""
+"Administrators cannot be deleted. In order to delete administrators, you "
+"must first move them to a different user group."
+msgstr ""
+
+#: backstage/users.php:410 backstage/users.php:419
+msgid "Delete users"
+msgstr ""
+
+#: backstage/users.php:424 themes/Fifteen/me-delete.php:16
+#: themes/Sunrise/me-delete.php:16
+msgid ""
+"Deleted users and/or comments cannot be restored. If you choose not to "
+"delete the comments made by this user, the comments can only be deleted "
+"manually at a later time."
+msgstr ""
+
+#: backstage/users.php:428 themes/Fifteen/me-delete.php:20
+#: themes/Sunrise/me-delete.php:20
+msgid "Delete all comments and threads this user has made"
+msgstr ""
+
+#: backstage/users.php:465
+msgid ""
+"Administrators cannot be banned. In order to ban administrators, you must "
+"first move them to a different user group."
+msgstr ""
+
+#: backstage/users.php:470
+msgid ""
+"Moderators cannot be banned. In order to ban moderators, you must first move "
+"them to a different user group."
+msgstr ""
+
+#: backstage/users.php:551
+msgid "Ban IP addresses"
+msgstr ""
+
+#: backstage/users.php:561
+msgid ""
+"Also ban the IP addresses of the banned users to make registering a new "
+"account more difficult for them."
+msgstr ""
+
+#: backstage/users.php:595
+msgid "You entered a non-numeric value into a numeric only column."
+msgstr ""
+
+#: backstage/users.php:603 backstage/users.php:612 backstage/users.php:621
+#: backstage/users.php:630 backstage/users.php:639 backstage/users.php:648
+msgid "You entered an invalid date/time."
+msgstr ""
+
+#: backstage/users.php:713 backstage/users.php:773
+msgid "Change group"
+msgstr "Groep wijzigen"
+
+#: backstage/users.php:740 include/functions.php:911 settings.php:676
+msgid "Banned"
+msgstr "Verbannen"
+
+#: backstage/users.php:741
+msgid "Not verified"
+msgstr "Niet geverifieerd"
+
+#: backstage/users.php:794
+msgid "The user has been deleted."
+msgstr "Deze gebruikers is verwijderd."
+
+#: backstage/users.php:799
+msgid "User search"
+msgstr "Zoek gebruiker"
+
+#: backstage/users.php:803
+msgid ""
+"Enter a username to search for and/or a user group to filter by. Use the "
+"wildcard character * for partial matches."
+msgstr ""
+"Geef een gebruikersnaam in om op te zoeken en/of een groep om op te filteren."
+
+#: backstage/users.php:809
+msgid "Email address"
+msgstr "E-mail adres"
+
+#: backstage/users.php:813 profile.php:41 themes/Fifteen/settings.php:83
+#: themes/Sunrise/settings.php:79
+msgid "Title"
+msgstr "Titel"
+
+#: backstage/users.php:815 profile.php:55 themes/Fifteen/settings.php:76
+#: themes/Sunrise/settings.php:72
+msgid "Real name"
+msgstr "Echte naam"
+
+#: backstage/users.php:819 include/draw_functions.php:652
+#: include/draw_functions.php:825 themes/Fifteen/settings.php:280
+#: themes/Sunrise/settings.php:273
+msgid "Website"
+msgstr "Website"
+
+#: backstage/users.php:821 themes/Fifteen/settings.php:299
+#: themes/Sunrise/settings.php:292
+msgid "Facebook"
+msgstr "Facebook"
+
+#: backstage/users.php:825 themes/Fifteen/settings.php:290
+#: themes/Sunrise/settings.php:283
+msgid "Microsoft Account"
+msgstr "Microsoft Account"
+
+#: backstage/users.php:827 themes/Fifteen/settings.php:308
+#: themes/Sunrise/settings.php:301
+msgid "Twitter"
+msgstr "Twitter"
+
+#: backstage/users.php:831 themes/Fifteen/settings.php:317
+#: themes/Sunrise/settings.php:310
+msgid "Google+"
+msgstr "Google+"
+
+#: backstage/users.php:833 profile.php:58 themes/Fifteen/settings.php:90
+#: themes/Sunrise/settings.php:86
+msgid "Location"
+msgstr "Locatie"
+
+#: backstage/users.php:837 themes/Fifteen/profile.php:47
+#: themes/Fifteen/settings.php:107 themes/Sunrise/profile.php:48
+#: themes/Sunrise/settings.php:103
+msgid "Signature"
+msgstr "Handtekening"
+
+#: backstage/users.php:839
+msgid "User group"
+msgstr "Groep"
+
+#: backstage/users.php:842
+msgid "All groups"
+msgstr "Alle groepen"
+
+#: backstage/users.php:843
+msgid "Unverified users"
+msgstr "Niet geverifieerde gebruiker"
+
+#: backstage/users.php:860
+msgid "Number of comments less than"
+msgstr "Minder reacties dan"
+
+#: backstage/users.php:862
+msgid "Number of comments greater than"
+msgstr "Meer reacties dan"
+
+#: backstage/users.php:866
+msgid "Last comment is before"
+msgstr "Laatst gereageerd voor"
+
+#: backstage/users.php:868
+msgid "Last comment is after"
+msgstr "Laatst gereageerd na"
+
+#: backstage/users.php:872
+msgid "Last visit is before"
+msgstr "Laatst bezocht voor"
+
+#: backstage/users.php:874
+msgid "Last visit is after"
+msgstr "Laatst bezocht na"
+
+#: backstage/users.php:878
+msgid "Registered before"
+msgstr "Geregistreerd voor"
+
+#: backstage/users.php:880
+msgid "Registered after"
+msgstr "Geregistreerd na"
+
+#: backstage/users.php:889
+msgid "Number of comments"
+msgstr "Aantal reacties"
+
+#: backstage/users.php:891 profile.php:52
+msgid "Last visit"
+msgstr "Laatste bezoek"
+
+#: backstage/users.php:892 profile.php:48
+msgid "Registered"
+msgstr "Geregistreerd"
+
+#: backstage/users.php:905
+msgid "IP search"
+msgstr "IP zoeken"
+
+#: backstage/users.php:913
+msgid "Find IP address"
+msgstr "Zoek IP adres"
+
+#: backstage/users.php:916
+msgid "The IP address to search for in the comment database."
+msgstr "Het IP adres om op te zoeken in de database."
+
+#: comment.php:14 delete.php:14 edit.php:15 extern.php:74 help.php:14
+#: index.php:14 search.php:19 thread.php:15 userlist.php:14 viewforum.php:15
+msgid "You do not have permission to view this page."
+msgstr "Je hebt niet de nodige permissies om deze pagina te bekijken."
+
+#: comment.php:54
+#, php-format
+msgid ""
+"At least %s seconds have to pass between comments. Please wait %s seconds "
+"and try commenting again."
+msgstr ""
+"Minstens %s seconden moeten zijn verlopen tussen reacties. Wacht %s seconden "
+"en probeer dan opnieuw te reageren."
+
+#: comment.php:66 edit.php:68
+msgid ""
+"Threads must contain a subject. After applying censoring filters, your "
+"subject was empty."
+msgstr ""
+"Conversaties moeten een onderwerp hebben. Na het toepassen van censuur is je "
+"onderwerp leeg."
+
+#: comment.php:70 edit.php:72
+msgid "Subjects cannot contain only capital letters."
+msgstr "Het onderwerp mag niet enkel uit hoofdletters bestaan."
+
+#: comment.php:91 login.php:124 register.php:68 settings.php:332
+#: settings.php:655
+msgid "The email address you entered is invalid."
+msgstr "Het e-mail adres dat je hebt ingevuld is ongeldig."
+
+#: comment.php:97 register.php:75 settings.php:337
+msgid ""
+"The email address you entered is banned in this forum. Please choose another "
+"email address."
+msgstr ""
+"Het e-mail adres dat je hebt ingevuld is verbannen van dit forum. Kies een "
+"ander e-mail adres."
+
+#: comment.php:109 edit.php:80 new_inbox.php:215
+#, php-format
+msgid "Comments cannot be longer than %s bytes."
+msgstr "Reacties kunnen niet langer zijn dan %s bytes."
+
+#: comment.php:111 edit.php:82
+msgid "Comments cannot contain only capital letters."
+msgstr "Reacties mogen niet bestaan uit uitsluitend hoofdletters."
+
+#: comment.php:119 edit.php:90 misc.php:77 new_inbox.php:211
+msgid "You must enter a message."
+msgstr "Je moet een bericht ingeven."
+
+#: comment.php:125 edit.php:96
+msgid ""
+"You must enter a message. After applying censoring filters, your message was "
+"empty."
+msgstr ""
+"Je moet een bericht ingeven. Na het toepassen van censuur is je bericht leeg."
+
+#: comment.php:203
+msgid ""
+"Subject: Reply to thread: \"<thread_subject>\"\n"
+"\n"
+"<replier> has replied to the thread \"<thread_subject>\" to which you are "
+"subscribed. There may be more new replies, but this is the only notification "
+"you will receive until you visit the board again.\n"
+"\n"
+"The comment is located at <comment_url>\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:216
+msgid ""
+"Subject: Reply to thread: \"<thread_subject>\"\n"
+"\n"
+"<replier> has replied to the thread \"<thread_subject>\" to which you are "
+"subscribed. There may be more new replies, but this is the only notification "
+"you will receive until you visit the board again.\n"
+"\n"
+"The comment is located at <comment_url>\n"
+"\n"
+"The message reads as follows:\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"<message>\n"
+"\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:331
+msgid ""
+"Subject: New thread in forum: \"<forum_name>\"\n"
+"\n"
+"<commenter> has commented a new thread \"<thread_subject>\" in the forum "
+"\"<forum_name>\", to which you are subscribed.\n"
+"\n"
+"The thread is located at <thread_url>\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:344
+msgid ""
+"Subject: New thread in forum: \"<forum_name>\"\n"
+"\n"
+"<commenter> has commented a new thread \"<thread_subject>\" in the forum "
+"\"<forum_name>\", to which you are subscribed.\n"
+"\n"
+"The thread is located at <thread_url>\n"
+"\n"
+"The message reads as follows:\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"<message>\n"
+"\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"You can unsubscribe by going to <unsubscribe_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:414
+msgid ""
+"Subject: Alert - Banned email detected\n"
+"\n"
+"User \"<username>\" commented with banned email address: <email>\n"
+"\n"
+"Comment URL: <comment_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: comment.php:455
+msgid "Add comment"
+msgstr "Nieuwe reactie"
+
+#: comment.php:522 viewforum.php:53
+msgid "Create thread"
+msgstr ""
+
+#: db_update.php:141 db_update.php:149 include/class/luna_install.php:162
+#: include/class/luna_install.php:168 install.php:105
+#, php-format
+msgid ""
+"You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to "
+"run properly. You must upgrade your %1$s installation before you can "
+"continue."
+msgstr ""
+
+#: db_update.php:159
+msgid "Your forum is already as up-to-date as this script can make it"
+msgstr ""
+
+#: db_update.php:159 install.php:92
+msgid "Continue"
+msgstr ""
+
+#: db_update.php:159
+msgid "Let's get started"
+msgstr "Laten we beginnen"
+
+#: db_update.php:186
+msgid "There is an update ready to be installed"
+msgstr ""
+
+#: db_update.php:186
+msgid "Start update"
+msgstr "Update"
+
+#: db_update.php:186
+msgid "Update Luna"
+msgstr "Update Luna"
+
+#: db_update.php:713 db_update.php:746
+#, php-format
+msgid "Preparsing %1$s %2$s …"
+msgstr "Parsen van %1$s %2$s ..."
+
+#: db_update.php:746
+msgid "signature"
+msgstr "handtekening"
+
+#: db_update.php:798
+#, php-format
+msgid "Rebuilding index for %1$s %2$s"
+msgstr "Hergenereren index voor %1$s %2$s"
+
+#: db_update.php:866
+msgid "If this takes to long, the automatic redirect might have failed."
+msgstr ""
+
+#: db_update.php:866
+msgid "Click here"
+msgstr ""
+
+#: delete.php:123
+msgid "Delete comment"
+msgstr ""
+
+#: edit.php:56
+msgid "Are you sure you want to do this?"
+msgstr ""
+
+#: extern.php:290 extern.php:343 include/functions.php:654
+msgid " / "
+msgstr " / "
+
+#: extern.php:292
+#, php-format
+msgid "The most recent comments in %s."
+msgstr "De meest recente reactie in %s."
+
+#: extern.php:304
+msgid "Re: "
+msgstr "Re:"
+
+#: extern.php:358
+msgid "en"
+msgstr "nl"
+
+#: extern.php:370
+#, php-format
+msgid "The most recent threads at %s."
+msgstr "De meest recente conversatie in %s."
+
+#: extern.php:458 themes/Sunrise/footer.php:76
+msgid "Guests online"
+msgstr "Gasten online"
+
+#: extern.php:461 extern.php:463
+msgid "Users online"
+msgstr "Gebruikers online"
+
+#: extern.php:492 themes/Fifteen/footer.php:61 themes/Sunrise/footer.php:58
+msgid "Newest user"
+msgstr "Nieuwste gebruiker"
+
+#: extern.php:493 themes/Fifteen/help.php:210
+#: themes/Fifteen/search-advanced.php:55 themes/Sunrise/help.php:217
+#: themes/Sunrise/search-advanced.php:33 themes/Sunrise/settings.php:36
+msgid "Threads"
+msgstr "Conversaties"
+
+#: footer.php:21 footer.php:46 include/general_functions.php:50
+#: themes/Fifteen/notifications.php:39 themes/Fifteen/notifications.php:55
+#: themes/Sunrise/notifications.php:28 themes/Sunrise/notifications.php:47
+msgid "No new notifications"
+msgstr "Geen nieuwe notificaties"
+
+#: footer.php:23
+msgid "More"
+msgstr "Meer"
+
+#: header.php:56 header.php:57 include/draw_functions.php:348
+#: include/draw_functions.php:431 themes/Fifteen/notifications.php:30
+msgid "New"
+msgstr "Nieuw"
+
+#: header.php:62 header.php:64
+msgid "Active"
+msgstr "Actief"
+
+#: header.php:63 header.php:65
+msgid "Unanswered"
+msgstr "Onbeantwoord"
+
+#: help.php:16 include/backstage_functions.php:130
+#: include/general_functions.php:78 themes/Sunrise/help.php:8
+msgid "Help"
+msgstr "Help"
+
+#: inbox.php:43 inbox.php:55 inbox.php:67
+msgid "You must select some messages"
+msgstr "Je moet een bericht selecten"
+
+#: inbox.php:93 new_inbox.php:386 viewinbox.php:204
+msgid "Private Messages"
+msgstr "Privé berichten"
+
+#: include/backstage_functions.php:18 include/backstage_functions.php:158
+msgid "System info"
+msgstr "Systeem info"
+
+#: include/backstage_functions.php:20
+msgid "Luna software update"
+msgstr "Luna software update"
+
+#: include/backstage_functions.php:22
+msgid "About Luna"
+msgstr "Over Luna"
+
+#: include/backstage_functions.php:36 include/backstage_functions.php:171
+msgid "Tools"
+msgstr ""
+
+#: include/backstage_functions.php:40 include/backstage_functions.php:173
+msgid "Groups"
+msgstr "Groepen"
+
+#: include/backstage_functions.php:47 include/backstage_functions.php:94
+#: include/backstage_functions.php:128 include/backstage_functions.php:179
+#: include/general_functions.php:74 include/me_functions.php:20
+#: settings.php:820 themes/Fifteen/settings.php:36
+#: themes/Sunrise/settings.php:30
+msgid "Settings"
+msgstr "Instellingen"
+
+#: include/backstage_functions.php:59 include/backstage_functions.php:185
+#: themes/Fifteen/settings.php:39
+msgid "Theme"
+msgstr "Thema"
+
+#: include/backstage_functions.php:66
+msgid "Database management"
+msgstr "Database beheer"
+
+#: include/backstage_functions.php:89 include/backstage_functions.php:91
+msgid "Content"
+msgstr "Content"
+
+#: include/backstage_functions.php:107
+msgid "Extensions"
+msgstr "Extensies"
+
+#: include/backstage_functions.php:127 include/general_functions.php:70
+#: include/me_functions.php:14 notifications.php:64 profile.php:113
+#: settings.php:171 settings.php:432 settings.php:820
+#: themes/Fifteen/help.php:136 themes/Fifteen/settings.php:38
+#: themes/Sunrise/help.php:141 themes/Sunrise/settings.php:33
+msgid "Profile"
+msgstr "Profiel"
+
+#: include/backstage_functions.php:131
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: include/backstage_functions.php:133 include/general_functions.php:82
+msgid "Logout"
+msgstr "Afmelden"
+
+#: include/backstage_functions.php:160 themes/Fifteen/profile.php:29
+msgid "About"
+msgstr "Over"
+
+#: include/class/luna_install.php:77
+msgid "Usernames must be at least 2 characters long."
+msgstr ""
+
+#: include/class/luna_install.php:79
+msgid "Usernames must not be more than 25 characters long."
+msgstr ""
+
+#: include/class/luna_install.php:81
+msgid "The username guest is reserved."
+msgstr ""
+
+#: include/class/luna_install.php:83
+msgid "Usernames may not be in the form of an IP address."
+msgstr ""
+
+#: include/class/luna_install.php:85
+msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
+msgstr ""
+
+#: include/class/luna_install.php:87
+msgid ""
+"Usernames may not contain any of the text formatting tags (BBCode) that the "
+"forum uses."
+msgstr ""
+
+#: include/class/luna_install.php:90
+msgid "Passwords must be at least 6 characters long."
+msgstr ""
+
+#: include/class/luna_install.php:92 register.php:62 settings.php:257
+msgid "Passwords do not match."
+msgstr ""
+
+#: include/class/luna_install.php:98
+msgid "The administrator email address you entered is invalid."
+msgstr ""
+
+#: include/class/luna_install.php:101
+msgid "You must enter a board title."
+msgstr ""
+
+#: include/class/luna_install.php:105
+msgid "The default language chosen doesn't seem to exist."
+msgstr ""
+
+#: include/class/luna_install.php:109
+msgid "The default style chosen doesn't seem to exist."
+msgstr ""
+
+#: include/class/luna_install.php:147
+#, php-format
+msgid "\"%s\" is not a valid database type"
+msgstr "\"%s\" is geen geldige database type"
+
+#: include/class/luna_install.php:174
+msgid ""
+"The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please "
+"choose a different prefix"
+msgstr ""
+
+#: include/class/luna_install.php:183
+msgid ""
+"InnoDB does not seem to be enabled. Please choose a database layer that does "
+"not have InnoDB support, or enable InnoDB on your MySQL server"
+msgstr ""
+"InnoDB lijkt niet beschikbaar te zijn. Kies een database layer dat geen "
+"InnoDB gebruik, of schakel InnoDB in op je MySQL server."
+
+#: include/class/luna_install.php:191
+#, php-format
+msgid ""
+"The table prefix '%s' contains illegal characters or is too long. The prefix "
+"may contain the letters a to z, any numbers and the underscore character. "
+"They must however not start with a number. The maximum length is 40 "
+"characters. Please choose a different prefix"
+msgstr ""
+
+#: include/class/luna_install.php:205
+#, php-format
+msgid ""
+"A table called \"%susers\" is already present in the database \"%s\". This "
+"could mean that Luna is already installed or that another piece of software "
+"is installed and is occupying one or more of the table names Luna requires. "
+"If you want to install multiple copies of Luna in the same database, you "
+"must choose a different table prefix"
+msgstr ""
+"Een tabel genaamd \"%susers\" bestaat al in de database \"%s\". Dit kan "
+"mogelijk wijzen op een al bestaande Luna installatie of dat een ander "
+"programma is geïnstalleerd dat een of meer tabelnamen gebruikt die Luna ook "
+"gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
+"bewaren kan je een andere prefix instellen."
+
+#: include/class/luna_install.php:1438
+msgid "H:i"
+msgstr "H:i"
+
+#: include/class/luna_install.php:1439
+msgid "j M Y"
+msgstr "j M Y"
+
+#: include/class/luna_install.php:1480
+msgid ""
+"Wow, it's great to have you here, welcome and thanks for joining us. We've "
+"set up your account and you're ready to go. Though we like to point out some "
+"actions you might want to do first."
+msgstr ""
+"Welkom. Het is fijn je hier te hebben, bedankt om te komen. Je account is "
+"aangemaakt en je bent klaar om te starten. We hebben echter nog wat handige "
+"links voor je die je mogelijk wilt bekijken."
+
+#: include/class/luna_install.php:1492
+msgid "Announcement"
+msgstr "Aankondigingen"
+
+#: include/class/luna_install.php:1496 themes/Fifteen/help.php:13
+#: themes/Fifteen/rules.php:13
+msgid "Rules"
+msgstr "Regels"
+
+#: include/class/luna_install.php:1568
+msgid "Administrators"
+msgstr "Administratoren"
+
+#: include/class/luna_install.php:1568 settings.php:676
+msgid "Administrator"
+msgstr "Administrator"
+
+#: include/class/luna_install.php:1570
+msgid "Moderators"
+msgstr "Moderatoren"
+
+#: include/class/luna_install.php:1570 settings.php:676
+msgid "Moderator"
+msgstr "Moderator"
+
+#: include/class/luna_install.php:1574
+msgid "Members"
+msgstr "Gebruikers"
+
+#: include/class/luna_install.php:1603
+msgid "New member"
+msgstr "Nieuwe gebruikers"
+
+#: include/class/luna_install.php:1606 include/functions.php:929
+#: settings.php:676
+msgid "Member"
+msgstr "Gebruiker"
+
+#: include/common.php:204
+msgid ""
+"You appear to have logged in successfully, however a cookie has not been "
+"set. Please check your settings and if applicable, enable cookies for this "
+"website."
+msgstr ""
+"Je bent succesvol ingelogd, maar we waren niet in staat een cokie in te "
+"stellen. Controleer je instellingen, en indien mogelijk sta je cookies toe "
+"voor deze website."
+
+#: include/draw_functions.php:16 themes/Fifteen/inbox-new.php:34
+#: themes/Sunrise/inbox-new.php:15
+msgid "Comment errors"
+msgstr "Reactie fout"
+
+#: include/draw_functions.php:41 themes/Fifteen/inbox-new.php:52
+#: themes/Sunrise/inbox-new.php:33
+msgid "Comment preview"
+msgstr "Reacite voorbeeld"
+
+#: include/draw_functions.php:66 themes/Fifteen/thread.php:41
+msgid "Pin thread"
+msgstr "Conversatie vastmaken"
+
+#: include/draw_functions.php:75
+msgid "Mute edit"
+msgstr "Stil bewerken"
+
+#: include/draw_functions.php:82
+msgid ""
+"The Editor Toolbar requires JavaScript to be enabled. BBCode will still "
+"work, though."
+msgstr "De editor vereist JavaScript. BBCode werkt nog steeds."
+
+#: include/draw_functions.php:94
+msgid "Bold"
+msgstr "Vet"
+
+#: include/draw_functions.php:95
+msgid "Underline"
+msgstr "Onderlijnd"
+
+#: include/draw_functions.php:96 include/draw_functions.php:123
+msgid "Italic"
+msgstr "Schuin"
+
+#: include/draw_functions.php:97 include/draw_functions.php:128
+msgid "Strike"
+msgstr "Doorstrepen"
+
+#: include/draw_functions.php:100
+msgid "Heading"
+msgstr "Hoofding"
+
+#: include/draw_functions.php:101 include/draw_functions.php:129
+msgid "Subscript"
+msgstr "Subscript"
+
+#: include/draw_functions.php:102 include/draw_functions.php:130
+msgid "Superscript"
+msgstr "Superscript"
+
+#: include/draw_functions.php:105 include/draw_functions.php:712
+#: include/draw_functions.php:737 include/draw_functions.php:848
+msgid "Quote"
+msgstr "Quote"
+
+#: include/draw_functions.php:106 include/draw_functions.php:124
+#: themes/Fifteen/help.php:28 themes/Sunrise/help.php:30
+msgid "Code"
+msgstr "Code"
+
+#: include/draw_functions.php:107 include/draw_functions.php:125
+msgid "Inline code"
+msgstr "Inline code"
+
+#: include/draw_functions.php:111 include/draw_functions.php:126
+msgid "Image"
+msgstr "Afbeelding"
+
+#: include/draw_functions.php:112 include/draw_functions.php:127
+msgid "Video"
+msgstr "Video"
+
+#: include/draw_functions.php:115
+msgid "List"
+msgstr "Lijst"
+
+#: include/draw_functions.php:116
+msgid "List item"
+msgstr "Lijst  punt"
+
+#: include/draw_functions.php:134
+msgid "Start typing..."
+msgstr "Start met typen"
+
+#: include/draw_functions.php:156 include/draw_functions.php:1072
+#: themes/Fifteen/login.php:44 themes/Fifteen/report.php:12
+#: themes/Sunrise/login.php:44
+msgid "Submit"
+msgstr "Verzenden"
+
+#: include/draw_functions.php:307
+#, php-format
+msgid "<a href=\"comment.php?fid=%s\">Start the first thread in this forum</a>"
+msgstr ""
+"<a href=\"comment.php?fid=%s\">Start de eerste conversatie in dit forum</a>"
+
+#: include/draw_functions.php:382 include/functions.php:1124
+msgid "Never"
+msgstr "Nooit"
+
+#: include/draw_functions.php:393
+msgid "There are no forums in this board yet."
+msgstr "Er zijn geen forums op deze website."
+
+#: include/draw_functions.php:598
+msgid "The board is empty, select a forum and create a thread to begin."
+msgstr ""
+"Dit forum is leeg, select een forum en maak een conversatie om te beginnen."
+
+#: include/draw_functions.php:636 include/draw_functions.php:805
+msgid "From:"
+msgstr "Van:"
+
+#: include/draw_functions.php:640
+msgid "Comment:"
+msgstr "Reactie:"
+
+#: include/draw_functions.php:657 include/draw_functions.php:673
+#: include/draw_functions.php:830 include/draw_functions.php:840
+msgid "IP log"
+msgstr "IP log"
+
+#: include/draw_functions.php:664 include/draw_functions.php:833
+msgid "Note:"
+msgstr "Nota:"
+
+#: include/draw_functions.php:691 include/draw_functions.php:693
+#: include/draw_functions.php:725 include/draw_functions.php:727
+#: include/draw_functions.php:1057 themes/Fifteen/report.php:12
+msgid "Report"
+msgstr "Rapport"
+
+#: include/draw_functions.php:703 include/draw_functions.php:732
+#: include/draw_functions.php:914 themes/Fifteen/soft.php:14
+msgid "Soft delete"
+msgstr "Verbergen"
+
+#: include/draw_functions.php:705 include/draw_functions.php:734
+msgid "Soft reset"
+msgstr "Herstellen"
+
+#: include/draw_functions.php:717 include/draw_functions.php:741
+#: themes/Fifteen/unsolved.php:12 themes/Sunrise/unsolved.php:11
+msgid "Unsolved"
+msgstr "Onopgelost"
+
+#: include/draw_functions.php:719 include/draw_functions.php:743
+#: themes/Fifteen/answer.php:13 themes/Sunrise/answer.php:11
+msgid "Answer"
+msgstr "Opgelost"
+
+#: include/draw_functions.php:790
+msgid "Online:"
+msgstr "Online:"
+
+#: include/draw_functions.php:790
+msgid "Offline"
+msgstr "Offline"
+
+#: include/draw_functions.php:808 profile.php:50
+msgid "Registered since"
+msgstr "Geregistreerd op"
+
+#: include/draw_functions.php:811
+msgid "Comments:"
+msgstr "Reacties:"
+
+#: include/draw_functions.php:821
+msgid "PM"
+msgstr "PM"
+
+#: include/draw_functions.php:889 search.php:97 search.php:147 search.php:269
+#: search.php:494
+msgid "Your search returned no hits."
+msgstr ""
+
+#: include/draw_functions.php:897 include/draw_functions.php:911
+#: themes/Fifteen/delete.php:17 themes/Fifteen/soft.php:17
+#: themes/Sunrise/delete.php:15
+msgid ""
+"This is the first comment in the thread, the whole thread will be "
+"permanently deleted."
+msgstr ""
+
+#: include/draw_functions.php:897 themes/Fifteen/delete.php:17
+#: themes/Sunrise/delete.php:15
+msgid ""
+"The comment you have chosen to delete is set out below for you to review "
+"before proceeding."
+msgstr ""
+
+#: include/draw_functions.php:899 include/draw_functions.php:913
+#: include/draw_functions.php:927 include/draw_functions.php:1071
+#: themes/Fifteen/comment.php:13 themes/Fifteen/comment.php:15
+#: themes/Fifteen/edit.php:12 themes/Fifteen/inbox-delete-comment.php:18
+#: themes/Sunrise/comment.php:13 themes/Sunrise/comment.php:15
+#: themes/Sunrise/delete.php:17 themes/Sunrise/edit.php:12
+#: themes/Sunrise/inbox-delete-comment.php:18
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: include/draw_functions.php:911 themes/Fifteen/soft.php:17
+msgid ""
+"The comment you have chosen to delete is set out below for you to review "
+"before proceeding. Deleting this comment is not permanent. If you want to "
+"delete a comment permanently, please use delete instead."
+msgstr ""
+
+#: include/draw_functions.php:925 themes/Fifteen/reset.php:17
+msgid ""
+"This comment has been soft deleted. We'll enable it again with a click on "
+"the button."
+msgstr ""
+
+#: include/draw_functions.php:928 themes/Fifteen/reset.php:14
+msgid "Reset comment"
+msgstr "Herstel reactie"
+
+#: include/draw_functions.php:937
+#, php-format
+msgid "Thread started by %s - %s"
+msgstr "Conversatie gestart door %s - %s"
+
+#: include/draw_functions.php:937
+#, php-format
+msgid "Comment by %s - %s"
+msgstr ""
+
+#: include/draw_functions.php:947
+msgid "You must agree to the following in order to register"
+msgstr ""
+
+#: include/draw_functions.php:955 themes/Fifteen/rules.php:13
+msgid "Agree"
+msgstr "Akkoortd"
+
+#: include/draw_functions.php:1039
+msgid "Mail"
+msgstr "Mail"
+
+#: include/draw_functions.php:1042
+msgid "Send"
+msgstr "Verstuur"
+
+#: include/draw_functions.php:1063 themes/Fifteen/report.php:16
+msgid "Tell us why you are reporting this"
+msgstr "Waarom rapporteer je dit"
+
+#: include/draw_functions.php:1090
+msgid "Forums to search in"
+msgstr "Forums om in te zoeken"
+
+#: include/draw_functions.php:1117
+msgid "Forum to search in"
+msgstr "Forum om in te zoeken"
+
+#: include/draw_functions.php:1159
+msgid "Luna"
+msgstr "Luna"
+
+#: include/email.php:225 new_inbox.php:267 new_inbox.php:279
+#, php-format
+msgid "%s Mailer"
+msgstr "%s Mailer"
+
+#: include/functions.php:450
+msgid "You are banned from this forum."
+msgstr ""
+
+#: include/functions.php:450
+msgid "The ban expires at the end of"
+msgstr ""
+
+#: include/functions.php:450
+msgid ""
+"The administrator or moderator that banned you left the following message:"
+msgstr ""
+
+#: include/functions.php:450
+msgid "Please direct any inquiries to the forum administrator at"
+msgstr ""
+
+#: include/functions.php:480
+msgid ""
+"Usernames must not be more than 25 characters long. Please choose another "
+"(shorter) username."
+msgstr ""
+
+#: include/functions.php:492
+msgid ""
+"The username you entered contains one or more censored words. Please choose "
+"a different username."
+msgstr ""
+
+#: include/functions.php:507
+msgid ""
+"The username you entered is banned in this forum. Please choose another "
+"username."
+msgstr ""
+
+#: include/functions.php:652
+#, php-format
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: include/functions.php:963 include/functions.php:978
+#: include/functions.php:1013 include/functions.php:1028
+msgid "…"
+msgstr ""
+
+#: include/functions.php:1056
+msgid "We've got us a situation here."
+msgstr "We hebben hier een probleem"
+
+#: include/functions.php:1140
+msgid "Today"
+msgstr "Vandaag"
+
+#: include/functions.php:1142
+msgid "Yesterday"
+msgstr "Gisteren"
+
+#: include/functions.php:1159
+msgid "."
+msgstr ""
+
+#: include/functions.php:1159
+msgid ","
+msgstr ","
+
+#: include/functions.php:1196 include/functions.php:1216
+msgid ""
+"Bad HTTP_REFERER. You were referred to this page from an unauthorized "
+"source. If the problem persists please make sure that \"Base URL\" is "
+"correctly set in Admin/Options and that you are visiting the forum by "
+"navigating to that URL. More information regarding the referrer check can be "
+"found in the Luna documentation."
+msgstr ""
+
+#: include/functions.php:1259
+msgid ""
+"Bad CSRF hash. You were referred to this page from an unauthorized source."
+msgstr ""
+
+#: include/functions.php:1617
+#, php-format
+msgid "%s "
+msgstr "%s"
+
+#: include/functions.php:2023
+msgid "Debug information"
+msgstr ""
+
+#: include/functions.php:2028
+msgid "Time (s)"
+msgstr "Tijd (s)"
+
+#: include/functions.php:2029
+msgid "Query"
+msgstr "Query"
+
+#: include/functions.php:2050
+#, php-format
+msgid "Total query time: %s"
+msgstr "Totale query tijd: %s"
+
+#: include/general_functions.php:28 register.php:23 register.php:244
+#: themes/Fifteen/index.php:45 themes/Fifteen/login.php:21
+#: themes/Fifteen/login.php:26 themes/Fifteen/register.php:14
+#: themes/Sunrise/index.php:35 themes/Sunrise/login.php:21
+#: themes/Sunrise/login.php:26 themes/Sunrise/register.php:8
+#: themes/Sunrise/register.php:13
+msgid "Register"
+msgstr "Registreer"
+
+#: include/inbox_functions.php:16
+msgid "Toggle navigation"
+msgstr "Toggle navigatie"
+
+#: include/inbox_functions.php:32 themes/Fifteen/inbox-view.php:28
+#: themes/Sunrise/inbox.php:38 viewinbox.php:221
+msgid "Reply"
+msgstr "Reageer"
+
+#: include/inbox_functions.php:34 themes/Fifteen/inbox.php:44
+#: themes/Sunrise/inbox.php:40
+msgid "Compose"
+msgstr ""
+
+#: include/parser.php:53 include/parser.php:108
+msgid ""
+"It seems your comment consisted of empty BBCodes only. It is possible that "
+"this happened because e.g. the innermost quote was discarded because of the "
+"maximum quote depth level."
+msgstr ""
+
+#: include/parser.php:62
+msgid ""
+"The quote, code, list, video, and heading BBCodes are not allowed in "
+"signatures."
+msgstr ""
+
+#: include/parser.php:74
+msgid "Your list was too long to parse, please make it smaller!"
+msgstr ""
+
+#: include/parser.php:307
+#, php-format
+msgid "[%s] tag had an empty attribute section"
+msgstr "[%s]-tag heeft geen attribute gegeven."
+
+#: include/parser.php:356 include/parser.php:457
+#, php-format
+msgid "[%1$s] was opened within [%2$s], this is not allowed"
+msgstr "[%1$s] was geopend binnen een [%2$s], dit is niet toegestaan."
+
+#: include/parser.php:365 include/parser.php:422
+#, php-format
+msgid "[/%1$s] was found without a matching [%1$s]"
+msgstr "[/%1$s] was gevonden zonder overeenkomstige [%1$s]"
+
+#: include/parser.php:391 include/parser.php:509 include/parser.php:516
+#, php-format
+msgid "[%1$s] was found without a matching [/%1$s]"
+msgstr "[%1$s] was gevonden zonder overeenkomstige [/%1$s]"
+
+#: include/parser.php:472
+#, php-format
+msgid "[%s] was opened within itself, this is not allowed"
+msgstr "[%s] was geopend binnen zichzelf, dit is niet toegestaan."
+
+#: include/parser.php:597
+msgid "image"
+msgstr "afbeelding"
+
+#: include/statistic_functions.php:96
+msgid "No users online"
+msgstr "Geen gebruikers online"
+
+#: index.php:45 themes/Fifteen/footer.php:23 themes/Sunrise/footer.php:22
+msgid "RSS active thread feed"
+msgstr "RSS active conversaties feed"
+
+#: index.php:47 themes/Fifteen/footer.php:23 themes/Sunrise/footer.php:22
+msgid "Atom active thread feed"
+msgstr ""
+
+#: install.php:92
+msgid "It seems like Luna is already installed."
+msgstr "Het lijkt erop dat Luna al geïnstalleerd is."
+
+#: install.php:92
+msgid "We're done here"
+msgstr "Wij zijn klaar hier"
+
+#: install.php:128
+msgid "You can do anything"
+msgstr ""
+
+#: install.php:157
+#, php-format
+msgid ""
+"<strong>The cache directory is currently not writable!</strong> In order for "
+"Luna to function properly, the directory <em>%s</em> must be writable by "
+"PHP. Use chmod to set the appropriate directory permissions. If in doubt, "
+"chmod to 0777."
+msgstr ""
+"<strong>De avatar map is momenteel niet beschrijfbaar!</strong> Luna moet "
+"schrijfrechten hebben naar de map <em>%s</em> in PHP. Zet CHMod op 0777 voor "
+"de juiste permissies."
+
+#: install.php:161
+#, php-format
+msgid ""
+"<strong>The avatar directory is currently not writable!</strong> If you want "
+"users to be able to upload their own avatar images you must see to it that "
+"the directory <em>%s</em> is writable by PHP. You can later choose to save "
+"avatar images in a different directory (see Admin/Options). Use chmod to set "
+"the appropriate directory permissions. If in doubt, chmod to 0777."
+msgstr ""
+"<strong>De avatar map is momenteel niet beschrijfbaar!</strong> Als je wilt "
+"dat gebruikers hun eigen avatars kunnen uploaden moet je ervoor zorgen dat "
+"de map <em>%s</em> beschrijfbaar is in PHP. Je kan later kiezen om avatars "
+"op te slaan in een andere map (zie Backstage > Instellingen > Instellingen > "
+"Avatars). Zet CHMod op 0777 voor de juiste permissies."
+
+#: install.php:168
+msgid ""
+"PHP needs to have support for either MySQL or SQLite to run Luna to be "
+"installed. Non is available, though"
+msgstr ""
+
+#: install.php:178 install.php:472 install.php:480
+msgid "Luna Installation"
+msgstr "Luna installatie"
+
+#: install.php:187 install.php:294
+msgid "Server hostname"
+msgstr "Server hostnaam"
+
+#: install.php:190
+msgid "Administrator password 1"
+msgstr "Administrator wachtwoord 1"
+
+#: install.php:191
+msgid "Administrator password 2"
+msgstr "Administrator wachtwoord 2"
+
+#: install.php:194 install.php:379
+msgid "No trailing slash"
+msgstr ""
+
+#: install.php:218
+#, php-format
+msgid "Install Luna %s"
+msgstr "Installer Luna %s"
+
+#: install.php:223
+msgid "Choose the install script language"
+msgstr ""
+
+#: install.php:228
+msgid "Install language"
+msgstr "Installatie taal"
+
+#: install.php:228
+msgid ""
+"The language used for this install script. The default language used for the "
+"board itself can be set below."
+msgstr ""
+
+#: install.php:247
+msgid "Change language"
+msgstr ""
+
+#: install.php:255
+msgid "The following errors need to be corrected:"
+msgstr ""
+
+#: install.php:272
+msgid "Database setup"
+msgstr ""
+
+#: install.php:277
+msgid "What database do you want to use?"
+msgstr "Welke database wil je gebruiken?"
+
+#: install.php:294
+msgid "Where's the server?"
+msgstr "Waar is de server?"
+
+#: install.php:300
+msgid "The database name"
+msgstr ""
+
+#: install.php:306
+msgid "Your database username"
+msgstr ""
+
+#: install.php:318
+msgid "Table prefix"
+msgstr "Tabel prefix"
+
+#: install.php:318
+msgid "Set for more Luna installation in this database"
+msgstr "Gebruik dit voor meerdere Luna installaties in deze database"
+
+#: install.php:328
+msgid "Administration setup"
+msgstr "Administratie setup"
+
+#: install.php:333
+msgid "2 to 25 characters long"
+msgstr "2 tot 25 tekens lang"
+
+#: install.php:339
+msgid "At least 6 characters long"
+msgstr ""
+
+#: install.php:362
+msgid "Board setup"
+msgstr ""
+
+#: install.php:423
+msgid "Start install"
+msgstr "Installeer"
+
+#: install.php:449
+msgid ""
+"<strong>File uploads appear to be disallowed on this server!</strong> If you "
+"want users to be able to upload their own avatar images you must enable the "
+"file_uploads configuration setting in PHP. Once file uploads have been "
+"enabled, avatar uploads can be enabled in Administration/Options/Features."
+msgstr ""
+"<strong>Deze server staat niet toe dat er bestanden worden geüpload!</"
+"strong> Als je avatars wilt gebruiken moet je file_uploads inschakelen in de "
+"configuratie instellingen van PHP.  Als deze functie is geactiveerd kan je "
+"avatar uploads inschakelen in Backstage > Instellingen > Instellingen > "
+"Avatars."
+
+#: install.php:483
+msgid ""
+"Luna has been installed. To finalize the installation please follow the "
+"instructions below."
+msgstr ""
+
+#: install.php:490
+msgid ""
+"To finalize the installation, you need to click on the button below to "
+"download a file called config.php. You then need to upload this file to the "
+"root directory of your Luna installation."
+msgstr ""
+
+#: install.php:491
+msgid ""
+"Once you have uploaded config.php, Luna will be fully installed! At that "
+"point, you may <a href=\"index.php\">go to the forum index</a>."
+msgstr ""
+
+#: install.php:510
+msgid "Download config.php file"
+msgstr ""
+
+#: install.php:518
+msgid ""
+"Luna has been fully installed! You may now <a href=\"index.php\">go to the "
+"forum index</a>."
+msgstr ""
+
+#: login.php:59
+msgid "Wrong username and/or password."
+msgstr "Foute gebruikersnaam en/of wachtwoord."
+
+#: login.php:59 themes/Fifteen/index.php:46 themes/Fifteen/login.php:26
+#: themes/Sunrise/index.php:36 themes/Sunrise/login.php:26
+msgid "Forgotten password"
+msgstr ""
+
+#: login.php:134
+msgid ""
+"Subject: New password requested\n"
+"\n"
+"Hello <username>,\n"
+"\n"
+"You have requested to have a new password assigned to your account in the "
+"discussion forum at <base_url>. If you did not request this or if you do not "
+"want to change your password you should just ignore this message. Only if "
+"you visit the activation page below will your password be changed.\n"
+"\n"
+"Your new password is: <new_password>\n"
+"\n"
+"To change your password, please visit the following page:\n"
+"<activation_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: login.php:161
+#, php-format
+msgid ""
+"This account has already requested a password reset in the past hour. Please "
+"wait %s minutes before requesting a new password again."
+msgstr ""
+
+#: login.php:177
+msgid ""
+"An email has been sent to the specified address with instructions on how to "
+"change your password. If it does not arrive you can contact the forum "
+"administrator at"
+msgstr ""
+
+#: login.php:180
+msgid "There is no user registered with the email address"
+msgstr ""
+
+#: misc.php:65
+msgid "The user you are trying to send an email to has disabled form email."
+msgstr ""
+
+#: misc.php:75
+msgid "You must enter a subject."
+msgstr ""
+
+#: misc.php:80
+msgid "Messages cannot be longer than 65535 characters (64 KB)."
+msgstr ""
+
+#: misc.php:83
+#, php-format
+msgid ""
+"At least %s seconds have to pass between sent emails. Please wait %s seconds "
+"and try sending again."
+msgstr ""
+
+#: misc.php:86
+msgid ""
+"Subject: <mail_subject>\n"
+"\n"
+"<sender> from <board_title> has sent you a message. You can reply to "
+"<sender> by replying to this email.\n"
+"\n"
+"The message reads as follows:\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"<mail_message>\n"
+"\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer"
+msgstr ""
+
+#: misc.php:133 themes/Sunrise/mail.php:11
+msgid "Send email to"
+msgstr "Stuur een e-mail naar"
+
+#: misc.php:157
+msgid "You must enter a reason."
+msgstr ""
+
+#: misc.php:159
+msgid "Your message must be under 65535 bytes (~64kb)."
+msgstr ""
+
+#: misc.php:162
+#, php-format
+msgid ""
+"At least %s seconds have to pass between reports. Please wait %s seconds and "
+"try sending again."
+msgstr ""
+
+#: misc.php:189
+msgid ""
+"Subject: Report(<forum_id>) - \"<thread_subject>\"\n"
+"\n"
+"User \"<username>\" has reported the following message: <comment_url>\n"
+"\n"
+"Reason: <reason>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: misc.php:232
+msgid "Report comment"
+msgstr "Rapporteer reactie"
+
+#: misc.php:233
+msgid "Reason"
+msgstr "Reden"
+
+#: misc.php:311
+msgid "You are subscribed"
+msgstr ""
+
+#: misc.php:329
+msgid "You're already subscribed to this forum."
+msgstr ""
+
+#: misc.php:352 misc.php:365
+msgid "You're not subscribed to this thread."
+msgstr ""
+
+#: new_inbox.php:133
+#, php-format
+msgid ""
+"At least % seconds have to pass between sends. Please wait a little while "
+"and try send the message again."
+msgstr ""
+
+#: new_inbox.php:137
+msgid "Can't save message, your boxes are full."
+msgstr ""
+
+#: new_inbox.php:158
+msgid "You must give at least one receiver"
+msgstr ""
+
+#: new_inbox.php:160
+#, php-format
+msgid "You can send a message at the same time only to %s receivers maximum."
+msgstr ""
+
+#: new_inbox.php:177
+#, php-format
+msgid "%s has left the conversation."
+msgstr "%s heeft de conversatie verlaten."
+
+#: new_inbox.php:183
+#, php-format
+msgid "%s disabled the private messages."
+msgstr "%s heeft privé berichten uitgeschakelt."
+
+#: new_inbox.php:186
+#, php-format
+msgid "%s inbox is full, you can not send you message to this user."
+msgstr "%s Inbox is vol, je kan deze gebruiker momenteel geen bericht sturen."
+
+#: new_inbox.php:188
+#, php-format
+msgid "There's no user with the username \"%s\"."
+msgstr ""
+
+#: new_inbox.php:234
+msgid ""
+"Subject: You received a new private message on <board_title>\n"
+"\n"
+"<sender> sent a private message to you.\n"
+"\n"
+"You can read this private message at this address: <inbox_url>\n"
+"\n"
+"--\n"
+"<board_mailer>\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: new_inbox.php:243
+msgid ""
+"Subject: You received a private message on <board_title>\n"
+"\n"
+"<sender> sent a private message to you.\n"
+"\n"
+"The message reads as follows:\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"<message>\n"
+"\n"
+"-----------------------------------------------------------------------\n"
+"\n"
+"You can read this private message at this address: <inbox_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: new_inbox.php:386
+msgid "Send a message"
+msgstr "Stuur een bericht"
+
+#: profile.php:64
+msgid "Show threads"
+msgstr "Toon conversaties"
+
+#: profile.php:65
+msgid "Show comments"
+msgstr "Toon reacties"
+
+#: profile.php:68
+msgid "Show subscriptions"
+msgstr "Toon abonnementen"
+
+#: profile.php:83 settings.php:554
+msgid "Send email"
+msgstr "Stuur een e-mail"
+
+#: register.php:20
+msgid "This forum is not accepting new registrations."
+msgstr ""
+
+#: register.php:23 themes/Sunrise/help.php:12 themes/Sunrise/rules.php:8
+msgid "Forum rules"
+msgstr "Forum regels"
+
+#: register.php:40
+msgid ""
+"A new user was registered with the same IP address as you within the last "
+"hour. To prevent registration flooding, at least an hour has to pass between "
+"registrations from the same IP. Sorry for the inconvenience."
+msgstr ""
+"Een nieuwe gebruiker heeft zich geregistreerd met hetzelfde IP adres als jou "
+"in het laatste uur. Om dubbele registraties te voorkomen moet je minstens "
+"een uur wachten tussen 2 registraties. Sorry voor het ongemak."
+
+#: register.php:70
+msgid "Email addresses do not match."
+msgstr ""
+
+#: register.php:87 settings.php:368
+msgid ""
+"Someone else is already registered with that email address. Please choose "
+"another email address."
+msgstr ""
+
+#: register.php:96
+msgid ""
+"Unfortunately it looks like your request is spam. If you feel this is a "
+"mistake, please direct any inquiries to the forum administrator at"
+msgstr ""
+
+#: register.php:125
+msgid ""
+"Subject: Alert - Banned email detected\n"
+"\n"
+"User \"<username>\" registered with banned email address: <email>\n"
+"\n"
+"User profile: <profile_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: register.php:152
+msgid ""
+"Subject: Alert - Duplicate email detected\n"
+"\n"
+"User \"<username>\" registered with an email address that also belongs to: "
+"<dupe_list>\n"
+"\n"
+"User profile: <profile_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: register.php:178
+msgid ""
+"Subject: Alert - New registration\n"
+"\n"
+"User \"<username>\" registered in the forums at <base_url>\n"
+"\n"
+"User profile: <profile_url>\n"
+"\n"
+"To administer this account, please visit the following page:\n"
+"<admin_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: register.php:235
+msgid ""
+"Thank you for registering. Your password has been sent to the specified "
+"address. If it doesn't arrive you can contact the forum administrator at"
+msgstr ""
+
+#: register.php:245
+msgid "Confirm password"
+msgstr ""
+
+#: search.php:21
+msgid "You do not have permission to use the search feature."
+msgstr ""
+
+#: search.php:57
+msgid "You have to enter at least one keyword and/or an author to search for."
+msgstr ""
+
+#: search.php:107
+#, php-format
+msgid ""
+"At least %s seconds have to pass between searches. Please wait %s seconds "
+"and try searching again."
+msgstr ""
+
+#: search.php:286
+msgid "There are no threads with new comments since your last visit."
+msgstr ""
+
+#: search.php:294
+msgid "No new comments have been made within the last 24 hours."
+msgstr ""
+
+#: search.php:304
+msgid "There are no comments by this user in this forum."
+msgstr ""
+
+#: search.php:315
+msgid "There are no threads by this user in this forum."
+msgstr ""
+
+#: search.php:329
+msgid "This user is currently not subscribed to any threads."
+msgstr ""
+
+#: search.php:340
+msgid "There are no unanswered comments in this forum."
+msgstr ""
+
+#: search.php:442
+#, php-format
+msgid "Threads by %s"
+msgstr "Conversatie door %s"
+
+#: search.php:444
+#, php-format
+msgid "Comments by %s"
+msgstr ""
+
+#: search.php:455
+#, php-format
+msgid "Subscribed by %s"
+msgstr ""
+
+#: search.php:457
+#, php-format
+msgid "Quick search %s"
+msgstr "Snel zoeken %s"
+
+#: search.php:475 themes/Fifteen/search-results.php:12
+msgid "Search results"
+msgstr "Zoek resultaten"
+
+#: settings.php:100
+msgid ""
+"Administrators cannot be deleted. In order to delete this user, you must "
+"first move him/her to a different user group."
+msgstr ""
+
+#: settings.php:171
+msgid "Confirm delete user"
+msgstr ""
+
+#: settings.php:224
+msgid ""
+"The specified password activation key was incorrect or has expired. Please "
+"re-request a new password. If that fails, contact the forum administrator at"
+msgstr ""
+
+#: settings.php:228
+msgid ""
+"Your password has been updated. You can now login with your new password."
+msgstr ""
+
+#: settings.php:279 settings.php:322
+msgid "Wrong old password."
+msgstr "Fout oud wachtwoord."
+
+#: settings.php:314
+msgid ""
+"The specified email activation key was incorrect or has expired. Please re-"
+"request change of email address. If that fails, contact the forum "
+"administrator at"
+msgstr ""
+
+#: settings.php:318
+msgid "Your email address has been updated."
+msgstr ""
+
+#: settings.php:340
+msgid ""
+"Subject: Alert - Banned email detected\n"
+"\n"
+"User \"<username>\" changed to banned email address: <email>\n"
+"\n"
+"User profile: <profile_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: settings.php:374
+msgid ""
+"Subject: Alert - Duplicate email detected\n"
+"\n"
+"User \"<username>\" changed to an email address that also belongs to: "
+"<dupe_list>\n"
+"\n"
+"User profile: <profile_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: settings.php:404
+msgid ""
+"Subject: Change email address requested\n"
+"\n"
+"Hello <username>,\n"
+"\n"
+"You have requested to have a new email address assigned to your account in "
+"the discussion forum at <base_url>. If you did not request this or if you do "
+"not want to change your email address you should just ignore this message. "
+"Only if you visit the activation page below will your email address be "
+"changed. In order for the activation page to work, you must be logged in to "
+"the forum.\n"
+"\n"
+"To change your email address, please visit the following page:\n"
+"<activation_url>\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Do not reply to this message)"
+msgstr ""
+
+#: settings.php:429
+msgid ""
+"An email has been sent to the specified address with instructions on how to "
+"activate the new email address. If it doesn't arrive you can contact the "
+"forum administrator at"
+msgstr ""
+
+#: settings.php:432 settings.php:561 settings.php:566
+#: themes/Fifteen/me-modals.php:5 themes/Sunrise/me-modals.php:5
+msgid "Change email address"
+msgstr ""
+
+#: settings.php:433 themes/Fifteen/me-modals.php:11
+#: themes/Sunrise/me-modals.php:11
+msgid "New email"
+msgstr "Nieuwe e-mail"
+
+#: settings.php:441
+msgid "The administrator has disabled avatar support."
+msgstr ""
+
+#: settings.php:448 settings.php:468 settings.php:478
+msgid "You did not select a file for upload."
+msgstr ""
+
+#: settings.php:460
+msgid ""
+"The selected file was too large to upload. The server didn't allow the "
+"upload."
+msgstr ""
+
+#: settings.php:464
+msgid "The selected file was only partially uploaded. Please try again."
+msgstr ""
+
+#: settings.php:472
+msgid "PHP was unable to save the uploaded file to a temporary location."
+msgstr ""
+
+#: settings.php:487 settings.php:509
+msgid ""
+"The file you tried to upload is not of an allowed type. Allowed types are "
+"gif, jpeg and png."
+msgstr ""
+
+#: settings.php:491
+msgid "The file you tried to upload is larger than the maximum allowed"
+msgstr ""
+
+#: settings.php:495
+msgid ""
+"The server was unable to save the uploaded file. Please contact the forum "
+"administrator at"
+msgstr ""
+
+#: settings.php:515
+msgid ""
+"The file you tried to upload is wider and/or higher than the maximum allowed"
+msgstr ""
+
+#: settings.php:523
+msgid "An unknown error occurred. Please try again."
+msgstr ""
+
+#: settings.php:563
+msgid "Unverified"
+msgstr "Niet geverifieerd"
+
+#: settings.php:663
+msgid "The website URL you entered is invalid."
+msgstr ""
+
+#: settings.php:679
+msgid ""
+"The title you entered contains a forbidden word. You must choose a different "
+"title."
+msgstr ""
+
+#: settings.php:689
+#, php-format
+msgid ""
+"Signatures cannot be longer than %1$s characters. Please reduce your "
+"signature by %2$s characters."
+msgstr ""
+
+#: settings.php:691
+#, php-format
+msgid "Signatures cannot have more than %s lines."
+msgstr ""
+
+#: settings.php:802 themes/Fifteen/me-modals.php:54
+#: themes/Sunrise/me-modals.php:54
+msgid "Change avatar"
+msgstr ""
+
+#: settings.php:808
+msgid "Delete avatar"
+msgstr ""
+
+#: settings.php:810
+msgid "Upload avatar"
+msgstr "Upload avatar"
+
+#: settings.php:815
+msgid "No signature currently stored in profile."
+msgstr ""
+
+#: themes/Fifteen/answer.php:17 themes/Sunrise/answer.php:16
+msgid "Are you certain that this comment is the solution to your thread?"
+msgstr ""
+
+#: themes/Fifteen/comment.php:13 themes/Sunrise/comment.php:13
+#, php-format
+msgid "New thread in \"%s\""
+msgstr "Nieuwe conversatie in \"%s\""
+
+#: themes/Fifteen/comment.php:15 themes/Sunrise/comment.php:15
+#, php-format
+msgid "New comment in \"%s\""
+msgstr "Nieuw reactie in \"%s\""
+
+#: themes/Fifteen/edit.php:12 themes/Sunrise/edit.php:12
+#, php-format
+msgid "Edit \"%s\""
+msgstr ""
+
+#: themes/Fifteen/footer.php:26 themes/Sunrise/footer.php:25 viewforum.php:77
+msgid "RSS forum feed"
+msgstr "RSS forum feed"
+
+#: themes/Fifteen/footer.php:26 themes/Sunrise/footer.php:25 viewforum.php:79
+msgid "Atom forum feed"
+msgstr ""
+
+#: themes/Fifteen/footer.php:29 themes/Sunrise/footer.php:28 thread.php:137
+msgid "RSS thread feed"
+msgstr "RSS conversatie feed"
+
+#: themes/Fifteen/footer.php:29 themes/Sunrise/footer.php:28 thread.php:139
+msgid "Atom thread feed"
+msgstr ""
+
+#: themes/Fifteen/footer.php:49 themes/Sunrise/footer.php:49
+msgid "User"
+msgstr "Gebruiker"
+
+#: themes/Fifteen/footer.php:53 themes/Fifteen/settings.php:41
+#: themes/Sunrise/footer.php:52
+msgid "Thread"
+msgstr "Conversaties"
+
+#: themes/Fifteen/footer.php:68 themes/Fifteen/footer.php:76
+#: themes/Sunrise/footer.php:65 themes/Sunrise/footer.php:73
+msgid "User online"
+msgstr "Gebruiker online"
+
+#: themes/Fifteen/footer.php:80
+msgid "Guest online"
+msgstr "Gasten online"
+
+#: themes/Fifteen/footer.php:98 themes/Sunrise/footer.php:98
+#, php-format
+msgid "Powered by %s"
+msgstr "Powered by %s"
+
+#: themes/Fifteen/footer.php:105 themes/Sunrise/footer.php:107
+msgid "We use cookies to give you the best experience on this board."
+msgstr ""
+
+#: themes/Fifteen/footer.php:108 themes/Fifteen/index.php:37
+#: themes/Sunrise/footer.php:110 themes/Sunrise/index.php:27
+msgid "Don't show again"
+msgstr ""
+
+#: themes/Fifteen/forum.php:12
+msgid "Back to index"
+msgstr ""
+
+#: themes/Fifteen/forum.php:16 themes/Sunrise/forum.php:13
+msgid "Subforums"
+msgstr "Subforums"
+
+#: themes/Fifteen/forum.php:31
+msgid "Moderate forum"
+msgstr ""
+
+#: themes/Fifteen/help.php:23 themes/Sunrise/help.php:24
+msgid ""
+"BBCode is a collection of tags that are used to change the look of text in "
+"this forum. Below you can find all the available BBCodes and how to use "
+"them. Administrators have the ability to disable BBCode. You can tell if "
+"BBCode is disabled whenever you comment a message or edit your signature."
+msgstr ""
+
+#: themes/Fifteen/help.php:25
+msgid "Text"
+msgstr "Tekst"
+
+#: themes/Fifteen/help.php:26
+msgid "Media"
+msgstr "Media"
+
+#: themes/Fifteen/help.php:27 themes/Sunrise/help.php:29
+msgid "Quotes"
+msgstr "Quotes"
+
+#: themes/Fifteen/help.php:29 themes/Sunrise/help.php:31
+msgid "Lists"
+msgstr "Lijsten"
+
+#: themes/Fifteen/help.php:35 themes/Sunrise/help.php:36
+msgid "The following tags change the appearance of text:"
+msgstr "De volgende tags veranderen het voorkomen van tekst"
+
+#: themes/Fifteen/help.php:36 themes/Sunrise/help.php:37
+msgid "Bold text"
+msgstr "Vette tekst"
+
+#: themes/Fifteen/help.php:36 themes/Fifteen/help.php:37
+#: themes/Fifteen/help.php:38 themes/Fifteen/help.php:39
+#: themes/Fifteen/help.php:40 themes/Fifteen/help.php:41
+#: themes/Fifteen/help.php:42 themes/Fifteen/help.php:43
+#: themes/Fifteen/help.php:44 themes/Fifteen/help.php:45
+#: themes/Fifteen/help.php:47 themes/Fifteen/help.php:49
+#: themes/Fifteen/help.php:54 themes/Fifteen/help.php:55
+#: themes/Fifteen/help.php:56 themes/Fifteen/help.php:57
+#: themes/Fifteen/help.php:59 themes/Fifteen/help.php:122
+#: themes/Fifteen/help.php:124 themes/Sunrise/help.php:37
+#: themes/Sunrise/help.php:38 themes/Sunrise/help.php:39
+#: themes/Sunrise/help.php:40 themes/Sunrise/help.php:41
+#: themes/Sunrise/help.php:42 themes/Sunrise/help.php:43
+#: themes/Sunrise/help.php:44 themes/Sunrise/help.php:45
+#: themes/Sunrise/help.php:46 themes/Sunrise/help.php:48
+#: themes/Sunrise/help.php:50 themes/Sunrise/help.php:55
+#: themes/Sunrise/help.php:56 themes/Sunrise/help.php:57
+#: themes/Sunrise/help.php:58 themes/Sunrise/help.php:60
+#: themes/Sunrise/help.php:124 themes/Sunrise/help.php:126
+msgid "produces"
+msgstr "maakt"
+
+#: themes/Fifteen/help.php:37 themes/Sunrise/help.php:38
+msgid "Underlined text"
+msgstr "Onderstreepte tekst"
+
+#: themes/Fifteen/help.php:38 themes/Sunrise/help.php:39
+msgid "Italic text"
+msgstr "Schuin gedrukte tekst"
+
+#: themes/Fifteen/help.php:39 themes/Sunrise/help.php:40
+msgid "Strike-through text"
+msgstr "Doorstreepte tekst"
+
+#: themes/Fifteen/help.php:40 themes/Sunrise/help.php:41
+msgid "Inserted text"
+msgstr "Ingevoegde tekst"
+
+#: themes/Fifteen/help.php:41 themes/Sunrise/help.php:42
+msgid "Red text"
+msgstr "Rode tekst"
+
+#: themes/Fifteen/help.php:42 themes/Sunrise/help.php:43
+msgid "Blue text"
+msgstr "Blauwe tekst"
+
+#: themes/Fifteen/help.php:43 themes/Sunrise/help.php:44
+msgid "Subscript text"
+msgstr "Subscript tekst"
+
+#: themes/Fifteen/help.php:44 themes/Sunrise/help.php:45
+msgid "Superscript text"
+msgstr "Superscript tekst"
+
+#: themes/Fifteen/help.php:45 themes/Sunrise/help.php:46
+msgid "Heading text"
+msgstr "Hoofding"
+
+#: themes/Fifteen/help.php:47 themes/Sunrise/help.php:48
+msgid "Sized text"
+msgstr "Tekst met een aangepaste grootte"
+
+#: themes/Fifteen/help.php:49 themes/Sunrise/help.php:50
+msgid "Centered text"
+msgstr "Gecentreerde tekst"
+
+#: themes/Fifteen/help.php:53 themes/Sunrise/help.php:54
+msgid ""
+"You can create links to other locations or to email addresses using the "
+"following tags:"
+msgstr ""
+
+#: themes/Fifteen/help.php:57 themes/Sunrise/help.php:58
+msgid "My email address"
+msgstr ""
+
+#: themes/Fifteen/help.php:58 themes/Sunrise/help.php:59
+msgid ""
+"If you want to display an image you can use the img tag. The text appearing "
+"after the \"=\" sign in the opening tag is used for the alt attribute and "
+"should be included whenever possible."
+msgstr ""
+
+#: themes/Fifteen/help.php:59 themes/Sunrise/help.php:60
+msgid "Luna BBCode Test"
+msgstr "Luna BBCode test"
+
+#: themes/Fifteen/help.php:61 themes/Sunrise/help.php:62
+msgid ""
+"Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode "
+"below, you can embed one of those services videos."
+msgstr ""
+
+#: themes/Fifteen/help.php:62 themes/Sunrise/help.php:63
+msgid "Put the link to the video here"
+msgstr ""
+
+#: themes/Fifteen/help.php:65 themes/Sunrise/help.php:66
+msgid "If you want to quote someone, you should use the quote tag."
+msgstr ""
+
+#: themes/Fifteen/help.php:66 themes/Fifteen/help.php:68
+#: themes/Sunrise/help.php:67 themes/Sunrise/help.php:69
+msgid "This is the text I want to quote."
+msgstr ""
+
+#: themes/Fifteen/help.php:67 themes/Sunrise/help.php:68
+msgid "produces a quote box like this:"
+msgstr "maakt een quote veld zoals dit:"
+
+#: themes/Fifteen/help.php:68 themes/Sunrise/help.php:69
+msgid "wrote"
+msgstr "schreef"
+
+#: themes/Fifteen/help.php:69 themes/Sunrise/help.php:70
+msgid ""
+"If you don't want to quote anyone in particular, you can use the quote tag "
+"without specifying a name. If a username contains the characters [ or ] you "
+"can enclose it in quote marks."
+msgstr ""
+
+#: themes/Fifteen/help.php:72 themes/Sunrise/help.php:73
+msgid ""
+"When displaying source code you should make sure that you use the code tag. "
+"Text displayed with the code tag will use a monospaced font and will not be "
+"affected by other tags."
+msgstr ""
+
+#: themes/Fifteen/help.php:73 themes/Fifteen/help.php:75
+#: themes/Fifteen/help.php:90 themes/Sunrise/help.php:74
+#: themes/Sunrise/help.php:76 themes/Sunrise/help.php:92
+msgid "This is some code."
+msgstr ""
+
+#: themes/Fifteen/help.php:74 themes/Fifteen/help.php:85
+#: themes/Fifteen/help.php:90 themes/Sunrise/help.php:75
+#: themes/Sunrise/help.php:87 themes/Sunrise/help.php:92
+msgid "produces a code box like this:"
+msgstr "maakt een code veld zoals dit:"
+
+#: themes/Fifteen/help.php:76 themes/Sunrise/help.php:77
+msgid ""
+"You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, "
+"Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be "
+"noted on the first line inside the codetag and can't be on the same line as "
+"<code>[code]</code>."
+msgstr ""
+
+#: themes/Fifteen/help.php:93 themes/Sunrise/help.php:95
+msgid ""
+"To create a list you can use the list tag. You can create 2 types of lists "
+"using the list tag."
+msgstr ""
+
+#: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
+#: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
+#: themes/Sunrise/help.php:96 themes/Sunrise/help.php:99
+#: themes/Sunrise/help.php:101 themes/Sunrise/help.php:104
+msgid "Example list item 1."
+msgstr "Voorbeeld lijst punt 1."
+
+#: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
+#: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
+#: themes/Sunrise/help.php:96 themes/Sunrise/help.php:99
+#: themes/Sunrise/help.php:101 themes/Sunrise/help.php:104
+msgid "Example list item 2."
+msgstr "Voorbeeld lijst punt 2."
+
+#: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
+#: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
+#: themes/Sunrise/help.php:96 themes/Sunrise/help.php:99
+#: themes/Sunrise/help.php:101 themes/Sunrise/help.php:104
+msgid "Example list item 3."
+msgstr "Voorbeeld lijst punt 3."
+
+#: themes/Fifteen/help.php:95 themes/Sunrise/help.php:97
+msgid "produces a bulleted list."
+msgstr "maakt een lijst."
+
+#: themes/Fifteen/help.php:100 themes/Sunrise/help.php:102
+msgid "produces a numbered list."
+msgstr "maakt een genummerde lijst."
+
+#: themes/Fifteen/help.php:106 themes/Sunrise/help.php:108
+msgid ""
+"If enabled, the forum can convert a series of smilies to graphical "
+"representations. The following smilies you can use are:"
+msgstr ""
+
+#: themes/Fifteen/help.php:122 themes/Fifteen/help.php:124
+#: themes/Sunrise/help.php:124 themes/Sunrise/help.php:126
+#: themes/Sunrise/me-modals.php:62
+msgid "and"
+msgstr "en"
+
+#: themes/Fifteen/help.php:132 themes/Sunrise/help.php:136
+msgid "General use"
+msgstr "Algemeen gebruik"
+
+#: themes/Fifteen/help.php:133 themes/Sunrise/help.php:137
+msgid "Explains some of the basics on how to work with this forum software."
+msgstr ""
+
+#: themes/Fifteen/help.php:135
+msgid "Forums + threads"
+msgstr "Forums + conversaties"
+
+#: themes/Fifteen/help.php:142 themes/Sunrise/help.php:146
+msgid "What do the labels in front of thread titles mean?"
+msgstr "Wat betekenen de labels voor titels van conversaties?"
+
+#: themes/Fifteen/help.php:143 themes/Sunrise/help.php:147
+msgid ""
+"You'll see that some of the threads are labeled, different labels have "
+"different meanings."
+msgstr ""
+
+#: themes/Fifteen/help.php:147 themes/Sunrise/help.php:151
+msgid "Label"
+msgstr "Label"
+
+#: themes/Fifteen/help.php:148 themes/Sunrise/help.php:152
+msgid "Explanation"
+msgstr "Beschrijving"
+
+#: themes/Fifteen/help.php:154 themes/Sunrise/help.php:158
+msgid "Threads marked with a check are solved according to the author."
+msgstr ""
+
+#: themes/Fifteen/help.php:158 themes/Sunrise/help.php:162
+msgid ""
+"Pinned threads are usually important to read. It's worth it to take a look "
+"there."
+msgstr ""
+
+#: themes/Fifteen/help.php:162 themes/Sunrise/help.php:166
+msgid ""
+"Much like pinned threads, these are important, however, they do not stay on "
+"the top of the list."
+msgstr ""
+
+#: themes/Fifteen/help.php:166 themes/Sunrise/help.php:170
+msgid ""
+"When a you see a closed label, it means you can't comment on that thread any "
+"more, unless you have a permission that overwrites this. The thread is still "
+"available to read, though."
+msgstr ""
+
+#: themes/Fifteen/help.php:170 themes/Sunrise/help.php:174
+msgid ""
+"This thread has been moved to another forum. Admins and moderators can "
+"choose to show this notification, or simply not show it. The original forum "
+"where this thread was located in, won't show and thread stats anymore."
+msgstr ""
+
+#: themes/Fifteen/help.php:174 themes/Sunrise/help.php:178
+msgid ""
+"This thread has received a new comment since you last visited the board."
+msgstr ""
+
+#: themes/Fifteen/help.php:179 themes/Sunrise/help.php:183
+msgid "This little dot appears when you have made a comment in this thread."
+msgstr ""
+
+#: themes/Fifteen/help.php:184 themes/Sunrise/help.php:188
+msgid "Smilies, signatures, avatars and images are not visible?"
+msgstr ""
+
+#: themes/Fifteen/help.php:185 themes/Sunrise/help.php:189
+msgid ""
+"You can change the behavior of the thread view in your profile settings. "
+"There you can enable smilies, signatures, avatars and images in comments, "
+"but they should be enabled by default unless your forum admin has disabled "
+"those features."
+msgstr ""
+
+#: themes/Fifteen/help.php:186 themes/Sunrise/help.php:190
+msgid "Why can't I see some threads or forums?"
+msgstr "Waarom kan ik sommige conversaties en forums niet zien?"
+
+#: themes/Fifteen/help.php:187 themes/Fifteen/help.php:191
+#: themes/Sunrise/help.php:191 themes/Sunrise/help.php:195
+msgid ""
+"You might not have the correct permissions to do so, ask the forum "
+"administrator for more help."
+msgstr ""
+
+#: themes/Fifteen/help.php:190 themes/Sunrise/help.php:194
+msgid "Why can't I see any profiles?"
+msgstr "Waarom kan ik geen profielen bekijken?"
+
+#: themes/Fifteen/help.php:192 themes/Sunrise/help.php:196
+msgid "My profile doesn't contain as much as others?"
+msgstr ""
+
+#: themes/Fifteen/help.php:193 themes/Sunrise/help.php:197
+msgid ""
+"Your profile will only display fields that are enabled and filled in in your "
+"settings. You might want to see if you missed some fields."
+msgstr ""
+
+#: themes/Fifteen/help.php:196 themes/Sunrise/help.php:200
+msgid "Are there more options to search?"
+msgstr ""
+
+#: themes/Fifteen/help.php:197 themes/Sunrise/help.php:201
+msgid ""
+"When you go to the search page, you'll find yourself on a page with 1 search "
+"box. Below that search box there is a link to Advanced search, here you can "
+"find more search options! This feature may not be available on your device, "
+"if disabled by the forum admin."
+msgstr ""
+
+#: themes/Fifteen/help.php:198 themes/Sunrise/help.php:202
+msgid "Why can't I search in more than one forum at once?"
+msgstr "Waarom kan ik niet zoeken in meer dan één forum per keer?"
+
+#: themes/Fifteen/help.php:199 themes/Sunrise/help.php:203
+msgid ""
+"You might not have the correct permissions to do so, ask the forums "
+"administrator for more help."
+msgstr ""
+
+#: themes/Fifteen/help.php:206 themes/Sunrise/help.php:212
+msgid "Moderating"
+msgstr "Modereren"
+
+#: themes/Fifteen/help.php:207 themes/Sunrise/help.php:213
+msgid ""
+"Admins and moderators need help sometimes, too! The basics of moderating are "
+"explained here."
+msgstr ""
+
+#: themes/Fifteen/help.php:216 themes/Sunrise/help.php:222
+msgid "How do I moderate a forum?"
+msgstr ""
+
+#: themes/Fifteen/help.php:217 themes/Sunrise/help.php:223
+msgid ""
+"The moderation options are available at the bottom of the page. Those "
+"features aren't available for all moderators. When you click this button, "
+"you will be send to a page where you can manage the current forum. From "
+"there, you can move, delete, merge, close and open multiple threads at once."
+msgstr ""
+
+#: themes/Fifteen/help.php:220 themes/Sunrise/help.php:226
+msgid "How do I moderate a thread?"
+msgstr ""
+
+#: themes/Fifteen/help.php:221 themes/Sunrise/help.php:227
+msgid ""
+"The moderation options are available at the bottom of the page. Those "
+"features aren't available for all moderators. When you click this button, "
+"you will be send to a page where you can manage the current thread from "
+"there, you can select multiple comment to delete or split from the current "
+"thread at once."
+msgstr ""
+
+#: themes/Fifteen/help.php:222 themes/Sunrise/help.php:228
+msgid ""
+"Next to the \"Moderate thread\" button, you can find options to move, open "
+"or close the thread. You can also pin the thread from there, or unpin it."
+msgstr ""
+
+#: themes/Fifteen/help.php:225 themes/Sunrise/help.php:231
+msgid "How do I moderate an user?"
+msgstr ""
+
+#: themes/Fifteen/help.php:226 themes/Sunrise/help.php:232
+msgid ""
+"Moderating options are available in the users profile. You can find the "
+"moderation options under \"Administration\" in the users profile menu. Those "
+"features aren't available for all moderators."
+msgstr ""
+
+#: themes/Fifteen/help.php:227 themes/Sunrise/help.php:233
+msgid ""
+"The Administration page allow you to check if the user has an admin note, "
+"and you can also change that note if required. You can also change the "
+"comment count of the user. At this page, the user can also be given "
+"moderator permissions on a per-forum base, though the user must have a "
+"moderator account to be able to actually use those permissions."
+msgstr ""
+
+#: themes/Fifteen/help.php:228 themes/Sunrise/help.php:234
+msgid ""
+"Finally, you can ban or delete a user from his profile. If you want to ban "
+"and/or delete multiple users at once, you're probably better off with the "
+"advanced user management features in the Backstage."
+msgstr ""
+
+#: themes/Fifteen/inbox-delete-comment.php:16
+msgid "Are you sure that you want to delete the message(s) from your inbox?"
+msgstr ""
+
+#: themes/Fifteen/inbox-delete.php:12 themes/Sunrise/inbox-delete.php:12
+msgid "Confirm deletion"
+msgstr ""
+
+#: themes/Fifteen/inbox-delete.php:18 themes/Sunrise/inbox-delete.php:18
+msgid "Are you sure you want to delete the selected messages?"
+msgstr ""
+
+#: themes/Fifteen/inbox.php:37 themes/Sunrise/inbox.php:31
+msgid "Mark as unread"
+msgstr "Markeer als ongelezen"
+
+#: themes/Fifteen/inbox.php:59 themes/Sunrise/inbox.php:52
+msgid "Messages"
+msgstr "Berichten"
+
+#: themes/Fifteen/inbox.php:60 themes/Sunrise/inbox.php:53
+msgid "Sender"
+msgstr "Zender"
+
+#: themes/Fifteen/inbox.php:61 themes/Sunrise/inbox.php:54
+msgid "Receiver(s)"
+msgstr "Ontvanger(s)"
+
+#: themes/Fifteen/inbox.php:124 themes/Sunrise/inbox.php:120
+msgid "No messages"
+msgstr "Geen berichten"
+
+#: themes/Fifteen/index.php:24 themes/Sunrise/index.php:12
+#, php-format
+msgid "Hi there, %s"
+msgstr "Hallo, %s"
+
+#: themes/Fifteen/index.php:29 themes/Fifteen/index.php:43
+#: themes/Sunrise/index.php:19 themes/Sunrise/index.php:33
+#, php-format
+msgid "Welcome to %s"
+msgstr "Welkom op %s"
+
+#: themes/Fifteen/index.php:34 themes/Sunrise/index.php:24
+msgid "Extend your details"
+msgstr "Breid je gegevens uit"
+
+#: themes/Fifteen/index.php:35 themes/Sunrise/index.php:25
+msgid "Get help"
+msgstr "Krijg hulp"
+
+#: themes/Fifteen/index.php:36 themes/Sunrise/index.php:26
+msgid "Search the board"
+msgstr "Doorzoek het forum"
+
+#: themes/Fifteen/index.php:77
+msgid "Welcome back"
+msgstr "Welkom terug"
+
+#: themes/Fifteen/index.php:94 themes/Sunrise/header.php:48
+msgid "Search in comments"
+msgstr "Zoeken in reacties"
+
+#: themes/Fifteen/index.php:128 themes/Sunrise/index.php:59
+msgid "Recent activity"
+msgstr "Recente activiteiten"
+
+#: themes/Fifteen/login.php:35 themes/Sunrise/login.php:35
+msgid "Request password"
+msgstr "Wachtwoord herstellen"
+
+#: themes/Fifteen/login.php:51 themes/Sunrise/login.php:51
+msgid "Back"
+msgstr "Terug"
+
+#: themes/Fifteen/mail.php:12
+msgid "Send an email"
+msgstr "Stuur een e-mail"
+
+#: themes/Fifteen/me-delete.php:13 themes/Sunrise/me-delete.php:13
+msgid "Please confirm that you want to delete the user"
+msgstr ""
+
+#: themes/Fifteen/me-modals.php:13 themes/Sunrise/me-modals.php:13
+msgid ""
+"An email will be sent to your new address with an activation link. You must "
+"click the link in the email you receive to activate the new address."
+msgstr ""
+
+#: themes/Fifteen/me-modals.php:28 themes/Fifteen/settings.php:60
+#: themes/Sunrise/me-modals.php:28 themes/Sunrise/settings.php:56
+msgid "Change password"
+msgstr "Wachtwoord wijzigen"
+
+#: themes/Fifteen/me-modals.php:35 themes/Sunrise/me-modals.php:35
+msgid "Old password"
+msgstr "Oud wachtwoord"
+
+#: themes/Fifteen/me-modals.php:37 themes/Sunrise/me-modals.php:37
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+#: themes/Fifteen/me-modals.php:38 themes/Sunrise/me-modals.php:38
+msgid "Confirm new password"
+msgstr "Bevestig nieuw wachtwoord"
+
+#: themes/Fifteen/me-modals.php:39 themes/Fifteen/register.php:27
+#: themes/Sunrise/me-modals.php:39 themes/Sunrise/register.php:27
+msgid "Passwords must be at least 6 characters long and are case sensitive"
+msgstr ""
+
+#: themes/Fifteen/me-modals.php:62
+#, php-format
+msgid ""
+"An avatar is a small image that will be displayed under your username in "
+"your comments. It has to be smaller than %s by %s pixels and %s bytes."
+msgstr ""
+
+#: themes/Fifteen/me-modals.php:66 themes/Sunrise/me-modals.php:66
+msgid "Upload"
+msgstr "Upload"
+
+#: themes/Fifteen/notifications.php:31
+msgid "Seen"
+msgstr "Gezien"
+
+#: themes/Fifteen/notifications.php:36 themes/Sunrise/notifications.php:24
+msgid "Mark as seen"
+msgstr "Markeer als gelezen"
+
+#: themes/Fifteen/notifications.php:52 themes/Sunrise/notifications.php:43
+msgid "Delete notifications"
+msgstr "Verwijder notificaties"
+
+#: themes/Fifteen/objects/comment.php:8
+#, php-format
+msgid "By %s"
+msgstr "Door %s"
+
+#: themes/Fifteen/objects/comment.php:8
+msgid "on"
+msgstr "op"
+
+#: themes/Fifteen/objects/comment.php:9
+msgid "posts"
+msgstr "berichten"
+
+#: themes/Fifteen/objects/user.php:16
+msgid "comments since"
+msgstr "reacties sinds"
+
+#: themes/Fifteen/profile.php:36 themes/Fifteen/settings.php:40
+#: themes/Sunrise/profile.php:34
+msgid "Contact"
+msgstr "Contact"
+
+#: themes/Fifteen/register.php:18 themes/Sunrise/register.php:18
+msgid "If you are human please leave this field blank!"
+msgstr "Als je een mens bent laat je dit veld leeg!"
+
+#: themes/Fifteen/register.php:20 themes/Sunrise/register.php:20
+msgid "Enter a username between 2 and 25 characters long"
+msgstr ""
+
+#: themes/Fifteen/register.php:41 themes/Sunrise/register.php:41
+msgid "Your password will be sent to this address, make sure it's valid"
+msgstr ""
+
+#: themes/Fifteen/search-advanced.php:27 themes/Sunrise/search-advanced.php:15
+msgid "Keyword"
+msgstr "Zoekwoord"
+
+#: themes/Fifteen/search-advanced.php:30 themes/Fifteen/search-advanced.php:42
+#: themes/Sunrise/search-advanced.php:16 themes/Sunrise/search-advanced.php:24
+msgid "Author"
+msgstr "Auteur"
+
+#: themes/Fifteen/search-advanced.php:34 themes/Sunrise/search-advanced.php:18
+msgid "Comment text and thread subject"
+msgstr "Reactie tekst en conversatie onderwerp"
+
+#: themes/Fifteen/search-advanced.php:35 themes/Sunrise/search-advanced.php:19
+msgid "Comment text only"
+msgstr "Alleen reactie tekst"
+
+#: themes/Fifteen/search-advanced.php:36 themes/Sunrise/search-advanced.php:20
+msgid "Thread subject only"
+msgstr "Allen conversatie onderwerp"
+
+#: themes/Fifteen/search-advanced.php:41 themes/Sunrise/search-advanced.php:23
+msgid "Comment time"
+msgstr "Reactie tijd"
+
+#: themes/Fifteen/search-advanced.php:44 themes/Sunrise/search-advanced.php:26
+msgid "Forum"
+msgstr "Forum"
+
+#: themes/Fifteen/settings.php:42 themes/Sunrise/settings.php:37
+msgid "Time"
+msgstr "Tijd"
+
+#: themes/Fifteen/settings.php:83 themes/Sunrise/settings.php:79
+msgid "Leave blank to use default"
+msgstr "Laat leeg om standaard te gebruiken"
+
+#: themes/Fifteen/settings.php:99 themes/Sunrise/settings.php:95
+msgid "Avatar"
+msgstr "Avatar"
+
+#: themes/Fifteen/settings.php:99 themes/Sunrise/settings.php:95
+msgid "Upload an image to represent you"
+msgstr "Upload een afbeelding die jou voorstelt"
+
+#: themes/Fifteen/settings.php:107 themes/Sunrise/settings.php:103
+msgid "Write a small piece to attach to every comment you make"
+msgstr ""
+
+#: themes/Fifteen/settings.php:110 themes/Sunrise/settings.php:106
+#, php-format
+msgid "Max length: %s characters / Max lines: %s"
+msgstr ""
+
+#: themes/Fifteen/settings.php:114 themes/Sunrise/settings.php:110
+msgid "Signature preview"
+msgstr "Handtekening voorbeeld"
+
+#: themes/Fifteen/settings.php:144
+msgid "Enforce the accent on the board."
+msgstr "Forceer de accentkleur op het forum"
+
+#: themes/Fifteen/settings.php:151 themes/Sunrise/settings.php:142
+msgid "Night mode"
+msgstr "Nacht modus"
+
+#: themes/Fifteen/settings.php:156 themes/Sunrise/settings.php:147
+msgid "Never use night mode."
+msgstr "Gebruik nacht modus nooit."
+
+#: themes/Fifteen/settings.php:162 themes/Sunrise/settings.php:153
+msgid "Always use night mode."
+msgstr "Gebruik nacht modus altijd."
+
+#: themes/Fifteen/settings.php:168 themes/Sunrise/settings.php:159
+msgid "Enable night mode automatically."
+msgstr "Schakel automatisch over op nacht modus."
+
+#: themes/Fifteen/settings.php:175 themes/Sunrise/settings.php:167
+msgid "Backstage accent"
+msgstr "Backstage accent"
+
+#: themes/Fifteen/settings.php:200 themes/Sunrise/settings.php:193
+msgid "Language"
+msgstr "Taal"
+
+#: themes/Fifteen/settings.php:234 themes/Sunrise/settings.php:227
+msgid "Email settings"
+msgstr "E-mail instellingen"
+
+#: themes/Fifteen/settings.php:239 themes/Sunrise/settings.php:232
+msgid "Display your email address."
+msgstr "Toon je e-mail adres."
+
+#: themes/Fifteen/settings.php:245 themes/Sunrise/settings.php:238
+msgid "Hide your email address but allow form email."
+msgstr "Verberg je e-mail adres maar laat e-mails toe."
+
+#: themes/Fifteen/settings.php:251 themes/Sunrise/settings.php:244
+msgid "Hide your email address and disallow form email."
+msgstr "Verberg je e-mail adres en laat geen e-mails toe."
+
+#: themes/Fifteen/settings.php:264 themes/Sunrise/settings.php:257
+msgid ""
+"Include a plain text version of new comments in subscription notification "
+"emails."
+msgstr ""
+"Voeg een opmaakloze versie van nieuwe reacties toe in je abonnement e-mails."
+
+#: themes/Fifteen/settings.php:271 themes/Sunrise/settings.php:264
+msgid "Automatically subscribe to every thread you comment in."
+msgstr "Abonneer automatisch op conversaties waar je aan deelneemt."
+
+#: themes/Fifteen/settings.php:337 themes/Sunrise/settings.php:330
+msgid "Show user avatars with their comments."
+msgstr "Toon avatars bij reacties."
+
+#: themes/Fifteen/settings.php:344 themes/Sunrise/settings.php:337
+msgid "Show images in comments."
+msgstr "Toon afbeeldingen in reacties."
+
+#: themes/Fifteen/settings.php:357 themes/Sunrise/settings.php:350
+msgid "Show user signatures."
+msgstr "Toon handtekeningen bij reacties."
+
+#: themes/Fifteen/settings.php:364 themes/Sunrise/settings.php:357
+msgid "Show images in user signatures."
+msgstr "Toon afbeeldingen in handtekeningen."
+
+#: themes/Fifteen/settings.php:371 themes/Sunrise/settings.php:364
+msgid "Show smilies as graphic icons."
+msgstr "Too emoticons als grafische iconen."
+
+#: themes/Fifteen/settings.php:396 themes/Sunrise/settings.php:389
+msgid "Time zone"
+msgstr "Tijdzone"
+
+#: themes/Fifteen/settings.php:453 themes/Fifteen/settings.php:487
+#: themes/Sunrise/settings.php:446 themes/Sunrise/settings.php:480
+msgid "Delete or ban user"
+msgstr "Verwijder of verban gebruiker"
+
+#: themes/Fifteen/settings.php:455 themes/Fifteen/settings.php:490
+#: themes/Sunrise/settings.php:448 themes/Sunrise/settings.php:483
+msgid "Ban user"
+msgstr "Verban gebruiker"
+
+#: themes/Fifteen/settings.php:461 themes/Sunrise/settings.php:454
+msgid "Choose user group"
+msgstr "Kies een groep"
+
+#: themes/Fifteen/settings.php:489 themes/Sunrise/settings.php:482
+msgid "Delete user"
+msgstr "Verwijder gebruiker"
+
+#: themes/Fifteen/settings.php:496 themes/Sunrise/settings.php:489
+msgid "Set moderator access"
+msgstr "Stel moderator toegang in"
+
+#: themes/Fifteen/settings.php:496 themes/Sunrise/settings.php:489
+msgid "Update forums"
+msgstr "Update forums"
+
+#: themes/Fifteen/settings.php:498 themes/Sunrise/settings.php:491
+msgid ""
+"Choose which forums this user should be allowed to moderate. Note: This only "
+"applies to moderators. Administrators always have full permissions in all "
+"forums."
+msgstr ""
+"Kies welke forums deze gebruiker mag modereren. Belangrijk: Dit geldt alleen "
+"voor moderators. Administrators hebben altijd alle permissies."
+
+#: themes/Fifteen/thread.php:18 thread.php:147 viewforum.php:86
+msgid "Unsubscribe"
+msgstr "Eindig abonnement"
+
+#: themes/Fifteen/thread.php:20 thread.php:149 viewforum.php:88
+msgid "Subscribe"
+msgstr "Abonneer"
+
+#: themes/Fifteen/thread.php:27
+msgid "Moderate thread"
+msgstr "Modereer conversatie"
+
+#: themes/Fifteen/thread.php:29 themes/Sunrise/thread.php:49
+msgid "Show all comments"
+msgstr "Toon alle reacties"
+
+#: themes/Fifteen/thread.php:33
+msgid "Open thread"
+msgstr "Open conversatie"
+
+#: themes/Fifteen/thread.php:35
+msgid "Close thread"
+msgstr "Sluit conversatie"
+
+#: themes/Fifteen/thread.php:39
+msgid "Unpin thread"
+msgstr "Maak conversatie los"
+
+#: themes/Fifteen/thread.php:45
+msgid "Unimportant thread"
+msgstr "Onbelangrijke conversatie"
+
+#: themes/Fifteen/thread.php:47
+msgid "Important thread"
+msgstr "Belangrijke conversatie"
+
+#: themes/Fifteen/unsolved.php:16 themes/Sunrise/unsolved.php:16
+msgid "Are you certain that this comment isn't the solution to your thread?"
+msgstr ""
+"Ben je zeker dat deze reactie niet op oplossing is voor de conversatie?"
+
+#: themes/Fifteen/users.php:21 themes/Sunrise/users.php:15
+msgid "Sort by username"
+msgstr "Sorteer op gebruikersnaam"
+
+#: themes/Fifteen/users.php:22 themes/Sunrise/users.php:16
+msgid "Sort by registration date"
+msgstr "Sorteer op registratie datum"
+
+#: themes/Fifteen/users.php:23 themes/Sunrise/users.php:17
+msgid "Sort by number of comments"
+msgstr "Sorteer op aantal reacties"
+
+#: themes/Sunrise/help.php:27
+msgid "Text style"
+msgstr "Tekst stijl"
+
+#: themes/Sunrise/help.php:28
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: themes/Sunrise/help.php:32
+msgid "Smilies"
+msgstr "Emoticons"
+
+#: themes/Sunrise/help.php:140
+msgid "Forums and threads"
+msgstr "Forums en conversaties"
+
+#: themes/Sunrise/inbox-delete-comment.php:16
+msgid "Are you sure that you want to delete the message(s) from your inbox??"
+msgstr ""
+"Ben je zeker dat je dit/deze bericht(en) wilt verwijderen van je Inbox?"
+
+#: themes/Sunrise/inbox-new.php:49
+msgid "Write message"
+msgstr "Schrijf bericht"
+
+#: themes/Sunrise/inbox-new.php:62
+msgid "Send to"
+msgstr "Verzend naar"
+
+#: themes/Sunrise/inbox-new.php:62
+#, php-format
+msgid "Separate names with commas, maximum %s names"
+msgstr "Scheid namen met komma's, maximaal %s namen"
+
+#: themes/Sunrise/me-modals.php:62
+msgid ""
+"An avatar is a small image that will be displayed under your username in "
+"your comments. It must not be any bigger than"
+msgstr ""
+"Een avatar is een kleine afbeelding die getoond wordt lang je gebruikersnaam "
+"in reacties. It mag niet groter zijn dan"
+
+#: themes/Sunrise/profile.php:25
+msgid "About user"
+msgstr "Over gebruiker"
+
+#: themes/Sunrise/register.php:13
+msgid "Enter the requested data"
+msgstr "Vul de vereiste data in"
+
+#: themes/Sunrise/settings.php:34
+msgid "Personalize"
+msgstr "Personaliseer"
+
+#: themes/Sunrise/thread.php:61
+msgid "Unpin"
+msgstr "Losmaken"
+
+#: themes/Sunrise/thread.php:63
+msgid "Pin"
+msgstr "Vastmaken"
+
+#: themes/Sunrise/thread.php:67
+msgid "Unimportant"
+msgstr "Onbelangrijk"
+
+#: themes/Sunrise/thread.php:69
+msgid "Important"
+msgstr "Belangrijk"
+
+#: userlist.php:53
+msgid "User list"
+msgstr "Gebruikerslijst"
+
+#: viewinbox.php:157
+msgid "Delete message"
+msgstr "Verwijder bericht"
+
+#: viewinbox.php:200
+msgid "with"
+msgstr "met"
+
+#: viewinbox.php:204
+msgid "View a private discussion"
+msgstr "Bekijk privé conversaties"
