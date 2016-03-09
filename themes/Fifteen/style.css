@@ -1232,7 +1232,7 @@ blockquote footer {
 
 /* Night mode */
 .night body {
-    background: #393939;
+    background: #292929;
     color: #fff;
 }
 
@@ -1241,33 +1241,33 @@ blockquote footer {
 }
 
 .night .container.main {
-    background: #555;
+    background: #444;
 }
 
 .night hr {
-    border-color: #4d4d4d;
+    border-color: #3d3d3d;
 }
 
 .night .list-group.list-group-thread .list-group-item {
-    background-color: #666;
-    border-left: 6px solid #5f5f5f;
+    background-color: #555;
+    border-left: 6px solid #4a4a4a;
 }
 
 .night .list-group.list-group-thread .list-group-item:hover {
-    background-color: #6b6b6b;
-    border-left: 6px solid #636363;
+    background-color: #636363;
+    border-left: 6px solid #4d4d4d;
 }
 
 .night .list-group-thread .list-group-item .label {
-    background: #5a5a5a;
+    background: #4a4a4a;
 }
 
 .night .list-group-item {
-    background: #4b4b4b;
+    background: #393939;
 }
 
 .night .list-group.list-group-luna :not(.active).list-group-item:hover {
-    background: #464646;
+    background: #333;
 }
 
 .night .list-group-item {
@@ -1277,7 +1277,7 @@ blockquote footer {
 .night .nav-tabs li.active a,
 .night .nav-tabs li.active a:hover,
 .night .nav-tabs li.active a:focus {
-    background: #555;
+    background: #444;
     color: #fff;
 }
 
@@ -1286,41 +1286,41 @@ blockquote footer {
 }
 
 .night .form-control {
-    background: #555;
+    background: #444;
     color: #fff;
-    border-color: #484848;
+    border-color: #383838;
 }
 
 .night .well {
-    background: #595959;
-    border-color: #505050;
+    background: #494949;
+    border-color: #404040;
 }
 
 .night .accent-group .btn {
-    border-color: #555 !important;
+    border-color: #444 !important;
 }
 
 .night .accent-group .btn.active,
 .night .accent-group .btn:hover {
-    border-color: #656565 !important;
+    border-color: #555 !important;
 }
 
 .night .comment-default {
-    background-color: #5f5f5f;
+    background-color: #4f4f4f;
 }
 
 .night .comment-default .comment-heading,
 .night .user-entry {
-    background-color: #5a5a5a;
+    background-color: #4a4a4a;
 }
 
 .night #comment input[type='text'],
 .night #edit input[type='text'] {
-    background-color: #646464;
+    background-color: #545454;
 }
 
 .night .table-striped > tbody > tr:nth-of-type(2n+1) {
-    background: #5f5f5f;
+    background: #4f4f4f;
 }
 
 .night .table > thead > tr > th,
@@ -1329,7 +1329,7 @@ blockquote footer {
 .night .table > thead > tr > td,
 .night .table > tbody > tr > td,
 .night .table > tfoot > tr > td {
-    border-color: #696969;
+    border-color: #595959;
 }
 
 .night .table-hover > tbody > tr:hover,
@@ -1345,11 +1345,11 @@ blockquote footer {
 .night .table > thead > tr.active > th,
 .night .table > tbody > tr.active > th,
 .night .table > tfoot > tr.active > th {
-    background: #606060;
+    background: #505050;
 }
 
 .night pre {
-    border: #333;
+    border: #444;
 }
 
 .night .status-solved {
@@ -1377,12 +1377,12 @@ blockquote footer {
 }
 
 .night .search-form {
-    border-color: #666;
+    border-color: #555;
 }
 
 .night .search-form input[type='text'],
 .night .search-form .btn {
-    background: #666;
+    background: #555;
 }
 
 .night .search-form .btn {
