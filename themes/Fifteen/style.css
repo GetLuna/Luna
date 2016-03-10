@@ -1249,20 +1249,20 @@ blockquote footer {
 }
 
 .night .list-group.list-group-thread .list-group-item {
-    background-color: #505050;
-    border-left: 6px solid #4a4a4a;
+    background-color: #4a4a4a;
+    border-left: 6px solid #454545;
 }
 
 .night .list-group.list-group-thread .list-group-item:hover {
-    background-color: #4a4a4a;
+    background-color: #505050;
 }
 
 .night .list-group-thread .list-group-item .label {
-    background: #464646;
+    background: #404040;
 }
 
 .night .list-group-thread .list-group-item:hover .label {
-    background: #404040;
+    background: #464646;
 }
 
 .night .list-group-item {
