@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
 "POT-Creation-Date: 2016-03-10 09:18+0100\n"
-"PO-Revision-Date: 2016-03-10 09:19+0100\n"
+"PO-Revision-Date: 2016-03-10 09:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -46,7 +46,7 @@ msgstr "Update"
 #: backstage/about.php:26
 #, php-format
 msgid "About Luna %s %s"
-msgstr ""
+msgstr "Over Luna %s %s"
 
 #: backstage/about.php:33 backstage/about.php:34 backstage/about.php:35
 #: header.php:56 header.php:57 include/draw_functions.php:348
@@ -56,78 +56,81 @@ msgstr "Nieuw"
 
 #: backstage/about.php:33
 msgid "Fifteen has received a fully reimagned design based on Airalin"
-msgstr ""
+msgstr "Fifteen heeft een volledig nieuw ontwerp gebaseerd op Airalin"
 
 #: backstage/about.php:34
 msgid "Luna now uses salts and SHA-512 to save passwords"
-msgstr ""
+msgstr "Luna gebruikt voortaan salts en SHA-512 om wachtwoorden op te slaan"
 
 #: backstage/about.php:35
 msgid "Luna now has a Dutch translation included by default"
-msgstr ""
+msgstr "Luna heeft nu een Nederlandse vertaling standaard meegeleverd"
 
 #: backstage/about.php:36
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 #: backstage/about.php:36
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
+"De editor verbergt knoppen voortaan in een menu als het scherm te smal wordt"
 
 #: backstage/about.php:37 backstage/about.php:38 backstage/about.php:39
 msgid "Improved"
-msgstr ""
+msgstr "Verbeterd"
 
 #: backstage/about.php:37
 msgid "Advanced search has an improved UI"
-msgstr ""
+msgstr "Geavanceerd zoeken heeft een verbeterde UI"
 
 #: backstage/about.php:38
 msgid "About can now be translated to other languages"
-msgstr ""
+msgstr "Over kan nu vertaald worden"
 
 #: backstage/about.php:39
 msgid "Improved Backstage UI and night mode"
-msgstr ""
+msgstr "De Backstage UI en nacht modus zijn verbeterd"
 
 #: backstage/about.php:40
 msgid "Removed"
-msgstr ""
+msgstr "Verwijderd"
 
 #: backstage/about.php:40
 msgid "The editor no longer has an emoticon menu"
-msgstr ""
+msgstr "De editor heeft geen emoticonmenu meer"
 
 #: backstage/about.php:41
 msgid "Fixed"
-msgstr ""
+msgstr "Herstelt"
 
 #: backstage/about.php:41
 msgid "Fixes 3 bugs"
-msgstr ""
+msgstr "Herstelt 3 bugs"
 
 #: backstage/about.php:43 backstage/about.php:44 backstage/about.php:45
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #: backstage/about.php:43
 msgid "The light grey accent has yet to be implemented correctly in Fifteen"
-msgstr ""
+msgstr "Het licht grijze accent in Fifteen is nog niet afgewerkt"
 
 #: backstage/about.php:44
 msgid "\"Forces accents\" has yet to be implemented in Fifteen"
-msgstr ""
+msgstr "\"Forceer accent\" is nog niet geimplementeerd in Fifteen"
 
 #: backstage/about.php:45
 msgid "Sunrise has multiple visual issues in this Preview"
-msgstr ""
+msgstr "Sunrise heeft verschillende visuele fouten in deze Preview"
 
 #: backstage/about.php:51
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
 msgstr ""
+"Luna is ontwikkeld door de %s. Copyright %s. Vrijgegeven onder de GPLv2 "
+"licentie."
 
 #: backstage/appearance.php:16 backstage/email.php:16 backstage/features.php:16
 #: backstage/registration.php:16 backstage/settings.php:16
