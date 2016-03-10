@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
 "POT-Creation-Date: 2016-03-10 09:18+0100\n"
-"PO-Revision-Date: 2016-03-10 10:11+0100\n"
+"PO-Revision-Date: 2016-03-10 13:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -2840,7 +2840,7 @@ msgstr "XCache"
 
 #: backstage/system.php:84
 msgid "Non available"
-msgstr ""
+msgstr "Geen beschikbaar"
 
 #: backstage/system.php:87 backstage/system.php:130
 msgid "Server statistics"
@@ -3090,7 +3090,7 @@ msgstr "Luna software updates"
 
 #: backstage/update.php:105
 msgid "Check for updates"
-msgstr ""
+msgstr "Controleer op updates"
 
 #: backstage/update.php:112
 msgid "A new version is available!"
@@ -3111,11 +3111,11 @@ msgstr ""
 #: backstage/update.php:115
 #, php-format
 msgid "Download v%s"
-msgstr ""
+msgstr "Download v%s"
 
 #: backstage/update.php:116
 msgid "Changelog"
-msgstr ""
+msgstr "Changelog"
 
 #: backstage/update.php:121
 msgid "You're using the latest version of Luna!"
@@ -3146,7 +3146,7 @@ msgstr ""
 
 #: backstage/update.php:136
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 #: backstage/users.php:50
 msgid "IP/IP-ranges"
@@ -3182,7 +3182,7 @@ msgstr "Titel/status"
 #: themes/Fifteen/settings.php:526 themes/Sunrise/search-advanced.php:34
 #: themes/Sunrise/settings.php:324 themes/Sunrise/settings.php:517
 msgid "Comments"
-msgstr ""
+msgstr "Reacties"
 
 #: backstage/users.php:125 backstage/users.php:727 backstage/users.php:856
 #: themes/Fifteen/settings.php:533 themes/Sunrise/settings.php:524
@@ -4252,7 +4252,7 @@ msgstr "Pagina %s"
 #: include/functions.php:963 include/functions.php:978
 #: include/functions.php:1013 include/functions.php:1028
 msgid "…"
-msgstr ""
+msgstr "..."
 
 #: include/functions.php:1056
 msgid "We've got us a situation here."
@@ -4268,7 +4268,7 @@ msgstr "Gisteren"
 
 #: include/functions.php:1159
 msgid "."
-msgstr ""
+msgstr "."
 
 #: include/functions.php:1159
 msgid ","
@@ -4331,7 +4331,7 @@ msgstr "Reageer"
 #: include/inbox_functions.php:34 themes/Fifteen/inbox.php:44
 #: themes/Sunrise/inbox.php:40
 msgid "Compose"
-msgstr ""
+msgstr "Nieuwe"
 
 #: include/parser.php:53 include/parser.php:108
 msgid ""
@@ -4454,7 +4454,7 @@ msgstr "Administrator wachtwoord 2"
 
 #: install.php:194 install.php:379
 msgid "No trailing slash"
-msgstr ""
+msgstr "Geen eindstreep"
 
 #: install.php:218
 #, php-format
@@ -4477,7 +4477,7 @@ msgstr ""
 
 #: install.php:247
 msgid "Change language"
-msgstr ""
+msgstr "Verander taal"
 
 #: install.php:255
 msgid "The following errors need to be corrected:"
@@ -4485,7 +4485,7 @@ msgstr ""
 
 #: install.php:272
 msgid "Database setup"
-msgstr ""
+msgstr "Database instellen"
 
 #: install.php:277
 msgid "What database do you want to use?"
@@ -4497,11 +4497,11 @@ msgstr "Waar is de server?"
 
 #: install.php:300
 msgid "The database name"
-msgstr ""
+msgstr "De database naam"
 
 #: install.php:306
 msgid "Your database username"
-msgstr ""
+msgstr "De database gebruikersnaam"
 
 #: install.php:318
 msgid "Table prefix"
@@ -4521,11 +4521,11 @@ msgstr "2 tot 25 tekens lang"
 
 #: install.php:339
 msgid "At least 6 characters long"
-msgstr ""
+msgstr "Minstens 6 tekens lang"
 
 #: install.php:362
 msgid "Board setup"
-msgstr ""
+msgstr "Forum instellen"
 
 #: install.php:423
 msgid "Start install"
@@ -4549,6 +4549,7 @@ msgid ""
 "Luna has been installed. To finalize the installation please follow the "
 "instructions below."
 msgstr ""
+"Luna is geïnstalleerd. Volg onderstaande instructies om verder te gaan."
 
 #: install.php:490
 msgid ""
@@ -4565,7 +4566,7 @@ msgstr ""
 
 #: install.php:510
 msgid "Download config.php file"
-msgstr ""
+msgstr "Download config.php bestand"
 
 #: install.php:518
 msgid ""
@@ -4580,7 +4581,7 @@ msgstr "Foute gebruikersnaam en/of wachtwoord."
 #: login.php:59 themes/Fifteen/index.php:46 themes/Fifteen/login.php:26
 #: themes/Sunrise/index.php:36 themes/Sunrise/login.php:26
 msgid "Forgotten password"
-msgstr ""
+msgstr "Wachtwoord vergeten"
 
 #: login.php:134
 msgid ""
@@ -4627,7 +4628,7 @@ msgstr ""
 
 #: misc.php:75
 msgid "You must enter a subject."
-msgstr ""
+msgstr "Je moet een onderwerp ingeven."
 
 #: misc.php:80
 msgid "Messages cannot be longer than 65535 characters (64 KB)."
@@ -4888,7 +4889,7 @@ msgstr ""
 
 #: register.php:245
 msgid "Confirm password"
-msgstr ""
+msgstr "Bevestig wachtwoord"
 
 #: search.php:21
 msgid "You do not have permission to use the search feature."
@@ -4937,12 +4938,12 @@ msgstr "Conversatie door %s"
 #: search.php:444
 #, php-format
 msgid "Comments by %s"
-msgstr ""
+msgstr "Reactie van %s"
 
 #: search.php:455
 #, php-format
 msgid "Subscribed by %s"
-msgstr ""
+msgstr "Abonnement van %s"
 
 #: search.php:457
 #, php-format
@@ -4961,7 +4962,7 @@ msgstr ""
 
 #: settings.php:171
 msgid "Confirm delete user"
-msgstr ""
+msgstr "Verwijder gebruiker bevestigen"
 
 #: settings.php:224
 msgid ""
@@ -5047,7 +5048,7 @@ msgstr ""
 #: settings.php:432 settings.php:561 settings.php:566
 #: themes/Fifteen/me-modals.php:5 themes/Sunrise/me-modals.php:5
 msgid "Change email address"
-msgstr ""
+msgstr "Verander e-mail adres"
 
 #: settings.php:433 themes/Fifteen/me-modals.php:11
 #: themes/Sunrise/me-modals.php:11
@@ -5056,11 +5057,11 @@ msgstr "Nieuwe e-mail"
 
 #: settings.php:441
 msgid "The administrator has disabled avatar support."
-msgstr ""
+msgstr "De administrator heeft ondersteuning voor avatars uitgeschakeld."
 
 #: settings.php:448 settings.php:468 settings.php:478
 msgid "You did not select a file for upload."
-msgstr ""
+msgstr "Je hebt geen bestand geselecteerd om te uploaden."
 
 #: settings.php:460
 msgid ""
@@ -5130,11 +5131,11 @@ msgstr ""
 #: settings.php:802 themes/Fifteen/me-modals.php:54
 #: themes/Sunrise/me-modals.php:54
 msgid "Change avatar"
-msgstr ""
+msgstr "Verander avatar"
 
 #: settings.php:808
 msgid "Delete avatar"
-msgstr ""
+msgstr "Verwijder avatar"
 
 #: settings.php:810
 msgid "Upload avatar"
@@ -5161,7 +5162,7 @@ msgstr "Nieuw reactie in \"%s\""
 #: themes/Fifteen/edit.php:12 themes/Sunrise/edit.php:12
 #, php-format
 msgid "Edit \"%s\""
-msgstr ""
+msgstr "Bewerk \"%s\""
 
 #: themes/Fifteen/footer.php:26 themes/Sunrise/footer.php:25 viewforum.php:77
 msgid "RSS forum feed"
@@ -5169,7 +5170,7 @@ msgstr "RSS forum feed"
 
 #: themes/Fifteen/footer.php:26 themes/Sunrise/footer.php:25 viewforum.php:79
 msgid "Atom forum feed"
-msgstr ""
+msgstr "Atom forum feed"
 
 #: themes/Fifteen/footer.php:29 themes/Sunrise/footer.php:28 thread.php:137
 msgid "RSS thread feed"
@@ -5177,7 +5178,7 @@ msgstr "RSS conversatie feed"
 
 #: themes/Fifteen/footer.php:29 themes/Sunrise/footer.php:28 thread.php:139
 msgid "Atom thread feed"
-msgstr ""
+msgstr "Atom conversatie feed"
 
 #: themes/Fifteen/footer.php:49 themes/Sunrise/footer.php:49
 msgid "User"
@@ -5209,11 +5210,11 @@ msgstr ""
 #: themes/Fifteen/footer.php:108 themes/Fifteen/index.php:37
 #: themes/Sunrise/footer.php:110 themes/Sunrise/index.php:27
 msgid "Don't show again"
-msgstr ""
+msgstr "Niet meer tonen"
 
 #: themes/Fifteen/forum.php:12
 msgid "Back to index"
-msgstr ""
+msgstr "Terug naar index"
 
 #: themes/Fifteen/forum.php:16 themes/Sunrise/forum.php:13
 msgid "Subforums"
@@ -5221,7 +5222,7 @@ msgstr "Subforums"
 
 #: themes/Fifteen/forum.php:31
 msgid "Moderate forum"
-msgstr ""
+msgstr "Modereer forum"
 
 #: themes/Fifteen/help.php:23 themes/Sunrise/help.php:24
 msgid ""
@@ -5329,7 +5330,7 @@ msgstr ""
 
 #: themes/Fifteen/help.php:57 themes/Sunrise/help.php:58
 msgid "My email address"
-msgstr ""
+msgstr "Mijn e-mail adres"
 
 #: themes/Fifteen/help.php:58 themes/Sunrise/help.php:59
 msgid ""
@@ -5653,7 +5654,7 @@ msgstr ""
 
 #: themes/Fifteen/inbox-delete.php:12 themes/Sunrise/inbox-delete.php:12
 msgid "Confirm deletion"
-msgstr ""
+msgstr "Verwijderen bevestigen"
 
 #: themes/Fifteen/inbox-delete.php:18 themes/Sunrise/inbox-delete.php:18
 msgid "Are you sure you want to delete the selected messages?"
