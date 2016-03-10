@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
 "POT-Creation-Date: 2016-03-10 09:18+0100\n"
-"PO-Revision-Date: 2016-03-10 09:24+0100\n"
+"PO-Revision-Date: 2016-03-10 10:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -1053,7 +1053,7 @@ msgstr "Optimaliseer alle tabellen"
 #: backstage/email.php:36 backstage/settings.php:88
 msgid ""
 "You need to enter the SMTP password twice exactly the same to change it."
-msgstr ""
+msgstr "Je moet twee keer het SMTP wachtwoord ingeven om het aan te passen."
 
 #: backstage/email.php:61 backstage/settings.php:134
 msgid "Global settings"
@@ -1077,7 +1077,7 @@ msgstr "Webmaster e-mail"
 
 #: backstage/email.php:84
 msgid "The email where the boards mails will be addressed from"
-msgstr ""
+msgstr "Het e-mail adres waarmee Luna mails zal sturen"
 
 #: backstage/email.php:93 backstage/email.php:99
 #: themes/Fifteen/settings.php:261 themes/Sunrise/settings.php:252
@@ -1086,11 +1086,11 @@ msgstr "Abonnementen"
 
 #: backstage/email.php:104
 msgid "Enable users to subscribe to forums."
-msgstr ""
+msgstr "Laat gebruikers zich abonneren op forums."
 
 #: backstage/email.php:110
 msgid "Enable users to subscribe to threads."
-msgstr ""
+msgstr "Laat gebruikers zich abonneren op conversaties."
 
 #: backstage/email.php:120
 msgid "SMTP settings"
@@ -1102,7 +1102,7 @@ msgstr "SMTP server adres"
 
 #: backstage/email.php:126
 msgid "The address of an external SMTP server to send emails with"
-msgstr ""
+msgstr "Het adres van een externe SMTP server om e-mails mee te verzenden"
 
 #: backstage/email.php:132
 msgid "SMTP username"
@@ -1110,7 +1110,7 @@ msgstr "SMTP gebruikersnaam"
 
 #: backstage/email.php:132
 msgid "Username for SMTP server, only if required"
-msgstr ""
+msgstr "Gebruikersnaam van de SMTP server, enkel indien nodig"
 
 #: backstage/email.php:138
 msgid "SMTP password"
@@ -1118,18 +1118,20 @@ msgstr "SMTP wachtwoord"
 
 #: backstage/email.php:138
 msgid "Password and confirmation for SMTP server, only when required"
-msgstr ""
+msgstr "Wachtwoord en bevestiging van de SMTP server, enkel indien nodig"
 
 #: backstage/email.php:143
 msgid ""
 "Check this if you want to change or delete the currently stored password."
-msgstr ""
+msgstr "Vink dit af indien je het huidige wachtwoord wilt wijzigen."
 
 #: backstage/email.php:161
 msgid ""
 "Encrypts the connection to the SMTP server using SSL, only when required and "
 "supported."
 msgstr ""
+"Activeerd encryptie voor de verbinding met de SMTP server door middel van "
+"SSL, enkel indien ondersteund."
 
 #: backstage/features.php:64 backstage/ranks.php:94
 #: include/backstage_functions.php:49 include/backstage_functions.php:180
@@ -1147,7 +1149,7 @@ msgstr "Conversaties en reacties"
 #: backstage/features.php:86
 #, php-format
 msgid "Censor words in comments. See %s for more info."
-msgstr ""
+msgstr "Censureer woorden in reacties. Zie %s voor meer info."
 
 #: backstage/features.php:92
 msgid "Show the number of views for each thread."
@@ -1156,6 +1158,8 @@ msgstr "Toon het aantal weergaven voor iedere conversatie."
 #: backstage/features.php:98
 msgid "Show a label in front of the thread where users have commented."
 msgstr ""
+"Toon een label voor de titel van een conversatie als een gebruiker erop "
+"heeft gereageerd."
 
 #: backstage/features.php:104
 msgid "User features"
@@ -1164,7 +1168,7 @@ msgstr "Gebruiker functies"
 #: backstage/features.php:109
 msgid ""
 "Display info on the index page about users currently browsing the board."
-msgstr ""
+msgstr "Toon info over gebruikers die momenteel het forum bezoeken."
 
 #: backstage/features.php:115
 #, php-format
@@ -1191,7 +1195,7 @@ msgstr "Rangen"
 
 #: backstage/features.php:132
 msgid "Allow users to use the advanced search options."
-msgstr ""
+msgstr "Laat gebruikers gebruik maken van geavanceerd zoeken."
 
 #: backstage/features.php:138
 msgid "Allow search only in 1 forum at a time."
@@ -1258,11 +1262,11 @@ msgstr "BBCode"
 
 #: backstage/features.php:218
 msgid "Convert smilies to small graphic icons in user signatures."
-msgstr ""
+msgstr "Converteer emoticons naar grafische iconen in handtekeningen."
 
 #: backstage/features.php:224
 msgid "Convert URLs automatically to clickable hyperlinks."
-msgstr ""
+msgstr "Converteer URLs naar klikbare hyperlinks."
 
 #: backstage/features.php:230
 msgid "Optional tags"
@@ -1271,10 +1275,12 @@ msgstr "Optionele tags"
 #: backstage/features.php:235
 msgid "Allow users to use the center tag within threads and their signature."
 msgstr ""
+"Laat gebruikers de center-tag gebruiken in conversaties en handtekeningen."
 
 #: backstage/features.php:241
 msgid "Allow users to use the size tag within threads and their signature."
 msgstr ""
+"Laat gebruikers de size-tag gebruiken in conversaties en handtekeningen."
 
 #: backstage/features.php:248
 msgid "Indent size"
@@ -1282,15 +1288,15 @@ msgstr "Inspringen"
 
 #: backstage/features.php:248
 msgid "Amount of spaces that represent a tab"
-msgstr ""
+msgstr "Aantal spaties om een tab to tonen"
 
 #: backstage/features.php:254
 msgid "Maximum [quote] depth"
-msgstr ""
+msgstr "Maximale [quote] diepte"
 
 #: backstage/features.php:254
 msgid "Maximum [quote] can be used in [quote]"
-msgstr ""
+msgstr "Maximum aantal keer een [quote] kan voorkomen in een [quote]"
 
 #: backstage/features.php:264 backstage/features.php:270
 #: themes/Fifteen/search.php:16 themes/Sunrise/search.php:8
@@ -1304,18 +1310,22 @@ msgid ""
 "you already have one of the Apache modules (mod_gzip/mod_deflate) set up to "
 "compress PHP scripts, disable this feature."
 msgstr ""
+"Stuur Gzip uitvoer naar de browser. Dit kan gebruikte bandbreedte "
+"verminderen, maar vereist meer van de CPU. Deze functie vereist dat PHP is "
+"geconfigureerd met zlib. Als je al beschikt over een Apache module (mod_gzip/"
+"mod_deflate) die PHP scripts verkleind, schakel je dit best uit."
 
 #: backstage/footer.php:20 themes/Fifteen/footer.php:126
 #: themes/Sunrise/footer.php:128
 #, php-format
 msgid "Generated in %1$s seconds, %2$s queries executed"
-msgstr ""
+msgstr "Gegenereerd in %1$s seconden, %2$s queries uitgevoerd"
 
 #: backstage/footer.php:23 themes/Fifteen/footer.php:129
 #: themes/Sunrise/footer.php:131
 #, php-format
 msgid "Memory usage: %1$s"
-msgstr ""
+msgstr "Geheugen gebruik: %1$s"
 
 #: backstage/footer.php:26 themes/Fifteen/footer.php:132
 #: themes/Sunrise/footer.php:134
@@ -1329,6 +1339,8 @@ msgid ""
 "Bad request. The link you followed is incorrect, outdated or you're simply "
 "not allowed to hang around here."
 msgstr ""
+"Bad request. Die link die je volgt in fout, verouderd of je hebt geen "
+"rechten om hier te zijn."
 
 #: backstage/groups.php:39 backstage/groups.php:57
 msgid "Group title"
@@ -1343,6 +1355,9 @@ msgid ""
 "Below options and permissions are the default permissions for the user "
 "group. These options apply if no forum specific permissions are in effect."
 msgstr ""
+"Onderstaande opties en permissies zijn de standaard permissies voor deze "
+"groep. Deze instellingen gelden enkel als er geen forum-specifieke "
+"permissies in uitvoer zijn."
 
 #: backstage/groups.php:63
 msgid "User title"
@@ -1350,7 +1365,7 @@ msgstr "Gebruiker titel"
 
 #: backstage/groups.php:63
 msgid "The title will override the user rank"
-msgstr ""
+msgstr "De titel overschrijft de rang"
 
 #: backstage/groups.php:71
 msgid "Moderator privileges"
@@ -1362,6 +1377,8 @@ msgid ""
 "moderate one or more forums. This is done via the user administration page "
 "of the user's profile."
 msgstr ""
+"Gebruikers moeten minstens moderator zijn van een forum om modereerrechten "
+"te kunnen gebruiken. Dit kan gedaan worden in het admin paneel in profielen."
 
 #: backstage/groups.php:82
 msgid "Edit user profiles"
@@ -1370,6 +1387,8 @@ msgstr "Profielen bewerken"
 #: backstage/groups.php:87
 msgid "If moderator privileges are enabled, allow users to edit user profiles."
 msgstr ""
+"Als de gebruiker moderatorrechten heeft, sta gebruiker toe om profielen te "
+"bewerken."
 
 #: backstage/groups.php:93
 msgid "Rename users"
@@ -1378,6 +1397,8 @@ msgstr "Gebruikers hernoemen"
 #: backstage/groups.php:98
 msgid "If moderator privileges are enabled, allow users to rename users."
 msgstr ""
+"Als de gebruiker moderatorrechten heeft, sta gebruiker toe om gebruikers te "
+"hernoemen."
 
 #: backstage/groups.php:104
 msgid "Change passwords"
@@ -1387,6 +1408,8 @@ msgstr "Wachtwoord wijzigen"
 msgid ""
 "If moderator privileges are enabled, allow users to change user passwords."
 msgstr ""
+"Als de gebruiker moderatorrechten heeft, sta gebruiker toe om wachtwoorden "
+"te wijzigen."
 
 #: backstage/groups.php:115 backstage/users.php:531
 msgid "Ban users"
@@ -1395,6 +1418,8 @@ msgstr "Verban gebruikers"
 #: backstage/groups.php:120
 msgid "If moderator privileges are enabled, allow users to ban users."
 msgstr ""
+"Als de gebruiker moderatorrechten heeft, sta gebruiker toe om gebruikers te "
+"verbannen."
 
 #: backstage/groups.php:129
 msgid "Show deleted content"
@@ -1402,7 +1427,7 @@ msgstr "Toon verwijderde reacties"
 
 #: backstage/groups.php:134
 msgid "Allow users to view threads and comments that have been soft deleted."
-msgstr ""
+msgstr "Laat gebruikers conversaties en reacties zien die zijn verborgen."
 
 #: backstage/groups.php:140 backstage/groups.php:151
 msgid "Soft delete comments"
@@ -1410,22 +1435,24 @@ msgstr "Verberg reacties"
 
 #: backstage/groups.php:145
 msgid "Allow users to soft delete comments from all users."
-msgstr ""
+msgstr "Laat gebruikers reacties verbergen van alle gebruikers."
 
 #: backstage/groups.php:156
 msgid "Allow users to soft delete threads from all users."
-msgstr ""
+msgstr "Laat gebruikers conversaties verbergen van alle gebruikers."
 
 #: backstage/groups.php:170 themes/Fifteen/settings.php:228
 #: themes/Sunrise/settings.php:219
 msgid "Allow users to send messages with Inbox."
-msgstr ""
+msgstr "Laat gebruikers berichten sturen met Inbox."
 
 #: backstage/groups.php:179
 msgid ""
 "The maximum amount of messages a user in this group can have in his Inbox. 0 "
 "is no limit."
 msgstr ""
+"Het maximum aantal berichten een gebruiker in deze groep mogen hebben in "
+"Inbox. 0 is geen limiet."
 
 #: backstage/groups.php:185
 msgid "Read board"
@@ -1433,7 +1460,7 @@ msgstr "Lees forum"
 
 #: backstage/groups.php:190
 msgid "If this is disabled, users will only be able to login and logout."
-msgstr ""
+msgstr "Laat gebruikers alleen aan- en afmelden."
 
 #: backstage/groups.php:196
 msgid "View user information"
@@ -1441,7 +1468,7 @@ msgstr "Bekijk gebruikers info"
 
 #: backstage/groups.php:201
 msgid "Allow users to view the user list and user profiles."
-msgstr ""
+msgstr "Laat gebruikers profielen en de gebruikerslijst bekijken."
 
 #: backstage/groups.php:212
 msgid "Allow users to comment in threads."
@@ -1483,7 +1510,7 @@ msgstr "Stel eigen titel in"
 
 #: backstage/groups.php:272
 msgid "Allow users to set their own user title."
-msgstr ""
+msgstr "Laat gebruikers een eigen titel kiezen."
 
 #: backstage/groups.php:280
 msgid "Use search"
@@ -1507,7 +1534,7 @@ msgstr "Stuur e-mails"
 
 #: backstage/groups.php:309
 msgid "Allow users to send e-mails to other users."
-msgstr ""
+msgstr "Laat gebruikers e-mails sturen naar andere gebruikers."
 
 #: backstage/groups.php:317
 msgid "Comment flood interval"
@@ -1554,27 +1581,32 @@ msgid ""
 "be assigned to moderate one or more forums. This is done via the user "
 "administration page of the user's profile."
 msgstr ""
+"Denk eraan dat gebruikers minstens moderator moeten zijn over een forum om "
+"deze permissies te gebruiken. Dit kan worden ingesteld via het profiel van "
+"de gebruiker."
 
 #: backstage/groups.php:405 backstage/ranks.php:21 backstage/ranks.php:55
 #: backstage/settings.php:47
 msgid "You must enter a title."
-msgstr ""
+msgstr "Je moet een titel ingeven."
 
 #: backstage/groups.php:412 backstage/groups.php:424
 #, php-format
 msgid "There is already a group with the title <strong>%s</strong>."
-msgstr ""
+msgstr "Er is al een groep met de titel <strong>%s</strong>."
 
 #: backstage/groups.php:470
 msgid ""
 "The default group cannot be removed. In order to delete this group, you must "
 "first setup a different group as the default."
 msgstr ""
+"De standaard groep can niet worden verwijderd. Als je deze groep wilt "
+"verwijderen moet eerst een andere groep ingesteld worden als standaard."
 
 #: backstage/groups.php:501
 #, php-format
 msgid "Are you sure that you want to delete the group <strong>%s</strong>?"
-msgstr ""
+msgstr "Ben je zeker dat je de groep <strong>%s</strong> wilt verwijderen?"
 
 #: backstage/groups.php:505
 msgid "<b>Warning:</b> After you deleted a group you cannot restore it."
@@ -1608,6 +1640,9 @@ msgid ""
 "The group <strong>%s</strong> currently has <strong>%s</strong> members. "
 "Please select a group to which these members will be assigned upon deletion."
 msgstr ""
+"De groep <strong>%s</strong> heeft momenteel <strong>%s</strong> gebruikers. "
+"Selecteer een groep om deze gebruikers naar te verplaatsen als je deze groep "
+"wilt verwijderen."
 
 #: backstage/groups.php:529
 msgid "Move users to"
@@ -1656,10 +1691,12 @@ msgid ""
 "The config file is writeable at this moment, you might want to set the CHMOD "
 "to 640 or 644."
 msgstr ""
+"Het configuratie bestand is beschrijfbaar op dit moment, je kan de CHMOD "
+"best veranderen in 640 of 644."
 
 #: backstage/index.php:96
 msgid "The file install.php still exists, but should be removed."
-msgstr ""
+msgstr "Het bestand install.php bestaat nog, je kan dit best verwijderen."
 
 #: backstage/index.php:96
 msgid "Delete it"
@@ -1827,7 +1864,7 @@ msgstr "Onthoud mij"
 
 #: backstage/maintenance.php:26
 msgid "Comments per cycle must be a positive integer value."
-msgstr ""
+msgstr "Reacties per cyclus moet een positief natuurlijk getal zijn."
 
 #: backstage/maintenance.php:51
 msgid "Rebuilding search index"
