@@ -23,30 +23,32 @@ require 'header.php';
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.4 Emerald</h3>
+				<h3 class="panel-title"><?php printf(__('About Luna %s %s', 'luna'), Version::LUNA_VERSION, Version::LUNA_CODE_NAME_SEM) ?></h3>
 			</div>
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
 						<p class="meta"><span class="release-version">1.4 Preview 2</span></p><h2>Emerald</h2>
 						<ul class="changes">
-                            <li><div class="stater"><em class="state state-new">New</em></div>Fifteen has received a fully reimagned design based on Airalin</li>
-                            <li><div class="stater"><em class="state state-new">New</em></div>Luna now uses salts and SHA-512 to save passwords</li>
-                            <li><div class="stater"><em class="state state-system">System</em></div>The editor will now put items under a button if the screen becomes to small</li>
-                            <li><div class="stater"><em class="state state-improved">Improved</em></div>Advanced search has an improved UI</li>
-                            <li><div class="stater"><em class="state state-improved">Improved</em></div>Improved Backstage UI and night mode</li>
-                            <li><div class="stater"><em class="state state-removed">Removed</em></div>The editor no longer has an emoticon menu</li>
-                            <li><div class="stater"><em class="state state-fixed">Fixed</em></div>Fixes 3 bugs</li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Fifteen has received a fully reimagned design based on Airalin', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Luna now uses salts and SHA-512 to save passwords', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Luna now has a Dutch translation included by default', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('The editor will now put items under a button if the screen becomes to small', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Advanced search has an improved UI', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('About can now be translated to other languages', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved Backstage UI and night mode', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('The editor no longer has an emoticon menu', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes 3 bugs', 'luna') ?></li>
 							<hr />
-							<li><div class="stater"><em class="state state-note">Note</em></div>The light grey accent has yet to be implemented correctly in Fifteen</li>
-							<li><div class="stater"><em class="state state-note">Note</em></div>"Forces accents" has yet to be implemented in Fifteen</li>
-							<li><div class="stater"><em class="state state-note">Note</em></div>Sunrise has multiple visual issues in this Preview</li>
+							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('The light grey accent has yet to be implemented correctly in Fifteen', 'luna') ?></li>
+							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('"Forces accents" has yet to be implemented in Fifteen', 'luna') ?></li>
+							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('Sunrise has multiple visual issues in this Preview', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
 			</div>
 			<div class="panel-footer">
-				<p>Luna is developed by the <a href="http://getluna.org/">Luna Group</a>. Copyright 2013-2016. Released under the GPLv2 license.</p>
+				<p><?php printf(__('Luna is developed by the %s. Copyright %s. Released under the GPLv2 license.', 'luna'), '<a href="http://getluna.org/">Luna Group</a>', '2013-2016') ?></p>
 			</div>
 		</div>
 	</div>
