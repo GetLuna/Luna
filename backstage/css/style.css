@@ -1009,152 +1009,179 @@ a.label-new {
 }
 
 /* Night mode */
-.night body,
-html.night,
-.night .nav-tabs > li.active > a,
-.night .nav-tabs > li.active > a:hover,
-.night .nav-tabs > li.active > a:focus {
-	background-color: #333;
-	color: #ddd;
+.night body {
+    background: #292929;
+    color: #fff;
 }
 
-.night .nav-tabs > li.active > a,
-.night .nav-tabs > li.active > a:hover,
-.night .nav-tabs > li.active > a:focus {
-	border-color: #333;
+.night body .help-block {
+    color: #bbb;
 }
 
-.night .nav-tabs > li > a:hover {
-    background-color: #444;
-    border-color: #444;
-}
-
-.night .container-main {
-	background: #444;
-}
-
-.night .first-run-content {
-	background: #555;
-}
-
-.night hr {
-	border-top-color: #555;
-}
-
-.night .accent-group .btn {
-	border-color: #444 !important;
-}
-
-.night .accent-group .btn:hover,
-.night .accent-group .btn:focus,
-.night .accent-group .btn:active,
-.night .accent-group .active.btn {
-	border-color: #666 !important;
-}
-
-.night .nav-tabs {
-	border-color: #555;
-}
-
+.night .panel-body,
 .night .panel {
-	background-color: #444;
-	border-color: #555;
+    background: #404040;
 }
 
-.night .table * {
-	border-color: #3d3d3d;
-}
-
-.night .table > tbody > tr.active > td,
-.night .table > tbody > tr.active > th,
-.night .table > tbody > tr > td.active,
-.night .table > tbody > tr > th.active,
-.night .table > tfoot > tr.active > td,
-.night .table > tfoot > tr.active > th,
-.night .table > tfoot > tr > td.active,
-.night .table > tfoot > tr > th.active,
-.night .table > thead > tr.active > td,
-.night .table > thead > tr.active > th,
-.night .table > thead > tr > td.active,
-.night .table > thead > tr > th.active {
-	background-color: #404040;
-}
-
-.night .table-striped > tbody > tr:nth-of-type(2n+1) {
-	background: #3f3f3f;
+.night .panel-style {
+    border-color: #393939;
 }
 
 .night .panel-footer {
-	background-color: #3d3d3d;
-	border-color: #555;
+    background: #393939;
+    border: none;
+}
+
+.night hr {
+    border-color: #333;
+}
+
+.night .list-group.list-group-thread .list-group-item {
+    background-color: #4a4a4a;
+    border-left: 6px solid #454545;
+}
+
+.night .list-group.list-group-thread .list-group-item:hover {
+    background-color: #505050;
+}
+
+.night .list-group-thread .list-group-item .label {
+    background: #404040;
+}
+
+.night .list-group-thread .list-group-item:hover .label {
+    background: #464646;
 }
 
 .night .list-group-item {
-	color: #fff;
-	background-color: #444;
-	border-color: #555;
+    background: #404040;
+    border-color: transparent;
 }
 
-.night .list-group-item:hover {
-	background-color: #3a3a3a;
+.night .list-group.list-group-luna :not(.active).list-group-item:hover {
+    background: #333;
 }
 
-.night #search .panel-body,
-.night .user-entry {
-	background-color: #555;
+.night .list-group-item {
+    color: #fff;
 }
 
-.night .list-group-forum a.list-group-item {
-	border-color: #3f3f3f;
+.night .nav-tabs li.active a,
+.night .nav-tabs li.active a:hover,
+.night .nav-tabs li.active a:focus {
+    background: #292929;
+    border-color: #292929;
+    color: #fff;
 }
 
-.night .label-default {
-	background-color: #333;
-}
-
-.night .comment .panel-default {
-	background-color: #3b3b3b;
-}
-
-.night .list-group-thread .list-group-item {
-	background-color: #404040;
-	border-color: #3e3e3e;
-}
-
-.night .panel-editor .btn-default {
-	background-color: #444;
-}
-
-.night .textarea-toolbar .btn-group,
-.night .textarea-top,
-.night .textarea-bottom {
-	border-color: #555;
-}
-
-.night .panel-editor .btn-default {
-	color: #fff;
-}
-
-.night .input-group-addon {
-	border-color: #222;
+.night .list-group-luna .list-group-item:hover {
+    color: #fff;
 }
 
 .night .form-control {
-	color: #ddd;
-	background-color: #333;
-	border-color: #222;
+    background: #404040;
+    color: #fff;
+    border-color: #333;
 }
 
 .night .well {
-	background-color: #3d3d3d;
-	border-color: #333;
+    background: #494949;
+    border-color: #404040;
 }
 
-.night .btn-search {
-	background-color: #333;
-	color: #ddd;
+.night .accent-group .btn {
+    border-color: #444 !important;
 }
 
-.night .btn-search:hover {
-	background-color: #393939;
+.night .accent-group .btn.active,
+.night .accent-group .btn:hover {
+    border-color: #555 !important;
+}
+
+.night .comment-default {
+    background-color: #4f4f4f;
+}
+
+.night .comment-default .comment-heading,
+.night .user-entry {
+    background-color: #4a4a4a;
+}
+
+.night #comment input[type='text'],
+.night #edit input[type='text'] {
+    background-color: #545454;
+}
+
+.night .table-striped > tbody > tr:nth-of-type(2n+1) {
+    background: #4f4f4f;
+}
+
+.night .table > thead > tr > th,
+.night .table > tbody > tr > th,
+.night .table > tfoot > tr > th,
+.night .table > thead > tr > td,
+.night .table > tbody > tr > td,
+.night .table > tfoot > tr > td {
+    border-color: #595959;
+}
+
+.night .table-hover > tbody > tr:hover,
+.night .table > thead > tr > td.active,
+.night .table > tbody > tr > td.active,
+.night .table > tfoot > tr > td.active,
+.night .table > thead > tr > th.active,
+.night .table > tbody > tr > th.active,
+.night .table > tfoot > tr > th.active,
+.night .table > thead > tr.active > td,
+.night .table > tbody > tr.active > td,
+.night .table > tfoot > tr.active > td,
+.night .table > thead > tr.active > th,
+.night .table > tbody > tr.active > th,
+.night .table > tfoot > tr.active > th {
+    background: #505050;
+}
+
+.night pre {
+    border: #444;
+}
+
+.night .status-solved {
+    color: #77ca62;
+}
+
+.night .status-pinned {
+    color: #ffd800;
+}
+
+.night .status-new {
+    color: #dddddd;
+}
+
+.night .status-important {
+    color: #9985cb;
+}
+
+.night .status-moved {
+    color: #38a2eb;
+}
+
+.night .status-closed {
+    color: #f34040;
+}
+
+.night .search-form {
+    border-color: #555;
+}
+
+.night .search-form input[type='text'],
+.night .search-form .btn {
+    background: #555;
+}
+
+.night .search-form .btn {
+    color: #fff;
+}
+
+.night .search-form .form-control {
+    border-color: transparent;
 }
