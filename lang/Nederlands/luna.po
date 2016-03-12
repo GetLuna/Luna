@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
 "POT-Creation-Date: 2016-03-10 09:18+0100\n"
-"PO-Revision-Date: 2016-03-10 13:15+0100\n"
+"PO-Revision-Date: 2016-03-11 10:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -1877,7 +1877,7 @@ msgstr "Hergenereren index. Dit is een goed moment om wat koffie te pakken."
 #: backstage/maintenance.php:86
 #, php-format
 msgid "Processing comment <strong>%s</strong> …"
-msgstr ""
+msgstr "Reactie <strong>%s</strong> verwerken..."
 
 #: backstage/maintenance.php:129 db_update.php:182
 #: include/class/luna_install.php:1498
@@ -1895,11 +1895,11 @@ msgstr "Onderhoud"
 
 #: backstage/maintenance.php:170
 msgid "The cache files have been removed."
-msgstr ""
+msgstr "De cache bestanden zijn verwijderd."
 
 #: backstage/maintenance.php:181
 msgid "The message to tell users about the maintenance"
-msgstr ""
+msgstr "Het bericht om te tonen aan gebruikers tijdens onderhoud"
 
 #: backstage/maintenance.php:186
 msgid ""
@@ -1939,7 +1939,7 @@ msgstr ""
 
 #: backstage/maintenance.php:219
 msgid "Comments per cycle"
-msgstr ""
+msgstr "Reacties per cyclus"
 
 #: backstage/maintenance.php:219
 msgid ""
@@ -1956,7 +1956,7 @@ msgstr ""
 
 #: backstage/maintenance.php:231
 msgid "Empty index"
-msgstr ""
+msgstr "Index is leeg"
 
 #: backstage/maintenance.php:236
 msgid ""
@@ -2000,16 +2000,16 @@ msgstr "Toon"
 #: backstage/moderate.php:37
 #, php-format
 msgid "The IP address is: %s"
-msgstr ""
+msgstr "Het IP adres is: %s"
 
 #: backstage/moderate.php:37
 #, php-format
 msgid "The host name is: %s"
-msgstr ""
+msgstr "De host naam is: %s"
 
 #: backstage/moderate.php:37
 msgid "Show more users for this IP"
-msgstr ""
+msgstr "Toon meer gebruikers met dit IP"
 
 #: backstage/moderate.php:44 backstage/moderate.php:131
 #: backstage/moderate.php:222 backstage/moderate.php:297
@@ -2019,12 +2019,12 @@ msgstr ""
 #: include/backstage_functions.php:27 themes/Sunrise/forum.php:29
 #: themes/Sunrise/forum.php:51 themes/Sunrise/thread.php:47
 msgid "Moderate"
-msgstr ""
+msgstr "Modereer"
 
 #: backstage/moderate.php:52 backstage/moderate.php:305
 #: backstage/moderate.php:842
 msgid "Moderate content"
-msgstr ""
+msgstr "Modereer inhoud"
 
 #: backstage/moderate.php:55
 msgid ""
@@ -2042,11 +2042,11 @@ msgstr ""
 
 #: backstage/moderate.php:186 comment.php:64 edit.php:66 new_inbox.php:200
 msgid "Threads must contain a subject."
-msgstr ""
+msgstr "Conversaties moeten een onderwerp hebben."
 
 #: backstage/moderate.php:188 comment.php:68 edit.php:70 new_inbox.php:202
 msgid "Subjects cannot be longer than 70 characters."
-msgstr ""
+msgstr "Het onderwerp mag niet meer dan 70 tekens hebben."
 
 #: backstage/moderate.php:231
 msgid "Split comments"
@@ -2211,19 +2211,19 @@ msgstr "Sta toe dat handtekeningen enkel uit hoofdletters bestaan."
 
 #: backstage/permissions.php:132
 msgid "Maximum signature length"
-msgstr ""
+msgstr "Maximale handtekening lengte"
 
 #: backstage/permissions.php:132
 msgid "Maximum amount of characters a signature can have"
-msgstr ""
+msgstr "Het maximaal aantal tekens in een handtekening"
 
 #: backstage/permissions.php:138
 msgid "Maximum signature lines"
-msgstr ""
+msgstr "Maximale handtekening lijnen"
 
 #: backstage/permissions.php:138
 msgid "Maximum amount of lines a signature can have"
-msgstr ""
+msgstr "Het maximaal aantal lijnen in een handtekening"
 
 #: backstage/permissions.php:148 backstage/permissions.php:153
 #: backstage/registration.php:59 backstage/registration.php:70
@@ -2266,7 +2266,7 @@ msgstr "Opruimen"
 
 #: backstage/prune.php:106
 msgid "Confirm prune comments"
-msgstr ""
+msgstr "Bevestig opruimen gebruikers"
 
 #: backstage/prune.php:107
 #, php-format
@@ -2281,7 +2281,7 @@ msgstr ""
 
 #: backstage/prune.php:160
 msgid "Pruning complete. Notifications pruned."
-msgstr ""
+msgstr "Opruimen voltooid. Notificaties opgeruimd."
 
 #: backstage/prune.php:198
 msgid ""
@@ -2295,7 +2295,7 @@ msgstr "Notificaties opruimen"
 #: backstage/prune.php:221 backstage/prune.php:257 backstage/prune.php:315
 #, php-format
 msgid "It's recommended to activate %s during pruning."
-msgstr ""
+msgstr "Het is aangeraden om %s aan te zetten tijdens opruimen."
 
 #: backstage/prune.php:221 backstage/prune.php:257 backstage/prune.php:315
 msgid "maintenance mode"
@@ -2481,23 +2481,23 @@ msgstr ""
 
 #: backstage/registration.php:128
 msgid "Default email setting"
-msgstr ""
+msgstr "Standaard e-mail instelling"
 
 #: backstage/registration.php:130
 msgid "Default privacy setting for new registrations"
-msgstr ""
+msgstr "De standaard privacy instelling voor nieuwe gebruikers"
 
 #: backstage/registration.php:134
 msgid "Display email address to other users."
-msgstr ""
+msgstr "Toon e-mail adres aan andere gebruikers."
 
 #: backstage/registration.php:140
 msgid "Hide email address but allow form e-mail."
-msgstr ""
+msgstr "Verberg e-mail adres maar sta e-mails toe."
 
 #: backstage/registration.php:146
 msgid "Hide email address and disallow form email."
-msgstr ""
+msgstr "Verberg e-mail adres en laat geen e-mails toe."
 
 #: backstage/reports.php:42 backstage/settings.php:306
 #: include/backstage_functions.php:31 include/backstage_functions.php:166
@@ -2994,6 +2994,7 @@ msgstr ""
 #: backstage/tools.php:41 include/functions.php:482
 msgid "The username guest is reserved. Please choose another username."
 msgstr ""
+"De gebruikersnaam gast is gereserveerd. Kies een andere gebruikersnaam."
 
 #: backstage/tools.php:43 include/functions.php:484
 msgid ""
@@ -3015,7 +3016,7 @@ msgstr ""
 
 #: backstage/tools.php:54 include/functions.php:501
 msgid "Someone is already registered with the username"
-msgstr ""
+msgstr "Iemand anders gebruikt deze naam al."
 
 #: backstage/tools.php:54 include/functions.php:501
 msgid ""
@@ -3119,15 +3120,17 @@ msgstr "Changelog"
 
 #: backstage/update.php:121
 msgid "You're using the latest version of Luna!"
-msgstr ""
+msgstr "Je gebruikt de nieuwste versie van Luna!"
 
 #: backstage/update.php:122
 msgid "You're on our latest release! Nothing to worry about."
-msgstr ""
+msgstr "Je gebruikt de nieuwste versie! Geen reden om je zorgen te maken."
 
 #: backstage/update.php:126 backstage/update.php:133
 msgid "You're using a development version of Luna. Be sure to stay up-to-date."
 msgstr ""
+"Je gebruikt een ontwikkelaarsversie van Luna. Wees zeker dat je up-to-date "
+"bent."
 
 #: backstage/update.php:127
 msgid ""
@@ -3136,6 +3139,10 @@ msgid ""
 "getluna.org/release-notes-preview.php\">our website</a>. New builds can "
 "contain new features, improved features, and/or bugfixes."
 msgstr ""
+"We geven nieuwe testversies van Luna zo nu en dan vrij, de een stabieler dan "
+"de andere. Je kan dit bijhouden op <a href=\"http://getluna.org/getstarted-"
+"preview.php\">onze website</a>. Nieuwe versies bevatten nieuwe en/of "
+"verbeterde functies en/of bug fixes."
 
 #: backstage/update.php:128 backstage/update.php:134
 msgid ""
@@ -3162,7 +3169,7 @@ msgstr "Keer gevonden"
 
 #: backstage/users.php:68
 msgid "Find more users for this ip"
-msgstr ""
+msgstr "Zoek meer gebruikers met dit IP"
 
 #: backstage/users.php:74
 msgid "There are currently no comments by that user in the forum."
@@ -3214,7 +3221,7 @@ msgstr "Ongeldig groep ID."
 
 #: backstage/users.php:272 backstage/users.php:280
 msgid "Change user group"
-msgstr ""
+msgstr "Verander groep"
 
 #: backstage/users.php:287
 msgid "New group"
@@ -3232,7 +3239,7 @@ msgstr ""
 
 #: backstage/users.php:410 backstage/users.php:419
 msgid "Delete users"
-msgstr ""
+msgstr "Verwijder gebruiker"
 
 #: backstage/users.php:424 themes/Fifteen/me-delete.php:16
 #: themes/Sunrise/me-delete.php:16
@@ -3261,7 +3268,7 @@ msgstr ""
 
 #: backstage/users.php:551
 msgid "Ban IP addresses"
-msgstr ""
+msgstr "Verban IP adres"
 
 #: backstage/users.php:561
 msgid ""
@@ -3276,7 +3283,7 @@ msgstr ""
 #: backstage/users.php:603 backstage/users.php:612 backstage/users.php:621
 #: backstage/users.php:630 backstage/users.php:639 backstage/users.php:648
 msgid "You entered an invalid date/time."
-msgstr ""
+msgstr "Ongeldige datum/tijd."
 
 #: backstage/users.php:713 backstage/users.php:773
 msgid "Change group"
@@ -3582,7 +3589,7 @@ msgstr "Nieuwe reactie"
 
 #: comment.php:522 viewforum.php:53
 msgid "Create thread"
-msgstr ""
+msgstr "Nieuwe conversatie"
 
 #: db_update.php:141 db_update.php:149 include/class/luna_install.php:162
 #: include/class/luna_install.php:168 install.php:105
@@ -3599,7 +3606,7 @@ msgstr ""
 
 #: db_update.php:159 install.php:92
 msgid "Continue"
-msgstr ""
+msgstr "Volgende"
 
 #: db_update.php:159
 msgid "Let's get started"
@@ -3607,7 +3614,7 @@ msgstr "Laten we beginnen"
 
 #: db_update.php:186
 msgid "There is an update ready to be installed"
-msgstr ""
+msgstr "Er staat een update klaar om te installeren"
 
 #: db_update.php:186
 msgid "Start update"
@@ -3633,19 +3640,19 @@ msgstr "Hergenereren index voor %1$s %2$s"
 
 #: db_update.php:866
 msgid "If this takes to long, the automatic redirect might have failed."
-msgstr ""
+msgstr "Als dit te lang duurt wordt je mogelijk niet automatisch doorgestuurt."
 
 #: db_update.php:866
 msgid "Click here"
-msgstr ""
+msgstr "Klik hier"
 
 #: delete.php:123
 msgid "Delete comment"
-msgstr ""
+msgstr "Verwijder reactie"
 
 #: edit.php:56
 msgid "Are you sure you want to do this?"
-msgstr ""
+msgstr "Ben je zeker dat je dit wilt doen?"
 
 #: extern.php:290 extern.php:343 include/functions.php:654
 msgid " / "
@@ -3732,7 +3739,7 @@ msgstr "Over Luna"
 
 #: include/backstage_functions.php:36 include/backstage_functions.php:171
 msgid "Tools"
-msgstr ""
+msgstr "Hulpmiddelen"
 
 #: include/backstage_functions.php:40 include/backstage_functions.php:173
 msgid "Groups"
@@ -3793,7 +3800,7 @@ msgstr ""
 
 #: include/class/luna_install.php:81
 msgid "The username guest is reserved."
-msgstr ""
+msgstr "De gebruikersnaam gast is gereserveerd."
 
 #: include/class/luna_install.php:83
 msgid "Usernames may not be in the form of an IP address."
@@ -3815,23 +3822,23 @@ msgstr ""
 
 #: include/class/luna_install.php:92 register.php:62 settings.php:257
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Wachtwoorden komen niet overeen."
 
 #: include/class/luna_install.php:98
 msgid "The administrator email address you entered is invalid."
-msgstr ""
+msgstr "Het administrator e-mail adres is ongeldig."
 
 #: include/class/luna_install.php:101
 msgid "You must enter a board title."
-msgstr ""
+msgstr "Je moet je forum een naam geven."
 
 #: include/class/luna_install.php:105
 msgid "The default language chosen doesn't seem to exist."
-msgstr ""
+msgstr "De gekozen standaard taal bestaat niet."
 
 #: include/class/luna_install.php:109
 msgid "The default style chosen doesn't seem to exist."
-msgstr ""
+msgstr "HEt gekozen standaard thema bestaat niet."
 
 #: include/class/luna_install.php:147
 #, php-format
@@ -3843,6 +3850,7 @@ msgid ""
 "The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please "
 "choose a different prefix"
 msgstr ""
+"De tabel prefix 'SQLite_' is gereserveerd voor SQLite. Kies een andere prefix"
 
 #: include/class/luna_install.php:183
 msgid ""
@@ -3860,6 +3868,10 @@ msgid ""
 "They must however not start with a number. The maximum length is 40 "
 "characters. Please choose a different prefix"
 msgstr ""
+"De tabel prefix '%s' bevat verboden tekens of is te lang. De prefix mag "
+"bestaan uit de letters a tot z, elk nummer en een underscore. Het mag niet "
+"starten met een cijfer en mag maximum 40 tekens lang zijn. Kies een andere "
+"prefix."
 
 #: include/class/luna_install.php:205
 #, php-format
@@ -4118,7 +4130,7 @@ msgstr "PM"
 #: include/draw_functions.php:889 search.php:97 search.php:147 search.php:269
 #: search.php:494
 msgid "Your search returned no hits."
-msgstr ""
+msgstr "Je zoekopdracht heeft geen resultaten."
 
 #: include/draw_functions.php:897 include/draw_functions.php:911
 #: themes/Fifteen/delete.php:17 themes/Fifteen/soft.php:17
@@ -4170,11 +4182,11 @@ msgstr "Conversatie gestart door %s - %s"
 #: include/draw_functions.php:937
 #, php-format
 msgid "Comment by %s - %s"
-msgstr ""
+msgstr "Reactie door %s - %s"
 
 #: include/draw_functions.php:947
 msgid "You must agree to the following in order to register"
-msgstr ""
+msgstr "Je moet akkoord gaan met het volgende om te registreren"
 
 #: include/draw_functions.php:955 themes/Fifteen/rules.php:13
 msgid "Agree"
@@ -4211,20 +4223,22 @@ msgstr "%s Mailer"
 
 #: include/functions.php:450
 msgid "You are banned from this forum."
-msgstr ""
+msgstr "Je bent verbannen van dit forum."
 
 #: include/functions.php:450
 msgid "The ban expires at the end of"
-msgstr ""
+msgstr "De ban verloopt op"
 
 #: include/functions.php:450
 msgid ""
 "The administrator or moderator that banned you left the following message:"
 msgstr ""
+"De administrator of moderator die je verbannen heeft heeft het volgende "
+"bericht achtergelaten:"
 
 #: include/functions.php:450
 msgid "Please direct any inquiries to the forum administrator at"
-msgstr ""
+msgstr "Voor vragen richt je je tot de forum administrator."
 
 #: include/functions.php:480
 msgid ""
@@ -4295,7 +4309,7 @@ msgstr "%s"
 
 #: include/functions.php:2023
 msgid "Debug information"
-msgstr ""
+msgstr "Debug info"
 
 #: include/functions.php:2028
 msgid "Time (s)"
@@ -4389,7 +4403,7 @@ msgstr "RSS active conversaties feed"
 
 #: index.php:47 themes/Fifteen/footer.php:23 themes/Sunrise/footer.php:22
 msgid "Atom active thread feed"
-msgstr ""
+msgstr "Atom active conversatie feed"
 
 #: install.php:92
 msgid "It seems like Luna is already installed."
@@ -4401,7 +4415,7 @@ msgstr "Wij zijn klaar hier"
 
 #: install.php:128
 msgid "You can do anything"
-msgstr ""
+msgstr "You can do anything"
 
 #: install.php:157
 #, php-format
@@ -4463,7 +4477,7 @@ msgstr "Installer Luna %s"
 
 #: install.php:223
 msgid "Choose the install script language"
-msgstr ""
+msgstr "Kies een taal voor je installatie"
 
 #: install.php:228
 msgid "Install language"
@@ -4481,7 +4495,7 @@ msgstr "Verander taal"
 
 #: install.php:255
 msgid "The following errors need to be corrected:"
-msgstr ""
+msgstr "De volgende problemen moeten hersteld worden:"
 
 #: install.php:272
 msgid "Database setup"
@@ -4620,7 +4634,7 @@ msgstr ""
 
 #: login.php:180
 msgid "There is no user registered with the email address"
-msgstr ""
+msgstr "Er is geen gebruiker geregistreerd met dit e-mail adres"
 
 #: misc.php:65
 msgid "The user you are trying to send an email to has disabled form email."
@@ -4665,7 +4679,7 @@ msgstr "Stuur een e-mail naar"
 
 #: misc.php:157
 msgid "You must enter a reason."
-msgstr ""
+msgstr "Je moet een reden opgeven."
 
 #: misc.php:159
 msgid "Your message must be under 65535 bytes (~64kb)."
@@ -4701,15 +4715,15 @@ msgstr "Reden"
 
 #: misc.php:311
 msgid "You are subscribed"
-msgstr ""
+msgstr "Je bent geabonneerd"
 
 #: misc.php:329
 msgid "You're already subscribed to this forum."
-msgstr ""
+msgstr "Je bent al geabonneerd op dit forum."
 
 #: misc.php:352 misc.php:365
 msgid "You're not subscribed to this thread."
-msgstr ""
+msgstr "Je bent niet geabonneerd op deze conversatie."
 
 #: new_inbox.php:133
 #, php-format
@@ -4720,11 +4734,11 @@ msgstr ""
 
 #: new_inbox.php:137
 msgid "Can't save message, your boxes are full."
-msgstr ""
+msgstr "Lan bericht niet opslaan, je Inbox is vol."
 
 #: new_inbox.php:158
 msgid "You must give at least one receiver"
-msgstr ""
+msgstr "Je moet minstens één ontvanger opgeven."
 
 #: new_inbox.php:160
 #, php-format
@@ -4749,7 +4763,7 @@ msgstr "%s Inbox is vol, je kan deze gebruiker momenteel geen bericht sturen."
 #: new_inbox.php:188
 #, php-format
 msgid "There's no user with the username \"%s\"."
-msgstr ""
+msgstr "Er is geen gebruiker met de naam '%s'."
 
 #: new_inbox.php:234
 msgid ""
@@ -4806,7 +4820,7 @@ msgstr "Stuur een e-mail"
 
 #: register.php:20
 msgid "This forum is not accepting new registrations."
-msgstr ""
+msgstr "Dit forum aanvaard geen nieuwe registraties."
 
 #: register.php:23 themes/Sunrise/help.php:12 themes/Sunrise/rules.php:8
 msgid "Forum rules"
@@ -4824,7 +4838,7 @@ msgstr ""
 
 #: register.php:70
 msgid "Email addresses do not match."
-msgstr ""
+msgstr "E-mail adressen komen niet overeen."
 
 #: register.php:87 settings.php:368
 msgid ""
