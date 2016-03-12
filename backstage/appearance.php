@@ -33,6 +33,8 @@ if (isset($_POST['form_sent'])) {
 		'show_copyright'		=> isset($_POST['form']['show_copyright']) ? '1' : '0',
 		'copyright_type'		=> intval($_POST['form']['copyright_type']),
 		'custom_copyright'		=> luna_trim($_POST['form']['custom_copyright']),
+		'use_custom_css'		=> isset($_POST['form']['use_custom_css']) ? '1' : '0',
+		'custom_css'			=> luna_trim($_POST['form']['custom_css']),
 	);
 
 	// Make sure the number of displayed threads and comments is between 3 and 75
@@ -80,7 +82,7 @@ if (isset($_GET['saved']))
 	<input type="hidden" name="form_sent" value="1" />
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Display settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Theme capabilities', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -119,7 +121,33 @@ if (isset($_GET['saved']))
 						</div>
 					</div>
 				</div>
-				<hr />
+                <hr />
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Custom CSS', 'luna') ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[use_custom_css]" value="1" <?php if ($luna_config['o_use_custom_css'] == '1') echo ' checked' ?> />
+								<?php _e('Use the custom CSS as defined below.', 'luna') ?>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('CSS code', 'luna') ?></label>
+					<div class="col-sm-9">
+						<textarea class="form-control form-control-mono" name="form[custom_css]" placeholder="/* <?php _e('Custom CSS') ?> */" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_custom_css']) ?></textarea>
+					</div>
+				</div>
+            </fieldset>
+        </div>
+    </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php _e('Display settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('User profile', 'luna') ?></label>
 					<div class="col-sm-9">

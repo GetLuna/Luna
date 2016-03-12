@@ -21,6 +21,9 @@ $body_classes = check_style_mode();
 		body.js .hide-if-js, body.no-js .hide-if-no-js {
 			display: none !important;
 		}
+        <?php if ($luna_config['o_use_custom_css']) {
+            echo $luna_config['o_custom_css'];
+        } ?>
 		</style>
 	</head>
 	<body class="no-js">

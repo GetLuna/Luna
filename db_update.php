@@ -689,6 +689,9 @@ switch ($stage) {
 		build_config(1, 'o_timezone', 'UTC');
         
         // Luna 1.4 upgrade support
+		build_config(1, 'o_use_custom_css', '0');
+		build_config(1, 'o_custom_css', 'NULL');
+        
 		$db->alter_field('users', 'password', 'VARCHAR(512)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'salt', 'VARCHAR(8)', true) or error('Unable to add salt field to user table', __FILE__, __LINE__, $db->error());
 

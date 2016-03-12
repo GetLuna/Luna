@@ -415,6 +415,10 @@ h3.panel-title {
 	background-color: #fafafa;
 }
 
+.form-control-mono {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
 .form-control:focus {
 	border-color: #2fbef1;
 }
