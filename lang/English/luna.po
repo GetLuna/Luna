@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-10 09:19+0100\n"
-"PO-Revision-Date: 2016-03-10 09:19+0100\n"
+"POT-Creation-Date: 2016-03-13 09:16+0100\n"
+"PO-Revision-Date: 2016-03-13 09:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: backstage/about.php:16 backstage/appearance.php:71 backstage/bans.php:82
+#: backstage/about.php:16 backstage/appearance.php:73 backstage/bans.php:82
 #: backstage/bans.php:328 backstage/bans.php:391 backstage/board.php:79
 #: backstage/board.php:213 backstage/board.php:450 backstage/board.php:508
 #: backstage/censoring.php:76 backstage/database.php:509 backstage/email.php:61
@@ -49,8 +49,9 @@ msgid "About Luna %s %s"
 msgstr ""
 
 #: backstage/about.php:33 backstage/about.php:34 backstage/about.php:35
-#: header.php:56 header.php:57 include/draw_functions.php:348
-#: include/draw_functions.php:431 themes/Fifteen/notifications.php:30
+#: backstage/about.php:36 header.php:56 header.php:57
+#: include/draw_functions.php:348 include/draw_functions.php:431
+#: themes/Fifteen/notifications.php:30
 msgid "New"
 msgstr ""
 
@@ -63,67 +64,71 @@ msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr ""
 
 #: backstage/about.php:35
+msgid "You can now add custom CSS to the theme you're using"
+msgstr ""
+
+#: backstage/about.php:36
 msgid "Luna now has a Dutch translation included by default"
 msgstr ""
 
-#: backstage/about.php:36
+#: backstage/about.php:37
 msgid "System"
 msgstr ""
 
-#: backstage/about.php:36
+#: backstage/about.php:37
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 
-#: backstage/about.php:37 backstage/about.php:38 backstage/about.php:39
+#: backstage/about.php:38 backstage/about.php:39 backstage/about.php:40
 msgid "Improved"
 msgstr ""
 
-#: backstage/about.php:37
+#: backstage/about.php:38
 msgid "Advanced search has an improved UI"
 msgstr ""
 
-#: backstage/about.php:38
+#: backstage/about.php:39
 msgid "About can now be translated to other languages"
 msgstr ""
 
-#: backstage/about.php:39
+#: backstage/about.php:40
 msgid "Improved Backstage UI and night mode"
 msgstr ""
 
-#: backstage/about.php:40
+#: backstage/about.php:41
 msgid "Removed"
 msgstr ""
 
-#: backstage/about.php:40
+#: backstage/about.php:41
 msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
-#: backstage/about.php:41
+#: backstage/about.php:42
 msgid "Fixed"
 msgstr ""
 
-#: backstage/about.php:41
+#: backstage/about.php:42
 msgid "Fixes 3 bugs"
 msgstr ""
 
-#: backstage/about.php:43 backstage/about.php:44 backstage/about.php:45
+#: backstage/about.php:44 backstage/about.php:45 backstage/about.php:46
 msgid "Note"
 msgstr ""
 
-#: backstage/about.php:43
+#: backstage/about.php:44
 msgid "The light grey accent has yet to be implemented correctly in Fifteen"
 msgstr ""
 
-#: backstage/about.php:44
+#: backstage/about.php:45
 msgid "\"Forces accents\" has yet to be implemented in Fifteen"
 msgstr ""
 
-#: backstage/about.php:45
+#: backstage/about.php:46
 msgid "Sunrise has multiple visual issues in this Preview"
 msgstr ""
 
-#: backstage/about.php:51
+#: backstage/about.php:52
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
@@ -139,12 +144,12 @@ msgid ""
 "by deleting all .php files in the /cache directory."
 msgstr ""
 
-#: backstage/appearance.php:71 include/backstage_functions.php:51
+#: backstage/appearance.php:73 include/backstage_functions.php:51
 #: include/backstage_functions.php:181
 msgid "Appearance"
 msgstr ""
 
-#: backstage/appearance.php:77 backstage/board.php:514 backstage/email.php:67
+#: backstage/appearance.php:79 backstage/board.php:514 backstage/email.php:67
 #: backstage/features.php:70 backstage/index.php:88
 #: backstage/maintenance.php:168 backstage/permissions.php:56
 #: backstage/registration.php:65 backstage/settings.php:140
@@ -153,18 +158,18 @@ msgstr ""
 msgid "Your settings have been saved."
 msgstr ""
 
-#: backstage/appearance.php:83
-msgid "Display settings"
+#: backstage/appearance.php:85
+msgid "Theme capabilities"
 msgstr ""
 
-#: backstage/appearance.php:83 backstage/appearance.php:190
-#: backstage/appearance.php:222 backstage/board.php:222 backstage/board.php:327
-#: backstage/board.php:607 backstage/board.php:653 backstage/email.php:72
-#: backstage/email.php:93 backstage/email.php:120 backstage/features.php:75
-#: backstage/features.php:148 backstage/features.php:175
-#: backstage/features.php:208 backstage/features.php:264
-#: backstage/groups.php:48 backstage/groups.php:591 backstage/index.php:232
-#: backstage/maintenance.php:175 backstage/menu.php:101
+#: backstage/appearance.php:85 backstage/appearance.php:147
+#: backstage/appearance.php:218 backstage/appearance.php:250
+#: backstage/board.php:222 backstage/board.php:327 backstage/board.php:607
+#: backstage/board.php:653 backstage/email.php:72 backstage/email.php:93
+#: backstage/email.php:120 backstage/features.php:75 backstage/features.php:148
+#: backstage/features.php:175 backstage/features.php:208
+#: backstage/features.php:264 backstage/groups.php:48 backstage/groups.php:591
+#: backstage/index.php:232 backstage/maintenance.php:175 backstage/menu.php:101
 #: backstage/permissions.php:61 backstage/permissions.php:110
 #: backstage/permissions.php:148 backstage/ranks.php:123
 #: backstage/registration.php:70 backstage/settings.php:145
@@ -179,105 +184,121 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: backstage/appearance.php:88
+#: backstage/appearance.php:90
 msgid "Theme settings"
 msgstr ""
 
-#: backstage/appearance.php:93
+#: backstage/appearance.php:95
 msgid "Allow users to set their own accent color."
 msgstr ""
 
-#: backstage/appearance.php:99
+#: backstage/appearance.php:101
 msgid "Allow users to change the night mode settings."
 msgstr ""
 
-#: backstage/appearance.php:106 themes/Fifteen/settings.php:129
+#: backstage/appearance.php:108 themes/Fifteen/settings.php:129
 #: themes/Sunrise/settings.php:124
 msgid "Color"
 msgstr ""
 
-#: backstage/appearance.php:124
+#: backstage/appearance.php:126 backstage/appearance.php:139
+msgid "Custom CSS"
+msgstr ""
+
+#: backstage/appearance.php:131
+msgid "Use the custom CSS as defined below."
+msgstr ""
+
+#: backstage/appearance.php:137
+msgid "CSS code"
+msgstr ""
+
+#: backstage/appearance.php:147
+msgid "Display settings"
+msgstr ""
+
+#: backstage/appearance.php:152
 msgid "User profile"
 msgstr ""
 
-#: backstage/appearance.php:129
+#: backstage/appearance.php:157
 msgid "Show information about the commenter under the username in threads."
 msgstr ""
 
-#: backstage/appearance.php:135
+#: backstage/appearance.php:163
 msgid ""
 "Show the number of comments a user has made in threads, profile and the user "
 "list."
 msgstr ""
 
-#: backstage/appearance.php:141
+#: backstage/appearance.php:169
 msgid "Index settings"
 msgstr ""
 
-#: backstage/appearance.php:146
+#: backstage/appearance.php:174
 msgid ""
 "Show the \"Moderated by\" list when moderators are set on a per-forum base "
 "(requires theme support)."
 msgstr ""
 
-#: backstage/appearance.php:153 themes/Fifteen/help.php:30
+#: backstage/appearance.php:181 themes/Fifteen/help.php:30
 msgid "Emoji"
 msgstr ""
 
-#: backstage/appearance.php:158
+#: backstage/appearance.php:186
 msgid "Use emojis instead of emoticons."
 msgstr ""
 
-#: backstage/appearance.php:164
+#: backstage/appearance.php:192
 msgid "Smilie size"
 msgstr ""
 
-#: backstage/appearance.php:164
+#: backstage/appearance.php:192
 msgid ""
 "The emoticons and emojis are shown, don't go above 29 pixels when using "
 "normal emoticons"
 msgstr ""
 
-#: backstage/appearance.php:168 backstage/settings.php:390
+#: backstage/appearance.php:196 backstage/settings.php:390
 #: backstage/settings.php:399 settings.php:515 themes/Sunrise/me-modals.php:62
 msgid "pixels"
 msgstr ""
 
-#: backstage/appearance.php:174 themes/Fifteen/settings.php:382
+#: backstage/appearance.php:202 themes/Fifteen/settings.php:382
 #: themes/Sunrise/settings.php:373
 msgid "Threads per page"
 msgstr ""
 
-#: backstage/appearance.php:174
+#: backstage/appearance.php:202
 msgid "Default amount of threads per page"
 msgstr ""
 
-#: backstage/appearance.php:180 themes/Fifteen/settings.php:388
+#: backstage/appearance.php:208 themes/Fifteen/settings.php:388
 #: themes/Sunrise/settings.php:379
 msgid "Comments per page"
 msgstr ""
 
-#: backstage/appearance.php:180
+#: backstage/appearance.php:208
 msgid "Default amount of comments per page"
 msgstr ""
 
-#: backstage/appearance.php:190
+#: backstage/appearance.php:218
 msgid "Header settings"
 msgstr ""
 
-#: backstage/appearance.php:195 footer.php:16 footer.php:19
+#: backstage/appearance.php:223 footer.php:16 footer.php:19
 #: include/general_functions.php:50 include/me_functions.php:19
 #: themes/Fifteen/notifications.php:28 themes/Sunrise/notifications.php:21
 msgid "Notifications"
 msgstr ""
 
-#: backstage/appearance.php:200
+#: backstage/appearance.php:228
 msgid ""
 "Show a fly-out when clicking the notification icon instead of going to the "
 "notification page. Disabling this feature might improve performance."
 msgstr ""
 
-#: backstage/appearance.php:207 backstage/bans.php:419
+#: backstage/appearance.php:235 backstage/bans.php:419
 #: backstage/features.php:127 backstage/users.php:799
 #: include/backstage_functions.php:34 include/backstage_functions.php:170
 #: search.php:438 search.php:500 search.php:512 themes/Fifteen/help.php:137
@@ -290,52 +311,52 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: backstage/appearance.php:212
+#: backstage/appearance.php:240
 msgid "Show the search bar in the heading."
 msgstr ""
 
-#: backstage/appearance.php:222
+#: backstage/appearance.php:250
 msgid "Footer settings"
 msgstr ""
 
-#: backstage/appearance.php:227 backstage/index.php:200
+#: backstage/appearance.php:255 backstage/index.php:200
 msgid "Statistics"
 msgstr ""
 
-#: backstage/appearance.php:232
+#: backstage/appearance.php:260
 msgid "Show the board statistics."
 msgstr ""
 
-#: backstage/appearance.php:238
+#: backstage/appearance.php:266
 msgid "Back to top"
 msgstr ""
 
-#: backstage/appearance.php:243
+#: backstage/appearance.php:271
 msgid "Show a \"Back to top\" link in the footer."
 msgstr ""
 
-#: backstage/appearance.php:250 themes/Fifteen/footer.php:91
+#: backstage/appearance.php:278 themes/Fifteen/footer.php:91
 #: themes/Sunrise/footer.php:91
 msgid "Copyright"
 msgstr ""
 
-#: backstage/appearance.php:255
+#: backstage/appearance.php:283
 msgid "Show the copyright notice in the footer."
 msgstr ""
 
-#: backstage/appearance.php:261
+#: backstage/appearance.php:289
 msgid "Copyright content"
 msgstr ""
 
-#: backstage/appearance.php:266
+#: backstage/appearance.php:294
 msgid "Show default copyright"
 msgstr ""
 
-#: backstage/appearance.php:272
+#: backstage/appearance.php:300
 msgid "Show personalized copyright notices:"
 msgstr ""
 
-#: backstage/appearance.php:274
+#: backstage/appearance.php:302
 msgid "Your copyright"
 msgstr ""
 
@@ -1674,7 +1695,7 @@ msgstr ""
 msgid "Create new backup"
 msgstr ""
 
-#: backstage/index.php:205 db_update.php:713 db_update.php:798
+#: backstage/index.php:205 db_update.php:716 db_update.php:801
 #: include/draw_functions.php:363 include/draw_functions.php:446
 msgid "comment"
 msgstr ""
@@ -1773,7 +1794,7 @@ msgid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
 #: backstage/maintenance.php:129 db_update.php:182
-#: include/class/luna_install.php:1498
+#: include/class/luna_install.php:1500
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -1956,7 +1977,7 @@ msgid "New subject"
 msgstr ""
 
 #: backstage/moderate.php:353 backstage/tools.php:40 backstage/users.php:170
-#: include/class/luna_install.php:1551 include/functions.php:481
+#: include/class/luna_install.php:1553 include/functions.php:481
 #: include/functions.php:917 search.php:222 settings.php:676
 msgid "Guest"
 msgstr ""
@@ -2079,7 +2100,7 @@ msgstr ""
 msgid "Allow a subject to contain only capital letters."
 msgstr ""
 
-#: backstage/permissions.php:95 include/class/luna_install.php:1572
+#: backstage/permissions.php:95 include/class/luna_install.php:1574
 msgid "Guests"
 msgstr ""
 
@@ -3485,25 +3506,25 @@ msgstr ""
 msgid "Update Luna"
 msgstr ""
 
-#: db_update.php:713 db_update.php:746
+#: db_update.php:716 db_update.php:749
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr ""
 
-#: db_update.php:746
+#: db_update.php:749
 msgid "signature"
 msgstr ""
 
-#: db_update.php:798
+#: db_update.php:801
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr ""
 
-#: db_update.php:866
+#: db_update.php:869
 msgid "If this takes to long, the automatic redirect might have failed."
 msgstr ""
 
-#: db_update.php:866
+#: db_update.php:869
 msgid "Click here"
 msgstr ""
 
@@ -3756,36 +3777,36 @@ msgstr ""
 msgid "Announcement"
 msgstr ""
 
-#: include/class/luna_install.php:1496 themes/Fifteen/help.php:13
+#: include/class/luna_install.php:1498 themes/Fifteen/help.php:13
 #: themes/Fifteen/rules.php:13
 msgid "Rules"
 msgstr ""
 
-#: include/class/luna_install.php:1568
+#: include/class/luna_install.php:1570
 msgid "Administrators"
 msgstr ""
 
-#: include/class/luna_install.php:1568 settings.php:676
+#: include/class/luna_install.php:1570 settings.php:676
 msgid "Administrator"
 msgstr ""
 
-#: include/class/luna_install.php:1570
+#: include/class/luna_install.php:1572
 msgid "Moderators"
 msgstr ""
 
-#: include/class/luna_install.php:1570 settings.php:676
+#: include/class/luna_install.php:1572 settings.php:676
 msgid "Moderator"
 msgstr ""
 
-#: include/class/luna_install.php:1574
+#: include/class/luna_install.php:1576
 msgid "Members"
 msgstr ""
 
-#: include/class/luna_install.php:1603
+#: include/class/luna_install.php:1605
 msgid "New member"
 msgstr ""
 
-#: include/class/luna_install.php:1606 include/functions.php:929
+#: include/class/luna_install.php:1608 include/functions.php:929
 #: settings.php:676
 msgid "Member"
 msgstr ""
@@ -5543,7 +5564,7 @@ msgstr ""
 msgid "Welcome back"
 msgstr ""
 
-#: themes/Fifteen/index.php:94 themes/Sunrise/header.php:48
+#: themes/Fifteen/index.php:94 themes/Sunrise/header.php:51
 msgid "Search in comments"
 msgstr ""
 
