@@ -49,7 +49,7 @@
 	.nav-tabs > li.active > a,
 	.nav-tabs > li.active > a:hover,
 	.nav-tabs > li.active > a:focus {
-			background-color: #145198;
+        background-color: #145198;
 		border-color: #145198;
 	}
 }

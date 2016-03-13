@@ -5,13 +5,10 @@
 .btn-primary:focus,
 .btn-primary:active,
 .active.btn-primary,
-.open .btn-primary.dropdown-toggle,
-.btn-success {
+.open .btn-primary.dropdown-toggle {
 	background-color: #8bb805;
 }
 
-.navbar-default,
-.btn-success:hover,
 .jumboheader {
 	background-color: #7ea703;
 }

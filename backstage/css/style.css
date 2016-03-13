@@ -929,21 +929,16 @@ a.label-new {
 
 .release-notes .stater {
     float: left;
-    margin-left: -100px;
-    width: 90px;
+    margin-left: -110px;
+    width: 100px;
     text-align: right;
 }
 
 .release-notes .state {
     font-style: normal;
     padding: 0 4px 1px;
-    border-radius: 4px;
-    font-size: 12px;
     display: inline-block;
     text-transform: uppercase;
-	background-color: #fff;
-	border-width: 2px;
-	border-style: solid;
 	font-weight: 700;
 }
 
