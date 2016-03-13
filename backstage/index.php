@@ -15,16 +15,6 @@ if (!$luna_user['is_admmod'])
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-// Check if install.php is a thing
-if ($action == 'remove_install_file') {
-	$deleted = @unlink(LUNA_ROOT.'install.php');
-
-	if ($deleted)
-		redirect('backstage/index.php');
-	else
-		message_backstage(__('Could not remove install.php. Please do so by hand.', 'luna'));
-}
-
 $install_file_exists = is_file(LUNA_ROOT.'install.php');
 
 if (isset($_POST['form_sent'])) {
@@ -86,53 +76,45 @@ require 'header.php';
 
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
-
-if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
-<div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
-<?php endif;
-
-if ($install_file_exists) : ?>
-<div class="alert alert-warning">
-	<p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?> <span class="pull-right"><a href="index.php?action=remove_install_file"><?php _e('Delete it', 'luna') ?></a></span></p>
-</div>
-<?php endif;
-
-if ($luna_config['o_first_run_backstage'] == 0) { ?>
-<div class="panel panel-primary hidden-xs">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
-			<span class="pull-right">
-				<form class="form-horizontal" method="post" action="index.php">
-					<input type="hidden" name="first_run_disable" value="1" />
-					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
-				</form>
-			</span>
-		</h3>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-sm-4">
-				<p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-			</div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
-					<a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
-					<a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<?php } ?>
+?>
 <div class="row">
 	<div class="col-sm-8">
 		<div class="row">
+<?php if ($luna_config['o_first_run_backstage'] == 0) { ?>
+			<div class="col-lg-12">
+                <div class="panel panel-primary hidden-xs">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
+                            <span class="pull-right">
+                                <form class="form-horizontal" method="post" action="index.php">
+                                    <input type="hidden" name="first_run_disable" value="1" />
+                                    <button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
+                                </form>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="list-group">
+                                    <a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
+                                    <a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="list-group">
+                                    <a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
+                                    <a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<?php } ?>
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -199,15 +181,13 @@ if ($db->num_rows($result)) {
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
 					</div>
-					<table class="table">
-						<thead>
-							<tr>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4></td>
-							</tr>
-						</thead>
-					</table>
+					<div class="panel-body">
+                        <div class="row">
+                            <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
+                            <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
+                            <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
+                        </div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -222,7 +202,16 @@ if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 		</div>
 <?php
 }
-?>
+
+if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
+<div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
+<?php endif;
+
+if ($install_file_exists) : ?>
+<div class="alert alert-warning">
+	<p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?>/p>
+</div>
+<?php endif; ?>
 		<div class="row">
 			<div class="col-lg-12">
 				<form class="form-horizontal" method="post" action="index.php">
