@@ -10,7 +10,6 @@
 .modal-backdrop,
 .list-group-item.new-item .label-default,
 .list-group-item.new-item:hover .label-default,
-.enforce,
 .stats {
 	background-color: #2788cb;
 }
@@ -44,6 +43,7 @@
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus,
 .navbar-default,
+.enforce body,
 .new-item .label-default,
 a.list-group-item.active,
 a.list-group-item.active:hover,

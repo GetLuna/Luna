@@ -2153,6 +2153,8 @@ function load_meta() {
 //
 function check_style_mode() {
 	global $luna_user, $body_classes, $luna_config;
+    
+    $body_classes = "";
 
 	$hour = date('G', time());
 
