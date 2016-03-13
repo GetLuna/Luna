@@ -314,7 +314,7 @@ require 'header.php';
 			<fieldset>
 				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Prune by', 'luna') ?><span class="help-block"><?php _e('What should we count to prune?', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Prune by', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="1" checked />

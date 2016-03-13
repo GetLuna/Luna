@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-13 08:59+0100\n"
-"PO-Revision-Date: 2016-03-13 09:16+0100\n"
+"POT-Creation-Date: 2016-03-13 09:28+0100\n"
+"PO-Revision-Date: 2016-03-13 09:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -266,12 +266,8 @@ msgid "Smilie size"
 msgstr "Emoticon grootte"
 
 #: backstage/appearance.php:192
-msgid ""
-"The emoticons and emojis are shown, don't go above 29 pixels when using "
-"normal emoticons"
-msgstr ""
-"De manier waarop emoticons en emoji's worden getoond, ga niet boven 29 "
-"pixels als je gebruik maakt van normale emoticons."
+msgid "The size emoticons and emojis are shown in"
+msgstr "De grootte van emoticons en emoji's"
 
 #: backstage/appearance.php:196 backstage/settings.php:390
 #: backstage/settings.php:399 settings.php:515 themes/Sunrise/me-modals.php:62
@@ -648,7 +644,7 @@ msgid ""
 "The username you want to ban. If you want to ban a specific IP/IP-range or "
 "email, leave it blank."
 msgstr ""
-"DE gebruikersnaam die je wilt verbannen. Als je een specifiek IP-adres of IP-"
+"De gebruikersnaam die je wilt verbannen. Als je een specifiek IP-adres of IP-"
 "range of e-mail wilt verbannen laat je dit leeg."
 
 #: backstage/bans.php:419
@@ -722,7 +718,7 @@ msgstr "Forum details"
 msgid "Forum name"
 msgstr "Forum naam"
 
-#: backstage/board.php:233
+#: backstage/board.php:233 backstage/settings.php:157
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -1088,10 +1084,6 @@ msgstr "Contact instellingen"
 msgid "Admin email"
 msgstr "Admin e-mail"
 
-#: backstage/email.php:78
-msgid "The admins email"
-msgstr "De administrator zijn e-mail"
-
 #: backstage/email.php:84
 msgid "Webmaster email"
 msgstr "Webmaster e-mail"
@@ -1273,7 +1265,7 @@ msgstr "Welkomst tekst"
 msgid ""
 "The introduction to the forum displayed in the middle of the first run panel"
 msgstr ""
-"Een welkosmt tekst dat getoond word in het midden van het Welkom-paneel"
+"Een welkomst tekst dat getoond word in het midden van het Welkom-paneel"
 
 #: backstage/features.php:208 backstage/permissions.php:67
 #: backstage/permissions.php:115 themes/Fifteen/help.php:22
@@ -1938,9 +1930,7 @@ msgstr "Cache"
 
 #: backstage/maintenance.php:202
 msgid "Remove all cache files so the database has to return up-to-date values"
-msgstr ""
-"Verwijder alle cache bestanden zodat de database deze opnieuw op genereren "
-"met bijgewerkte waarden."
+msgstr "Verwijder alle cache bestanden en genereer ze opnieuw"
 
 #: backstage/maintenance.php:204
 msgid "Clear cache"
@@ -2015,8 +2005,8 @@ msgid "You must give your menu item an URL."
 msgstr "Je moet je link een URL geven."
 
 #: backstage/menu.php:77
-msgid "New menu item"
-msgstr "Nieuw menu item"
+msgid "New item"
+msgstr "Nieuw item"
 
 #: backstage/menu.php:88 backstage/menu.php:107 include/draw_functions.php:110
 msgid "URL"
@@ -2397,11 +2387,7 @@ msgstr "Gebruikers opruimen"
 
 #: backstage/prune.php:317
 msgid "Prune by"
-msgstr "Opruimten op"
-
-#: backstage/prune.php:317
-msgid "What should we count to prune?"
-msgstr "Wat moeten we opruimen?"
+msgstr "Opruimen op"
 
 #: backstage/prune.php:321
 msgid "Registered date"
@@ -2487,8 +2473,8 @@ msgid "Enter your rules here."
 msgstr "Geef hier de forum regels in."
 
 #: backstage/registration.php:76
-msgid "Allow new registrations"
-msgstr "Sta nieuwe registraties toe"
+msgid "New registrations"
+msgstr "Nieuwe registraties"
 
 #: backstage/registration.php:81
 msgid "Allow new users to be made by people."
@@ -2505,8 +2491,8 @@ msgstr ""
 "mail adres te verifiëren."
 
 #: backstage/registration.php:98
-msgid "Report new registrations"
-msgstr "Rapporteer nieuwe registratie"
+msgid "Report registrations"
+msgstr "Rapporteer registraties"
 
 #: backstage/registration.php:103
 msgid "Notify people on the mailing list when new user registers.  "
@@ -2514,8 +2500,8 @@ msgstr ""
 "Geef een waarschuwing aan gebruikers op de maillijst bij nieuwe registraties."
 
 #: backstage/registration.php:110
-msgid "User forum rules"
-msgstr "Gebruik forum regels"
+msgid "Use rules"
+msgstr "Gebruik regels"
 
 #: backstage/registration.php:115
 msgid ""
@@ -2525,9 +2511,10 @@ msgstr ""
 "Vereis dat nieuwe gebruikers de regels accepteren. Dit zal ook het \"Regels"
 "\" paneel tonen in Help."
 
-#: backstage/registration.php:121
-msgid "Enter your rules here"
-msgstr "Geef hier regels op"
+#: backstage/registration.php:121 include/class/luna_install.php:1498
+#: themes/Fifteen/help.php:13 themes/Fifteen/rules.php:13
+msgid "Rules"
+msgstr "Regels"
 
 #: backstage/registration.php:121
 msgid "Enter rules or useful information, required when rules are enabled"
@@ -2538,19 +2525,19 @@ msgstr ""
 msgid "Default email setting"
 msgstr "Standaard e-mail instelling"
 
-#: backstage/registration.php:130
+#: backstage/registration.php:128
 msgid "Default privacy setting for new registrations"
 msgstr "De standaard privacy instelling voor nieuwe gebruikers"
 
-#: backstage/registration.php:134
+#: backstage/registration.php:133
 msgid "Display email address to other users."
 msgstr "Toon e-mail adres aan andere gebruikers."
 
-#: backstage/registration.php:140
+#: backstage/registration.php:139
 msgid "Hide email address but allow form e-mail."
 msgstr "Verberg e-mail adres maar sta e-mails toe."
 
-#: backstage/registration.php:146
+#: backstage/registration.php:145
 msgid "Hide email address and disallow form email."
 msgstr "Verberg e-mail adres en laat geen e-mails toe."
 
@@ -2586,6 +2573,9 @@ msgid ""
 "domain names. As your base URL contains special characters, you "
 "<strong>must</strong> use an online converter."
 msgstr ""
+"Deze installatie bied geen ondersteuning voor automatische conversie van "
+"geïnternationaliseerde domein namen. Omdat je basis URL speciale tekens "
+"bevat <strong>moet</strong> je deze online converteren."
 
 #: backstage/settings.php:94
 msgid "Enter your announcement here."
@@ -2596,47 +2586,38 @@ msgid ""
 "The value of \"Timeout online\" must be smaller than the value of \"Timeout "
 "visit\"."
 msgstr ""
+"De waarde van \"Time-out online\" moet kleiner zijn dan de waarde van \"Time-"
+"out bezoek\"."
 
 #: backstage/settings.php:145
 msgid "Essentials"
 msgstr "Essentieel"
 
-#: backstage/settings.php:151 install.php:193 install.php:367
-msgid "Board title"
-msgstr "Forum titel"
-
-#: backstage/settings.php:157 install.php:373
-msgid "Board description"
-msgstr "Forum beschrijving"
-
-#: backstage/settings.php:157
-msgid "What's this board about?"
-msgstr "Waar gaat dit forum over?"
+#: backstage/settings.php:151 backstage/users.php:813 profile.php:41
+#: themes/Fifteen/settings.php:85 themes/Sunrise/settings.php:79
+msgid "Title"
+msgstr "Titel"
 
 #: backstage/settings.php:163 install.php:385
 msgid "Default language"
 msgstr "Standaard taal"
-
-#: backstage/settings.php:163
-msgid "The default language"
-msgstr "De standaard taal"
 
 #: backstage/settings.php:186
 msgid "Meta"
 msgstr "Meta"
 
 #: backstage/settings.php:192
-msgid "Board tags"
-msgstr "Forum tags"
+msgid "Tags"
+msgstr "Tags"
 
 #: backstage/settings.php:192
 msgid "Add some words that describe your board, separated by a comma"
 msgstr ""
 "Voeg enkele termen toe die je forum beschrijven, gescheiden door komma's"
 
-#: backstage/settings.php:198 install.php:379
-msgid "Board URL"
-msgstr "Forum URL"
+#: backstage/settings.php:198
+msgid "Root URL"
+msgstr "Basis URL"
 
 #: backstage/settings.php:208
 msgid "Time and timeouts"
@@ -2689,10 +2670,6 @@ msgstr "Feeds"
 msgid "Default feed type"
 msgstr "Standaard feed type"
 
-#: backstage/settings.php:269
-msgid "Select a feed"
-msgstr "Selecteer een feed"
-
 #: backstage/settings.php:273
 msgid "None"
 msgstr "Geen"
@@ -2728,7 +2705,7 @@ msgstr "Rapporteer methode"
 
 #: backstage/settings.php:311
 msgid "How should we handle reports?"
-msgstr "Hoe moeten we rapporten behandelen."
+msgstr "Hoe moeten we rapporten behandelen?"
 
 #: backstage/settings.php:315
 msgid "Internal"
@@ -3371,11 +3348,6 @@ msgstr ""
 msgid "Email address"
 msgstr "E-mail adres"
 
-#: backstage/users.php:813 profile.php:41 themes/Fifteen/settings.php:85
-#: themes/Sunrise/settings.php:79
-msgid "Title"
-msgstr "Titel"
-
 #: backstage/users.php:815 profile.php:55 themes/Fifteen/settings.php:78
 #: themes/Sunrise/settings.php:72
 msgid "Real name"
@@ -3965,11 +3937,6 @@ msgstr ""
 msgid "Announcement"
 msgstr "Aankondigingen"
 
-#: include/class/luna_install.php:1498 themes/Fifteen/help.php:13
-#: themes/Fifteen/rules.php:13
-msgid "Rules"
-msgstr "Regels"
-
 #: include/class/luna_install.php:1570
 msgid "Administrators"
 msgstr "Administratoren"
@@ -4521,6 +4488,10 @@ msgstr "Administrator wachtwoord 1"
 msgid "Administrator password 2"
 msgstr "Administrator wachtwoord 2"
 
+#: install.php:193 install.php:367
+msgid "Board title"
+msgstr "Forum titel"
+
 #: install.php:194 install.php:379
 msgid "No trailing slash"
 msgstr "Geen eindstreep"
@@ -4595,6 +4566,14 @@ msgstr "Minstens 6 tekens lang"
 #: install.php:362
 msgid "Board setup"
 msgstr "Forum instellen"
+
+#: install.php:373
+msgid "Board description"
+msgstr "Forum beschrijving"
+
+#: install.php:379
+msgid "Board URL"
+msgstr "Forum URL"
 
 #: install.php:423
 msgid "Start install"
@@ -6190,6 +6169,46 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid ""
+#~ "The emoticons and emojis are shown, don't go above 29 pixels when using "
+#~ "normal emoticons"
+#~ msgstr ""
+#~ "De manier waarop emoticons en emoji's worden getoond, ga niet boven 29 "
+#~ "pixels als je gebruik maakt van normale emoticons."
+
+#~ msgid "The admins email"
+#~ msgstr "De administrator zijn e-mail"
+
+#~ msgid "New menu item"
+#~ msgstr "Nieuw menu item"
+
+#~ msgid "What should we count to prune?"
+#~ msgstr "Wat moeten we opruimen?"
+
+#~ msgid "Allow new registrations"
+#~ msgstr "Sta nieuwe registraties toe"
+
+#~ msgid "Report new registrations"
+#~ msgstr "Rapporteer nieuwe registratie"
+
+#~ msgid "User forum rules"
+#~ msgstr "Gebruik forum regels"
+
+#~ msgid "Enter your rules here"
+#~ msgstr "Geef hier regels op"
+
+#~ msgid "What's this board about?"
+#~ msgstr "Waar gaat dit forum over?"
+
+#~ msgid "The default language"
+#~ msgstr "De standaard taal"
+
+#~ msgid "Board tags"
+#~ msgstr "Forum tags"
+
+#~ msgid "Select a feed"
+#~ msgstr "Selecteer een feed"
 
 #~ msgid "turck-mmcache.sourceforge.net/"
 #~ msgstr "turck-mmcache.sourceforge.net/"

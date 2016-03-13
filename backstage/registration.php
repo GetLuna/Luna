@@ -73,7 +73,7 @@ if (isset($_GET['saved']))
 			<fieldset>
 			<input type="hidden" name="form_sent" value="1" />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Allow new registrations', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('New registrations', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -95,7 +95,7 @@ if (isset($_GET['saved']))
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Report new registrations', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Report registrations', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -107,7 +107,7 @@ if (isset($_GET['saved']))
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('User forum rules', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Use rules', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -118,16 +118,15 @@ if (isset($_GET['saved']))
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Enter your rules here', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Rules', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Default email setting', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Default email setting', 'luna') ?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna') ?></span>
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') echo ' checked' ?> />

@@ -75,7 +75,7 @@ if (isset($_GET['saved']))
 			<input type="hidden" name="form_sent" value="1" />
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Admin email', 'luna') ?><span class="help-block"><?php _e('The admins email', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Admin email', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
 					</div>

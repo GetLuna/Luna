@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-13 09:16+0100\n"
-"PO-Revision-Date: 2016-03-13 09:16+0100\n"
+"POT-Creation-Date: 2016-03-13 09:30+0100\n"
+"PO-Revision-Date: 2016-03-13 09:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -254,9 +254,7 @@ msgid "Smilie size"
 msgstr ""
 
 #: backstage/appearance.php:192
-msgid ""
-"The emoticons and emojis are shown, don't go above 29 pixels when using "
-"normal emoticons"
+msgid "The size emoticons and emojis are shown in"
 msgstr ""
 
 #: backstage/appearance.php:196 backstage/settings.php:390
@@ -683,7 +681,7 @@ msgstr ""
 msgid "Forum name"
 msgstr ""
 
-#: backstage/board.php:233
+#: backstage/board.php:233 backstage/settings.php:157
 msgid "Description"
 msgstr ""
 
@@ -1027,10 +1025,6 @@ msgstr ""
 
 #: backstage/email.php:78
 msgid "Admin email"
-msgstr ""
-
-#: backstage/email.php:78
-msgid "The admins email"
 msgstr ""
 
 #: backstage/email.php:84
@@ -1893,7 +1887,7 @@ msgid "You must give your menu item an URL."
 msgstr ""
 
 #: backstage/menu.php:77
-msgid "New menu item"
+msgid "New item"
 msgstr ""
 
 #: backstage/menu.php:88 backstage/menu.php:107 include/draw_functions.php:110
@@ -2261,10 +2255,6 @@ msgstr ""
 msgid "Prune by"
 msgstr ""
 
-#: backstage/prune.php:317
-msgid "What should we count to prune?"
-msgstr ""
-
 #: backstage/prune.php:321
 msgid "Registered date"
 msgstr ""
@@ -2348,7 +2338,7 @@ msgid "Enter your rules here."
 msgstr ""
 
 #: backstage/registration.php:76
-msgid "Allow new registrations"
+msgid "New registrations"
 msgstr ""
 
 #: backstage/registration.php:81
@@ -2364,7 +2354,7 @@ msgid "Send a random password to users to verify their email address.  "
 msgstr ""
 
 #: backstage/registration.php:98
-msgid "Report new registrations"
+msgid "Report registrations"
 msgstr ""
 
 #: backstage/registration.php:103
@@ -2372,7 +2362,7 @@ msgid "Notify people on the mailing list when new user registers.  "
 msgstr ""
 
 #: backstage/registration.php:110
-msgid "User forum rules"
+msgid "Use rules"
 msgstr ""
 
 #: backstage/registration.php:115
@@ -2381,8 +2371,9 @@ msgid ""
 "Help."
 msgstr ""
 
-#: backstage/registration.php:121
-msgid "Enter your rules here"
+#: backstage/registration.php:121 include/class/luna_install.php:1498
+#: themes/Fifteen/help.php:13 themes/Fifteen/rules.php:13
+msgid "Rules"
 msgstr ""
 
 #: backstage/registration.php:121
@@ -2393,19 +2384,19 @@ msgstr ""
 msgid "Default email setting"
 msgstr ""
 
-#: backstage/registration.php:130
+#: backstage/registration.php:128
 msgid "Default privacy setting for new registrations"
 msgstr ""
 
-#: backstage/registration.php:134
+#: backstage/registration.php:133
 msgid "Display email address to other users."
 msgstr ""
 
-#: backstage/registration.php:140
+#: backstage/registration.php:139
 msgid "Hide email address but allow form e-mail."
 msgstr ""
 
-#: backstage/registration.php:146
+#: backstage/registration.php:145
 msgid "Hide email address and disallow form email."
 msgstr ""
 
@@ -2456,24 +2447,13 @@ msgstr ""
 msgid "Essentials"
 msgstr ""
 
-#: backstage/settings.php:151 install.php:193 install.php:367
-msgid "Board title"
-msgstr ""
-
-#: backstage/settings.php:157 install.php:373
-msgid "Board description"
-msgstr ""
-
-#: backstage/settings.php:157
-msgid "What's this board about?"
+#: backstage/settings.php:151 backstage/users.php:813 profile.php:41
+#: themes/Fifteen/settings.php:85 themes/Sunrise/settings.php:79
+msgid "Title"
 msgstr ""
 
 #: backstage/settings.php:163 install.php:385
 msgid "Default language"
-msgstr ""
-
-#: backstage/settings.php:163
-msgid "The default language"
 msgstr ""
 
 #: backstage/settings.php:186
@@ -2481,15 +2461,15 @@ msgid "Meta"
 msgstr ""
 
 #: backstage/settings.php:192
-msgid "Board tags"
+msgid "Tags"
 msgstr ""
 
 #: backstage/settings.php:192
 msgid "Add some words that describe your board, separated by a comma"
 msgstr ""
 
-#: backstage/settings.php:198 install.php:379
-msgid "Board URL"
+#: backstage/settings.php:198
+msgid "Root URL"
 msgstr ""
 
 #: backstage/settings.php:208
@@ -2541,10 +2521,6 @@ msgstr ""
 
 #: backstage/settings.php:269
 msgid "Default feed type"
-msgstr ""
-
-#: backstage/settings.php:269
-msgid "Select a feed"
 msgstr ""
 
 #: backstage/settings.php:273
@@ -3205,11 +3181,6 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: backstage/users.php:813 profile.php:41 themes/Fifteen/settings.php:85
-#: themes/Sunrise/settings.php:79
-msgid "Title"
-msgstr ""
-
 #: backstage/users.php:815 profile.php:55 themes/Fifteen/settings.php:78
 #: themes/Sunrise/settings.php:72
 msgid "Real name"
@@ -3777,11 +3748,6 @@ msgstr ""
 msgid "Announcement"
 msgstr ""
 
-#: include/class/luna_install.php:1498 themes/Fifteen/help.php:13
-#: themes/Fifteen/rules.php:13
-msgid "Rules"
-msgstr ""
-
 #: include/class/luna_install.php:1570
 msgid "Administrators"
 msgstr ""
@@ -4318,6 +4284,10 @@ msgstr ""
 msgid "Administrator password 2"
 msgstr ""
 
+#: install.php:193 install.php:367
+msgid "Board title"
+msgstr ""
+
 #: install.php:194 install.php:379
 msgid "No trailing slash"
 msgstr ""
@@ -4391,6 +4361,14 @@ msgstr ""
 
 #: install.php:362
 msgid "Board setup"
+msgstr ""
+
+#: install.php:373
+msgid "Board description"
+msgstr ""
+
+#: install.php:379
+msgid "Board URL"
 msgstr ""
 
 #: install.php:423

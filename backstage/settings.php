@@ -148,19 +148,19 @@ if (isset($_GET['saved']))
 			<input type="hidden" name="form_sent" value="1" />
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board title', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Title', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?><span class="help-block"><?php _e('What\'s this board about?', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Description', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Default language', 'luna') ?><span class="help-block"><?php _e('The default language', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Default language', 'luna') ?></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="form[default_lang]">
 <?php
@@ -189,13 +189,13 @@ if (isset($_GET['saved']))
 			<input type="hidden" name="form_sent" value="1" />
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board tags', 'luna') ?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Tags', 'luna') ?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Root URL', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
 					</div>
@@ -266,7 +266,7 @@ foreach ($timezones as $timezone) {
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Default feed type', 'luna') ?><span class="help-block"><?php _e('Select a feed', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Default feed type', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') echo ' checked' ?>>
