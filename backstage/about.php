@@ -39,10 +39,9 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('About can now be translated to other languages', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved Backstage UI and night mode', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('The editor no longer has an emoticon menu', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('The code base no longer supports PHP 5.2 anymore', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes 3 bugs', 'luna') ?></li>
 							<hr />
-							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('The light grey accent has yet to be implemented correctly in Fifteen', 'luna') ?></li>
-							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('"Forces accents" has yet to be implemented in Fifteen', 'luna') ?></li>
 							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('Sunrise has multiple visual issues in this Preview', 'luna') ?></li>
 						</ul>
 					</div>

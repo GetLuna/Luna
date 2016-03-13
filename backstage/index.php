@@ -79,56 +79,52 @@ if (isset($_GET['saved']))
 ?>
 <div class="row">
 	<div class="col-sm-8">
-		<div class="row">
 <?php if ($luna_config['o_first_run_backstage'] == 0) { ?>
-			<div class="col-lg-12">
-                <div class="panel panel-primary hidden-xs">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
-                            <span class="pull-right">
-                                <form class="form-horizontal" method="post" action="index.php">
-                                    <input type="hidden" name="first_run_disable" value="1" />
-                                    <button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
-                                </form>
-                            </span>
-                        </h3>
+        <div class="panel panel-primary hidden-xs">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
+                    <span class="pull-right">
+                        <form class="form-horizontal" method="post" action="index.php">
+                            <input type="hidden" name="first_run_disable" value="1" />
+                            <button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
+                        </form>
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="list-group">
-                                    <a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
-                                    <a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="list-group">
-                                    <a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
-                                    <a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
-                                </div>
-                            </div>
+                    <div class="col-sm-4">
+                        <div class="list-group">
+                            <a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
+                            <a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="list-group">
+                            <a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
+                            <a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 <?php } ?>
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('New reports', 'luna') ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php _e('View all', 'luna') ?></a></span></h3>
-					</div>
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="col-lg-3"><?php _e('Reported by', 'luna') ?></th>
-								<th class="col-lg-3"><?php _e('Date and time', 'luna') ?></th>
-								<th class="col-lg-6"><?php _e('Message', 'luna') ?></th>
-							</tr>
-						</thead>
-						<tbody>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('New reports', 'luna') ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php _e('View all', 'luna') ?></a></span></h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-lg-3"><?php _e('Reported by', 'luna') ?></th>
+                        <th class="col-lg-3"><?php _e('Date and time', 'luna') ?></th>
+                        <th class="col-lg-6"><?php _e('Message', 'luna') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'comments AS p ON r.comment_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -143,55 +139,41 @@ if ($db->num_rows($result)) {
 		$report_location = array($forum, $thread, $comment_id);
 
 ?>
-							<tr>
-								<td><?php printf($reporter) ?></td>
-								<td><?php printf(format_time($cur_report['created'])) ?></td>
-								<td><?php echo $comment ?></td>
-							</tr>
+                    <tr>
+                        <td><?php printf($reporter) ?></td>
+                        <td><?php printf(format_time($cur_report['created'])) ?></td>
+                        <td><?php echo $comment ?></td>
+                    </tr>
 <?php
 
 	}
 } else {
 
 ?>
-								<tr>
-									<td colspan="4"><?php _e('There are no new reports.', 'luna') ?></td>
-								</tr>
+                    <tr>
+                        <td colspan="4"><?php _e('There are no new reports.', 'luna') ?></td>
+                    </tr>
 <?php
 
 }
 
 ?>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="col-lg-5">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Back-up', 'luna') ?></h3>
-					</div>
-					<div class="panel-body">
-						<a class="btn btn-block btn-primary" href="database.php"><?php _e('Create new backup', 'luna') ?></a>
-					</div>
-				 </div>
-			</div>
-			<div class="col-lg-7">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
-					</div>
-					<div class="panel-body">
-                        <div class="row">
-                            <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
-                            <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
-                            <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
-                        </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
+                </div>
+            </div>
+        </div>
+    </div>
 	<div class="col-sm-4">
 <?php
 //Update checking
@@ -204,29 +186,33 @@ if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 }
 
 if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
-<div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
+        <div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
 <?php endif;
 
 if ($install_file_exists) : ?>
-<div class="alert alert-warning">
-	<p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?>/p>
-</div>
+        <div class="alert alert-warning">
+            <p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?>/p>
+        </div>
 <?php endif; ?>
-		<div class="row">
-			<div class="col-lg-12">
-				<form class="form-horizontal" method="post" action="index.php">
-					<input type="hidden" name="form_sent" value="1" />
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-						</div>
-						<div class="panel-body">
-							<textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna') ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
+        <form class="form-horizontal" method="post" action="index.php">
+            <input type="hidden" name="form_sent" value="1" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna') ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Back-up', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <a class="btn btn-block btn-primary" href="database.php"><?php _e('Create new backup', 'luna') ?></a>
+            </div>
+         </div>
 	</div>
 </div>
 <?php
