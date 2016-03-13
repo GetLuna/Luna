@@ -69,7 +69,7 @@ load_admin_nav('settings', 'menu');
 
 ?>
 <div class="row">
-	<div class="col-sm-4 col-md-3">
+	<div class="col-sm-4">
 		<form method="post" action="menu.php?action=add_item">
 			<fieldset>
 				<div class="panel panel-default">
@@ -94,7 +94,7 @@ load_admin_nav('settings', 'menu');
 			</fieldset>
 		</form>
 	</div>
-	<div class="col-sm-8 col-md-9">
+	<div class="col-sm-8">
 		<form method="post" action="menu.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">

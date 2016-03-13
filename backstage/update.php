@@ -74,7 +74,7 @@ if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 ?>
 <div class="row">
-	<div class="col-sm-4 col-md-3">
+	<div class="col-sm-4">
 		<form method="post" action="update.php">
 			<input type="hidden" name="form_sent" value="1" />
 			<fieldset>
@@ -99,7 +99,7 @@ if (isset($_GET['saved']))
 			</fieldset>
 		</form>
 	</div>
-	<div class="col-sm-8 col-md-9">
+	<div class="col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><?php if ($luna_config['o_update_ring'] != 3) { ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span><?php } ?></h3>

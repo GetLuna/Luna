@@ -958,14 +958,14 @@ a.label-new {
 }
 
 .release-notes li {
-    padding-left: 100px;
+    padding-left: 110px;
     margin-bottom: 12px;
 }
 
 .release-notes .stater {
     float: left;
     margin-left: -100px;
-    width: 80px;
+    width: 90px;
     text-align: right;
 }
 
