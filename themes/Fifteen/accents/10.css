@@ -151,6 +151,8 @@ blockquote .small,
 footer .stats,
 footer .stats a,
 footer .footer,
-footer .footer a {
+footer .footer a,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
     color: #666;
 }
