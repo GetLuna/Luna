@@ -12,7 +12,7 @@
 .list-group-item.new-item:hover .label-default,
 .enforce,
 .stats {
-	background-color: #eee;
+	background-color: #e4e4e4;
 }
 
 .panel-default .panel-heading,
@@ -51,36 +51,34 @@ a.list-group-item.active:focus,
 .list-group-forum .list-group-item.active.new-item,
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
 .navbar-inverse .navbar-nav > .open > a:hover {
 	background-color: #ccc;
 }
 
 @media all and (min-width:768px) {
 	.dropdown-menu {
-		background-color: #8e8e8e;
+		background-color: #ccc;
 	}
 }
 
 blockquote,
 .list-group.list-group-thread .list-group-item.new-item,
-.list-group-forum a.list-group-item:hover
+.list-group-forum a.list-group-item:hover,
 .list-group-thread .list-group-item:hover,
 .night .list-group-thread .list-group-item:hover,
 .form-control:focus,
 .night .search-form:hover,
 .night .night .search-form:focus,
-.night .search-form:active,
-.btn-primary,
-.btn-primary.active,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary:focus,
-.btn-primary:hover,
-.open > .dropdown-toggle.btn-primary {
-	border-color: #eee;
+.night .search-form:active  {
+	border-color: #e4e4e4;
 }
 
 .btn-primary,
+.tab-content-primary,
+.tab-content,
 .tab-content-primary,
 .tab-content {
 	border-color: #ddd;
@@ -109,95 +107,16 @@ a:focus,
 .title-block-nav .nav-tabs > .active > a:focus,
 .title-block-nav .nav-tabs > .active > a:hover,
 a,
-.title-block-primary .btn {
-	color:#888;
+.title-block-primary .btn,
+blockquote footer,
+blockquote small,
+blockquote .small {
+	color: #ddd;
 }
 
 a:hover,
 a:active {
 	color: #ccc;
-}
-
-.navbar-inverse .navbar-brand:hover,
-.navbar-inverse .navbar-brand:focus,
-.first-run-title,
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus,
-.navbar-inverse .navbar-nav > li > a,
-.navbar-inverse .navbar-brand,
-.footer,
-.footer a,
-.panel-default .panel-heading,
-.active.list-group-item,
-.active.list-group-item:hover,
-.active.list-group-item:focus,
-.alert-all,
-.jumbotron h2,
-.navbar-inverse .navbar-nav > .open > a,
-.navbar-inverse .navbar-nav > .open > a:hover,
-.navbar-inverse .navbar-nav > .open > a:focus,
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus,
-.user-card-title,
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus,
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-[disabled].btn-primary,
-.nav > li > a,
-a.list-group-item:hover,
-.navbar-default .navbar-brand,
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-brand:hover,
-.category-header,
-.new-item .label-default,
-.nav > li > a,
-a.list-group-item:hover,
-a:hover,
-a:active,
-.modal-title,
-.modal-footer,
-.modal-form .modal-footer,
-.modal-form .modal-footer a {
-	color: #555;
-}
-
-.jumbotron .container h2 {
-	color: #fff;
-}
-
-.navbar-default .navbar-toggle .icon-bar,
-.navbar-inverse .navbar-toggle .icon-bar {
-	background-color: #555;
-}
-
-a,
-a:focus,
-.pagination > li > a,
-.pagination > li > span {
-	color: #333;
-}
-
-.navbar-inverse .navbar-nav > .open > a,
-.navbar-inverse .navbar-nav > .open > a:hover,
-.navbar-inverse .navbar-nav > .open > a:focus,
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus {
-	text-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
-}
-
-a.btn.btn-primary,
-a.btn.btn-danger,
-a.btn.btn-warning,
-.profile-nav a.list-group-item.active:hover {
-	color: #333 !important;
 }
 
 .night .comment-default a,
@@ -206,4 +125,32 @@ a.btn.btn-warning,
 .night .table a,
 .night .user-entry a {
     color: #ccc;
+}
+
+.title-block,
+.title-block-nav .nav-tabs > li > a, 
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:hover,
+.btn,
+a.list-group-item:hover,
+a:focus,
+.editor .btn,
+.pagination > li > a,
+.pagination > li > span,
+.title-block-nav .nav-tabs > .active > a,
+.title-block-nav .nav-tabs > .active > a:focus,
+.title-block-nav .nav-tabs > .active > a:hover,
+a,
+.list-group.list-group-luna .list-group-item.active,
+.title-block-primary .btn,
+blockquote footer,
+blockquote small,
+blockquote .small,
+footer .stats,
+footer .stats a,
+footer .footer,
+footer .footer a {
+    color: #666;
 }
