@@ -191,7 +191,7 @@ if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
 
 if ($install_file_exists) : ?>
         <div class="alert alert-warning">
-            <p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?>/p>
+            <p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?></p>
         </div>
 <?php endif; ?>
         <form class="form-horizontal" method="post" action="index.php">
