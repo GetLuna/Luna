@@ -42,9 +42,7 @@ function secure_random_bytes($len = 10) {
 	* openssl_random_pseudo_bytes.
 	*/
    $SSLstr = '4'; // http://xkcd.com/221/
-   if (function_exists('openssl_random_pseudo_bytes') &&
-	   (version_compare(PHP_VERSION, '5.3.4') >= 0 ||
-	substr(PHP_OS, 0, 3) !== 'WIN')) {
+   if (function_exists('openssl_random_pseudo_bytes') && substr(PHP_OS, 0, 3) !== 'WIN') {
 	  $SSLstr = openssl_random_pseudo_bytes($len, $strong);
 	  if ($strong)
 		 return $SSLstr;
@@ -57,9 +55,7 @@ function secure_random_bytes($len = 10) {
 	* Older versions of mcrypt_create_iv may be broken or take too much time
 	* to finish so we only use this function with PHP 5.3 and above.
 	*/
-   if (function_exists('mcrypt_create_iv') &&
-	  (version_compare(PHP_VERSION, '5.3.0') >= 0 ||
-	   substr(PHP_OS, 0, 3) !== 'WIN'))  {
+   if (function_exists('mcrypt_create_iv') && substr(PHP_OS, 0, 3) !== 'WIN')  {
 	  $str = mcrypt_create_iv($len, MCRYPT_DEV_URANDOM);
 	  if ($str !== false)
 		 return $str;
