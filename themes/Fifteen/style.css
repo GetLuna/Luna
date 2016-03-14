@@ -1179,6 +1179,10 @@ footer a:hover {
 	color: #fff;
 	text-decoration: underline;
 }
+
+footer .dropup {
+    display: inline;
+}
 	
 .stats {
 	font-size: 110%;
