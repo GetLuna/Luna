@@ -23,6 +23,12 @@ if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour
 else
 	$body_classes = 'normal';
 
+if (file_exists('../img/header.png')) {
+    $body_classes .= ' bkg-png';
+} elseif (file_exists('../img/header.jpg')) {
+    $body_classes .= ' bkg-jpg';
+}
+
 ?>
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>">

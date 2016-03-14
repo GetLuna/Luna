@@ -71,7 +71,7 @@ function load_admin_nav($section, $page) {
 	else
 		$page_title = $page;
 ?>
-<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
 	<div class="container navbar-container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

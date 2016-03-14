@@ -18,7 +18,6 @@
 body {
 	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	background-color: #444;
-	margin-top: 50px;
 }
 
 td,
@@ -48,6 +47,14 @@ th {
 	padding-left: 10px;
 }
 
+/* Header customization */
+.bkg-png .jumboheader {
+    background-image: url('../../img/header.png') !important;
+}
+
+.bkg-jpg .jumboheader {
+    background-image: url('../../img/header.jpg') !important;
+}
 
 /* Text */
 h1,
@@ -116,7 +123,14 @@ label .help-block {
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;
-	border-bottom: none;
+    border: none;
+    margin-bottom: 0;
+}
+
+.bkg-png .navbar-default,
+.bkg-jpg .navbar-default {
+    background: rgba(0,0,0,.1) !important;
+    margin-bottom: -50px !important;    
 }
 
 .navbar-default .navbar-brand,
@@ -195,17 +209,22 @@ label .help-block {
 }
 
 /* Heading - jumbotron and navtabs */
-	.jumbotron .row {
-		padding-left: 0;
-		padding-right: 0;
-	}
+.jumbotron .row {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .jumboheader {
 	color: #fff;
 	background-color: #1f62b0;
-	padding-top: 0;
 	padding-bottom: 1px;
 	margin-bottom: 0;
+    padding-top: 0;
+}
+
+.bkg-png .jumboheader,
+.bkg-jpg .jumboheader {
+    padding-top: 50px;
 }
 
 .jumboheader .row {
