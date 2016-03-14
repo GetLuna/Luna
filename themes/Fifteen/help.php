@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 			<?php } ?>
 			<div class="title-block title-block-primary title-block-nav">
 				<h2><i class="fa fa-fw fa-code"></i> <?php _e('BBCode', 'luna') ?></h2>
-				<p><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you comment a message or edit your signature.', 'luna') ?></p>
+				<p><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode.', 'luna') ?></p>
 				<ul class="nav nav-tabs">
 					<li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab"><i class="fa fa-fw fa-bold"></i> <?php _e('Text', 'luna') ?></a></li>
 					<li role="presentation"><a href="#media" aria-controls="media" role="tab" data-toggle="tab"><i class="fa fa-fw fa-play"></i> <?php _e('Media', 'luna') ?></a></li>
@@ -196,7 +196,7 @@ if ($db->num_rows($result) > 0)
 					<h3><?php _e('Are there more options to search?', 'luna') ?></h3>
 					<p><?php _e('When you go to the search page, you\'ll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin.', 'luna') ?></p>
 					<h3><?php _e('Why can\'t I search in more than one forum at once?', 'luna') ?></h3>
-					<p><?php _e('You might not have the correct permissions to do so, ask the forums administrator for more help.', 'luna') ?></p>
+					<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
 				</div>
 			</div>
 			<?php

@@ -21,7 +21,7 @@ if (!defined('FORUM'))
 <div class="nav-tab-info">
 	<div class="nav-tab-info-block">
 		<h3><?php _e('BBCode', 'luna') ?></h3>
-		<p><a id="bbcode"></a><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you comment a message or edit your signature.', 'luna') ?></p>
+		<p><a id="bbcode"></a><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode.', 'luna') ?></p>
 	</div>
 	<ul class="nav nav-tabs no-background">
 		<li class="active"><a href="#style" data-toggle="tab"><?php _e('Text style', 'luna') ?></a></li>
@@ -200,7 +200,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 			<h3><?php _e('Are there more options to search?', 'luna') ?></h3>
 			<p><?php _e('When you go to the search page, you\'ll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin.', 'luna') ?></p>
 			<h3><?php _e('Why can\'t I search in more than one forum at once?', 'luna') ?></h3>
-			<p><?php _e('You might not have the correct permissions to do so, ask the forums administrator for more help.', 'luna') ?></p>
+			<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
 		</div>
 	</div>
 </div>

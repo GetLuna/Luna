@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-13 22:17+0100\n"
-"PO-Revision-Date: 2016-03-13 22:44+0100\n"
+"POT-Creation-Date: 2016-03-14 10:11+0100\n"
+"PO-Revision-Date: 2016-03-14 10:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -5191,6 +5191,9 @@ msgid ""
 "activate the new email address. If it doesn't arrive you can contact the "
 "forum administrator at"
 msgstr ""
+"Een e-mail werd verstuurd naar het gegeve nadres om je nieuwe e-mail adres "
+"to controleren. Als je de e-mail niet ontvangt neem je best contact op met "
+"de administrator op"
 
 #: settings.php:432 settings.php:561 settings.php:566
 #: themes/Fifteen/me-modals.php:5 themes/Sunrise/me-modals.php:5
@@ -5215,39 +5218,49 @@ msgid ""
 "The selected file was too large to upload. The server didn't allow the "
 "upload."
 msgstr ""
+"Het geselecteerde bestand was te groot om te uploaden. De server heeft de "
+"upload niet afgehandelt."
 
 #: settings.php:464
 msgid "The selected file was only partially uploaded. Please try again."
 msgstr ""
+"Het geselecteerde bestand was slechts deels geüpload. Probeer het opnieuw."
 
 #: settings.php:472
 msgid "PHP was unable to save the uploaded file to a temporary location."
 msgstr ""
+"PHP was niet in staat om het bestand in een tijdelijke locatie op te slaan."
 
 #: settings.php:487 settings.php:509
 msgid ""
 "The file you tried to upload is not of an allowed type. Allowed types are "
 "gif, jpeg and png."
 msgstr ""
+"Het bestand dat je probeerde te uploaden is van een ongeldig type. Alleen "
+"gif, jpeg en png zijn toegestaan."
 
 #: settings.php:491
 msgid "The file you tried to upload is larger than the maximum allowed"
-msgstr ""
+msgstr "Het bestand dat je hebt geüpload is te groot."
 
 #: settings.php:495
 msgid ""
 "The server was unable to save the uploaded file. Please contact the forum "
 "administrator at"
 msgstr ""
+"De server was niet in staat het bestand op te slaan. Je neemt best contact "
+"op met de administrator op"
 
 #: settings.php:515
 msgid ""
 "The file you tried to upload is wider and/or higher than the maximum allowed"
 msgstr ""
+"Het bestand dat je probeerde te uploaden is breder en/of hoger dan de "
+"maximum toegestane"
 
 #: settings.php:523
 msgid "An unknown error occurred. Please try again."
-msgstr ""
+msgstr "Een onbekende fout is opgetreden. Probeer het opnieuw."
 
 #: settings.php:563
 msgid "Unverified"
@@ -5255,13 +5268,14 @@ msgstr "Niet geverifieerd"
 
 #: settings.php:663
 msgid "The website URL you entered is invalid."
-msgstr ""
+msgstr "De gegeven website URL is ongeldig."
 
 #: settings.php:679
 msgid ""
 "The title you entered contains a forbidden word. You must choose a different "
 "title."
 msgstr ""
+"De gegeven titel bevat verboden woorden. Je moet een andere titel kiezen."
 
 #: settings.php:689
 #, php-format
@@ -5269,11 +5283,13 @@ msgid ""
 "Signatures cannot be longer than %1$s characters. Please reduce your "
 "signature by %2$s characters."
 msgstr ""
+"Handtekeningen mogen niet meer dan %1$s tekens bevatten. Maak je "
+"handtekening %2$s tekens kleiner."
 
 #: settings.php:691
 #, php-format
 msgid "Signatures cannot have more than %s lines."
-msgstr ""
+msgstr "Handtekeningen mogen niet meer dan %s lijnen beslaan."
 
 #: settings.php:802 themes/Fifteen/me-modals.php:54
 #: themes/Sunrise/me-modals.php:54
@@ -5290,11 +5306,11 @@ msgstr "Upload avatar"
 
 #: settings.php:815
 msgid "No signature currently stored in profile."
-msgstr ""
+msgstr "Er is geen handteking gekoppelt aan dit profiel."
 
 #: themes/Fifteen/answer.php:17 themes/Sunrise/answer.php:16
 msgid "Are you certain that this comment is the solution to your thread?"
-msgstr ""
+msgstr "Ben je zeker dat deze reactie de oplossing van je vraag bevat?"
 
 #: themes/Fifteen/comment.php:13 themes/Sunrise/comment.php:13
 #, php-format
@@ -5352,7 +5368,7 @@ msgstr "Powered by %s"
 
 #: themes/Fifteen/footer.php:105 themes/Sunrise/footer.php:107
 msgid "We use cookies to give you the best experience on this board."
-msgstr ""
+msgstr "We gebruiken cookies om je een betere ervaring te bieden op dit forum."
 
 #: themes/Fifteen/footer.php:108 themes/Fifteen/index.php:37
 #: themes/Sunrise/footer.php:110 themes/Sunrise/index.php:27
@@ -5375,9 +5391,11 @@ msgstr "Modereer forum"
 msgid ""
 "BBCode is a collection of tags that are used to change the look of text in "
 "this forum. Below you can find all the available BBCodes and how to use "
-"them. Administrators have the ability to disable BBCode. You can tell if "
-"BBCode is disabled whenever you comment a message or edit your signature."
+"them. Administrators have the ability to disable BBCode."
 msgstr ""
+"BBCode is een verzameling tags die gebruikt kan worden om de opmaak van "
+"tekst te wijzigen. Hieronder kan je de beschikbare BBCode tags vinden. "
+"Administrators kunnen (sommige) BBCodes uitschakelen."
 
 #: themes/Fifteen/help.php:25
 msgid "Text"
@@ -5474,6 +5492,8 @@ msgid ""
 "You can create links to other locations or to email addresses using the "
 "following tags:"
 msgstr ""
+"Je kan links naar andere locaties of e-mail adressen maken met de volgende "
+"tags:"
 
 #: themes/Fifteen/help.php:57 themes/Sunrise/help.php:58
 msgid "My email address"
@@ -5485,6 +5505,9 @@ msgid ""
 "after the \"=\" sign in the opening tag is used for the alt attribute and "
 "should be included whenever possible."
 msgstr ""
+"Als je een afbeelding wilt tonen gebruik je de img-tag. De tekst achter het "
+"\"=\"-teken bevat de tekst die getoond wordt als de afbeelding niet meer "
+"beschikbaar is."
 
 #: themes/Fifteen/help.php:59 themes/Sunrise/help.php:60
 msgid "Luna BBCode Test"
@@ -5495,19 +5518,20 @@ msgid ""
 "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode "
 "below, you can embed one of those services videos."
 msgstr ""
+"Luna ondersteund het invoegen van video's van DailyMotion, Vimeo en YouTube."
 
 #: themes/Fifteen/help.php:62 themes/Sunrise/help.php:63
 msgid "Put the link to the video here"
-msgstr ""
+msgstr "Zet hier de link naar de video"
 
 #: themes/Fifteen/help.php:65 themes/Sunrise/help.php:66
 msgid "If you want to quote someone, you should use the quote tag."
-msgstr ""
+msgstr "Als je iemand wilt citeren, gebruik je de quote-tag."
 
 #: themes/Fifteen/help.php:66 themes/Fifteen/help.php:68
 #: themes/Sunrise/help.php:67 themes/Sunrise/help.php:69
 msgid "This is the text I want to quote."
-msgstr ""
+msgstr "Dit is de tekst die ik wil citeren"
 
 #: themes/Fifteen/help.php:67 themes/Sunrise/help.php:68
 msgid "produces a quote box like this:"
@@ -5523,6 +5547,9 @@ msgid ""
 "without specifying a name. If a username contains the characters [ or ] you "
 "can enclose it in quote marks."
 msgstr ""
+"Als je niemand specifiek wilt citeren, kan je de quote-tag gebruiken zonder "
+"naam. Als een naam de tekens [ of ] bevat moet je deze omslaan met citeer "
+"tekens."
 
 #: themes/Fifteen/help.php:72 themes/Sunrise/help.php:73
 msgid ""
@@ -5530,12 +5557,15 @@ msgid ""
 "Text displayed with the code tag will use a monospaced font and will not be "
 "affected by other tags."
 msgstr ""
+"Als je code wilt delen, maak je gebruik van de code-tag. Tekst binnen deze "
+"tags wordt opgemaakt met een lettertype speciaal voor code en zal geen "
+"invloed hebben van andere tags."
 
 #: themes/Fifteen/help.php:73 themes/Fifteen/help.php:75
 #: themes/Fifteen/help.php:90 themes/Sunrise/help.php:74
 #: themes/Sunrise/help.php:76 themes/Sunrise/help.php:92
 msgid "This is some code."
-msgstr ""
+msgstr "Dit is code."
 
 #: themes/Fifteen/help.php:74 themes/Fifteen/help.php:85
 #: themes/Fifteen/help.php:90 themes/Sunrise/help.php:75
@@ -5550,12 +5580,18 @@ msgid ""
 "noted on the first line inside the codetag and can't be on the same line as "
 "<code>[code]</code>."
 msgstr ""
+"Je kan ook gebruik maken van syntax highlighting voor C, C#, C++, HTML, "
+"Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML en XML. Deze "
+"talen moeten aangeroepen worden in de eerste lijn van de codetag en kunnen "
+"niet op dezelfde lijn als de <code>[code]</code>-tag voorkomen."
 
 #: themes/Fifteen/help.php:93 themes/Sunrise/help.php:95
 msgid ""
 "To create a list you can use the list tag. You can create 2 types of lists "
 "using the list tag."
 msgstr ""
+"Als je een lijst wilt tonen kan je gebruik maken van de lijst-tag. Deze tag "
+"kan twee soorten lijsten tonen."
 
 #: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
@@ -5591,6 +5627,8 @@ msgid ""
 "If enabled, the forum can convert a series of smilies to graphical "
 "representations. The following smilies you can use are:"
 msgstr ""
+"Indien beschikbaar kan het forum een reeks tekens omzetten naar grafische "
+"representaties. De volgende emoticons worden ondersteund:"
 
 #: themes/Fifteen/help.php:122 themes/Fifteen/help.php:124
 #: themes/Sunrise/help.php:124 themes/Sunrise/help.php:126
@@ -5604,7 +5642,7 @@ msgstr "Algemeen gebruik"
 
 #: themes/Fifteen/help.php:133 themes/Sunrise/help.php:137
 msgid "Explains some of the basics on how to work with this forum software."
-msgstr ""
+msgstr "Hier leggen we de basis uit van hoe dit forum werkt."
 
 #: themes/Fifteen/help.php:135
 msgid "Forums + threads"
@@ -5619,6 +5657,8 @@ msgid ""
 "You'll see that some of the threads are labeled, different labels have "
 "different meanings."
 msgstr ""
+"Je zult zien dat sommige conversaties een icoon hebben, deze iconen hebben "
+"verschillende betekenissen."
 
 #: themes/Fifteen/help.php:147 themes/Sunrise/help.php:151
 msgid "Label"
@@ -5631,18 +5671,24 @@ msgstr "Beschrijving"
 #: themes/Fifteen/help.php:154 themes/Sunrise/help.php:158
 msgid "Threads marked with a check are solved according to the author."
 msgstr ""
+"Conversaties die een check-teken tonen zijn door de auteur gemarkeerd als "
+"opgelost."
 
 #: themes/Fifteen/help.php:158 themes/Sunrise/help.php:162
 msgid ""
 "Pinned threads are usually important to read. It's worth it to take a look "
 "there."
 msgstr ""
+"Conversaties met een duimspijker zijn vastgemaakte conversaties en zullen "
+"binnen hun eigen forum altijd bovenaan getoond worden."
 
 #: themes/Fifteen/help.php:162 themes/Sunrise/help.php:166
 msgid ""
 "Much like pinned threads, these are important, however, they do not stay on "
 "the top of the list."
 msgstr ""
+"Net als vastgemaakte conversaties zijn deze conversaties belangrijk, maar ze "
+"blijven niet bovenaan hun eigen forum."
 
 #: themes/Fifteen/help.php:166 themes/Sunrise/help.php:170
 msgid ""
@@ -5650,6 +5696,9 @@ msgid ""
 "more, unless you have a permission that overwrites this. The thread is still "
 "available to read, though."
 msgstr ""
+"Als er een slotje wordt getoond voor een conversatie is deze gesloten en kan "
+"je niet meer reageren. Sommige gebruikers hebben mogelijk de permissie dat "
+"wel te doen. De conversatie blijft natuurlijk wel leesbaar."
 
 #: themes/Fifteen/help.php:170 themes/Sunrise/help.php:174
 msgid ""
@@ -5657,19 +5706,23 @@ msgid ""
 "choose to show this notification, or simply not show it. The original forum "
 "where this thread was located in, won't show and thread stats anymore."
 msgstr ""
+"Conversaties met een vierzijdige pijl zijn verplaatst naar een ander forum "
+"en deze link die je in dit forum ziet is slechts een verwijzing. Niet iedere "
+"verplaatste conversatie heeft per definitie dit icoon."
 
 #: themes/Fifteen/help.php:174 themes/Sunrise/help.php:178
 msgid ""
 "This thread has received a new comment since you last visited the board."
-msgstr ""
+msgstr "Conversaties met een bel hebben hebben een nieuwe reactie gekregen."
 
 #: themes/Fifteen/help.php:179 themes/Sunrise/help.php:183
 msgid "This little dot appears when you have made a comment in this thread."
-msgstr ""
+msgstr "Conversaties met een klein punt voor hebben een reactie van jou."
 
 #: themes/Fifteen/help.php:184 themes/Sunrise/help.php:188
 msgid "Smilies, signatures, avatars and images are not visible?"
 msgstr ""
+"Emoticons, handtekeningen, avatars en afbeeldingen zijn niet zichtbaar?"
 
 #: themes/Fifteen/help.php:185 themes/Sunrise/help.php:189
 msgid ""
@@ -5678,17 +5731,24 @@ msgid ""
 "but they should be enabled by default unless your forum admin has disabled "
 "those features."
 msgstr ""
+"Je kan het gedrag van conversaties in je profiel aanpassen. Hier kan je "
+"onder andere bepalen of je emoticons, handtekeningen, avatars en "
+"afbeeldingen wilt zien in reacties. Deze opties staan standaard aan tenzij "
+"de forum administrator daar anders over beslist."
 
 #: themes/Fifteen/help.php:186 themes/Sunrise/help.php:190
 msgid "Why can't I see some threads or forums?"
 msgstr "Waarom kan ik sommige conversaties en forums niet zien?"
 
 #: themes/Fifteen/help.php:187 themes/Fifteen/help.php:191
-#: themes/Sunrise/help.php:191 themes/Sunrise/help.php:195
+#: themes/Fifteen/help.php:199 themes/Sunrise/help.php:191
+#: themes/Sunrise/help.php:195 themes/Sunrise/help.php:203
 msgid ""
 "You might not have the correct permissions to do so, ask the forum "
 "administrator for more help."
 msgstr ""
+"Je hebt mogelijk niet de juiste permissies om dit te doen, vraag de "
+"administrator voor hulp."
 
 #: themes/Fifteen/help.php:190 themes/Sunrise/help.php:194
 msgid "Why can't I see any profiles?"
@@ -5696,17 +5756,19 @@ msgstr "Waarom kan ik geen profielen bekijken?"
 
 #: themes/Fifteen/help.php:192 themes/Sunrise/help.php:196
 msgid "My profile doesn't contain as much as others?"
-msgstr ""
+msgstr "Mijn profiel is heel leeg tegenover andere gebruikers?"
 
 #: themes/Fifteen/help.php:193 themes/Sunrise/help.php:197
 msgid ""
 "Your profile will only display fields that are enabled and filled in in your "
 "settings. You might want to see if you missed some fields."
 msgstr ""
+"Je profiel toont enkel de velden die je hebt ingevuld. Ga naar je "
+"instellingen en vul meer informatie over jezelf in."
 
 #: themes/Fifteen/help.php:196 themes/Sunrise/help.php:200
 msgid "Are there more options to search?"
-msgstr ""
+msgstr "Zijn er meer instellingen om zoeken te verfijnen?"
 
 #: themes/Fifteen/help.php:197 themes/Sunrise/help.php:201
 msgid ""
@@ -5715,16 +5777,13 @@ msgid ""
 "find more search options! This feature may not be available on your device, "
 "if disabled by the forum admin."
 msgstr ""
+"Als je naar de zoekfunctie gaat, vind je één enkel zoekveld. Deze pagina "
+"toont echter ook een link naar \"Geavanceerd zoeken\", met veel meer opties! "
+"Sommige apparaten en gebruikers zien deze optie mogelijk niet."
 
 #: themes/Fifteen/help.php:198 themes/Sunrise/help.php:202
 msgid "Why can't I search in more than one forum at once?"
 msgstr "Waarom kan ik niet zoeken in meer dan één forum per keer?"
-
-#: themes/Fifteen/help.php:199 themes/Sunrise/help.php:203
-msgid ""
-"You might not have the correct permissions to do so, ask the forums "
-"administrator for more help."
-msgstr ""
 
 #: themes/Fifteen/help.php:206 themes/Sunrise/help.php:212
 msgid "Moderating"
@@ -5735,10 +5794,12 @@ msgid ""
 "Admins and moderators need help sometimes, too! The basics of moderating are "
 "explained here."
 msgstr ""
+"Administratoren en moderatoren hebben soms ook hulp nodig! Dit is de basis "
+"van het modereren."
 
 #: themes/Fifteen/help.php:216 themes/Sunrise/help.php:222
 msgid "How do I moderate a forum?"
-msgstr ""
+msgstr "Hoe modereer ik een forum?"
 
 #: themes/Fifteen/help.php:217 themes/Sunrise/help.php:223
 msgid ""
@@ -5747,10 +5808,14 @@ msgid ""
 "you will be send to a page where you can manage the current forum. From "
 "there, you can move, delete, merge, close and open multiple threads at once."
 msgstr ""
+"De moderator opties zijn beschikbaar in conversaties. Deze functionaliteit "
+"is niet altijd overal voor iedere moderator beschikbaar. Deze opties laten "
+"moderatoren toe om conversaties in dat forum te verwijderen, verplaatsen, "
+"samenvoegen, splitsen, sluiten en openen."
 
 #: themes/Fifteen/help.php:220 themes/Sunrise/help.php:226
 msgid "How do I moderate a thread?"
-msgstr ""
+msgstr "Hoe modereer is een conversatie?"
 
 #: themes/Fifteen/help.php:221 themes/Sunrise/help.php:227
 msgid ""
@@ -5760,16 +5825,22 @@ msgid ""
 "there, you can select multiple comment to delete or split from the current "
 "thread at once."
 msgstr ""
+"De moderator opties zijn beschikbaar in conversaties. Deze functionaliteit "
+"is niet altijd overal voor iedere moderator beschikbaar. Deze opties laten "
+"toe om conversaties te verwijderen, verplaatsen, samenvoegen, splitsen, "
+"sluiten, openen, vast te maken, markeren als belangrijk enzovoorts."
 
 #: themes/Fifteen/help.php:222 themes/Sunrise/help.php:228
 msgid ""
 "Next to the \"Moderate thread\" button, you can find options to move, open "
 "or close the thread. You can also pin the thread from there, or unpin it."
 msgstr ""
+"De verplaats, open, sluit, vastmaken en belangrijk-opties zijn echter ook "
+"direct beschikbaar in een conversatie."
 
 #: themes/Fifteen/help.php:225 themes/Sunrise/help.php:231
 msgid "How do I moderate an user?"
-msgstr ""
+msgstr "Hoe modereer ik een gebruiker?"
 
 #: themes/Fifteen/help.php:226 themes/Sunrise/help.php:232
 msgid ""
@@ -5777,6 +5848,9 @@ msgid ""
 "moderation options under \"Administration\" in the users profile menu. Those "
 "features aren't available for all moderators."
 msgstr ""
+"Iedere gebruiker heeft een beheerpaneel dat toegankelijk is voor zowel de "
+"gebruiker zelf als moderatoren en administratoren met de nodige permissies. "
+"Voor die laatste twee is er ook een speciaal \"Admin\" paneel beschikbaar."
 
 #: themes/Fifteen/help.php:227 themes/Sunrise/help.php:233
 msgid ""
@@ -5786,6 +5860,10 @@ msgid ""
 "moderator permissions on a per-forum base, though the user must have a "
 "moderator account to be able to actually use those permissions."
 msgstr ""
+"De Admin-pagina staat je toe gebruikers te voorzien van een \"admin nota"
+"\" (ook voor moderatoren) en je kan deze nota aanpassen indien nodig. Je kan "
+"ook het aantal reacties van een gebruiker handmatig wijzigen. Gebruikers "
+"kunnen in deze pagina ook voorzien worden van moderator permissie."
 
 #: themes/Fifteen/help.php:228 themes/Sunrise/help.php:234
 msgid ""
@@ -5793,11 +5871,15 @@ msgid ""
 "and/or delete multiple users at once, you're probably better off with the "
 "advanced user management features in the Backstage."
 msgstr ""
+"Ten slotte kan je ook kiezen gebruikers te verbannen en verwijderen in hun "
+"profiel. Als je meerder gebruikers wilt verbannen en/of verwijderen kan je "
+"beter gebruik maken van de geavanceerde gebruikersbeheer functies in de "
+"Backstage."
 
 #: themes/Fifteen/inbox-delete-comment.php:16
 #: themes/Sunrise/inbox-delete-comment.php:16
 msgid "Are you sure that you want to delete the message(s) from your inbox?"
-msgstr ""
+msgstr "Ben je zeker dat je deze berichten wilt verwijderen van Inbox?"
 
 #: themes/Fifteen/inbox-delete.php:12 themes/Sunrise/inbox-delete.php:12
 msgid "Confirm deletion"
@@ -5805,7 +5887,7 @@ msgstr "Verwijderen bevestigen"
 
 #: themes/Fifteen/inbox-delete.php:18 themes/Sunrise/inbox-delete.php:18
 msgid "Are you sure you want to delete the selected messages?"
-msgstr ""
+msgstr "Ben je zeker daj e deze berichten wilt verwijderen?"
 
 #: themes/Fifteen/inbox.php:37 themes/Sunrise/inbox.php:31
 msgid "Mark as unread"
@@ -5876,13 +5958,15 @@ msgstr "Stuur een e-mail"
 
 #: themes/Fifteen/me-delete.php:13 themes/Sunrise/me-delete.php:13
 msgid "Please confirm that you want to delete the user"
-msgstr ""
+msgstr "Bevestig dat je deze gebruiker wilt verwijderen."
 
 #: themes/Fifteen/me-modals.php:13 themes/Sunrise/me-modals.php:13
 msgid ""
 "An email will be sent to your new address with an activation link. You must "
 "click the link in the email you receive to activate the new address."
 msgstr ""
+"Een e-mail wordt verstuurd naar het gegeven adres met een activatielink. "
+"Klik op deze link om je nieuwe e-mail adres te activeren."
 
 #: themes/Fifteen/me-modals.php:28 themes/Fifteen/settings.php:62
 #: themes/Sunrise/me-modals.php:28 themes/Sunrise/settings.php:56
@@ -5905,6 +5989,7 @@ msgstr "Bevestig nieuw wachtwoord"
 #: themes/Sunrise/me-modals.php:39 themes/Sunrise/register.php:27
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
+"Wachtwoorden moeten minsten 6 tekens lang zijn en zijn hoofdletter gevoelig."
 
 #: themes/Fifteen/me-modals.php:62
 #, php-format
@@ -5912,6 +5997,8 @@ msgid ""
 "An avatar is a small image that will be displayed under your username in "
 "your comments. It has to be smaller than %s by %s pixels and %s bytes."
 msgstr ""
+"Een avatar is een kleine afbeelding die getoond wordt bij je reacties. Hij "
+"moet kleiner zijn dan %s op %s pixels en %s bytes."
 
 #: themes/Fifteen/me-modals.php:66 themes/Sunrise/me-modals.php:66
 msgid "Upload"
@@ -5957,11 +6044,12 @@ msgstr "Als je een mens bent laat je dit veld leeg!"
 
 #: themes/Fifteen/register.php:20 themes/Sunrise/register.php:20
 msgid "Enter a username between 2 and 25 characters long"
-msgstr ""
+msgstr "Kies een gebruikersnaam tussen 2 en 25 tekens lang"
 
 #: themes/Fifteen/register.php:41 themes/Sunrise/register.php:41
 msgid "Your password will be sent to this address, make sure it's valid"
 msgstr ""
+"Je wachtwoord wordt naar dit adres verstuurt, wees zeker dat het geldig is"
 
 #: themes/Fifteen/search-advanced.php:27 themes/Sunrise/search-advanced.php:15
 msgid "Keyword"
@@ -6010,12 +6098,12 @@ msgstr "Upload een afbeelding die jou voorstelt"
 
 #: themes/Fifteen/settings.php:109 themes/Sunrise/settings.php:103
 msgid "Write a small piece to attach to every comment you make"
-msgstr ""
+msgstr "Schrijf een klein stukje tekst om bij iedere reactie te voegen"
 
 #: themes/Fifteen/settings.php:112 themes/Sunrise/settings.php:106
 #, php-format
 msgid "Max length: %s characters / Max lines: %s"
-msgstr ""
+msgstr "Maximum lengte: %s tekens / Maximum regels: %s"
 
 #: themes/Fifteen/settings.php:116 themes/Sunrise/settings.php:110
 msgid "Signature preview"
@@ -6268,6 +6356,22 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid ""
+#~ "You might not have the correct permissions to do so, ask the forums "
+#~ "administrator for more help."
+#~ msgstr "Je "
+
+#~ msgid ""
+#~ "BBCode is a collection of tags that are used to change the look of text "
+#~ "in this forum. Below you can find all the available BBCodes and how to "
+#~ "use them. Administrators have the ability to disable BBCode. You can tell "
+#~ "if BBCode is disabled whenever you comment a message or edit your "
+#~ "signature."
+#~ msgstr ""
+#~ "BBCode is een verzameling tags die gebruikt kan worden om de opmaak van "
+#~ "tekst te wijzigen. Hieronder kan je de beschikbare BBCode tags vinden. "
+#~ "Administrators kunnen (sommige) BBCodes uitschakelen."
 
 #~ msgid "The light grey accent has yet to be implemented correctly in Fifteen"
 #~ msgstr "Het licht grijze accent in Fifteen is nog niet afgewerkt"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-13 09:30+0100\n"
-"PO-Revision-Date: 2016-03-13 09:30+0100\n"
+"POT-Creation-Date: 2016-03-14 10:21+0100\n"
+"PO-Revision-Date: 2016-03-14 10:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: backstage/board.php:213 backstage/board.php:450 backstage/board.php:508
 #: backstage/censoring.php:76 backstage/database.php:509 backstage/email.php:61
 #: backstage/features.php:64 backstage/groups.php:38 backstage/groups.php:492
-#: backstage/groups.php:516 backstage/groups.php:555 backstage/index.php:82
+#: backstage/groups.php:516 backstage/groups.php:555 backstage/index.php:72
 #: backstage/loader.php:34 backstage/maintenance.php:162
 #: backstage/moderate.php:44 backstage/moderate.php:131
 #: backstage/moderate.php:222 backstage/moderate.php:297
@@ -33,7 +33,7 @@ msgstr ""
 #: backstage/theme.php:33 backstage/tools.php:113 backstage/update.php:68
 #: backstage/users.php:34 backstage/users.php:105 backstage/users.php:272
 #: backstage/users.php:410 backstage/users.php:521 backstage/users.php:691
-#: backstage/users.php:785 include/functions.php:1077
+#: backstage/users.php:785 include/functions.php:1048
 #: themes/Fifteen/settings.php:44 themes/Sunrise/settings.php:39
 msgid "Admin"
 msgstr ""
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Improved Backstage UI and night mode"
 msgstr ""
 
-#: backstage/about.php:41
+#: backstage/about.php:41 backstage/about.php:42
 msgid "Removed"
 msgstr ""
 
@@ -105,30 +105,26 @@ msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
 #: backstage/about.php:42
+msgid "The code base no longer supports PHP 5.2 anymore"
+msgstr ""
+
+#: backstage/about.php:43
 msgid "Fixed"
 msgstr ""
 
-#: backstage/about.php:42
+#: backstage/about.php:43
 msgid "Fixes 3 bugs"
 msgstr ""
 
-#: backstage/about.php:44 backstage/about.php:45 backstage/about.php:46
+#: backstage/about.php:45
 msgid "Note"
 msgstr ""
 
-#: backstage/about.php:44
-msgid "The light grey accent has yet to be implemented correctly in Fifteen"
-msgstr ""
-
 #: backstage/about.php:45
-msgid "\"Forces accents\" has yet to be implemented in Fifteen"
-msgstr ""
-
-#: backstage/about.php:46
 msgid "Sunrise has multiple visual issues in this Preview"
 msgstr ""
 
-#: backstage/about.php:52
+#: backstage/about.php:51
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
@@ -150,7 +146,7 @@ msgid "Appearance"
 msgstr ""
 
 #: backstage/appearance.php:79 backstage/board.php:514 backstage/email.php:67
-#: backstage/features.php:70 backstage/index.php:88
+#: backstage/features.php:70 backstage/index.php:78
 #: backstage/maintenance.php:168 backstage/permissions.php:56
 #: backstage/registration.php:65 backstage/settings.php:140
 #: backstage/theme.php:39 backstage/tools.php:119 backstage/update.php:74
@@ -169,7 +165,7 @@ msgstr ""
 #: backstage/email.php:120 backstage/features.php:75 backstage/features.php:148
 #: backstage/features.php:175 backstage/features.php:208
 #: backstage/features.php:264 backstage/groups.php:48 backstage/groups.php:591
-#: backstage/index.php:232 backstage/maintenance.php:175 backstage/menu.php:101
+#: backstage/index.php:201 backstage/maintenance.php:175 backstage/menu.php:101
 #: backstage/permissions.php:61 backstage/permissions.php:110
 #: backstage/permissions.php:148 backstage/ranks.php:123
 #: backstage/registration.php:70 backstage/settings.php:145
@@ -317,7 +313,7 @@ msgstr ""
 msgid "Footer settings"
 msgstr ""
 
-#: backstage/appearance.php:255 backstage/index.php:200
+#: backstage/appearance.php:255 backstage/index.php:166
 msgid "Statistics"
 msgstr ""
 
@@ -563,7 +559,7 @@ msgstr ""
 msgid "Expires"
 msgstr ""
 
-#: backstage/bans.php:348 backstage/bans.php:435 backstage/index.php:146
+#: backstage/bans.php:348 backstage/bans.php:435 backstage/index.php:124
 #: backstage/reports.php:59 backstage/reports.php:116 comment.php:529
 #: edit.php:131 misc.php:134 new_inbox.php:388 themes/Sunrise/inbox-new.php:75
 #: themes/Sunrise/settings.php:35 thread.php:123 viewinbox.php:202
@@ -1591,80 +1587,62 @@ msgstr ""
 msgid "is a required field in this form."
 msgstr ""
 
-#: backstage/index.php:25
-msgid "Could not remove install.php. Please do so by hand."
-msgstr ""
-
-#: backstage/index.php:82
+#: backstage/index.php:72
 msgid "Index"
 msgstr ""
 
-#: backstage/index.php:91
-msgid ""
-"The config file is writeable at this moment, you might want to set the CHMOD "
-"to 640 or 644."
-msgstr ""
-
-#: backstage/index.php:96
-msgid "The file install.php still exists, but should be removed."
-msgstr ""
-
-#: backstage/index.php:96
-msgid "Delete it"
-msgstr ""
-
-#: backstage/index.php:103
+#: backstage/index.php:85
 msgid "Welcome to Luna"
 msgstr ""
 
-#: backstage/index.php:107
+#: backstage/index.php:89
 msgid "Got it"
 msgstr ""
 
-#: backstage/index.php:115
+#: backstage/index.php:97
 msgid ""
 "Welcome to the Backstage. Here, you can manage your newly set up board. "
 "We're ready to go now, but there might be a couple of settings you might "
 "want to change. So let us help you with that first!"
 msgstr ""
 
-#: backstage/index.php:119
+#: backstage/index.php:101
 msgid "What's new"
 msgstr ""
 
-#: backstage/index.php:120
+#: backstage/index.php:102
 msgid "Create new sections"
 msgstr ""
 
-#: backstage/index.php:125
+#: backstage/index.php:107
 msgid "Alter functionality"
 msgstr ""
 
-#: backstage/index.php:126
+#: backstage/index.php:108
 msgid "Change settings"
 msgstr ""
 
-#: backstage/index.php:139 backstage/reports.php:50
+#: backstage/index.php:117 backstage/reports.php:50
 msgid "New reports"
 msgstr ""
 
-#: backstage/index.php:139
+#: backstage/index.php:117
 msgid "View all"
 msgstr ""
 
-#: backstage/index.php:144 backstage/reports.php:57 backstage/reports.php:113
+#: backstage/index.php:122 backstage/reports.php:57 backstage/reports.php:113
 msgid "Reported by"
 msgstr ""
 
-#: backstage/index.php:145 backstage/reports.php:58 backstage/reports.php:115
+#: backstage/index.php:123 backstage/reports.php:58 backstage/reports.php:115
 msgid "Date and time"
 msgstr ""
 
-#: backstage/index.php:156 backstage/reports.php:70 backstage/reports.php:126
+#: backstage/index.php:134 backstage/reports.php:70 backstage/reports.php:126
 msgid "Deleted user"
 msgstr ""
 
-#: backstage/index.php:157 backstage/index.php:158 backstage/index.php:160
+#: backstage/index.php:135 backstage/index.php:136 backstage/index.php:138
 #: backstage/reports.php:71 backstage/reports.php:72 backstage/reports.php:74
 #: backstage/reports.php:127 backstage/reports.php:128
 #: backstage/reports.php:130 themes/Fifteen/inbox.php:107
@@ -1672,52 +1650,62 @@ msgstr ""
 msgid "Deleted"
 msgstr ""
 
-#: backstage/index.php:160 backstage/reports.php:74 backstage/reports.php:130
+#: backstage/index.php:138 backstage/reports.php:74 backstage/reports.php:130
 #, php-format
 msgid "Comment #%s"
 msgstr ""
 
-#: backstage/index.php:176 backstage/reports.php:94
+#: backstage/index.php:154 backstage/reports.php:94
 msgid "There are no new reports."
 msgstr ""
 
-#: backstage/index.php:190
-msgid "Back-up"
-msgstr ""
-
-#: backstage/index.php:193
-msgid "Create new backup"
-msgstr ""
-
-#: backstage/index.php:205 db_update.php:716 db_update.php:801
+#: backstage/index.php:170 db_update.php:716 db_update.php:801
 #: include/draw_functions.php:363 include/draw_functions.php:446
 msgid "comment"
 msgstr ""
 
-#: backstage/index.php:206 include/draw_functions.php:362
+#: backstage/index.php:171 include/draw_functions.php:362
 #: include/draw_functions.php:445
 msgid "thread"
 msgstr ""
 
-#: backstage/index.php:207
+#: backstage/index.php:172
 msgid "user"
 msgstr ""
 
-#: backstage/index.php:221
+#: backstage/index.php:183
 #, php-format
 msgid "Luna v%s is available, %s!"
 msgstr ""
 
-#: backstage/index.php:221
+#: backstage/index.php:183
 msgid "update now"
 msgstr ""
 
-#: backstage/index.php:232
+#: backstage/index.php:189
+msgid ""
+"The config file is writeable at this moment, you might want to set the CHMOD "
+"to 640 or 644."
+msgstr ""
+
+#: backstage/index.php:194
+msgid "The file install.php still exists, but should be removed."
+msgstr ""
+
+#: backstage/index.php:201
 msgid "Admin notes"
 msgstr ""
 
-#: backstage/index.php:235
+#: backstage/index.php:204
 msgid "Add a note..."
+msgstr ""
+
+#: backstage/index.php:210
+msgid "Back-up"
+msgstr ""
+
+#: backstage/index.php:213
+msgid "Create new backup"
 msgstr ""
 
 #: backstage/loader.php:24 backstage/moderate.php:20 backstage/moderate.php:70
@@ -1797,7 +1785,7 @@ msgstr ""
 #: backstage/maintenance.php:162 backstage/maintenance.php:175
 #: backstage/maintenance.php:181 backstage/prune.php:207 db_update.php:184
 #: include/backstage_functions.php:62 include/backstage_functions.php:95
-#: include/backstage_functions.php:189 include/functions.php:1388
+#: include/backstage_functions.php:189 include/functions.php:1359
 msgid "Maintenance"
 msgstr ""
 
@@ -1971,8 +1959,8 @@ msgid "New subject"
 msgstr ""
 
 #: backstage/moderate.php:353 backstage/tools.php:40 backstage/users.php:170
-#: include/class/luna_install.php:1553 include/functions.php:481
-#: include/functions.php:917 search.php:222 settings.php:676
+#: include/class/luna_install.php:1553 include/functions.php:452
+#: include/functions.php:888 search.php:222 settings.php:676
 msgid "Guest"
 msgstr ""
 
@@ -2665,8 +2653,8 @@ msgid "Default"
 msgstr ""
 
 #: backstage/settings.php:448 include/backstage_functions.php:69
-#: include/functions.php:1049 include/functions.php:1077
-#: include/functions.php:1085
+#: include/functions.php:1020 include/functions.php:1048
+#: include/functions.php:1056
 msgid "Info"
 msgstr ""
 
@@ -2856,7 +2844,7 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-#: backstage/tools.php:37 include/functions.php:478
+#: backstage/tools.php:37 include/functions.php:449
 msgid ""
 "Usernames must be at least 2 characters long. Please choose another (longer) "
 "username."
@@ -2868,33 +2856,33 @@ msgid ""
 "password."
 msgstr ""
 
-#: backstage/tools.php:41 include/functions.php:482
+#: backstage/tools.php:41 include/functions.php:453
 msgid "The username guest is reserved. Please choose another username."
 msgstr ""
 
-#: backstage/tools.php:43 include/functions.php:484
+#: backstage/tools.php:43 include/functions.php:455
 msgid ""
 "Usernames may not be in the form of an IP address. Please choose another "
 "username."
 msgstr ""
 
-#: backstage/tools.php:45 include/functions.php:486
+#: backstage/tools.php:45 include/functions.php:457
 msgid ""
 "Usernames may not contain all the characters ', \" and [ or ] at once. "
 "Please choose another username."
 msgstr ""
 
-#: backstage/tools.php:47 include/functions.php:488
+#: backstage/tools.php:47 include/functions.php:459
 msgid ""
 "Usernames may not contain any of the text formatting tags (BBCode) that the "
 "forum uses. Please choose another username."
 msgstr ""
 
-#: backstage/tools.php:54 include/functions.php:501
+#: backstage/tools.php:54 include/functions.php:472
 msgid "Someone is already registered with the username"
 msgstr ""
 
-#: backstage/tools.php:54 include/functions.php:501
+#: backstage/tools.php:54 include/functions.php:472
 msgid ""
 "The username you entered is too similar. The username must differ from that "
 "by at least one alphanumerical character (a-z or 0-9). Please choose a "
@@ -3155,7 +3143,7 @@ msgstr ""
 msgid "Change group"
 msgstr ""
 
-#: backstage/users.php:740 include/functions.php:911 settings.php:676
+#: backstage/users.php:740 include/functions.php:882 settings.php:676
 msgid "Banned"
 msgstr ""
 
@@ -3507,7 +3495,7 @@ msgstr ""
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: extern.php:290 extern.php:343 include/functions.php:654
+#: extern.php:290 extern.php:343 include/functions.php:625
 msgid " / "
 msgstr ""
 
@@ -3772,7 +3760,7 @@ msgstr ""
 msgid "New member"
 msgstr ""
 
-#: include/class/luna_install.php:1608 include/functions.php:929
+#: include/class/luna_install.php:1608 include/functions.php:900
 #: settings.php:676
 msgid "Member"
 msgstr ""
@@ -3881,7 +3869,7 @@ msgstr ""
 msgid "<a href=\"comment.php?fid=%s\">Start the first thread in this forum</a>"
 msgstr ""
 
-#: include/draw_functions.php:382 include/functions.php:1124
+#: include/draw_functions.php:382 include/functions.php:1095
 msgid "Never"
 msgstr ""
 
@@ -4049,72 +4037,72 @@ msgstr ""
 msgid "%s Mailer"
 msgstr ""
 
-#: include/functions.php:450
+#: include/functions.php:421
 msgid "You are banned from this forum."
 msgstr ""
 
-#: include/functions.php:450
+#: include/functions.php:421
 msgid "The ban expires at the end of"
 msgstr ""
 
-#: include/functions.php:450
+#: include/functions.php:421
 msgid ""
 "The administrator or moderator that banned you left the following message:"
 msgstr ""
 
-#: include/functions.php:450
+#: include/functions.php:421
 msgid "Please direct any inquiries to the forum administrator at"
 msgstr ""
 
-#: include/functions.php:480
+#: include/functions.php:451
 msgid ""
 "Usernames must not be more than 25 characters long. Please choose another "
 "(shorter) username."
 msgstr ""
 
-#: include/functions.php:492
+#: include/functions.php:463
 msgid ""
 "The username you entered contains one or more censored words. Please choose "
 "a different username."
 msgstr ""
 
-#: include/functions.php:507
+#: include/functions.php:478
 msgid ""
 "The username you entered is banned in this forum. Please choose another "
 "username."
 msgstr ""
 
-#: include/functions.php:652
+#: include/functions.php:623
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: include/functions.php:963 include/functions.php:978
-#: include/functions.php:1013 include/functions.php:1028
+#: include/functions.php:934 include/functions.php:949
+#: include/functions.php:984 include/functions.php:999
 msgid "…"
 msgstr ""
 
-#: include/functions.php:1056
+#: include/functions.php:1027
 msgid "We've got us a situation here."
 msgstr ""
 
-#: include/functions.php:1140
+#: include/functions.php:1111
 msgid "Today"
 msgstr ""
 
-#: include/functions.php:1142
+#: include/functions.php:1113
 msgid "Yesterday"
 msgstr ""
 
-#: include/functions.php:1159
+#: include/functions.php:1130
 msgid "."
 msgstr ""
 
-#: include/functions.php:1159
+#: include/functions.php:1130
 msgid ","
 msgstr ""
 
-#: include/functions.php:1196 include/functions.php:1216
+#: include/functions.php:1167 include/functions.php:1187
 msgid ""
 "Bad HTTP_REFERER. You were referred to this page from an unauthorized "
 "source. If the problem persists please make sure that \"Base URL\" is "
@@ -4123,29 +4111,29 @@ msgid ""
 "found in the Luna documentation."
 msgstr ""
 
-#: include/functions.php:1259
+#: include/functions.php:1230
 msgid ""
 "Bad CSRF hash. You were referred to this page from an unauthorized source."
 msgstr ""
 
-#: include/functions.php:1617
+#: include/functions.php:1588
 #, php-format
 msgid "%s "
 msgstr ""
 
-#: include/functions.php:2023
+#: include/functions.php:1994
 msgid "Debug information"
 msgstr ""
 
-#: include/functions.php:2028
+#: include/functions.php:1999
 msgid "Time (s)"
 msgstr ""
 
-#: include/functions.php:2029
+#: include/functions.php:2000
 msgid "Query"
 msgstr ""
 
-#: include/functions.php:2050
+#: include/functions.php:2021
 #, php-format
 msgid "Total query time: %s"
 msgstr ""
@@ -5063,8 +5051,7 @@ msgstr ""
 msgid ""
 "BBCode is a collection of tags that are used to change the look of text in "
 "this forum. Below you can find all the available BBCodes and how to use "
-"them. Administrators have the ability to disable BBCode. You can tell if "
-"BBCode is disabled whenever you comment a message or edit your signature."
+"them. Administrators have the ability to disable BBCode."
 msgstr ""
 
 #: themes/Fifteen/help.php:25
@@ -5372,7 +5359,8 @@ msgid "Why can't I see some threads or forums?"
 msgstr ""
 
 #: themes/Fifteen/help.php:187 themes/Fifteen/help.php:191
-#: themes/Sunrise/help.php:191 themes/Sunrise/help.php:195
+#: themes/Fifteen/help.php:199 themes/Sunrise/help.php:191
+#: themes/Sunrise/help.php:195 themes/Sunrise/help.php:203
 msgid ""
 "You might not have the correct permissions to do so, ask the forum "
 "administrator for more help."
@@ -5406,12 +5394,6 @@ msgstr ""
 
 #: themes/Fifteen/help.php:198 themes/Sunrise/help.php:202
 msgid "Why can't I search in more than one forum at once?"
-msgstr ""
-
-#: themes/Fifteen/help.php:199 themes/Sunrise/help.php:203
-msgid ""
-"You might not have the correct permissions to do so, ask the forums "
-"administrator for more help."
 msgstr ""
 
 #: themes/Fifteen/help.php:206 themes/Sunrise/help.php:212
