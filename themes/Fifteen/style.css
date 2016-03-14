@@ -112,6 +112,22 @@ body {
     box-shadow: none;
 }
 
+/* Header customization */
+.bkg-png .jumbotron.profile {
+    background-image: url('../../img/header.png') !important;
+}
+
+.bkg-jpg .jumbotron.profile {
+    background-image: url('../../img/header.jpg') !important;
+}
+
+@media (min-width:768px) {
+    .bkg-png .navbar,
+    .bkg-jpg .navbar {
+        background: rgba(0,0,0,.1) !important;
+    }
+}
+
 /* Fonts */
 body {
 	font-family: "Segoe UI","Open Sans",Helvetica,Arial,sans-serif;
