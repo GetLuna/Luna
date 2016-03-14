@@ -113,19 +113,34 @@ body {
 }
 
 /* Header customization */
-.bkg-png .jumbotron.profile {
+.bkg-png .jumbotron.profile,
+.bkg-png .navbar {
     background-image: url('../../img/header.png') !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.bkg-jpg .jumbotron.profile {
+.bkg-jpg .jumbotron.profile,
+.bkg-jpg .navbar {
     background-image: url('../../img/header.jpg') !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-@media (min-width:768px) {
-    .bkg-png .navbar,
-    .bkg-jpg .navbar {
-        background: rgba(0,0,0,.1) !important;
-    }
+.bkg-png .navbar,
+.bkg-jpg .navbar {
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.bkg-png .navbar-inverse .navbar-toggle,
+.bkg-png .navbar-inverse .navbar-toggle:hover,
+.bkg-png .navbar-inverse .navbar-toggle:focus,
+.bkg-jpg .navbar-inverse .navbar-toggle,
+.bkg-jpg .navbar-inverse .navbar-toggle:hover,
+.bkg-jpg .navbar-inverse .navbar-toggle:focus {
+    background: none !important;
 }
 
 /* Fonts */

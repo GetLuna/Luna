@@ -48,12 +48,20 @@ th {
 }
 
 /* Header customization */
-.bkg-png .jumboheader {
+.bkg-png .jumboheader,
+.bkg-png .navbar {
     background-image: url('../../img/header.png') !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.bkg-jpg .jumboheader {
+.bkg-jpg .jumboheader,
+.bkg-jpg .navbar {
     background-image: url('../../img/header.jpg') !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /* Text */
@@ -127,16 +135,18 @@ label .help-block {
     margin-bottom: 0;
 }
 
-.bkg-png .navbar-default,
-.bkg-jpg .navbar-default {
-    margin-bottom: -50px !important;    
+.bkg-png .navbar,
+.bkg-jpg .navbar {
+    border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-@media (min-width:768px) {
-    .bkg-png .navbar,
-    .bkg-jpg .navbar {
-        background: rgba(0,0,0,.1) !important;
-    }
+.bkg-png .navbar-inverse .navbar-toggle,
+.bkg-png .navbar-inverse .navbar-toggle:hover,
+.bkg-png .navbar-inverse .navbar-toggle:focus,
+.bkg-jpg .navbar-inverse .navbar-toggle,
+.bkg-jpg .navbar-inverse .navbar-toggle:hover,
+.bkg-jpg .navbar-inverse .navbar-toggle:focus {
+    background: none !important;
 }
 
 .navbar-default .navbar-brand,
@@ -226,11 +236,6 @@ label .help-block {
 	padding-bottom: 1px;
 	margin-bottom: 0;
     padding-top: 0;
-}
-
-.bkg-png .jumboheader,
-.bkg-jpg .jumboheader {
-    padding-top: 50px;
 }
 
 .jumboheader .row {
