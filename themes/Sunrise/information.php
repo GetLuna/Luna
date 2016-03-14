@@ -7,19 +7,19 @@ $xmlstr = <<<XML
 
 /*
  * Copyright (C) 2014-2016 Studio 384
- * Licensed under GPLv2 (http://getluna.org/license.php)
+ * Licensed under MIT
  */
 -->
 
 <style engine="1.0">
-  <id>sunrise</id>
-  <name>Sunrise</name>
-  <developer>Studio 384</developer>
-	<date>1 January 2016</date>
-  <version>2.0.1</version>
-  <minversion>1.3.0</minversion>
-  <maxversion>1.3.1</maxversion>
-  <description>Sunrise is a more classic take on the look and feel of forum software.</description>
+    <id>sunrise</id>
+    <name>Sunrise</name>
+    <developer>Studio 384</developer>
+	<date>14 March 2016</date>
+    <version>2.1-alpha.2</version>
+    <minversion>1.4-alpha.2</minversion>
+    <maxversion>1.4-alpha.2</maxversion>
+    <description>Sunrise is a more classic take on the look and feel of forum software.</description>
 </style>
 XML;
 ?>
