@@ -12,6 +12,7 @@ require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
+
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
@@ -59,6 +60,71 @@ if (isset($_POST['form_sent'])) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 		}
 	}
+    
+    if (isset($_FILES['req_file'])) {
+        $uploaded_file = $_FILES['req_file'];
+
+        // Make sure the upload went smooth
+        if (isset($uploaded_file['error'])) {
+            switch ($uploaded_file['error']) {
+                case 1: // UPLOAD_ERR_INI_SIZE
+                case 2: // UPLOAD_ERR_FORM_SIZE
+                    message(__('The selected file was too large to upload. The server didn\'t allow the upload.', 'luna'));
+                    break;
+
+                case 3: // UPLOAD_ERR_PARTIAL
+                    message(__('The selected file was only partially uploaded. Please try again.', 'luna'));
+                    break;
+
+                case 4: // UPLOAD_ERR_NO_FILE
+                    message(__('You did not select a file for upload.', 'luna'));
+                    break;
+
+                case 6: // UPLOAD_ERR_NO_TMP_DIR
+                    message(__('PHP was unable to save the uploaded file to a temporary location.', 'luna'));
+                    break;
+
+                default:
+                    // No error occured, but was something actually uploaded?
+                    if ($uploaded_file['size'] == 0)
+                        message(__('You did not select a file for upload.', 'luna'));
+                    break;
+            }
+        }
+
+        if (is_uploaded_file($uploaded_file['tmp_name'])) {
+            // Preliminary file check, adequate in most cases
+            $allowed_types = array('image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+            if (!in_array($uploaded_file['type'], $allowed_types))
+                message(__('The file you tried to upload is not of an allowed type. Allowed types are jpeg and png.', 'luna'));
+
+            // Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
+            if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT.'/img/header.tmp'))
+                message(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+
+            list($width, $height, $type,) = @getimagesize(LUNA_ROOT.'/img/header.tmp');
+
+            // Determine type
+            if ($type == IMAGETYPE_JPEG)
+                $extension = '.jpg';
+            elseif ($type == IMAGETYPE_PNG)
+                $extension = '.png';
+            else {
+                // Invalid type
+                @unlink(LUNA_ROOT.'/img/header.tmp');
+                message(__('The file you tried to upload is not of an allowed type. Allowed types are jpeg and png.', 'luna'));
+            }
+    
+            // Clean up existing headers
+            @unlink(LUNA_ROOT.'/img/header.png');
+            @unlink(LUNA_ROOT.'/img/header.jpg');
+            
+            // Do the final rename
+            @rename(LUNA_ROOT.'/img/header.tmp', LUNA_ROOT.'/img/header'.$extension);
+            @chmod(LUNA_ROOT.'/img/header'.$extension, 0644);
+        } else
+            message(__('An unknown error occurred. Please try again.', 'luna'));
+    }
 
 	// Regenerate the config cache
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
@@ -78,7 +144,7 @@ load_admin_nav('settings', 'appearance');
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
-<form class="form-horizontal" method="post" action="appearance.php">
+<form class="form-horizontal" method="post" enctype="multipart/form-data" action="appearance.php">
 	<input type="hidden" name="form_sent" value="1" />
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -138,6 +204,17 @@ if (isset($_GET['saved']))
 					<div class="col-sm-9">
 						<textarea class="form-control form-control-mono" name="form[custom_css]" placeholder="/* <?php _e('Custom CSS') ?> */" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_custom_css']) ?></textarea>
 					</div>
+				</div>
+                <hr />
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custome header here to show in the Mainstage (if theme provides support) and Backstage.', 'luna') ?></span></label>
+					<div class="col-sm-9">
+                        <fieldset>
+                            <input type="hidden" name="form_sent" value="1" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+                            <input name="req_file" type="file" />
+                        </fieldset>
+                    </div>
 				</div>
             </fieldset>
         </div>
