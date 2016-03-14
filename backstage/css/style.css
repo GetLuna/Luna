@@ -129,8 +129,14 @@ label .help-block {
 
 .bkg-png .navbar-default,
 .bkg-jpg .navbar-default {
-    background: rgba(0,0,0,.1) !important;
     margin-bottom: -50px !important;    
+}
+
+@media (min-width:768px) {
+    .bkg-png .navbar,
+    .bkg-jpg .navbar {
+        background: rgba(0,0,0,.1) !important;
+    }
 }
 
 .navbar-default .navbar-brand,
