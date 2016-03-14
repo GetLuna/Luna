@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-14 10:11+0100\n"
-"PO-Revision-Date: 2016-03-14 10:21+0100\n"
+"POT-Creation-Date: 2016-03-14 10:48+0100\n"
+"PO-Revision-Date: 2016-03-14 10:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: nl\n"
@@ -3128,7 +3128,7 @@ msgstr "Normaal"
 
 #: backstage/update.php:91 include/draw_functions.php:153
 msgid "Preview"
-msgstr "Voorbeeld"
+msgstr "Preview"
 
 #: backstage/update.php:92
 msgid "Nightly"
