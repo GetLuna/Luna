@@ -1,4 +1,4 @@
-/* Accent 12 - Black */
+/* Accent 12 - Beige */
 .navbar-default,
 .panel-default .panel-heading,
 .btn-primary,
@@ -6,11 +6,11 @@
 .btn-primary:active,
 .active.btn-primary,
 .open .btn-primary.dropdown-toggle {
-	background-color: #666;
+	background-color: #c78d68;
 }
 
 .jumboheader {
-	background-color: #555;
+	background-color: #bf815a;
 }
 
 .panel-primary > .panel-heading,
@@ -23,15 +23,15 @@
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-	background-color: #444;
+	background-color: #b57349;
 }
 
 .panel-default .panel-heading {
-	border-color: #666;
+	border-color: #c78d68;
 }
 
 .btn-primary {
-	border-color: #555;
+	border-color: #bf815a;
 }
 
 .panel-primary > .panel-heading,
@@ -42,14 +42,14 @@
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-	border-color: #444;
+	border-color: #bf815a;
 }
 
 @media all and (max-width:767px) {
 	.nav-tabs > li.active > a,
 	.nav-tabs > li.active > a:hover,
 	.nav-tabs > li.active > a:focus {
-		background-color: #666;
-		border-color: #666;
+		background-color: #c78d68;
+		border-color: #c78d68;
 	}
 }

@@ -1,4 +1,4 @@
-/* Accent 8 - Orange */
+/* Accent 8 - Yellow */
 .navbar-default,
 .panel-default .panel-heading,
 .btn-primary,
@@ -6,11 +6,11 @@
 .btn-primary:active,
 .active.btn-primary,
 .open .btn-primary.dropdown-toggle {
-	background-color: #ff7521;
+	background-color: #ffcb1a;
 }
 
 .jumboheader {
-	background-color: #ff5a21;
+	background-color: #ffb61a;
 }
 
 .panel-primary > .panel-heading,
@@ -23,15 +23,15 @@
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-	background-color: #ff4021;
+	background-color: #ffa11a;
 }
 
 .panel-default .panel-heading {
-	border-color: #ff7521;
+	border-color: #ffcb1a;
 }
 
 .btn-primary {
-	border-color: #ff5a21;
+	border-color: #ffb61a;
 }
 
 .panel-primary > .panel-heading,
@@ -42,14 +42,14 @@
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-	border-color: #ff4021;
+	border-color: #ffa11a;
 }
 
 @media all and (max-width:767px) {
 	.nav-tabs > li.active > a,
 	.nav-tabs > li.active > a:hover,
 	.nav-tabs > li.active > a:focus {
-		background-color: #ff7521;
-		border-color: #ff7521;
+		background-color: #ffcb1a;
+		border-color: #ffcb1a;
 	}
 }
