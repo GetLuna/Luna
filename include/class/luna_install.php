@@ -1219,11 +1219,6 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '\''.$db->escape($default_lang).'\''
 				),
-				'style'				=> array(
-					'datatype'		=> 'VARCHAR(25)',
-					'allow_null'	=> false,
-					'default'		=> '\''.$db->escape($default_style).'\''
-				),
 				'num_comments'			=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,
