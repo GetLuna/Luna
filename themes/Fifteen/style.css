@@ -114,7 +114,8 @@ body {
 
 /* Header customization */
 .bkg-png .jumbotron.profile,
-.bkg-png .navbar {
+.bkg-png .navbar,
+.bkg-png .heading {
     background-image: url('../../img/header.png') !important;
     background-position: center top;
     background-size: cover;
@@ -122,7 +123,8 @@ body {
 }
 
 .bkg-jpg .jumbotron.profile,
-.bkg-jpg .navbar {
+.bkg-jpg .navbar,
+.bkg-jpg .heading {
     background-image: url('../../img/header.jpg') !important;
     background-position: center top;
     background-size: cover;
