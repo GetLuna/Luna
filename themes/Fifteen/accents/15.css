@@ -1,4 +1,4 @@
-/* Accent 10 - Red */
+/* Accent 15 - Black */
 .navbar-inverse,
 .alert-all,
 .modal-form .modal-header,
@@ -11,14 +11,15 @@
 .list-group-item.new-item .label-default,
 .list-group-item.new-item:hover .label-default,
 .stats {
-	background-color: #ff4444;
+	background-color: #555555;
 }
 
 .panel-default .panel-heading,
 .thread-jumbotron,
 .jumbotron,
 .footer,
-.editor,
+.editor
+#comment,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -35,7 +36,7 @@
 .profile-header .jumbotron,
 .title-block-primary,
 .list-group.list-group-luna .list-group-item.active {
-	background-color: #e63838;
+	background-color: #444444;
 }
 
 .nav-tabs > li.active > a,
@@ -52,12 +53,12 @@ a.list-group-item.active:focus,
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:focus,
 .navbar-inverse .navbar-nav > .open > a:hover {
-	background-color: #d42f2f;
+	background-color: #333333;
 }
 
 @media all and (min-width:768px) {
 	.dropdown-menu {
-		background-color: #d42f2f;
+		background-color: #333333;
 	}
 }
 
@@ -70,13 +71,13 @@ blockquote,
 .night .search-form:hover,
 .night .night .search-form:focus,
 .night .search-form:active  {
-	border-color: #ff4444;
+	border-color: #555555;
 }
 
 .btn-primary,
 .tab-content-primary,
 .tab-content {
-	border-color: #e63838;
+	border-color: #444444;
 }
 
 .btn-primary,
@@ -90,7 +91,7 @@ a.list-group-item.active,
 a.list-group-item.active:hover,
 a.list-group-item.active:focus,
 .list-group-forum .list-group-item.active.new-item {
-	border-color: #d42f2f;
+	border-color: #333333;
 }
 
 a.list-group-item:hover,
@@ -106,18 +107,21 @@ a,
 blockquote footer,
 blockquote small,
 blockquote .small {
-	color:#e63838;
+	color:#444444;
 }
 
 a:hover,
 a:active {
-	color: #d42f2f;
+	color: #333333;
 }
 
 .night .comment-default a,
 .night .list-group-thread a,
 .night .list-group-thread a:focus,
 .night .table a,
-.night .user-entry a {
-    color: #ff8d8d;
+.night .user-entry a,
+.night blockquote footer,
+.night blockquote small,
+.night blockquote .small {
+    color: #ccc;
 }

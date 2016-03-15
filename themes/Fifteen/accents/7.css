@@ -1,4 +1,4 @@
-/* Accent 7 - Yellow */
+/* Accent 7 - Ao */
 .navbar-inverse,
 .alert-all,
 .modal-form .modal-header,
@@ -11,7 +11,7 @@
 .list-group-item.new-item .label-default,
 .list-group-item.new-item:hover .label-default,
 .stats {
-	background-color: #ffcb1a;
+	background-color: #08893e;
 }
 
 .panel-default .panel-heading,
@@ -35,7 +35,7 @@
 .profile-header .jumbotron,
 .title-block-primary,
 .list-group.list-group-luna .list-group-item.active {
-	background-color: #ffb61a;
+	background-color: #047a36;
 }
 
 .nav-tabs > li.active > a,
@@ -52,12 +52,12 @@ a.list-group-item.active:focus,
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:focus,
 .navbar-inverse .navbar-nav > .open > a:hover {
-	background-color: #ffa11a;
+	background-color: #016a2d;
 }
 
 @media all and (min-width:768px) {
 	.dropdown-menu {
-		background-color: #ffa11a;
+		background-color: #016a2d;
 	}
 }
 
@@ -70,13 +70,13 @@ blockquote,
 .night .search-form:hover,
 .night .night .search-form:focus,
 .night .search-form:active  {
-	border-color: #ffcb1a;
+	border-color: #08893e;
 }
 
 .btn-primary,
 .tab-content-primary,
 .tab-content {
-	border-color: #ffb61a;
+	border-color: #047a36;
 }
 
 .btn-primary,
@@ -90,7 +90,7 @@ a.list-group-item.active,
 a.list-group-item.active:hover,
 a.list-group-item.active:focus,
 .list-group-forum .list-group-item.active.new-item {
-	border-color: #ffa11a;
+	border-color: #016a2d;
 }
 
 a.list-group-item:hover,
@@ -106,10 +106,18 @@ a,
 blockquote footer,
 blockquote small,
 blockquote .small {
-	color:#ffb61a;
+	color:#047a36;
 }
 
 a:hover,
 a:active {
-	color: #ffa11a;
+	color: #016a2d;
+}
+
+.night .comment-default a,
+.night .list-group-thread a,
+.night .list-group-thread a:focus,
+.night .table a,
+.night .user-entry a {
+    color: #5dc488;
 }
