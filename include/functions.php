@@ -67,10 +67,6 @@ function check_cookie(&$luna_user) {
 		if (!file_exists(LUNA_ROOT.'lang/'.$luna_user['language']))
 			$luna_user['language'] = $luna_config['o_default_lang'];
 
-		// Set a default style if the user selected style no longer exists
-		if (!file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/style.css'))
-			$luna_user['style'] = $luna_config['o_default_style'];
-
 		if (!$luna_user['disp_threads'])
 			$luna_user['disp_threads'] = $luna_config['o_disp_threads'];
 		if (!$luna_user['disp_comments'])
@@ -316,7 +312,6 @@ function set_default_user() {
 	$luna_user['disp_comments'] = $luna_config['o_disp_comments'];
 	$luna_user['php_timezone'] = $luna_config['o_timezone'];
 	$luna_user['language'] = $luna_config['o_default_lang'];
-	$luna_user['style'] = $luna_config['o_default_style'];
 	$luna_user['is_guest'] = true;
 	$luna_user['is_admmod'] = false;
 }
@@ -2062,13 +2057,13 @@ function get_template_path($tpl_file) {
 // Get the view that is required
 //
 function get_view_path($object) {
-	global $luna_user, $luna_config;
+	global $luna_config;
 
 	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 
-	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
-		return LUNA_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object;
+	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/objects/'.$object)))
+		return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/objects/'.$object;
 	else
 		return LUNA_ROOT.'themes/'.$theme_info->parent_theme.'/objects/'.$object;
 }
