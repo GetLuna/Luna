@@ -207,7 +207,7 @@ if (isset($_GET['saved']))
 				</div>
                 <hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custome header here to show in the Mainstage and Backstage', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna') ?></span></label>
 					<div class="col-sm-9">
                         <fieldset>
                             <input type="hidden" name="form_sent" value="1" />
