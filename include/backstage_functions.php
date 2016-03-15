@@ -155,7 +155,7 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 			<?php if ($section == 'backstage') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-fw fa-tachometer"></span><span class="hidden-xs"> <?php _e('Backstage', 'luna') ?></span></a></li>
-				<li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php _e('System info', 'luna') ?></span></a></li>
+				<li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php _e('System', 'luna') ?></span></a></li>
 				<li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-fw fa-cloud-upload"></span><span class="hidden-xs"> <?php _e('Update', 'luna') ?></span></a></li>
 				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="fa fa-fw fa-moon-o"></span><span class="hidden-xs"> <?php _e('About', 'luna') ?></span></a></li>
 			</ul>
