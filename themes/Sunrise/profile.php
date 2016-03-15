@@ -22,7 +22,7 @@ if (!defined('FORUM'))
 		<h2 class="profile-title"><?php echo luna_htmlspecialchars($user['username']) ?></h2>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('About user', 'luna') ?></h3>
+				<h3 class="panel-title"><?php echo luna_htmlspecialchars($user['username']) ?></h3>
 			</div>
 			<div class="panel-body">
 				<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>

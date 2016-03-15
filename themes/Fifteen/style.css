@@ -789,6 +789,7 @@ hr {
 	opacity: .2;
 	margin: 0;
 	margin-bottom: -11px;
+    overflow: hidden;
 	z-index: 999;
 }
 

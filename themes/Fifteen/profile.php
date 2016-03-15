@@ -26,7 +26,7 @@ if (!defined('FORUM'))
 		</div>
 		<div class="col-xs-12 col-sm-9">
             <div class="title-block title-block-primary">
-                <h2><i class="fa fa-fw fa-user"></i> <?php _e('About', 'luna') ?></h2>
+                <h2><i class="fa fa-fw fa-user"></i> <?php echo luna_htmlspecialchars($user['username']) ?></h2>
             </div>
             <div class="tab-content">
                 <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
