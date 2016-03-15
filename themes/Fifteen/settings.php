@@ -55,7 +55,7 @@ else
 									<?php echo $username_field ?>
 								</div>
 							</div>
-							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($cur_user['password']) != 40)): ?>
+							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($user['salt']) != NULL)): ?>
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?></label>
 								<div class="col-sm-9">
