@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 	<div class="row">
 		<div class="col-xs-12 col-sm-3 sidebar">
 			<div class="container-avatar">
-				<img src="<?php echo get_avatar( $user['id'] ) ?>" alt="Avatar" class="img-avatar img-center">
+				<img src="<?php echo get_avatar( $luna_user['id'] ) ?>" alt="Avatar" class="img-avatar img-center">
 			</div>
 			<?php load_me_nav('inbox'); ?>
 		</div>
