@@ -2,7 +2,7 @@
 	<div class="comment-heading">
 		<div class="media">
 			<div class="media-left">
-				<img class="media-object comment-avatar" src="<?php echo get_avatar( $cur_comment ) ?>" alt="Avatar">
+				<img class="media-object comment-avatar" src="<?php echo get_avatar( $cur_comment['commenter_id'] ) ?>" alt="Avatar">
 			</div>
 			<div class="media-body">
 				<h4 class="media-heading"><?php printf(__('By %s', 'luna'), $username) ?><small> <?php __('on', 'luna') ?> <a class="commenttime" href="<?php if (!isset($inbox)) { echo 'thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id']; } else { echo 'viewinbox.php?tid='.$cur_comment['shared_id'].'&mid='.$cur_comment['mid']; } ?>"><?php echo format_time($cur_comment['commented']) ?></a></small></h4>
