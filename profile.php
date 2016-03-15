@@ -43,13 +43,13 @@ $user_personality[] = '<b>'.__('Title', 'luna').':</b> '.(($luna_config['o_censo
 $user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$comments_field = forum_number_format($user['num_comments']);
 
 if ($user['num_comments'] > 0)
-	$user_personality[] = '<b>'.__('Last comment', 'luna').':</b> '.$last_comment;
+	$user_personality[] = '<b>'.__('Latest comment', 'luna').':</b> '.$last_comment;
 
 $user_activity[] = '<b>'.__('Registered', 'luna').':</b> '.format_time($user['registered'], true);
 
 $user_personality[] = '<b>'.__('Registered since', 'luna').':</b> '.format_time($user['registered'], true);
 
-$user_personality[] = '<b>'.__('Last visit', 'luna').':</b> '.format_time($user['last_visit'], true);
+$user_personality[] = '<b>'.__('Latest visit', 'luna').':</b> '.format_time($user['last_visit'], true);
 
 if ($user['realname'] != '')
 	$user_personality[] = '<b>'.__('Real name', 'luna').':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
