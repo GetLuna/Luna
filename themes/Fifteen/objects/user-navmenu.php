@@ -10,7 +10,7 @@ if (!empty($items['backstage'])) {
 if(!empty($items['notifications'])) {
 	$item = $items['notifications'];
 ?>
-								<li id="navnotification" class="dropdown">
+								<li id="navnotification" class="dropdown<?php if ($item['num']) echo ' animated flash'; ?>">
 									<a href="<?php echo $item['url']; ?>"<?php if ($item['flyout']) { ?> data-flyout="flyout" class="dropdown-toggle" data-toggle="dropdown"<?php } ?>><?php if (!$item['num']) { ?><span class="fa fa-fw fa-circle-o"></span><?php } else { ?><span id="notifications-number"><?php if ($item['num']) echo $item['num']; ?></span> <span class="fa fa-fw fa-circle"></span><?php } ?> <span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a>
 <?php if ($item['flyout']) { ?>
 									<ul class="dropdown-menu notification-menu"></ul>
