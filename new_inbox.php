@@ -93,7 +93,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		// Quote the message
 		$p_message = '[quote='.$re_message['sender'].']'.$re_message['message'].'[/quote]';
 	}
-} if (!empty($edit) && !isset($_POST['form_sent'])) { // It's an edit
+} else if (!empty($edit) && !isset($_POST['form_sent'])) { // It's an edit
 	// Make sure they got here from the site
 	confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 
@@ -114,7 +114,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
 	// Insert the message
 	$p_message = censor_words($edit_msg['message']);
-} if (isset($_POST['form_sent'])) { // The comment button has been pressed
+} else if (isset($_POST['form_sent'])) { // The comment button has been pressed
 	// Make sure they got here from the site
 	confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 
