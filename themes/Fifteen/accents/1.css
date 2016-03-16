@@ -51,7 +51,15 @@ a.list-group-item.active:focus,
 .list-group-forum .list-group-item.active.new-item,
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:focus,
-.navbar-inverse .navbar-nav > .open > a:hover {
+.navbar-inverse .navbar-nav > .open > a:hover,
+.btn-primary:hover:active, .btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:focus:active,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary.focus:active,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
 	background-color: #0589de;
 }
 

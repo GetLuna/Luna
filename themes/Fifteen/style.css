@@ -115,7 +115,9 @@ body {
 /* Header customization */
 .bkg-png .jumbotron.profile,
 .bkg-png .navbar,
-.bkg-png .heading {
+.bkg-png .heading,
+.bkg-png.bkg-force body,
+.bkg-png.bkg-force .title-block-primary {
     background-image: url('../../img/header.png') !important;
     background-position: center top;
     background-size: cover;
@@ -124,7 +126,9 @@ body {
 
 .bkg-jpg .jumbotron.profile,
 .bkg-jpg .navbar,
-.bkg-jpg .heading {
+.bkg-jpg .heading,
+.bkg-jpg.bkg-force body,
+.bkg-jpg.bkg-force .title-block-primary {
     background-image: url('../../img/header.jpg') !important;
     background-position: center top;
     background-size: cover;
@@ -906,6 +910,24 @@ hr {
 	width: auto;
 }
 
+.profile .profile-btn-nav .btn-group {
+    margin-bottom: 10px;
+}
+
+.profile .profile-btn-nav .btn {
+    box-shadow: none;
+}
+
+.profile .profile-btn-nav .btn.btn-primary:not(.active) {
+    background: #eee;
+    color: #555;
+}
+
+.profile .profile-btn-nav h4 {
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+
 .profile .img-avatar {
 	margin-top: -40px;
 	margin-bottom: 10px;
@@ -1447,6 +1469,11 @@ blockquote footer {
 
 .night .status-closed {
     color: #f34040;
+}
+
+.night .profile .profile-btn-nav .btn.btn-primary:not(.active) {
+    background: #505050;
+    color: #ddd;
 }
 
 .night .search-form {
