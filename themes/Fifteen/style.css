@@ -644,6 +644,26 @@ hr {
 	background: #ea4322;
 }
 
+/* Forum */
+@media all and (min-width:768px) {
+	.title-block-forum .forum-title {
+        display: inline;
+        margin-bottom: 0;
+	}
+    
+	.title-block-forum .forum-desc {
+        margin-top: 4px;
+	}
+    
+    .title-block-forum .naviton .btn {
+        float: right;
+    }
+}
+
+.title-block-forum .forum-title {
+    margin-bottom: 6px;
+}
+
 /* Comment */
 .comment-default {
 	background-color: #efefef;
