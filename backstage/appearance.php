@@ -13,6 +13,15 @@ require LUNA_ROOT.'include/common.php';
 if (!$is_admin)
 	header("Location: login.php");
 
+if (isset($_GET['remove-header'])) {
+	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
+
+    @unlink(LUNA_ROOT.'/img/header.png');
+    @unlink(LUNA_ROOT.'/img/header.jpg');
+
+	redirect('backstage/appearance.php?saved=true');
+}
+
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
@@ -207,7 +216,12 @@ if (isset($_GET['saved']))
 				</div>
                 <hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label">
+                        <?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna') ?></span>
+                        <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
+                            <a class="btn btn-danger" href="?remove-header"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete header', 'luna') ?></a>
+                        <?php } ?>
+                    </label>
 					<div class="col-sm-9">
                         <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
                             <div class="restrict-size"></div>
