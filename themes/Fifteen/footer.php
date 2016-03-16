@@ -93,7 +93,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
-					<?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
+					<?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
 					</span>
 					<span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
 				</div>

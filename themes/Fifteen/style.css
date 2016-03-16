@@ -1225,6 +1225,10 @@ footer a:hover {
 footer .dropup {
     display: inline;
 }
+
+footer .back-to-top {
+    padding: 10px 13px;
+}
 	
 .stats {
 	font-size: 110%;
