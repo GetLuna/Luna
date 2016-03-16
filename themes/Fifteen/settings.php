@@ -197,7 +197,7 @@ else
 		// Only display the language selection box if there's more than one language available
 		if (count($languages) > 1) {
 		?>
-				<hr />
+				            <hr />
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Language', 'luna') ?></label>
 								<div class="col-sm-9">
