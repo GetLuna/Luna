@@ -22,8 +22,17 @@
 .pagination > .active > a:hover,
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
-.pagination > .active > span:focus {
+.pagination > .active > span:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
 	background-color: #ffa11a;
+}
+
+@media all and (min-width:768px) {
+	.dropdown-menu {
+		background-color: #ffa11a;
+	}
 }
 
 .panel-default .panel-heading {

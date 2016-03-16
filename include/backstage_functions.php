@@ -80,7 +80,7 @@ function load_admin_nav($section, $page) {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="../index.php"><span class="fa fa-fw fa-arrow-left hidden-xs"></span><span class="visible-xs-inline"><?php echo $page_title ?></span></a>
+			<a class="navbar-brand" href="../index.php"><span class="fa fa-fw fa-angle-left hidden-xs"></span><span class="visible-xs-inline"><?php echo $page_title ?></span></a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
@@ -124,13 +124,13 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
                         <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?><span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><?php _e('Profile', 'luna') ?></a></li>
-						<li><a href="../settings.php?id=<?php echo ''.$luna_user['id'] ?>"><?php _e('Settings', 'luna') ?></a></li>
+						<li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><i class="fa fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a></li>
+						<li><a href="../settings.php?id=<?php echo ''.$luna_user['id'] ?>"><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a></li>
 						<li class="divider"></li>
-						<li><a href="../help.php"><?php _e('Help', 'luna') ?></a></li>
-						<li><a href="http://getluna.org"><?php _e('Support', 'luna') ?></a></li>
+						<li><a href="../help.php"><i class="fa fa-fw fa-info-circle"></i> <?php _e('Help', 'luna') ?></a></li>
+						<li><a href="http://getluna.org"><i class="fa fa-fw fa-support"></i> <?php _e('Support', 'luna') ?></a></li>
 						<li class="divider"></li>
-						<li><a href="<?php echo $logout_url; ?>"><?php _e('Logout', 'luna') ?></a></li>
+						<li><a href="<?php echo $logout_url; ?>"><i class="fa fa-fw fa-sign-out"></i> <?php _e('Logout', 'luna') ?></a></li>
 					</ul>
 				</li>
 				<li id="navlogout" class="hide-if-js">
