@@ -297,6 +297,27 @@ label .help-block {
 	border: none;
 }
 
+.bkg-jpg .nav-tabs > li.active > a,
+.bkg-jpg .nav-tabs > li.active > a:hover,
+.bkg-jpg .nav-tabs > li.active > a:focus,
+.bkg-png .nav-tabs > li.active > a,
+.bkg-png .nav-tabs > li.active > a:hover,
+.bkg-png .nav-tabs > li.active > a:focus {
+	color: #fff;
+	border-color: rgba(255,255,255,0);
+	background-color: rgba(255,255,255,.2);
+}
+
+.bkg-jpg .nav-tabs > li > a:hover,
+.bkg-jpg .nav > li > a:hover,
+.bkg-jpg .nav > li > a:focus,
+.bkg-png .nav-tabs > li > a:hover,
+.bkg-png .nav > li > a:hover,
+.bkg-png .nav > li > a:focus {
+	background-color: rgba(255,255,255,.1);
+	border-color: rgba(255,255,255,0);
+}
+
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
@@ -415,13 +436,13 @@ h3.panel-title {
 	margin-bottom: 0;
 }
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
 	.panel {
 		margin-top: 10px;
 	}
 }
 
-@media all and (max-width: 991px) {
+@media all and (max-width: 767px) {
 	.panel {
 		margin-bottom: 0;
         margin-top: 0;
@@ -634,13 +655,13 @@ a.label-new {
     margin-bottom: 10px;
 }
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
     .alert {
 		margin-top: 10px;
 	}
 }
 
-@media all and (max-width: 991px) {
+@media all and (max-width: 767px) {
     .alert {
 		margin-top: 0;
 		margin-bottom: 0;
