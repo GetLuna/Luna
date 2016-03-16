@@ -636,12 +636,13 @@ a.label-new {
 
 @media all and (min-width: 992px) {
     .alert {
-		margin-top: 11px;
+		margin-top: 10px;
 	}
 }
 
 @media all and (max-width: 991px) {
     .alert {
+		margin-top: 0;
 		margin-bottom: 0;
 	}
 }
