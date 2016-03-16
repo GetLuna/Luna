@@ -209,11 +209,11 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna') ?></span></label>
 					<div class="col-sm-9">
-                        <fieldset>
-                            <input type="hidden" name="form_sent" value="1" />
-                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
-                            <input name="req_file" type="file" />
-                        </fieldset>
+                        <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
+                            <div class="restrict-size"></div>
+                        <?php } ?>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+                        <input name="req_file" type="file" />
                     </div>
 				</div>
             </fieldset>
