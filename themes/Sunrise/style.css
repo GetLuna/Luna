@@ -92,6 +92,12 @@ hr {
 	margin-bottom: 10px;
 }
 
+@media all and (max-width:991px) {
+	.container {
+		width: 100%;
+	}
+}
+
 /* Header */
 #header {
 	background: #b14bbd;
@@ -690,6 +696,17 @@ hr {
 	padding-top: 15px;
 }
 
+.profile-nav .list-group-item {
+    margin-top: 2px;
+}
+
+.profile-nav .list-group-item.active,
+.profile-nav .list-group-item.active:hover,
+.profile-nav .list-group-item.active:focus,
+.profile-nav .list-group-item {
+    border-color: transparent !important;
+}
+
 .profile-nav .list-group {
 	margin-bottom: 0;
 	margin-top: 10px;
@@ -709,7 +726,13 @@ hr {
 
 .profile-title {
 	margin-top: 10px;
-	margin-bottom: 11px;
+	margin-bottom: 10px;
+    display: inline;
+}
+
+.profile .nav-tab-info-block {
+    padding-top: 10px;
+    margin-top: 15px;
 }
 
 .profile-card-nav {
@@ -1827,289 +1850,239 @@ blockquote footer {
 	}
 }
 
+/* Editor */
+.editor {
+	padding: 10px;
+	background: #2788cb;
+    margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.tab-content .editor:last-child {
+	margin-bottom: 0;
+}
+
+.editor .btn {
+	padding: 9px 13px;
+	color: #2788cb;
+}
+
+.editor .btn-toolbar-top {
+	margin-bottom: 10px;
+}
+
+.editor .btn-toolbar-bottom {
+	margin-top: 10px;
+}
+
+.editor *, .editor .btn:hover, .open > .dropdown-toggle.btn-default, .editor textarea:focus {
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+
+.editor .dropdown-menu {
+	background-color: #136cab;
+	padding: 0;
+	border: none;
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.editor .dropdown-menu > li > a {
+	color: #fff;
+	padding: 8px 15px;
+}
+
+.editor .dropdown-menu > li > a:focus,
+.editor .dropdown-menu > li > a:hover {
+	color: #fff;
+	background-color: rgba(0,0,0,.2);
+}
+
+.editor .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+	background-color: rgba(0,0,0,.1);
+	margin: 0;
+}
+
+.editor .info-textfield {
+	margin-bottom: 10px;
+}
+
+.editor .btn-success {
+    color: #fff !important;
+}
 
 /* Night mode */
 .night body,
 html.night {
-	color: #ddd;
-	background-color: #333;
+    background: #292929;
+    color: #fff;
 }
 
-.night .container-main {
-	background-color: #444;
-	box-shadow: 0 0 30px #222;
+.night body .help-block {
+    color: #bbb;
+}
+
+.night .tab-pane,
+.night .panel-body,
+.night .profile-card-body {
+    background: #404040;
+    border: none;
 }
 
 .night hr {
-	border-top-color: #555;
+    border-color: #333;
 }
 
-.night .accent-group .btn {
-	border-color: #444 !important;
+.night .list-group.list-group-thread .list-group-item {
+    background-color: #4a4a4a;
+    border-left: 6px solid #454545;
 }
 
-.night .accent-group .btn:hover,
-.night .accent-group .btn:focus,
-.night .accent-group .btn:active,
-.night .accent-group .active.btn {
-	border-color: #666 !important;
+.night .list-group.list-group-thread .list-group-item:hover {
+    background-color: #505050;
 }
 
-.night .nav-tabs,
-.night .panel-border .panel-body,
-.night .panel-border .comment-field,
-.night .panel-border .panel-footer {
-	border-color: #555;
+.night .list-group-thread .list-group-item .label {
+    background: #404040;
 }
 
-.night .panel-default,
-.night .tab-pane,
-.night .profile-card-body {
-	background-color: #444;
-	border-color: #555;
+.night .list-group-thread .list-group-item:hover .label {
+    background: #464646;
 }
 
 .night .list-group-item {
-	background-color: #444;
+    background: #404040;
 }
 
-.night .list-group-item,
-.night .list-group-item.active,
-.night .list-group-item.active:hover {
-	color: #fff;
-	border-color: #555;
+.night .list-group.list-group-luna :not(.active).list-group-item:hover {
+    background: #333;
 }
 
-.night .list-group-item:hover {
-	background-color: #404040;
+.night .list-group-item {
+    color: #fff;
 }
 
-.night a.list-group-item:hover,
-.night .col-sm-9 a,
-.night a:focus,
-.night .footer a {
-	color: #fff;
+.night .nav-tabs li.active a,
+.night .nav-tabs li.active a:hover,
+.night .nav-tabs li.active a:focus {
+    background: #404040;
+    color: #fff;
 }
 
-.night .panel .btn-default,
-.night .footer .dropdown-menu > li > a {
-	color: #444 !important;
-}
-
-.night .list-group-forum .list-group-item.new-item {
-	background-color: #3b3b3b;
-	border-color: #333;
-}
-
-.night #search .panel-body,
-.night .user-entry {
-	background-color: #555;
-}
-
-.night .list-group-forum a.list-group-item {
-	border-color: #3f3f3f;
-}
-
-.night .label-default {
-	background-color: #333;
-}
-
-.night .well-comment .media {
-	background-color: #333;
-}
-
-.night .comment .panel-default {
-	background-color: #3b3b3b;
-}
-
-.night .list-group-thread .list-group-item {
-	background-color: #404040;
-	border-color: #3e3e3e;
-}
-
-.night .list-group-thread .list-group-item.new-item {
-	background-color: #3b3b3b;
-	border-color: #333;
-}
-
-.night .list-group-thread .list-group-item:hover {
-	background-color: #3b3b3b;
-}
-
-.night .panel-editor .btn-default {
-	background-color: #333;
-}
-
-.night .panel-editor .btn-default:hover {
-	background-color: #3f3f3f;
-}
-
-.night .textarea-toolbar .btn-group,
-.night .textarea-top,
-.night .textarea-bottom {
-	border-color: #555;
-}
-
-.night .panel-default .editor {
-	background-color: #333;
-}
-
-.night .panel-editor .btn-default {
-	color: #fff;
-}
-
-.night .input-group-addon {
-	border-color: #222;
+.night .list-group-luna .list-group-item:hover {
+    color: #fff;
 }
 
 .night .form-control {
-	color: #ddd;
-	background-color: #333;
-	border-color: #222;
+    background: #404040;
+    color: #fff;
+    border-color: #333;
 }
 
 .night .well {
-	background-color: #3d3d3d;
-	border-color: #333;
+    background: #494949;
+    border-color: #404040;
 }
 
-.night .btn-search {
-	color: #ddd;
-	background-color: #333;
+.night .accent-group .btn {
+    border-color: #444 !important;
 }
 
-.night .btn-search:hover {
-	background-color: #393939;
+.night .accent-group .btn.active,
+.night .accent-group .btn:hover {
+    border-color: #555 !important;
 }
 
-.night .table > tbody > tr > td {
-	color: #fff;
-	background-color: #444;
+.night .comment-default {
+    background-color: #4f4f4f;
 }
 
-.night .table > thead > tr > th {
-	border-color: #555;
+.night .comment-default .comment-heading,
+.night .user-entry {
+    background-color: #4a4a4a;
 }
 
-.night .marked .panel-body {
-	background-color: #6e4e40;
+.night #comment input[type='text'],
+.night #edit input[type='text'] {
+    background-color: #545454;
 }
 
-.night .marked .panel-body,
-.night .marked .panel-body hr {
-	border-color: #5f311e;
+.night .table-striped > tbody > tr:nth-of-type(2n+1) {
+    background: #4f4f4f;
 }
 
-.night .soft .panel-body {
-	background-color: #4e4b3b;
+.night .table > thead > tr > th,
+.night .table > tbody > tr > th,
+.night .table > tfoot > tr > th,
+.night .table > thead > tr > td,
+.night .table > tbody > tr > td,
+.night .table > tfoot > tr > td {
+    border-color: #595959;
 }
 
-.night .soft .panel-body,
-.night .soft .panel-body hr {
-	border-color: #655a24;
+.night .table-hover > tbody > tr:hover,
+.night .table > thead > tr > td.active,
+.night .table > tbody > tr > td.active,
+.night .table > tfoot > tr > td.active,
+.night .table > thead > tr > th.active,
+.night .table > tbody > tr > th.active,
+.night .table > tfoot > tr > th.active,
+.night .table > thead > tr.active > td,
+.night .table > tbody > tr.active > td,
+.night .table > tfoot > tr.active > td,
+.night .table > thead > tr.active > th,
+.night .table > tbody > tr.active > th,
+.night .table > tfoot > tr.active > th {
+    background: #505050;
 }
 
-.night .answer .panel-body {
-	background-color: #3f4b34;
+.night pre {
+    border: #444;
 }
 
-.night .answer .panel-body,
-.night .answer .panel-body hr {
-	border-color: #2e3d20;
+.night .status-solved {
+    color: #77ca62;
 }
 
-.night .list-group-item-success {
-	background-color: #2e3d20;
-	border-left-color: #27301f !important;
+.night .status-pinned {
+    color: #ffd800;
 }
 
-.night .list-group-item-success:hover {
-	background-color: #27301f !important;
-	border-left-color: #22271e !important;
+.night .status-new {
+    color: #dddddd;
 }
 
-.night .list-group-item-danger {
-	background-color: #60301a;
-	border-left-color: #4d3023 !important;
+.night .status-important {
+    color: #9985cb;
 }
 
-.night .list-group-item-danger:hover {
-	background-color: #4d3023 !important;
-	border-left-color: #443027 !important;
+.night .status-moved {
+    color: #38a2eb;
 }
 
-.night .nav-tabs > li.active > a,
-.night .nav-tabs > li.active > a:focus,
-.night .nav-tabs > li.active > a:hover,
-.night .nav-tabs > li > a:hover,
-.night .nav-tabs > li > a:focus {
-	background-color: rgba(0,0,0,.3);
+.night .status-closed {
+    color: #f34040;
 }
 
-.night .list-group-transparent .list-group-item,
-.night .list-group-transparent a.list-group-item.list-group-item-danger  {
-	background: rgba(0,0,0,.2);
-	border: none;
+.night .profile .profile-btn-nav .btn.btn-primary:not(.active) {
+    background: #505050;
+    color: #ddd;
 }
 
-.night .list-group-transparent a.list-group-item:focus,
-.night .list-group-transparent a.list-group-item:hover,
-.night .list-group-transparent a.list-group-item.active {
-	background: rgba(0,0,0,.4);
+.night .search-form {
+    border-color: #555;
 }
 
-.night .list-group-transparent a.list-group-item.list-group-item-danger:focus,
-.night .list-group-transparent a.list-group-item.list-group-item-danger:hover {
-	background: rgba(0,0,0,.6);
+.night .search-form input[type='text'],
+.night .search-form .btn {
+    background: #555;
 }
 
-.night .navbar-default {
-	background: rgba(0,0,0,.1);
+.night .search-form .btn {
+    color: #fff;
 }
 
-.night .navbar-default .navbar-form .form-control,
-.night .first-run-login .form-control {
-	background: rgba(0,0,0,.3);
-}
-
-.night .navbar-default .navbar-form .btn {
-	background: rgba(0,0,0,.3);
-}
-
-.night .forum-row,
-.night .thread-row {
-	color: #fff;
-	background-color: #484848;
-}
-
-.night .forum-row.roweven,
-.night .thread-row.roweven {
-	background-color: #3f3f3f;
-}
-
-.night a {
-	color: #4d9ee4;
-}
-
-.night a:hover {
-	color: #337ab7;
-}
-
-.night .btn,
-.night .btn:hover,
-.night a.label,
-.night a.label:hover {
-	color: #fff;
-}
-
-.night .btn-default,
-.night .btn-default:hover {
-	color: #444;
-}
-
-.night .forum-row.roweven.new-item,
-.night .thread-row.roweven.new-item,
-.night .forum-row.rowodd.new-item,
-.night .thread-row.rowodd.new-item {
-	background-color: #505050 !important;
+.night .search-form .form-control {
+    border-color: transparent;
 }
