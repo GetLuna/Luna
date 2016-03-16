@@ -36,7 +36,7 @@ else
 					<h2><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="pull-right"><button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-fw fa-user"></i><span class="hidden-sm hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#theme" aria-controls="theme" role="tab" data-toggle="tab"><i class="fa fa-fw fa-paint-brush"></i><span class="hidden-sm hidden-xs"> <?php _e('Theme', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fa fa-fw fa-pencil"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fa fa-fw fa-share-alt"></i><span class="hidden-sm hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#thread" aria-controls="thread" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i><span class="hidden-sm hidden-xs"> <?php _e('Thread', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><i class="fa fa-fw fa-clock-o"></i><span class="hidden-sm hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
@@ -123,7 +123,7 @@ else
 							<?php } ?>
 						</fieldset>
 					</div>
-					<div role="tabpanel" class="tab-pane" id="theme">
+					<div role="tabpanel" class="tab-pane" id="appearance">
 						<fieldset class="form-horizontal form-setting">
 							<div class="form-group<?php if ($luna_config['o_allow_accent_color'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
 								<label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
@@ -189,7 +189,6 @@ else
 		?>
 									</div>
 								</div>
-								<hr />
 							</div>
 		<?php
 		
@@ -198,6 +197,7 @@ else
 		// Only display the language selection box if there's more than one language available
 		if (count($languages) > 1) {
 		?>
+				<hr />
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Language', 'luna') ?></label>
 								<div class="col-sm-9">
