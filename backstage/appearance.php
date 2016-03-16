@@ -226,7 +226,7 @@ if (isset($_GET['saved']))
                         <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
                             <div class="restrict-size"></div>
                         <?php } ?>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+                        <input type="hidden" name="MAX_FILE_SIZE" value="5120000" />
                         <input name="req_file" type="file" />
                     </div>
 				</div>
