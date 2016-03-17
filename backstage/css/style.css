@@ -271,7 +271,7 @@ label .help-block {
 	margin-left: 0;
 }
 
-@media all and (max-width: 991px) {
+@media all and (max-width: 767px) {
 	.jumboheader {
 		margin-bottom: 0;
 	}
@@ -417,6 +417,17 @@ h3.panel-title {
 .form-horizontal .form-group {
     margin-left: 0;
     margin-right: 0;
+}
+
+.form-horizontal .control-label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@media all and (min-width:768px) {
+    .form-horizontal .control-label {
+        padding-top: 5px;
+    }
 }
 
 .panel-body .form-group:last-child,
@@ -756,6 +767,13 @@ a.label-new {
 
 .moderate-pagination {
 	margin-top: 20px !important;
+}
+
+/* List groups */
+.list-group-item {
+    border: none;
+    margin-bottom: 1px;
+    background: #eee;
 }
 
 /* Color choise */
@@ -1239,4 +1257,13 @@ a.label-new {
 
 .night .search-form .form-control {
     border-color: transparent;
+}
+
+.night .list-group-item {
+    background: #4d4d4d;
+}
+
+.night .list-group-item:hover {
+    background: #565656;
+    color: #fff;
 }
