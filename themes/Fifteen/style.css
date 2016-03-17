@@ -1348,6 +1348,7 @@ footer .back-to-top {
 
 blockquote {
 	font-size: 14px;
+    padding: 0 10px 4px 10px;
 }
 
 blockquote footer {
