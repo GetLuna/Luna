@@ -361,6 +361,14 @@ h3.panel-title {
 	margin-top: -2px;
 }
 
+.panel-body {
+    padding: 10px;
+}
+
+.panel-heading {
+    padding: 10px 15px 10px 10px;
+}
+
 .panel-body,
 .panel .table {
 	border-top: none;
