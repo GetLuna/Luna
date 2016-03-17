@@ -384,6 +384,10 @@ hr {
 	.footer #backtotop {
 		text-align: right;
 	}
+    
+    .footer .container {
+        padding: 0;
+    }
 }
 
 /* Navbar */
@@ -1704,7 +1708,6 @@ blockquote footer {
 }
 
 @media screen and (max-width: 767px) {
-	#main.container,
 	.row-nav .col-sm-6 {
 		padding: 0;
 	}
