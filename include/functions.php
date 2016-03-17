@@ -518,7 +518,9 @@ function generate_avatar_markup($user_id) {
 		if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
 			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
-		} else {
+		} else if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {
+			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/cplaceholder.png" alt="" />';
+        } else {
 			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
 		}
 	}
@@ -549,7 +551,10 @@ function draw_user_avatar($user_id, $responsive = true, $class = '') {
 		if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
 			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
-		} else {
+			break;
+		} else if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {
+			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/cplaceholder.png" alt="" />';
+        } else {
 			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
 		}
 	}
@@ -572,9 +577,12 @@ function get_avatar($user_id) {
 			$file_exists = true;
 		} 
 	}
-	
+	 
 	if ($file_exists == false) {
-		return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png';
+        if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png'))
+			return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/cplaceholder.png';
+        else
+            return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png';
 	}
 }
 
