@@ -617,7 +617,7 @@ hr {
 .notification-menu li .notification-action {
 	color: #999;
 	display: none;
-	padding: 9px 0;
+	padding: 10px;
 	position: absolute;
 	text-align: center;
 	top: 0;
@@ -625,11 +625,11 @@ hr {
 }
 
 .notification-menu li .notification-action.action-check {
-	right: 10px;
+	right: 0;
 }
 
 .notification-menu li .notification-action.action-delete {
-	right: 42px;
+	right: 38px;
 }
 
 .notification-menu li:hover .notification-action {
@@ -1101,6 +1101,10 @@ hr {
 .btn {
 	border-radius: 0;
 	border-color: transparent;
+}
+
+.btn:active {
+    box-shadow: none !important;
 }
 
 .btn-primary:hover:active,
