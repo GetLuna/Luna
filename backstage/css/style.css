@@ -415,6 +415,8 @@ h3.panel-title {
 }
 
 .form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .panel-body .form-group:last-child,
