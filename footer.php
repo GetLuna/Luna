@@ -20,7 +20,8 @@ if (!defined('FORUM'))
 			<li class="divider"></li>
 			<li class="notification-empty"><a href="notifications.php"><?php _e('No new notifications', 'luna'); ?></a></li>
 			<li class="divider"></li>
-			<li class="dropdown-footer"><a class="pull-right" href="notifications.php"><?php _e('More', 'luna'); ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
+			<li class="dropdown-footer hidden-xs"><a class="pull-right" href="notifications.php"><?php _e('More', 'luna'); ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
+			<li class="dropdown-footer hidden-lg hidden-md hidden-sm"><a href="notifications.php"><?php _e('More', 'luna'); ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
 		</script>
 		<script id="tmpl-notification-menu-item" type="text/html">
 			<a href="{{ data.link }}" class="notification-link"><span class="fa fa-fw {{ data.icon }}"></span> {{ data.message }} <span class="timestamp pull-right">{{ data.time }}</span></a>

@@ -221,7 +221,7 @@ label .help-block {
 	
 	.dropdown-menu > li > a {
 		color: #fff;
-		padding: 8px 15px;
+		padding: 10px 15px;
 	}
 
 	.dropdown-menu > li > a:focus,
@@ -231,7 +231,7 @@ label .help-block {
 	}
 	
 	.navbar-default .navbar-nav .open .dropdown-menu .divider {
-		background-color: rgba(0,0,0,.1);
+		background-color: rgba(0,0,0,.2);
 		margin: 0;
 	}
 }
@@ -482,7 +482,7 @@ fieldset[disabled] .form-control {
 
 .panel-title .btn:hover,
 .panel-title .btn:focus {
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.2);
 }
 
 .btn-primary,

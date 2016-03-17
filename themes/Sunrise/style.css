@@ -1890,7 +1890,7 @@ blockquote footer {
 
 .editor .dropdown-menu > li > a {
 	color: #fff;
-	padding: 8px 15px;
+	padding: 10px 15px;
 }
 
 .editor .dropdown-menu > li > a:focus,
@@ -1900,7 +1900,7 @@ blockquote footer {
 }
 
 .editor .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
-	background-color: rgba(0,0,0,.1);
+	background-color: rgba(0,0,0,.2);
 	margin: 0;
 }
 
