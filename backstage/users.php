@@ -37,23 +37,25 @@ if (isset($_GET['ip_stats'])) {
 	load_admin_nav('users', 'users');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<?php echo $paging_links ?>
-	</div>
-	<table class="table table-js table-striped table-hover">
-		<thead>
-			<tr>
-				<th><?php _e('IP/IP-ranges', 'luna') ?></th>
-				<th><?php _e('Last used', 'luna') ?></th>
-				<th><?php _e('Times found', 'luna') ?></th>
-				<th><?php _e('Action', 'luna') ?></th>
-			</tr>
-		</thead>
-		<tbody>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <?php echo $paging_links ?>
+            </div>
+            <table class="table table-js table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th><?php _e('IP/IP-ranges', 'luna') ?></th>
+                        <th><?php _e('Last used', 'luna') ?></th>
+                        <th><?php _e('Times found', 'luna') ?></th>
+                        <th><?php _e('Action', 'luna') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 	$result = $db->query('SELECT commenter_ip, MAX(commented) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'comments WHERE commenter_id='.$ip_stats.' GROUP BY commenter_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
@@ -61,12 +63,12 @@ if (isset($_GET['ip_stats'])) {
 		while ($cur_ip = $db->fetch_assoc($result)) {
 
 ?>
-			<tr>
-				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['commenter_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?></a></td>
-				<td><?php echo format_time($cur_ip['last_used']) ?></td>
-				<td><?php echo $cur_ip['used_times'] ?></td>
-				<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?>"><?php _e('Find more users for this ip', 'luna') ?></a></td>
-			</tr>
+                    <tr>
+                        <td><a href="../moderate.php?get_host=<?php echo $cur_ip['commenter_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?></a></td>
+                        <td><?php echo format_time($cur_ip['last_used']) ?></td>
+                        <td><?php echo $cur_ip['used_times'] ?></td>
+                        <td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?>"><?php _e('Find more users for this ip', 'luna') ?></a></td>
+                    </tr>
 <?php
 
 		}
@@ -74,11 +76,13 @@ if (isset($_GET['ip_stats'])) {
 		echo "\t\t\t\t".'<tr><td colspan="4">'.__('There are currently no comments by that user in the forum.', 'luna').'</td></tr>'."\n";
 
 ?>
-		</tbody>
-	</table>
-	<div class="panel-body">
-		<?php echo $paging_links ?>
-	</div>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <?php echo $paging_links ?>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 
@@ -108,25 +112,27 @@ if (isset($_GET['ip_stats'])) {
 	load_admin_nav('users', 'users');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<?php echo $paging_links ?>
-	</div>
-	<table class="table table-js table-striped table-hover">
-		<thead>
-			<tr>
-				<th><?php _e('Username', 'luna') ?></th>
-				<th><?php _e('Email', 'luna') ?></th>
-				<th><?php _e('Title/Status', 'luna') ?></th>
-				<th class="text-center"><?php _e('Comments', 'luna') ?></th>
-				<th><?php _e('Admin note', 'luna') ?></th>
-				<th><?php _e('Actions', 'luna') ?></th>
-			</tr>
-		</thead>
-		<tbody>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <?php echo $paging_links ?>
+            </div>
+            <table class="table table-js table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th><?php _e('Username', 'luna') ?></th>
+                        <th><?php _e('Email', 'luna') ?></th>
+                        <th><?php _e('Title/Status', 'luna') ?></th>
+                        <th class="text-center"><?php _e('Comments', 'luna') ?></th>
+                        <th><?php _e('Admin note', 'luna') ?></th>
+                        <th><?php _e('Actions', 'luna') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 	$result = $db->query('SELECT DISTINCT commenter_id, commenter FROM '.$db->prefix.'comments WHERE commenter_ip=\''.$db->escape($ip).'\' ORDER BY commenter ASC LIMIT '.$start_from.', 50') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
@@ -151,27 +157,27 @@ if (isset($_GET['ip_stats'])) {
 
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.__('Comments', 'luna').'</a>';
 ?>
-			<tr>
-				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['username']).'</a>' ?></td>
-				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?></a></td>
-				<td><?php echo $user_title ?></td>
-				<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['commenter_id']]['num_comments']) ?></td>
-				<td><?php echo ($user_data[$cur_commenter['commenter_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['admin_note']) : '&#160;' ?></td>
-				<td><?php echo $actions ?></td>
-			</tr>
+                    <tr>
+                        <td><?php echo '<a href="../profile.php?id='.$user_data[$cur_commenter['commenter_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['username']).'</a>' ?></td>
+                        <td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?></a></td>
+                        <td><?php echo $user_title ?></td>
+                        <td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['commenter_id']]['num_comments']) ?></td>
+                        <td><?php echo ($user_data[$cur_commenter['commenter_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['admin_note']) : '&#160;' ?></td>
+                        <td><?php echo $actions ?></td>
+                    </tr>
 <?php
 
 			} else {
 
 ?>
-			<tr>
-				<td><?php echo luna_htmlspecialchars($cur_commenter['commenter']) ?></td>
-				<td>&#160;</td>
-				<td><?php _e('Guest', 'luna') ?></td>
-				<td>&#160;</td>
-				<td>&#160;</td>
-				<td>&#160;</td>
-			</tr>
+                    <tr>
+                        <td><?php echo luna_htmlspecialchars($cur_commenter['commenter']) ?></td>
+                        <td>&#160;</td>
+                        <td><?php _e('Guest', 'luna') ?></td>
+                        <td>&#160;</td>
+                        <td>&#160;</td>
+                        <td>&#160;</td>
+                    </tr>
 <?php
 
 			}
@@ -180,11 +186,13 @@ if (isset($_GET['ip_stats'])) {
 		echo "\t\t\t\t".'<tr><td colspan="6">'.__('The supplied IP address could not be found in the database.', 'luna').'</td></tr>'."\n";
 
 ?>
-		</tbody>
-	</table>
-	<div class="panel-body">
-		<?php echo $paging_links ?>
-	</div>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <?php echo $paging_links ?>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 	require 'footer.php';
@@ -275,29 +283,33 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Change user group', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<form class="form-horizontal" name="confirm_move_users" method="post" action="users.php">
-			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('New group', 'luna') ?><span class="help-block"><?php _e('Select a new user group', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<div class="input-group">
-							<select class="form-control" name="new_group" tabindex="1">
-	<?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo luna_htmlspecialchars($group) ?></option>
-	<?php endforeach; ?>
-							</select>
-							<span class="input-group-btn"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php _e('Save', 'luna') ?>" tabindex="2" /></span>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-	</div>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Change user group', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="confirm_move_users" method="post" action="users.php">
+                    <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('New group', 'luna') ?><span class="help-block"><?php _e('Select a new user group', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <select class="form-control" name="new_group" tabindex="1">
+            <?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo luna_htmlspecialchars($group) ?></option>
+            <?php endforeach; ?>
+                                    </select>
+                                    <span class="input-group-btn"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php _e('Save', 'luna') ?>" tabindex="2" /></span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 
@@ -413,28 +425,32 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 ?>
-<form name="confirm_del_users" method="post" action="users.php">
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Delete users', 'luna') ?></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-			<fieldset>
-				<p><?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></p>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="delete_comments" value="1" checked />
-						<?php _e('Delete all comments and threads this user has made', 'luna') ?>
-					</label>
-				</div>
-			</fieldset>
-		</div>
-		<div class="panel-footer">
-			<button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
-		</div>
-	</div>
-</form>
+<div class="row">
+	<div class="col-sm-12">
+        <form name="confirm_del_users" method="post" action="users.php">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Delete users', 'luna') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+                    <fieldset>
+                        <p><?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></p>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="delete_comments" value="1" checked />
+                                <?php _e('Delete all comments and threads this user has made', 'luna') ?>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 	require 'footer.php';
@@ -525,46 +541,50 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 ?>
-<form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Ban message', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_message" maxlength="255" tabindex="1" />
-						<span class="help-block"><?php _e('A message for banned users', 'luna') ?></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Expire date', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_expire" maxlength="10" tabindex="2" />
-						<span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna') ?></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Ban IP addresses', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="ban_the_ip" tabindex="3" value="1" checked />
-							<?php _e('Yes', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="ban_the_ip" tabindex="4" value="0" checked />
-							<?php _e('No', 'luna') ?>
-						</label>
-						<span class="help-block"><?php _e('Also ban the IP addresses of the banned users to make registering a new account more difficult for them.', 'luna') ?></span>
-					</div>
-				</div>
-			</fieldset>
-		 </div>
-	</div>
-</form>
+<div class="row">
+	<div class="col-sm-12">
+        <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Ban message', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ban_message" maxlength="255" tabindex="1" />
+                                <span class="help-block"><?php _e('A message for banned users', 'luna') ?></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Expire date', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ban_expire" maxlength="10" tabindex="2" />
+                                <span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna') ?></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Ban IP addresses', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ban_the_ip" tabindex="3" value="1" checked />
+                                    <?php _e('Yes', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ban_the_ip" tabindex="4" value="0" checked />
+                                    <?php _e('No', 'luna') ?>
+                                </label>
+                                <span class="help-block"><?php _e('Also ban the IP addresses of the banned users to make registering a new account more difficult for them.', 'luna') ?></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                 </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 	require 'footer.php';
@@ -695,40 +715,42 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
-	</div>
-	<form id="search-users-form" action="users.php" method="post">
-		<div class="panel-body">
-			<?php echo $paging_links ?>
-			<?php if ($can_action): ?>
-				<span class="btn-toolbar pull-right">
-					<div class="btn-group">
-						<?php if ($can_ban) : ?>
-						<button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
-						<?php endif; if ($can_delete) : ?>
-						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
-						<?php endif; if ($can_move) : ?>
-						<button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
-						<?php endif; ?>
-					</div>
-				</span>
-			<?php endif; ?>
-		</div>
-		<table class="table table-js table-striped table-hover">
-			<thead>
-				<tr>
-					<?php if ($can_action): ?><th style="width: 25px;"><input type="checkbox" id="checkall" /></th><?php endif; ?>
-					<th><?php _e('Username', 'luna') ?></th>
-					<th><?php _e('Email', 'luna') ?></th>
-					<th><?php _e('Title/Status', 'luna') ?></th>
-					<th class="text-center"><?php _e('Comments', 'luna') ?></th>
-					<th><?php _e('Admin note', 'luna') ?></th>
-					<th><?php _e('Actions', 'luna') ?></th>
-				</tr>
-			</thead>
-			<tbody>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
+            </div>
+            <form id="search-users-form" action="users.php" method="post">
+                <div class="panel-body">
+                    <?php echo $paging_links ?>
+                    <?php if ($can_action): ?>
+                        <span class="btn-toolbar pull-right">
+                            <div class="btn-group">
+                                <?php if ($can_ban) : ?>
+                                <button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
+                                <?php endif; if ($can_delete) : ?>
+                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+                                <?php endif; if ($can_move) : ?>
+                                <button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
+                                <?php endif; ?>
+                            </div>
+                        </span>
+                    <?php endif; ?>
+                </div>
+                <table class="table table-js table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <?php if ($can_action): ?><th style="width: 25px;"><input type="checkbox" id="checkall" /></th><?php endif; ?>
+                            <th><?php _e('Username', 'luna') ?></th>
+                            <th><?php _e('Email', 'luna') ?></th>
+                            <th><?php _e('Title/Status', 'luna') ?></th>
+                            <th class="text-center"><?php _e('Comments', 'luna') ?></th>
+                            <th><?php _e('Admin note', 'luna') ?></th>
+                            <th><?php _e('Actions', 'luna') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
 
 	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -743,14 +765,14 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
 
 ?>
-				<tr>
-					<?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif; ?>
-					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
-					<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
-					<td class="text-center"><?php echo forum_number_format($user_data['num_comments']) ?></td>
-					<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-					<td><?php echo $actions ?></td>
-				</tr>
+                        <tr>
+                            <?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif; ?>
+                            <td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                            <td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
+                            <td class="text-center"><?php echo forum_number_format($user_data['num_comments']) ?></td>
+                            <td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+                            <td><?php echo $actions ?></td>
+                        </tr>
 <?php
 
 		}
@@ -758,25 +780,27 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		echo "\t\t\t\t".'<tr><td colspan="6">'.__('No match', 'luna').'</td></tr>'."\n";
 
 ?>
-			</tbody>
-		</table>
-		<div class="panel-body">
-			<?php echo $paging_links ?>
-			<?php if ($can_action): ?>
-				<span class="btn-toolbar pull-right">
-					<div class="btn-group">
-						<?php if ($can_ban) : ?>
-						<button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
-						<?php endif; if ($can_delete) : ?>
-						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
-						<?php endif; if ($can_move) : ?>
-						<button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
-						<?php endif; ?>
-					</div>
-				</span>
-			<?php endif; ?>
-		</div>
-	</form>
+                    </tbody>
+                </table>
+                <div class="panel-body">
+                    <?php echo $paging_links ?>
+                    <?php if ($can_action): ?>
+                        <span class="btn-toolbar pull-right">
+                            <div class="btn-group">
+                                <?php if ($can_ban) : ?>
+                                <button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
+                                <?php endif; if ($can_delete) : ?>
+                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+                                <?php endif; if ($can_move) : ?>
+                                <button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
+                                <?php endif; ?>
+                            </div>
+                        </span>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <?php
 
@@ -793,54 +817,56 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	if (isset($_GET['deleted']))
 		echo '<div class="alert alert-danger">'.__('The user has been deleted.', 'luna').'</div>';
 ?>
-<form id="find_user" method="get" action="users.php">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('User search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
-		</div>
-		<fieldset>
-			<div class="panel-body">
-				<p><?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
-			</div>
-			<table class="table">
-				<tr>
-					<th><?php _e('Username', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="2" /></td>
-					<th><?php _e('Email address', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="3" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Title', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[title]" maxlength="50" tabindex="4" /></td>
-					<th><?php _e('Real name', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Website', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[url]" maxlength="100" tabindex="6" /></td>
-					<th><?php _e('Facebook', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[facebook]" maxlength="50" tabindex="7" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Microsoft Account', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="8" /></td>
-					<th><?php _e('Twitter', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[twitter]" maxlength="50" tabindex="9" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Google+', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[google]" maxlength="50" tabindex="10" /></td>
-					<th><?php _e('Location', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="11" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Signature', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="12" /></td>
-					<th><?php _e('User group', 'luna') ?></th>
-					<td>
-						<select class="form-control" name="user_group" tabindex="23">
-							<option value="-1" selected><?php _e('All groups', 'luna') ?></option>
-							<option value="0"><?php _e('Unverified users', 'luna') ?></option>
+<div class="row">
+	<div class="col-sm-12">
+        <form id="find_user" method="get" action="users.php">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('User search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
+                </div>
+                <fieldset>
+                    <div class="panel-body">
+                        <p><?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th><?php _e('Username', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="2" /></td>
+                            <th><?php _e('Email address', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="3" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Title', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[title]" maxlength="50" tabindex="4" /></td>
+                            <th><?php _e('Real name', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Website', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[url]" maxlength="100" tabindex="6" /></td>
+                            <th><?php _e('Facebook', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[facebook]" maxlength="50" tabindex="7" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Microsoft Account', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="8" /></td>
+                            <th><?php _e('Twitter', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[twitter]" maxlength="50" tabindex="9" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Google+', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[google]" maxlength="50" tabindex="10" /></td>
+                            <th><?php _e('Location', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="11" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Signature', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="12" /></td>
+                            <th><?php _e('User group', 'luna') ?></th>
+                            <td>
+                                <select class="form-control" name="user_group" tabindex="23">
+                                    <option value="-1" selected><?php _e('All groups', 'luna') ?></option>
+                                    <option value="0"><?php _e('Unverified users', 'luna') ?></option>
 <?php
 
 	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -849,74 +875,76 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 
 ?>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th><?php _e('Admin note', 'luna') ?></th>
-					<td colspan="3"><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Number of comments less than', 'luna') ?></th>
-					<td><input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" /></td>
-					<th><?php _e('Number of comments greater than', 'luna') ?></th>
-					<td><input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Last comment is before', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_comment_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
-					<th><?php _e('Last comment is after', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_comment_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Last visit is before', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
-					<th><?php _e('Last visit is after', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Registered before', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
-					<th><?php _e('Registered after', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Order by', 'luna') ?></th>
-					<td colspan="3">
-						<select class="form-control" name="order_by" tabindex="22">
-							<option value="username" selected><?php _e('Username', 'luna') ?></option>
-							<option value="email"><?php _e('Email', 'luna') ?></option>
-							<option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
-							<option value="last_comment"><?php _e('Last comment', 'luna') ?></option>
-							<option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
-							<option value="registered"><?php _e('Registered', 'luna') ?></option>
-						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">
-							<option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
-							<option value="DESC"><?php _e('Descending', 'luna') ?></option>
-						</select>
-					</td>
-				</tr>
-			</table>
-		</fieldset>
-	</div>
-</form>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('IP search', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<form method="get" action="users.php">
-			<fieldset>
-				<div class="input-group">
-					<input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
-					<span class="input-group-btn">
-						<button class="btn btn-primary" type="submit"><span class="fa fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button>
-					</span>
-				</div>
-				<span class="help-block"><?php _e('The IP address to search for in the comment database.', 'luna') ?></span>
-			</fieldset>
-		</form>
-	</div>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Admin note', 'luna') ?></th>
+                            <td colspan="3"><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Number of comments less than', 'luna') ?></th>
+                            <td><input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" /></td>
+                            <th><?php _e('Number of comments greater than', 'luna') ?></th>
+                            <td><input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Last comment is before', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="last_comment_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
+                            <th><?php _e('Last comment is after', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="last_comment_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Last visit is before', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
+                            <th><?php _e('Last visit is after', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Registered before', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
+                            <th><?php _e('Registered after', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Order by', 'luna') ?></th>
+                            <td colspan="3">
+                                <select class="form-control" name="order_by" tabindex="22">
+                                    <option value="username" selected><?php _e('Username', 'luna') ?></option>
+                                    <option value="email"><?php _e('Email', 'luna') ?></option>
+                                    <option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
+                                    <option value="last_comment"><?php _e('Last comment', 'luna') ?></option>
+                                    <option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
+                                    <option value="registered"><?php _e('Registered', 'luna') ?></option>
+                                </select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">
+                                    <option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
+                                    <option value="DESC"><?php _e('Descending', 'luna') ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </form>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('IP search', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <form method="get" action="users.php">
+                    <fieldset>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit"><span class="fa fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button>
+                            </span>
+                        </div>
+                        <span class="help-block"><?php _e('The IP address to search for in the comment database.', 'luna') ?></span>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 

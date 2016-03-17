@@ -64,93 +64,97 @@ load_admin_nav('settings', 'registration');
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
-<form class="form-horizontal" method="post" action="registration.php">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Registration', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-			<input type="hidden" name="form_sent" value="1" />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('New registrations', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') echo ' checked' ?> />
-								<?php _e('Allow new users to be made by people.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Verify registrations', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') echo ' checked' ?> />
-								<?php _e('Send a random password to users to verify their email address.  ', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Report registrations', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') echo ' checked' ?> />
-								<?php _e('Notify people on the mailing list when new user registers.  ', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Use rules', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') echo ' checked' ?> />
-								<?php _e('Require users to agree with the rules. This will enable a "Rules" panel in Help.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Rules', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Default email setting', 'luna') ?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') echo ' checked' ?> />
-								<?php _e('Display email address to other users.', 'luna') ?>
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') echo ' checked' ?> />
-								<?php _e('Hide email address but allow form e-mail.', 'luna') ?>
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') echo ' checked' ?> />
-								<?php _e('Hide email address and disallow form email.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
+<div class="row">
+	<div class="col-sm-12">
+        <form class="form-horizontal" method="post" action="registration.php">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Registration', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                    <input type="hidden" name="form_sent" value="1" />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('New registrations', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') echo ' checked' ?> />
+                                        <?php _e('Allow new users to be made by people.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Verify registrations', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') echo ' checked' ?> />
+                                        <?php _e('Send a random password to users to verify their email address.  ', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Report registrations', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') echo ' checked' ?> />
+                                        <?php _e('Notify people on the mailing list when new user registers.  ', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Use rules', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') echo ' checked' ?> />
+                                        <?php _e('Require users to agree with the rules. This will enable a "Rules" panel in Help.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Rules', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Default email setting', 'luna') ?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') echo ' checked' ?> />
+                                        <?php _e('Display email address to other users.', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') echo ' checked' ?> />
+                                        <?php _e('Hide email address but allow form e-mail.', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') echo ' checked' ?> />
+                                        <?php _e('Hide email address and disallow form email.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 require 'footer.php';

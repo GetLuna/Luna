@@ -122,41 +122,45 @@ if (isset($_GET['user_created']))
 if (isset($_GET['user_failed']))
 	echo '<div class="alert alert-danger">'.__('Failed to create user, no password was given.', 'luna').'</div>';
 ?>
-<form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Add user', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_user"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="text" maxlength="25" class="form-control" name="username" tabindex="26" required="required" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="email" tabindex="27" required="required" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="password" class="form-control" name="password" tabindex="28" />
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="random_pass" value="1" checked tabindex="29" />
-								<?php _e('Generate a random password, this will be emailed to the above address. When checked, leave "Password" empty.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
+<div class="row">
+	<div class="col-sm-12">
+        <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Add user', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_user"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" maxlength="25" class="form-control" name="username" tabindex="26" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="email" tabindex="27" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="password" tabindex="28" />
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="random_pass" value="1" checked tabindex="29" />
+                                        <?php _e('Generate a random password, this will be emailed to the above address. When checked, leave "Password" empty.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 require 'footer.php';

@@ -511,79 +511,83 @@ if (isset($_POST['backupstart'])) {
 	require 'header.php';
 		load_admin_nav('maintenance', 'database');
 ?>
-<form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Backup', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="backupstart"><span class="fa fa-fw fa-floppy-o"></span> <?php _e('Start backup', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<p><?php _e('If your server supports it, you may also gzip-compress the file to reduce its size.', 'luna') ?></p>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Backup type', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="backup_type" value="full" checked />
-							<?php _e('Full', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="backup_type" value="structure" />
-							<?php _e('Structure only', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="backup_type" value="data" />
-							<?php _e('Data only', 'luna') ?>
-						</label>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Gzip compression', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="gzipcompress" value="1" />
-							<?php _e('Yes', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="gzipcompress" value="0" checked />
-							<?php _e('No', 'luna') ?>
-						</label>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
-<form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Restore', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="restore_start"><span class="fa fa-fw fa-reply"></span> <?php _e('Start restore', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<p><?php _e('This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.', 'luna') ?></p>
-				<input type="file" name="backup_file" />
-			</fieldset>
-		</div>
-	</div>
-</form>
-<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Additional functions', 'luna') ?></h3>
-		</div>
-		<div class="panel-body">
-			<p><?php _e('Additional features to help run a database, optimize and repair both do what they say.', 'luna') ?></p>
-		</div>
-		<div class="panel-footer">
-			<fieldset>
-				<span class="btn-group">
-					<button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php _e('Repair all tables', 'luna') ?></button>
-					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php _e('Optimize all tables', 'luna') ?></button>
-				</span>
-			</fieldset>
-		</div>
-	</div>
-</form>
+<div class="row">
+	<div class="col-sm-12">
+        <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Backup', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="backupstart"><span class="fa fa-fw fa-floppy-o"></span> <?php _e('Start backup', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <p><?php _e('If your server supports it, you may also gzip-compress the file to reduce its size.', 'luna') ?></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Backup type', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="backup_type" value="full" checked />
+                                    <?php _e('Full', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="backup_type" value="structure" />
+                                    <?php _e('Structure only', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="backup_type" value="data" />
+                                    <?php _e('Data only', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Gzip compression', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="gzipcompress" value="1" />
+                                    <?php _e('Yes', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="gzipcompress" value="0" checked />
+                                    <?php _e('No', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+        <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Restore', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="restore_start"><span class="fa fa-fw fa-reply"></span> <?php _e('Start restore', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <p><?php _e('This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.', 'luna') ?></p>
+                        <input type="file" name="backup_file" />
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+        <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Additional functions', 'luna') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p><?php _e('Additional features to help run a database, optimize and repair both do what they say.', 'luna') ?></p>
+                </div>
+                <div class="panel-footer">
+                    <fieldset>
+                        <span class="btn-group">
+                            <button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php _e('Repair all tables', 'luna') ?></button>
+                            <button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php _e('Optimize all tables', 'luna') ?></button>
+                        </span>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 }
 

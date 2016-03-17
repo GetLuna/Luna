@@ -153,36 +153,38 @@ load_admin_nav('settings', 'appearance');
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
-<form class="form-horizontal" method="post" enctype="multipart/form-data" action="appearance.php">
-	<input type="hidden" name="form_sent" value="1" />
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Theme capabilities', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Theme settings', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[allow_accent_color]" value="1" <?php if ($luna_config['o_allow_accent_color'] == '1') echo ' checked' ?> />
-								<?php _e('Allow users to set their own accent color.', 'luna') ?>
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[allow_night_mode]" value="1" <?php if ($luna_config['o_allow_night_mode'] == '1') echo ' checked' ?> />
-								<?php _e('Allow users to change the night mode settings.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="btn-group accent-group" data-toggle="buttons">
+<div class="row">
+	<div class="col-sm-12">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="appearance.php">
+            <input type="hidden" name="form_sent" value="1" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Theme capabilities', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Theme settings', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[allow_accent_color]" value="1" <?php if ($luna_config['o_allow_accent_color'] == '1') echo ' checked' ?> />
+                                        <?php _e('Allow users to set their own accent color.', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[allow_night_mode]" value="1" <?php if ($luna_config['o_allow_night_mode'] == '1') echo ' checked' ?> />
+                                        <?php _e('Allow users to change the night mode settings.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="btn-group accent-group" data-toggle="buttons">
 <?php
 		$accents = forum_list_accents('main');
 
@@ -193,211 +195,213 @@ if (isset($_GET['saved']))
 				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'"></label>';
 		}
 ?>
-						</div>
-					</div>
-				</div>
-                <hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Custom CSS', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[use_custom_css]" value="1" <?php if ($luna_config['o_use_custom_css'] == '1') echo ' checked' ?> />
-								<?php _e('Use the custom CSS as defined below.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('CSS code', 'luna') ?></label>
-					<div class="col-sm-9">
-						<textarea class="form-control form-control-mono" name="form[custom_css]" placeholder="/* <?php _e('Custom CSS') ?> */" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_custom_css']) ?></textarea>
-					</div>
-				</div>
-                <hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label">
-                        <?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna') ?></span>
-                        <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
-                            <a class="btn btn-danger" href="?remove-header"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete header', 'luna') ?></a>
-                        <?php } ?>
-                    </label>
-					<div class="col-sm-9">
-                        <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
-                            <div class="restrict-size"></div>
-                        <?php } ?>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="5120000" />
-                        <input name="req_file" type="file" />
-                    </div>
-				</div>
-            </fieldset>
-        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Custom CSS', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[use_custom_css]" value="1" <?php if ($luna_config['o_use_custom_css'] == '1') echo ' checked' ?> />
+                                        <?php _e('Use the custom CSS as defined below.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('CSS code', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control form-control-mono" name="form[custom_css]" placeholder="/* <?php _e('Custom CSS') ?> */" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_custom_css']) ?></textarea>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                <?php _e('Header background', 'luna') ?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna') ?></span>
+                                <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
+                                    <a class="btn btn-danger" href="?remove-header"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete header', 'luna') ?></a>
+                                <?php } ?>
+                            </label>
+                            <div class="col-sm-9">
+                                <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) { ?>
+                                    <div class="restrict-size"></div>
+                                <?php } ?>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="5120000" />
+                                <input name="req_file" type="file" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Display settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('User profile', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show information about the commenter under the username in threads.', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[show_comment_count]" value="1" <?php if ($luna_config['o_show_comment_count'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show the number of comments a user has made in threads, profile and the user list.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Index settings', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show the "Moderated by" list when moderators are set on a per-forum base (requires theme support).', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Emoji', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
+                                        <?php _e('Use emojis instead of emoticons.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The size emoticons and emojis are shown in', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
+                                    <span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?><span class="help-block"><?php _e('Default amount of threads per page', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="form[disp_threads]" maxlength="2" value="<?php echo $luna_config['o_disp_threads'] ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?><span class="help-block"><?php _e('Default amount of comments per page', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="form[disp_comments]" maxlength="3" value="<?php echo $luna_config['o_disp_comments'] ?>" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Header settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Notifications', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disabling this feature might improve performance.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Search', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show the search bar in the heading.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Footer settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Statistics', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show the board statistics.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Back to top', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show a "Back to top" link in the footer.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Copyright', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show the copyright notice in the footer.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Copyright content', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked' ?> />
+                                        <?php _e('Show default copyright', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
+                                        <?php _e('Show personalized copyright notices:', 'luna') ?>
+                                    </label><br /><br />
+                                    <input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php _e('Your copyright', 'luna') ?>" value="<?php echo luna_htmlspecialchars($luna_config['o_custom_copyright']) ?>" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
     </div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Display settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('User profile', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked' ?> />
-								<?php _e('Show information about the commenter under the username in threads.', 'luna') ?>
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_comment_count]" value="1" <?php if ($luna_config['o_show_comment_count'] == '1') echo ' checked' ?> />
-								<?php _e('Show the number of comments a user has made in threads, profile and the user list.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Index settings', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked' ?> />
-								<?php _e('Show the "Moderated by" list when moderators are set on a per-forum base (requires theme support).', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Emoji', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
-								<?php _e('Use emojis instead of emoticons.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The size emoticons and emojis are shown in', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<div class="input-group">
-							<input type="number" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
-							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?><span class="help-block"><?php _e('Default amount of threads per page', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[disp_threads]" maxlength="2" value="<?php echo $luna_config['o_disp_threads'] ?>" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?><span class="help-block"><?php _e('Default amount of comments per page', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="form[disp_comments]" maxlength="3" value="<?php echo $luna_config['o_disp_comments'] ?>" />
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Header settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Notifications', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
-								<?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disabling this feature might improve performance.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Search', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') echo ' checked' ?> />
-								<?php _e('Show the search bar in the heading.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Footer settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Statistics', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') echo ' checked' ?> />
-								<?php _e('Show the board statistics.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Back to top', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked' ?> />
-								<?php _e('Show a "Back to top" link in the footer.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Copyright', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked' ?> />
-								<?php _e('Show the copyright notice in the footer.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Copyright content', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked' ?> />
-								<?php _e('Show default copyright', 'luna') ?>
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
-								<?php _e('Show personalized copyright notices:', 'luna') ?>
-							</label><br /><br />
-							<input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php _e('Your copyright', 'luna') ?>" value="<?php echo luna_htmlspecialchars($luna_config['o_custom_copyright']) ?>" />
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
+</div>
 <?php
 
 require 'footer.php';

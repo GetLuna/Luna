@@ -45,22 +45,24 @@ require 'header.php';
 	load_admin_nav('content', 'reports');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('New reports', 'luna') ?></h3>
-	</div>
-	<form method="post" action="reports.php?action=zap">
-		<fieldset>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="col-xs-2"><?php _e('Reported by', 'luna') ?></th>
-						<th class="col-xs-2"><?php _e('Date and time', 'luna') ?></th>
-						<th class="col-xs-6"><?php _e('Message', 'luna') ?></th>
-						<th class="col-xs-2"><?php _e('Actions', 'luna') ?></th>
-					</tr>
-				</thead>
-				<tbody>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('New reports', 'luna') ?></h3>
+            </div>
+            <form method="post" action="reports.php?action=zap">
+                <fieldset>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-2"><?php _e('Reported by', 'luna') ?></th>
+                                <th class="col-xs-2"><?php _e('Date and time', 'luna') ?></th>
+                                <th class="col-xs-6"><?php _e('Message', 'luna') ?></th>
+                                <th class="col-xs-2"><?php _e('Actions', 'luna') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'comments AS p ON r.comment_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -75,48 +77,48 @@ if ($db->num_rows($result)) {
 		$report_location = array($forum, $thread, $comment_id);
 
 ?>
-					<tr>
-						<td><?php printf($reporter) ?></td>
-						<td><?php printf(format_time($cur_report['created'])) ?></td>
-						<td>
-							<div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
-							<?php echo $comment ?>
-						</td>
-						<td><button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna') ?></button></td>
-					</tr>
+                            <tr>
+                                <td><?php printf($reporter) ?></td>
+                                <td><?php printf(format_time($cur_report['created'])) ?></td>
+                                <td>
+                                    <div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
+                                    <?php echo $comment ?>
+                                </td>
+                                <td><button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna') ?></button></td>
+                            </tr>
 <?php
 
 	}
 } else {
 
 ?>
-					<tr>
-						<td colspan="4"><?php _e('There are no new reports.', 'luna') ?></td>
-					</tr>
+                            <tr>
+                                <td colspan="4"><?php _e('There are no new reports.', 'luna') ?></td>
+                            </tr>
 <?php
 
 }
 
 ?>
-				</tbody>
-			</table>
-		</fieldset>
-	</form>
-</div>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('10 last read reports', 'luna') ?></h3>
-	</div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th class="col-xs-2"><?php _e('Reported by', 'luna') ?></th>
-				<th class="col-xs-2"><?php _e('Marked as read by', 'luna') ?></th>
-				<th class="col-xs-2"><?php _e('Date and time', 'luna') ?></th>
-				<th class="col-xs-6"><?php _e('Message', 'luna') ?></th>
-			</tr>
-		</thead>
-		<tbody>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('10 last read reports', 'luna') ?></h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-xs-2"><?php _e('Reported by', 'luna') ?></th>
+                        <th class="col-xs-2"><?php _e('Marked as read by', 'luna') ?></th>
+                        <th class="col-xs-2"><?php _e('Date and time', 'luna') ?></th>
+                        <th class="col-xs-6"><?php _e('Message', 'luna') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.message, r.zapped, r.zapped_by AS zapped_by_id, p.id AS pid, t.subject, f.forum_name, u.username AS reporter, u2.username AS zapped_by FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'comments AS p ON r.comment_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id LEFT JOIN '.$db->prefix.'users AS u2 ON r.zapped_by=u2.id WHERE r.zapped IS NOT NULL ORDER BY zapped DESC LIMIT 10') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -133,29 +135,31 @@ if ($db->num_rows($result)) {
 		$report_location = array($forum, $thread, $comment_id);
 
 ?>
-			<tr>
-				<td><?php printf($reporter) ?></td>
-				<td><?php printf($zapped_by) ?></td>
-				<td><?php printf(format_time($cur_report['zapped'])) ?></td>
-				<td>
-					<div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
-					<?php echo $comment ?>
-				</td>
-			</tr>
+                    <tr>
+                        <td><?php printf($reporter) ?></td>
+                        <td><?php printf($zapped_by) ?></td>
+                        <td><?php printf(format_time($cur_report['zapped'])) ?></td>
+                        <td>
+                            <div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
+                            <?php echo $comment ?>
+                        </td>
+                    </tr>
 <?php
 
 	}
 } else {
 
 ?>
-			<tr>
-				<td colspan="4"><?php _e('There are no read reports.', 'luna') ?></td>
-			</tr>
+                    <tr>
+                        <td colspan="4"><?php _e('There are no read reports.', 'luna') ?></td>
+                    </tr>
 <?php
 
 } ?>
-		</tbody>
-	</table>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <?php
 require 'footer.php';

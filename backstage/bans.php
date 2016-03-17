@@ -86,59 +86,63 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 	load_admin_nav('users', 'bans');
 
 ?>
-<form class="form-horizontal" id="bans2" method="post" action="bans.php">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban range', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="mode" value="<?php echo $mode ?>" />
-			<?php if ($mode == 'edit'): ?><input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" /><?php endif; ?>
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('The username to ban', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_user" maxlength="25" value="<?php if (isset($ban_user)) echo luna_htmlspecialchars($ban_user); ?>" tabindex="1" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna') ?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_ip" maxlength="255" value="<?php if (isset($ban_ip)) echo luna_htmlspecialchars($ban_ip); ?>" tabindex="2" />
-						<?php if ($ban_user != '' && isset($user_id)) printf('<span class="help-block">'.__('Click %s to see IP statistics for this user.', 'luna').'</span>', '<a href="users.php?ip_stats='.$user_id.'">'.__('here', 'luna').'</a>') ?>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><span class="help-block"><?php _e('The email or email domain you wish to ban', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo luna_htmlspecialchars($ban_email); ?>" tabindex="3" />
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban details', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Ban message', 'luna') ?><span class="help-block"><?php _e('A message for banned users', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_message" maxlength="255" value="<?php if (isset($ban_message)) echo luna_htmlspecialchars($ban_message); ?>" tabindex="4" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Expire date', 'luna') ?><span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="date" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
+<div class="row">
+	<div class="col-sm-12">
+        <form class="form-horizontal" id="bans2" method="post" action="bans.php">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Ban range', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <input type="hidden" name="mode" value="<?php echo $mode ?>" />
+                    <?php if ($mode == 'edit'): ?><input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" /><?php endif; ?>
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('The username to ban', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ban_user" maxlength="25" value="<?php if (isset($ban_user)) echo luna_htmlspecialchars($ban_user); ?>" tabindex="1" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna') ?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ban_ip" maxlength="255" value="<?php if (isset($ban_ip)) echo luna_htmlspecialchars($ban_ip); ?>" tabindex="2" />
+                                <?php if ($ban_user != '' && isset($user_id)) printf('<span class="help-block">'.__('Click %s to see IP statistics for this user.', 'luna').'</span>', '<a href="users.php?ip_stats='.$user_id.'">'.__('here', 'luna').'</a>') ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><span class="help-block"><?php _e('The email or email domain you wish to ban', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo luna_htmlspecialchars($ban_email); ?>" tabindex="3" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Ban details', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Ban message', 'luna') ?><span class="help-block"><?php _e('A message for banned users', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ban_message" maxlength="255" value="<?php if (isset($ban_message)) echo luna_htmlspecialchars($ban_message); ?>" tabindex="4" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Expire date', 'luna') ?><span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 	require 'footer.php';
@@ -331,26 +335,28 @@ elseif (isset($_GET['find_ban'])) {
 	load_admin_nav('users', 'bans');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<?php echo $paging_links ?>
-	</div>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th class="col-xs-1"><?php _e('Username', 'luna') ?></th>
-				<th class="col-xs-2"><?php _e('Email', 'luna') ?></th>
-				<th class="col-xs-1"><?php _e('IP', 'luna') ?></th>
-				<th class="col-xs-1"><?php _e('Expires', 'luna') ?></th>
-				<th class="col-xs-3"><?php _e('Message', 'luna') ?></th>
-				<th class="col-xs-1"><?php _e('By', 'luna') ?></th>
-				<th class="col-xs-3"><?php _e('Actions', 'luna') ?></th>
-			</tr>
-		</thead>
-		<tbody>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <?php echo $paging_links ?>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1"><?php _e('Username', 'luna') ?></th>
+                        <th class="col-xs-2"><?php _e('Email', 'luna') ?></th>
+                        <th class="col-xs-1"><?php _e('IP', 'luna') ?></th>
+                        <th class="col-xs-1"><?php _e('Expires', 'luna') ?></th>
+                        <th class="col-xs-3"><?php _e('Message', 'luna') ?></th>
+                        <th class="col-xs-1"><?php _e('By', 'luna') ?></th>
+                        <th class="col-xs-3"><?php _e('Actions', 'luna') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 	<?php
 
 	$result = $db->query('SELECT b.id, b.username, b.ip, b.email, b.message, b.expire, b.ban_creator, u.username AS ban_creator_username FROM '.$db->prefix.'bans AS b LEFT JOIN '.$db->prefix.'users AS u ON b.ban_creator=u.id WHERE b.id>0'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
@@ -361,15 +367,15 @@ elseif (isset($_GET['find_ban'])) {
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
-			<tr>
-				<td><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-				<td><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
-				<td><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
-				<td><?php echo $expire ?></td>
-				<td><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-				<td><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : __('Unknown', 'luna') ?></td>
-				<td><?php echo $actions ?></td>
-			</tr>
+                    <tr>
+                        <td><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
+                        <td><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
+                        <td><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
+                        <td><?php echo $expire ?></td>
+                        <td><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
+                        <td><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : __('Unknown', 'luna') ?></td>
+                        <td><?php echo $actions ?></td>
+                    </tr>
 <?php
 
 		}
@@ -377,11 +383,13 @@ elseif (isset($_GET['find_ban'])) {
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.__('No match', 'luna').'</td></tr>'."\n";
 
 ?>
-		</tbody>
-	</table>
-	<div class="panel-body">
-		<?php echo $paging_links ?>
-	</div>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <?php echo $paging_links ?>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 
@@ -395,77 +403,81 @@ elseif (isset($_GET['find_ban'])) {
 		load_admin_nav('users', 'bans');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Add ban', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<form id="bans" method="post" action="bans.php?action=more">
-			<fieldset>
-				<div class="input-group">
-					<input type="text" class="form-control" name="new_ban_user" maxlength="25" tabindex="1" />
-					<span class="input-group-btn">
-						<button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button>
-					</span>
-				</div>
-				<span class="help-block"><?php _e('The username you want to ban. If you want to ban a specific IP/IP-range or email, leave it blank.', 'luna') ?></span>
-			</fieldset>
-		</form>
-	</div>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Add ban', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <form id="bans" method="post" action="bans.php?action=more">
+                    <fieldset>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="new_ban_user" maxlength="25" tabindex="1" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button>
+                            </span>
+                        </div>
+                        <span class="help-block"><?php _e('The username you want to ban. If you want to ban a specific IP/IP-range or email, leave it blank.', 'luna') ?></span>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <form id="find_bans" method="get" action="bans.php">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Ban search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
+                </div>
+                <fieldset>
+                    <div class="panel-body">
+                        <p><?php _e('Search for bans in the database. You can enter one or more terms to search for. Wildcards in the form of asterisks (*) are accepted. To show all bans leave all fields empty.', 'luna') ?></p>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th><?php _e('Username', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="4" /></td>
+                            <th><?php _e('IP address/IP-ranges', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[ip]" maxlength="255" tabindex="5" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Email', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="6" /></td>
+                            <th><?php _e('Message', 'luna') ?></th>
+                            <td><input type="text" class="form-control" name="form[message]" maxlength="255" tabindex="7" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Expire after', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+                            <th><?php _e('Expire before', 'luna') ?></th>
+                            <td><input type="date" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e('Order by', 'luna') ?></th>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="order_by" tabindex="10">
+                                            <option value="username" selected><?php _e('Username', 'luna') ?></option>
+                                            <option value="ip"><?php _e('IP', 'luna') ?></option>
+                                            <option value="email"><?php _e('Email', 'luna') ?></option>
+                                            <option value="expire"><?php _e('Expire date', 'luna') ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="direction" tabindex="11">
+                                            <option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
+                                            <option value="DESC"><?php _e('Descending', 'luna') ?></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </form>
+    </div>
 </div>
-<form id="find_bans" method="get" action="bans.php">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
-		</div>
-		<fieldset>
-			<div class="panel-body">
-				<p><?php _e('Search for bans in the database. You can enter one or more terms to search for. Wildcards in the form of asterisks (*) are accepted. To show all bans leave all fields empty.', 'luna') ?></p>
-			</div>
-			<table class="table">
-				<tr>
-					<th><?php _e('Username', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="4" /></td>
-					<th><?php _e('IP address/IP-ranges', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[ip]" maxlength="255" tabindex="5" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Email', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="6" /></td>
-					<th><?php _e('Message', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="form[message]" maxlength="255" tabindex="7" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Expire after', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
-					<th><?php _e('Expire before', 'luna') ?></th>
-					<td><input type="date" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
-				</tr>
-				<tr>
-					<th><?php _e('Order by', 'luna') ?></th>
-					<td colspan="3">
-						<div class="row">
-							<div class="col-sm-6">
-								<select class="form-control" name="order_by" tabindex="10">
-									<option value="username" selected><?php _e('Username', 'luna') ?></option>
-									<option value="ip"><?php _e('IP', 'luna') ?></option>
-									<option value="email"><?php _e('Email', 'luna') ?></option>
-									<option value="expire"><?php _e('Expire date', 'luna') ?></option>
-								</select>
-							</div>
-							<div class="col-sm-6">
-								<select class="form-control" name="direction" tabindex="11">
-									<option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
-									<option value="DESC"><?php _e('Descending', 'luna') ?></option>
-								</select>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</fieldset>
-	</div>
-</form>
 <?php
 
 	require 'footer.php';

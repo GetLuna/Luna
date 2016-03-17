@@ -92,26 +92,30 @@ if ($action == 'prune') {
 	load_admin_nav('maintenance', 'prune');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Prune', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<form method="post" action="prune.php">
-			<input type="hidden" name="action" value="prune" />
-			<input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
-			<input type="hidden" name="prune_pinned" value="<?php echo $prune_pinned ?>" />
-			<input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
-			<fieldset>
-				<h3><?php _e('Confirm prune comments', 'luna') ?></h3>
-				<p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
-				<p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
-			</fieldset>
-			<div class="btn-group">
-				<input class="btn btn-primary" type="submit" name="prune_comply" value="<?php _e('Prune', 'luna') ?>" />
-			</div>
-		</form>
-	</div>
+<div class="row">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Prune', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="prune.php">
+                    <input type="hidden" name="action" value="prune" />
+                    <input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
+                    <input type="hidden" name="prune_pinned" value="<?php echo $prune_pinned ?>" />
+                    <input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
+                    <fieldset>
+                        <h3><?php _e('Confirm prune comments', 'luna') ?></h3>
+                        <p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
+                        <p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
+                    </fieldset>
+                    <div class="btn-group">
+                        <input class="btn btn-primary" type="submit" name="prune_comply" value="<?php _e('Prune', 'luna') ?>" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 
@@ -210,75 +214,77 @@ require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 ?>
 
-<form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Prune notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="action" value="notiprune" />
-			<fieldset>
-				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a notification must be to be pruned', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="prune_days" maxlength="3" tabindex="5" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="prune_type" value="0" tabindex="6" />
-							<?php _e('All notifications', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="prune_type" value="1" checked />
-							<?php _e('Seen notifications', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="prune_type" value="2" />
-							<?php _e('New notifications', 'luna') ?>
-						</label>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
-<form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Prune old comments', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="action" value="prune" />
-			<fieldset>
-				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a thread must be to be pruned', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Prune pinned threads', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="prune_pinned" value="1" tabindex="6" checked />
-							<?php _e('Yes', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="prune_pinned" value="0" />
-							<?php _e('No', 'luna') ?>
-						</label>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Prune from', 'luna') ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="prune_from" tabindex="7">
-							<option value="all"><?php _e('All forums', 'luna') ?></option>
+<div class="row">
+	<div class="col-sm-12">
+        <form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Prune notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <input type="hidden" name="action" value="notiprune" />
+                    <fieldset>
+                        <p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a notification must be to be pruned', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="prune_days" maxlength="3" tabindex="5" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_type" value="0" tabindex="6" />
+                                    <?php _e('All notifications', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_type" value="1" checked />
+                                    <?php _e('Seen notifications', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_type" value="2" />
+                                    <?php _e('New notifications', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Prune old comments', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <input type="hidden" name="action" value="prune" />
+                    <fieldset>
+                        <p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a thread must be to be pruned', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Prune pinned threads', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_pinned" value="1" tabindex="6" checked />
+                                    <?php _e('Yes', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_pinned" value="0" />
+                                    <?php _e('No', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Prune from', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="prune_from" tabindex="7">
+                                    <option value="all"><?php _e('All forums', 'luna') ?></option>
 <?php
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -296,81 +302,83 @@ require 'header.php';
 		echo "\t\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$forum['fid'].'">'.luna_htmlspecialchars($forum['forum_name']).'</option>'."\n";
 	}
 
+    echo ' </optgroup>'
 ?>
-							</optgroup>
-						</select>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
-<form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Prune users', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Prune by', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="prune_by" value="1" checked />
-							<?php _e('Registered date', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="prune_by" value="0" />
-							<?php _e('Last login', 'luna') ?>
-						</label>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Minimum days since registration/last login', 'luna') ?><span class="help-block"><?php _e('The minimum amount of days since event specified above', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="days" value="28" tabindex="1" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna') ?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="number" class="form-control" name="comments" value="1"  tabindex="1" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Delete admins and mods', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="admods_delete" value="1" />
-							<?php _e('Yes', 'luna') ?>
-						</label>
-							<label class="radio-inline"><input type="radio" name="admods_delete" value="0" checked />
-							<?php _e('No', 'luna') ?>
-						</label>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('User status', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="verified" value="1" />
-							<?php _e('Delete any', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="verified" value="0" checked />
-							<?php _e('Delete only verified', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="verified" value="2" />
-							<?php _e('Delete only unverified', 'luna') ?>
-						</label>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Prune users', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Prune by', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_by" value="1" checked />
+                                    <?php _e('Registered date', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="prune_by" value="0" />
+                                    <?php _e('Last login', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Minimum days since registration/last login', 'luna') ?><span class="help-block"><?php _e('The minimum amount of days since event specified above', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="days" value="28" tabindex="1" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna') ?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna') ?></span></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="comments" value="1"  tabindex="1" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Delete admins and mods', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="admods_delete" value="1" />
+                                    <?php _e('Yes', 'luna') ?>
+                                </label>
+                                    <label class="radio-inline"><input type="radio" name="admods_delete" value="0" checked />
+                                    <?php _e('No', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('User status', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="verified" value="1" />
+                                    <?php _e('Delete any', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="verified" value="0" checked />
+                                    <?php _e('Delete only verified', 'luna') ?>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="verified" value="2" />
+                                    <?php _e('Delete only unverified', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 require 'footer.php';
