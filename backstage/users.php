@@ -811,14 +811,15 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
-
-	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
-	if (isset($_GET['deleted']))
-		echo '<div class="alert alert-danger">'.__('The user has been deleted.', 'luna').'</div>';
 ?>
 <div class="row">
 	<div class="col-sm-12">
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+if (isset($_GET['deleted']))
+    echo '<div class="alert alert-danger"><i class="fa fa-fw fa-check"></i> '.__('The user has been deleted.', 'luna').'</div>';
+?>
         <form id="find_user" method="get" action="users.php">
             <div class="panel panel-default">
                 <div class="panel-heading">

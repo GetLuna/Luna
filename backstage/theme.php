@@ -33,11 +33,14 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Ad
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('settings', 'theme');
-
-if (isset($_GET['saved']))
-	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <div class="row">
+    <div class="col-md-12">
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+?>
+    </div>
 	<div class="col-md-3">
 		<div class="panel panel-default panel-current">
 			<div class="panel-heading">

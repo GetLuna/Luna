@@ -114,16 +114,17 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Ad
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('users', 'tools');
-
-if (isset($_GET['saved']))
-	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
-if (isset($_GET['user_created']))
-	echo '<div class="alert alert-success">'.__('User created', 'luna').'</div>';
-if (isset($_GET['user_failed']))
-	echo '<div class="alert alert-danger">'.__('Failed to create user, no password was given.', 'luna').'</div>';
 ?>
 <div class="row">
 	<div class="col-sm-12">
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+if (isset($_GET['user_created']))
+	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('User created', 'luna').'</div>';
+if (isset($_GET['user_failed']))
+	echo '<div class="alert alert-danger"><i class="fa fa-fw fa-exclamation-circle"></i> '.__('Failed to create user, no password was given.', 'luna').'</div>';
+?>
         <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <div class="panel panel-default">
                 <div class="panel-heading">

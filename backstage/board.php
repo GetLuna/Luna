@@ -509,11 +509,12 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('content', 'board');
-
-	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <div class="row">
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
+?>
 	<div class="col-lg-4">
 		<form method="post" action="board.php?action=add_forum">
 <?php

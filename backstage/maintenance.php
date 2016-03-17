@@ -163,14 +163,15 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Ad
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'maintenance');
-
-if (isset($_GET['saved']))
-	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
-if (isset($_GET['cache_cleared']))
-	echo '<div class="alert alert-success">'.__('The cache files have been removed.', 'luna').'</div>';
 ?>
 <div class="row">
 	<div class="col-sm-12">
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+if (isset($_GET['cache_cleared']))
+	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('The cache files have been removed.', 'luna').'</div>';
+?>
         <form class="form-horizontal" method="post" action="maintenance.php">
             <div class="panel panel-default">
                 <div class="panel-heading">

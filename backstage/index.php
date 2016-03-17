@@ -73,11 +73,12 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Ad
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'index');
-
-if (isset($_GET['saved']))
-	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 ?>
 <div class="row">
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
+?>
 	<div class="col-sm-8">
 <?php if ($luna_config['o_first_run_backstage'] == 0) { ?>
         <div class="panel panel-primary hidden-xs">
