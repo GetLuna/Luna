@@ -75,6 +75,13 @@ body {
 	font-weight: 500;
 }
 
+.tab-footer {
+    background: #444;
+    padding: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
 .tab-content .form-group .col-sm-3 {
 	padding-left: 0;
 }

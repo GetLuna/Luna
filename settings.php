@@ -613,7 +613,7 @@ To change your email address, please visit the following page:
 			'show_img'			=> isset($_POST['form']['show_img']) ? '1' : '0',
 			'show_img_sig'		=> isset($_POST['form']['show_img_sig']) ? '1' : '0',
 			'show_avatars'		=> isset($_POST['form']['show_avatars']) ? '1' : '0',
-			'first_run'		    => isset($_POST['form']['first_run']) ? '1' : '0',
+			'first_run'		    => isset($_POST['form']['first_run']) ? '0' : '1',
 			'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
 			'use_inbox'			=> isset($_POST['form']['use_inbox']) ? '1' : '0',
 			'email_setting'		=> intval($_POST['form']['email_setting']),

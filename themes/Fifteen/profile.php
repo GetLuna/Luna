@@ -31,6 +31,9 @@ if (!defined('FORUM'))
             <div class="tab-content">
                 <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
             </div>
+            <div class="tab-footer">
+                <?php echo $user_activities ?>
+            </div>
             <?php if (!empty($user_messaging)): ?>
                 <div class="title-block title-block-primary">
                     <h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Contact', 'luna') ?></h2>
