@@ -369,6 +369,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
 			} else {
 				$item_style = '';
+				$item_style = ' style="color: '.$cur_forum['color'].';"';
 			}
 
 			// If there is a last_comment/last_commenter
