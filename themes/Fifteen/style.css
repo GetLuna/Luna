@@ -360,6 +360,10 @@ h6 {
     border-color: transparent !important;
 }
 
+.btn:active {
+    box-shadow: none !important;
+}
+
 /* Tabpanels */
 .tab-content {
 	padding: 10px;
@@ -500,18 +504,18 @@ hr {
 .notification-menu li .notification-action {
 	color: #fff;
 	text-align: center;
-	padding: 8px 8px;
+	padding: 10px;
 	top: 0;
 	position: absolute;
 	display: none;
 }
 
 .notification-menu li .notification-action.action-check {
-	right: 10px;
+	right: 0;
 }
 
 .notification-menu li .notification-action.action-delete {
-	right: 42px;
+	right: 38px;
 }
 
 .notification-menu li:hover .notification-action {
