@@ -59,7 +59,7 @@ function get_user_nav_menu_items() {
 
 			$items['inbox'] = array(
 				'url'   => 'inbox.php',
-				'title' => 'Inbox',
+				'title' => '<span class="fa fa-fw fa-paper-plane-o"></span> '.__('Inbox', 'luna'),
 				'num'   => $num_new_inbox,
 			);
 		}
@@ -69,6 +69,10 @@ function get_user_nav_menu_items() {
 				'url'   => 'profile.php?id='.$luna_user['id'],
 				'title' => '<span class="fa fa-fw fa-user"></span> '.__('Profile', 'luna'),
 			),
+            'inbox' => array(
+                'url'   => 'inbox.php',
+                'title' => '<span class="fa fa-fw fa-paper-plane-o"></span> '.__('Inbox', 'luna'),
+            ),
 			'settings' => array(
 				'url'   => 'settings.php',
 				'title' => '<span class="fa fa-fw fa-cogs"></span> '.__('Settings', 'luna'),

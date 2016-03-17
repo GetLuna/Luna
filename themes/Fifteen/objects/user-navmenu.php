@@ -18,12 +18,6 @@ if(!empty($items['notifications'])) {
 								</li>
 <?php
 }
-if(!empty($items['inbox'])) {
-	$item = $items['inbox'];
-?>
-								<li id="navinbox"><a href="<?php echo $item['url']; ?>"><?php if ($item['num']) echo $item['num']; ?> <span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
-<?php
-}
 
 if (!empty($items['guest'])) {
 	$item = $items['guest'];
@@ -38,6 +32,9 @@ if (!empty($items['guest'])) {
 									<a href="<?php echo $item['profile']['url']; ?>" class="dropdown-toggle avatar-item" data-toggle="dropdown"> <i class="fa fa-fw fa-user"></i> <span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span> <i class="fa fa-fw fa-angle-down"></i></a>
 									<ul class="dropdown-menu">
 										<li><a href="<?php echo $item['profile']['url']; ?>"><?php echo $item['profile']['title']; ?></a></li>
+                                        <?php if(!empty($items['inbox'])) { ?>
+                                            <li><a href="<?php echo $items['inbox']['url']; ?>"><?php echo $items['inbox']['title']; ?><?php if ($items['inbox']['num']) echo '<span class="pull-right">'.$items['inbox']['num'].'</span>'; ?></a></li>
+                                        <?php } ?>
 										<li><a href="<?php echo $item['settings']['url']; ?>"><?php echo $item['settings']['title']; ?></a></li>
 										<li class="divider"></li>
 										<li><a href="<?php echo $item['help']['url']; ?>"><?php echo $item['help']['title']; ?></a></li>
