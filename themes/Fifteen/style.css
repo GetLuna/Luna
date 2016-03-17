@@ -371,6 +371,12 @@ h6 {
     box-shadow: none !important;
 }
 
+/* Alerts */
+.alert {
+    border: none;
+    margin-bottom: 10px;
+}
+
 /* Tabpanels */
 .tab-content {
 	padding: 10px;
