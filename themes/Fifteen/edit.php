@@ -5,11 +5,12 @@ if (!defined('FORUM'))
 	exit;
 
 $jumbo_style = ' style="background:'.$cur_comment['color'].';"';
+$btn_style = ' style="color:'.$cur_comment['color'].';"';
 
 ?>
 <div class="jumbotron edit-title"<?php echo $jumbo_style ?>>
 	<div class="container">
-		<h2 class="forum-title"><?php printf(__('Edit "%s"', 'luna'), luna_htmlspecialchars($cur_comment['subject'])) ?><span class="pull-right naviton"><a class="btn btn-danger" href="thread.php?id=<?php echo $cur_comment['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
+		<h2 class="forum-title"><?php printf(__('Edit %s', 'luna'), luna_htmlspecialchars($cur_comment['subject'])) ?><span class="pull-right naviton"><a class="btn btn-default"<?php echo $btn_style ?> href="thread.php?id=<?php echo $cur_comment['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
 	</div>
 </div>
 <div class="main container editor-only">

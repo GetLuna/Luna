@@ -1201,7 +1201,7 @@ hr {
 .list-group.list-group-luna .list-group-item {
 	border: none;
 	margin-top: 1px;
-    margin-bottom: 0;
+    margin-bottom: 1px;
 }
 
 .list-group.list-group-luna .list-group-item .label {
