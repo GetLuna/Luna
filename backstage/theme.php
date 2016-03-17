@@ -83,7 +83,7 @@ if (file_exists(LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
         <form class="form-horizontal" method="post" action="permissions.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Default style', 'luna') ?></h3>
+                    <h3 class="panel-title"><?php _e('Default theme', 'luna') ?></h3>
                 </div>
                 <div class="panel-body">
                     <p><?php _e('Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.', 'luna') ?></p>

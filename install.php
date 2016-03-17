@@ -376,7 +376,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?><span class="help-block"><?php _e('No trailing slash', 'luna') ?><span></label>
+                                <label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?><span class="help-block"><?php _e('No trailing slash', 'luna') ?></span>span></label>
 								<div class="col-sm-9">
 									<input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
 								</div>
@@ -400,7 +400,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Default style', 'luna') ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Default theme', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select id="req_default_style" class="form-control" name="req_default_style">
 <?php

@@ -102,7 +102,7 @@ h3,
 }
 
 label .help-block {
-	font-size: 85%;
+	font-size: 75%;
 	font-weight: 400;
 	letter-spacing: .5px;
 }
@@ -666,6 +666,7 @@ a.label-new {
 	border: none;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding: 10px;
 }
 
 @media all and (min-width: 768px) {
