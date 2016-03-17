@@ -213,7 +213,20 @@ else
 									</select>
 								</div>
 							</div>
-		<?php } ?>
+		<?php } if ($luna_config['o_show_first_run']) { ?>
+				            <hr />
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php _e('First Run', 'luna') ?></label>
+								<div class="col-sm-9">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="form[first_run]" value="1"<?php if ($user['first_run'] == '0') echo ' checked' ?> />
+											<?php _e('Show the First Run window on the index.', 'luna') ?>
+										</label>
+									</div>
+                                </div>
+                            </div>
+        <?php } ?>
 						</fieldset>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="contact">
