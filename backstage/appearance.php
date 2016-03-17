@@ -70,7 +70,7 @@ if (isset($_POST['form_sent'])) {
 		}
 	}
     
-    if (isset($_FILES['req_file'])) {
+    if (isset($_FILES['req_file']['error']) && $_FILES['req_file']['error'] != 4) {
         $uploaded_file = $_FILES['req_file'];
 
         // Make sure the upload went smooth
@@ -81,12 +81,8 @@ if (isset($_POST['form_sent'])) {
                     message(__('The selected file was too large to upload. The server didn\'t allow the upload.', 'luna'));
                     break;
 
-                case 3: // UPLOAD_ERR_PARTIAL
+                case 3: // UPLOAD_ERR_PARTIAL, skip 4, we already did that
                     message(__('The selected file was only partially uploaded. Please try again.', 'luna'));
-                    break;
-
-                case 4: // UPLOAD_ERR_NO_FILE
-                    message(__('You did not select a file for upload.', 'luna'));
                     break;
 
                 case 6: // UPLOAD_ERR_NO_TMP_DIR
