@@ -197,6 +197,8 @@ function draw_threads_list() {
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
 		$thread_ids = array();
+        $sql_addition = '';
+
 		for ($i = 0; $cur_thread_id = $db->result($result, $i); $i++)
 			$thread_ids[] = $cur_thread_id;
 

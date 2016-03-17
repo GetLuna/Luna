@@ -928,12 +928,6 @@ if ($db->num_rows($result)) {
 		$url = '../thread.php?id='.$thread_id;
 		$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 
-		if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {
-			if ($cur_thread['has_commented'] == $luna_user['id']) {
-				$item_status .= ' commented-item';
-			}
-		}
-
 		$subject_status = implode(' ', $status_text);
 
 		$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
@@ -952,7 +946,7 @@ if ($db->num_rows($result)) {
 						<span class="hidden-xs hidden-sm hidden-md hidden-lg">
 							<?php echo forum_number_format($thread_count + $start_from) ?>
 						</span>
-						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_comments ?> <?php echo $by ?> <?php echo $subject_multipage ?>
+						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $by ?> <?php echo $subject_multipage ?>
 						<?php if ($cur_thread['moved_to'] == 0) { ?>
 							<span class="text-muted"> &middot;
 								<span class="text-muted"><?php echo $last_comment_date ?></span> &middot;
