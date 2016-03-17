@@ -12,6 +12,15 @@ require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
+
+if (isset($_GET['remove-avatar'])) {
+	confirm_referrer('backstage/settings.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
+
+    @unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
+
+	redirect('backstage/settings.php?saved=true');
+}
+
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/settings.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
@@ -118,6 +127,59 @@ if (isset($_POST['form_sent'])) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 		}
 	}
+    
+    if (isset($_FILES['req_file'])) {
+        $uploaded_file = $_FILES['req_file'];
+
+        // Make sure the upload went smooth
+        if (isset($uploaded_file['error'])) {
+            switch ($uploaded_file['error']) {
+                case 1: // UPLOAD_ERR_INI_SIZE
+                case 2: // UPLOAD_ERR_FORM_SIZE
+                    message(__('The selected file was too large to upload. The server didn\'t allow the upload.', 'luna'));
+                    break;
+
+                case 3: // UPLOAD_ERR_PARTIAL
+                    message(__('The selected file was only partially uploaded. Please try again.', 'luna'));
+                    break;
+
+                case 4: // UPLOAD_ERR_NO_FILE
+                    message(__('You did not select a file for upload.', 'luna'));
+                    break;
+
+                case 6: // UPLOAD_ERR_NO_TMP_DIR
+                    message(__('PHP was unable to save the uploaded file to a temporary location.', 'luna'));
+                    break;
+
+                default:
+                    // No error occured, but was something actually uploaded?
+                    if ($uploaded_file['size'] == 0)
+                        message(__('You did not select a file for upload.', 'luna'));
+                    break;
+            }
+        }
+
+        if (is_uploaded_file($uploaded_file['tmp_name'])) {
+            // Preliminary file check, adequate in most cases
+            $allowed_types = array('image/png', 'image/x-png');
+            if (!in_array($uploaded_file['type'], $allowed_types))
+                message(__('The file you tried to upload is not of an allowed type. Only png is allowed.', 'luna'));
+
+            // Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
+            if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.tmp'))
+                message(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+
+            list($width, $height, $type,) = @getimagesize(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.tmp');
+    
+            // Clean up existing headers
+            @unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
+            
+            // Do the final rename
+            @rename(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.tmp', LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
+            @chmod(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png', 0644);
+        } else
+            message(__('An unknown error occurred. Please try again.', 'luna'));
+    }
 
 	// Regenerate the config cache
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
@@ -139,7 +201,7 @@ load_admin_nav('settings', 'settings');
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
-<form class="form-horizontal" method="post" action="settings.php">
+<form class="form-horizontal" method="post" enctype="multipart/form-data" action="settings.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php _e('Essentials', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
@@ -408,6 +470,24 @@ foreach ($timezones as $timezone) {
 							<span class="input-group-addon"><?php _e('bytes', 'luna') ?></span>
 						</div>
 					</div>
+				</div>
+                <hr />
+				<div class="form-group">
+					<label class="col-sm-3 control-label">
+                        <?php _e('Default avatar', 'luna') ?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna') ?></span>
+                        <?php if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) { ?>
+                            <a class="btn btn-danger" href="?remove-avatar"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna') ?></a>
+                        <?php } ?>
+                    </label>
+					<div class="col-sm-9">
+                        <?php if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) { ?>
+                            <img class="img-responsive img-bs-avatar" src="<?php echo LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna') ?>" />
+                        <?php } else { ?>
+                            <img class="img-responsive img-bs-avatar" src="<?php echo LUNA_ROOT.'img/avatars/placeholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna') ?>" />
+                        <?php } ?>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="512000" />
+                        <input name="req_file" type="file" />
+                    </div>
 				</div>
 			</fieldset>
 		</div>

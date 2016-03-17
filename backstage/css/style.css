@@ -249,6 +249,13 @@ label .help-block {
 	padding-bottom: 5px;
 }
 
+/* Avatars within settings */
+.img-bs-avatar {
+    margin-bottom: 10px;
+    max-height: 128px;
+    width: auto;
+}
+
 /* Heading - jumbotron and navtabs */
 .jumbotron .row {
     padding-left: 0;
