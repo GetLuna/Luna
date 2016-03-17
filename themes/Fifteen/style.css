@@ -457,6 +457,15 @@ hr {
 .navbar-inverse .navbar-toggle {
 	border-color: transparent;
 }
+	
+.navbar-inverse .dropdown-menu .divider {
+    margin: 0;
+}
+	
+.navbar-nav .open .dropdown-menu > li > a,
+.navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 10px 15px;
+}
 
 @media (max-width:767px) {
 	.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
@@ -479,7 +488,6 @@ hr {
 	
 	.dropdown-menu > li > a {
 		color: #fff;
-		padding: 10px 15px;
 	}
 
 	.dropdown-menu > li > a:focus,
@@ -490,7 +498,6 @@ hr {
 	
 	.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
 		background-color: rgba(0,0,0,.2);
-		margin: 0;
 	}
 }
 
