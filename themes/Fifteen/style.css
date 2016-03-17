@@ -1009,6 +1009,21 @@ hr {
 }
 
 /* In box */
+.progress {
+    margin-bottom: 10px;
+    height: 30px;
+    box-shadow: none;
+}
+
+.progress-bar {
+    line-height: 30px;
+    box-shadow: none;
+}
+
+.btn-toolbar-profile {
+    margin-bottom: 10px;
+}
+
 .new-inbox .form-group,
 .new-inbox .editor {
     margin-bottom: 0;
