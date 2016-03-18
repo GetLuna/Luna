@@ -81,10 +81,9 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 					<?php endif; ?>
 				</div>
 				<div class="copyright">
+				    <hr />
 					<div class="container">
-						<hr />
-						<div class="row">
-							<div class="col-sm-5 col-xs-10">
+				        <div class="col-sm-5 col-xs-10">
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
@@ -93,10 +92,9 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
-							</div>
-							<div class="col-sm-2 col-xs-2"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center" id="backtotop"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
-							<div class="col-sm-5 col-xs-12"><span id="poweredby"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
-						</div>
+				        </div>
+				        <div class="col-sm-2 col-xs-2"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center" id="backtotop"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
+				        <div class="col-sm-5 col-xs-12"><span id="poweredby"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
 					</div>
 				</div>
 			</footer>
