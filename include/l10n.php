@@ -64,7 +64,11 @@ function _e($text, $domain = 'default') {
 function _n($single, $plural, $number, $domain = 'default') {
 
 	$translations = load_translations($domain);
-	$translation = $translations->translate_plural($single, $plural, $number);
+    
+    if ($number == 1)
+        $translation = __( $single, $domain );
+    else
+        $translation = __( $plural, $domain );
 
 	return $translation;
 }
