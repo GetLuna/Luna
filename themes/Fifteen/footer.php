@@ -58,7 +58,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 							</div>
 							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
 								<h4><?php newest_user() ?></h4>
-								<?php _e('Newest user', 'luna') ?></h4>
+								<?php _e('Newest user', 'luna') ?>
 							</div>
 							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
 								<h4><?php users_online() ?></h4>
