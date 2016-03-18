@@ -21,12 +21,6 @@
 .footer,
 .editor
 #comment,
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus,
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -36,6 +30,7 @@
 .category-header,
 .profile-header .jumbotron,
 .title-block-primary,
+.title-block-primary .btn-pagination .btn-primary,
 .list-group.list-group-luna .list-group-item.active {
 	background-color: #444444;
 }
@@ -106,8 +101,6 @@ a.list-group-item.active:focus,
 a.list-group-item:hover,
 a:focus,
 .editor .btn,
-.pagination > li > a,
-.pagination > li > span,
 .title-block-nav .nav-tabs > .active > a,
 .title-block-nav .nav-tabs > .active > a:focus,
 .title-block-nav .nav-tabs > .active > a:hover,

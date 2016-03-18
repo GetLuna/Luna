@@ -654,18 +654,8 @@ a.label-new {
 }
 
 /* Pagination */
-.pagination {
-	margin: 0 0 0 10px;
-}
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-	background: #1f62b0;
-	border-color: #1f62b0;
+.btn-pagination {
+    margin-top: 10px !important;
 }
 
 /* Alerts */

@@ -250,12 +250,62 @@ h6 {
 	background: #fff;
 }
 
-.pagination {
+/* Pagination */
+.btn-pagination {
+    margin-top: 1px;
+}
+
+.title-block .pagination {
     margin: 0;
 }
 
-:not(.title-block).pagination {
-    margin-top: 1px;
+.btn-pagination .btn + .btn,
+.btn-pagination .btn + .btn-group,
+.btn-pagination .btn-group + .btn,
+.btn-pagination .btn-group + .btn-group {
+    margin-left: 1px;
+}
+
+.btn-pagination .btn {
+    padding: 8px 14px;
+}
+
+.btn-pagination .btn.disabled {
+    background: #f6f6f6;
+}
+
+.btn-pagination .btn.btn-default {
+    background: #eee;
+}
+
+.btn-pagination .btn.btn-default:hover {
+    background: #e8e8e8;
+}
+
+.btn-pagination + .list-group-thread {
+    margin-bottom: 0;
+}
+
+.list-group-thread + .btn-pagination {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.title-block .btn-pagination .btn.btn-default {
+    background: #fff;
+}
+
+.title-block .btn-pagination .btn.disabled {
+    background: rgba(255,255,255,.4);
+    color: #fff;
+}
+
+.title-block .btn-pagination .btn.btn-primary {
+    color: #fff;
+}
+
+.title-block .btn-pagination .btn {
+    padding: 6px 12px;
 }
 
 .pagination > .active > a, 

@@ -43,5 +43,6 @@ if (!defined('FORUM'))
 			<div class="list-group list-group-thread">
 				<?php draw_threads_list(); ?>
 			</div>
+            <?php echo $paging_links ?>
 		</div>
 	</div>

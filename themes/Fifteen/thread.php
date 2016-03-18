@@ -55,6 +55,7 @@ if (!defined('FORUM'))
 				<h2><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></h2>
 			</div>
 			<?php draw_comment_list(); ?>
+            <?php echo $paging_links ?>
 			<?php if ($comment_field): ?>
 				<form method="post" action="comment.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 				<?php draw_editor('10', 1); ?>

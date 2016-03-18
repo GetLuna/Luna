@@ -926,15 +926,15 @@ function paginate($num_pages, $cur_page, $link) {
 	} else {
 		// Add a previous page link
 		if ($num_pages > 1 && $cur_page > 1)
-			$pages[] = '<li><a rel="prev" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page - 1).'">&laquo;</a></li>';
+			$pages[] = '<a rel="prev" '.(empty($pages) ? ' class="btn btn-default"' : '').' href="'.$link.'&amp;p='.($cur_page - 1).'">&laquo;</a>';
 		else
-			$pages[] = '<li class="disabled"><span>&laquo;</span></li>';
+			$pages[] = '<a class="btn btn-default disabled">&laquo;</a>';
 
 		if ($cur_page > 3) {
-			$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p=1">1</a></li>';
+			$pages[] = '<a'.(empty($pages) ? ' class="btn btn-default"' : '').' href="'.$link.'&amp;p=1">1</a>';
 
 			if ($cur_page > 5)
-				$pages[] = '<li class="disabled"><span class="spacer">'.__('…', 'luna').'</span></li>';
+				$pages[] = '<a class="btn btn-default disabled">'.__('…', 'luna').'</a>';
 		}
 
 		// Don't ask me how the following works. It just does, OK? :-)
@@ -942,25 +942,25 @@ function paginate($num_pages, $cur_page, $link) {
 			if ($current < 1 || $current > $num_pages)
 				continue;
 			elseif ($current != $cur_page || $link_to_all)
-				$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$current.'">'.forum_number_format($current).'</a></li>';
+				$pages[] = '<a class="btn btn-default" href="'.$link.'&amp;p='.$current.'">'.forum_number_format($current).'</a>';
 			else
-				$pages[] = '<li class="active"><span>'.forum_number_format($current).' <span class="sr-only">(current)</span></span></li>';
+				$pages[] = '<a class="btn btn-primary">'.forum_number_format($current).' <span class="sr-only">(current)</span></a>';
 		}
 
 		if ($cur_page <= ($num_pages-3)) {
 			if ($cur_page != ($num_pages-3) && $cur_page != ($num_pages-4))
-				$pages[] = '<li class="disabled"><span class="spacer">'.__('…', 'luna').'</span></li>';
+				$pages[] = '<a class="btn btn-default disabled">'.__('…', 'luna').'</a>';
 
-			$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a></li>';
+			$pages[] = '<a class=""btn btn-default" href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a>';
 		}
 
 		// Add a next page link
 		if ($num_pages > 1 && !$link_to_all && $cur_page < $num_pages)
-			$pages[] = '<li><a rel="next" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page +1).'">&raquo;</a></li>';
+			$pages[] = '<a rel="next" class="btn btn-default" href="'.$link.'&amp;p='.($cur_page +1).'">&raquo;</a>';
 		else
-			$pages[] = '<li class="disabled"><span>&raquo;</span></li>';
+			$pages[] = '<a class="btn btn-default disabled">&raquo;</a>';
 
-		return '<ul class="pagination">'.implode(' ', $pages).'</ul>';
+		return '<div class="btn-group btn-pagination">'.implode(' ', $pages).'</div>';
 	}
 }
 
