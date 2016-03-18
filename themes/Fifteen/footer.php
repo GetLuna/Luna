@@ -81,7 +81,6 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 							</div>
 						</div>
 					</div>
-				</div>
 				<?php endif; ?>
 				<div class="footer container">
 					<span class="pull-left">
