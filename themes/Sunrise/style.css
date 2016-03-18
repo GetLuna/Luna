@@ -696,6 +696,9 @@ hr {
 }
 
 /* Profile */
+#profile-settings .tab-content {
+    margin-bottom: 10px;
+}
 .profile-nav {
 	padding-top: 15px;
 }
@@ -731,6 +734,9 @@ hr {
 .profile-title {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.nav-tab-info-block .profile-title {
     display: inline;
 }
 
@@ -1049,6 +1055,10 @@ hr {
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
+}
+
+.btn-toolbar-top {
+    margin-top: 10px;
 }
 
 .category-box,
@@ -1635,6 +1645,11 @@ blockquote {
 
 blockquote footer {
 	font-size: 16px;
+}
+
+/* Footer */
+.footer .container .panel {
+    margin-top: 0;
 }
 
 /* Modal forms */
