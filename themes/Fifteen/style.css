@@ -959,7 +959,8 @@ hr {
 .user-entry {
 	background-color: #eee;
 	padding: 0;
-	margin-bottom: 10px;
+	margin-bottom: 10px !important;
+    margin-top: 10px !important;
 	height: 100px;
 }
 
