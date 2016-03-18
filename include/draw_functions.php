@@ -1024,6 +1024,31 @@ function draw_search_results() {
 			else
 				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_comment_id'].'#p'.$cur_search['last_comment_id'].'">'.format_time($cur_search['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_commenter']);
 
+            // Load cached forums
+            if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
+                include LUNA_CACHE_DIR.'cache_forums.php';
+
+            if (!defined('LUNA_LIST_LOADED')) {
+                if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+                    require LUNA_ROOT.'include/cache.php';
+
+                generate_forum_cache();
+                require LUNA_CACHE_DIR.'cache_forums.php';
+            }
+
+            foreach ($luna_forums as $cur_forum) {
+                if ($cur_search['forum_id'] == $cur_forum['id']) {
+                    $forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
+                    $forum_color = $cur_forum['color'];
+                    if ($cur_forum['icon'] != NULL)
+                        $faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+                    else
+                        $faicon = '';
+                }
+            }
+
+            $forum_name = '<a class="in-forum" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="color: '.$forum_color.';">'.$faicon.' '.$forum_name.'</a>';
+
 			require get_view_path('search-thread.php');
 		//}
 	}

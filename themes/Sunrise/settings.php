@@ -32,7 +32,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
                     <h2 class="profile-title"><?php _e('Settings', 'luna') ?></h2>
                     <span class="pull-right"><button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span>
                 </div>
-				<ul id="profilenav" class="nav nav-tabs no-background" role="tablist">
+				<ul id="profilenav" class="nav nav-tabs" role="tablist">
 					<li role="presentation"<?php if ( 'profile' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=profile#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="fa fa-fw fa-user"></span><span class="hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
 					<li role="presentation"<?php if ( 'personalize' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=personalize#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Personalize', 'luna') ?></span></a></li>
 					<li role="presentation"<?php if ( 'email' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=email#email" aria-controls="email" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Message', 'luna') ?></span></a></li>

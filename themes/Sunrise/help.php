@@ -23,7 +23,7 @@ if (!defined('FORUM'))
 		<h3><?php _e('BBCode', 'luna') ?></h3>
 		<p><a id="bbcode"></a><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode.', 'luna') ?></p>
 	</div>
-	<ul class="nav nav-tabs no-background">
+	<ul class="nav nav-tabs">
 		<li class="active"><a href="#style" data-toggle="tab"><?php _e('Text style', 'luna') ?></a></li>
 		<li><a href="#links" data-toggle="tab"><?php _e('Multimedia', 'luna') ?></a></li>
 		<li><a href="#quotes" data-toggle="tab"><?php _e('Quotes', 'luna') ?></a></li>
@@ -136,7 +136,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 		<h3><?php _e('General use', 'luna') ?></h3>
 		<p><?php _e('Explains some of the basics on how to work with this forum software.', 'luna') ?></p>
 	</div>
-	<ul class="nav nav-tabs no-background">
+	<ul class="nav nav-tabs">
 		<li class="active"><a href="#forum" data-toggle="tab"><?php _e('Forums and threads', 'luna') ?></a></li>
 		<li><a href="#profile" data-toggle="tab"><?php _e('Profile', 'luna') ?></a></li>
 		<li><a href="#searching" data-toggle="tab"><?php _e('Search', 'luna') ?></a></li>
@@ -212,7 +212,7 @@ if ($luna_user['is_admmod']) {
 		<h3><?php _e('Moderating', 'luna') ?></h3>
 		<p><?php _e('Admins and moderators need help sometimes, too! The basics of moderating are explained here.', 'luna') ?></p>
 	</div>
-	<ul class="nav nav-tabs no-background">
+	<ul class="nav nav-tabs">
 		<li class="active"><a href="#forums" data-toggle="tab"><?php _e('Forums', 'luna') ?></a></li>
 		<li><a href="#threads" data-toggle="tab"><?php _e('Threads', 'luna') ?></a></li>
 		<li><a href="#users" data-toggle="tab"><?php _e('Users', 'luna') ?></a></li>
