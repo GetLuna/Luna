@@ -98,6 +98,45 @@ hr {
 	}
 }
 
+/* Header customization */
+.bkg-png #header,
+.bkg-png .first-run.panel,
+.bkg-png .profile-card-head,
+.bkg-png .nav-tabs,
+.bkg-png .nav-tab-info,
+.bkg-png .container .navbar {
+    background-image: url('../../img/header.png') !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.bkg-jpg #header,
+.bkg-jpg .first-run.panel,
+.bkg-jpg .profile-card-head,
+.bkg-jpg .nav-tabs,
+.bkg-jpg .nav-tab-info,
+.bkg-jpg .container .navbar {
+    background-image: url('../../img/header.jpg') !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.bkg-png .navbar,
+.bkg-jpg .navbar {
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.bkg-png .navbar-inverse .navbar-toggle,
+.bkg-png .navbar-inverse .navbar-toggle:hover,
+.bkg-png .navbar-inverse .navbar-toggle:focus,
+.bkg-jpg .navbar-inverse .navbar-toggle,
+.bkg-jpg .navbar-inverse .navbar-toggle:hover,
+.bkg-jpg .navbar-inverse .navbar-toggle:focus {
+    background: none !important;
+}
+
 /* Header */
 #header {
 	background: #b14bbd;
