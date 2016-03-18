@@ -13,7 +13,9 @@ if (!defined('FORUM'))
 			</div>
 			<div class="tab-content">
 				<?php echo $paging_links ?>
-				<?php draw_search_results(); ?>
+                <div class="list-group list-group-thread">
+				    <?php draw_search_results(); ?>
+                </div>
 			</div>
 		</div>
 	</div>
