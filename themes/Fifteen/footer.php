@@ -12,8 +12,7 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-		</div>
-		<div class="container">
+        <div class="container">
 <?php
 // If no footer style has been specified, we use the default (only copyright/debug info)
 $footer_style = isset($footer_style) ? $footer_style : NULL;
@@ -39,51 +38,51 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
 
 ?>
-			</div>
-			<footer>
-				<?php if ($luna_config['o_board_statistics'] == 1): ?>
-					<div class="stats container">
-						<div class="row">
-							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
-								<h4><?php total_users(); ?></h4>
-								<?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>
-							</div>
-							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
-								<h4><?php total_threads() ?></h4>
-								<?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>
-							</div>
-							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
-								<h4><?php total_comments() ?></h4>
-								<?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?>
-							</div>
-							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
-								<h4><?php newest_user() ?></h4>
-								<?php _e('Newest user', 'luna') ?>
-							</div>
-							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
-								<h4><?php users_online() ?></h4>
-								<?php if ($luna_config['o_users_online']) { ?>
-								<div class="dropup">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-										<?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up hide-if-no-js"></span>
-										<span class="sr-only">Toggle Dropdown</span>
-									</a>
-									<ul class="dropdown-menu" role="menu">
-										<?php echo online_list() ?>
-									</ul>
-								</div>
-								<?php } else
-									echo _n('User online', 'Users online', num_users_online(), 'luna'); ?>
-							</div>
-							<div class="col-md-2 col-sm-4 col-xs-12 text-center">
-								<h4><?php guests_online() ?></h4>
-								<?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?>
-							</div>
-						</div>
-					</div>
-				<?php endif; ?>
-				<div class="footer container">
-					<span class="pull-left">
+        </div>
+        <footer>
+            <?php if ($luna_config['o_board_statistics'] == 1): ?>
+                <div class="stats container">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
+                            <h4><?php total_users(); ?></h4>
+                            <?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
+                            <h4><?php total_threads() ?></h4>
+                            <?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
+                            <h4><?php total_comments() ?></h4>
+                            <?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
+                            <h4><?php newest_user() ?></h4>
+                            <?php _e('Newest user', 'luna') ?>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
+                            <h4><?php users_online() ?></h4>
+                            <?php if ($luna_config['o_users_online']) { ?>
+                            <div class="dropup">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up hide-if-no-js"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php echo online_list() ?>
+                                </ul>
+                            </div>
+                            <?php } else
+                                echo _n('User online', 'Users online', num_users_online(), 'luna'); ?>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
+                            <h4><?php guests_online() ?></h4>
+                            <?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="footer container">
+                <span class="pull-left">
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
@@ -92,12 +91,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
-					<?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
-					</span>
-					<span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
-				</div>
-			</footer>
-		</div>
+                <?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
+                </span>
+                <span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
+            </div>
+        </footer>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 		<div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 			<div class="container">
