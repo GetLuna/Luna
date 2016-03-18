@@ -278,7 +278,8 @@ h6 {
     background: #eee;
 }
 
-.btn-pagination .btn.btn-default:hover {
+.btn-pagination .btn.btn-default:hover,
+.night .title-block .btn-pagination .btn.btn-default:hover {
     background: #e8e8e8;
 }
 
@@ -291,7 +292,8 @@ h6 {
     margin-bottom: 10px;
 }
 
-.title-block .btn-pagination .btn.btn-default {
+.title-block .btn-pagination .btn.btn-default,
+.night .title-block .btn-pagination .btn.btn-default {
     background: #fff;
 }
 
@@ -300,7 +302,8 @@ h6 {
     color: #fff;
 }
 
-.title-block .btn-pagination .btn.btn-primary {
+.title-block .btn-pagination .btn.btn-primary,
+.night .title-block .btn-pagination .btn.btn-primary {
     color: #fff;
 }
 
@@ -1581,4 +1584,20 @@ blockquote footer {
 
 .night .search-form .form-control {
     border-color: transparent;
+}
+
+.night .btn-pagination .btn.disabled {
+    background: #434343;
+}
+
+.night .btn-pagination .btn.btn-default {
+    background: #4f4f4f;
+}
+
+.night :not(.title-block) .btn-pagination .btn.btn-default {
+    color: #fff;
+}
+
+.night .btn-pagination .btn.btn-default:hover {
+    background: #5d5d5d;
 }
