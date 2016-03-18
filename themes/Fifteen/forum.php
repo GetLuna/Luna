@@ -46,3 +46,4 @@ if (!defined('FORUM'))
             <?php echo $paging_links ?>
 		</div>
 	</div>
+</div>

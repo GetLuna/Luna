@@ -22,7 +22,7 @@ if (!defined('FORUM'))
 				<form id="search" method="get" action="search.php?section=simple">
 					<fieldset>
 						<input type="hidden" name="action" value="search" />
-						<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></div>
+						<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></div>
 					</fieldset>
 				</form>
 			</div>
