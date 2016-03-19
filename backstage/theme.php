@@ -77,9 +77,7 @@ if (file_exists(LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
         <form class="form-horizontal" method="post" action="permissions.php">
             <div class="panel panel-default">
                 <div class="panel-heading">

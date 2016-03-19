@@ -102,6 +102,7 @@ a.list-group-item.active:focus,
 	border-color: #ccc;
 }
 
+.night .title-block .btn-pagination .btn.btn-default,
 a.list-group-item:hover,
 a:focus,
 .editor .btn,
