@@ -1252,6 +1252,11 @@ hr {
 }
 
 /* List groups */
+.list-group-luna.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .list-group {
 	margin-bottom: 10px;
 }
