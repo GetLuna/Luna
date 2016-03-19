@@ -1273,3 +1273,23 @@ a.label-new {
     background: #565656;
     color: #fff;
 }
+
+.night .alert-info {
+    background-color: #31708f;
+    color: #d9edf7;
+}
+
+.night .alert-success {
+    background-color: #3c763d;
+    color: #dff0d8;
+}
+
+.night .alert-warning {
+    background-color: #d69422;
+    color: #fcf8e3;
+}
+
+.night .alert-danger {
+    background-color: #a94442;
+    color: #f2dede;
+}

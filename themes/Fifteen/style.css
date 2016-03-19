@@ -430,6 +430,14 @@ h6 {
     margin-bottom: 10px;
 }
 
+.alert h4 {
+    margin-bottom: 5px;
+}
+
+.alert.alert-default {
+    padding: 0;
+}
+
 /* Tabpanels */
 .tab-content {
 	padding: 10px;
@@ -1601,4 +1609,24 @@ blockquote footer {
 
 .night .btn-pagination .btn.btn-default:hover {
     background: #5d5d5d;
+}
+
+.night .alert-info {
+    background-color: #31708f;
+    color: #d9edf7;
+}
+
+.night .alert-success {
+    background-color: #3c763d;
+    color: #dff0d8;
+}
+
+.night .alert-warning {
+    background-color: #d69422;
+    color: #fcf8e3;
+}
+
+.night .alert-danger {
+    background-color: #a94442;
+    color: #f2dede;
 }
