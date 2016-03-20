@@ -361,7 +361,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 
-			$thread_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
+			$threads_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = _n('comment', 'comments', $cur_forum['num_comments'], 'luna');
 
 			if ($id == $cur_forum['fid']) {
@@ -378,11 +378,11 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
 
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span></span>';
 					else
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span></span>';
 			} else
-				$last_comment = __('Never', 'luna');
+				$last_comment = '<span class="thread-title">'.__('Never', 'luna').'</span>';
 
 			require get_view_path($forum_object_name);
 		}
