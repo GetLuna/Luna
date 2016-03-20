@@ -39,7 +39,7 @@ if (!defined('FORUM'))
                 <span class="naviton"><?php echo $comment_link ?></span>
 				<div class="forum-desc"><?php echo $cur_forum['forum_desc'] ?></div>
 			</div>
-            <div class="list-group list-group-thread">
+            <div class="list-group list-group-thread subforum-list">
                 <?php draw_subforum_list('forum.php'); ?>
             </div>
             <?php echo $paging_links ?>
