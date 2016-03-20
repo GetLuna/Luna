@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-20 19:52+0100\n"
-"PO-Revision-Date: 2016-03-20 19:53+0100\n"
+"POT-Creation-Date: 2016-03-20 20:14+0100\n"
+"PO-Revision-Date: 2016-03-20 20:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -251,7 +251,7 @@ msgstr "Thema mogelijkheden"
 #: backstage/email.php:123 backstage/features.php:78 backstage/features.php:151
 #: backstage/features.php:178 backstage/features.php:211
 #: backstage/features.php:267 backstage/groups.php:48 backstage/groups.php:591
-#: backstage/index.php:202 backstage/maintenance.php:178 backstage/menu.php:101
+#: backstage/index.php:208 backstage/maintenance.php:178 backstage/menu.php:101
 #: backstage/permissions.php:64 backstage/permissions.php:113
 #: backstage/permissions.php:151 backstage/ranks.php:123
 #: backstage/registration.php:73 backstage/settings.php:206
@@ -1826,30 +1826,43 @@ msgstr "Reactie #%s"
 msgid "There are no new reports."
 msgstr "Er zijn geen nieuwe rapporten."
 
-#: backstage/index.php:171 db_update.php:717 db_update.php:802
-#: include/draw_functions.php:365 include/draw_functions.php:449
+#: backstage/index.php:171 backstage/index.php:182 db_update.php:717
+#: db_update.php:802 include/draw_functions.php:365
+#: include/draw_functions.php:449
 msgid "comment"
 msgstr "reactie"
 
-#: backstage/index.php:172 include/draw_functions.php:364
-#: include/draw_functions.php:448
+#: backstage/index.php:172 backstage/index.php:180
+#: include/draw_functions.php:364 include/draw_functions.php:448
 msgid "thread"
 msgstr "conversatie"
 
-#: backstage/index.php:173
+#: backstage/index.php:173 backstage/index.php:179
 msgid "user"
 msgstr "gebruiker"
 
-#: backstage/index.php:184
+#: backstage/index.php:178
+msgid "users"
+msgstr "gebruikers"
+
+#: backstage/index.php:181
+msgid "threads"
+msgstr "conversaties"
+
+#: backstage/index.php:183
+msgid "comments"
+msgstr "reacties"
+
+#: backstage/index.php:190
 #, php-format
 msgid "Luna v%s is available, %s!"
 msgstr "Luna v%s is beschikbaar, %s!"
 
-#: backstage/index.php:184
+#: backstage/index.php:190
 msgid "update now"
 msgstr "update nu"
 
-#: backstage/index.php:190
+#: backstage/index.php:196
 msgid ""
 "The config file is writeable at this moment, you might want to set the CHMOD "
 "to 640 or 644."
@@ -1857,23 +1870,23 @@ msgstr ""
 "Het configuratie bestand is beschrijfbaar op dit moment, je kan de CHMOD "
 "best veranderen in 640 of 644."
 
-#: backstage/index.php:195
+#: backstage/index.php:201
 msgid "The file install.php still exists, but should be removed."
 msgstr "Het bestand install.php bestaat nog, je kan dit best verwijderen."
 
-#: backstage/index.php:202
+#: backstage/index.php:208
 msgid "Admin notes"
 msgstr "Admin notas"
 
-#: backstage/index.php:205
+#: backstage/index.php:211
 msgid "Add a note..."
 msgstr "Voeg een nota toe..."
 
-#: backstage/index.php:211
+#: backstage/index.php:217
 msgid "Back-up"
 msgstr "Back-up"
 
-#: backstage/index.php:214
+#: backstage/index.php:220
 msgid "Create new backup"
 msgstr "Maak een nieuwe back-up"
 
@@ -1942,7 +1955,7 @@ msgid "Processing comment <strong>%s</strong> …"
 msgstr "Reactie <strong>%s</strong> verwerken..."
 
 #: backstage/maintenance.php:129 db_update.php:182
-#: include/class/luna_install.php:1495
+#: include/class/luna_install.php:1498
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -2140,7 +2153,7 @@ msgid "New subject"
 msgstr "Nieuw onderwerp"
 
 #: backstage/moderate.php:353 backstage/tools.php:40 backstage/users.php:176
-#: include/class/luna_install.php:1548 include/functions.php:447
+#: include/class/luna_install.php:1551 include/functions.php:447
 #: include/functions.php:891 search.php:222 settings.php:676
 msgid "Guest"
 msgstr "Gast"
@@ -2267,7 +2280,7 @@ msgstr "Sta toe dat reacties enkel uit hoofdletters bestaan."
 msgid "Allow a subject to contain only capital letters."
 msgstr "Sta toe dat onderwerpen enkel uit hoofdletters bestaan."
 
-#: backstage/permissions.php:98 include/class/luna_install.php:1569
+#: backstage/permissions.php:98 include/class/luna_install.php:1572
 msgid "Guests"
 msgstr "Gasten"
 
@@ -2559,7 +2572,7 @@ msgstr ""
 "Vereis dat nieuwe gebruikers de regels accepteren. Dit zal ook het \"Regels"
 "\" paneel tonen in Help."
 
-#: backstage/registration.php:124 include/class/luna_install.php:1493
+#: backstage/registration.php:124 include/class/luna_install.php:1496
 #: themes/Fifteen/help.php:13 themes/Fifteen/rules.php:13
 msgid "Rules"
 msgstr "Regels"
@@ -4076,15 +4089,15 @@ msgstr ""
 "gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
 "bewaren kan je een andere prefix instellen."
 
-#: include/class/luna_install.php:1433
+#: include/class/luna_install.php:1436
 msgid "H:i"
 msgstr "H:i"
 
-#: include/class/luna_install.php:1434
+#: include/class/luna_install.php:1437
 msgid "j F Y"
 msgstr "j F Y"
 
-#: include/class/luna_install.php:1475
+#: include/class/luna_install.php:1478
 msgid ""
 "Wow, it's great to have you here, welcome and thanks for joining us. We've "
 "set up your account and you're ready to go. Though we like to point out some "
@@ -4094,35 +4107,35 @@ msgstr ""
 "aangemaakt en je bent klaar om te starten. We hebben echter nog wat handige "
 "links voor je die je mogelijk wilt bekijken."
 
-#: include/class/luna_install.php:1487
+#: include/class/luna_install.php:1490
 msgid "Announcement"
 msgstr "Aankondigingen"
 
-#: include/class/luna_install.php:1565
+#: include/class/luna_install.php:1568
 msgid "Administrators"
 msgstr "Administratoren"
 
-#: include/class/luna_install.php:1565 settings.php:676
+#: include/class/luna_install.php:1568 settings.php:676
 msgid "Administrator"
 msgstr "Administrator"
 
-#: include/class/luna_install.php:1567
+#: include/class/luna_install.php:1570
 msgid "Moderators"
 msgstr "Moderatoren"
 
-#: include/class/luna_install.php:1567 settings.php:676
+#: include/class/luna_install.php:1570 settings.php:676
 msgid "Moderator"
 msgstr "Moderator"
 
-#: include/class/luna_install.php:1571
+#: include/class/luna_install.php:1574
 msgid "Members"
 msgstr "Gebruikers"
 
-#: include/class/luna_install.php:1600
+#: include/class/luna_install.php:1603
 msgid "New member"
 msgstr "Nieuwe gebruikers"
 
-#: include/class/luna_install.php:1603 include/functions.php:903
+#: include/class/luna_install.php:1606 include/functions.php:903
 #: settings.php:676
 msgid "Member"
 msgstr "Gebruiker"

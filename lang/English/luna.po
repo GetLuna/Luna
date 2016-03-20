@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-20 19:53+0100\n"
-"PO-Revision-Date: 2016-03-20 19:53+0100\n"
+"POT-Creation-Date: 2016-03-20 20:08+0100\n"
+"PO-Revision-Date: 2016-03-20 20:12+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -15,6 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: include/js\n"
 
 #: backstage/about.php:16 backstage/appearance.php:144 backstage/bans.php:82
 #: backstage/bans.php:332 backstage/bans.php:399 backstage/board.php:79
@@ -1826,7 +1827,7 @@ msgid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
 #: backstage/maintenance.php:129 db_update.php:182
-#: include/class/luna_install.php:1495
+#: include/class/luna_install.php:1498
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -2009,7 +2010,7 @@ msgid "New subject"
 msgstr ""
 
 #: backstage/moderate.php:353 backstage/tools.php:40 backstage/users.php:176
-#: include/class/luna_install.php:1548 include/functions.php:447
+#: include/class/luna_install.php:1551 include/functions.php:447
 #: include/functions.php:891 search.php:222 settings.php:676
 msgid "Guest"
 msgstr ""
@@ -2132,7 +2133,7 @@ msgstr ""
 msgid "Allow a subject to contain only capital letters."
 msgstr ""
 
-#: backstage/permissions.php:98 include/class/luna_install.php:1569
+#: backstage/permissions.php:98 include/class/luna_install.php:1572
 msgid "Guests"
 msgstr ""
 
@@ -2408,7 +2409,7 @@ msgid ""
 "Help."
 msgstr ""
 
-#: backstage/registration.php:124 include/class/luna_install.php:1493
+#: backstage/registration.php:124 include/class/luna_install.php:1496
 #: themes/Fifteen/help.php:13 themes/Fifteen/rules.php:13
 msgid "Rules"
 msgstr ""
@@ -3755,50 +3756,50 @@ msgid ""
 "must choose a different table prefix"
 msgstr ""
 
-#: include/class/luna_install.php:1433
+#: include/class/luna_install.php:1436
 msgid "H:i"
 msgstr ""
 
-#: include/class/luna_install.php:1434
+#: include/class/luna_install.php:1437
 msgid "j F Y"
 msgstr ""
 
-#: include/class/luna_install.php:1475
+#: include/class/luna_install.php:1478
 msgid ""
 "Wow, it's great to have you here, welcome and thanks for joining us. We've "
 "set up your account and you're ready to go. Though we like to point out some "
 "actions you might want to do first."
 msgstr ""
 
-#: include/class/luna_install.php:1487
+#: include/class/luna_install.php:1490
 msgid "Announcement"
 msgstr ""
 
-#: include/class/luna_install.php:1565
+#: include/class/luna_install.php:1568
 msgid "Administrators"
 msgstr ""
 
-#: include/class/luna_install.php:1565 settings.php:676
+#: include/class/luna_install.php:1568 settings.php:676
 msgid "Administrator"
 msgstr ""
 
-#: include/class/luna_install.php:1567
+#: include/class/luna_install.php:1570
 msgid "Moderators"
 msgstr ""
 
-#: include/class/luna_install.php:1567 settings.php:676
+#: include/class/luna_install.php:1570 settings.php:676
 msgid "Moderator"
 msgstr ""
 
-#: include/class/luna_install.php:1571
+#: include/class/luna_install.php:1574
 msgid "Members"
 msgstr ""
 
-#: include/class/luna_install.php:1600
+#: include/class/luna_install.php:1603
 msgid "New member"
 msgstr ""
 
-#: include/class/luna_install.php:1603 include/functions.php:903
+#: include/class/luna_install.php:1606 include/functions.php:903
 #: settings.php:676
 msgid "Member"
 msgstr ""

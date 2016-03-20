@@ -175,6 +175,9 @@ if ($db->num_rows($result)) {
             </div>
         </div>
     </div>
+    <?php __('users', 'luna') ?>
+    <?php __('threads', 'luna') ?>
+    <?php __('comments', 'luna') ?>
 	<div class="col-sm-4">
 <?php
 //Update checking
