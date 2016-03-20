@@ -40,51 +40,13 @@ require 'header.php';
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 ?>
-    </div>
-	<div class="col-md-3">
-		<div class="panel panel-default panel-current">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Current theme', 'luna') ?></h3>
-			</div>
-<?php
-
-$current_theme = $luna_config['o_default_style'];
-include LUNA_ROOT.'/themes/'.$current_theme.'/information.php';
-$theme_info = new SimpleXMLElement($xmlstr);
-
-?>
-			<div class="thumbnail"><a data-toggle="modal" href="#" data-target="#<?php echo $current_theme ?>"><img src="../themes/<?php echo $current_theme ?>/logo.png" /></a></div>
-			<div class="panel-footer">
-				<span class="h2"><?php echo $theme_info->name; ?></span>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-9">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php printf(__('Theme settings for %s', 'luna'), $luna_config['o_default_style'].' '.$theme_info->version) ?></h3>
-			</div>
-			<div class="panel-body">
-<?php
-
-if (file_exists(LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
-	include LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php';
-} else {
-	_e('This theme has no settings available...', 'luna');
-}
-
-?>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-12">
         <form class="form-horizontal" method="post" action="permissions.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php _e('Default theme', 'luna') ?></h3>
                 </div>
                 <div class="panel-body">
-                    <p><?php _e('Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.', 'luna') ?></p>
+                    <p><?php _e('Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation.', 'luna') ?></p>
                     <fieldset>
                         <div class="row">
 <?php
