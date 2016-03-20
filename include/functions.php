@@ -1073,11 +1073,11 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 function is_subforum($id, $self_subforum = '0') {
 	global $db;
 
-	$result = $db->query('SELECT count(*) FROM '.$db->prefix.'forums WHERE parent_id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT count(*) FROM '.$db->prefix.'forums WHERE parent_id='.$id) or error ('Unable to fetch information about the number of subforums', __FILE__, __LINE__, $db->error());
 	$num_subforums = $db->result($result);
 
 	if ($num_subforums == '0') {
-		$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the this forum being a subforum', __FILE__, __LINE__, $db->error());
 		$forum_is_subforum = $db->result($result);
 
 		if ($forum_is_subforum != '0' && $self_subforum == '0')

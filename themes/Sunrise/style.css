@@ -31,3 +31,11 @@
 .list-group-item.clearfix .bytime {
     margin-top: 3px;
 }
+
+.title-block + .list-group-thread + .btn-pagination {
+    margin-bottom: 0;
+}
+
+.subforumview .title-block + .list-group-thread {
+    display: none;
+}

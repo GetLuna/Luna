@@ -369,7 +369,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
 			} else {
 				$item_style = '';
-				$item_style = ' style="border-left: 5px solid '.$cur_forum['color'].';"';
+				$item_style = ' style="border-left: 6px solid '.$cur_forum['color'].';"';
 			}
 
 			// If there is a last_comment/last_commenter
@@ -397,7 +397,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 	}
 }
 
-function draw_subforum_list($object_name = 'forum.php') {
+function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 	global $db, $luna_config, $luna_user, $id, $new_threads;
 
 	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
@@ -445,7 +445,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 
-			$thread_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
+			$threads_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = __('comment', 'comments', $cur_forum['num_comments'], 'luna');
 
 			if ($id == $cur_forum['fid']) {
@@ -453,7 +453,20 @@ function draw_subforum_list($object_name = 'forum.php') {
 				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
 			} else {
 				$item_style = '';
+				$item_style = ' style="border-left: 6px solid '.$cur_forum['color'].';"';
 			}
+
+			// If there is a last_comment/last_commenter
+			if ($cur_forum['last_comment'] != '') {
+				if (luna_strlen($cur_forum['subject']) > 53)
+					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
+
+					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span></span>';
+					else
+						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span></span>';
+			} else
+				$last_comment = '<span class="thread-title">'.__('Never', 'luna').'</span>';
 
 			require get_view_path($object_name);
 		}
