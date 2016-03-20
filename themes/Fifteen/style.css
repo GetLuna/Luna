@@ -1251,6 +1251,19 @@ hr {
     color: #fff !important;
 }
 
+/* Thread listings */
+.logged-guest .middot {
+    display: none;
+}
+
+.middot {
+    opacity: 0;
+}
+
+.commented-item .middot {
+    opacity: 1;
+}
+
 /* List groups */
 .list-group-luna.container {
     padding-left: 15px;

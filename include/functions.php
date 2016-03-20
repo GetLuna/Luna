@@ -2174,6 +2174,11 @@ function check_style_mode() {
     elseif (file_exists('img/header.jpg'))
         $body_classes .= ' bkg-jpg';
 
+    if ($luna_user['is_guest'])
+        $body_classes .= ' logged-guest';
+    else
+        $body_classes .= ' logged-user';
+
 	return $body_classes;
 }
 
