@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-17 20:58+0100\n"
-"PO-Revision-Date: 2016-03-17 20:59+0100\n"
+"POT-Creation-Date: 2016-03-20 16:57+0100\n"
+"PO-Revision-Date: 2016-03-20 16:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -34,7 +34,7 @@ msgstr ""
 #: backstage/users.php:34 backstage/users.php:109 backstage/users.php:280
 #: backstage/users.php:422 backstage/users.php:537 backstage/users.php:711
 #: backstage/users.php:809 include/functions.php:1051
-#: themes/Fifteen/settings.php:44 themes/Sunrise/settings.php:42
+#: themes/Fifteen/settings.php:44
 msgid "Admin"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgstr ""
 #: backstage/about.php:33 backstage/about.php:34 backstage/about.php:35
 #: backstage/about.php:36 backstage/about.php:37 backstage/about.php:38
 #: backstage/about.php:39 header.php:56 header.php:57
-#: include/draw_functions.php:348 include/draw_functions.php:431
+#: include/draw_functions.php:350 include/draw_functions.php:434
 #: themes/Fifteen/notifications.php:30
 msgid "New"
 msgstr ""
@@ -244,8 +244,6 @@ msgstr ""
 #: backstage/settings.php:496 backstage/update.php:86 backstage/users.php:304
 #: themes/Fifteen/me-modals.php:17 themes/Fifteen/me-modals.php:43
 #: themes/Fifteen/settings.php:36 themes/Fifteen/settings.php:494
-#: themes/Sunrise/me-modals.php:17 themes/Sunrise/me-modals.php:43
-#: themes/Sunrise/settings.php:33 themes/Sunrise/settings.php:488
 msgid "Save"
 msgstr ""
 
@@ -262,7 +260,6 @@ msgid "Allow users to change the night mode settings."
 msgstr ""
 
 #: backstage/appearance.php:182 themes/Fifteen/settings.php:129
-#: themes/Sunrise/settings.php:127
 msgid "Color"
 msgstr ""
 
@@ -336,12 +333,11 @@ msgid "The size emoticons and emojis are shown in"
 msgstr ""
 
 #: backstage/appearance.php:286 backstage/settings.php:451
-#: backstage/settings.php:460 settings.php:514 themes/Sunrise/me-modals.php:62
+#: backstage/settings.php:460 settings.php:514
 msgid "pixels"
 msgstr ""
 
 #: backstage/appearance.php:292 themes/Fifteen/settings.php:395
-#: themes/Sunrise/settings.php:389
 msgid "Threads per page"
 msgstr ""
 
@@ -350,7 +346,6 @@ msgid "Default amount of threads per page"
 msgstr ""
 
 #: backstage/appearance.php:298 themes/Fifteen/settings.php:401
-#: themes/Sunrise/settings.php:395
 msgid "Comments per page"
 msgstr ""
 
@@ -365,7 +360,7 @@ msgstr ""
 #: backstage/appearance.php:313 footer.php:16 footer.php:19
 #: include/backstage_functions.php:129 include/general_functions.php:50
 #: include/me_functions.php:23 include/me_functions.php:35
-#: themes/Fifteen/notifications.php:28 themes/Sunrise/notifications.php:21
+#: themes/Fifteen/notifications.php:28
 msgid "Notifications"
 msgstr ""
 
@@ -381,10 +376,7 @@ msgstr ""
 #: search.php:438 search.php:500 search.php:512 themes/Fifteen/help.php:137
 #: themes/Fifteen/search-advanced.php:15 themes/Fifteen/search-advanced.php:18
 #: themes/Fifteen/search.php:13 themes/Fifteen/search.php:25
-#: themes/Fifteen/users.php:30 themes/Sunrise/help.php:142
-#: themes/Sunrise/search-advanced.php:10 themes/Sunrise/search-results.php:8
-#: themes/Sunrise/search.php:8 themes/Sunrise/search.php:14
-#: themes/Sunrise/users.php:22
+#: themes/Fifteen/users.php:30
 msgid "Search"
 msgstr ""
 
@@ -412,8 +404,7 @@ msgstr ""
 msgid "Show a \"Back to top\" link in the footer."
 msgstr ""
 
-#: backstage/appearance.php:368 themes/Fifteen/footer.php:91
-#: themes/Sunrise/footer.php:91
+#: backstage/appearance.php:368 themes/Fifteen/footer.php:89
 msgid "Copyright"
 msgstr ""
 
@@ -523,8 +514,7 @@ msgstr ""
 #: backstage/users.php:914 install.php:189 install.php:306 install.php:333
 #: register.php:245 themes/Fifteen/index.php:56 themes/Fifteen/login.php:13
 #: themes/Fifteen/register.php:20 themes/Fifteen/settings.php:53
-#: themes/Sunrise/index.php:46 themes/Sunrise/login.php:13
-#: themes/Sunrise/register.php:20 themes/Sunrise/settings.php:50
+#: themes/Sunrise/index.php:56
 msgid "Username"
 msgstr ""
 
@@ -554,15 +544,12 @@ msgstr ""
 #: backstage/users.php:128 backstage/users.php:746 backstage/users.php:915
 #: comment.php:529 include/backstage_functions.php:55
 #: include/backstage_functions.php:185 include/draw_functions.php:88
-#: include/draw_functions.php:644 include/draw_functions.php:646
-#: include/draw_functions.php:676 include/draw_functions.php:815
-#: include/draw_functions.php:817 include/draw_functions.php:843
+#: include/draw_functions.php:660 include/draw_functions.php:662
+#: include/draw_functions.php:692 include/draw_functions.php:831
+#: include/draw_functions.php:833 include/draw_functions.php:859
 #: install.php:192 install.php:352 register.php:245
-#: themes/Fifteen/comment.php:35 themes/Fifteen/login.php:42
-#: themes/Fifteen/register.php:41 themes/Fifteen/settings.php:67
-#: themes/Sunrise/comment.php:30 themes/Sunrise/login.php:42
-#: themes/Sunrise/register.php:41 themes/Sunrise/settings.php:64
-#: themes/Sunrise/thread.php:35 themes/Sunrise/thread.php:39 thread.php:127
+#: themes/Fifteen/comment.php:36 themes/Fifteen/login.php:42
+#: themes/Fifteen/register.php:41 themes/Fifteen/settings.php:67 thread.php:127
 msgid "Email"
 msgstr ""
 
@@ -644,8 +631,7 @@ msgstr ""
 
 #: backstage/bans.php:354 backstage/bans.php:445 backstage/index.php:125
 #: backstage/reports.php:61 backstage/reports.php:118 comment.php:529
-#: edit.php:131 misc.php:134 new_inbox.php:388 themes/Sunrise/inbox-new.php:75
-#: themes/Sunrise/settings.php:38 thread.php:123 viewinbox.php:202
+#: edit.php:131 misc.php:134 new_inbox.php:388 thread.php:123 viewinbox.php:202
 msgid "Message"
 msgstr ""
 
@@ -659,7 +645,7 @@ msgid "Actions"
 msgstr ""
 
 #: backstage/bans.php:366 backstage/board.php:636 backstage/groups.php:633
-#: include/draw_functions.php:708 include/draw_functions.php:735
+#: include/draw_functions.php:724 include/draw_functions.php:751
 msgid "Edit"
 msgstr ""
 
@@ -717,17 +703,16 @@ msgid "Order by"
 msgstr ""
 
 #: backstage/bans.php:468 backstage/users.php:921
-#: themes/Fifteen/search-advanced.php:50 themes/Sunrise/search-advanced.php:30
+#: themes/Fifteen/search-advanced.php:50
 msgid "Ascending"
 msgstr ""
 
 #: backstage/bans.php:469 backstage/users.php:922
-#: themes/Fifteen/search-advanced.php:49 themes/Sunrise/search-advanced.php:29
+#: themes/Fifteen/search-advanced.php:49
 msgid "Descending"
 msgstr ""
 
 #: backstage/board.php:79 backstage/board.php:213 themes/Fifteen/help.php:209
-#: themes/Sunrise/help.php:216
 msgid "Forums"
 msgstr ""
 
@@ -781,7 +766,6 @@ msgid "Sort threads by"
 msgstr ""
 
 #: backstage/board.php:290 backstage/users.php:917 themes/Fifteen/inbox.php:62
-#: themes/Sunrise/inbox.php:55
 msgid "Last comment"
 msgstr ""
 
@@ -790,11 +774,9 @@ msgid "Thread start"
 msgstr ""
 
 #: backstage/board.php:292 comment.php:529 edit.php:131
-#: include/draw_functions.php:1038 misc.php:134 new_inbox.php:392
-#: themes/Fifteen/comment.php:41 themes/Fifteen/inbox-new.php:83
+#: include/draw_functions.php:1079 misc.php:134 new_inbox.php:392
+#: themes/Fifteen/comment.php:42 themes/Fifteen/inbox-new.php:83
 #: themes/Fifteen/inbox-view.php:38 themes/Fifteen/search-advanced.php:43
-#: themes/Sunrise/comment.php:36 themes/Sunrise/inbox-new.php:68
-#: themes/Sunrise/search-advanced.php:25
 msgid "Subject"
 msgstr ""
 
@@ -851,8 +833,7 @@ msgid "Read forum"
 msgstr ""
 
 #: backstage/board.php:339 backstage/groups.php:207
-#: themes/Fifteen/footer.php:57 themes/Sunrise/footer.php:55 thread.php:91
-#: thread.php:98
+#: themes/Fifteen/footer.php:56 thread.php:91 thread.php:98
 msgid "Comment"
 msgstr ""
 
@@ -891,8 +872,7 @@ msgstr ""
 #: backstage/board.php:542 backstage/board.php:561 backstage/board.php:660
 #: backstage/menu.php:83 backstage/menu.php:106 comment.php:535
 #: include/draw_functions.php:87 install.php:188 install.php:300
-#: themes/Fifteen/comment.php:34 themes/Sunrise/comment.php:29
-#: themes/Sunrise/thread.php:38 thread.php:125
+#: themes/Fifteen/comment.php:35 thread.php:125
 msgid "Name"
 msgstr ""
 
@@ -1044,14 +1024,12 @@ msgstr ""
 
 #: backstage/database.php:546 backstage/prune.php:275 backstage/prune.php:352
 #: backstage/users.php:573 themes/Fifteen/answer.php:13
-#: themes/Fifteen/unsolved.php:12 themes/Sunrise/answer.php:19
-#: themes/Sunrise/unsolved.php:19
+#: themes/Fifteen/unsolved.php:12
 msgid "Yes"
 msgstr ""
 
 #: backstage/database.php:550 backstage/prune.php:279 backstage/prune.php:355
-#: backstage/users.php:577 themes/Sunrise/answer.php:18
-#: themes/Sunrise/unsolved.php:18
+#: backstage/users.php:577
 msgid "No"
 msgstr ""
 
@@ -1116,7 +1094,7 @@ msgid "The email where the boards mails will be addressed from"
 msgstr ""
 
 #: backstage/email.php:96 backstage/email.php:102 profile.php:69
-#: themes/Fifteen/settings.php:274 themes/Sunrise/settings.php:268
+#: themes/Fifteen/settings.php:274
 msgid "Subscriptions"
 msgstr ""
 
@@ -1237,9 +1215,7 @@ msgstr ""
 #: include/me_functions.php:21 include/me_functions.php:33
 #: themes/Fifteen/inbox-delete-comment.php:13 themes/Fifteen/inbox-new.php:67
 #: themes/Fifteen/inbox-view.php:28 themes/Fifteen/inbox.php:31
-#: themes/Fifteen/settings.php:236 themes/Sunrise/inbox-delete-comment.php:13
-#: themes/Sunrise/inbox-new.php:7 themes/Sunrise/inbox.php:24
-#: themes/Sunrise/inbox.php:45 themes/Sunrise/settings.php:230
+#: themes/Fifteen/settings.php:236
 msgid "Inbox"
 msgstr ""
 
@@ -1287,7 +1263,6 @@ msgstr ""
 
 #: backstage/features.php:211 backstage/permissions.php:70
 #: backstage/permissions.php:118 themes/Fifteen/help.php:22
-#: themes/Sunrise/help.php:23
 msgid "BBCode"
 msgstr ""
 
@@ -1328,7 +1303,7 @@ msgid "Maximum [quote] can be used in [quote]"
 msgstr ""
 
 #: backstage/features.php:267 backstage/features.php:273
-#: themes/Fifteen/search.php:16 themes/Sunrise/search.php:8
+#: themes/Fifteen/search.php:16
 msgid "Advanced"
 msgstr ""
 
@@ -1340,20 +1315,17 @@ msgid ""
 "compress PHP scripts, disable this feature."
 msgstr ""
 
-#: backstage/footer.php:20 themes/Fifteen/footer.php:126
-#: themes/Sunrise/footer.php:128
+#: backstage/footer.php:20 themes/Fifteen/footer.php:123
 #, php-format
 msgid "Generated in %1$s seconds, %2$s queries executed"
 msgstr ""
 
-#: backstage/footer.php:23 themes/Fifteen/footer.php:129
-#: themes/Sunrise/footer.php:131
+#: backstage/footer.php:23 themes/Fifteen/footer.php:126
 #, php-format
 msgid "Memory usage: %1$s"
 msgstr ""
 
-#: backstage/footer.php:26 themes/Fifteen/footer.php:132
-#: themes/Sunrise/footer.php:134
+#: backstage/footer.php:26 themes/Fifteen/footer.php:129
 #, php-format
 msgid "(Peak: %1$s)"
 msgstr ""
@@ -1452,7 +1424,6 @@ msgid "Allow users to soft delete threads from all users."
 msgstr ""
 
 #: backstage/groups.php:170 themes/Fifteen/settings.php:241
-#: themes/Sunrise/settings.php:235
 msgid "Allow users to send messages with Inbox."
 msgstr ""
 
@@ -1615,16 +1586,13 @@ msgstr ""
 #: backstage/groups.php:508 backstage/groups.php:545 backstage/groups.php:638
 #: backstage/menu.php:110 backstage/menu.php:134 backstage/menu.php:136
 #: backstage/moderate.php:140 backstage/moderate.php:392
-#: backstage/moderate.php:689 backstage/moderate.php:979
+#: backstage/moderate.php:689 backstage/moderate.php:973
 #: backstage/users.php:448 backstage/users.php:733 backstage/users.php:793
-#: include/draw_functions.php:700 include/draw_functions.php:730
-#: include/draw_functions.php:900 themes/Fifteen/delete.php:14
+#: include/draw_functions.php:716 include/draw_functions.php:746
+#: include/draw_functions.php:916 themes/Fifteen/delete.php:14
 #: themes/Fifteen/inbox-delete-comment.php:17
 #: themes/Fifteen/inbox-delete.php:12 themes/Fifteen/inbox.php:40
-#: themes/Fifteen/me-delete.php:13 themes/Sunrise/delete.php:18
-#: themes/Sunrise/inbox-delete-comment.php:17
-#: themes/Sunrise/inbox-delete.php:12 themes/Sunrise/inbox.php:34
-#: themes/Sunrise/me-delete.php:13
+#: themes/Fifteen/me-delete.php:13
 msgid "Delete"
 msgstr ""
 
@@ -1731,8 +1699,7 @@ msgstr ""
 #: backstage/index.php:136 backstage/index.php:137 backstage/index.php:139
 #: backstage/reports.php:73 backstage/reports.php:74 backstage/reports.php:76
 #: backstage/reports.php:129 backstage/reports.php:130
-#: backstage/reports.php:132 themes/Fifteen/inbox.php:107
-#: themes/Sunrise/inbox.php:103 viewinbox.php:191
+#: backstage/reports.php:132 themes/Fifteen/inbox.php:107 viewinbox.php:191
 msgid "Deleted"
 msgstr ""
 
@@ -1746,12 +1713,12 @@ msgid "There are no new reports."
 msgstr ""
 
 #: backstage/index.php:171 db_update.php:717 db_update.php:802
-#: include/draw_functions.php:363 include/draw_functions.php:446
+#: include/draw_functions.php:365 include/draw_functions.php:449
 msgid "comment"
 msgstr ""
 
-#: backstage/index.php:172 include/draw_functions.php:362
-#: include/draw_functions.php:445
+#: backstage/index.php:172 include/draw_functions.php:364
+#: include/draw_functions.php:448
 msgid "thread"
 msgstr ""
 
@@ -1823,8 +1790,8 @@ msgstr ""
 #: backstage/login.php:16 backstage/login.php:30
 #: include/general_functions.php:32 themes/Fifteen/index.php:52
 #: themes/Fifteen/index.php:61 themes/Fifteen/login.php:6
-#: themes/Fifteen/login.php:20 themes/Sunrise/index.php:42
-#: themes/Sunrise/login.php:6 themes/Sunrise/login.php:20
+#: themes/Fifteen/login.php:20 themes/Sunrise/index.php:52
+#: themes/Sunrise/index.php:61
 msgid "Login"
 msgstr ""
 
@@ -1832,15 +1799,12 @@ msgstr ""
 #: install.php:339 register.php:245 settings.php:432
 #: themes/Fifteen/index.php:57 themes/Fifteen/login.php:14
 #: themes/Fifteen/me-modals.php:12 themes/Fifteen/register.php:27
-#: themes/Fifteen/settings.php:60 themes/Sunrise/index.php:47
-#: themes/Sunrise/login.php:14 themes/Sunrise/me-modals.php:12
-#: themes/Sunrise/register.php:27 themes/Sunrise/settings.php:57
+#: themes/Fifteen/settings.php:60 themes/Sunrise/index.php:57
 msgid "Password"
 msgstr ""
 
 #: backstage/login.php:27 themes/Fifteen/index.php:59
-#: themes/Fifteen/login.php:17 themes/Sunrise/index.php:49
-#: themes/Sunrise/login.php:17
+#: themes/Fifteen/login.php:17 themes/Sunrise/index.php:59
 msgid "Remember me"
 msgstr ""
 
@@ -1996,8 +1960,8 @@ msgstr ""
 #: backstage/moderate.php:312 backstage/moderate.php:387
 #: backstage/moderate.php:472 backstage/moderate.php:595
 #: backstage/moderate.php:680 backstage/moderate.php:834
-#: include/backstage_functions.php:27 themes/Sunrise/forum.php:29
-#: themes/Sunrise/forum.php:51 themes/Sunrise/thread.php:47
+#: include/backstage_functions.php:27 themes/Fifteen/thread.php:27
+#: themes/Fifteen/thread.php:52
 msgid "Moderate"
 msgstr ""
 
@@ -2051,7 +2015,6 @@ msgid "Guest"
 msgstr ""
 
 #: backstage/moderate.php:370 themes/Fifteen/objects/comment.php:15
-#: themes/Sunrise/objects/comment.php:25
 msgid "Last edited by"
 msgstr ""
 
@@ -2072,7 +2035,7 @@ msgstr ""
 msgid "There are no forums into which you can move threads."
 msgstr ""
 
-#: backstage/moderate.php:481 themes/Fifteen/thread.php:31
+#: backstage/moderate.php:481
 msgid "Move thread"
 msgstr ""
 
@@ -2080,8 +2043,8 @@ msgstr ""
 msgid "Move threads"
 msgstr ""
 
-#: backstage/moderate.php:481 backstage/moderate.php:978
-#: themes/Sunrise/thread.php:53
+#: backstage/moderate.php:481 backstage/moderate.php:972
+#: themes/Fifteen/thread.php:31 themes/Fifteen/thread.php:56
 msgid "Move"
 msgstr ""
 
@@ -2097,7 +2060,7 @@ msgstr ""
 msgid "Merge threads"
 msgstr ""
 
-#: backstage/moderate.php:604 backstage/moderate.php:980
+#: backstage/moderate.php:604 backstage/moderate.php:974
 msgid "Merge"
 msgstr ""
 
@@ -2111,40 +2074,41 @@ msgid "Moderating \"%s\""
 msgstr ""
 
 #: backstage/moderate.php:885 backstage/moderate.php:887
-#: backstage/moderate.php:929 include/draw_functions.php:237
-#: include/draw_functions.php:239 include/draw_functions.php:281
-#: include/draw_functions.php:378 include/draw_functions.php:380
-#: include/draw_functions.php:518 include/draw_functions.php:520
-#: include/draw_functions.php:574 include/draw_functions.php:980
-#: include/draw_functions.php:1020 include/draw_functions.php:1022
-#: themes/Fifteen/inbox.php:84 themes/Sunrise/inbox.php:80
+#: backstage/moderate.php:929 include/draw_functions.php:239
+#: include/draw_functions.php:241 include/draw_functions.php:283
+#: include/draw_functions.php:381 include/draw_functions.php:383
+#: include/draw_functions.php:465 include/draw_functions.php:467
+#: include/draw_functions.php:534 include/draw_functions.php:536
+#: include/draw_functions.php:590 include/draw_functions.php:996
+#: include/draw_functions.php:1036 include/draw_functions.php:1038
+#: themes/Fifteen/inbox.php:84
 msgid "by"
 msgstr ""
 
-#: backstage/moderate.php:925 include/draw_functions.php:277
-#: include/draw_functions.php:570 include/draw_functions.php:1006
+#: backstage/moderate.php:925 include/draw_functions.php:279
+#: include/draw_functions.php:586 include/draw_functions.php:1022
 msgid "Go to the first new comment in the thread."
 msgstr ""
 
-#: backstage/moderate.php:946 include/draw_functions.php:298
-#: include/draw_functions.php:591
+#: backstage/moderate.php:940 include/draw_functions.php:300
+#: include/draw_functions.php:607
 msgid "reply"
 msgstr ""
 
-#: backstage/moderate.php:947 include/draw_functions.php:299
-#: include/draw_functions.php:592
+#: backstage/moderate.php:941 include/draw_functions.php:301
+#: include/draw_functions.php:608
 msgid "view"
 msgstr ""
 
-#: backstage/moderate.php:971
+#: backstage/moderate.php:965
 msgid "This forum has no threads yet."
 msgstr ""
 
-#: backstage/moderate.php:983 themes/Sunrise/thread.php:55
+#: backstage/moderate.php:977
 msgid "Open"
 msgstr ""
 
-#: backstage/moderate.php:984 themes/Sunrise/thread.php:57
+#: backstage/moderate.php:978
 msgid "Close"
 msgstr ""
 
@@ -2177,7 +2141,6 @@ msgid "Require guests to supply an email address when commenting."
 msgstr ""
 
 #: backstage/permissions.php:113 themes/Fifteen/settings.php:367
-#: themes/Sunrise/settings.php:361
 msgid "Signatures"
 msgstr ""
 
@@ -2297,11 +2260,11 @@ msgstr ""
 msgid "All notifications"
 msgstr ""
 
-#: backstage/prune.php:243 themes/Sunrise/notifications.php:43
+#: backstage/prune.php:243
 msgid "Seen notifications"
 msgstr ""
 
-#: backstage/prune.php:247 themes/Sunrise/notifications.php:24
+#: backstage/prune.php:247
 msgid "New notifications"
 msgstr ""
 
@@ -2479,8 +2442,8 @@ msgstr ""
 msgid "Reports"
 msgstr ""
 
-#: backstage/reports.php:87 include/draw_functions.php:1150 search.php:392
-#: themes/Fifteen/inbox.php:36 themes/Sunrise/inbox.php:30 viewforum.php:91
+#: backstage/reports.php:87 include/draw_functions.php:1191 search.php:392
+#: themes/Fifteen/inbox.php:36 viewforum.php:91
 msgid "Mark as read"
 msgstr ""
 
@@ -2527,7 +2490,7 @@ msgid "Essentials"
 msgstr ""
 
 #: backstage/settings.php:212 backstage/users.php:840 profile.php:41
-#: themes/Fifteen/settings.php:85 themes/Sunrise/settings.php:82
+#: themes/Fifteen/settings.php:85
 msgid "Title"
 msgstr ""
 
@@ -2556,7 +2519,6 @@ msgid "Time and timeouts"
 msgstr ""
 
 #: backstage/settings.php:274 themes/Fifteen/settings.php:426
-#: themes/Sunrise/settings.php:420
 msgid "Time format"
 msgstr ""
 
@@ -2570,7 +2532,6 @@ msgid "PHP manual"
 msgstr ""
 
 #: backstage/settings.php:280 themes/Fifteen/settings.php:444
-#: themes/Sunrise/settings.php:438
 msgid "Date format"
 msgstr ""
 
@@ -2661,8 +2622,7 @@ msgstr ""
 msgid "Cookie bar"
 msgstr ""
 
-#: backstage/settings.php:404 themes/Fifteen/footer.php:108
-#: themes/Sunrise/footer.php:110
+#: backstage/settings.php:404 themes/Fifteen/footer.php:105
 msgid "More info"
 msgstr ""
 
@@ -2713,7 +2673,7 @@ msgstr ""
 msgid "Max size"
 msgstr ""
 
-#: backstage/settings.php:469 settings.php:490 themes/Sunrise/me-modals.php:62
+#: backstage/settings.php:469 settings.php:490
 msgid "bytes"
 msgstr ""
 
@@ -2754,8 +2714,7 @@ msgid "Announcement type"
 msgstr ""
 
 #: backstage/settings.php:523 themes/Fifteen/settings.php:436
-#: themes/Fifteen/settings.php:454 themes/Sunrise/settings.php:430
-#: themes/Sunrise/settings.php:448
+#: themes/Fifteen/settings.php:454
 msgid "Default"
 msgstr ""
 
@@ -2834,19 +2793,19 @@ msgid "Software version"
 msgstr ""
 
 #: backstage/system.php:112
-msgid "Bootstrap version"
-msgstr ""
-
-#: backstage/system.php:116
 msgid "Core version"
 msgstr ""
 
+#: backstage/system.php:116
+msgid "Database version"
+msgstr ""
+
 #: backstage/system.php:120
-msgid "Font Awesome version"
+msgid "Bootstrap version"
 msgstr ""
 
 #: backstage/system.php:124
-msgid "Database version"
+msgid "Font Awesome version"
 msgstr ""
 
 #: backstage/system.php:128
@@ -2903,55 +2862,41 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
-#: backstage/theme.php:47
-msgid "Current theme"
-msgstr ""
-
-#: backstage/theme.php:65
-#, php-format
-msgid "Theme settings for %s"
-msgstr ""
-
-#: backstage/theme.php:73
-msgid "This theme has no settings available..."
-msgstr ""
-
-#: backstage/theme.php:86 install.php:403
+#: backstage/theme.php:46 install.php:403
 msgid "Default theme"
 msgstr ""
 
-#: backstage/theme.php:89
+#: backstage/theme.php:49
 msgid ""
 "Here are all themes we could find in the <code>/themes/</code>-folder of "
-"your Luna installation. You can choose them to become default here, we set, "
-"theme options will appear above."
+"your Luna installation."
 msgstr ""
 
-#: backstage/theme.php:104
+#: backstage/theme.php:64
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: backstage/theme.php:112
+#: backstage/theme.php:72
 #, php-format
 msgid "version %s"
 msgstr ""
 
-#: backstage/theme.php:119
+#: backstage/theme.php:79
 #, php-format
 msgid "Released on %s"
 msgstr ""
 
-#: backstage/theme.php:121
+#: backstage/theme.php:81
 #, php-format
 msgid "Designed for Luna %s to %s"
 msgstr ""
 
-#: backstage/theme.php:134
+#: backstage/theme.php:94
 msgid "In use"
 msgstr ""
 
-#: backstage/theme.php:136
+#: backstage/theme.php:96
 msgid "Use"
 msgstr ""
 
@@ -3021,8 +2966,6 @@ msgstr ""
 #: backstage/users.php:280 backstage/users.php:422 backstage/users.php:711
 #: backstage/users.php:809 extern.php:491 include/backstage_functions.php:93
 #: themes/Fifteen/help.php:211 themes/Fifteen/users.php:12
-#: themes/Sunrise/help.php:218 themes/Sunrise/users.php:8
-#: themes/Sunrise/users.php:36
 msgid "Users"
 msgstr ""
 
@@ -3151,13 +3094,12 @@ msgstr ""
 #: backstage/users.php:130 backstage/users.php:158 backstage/users.php:748
 #: backstage/users.php:765 extern.php:494 profile.php:43 profile.php:66
 #: themes/Fifteen/search-advanced.php:56 themes/Fifteen/settings.php:346
-#: themes/Fifteen/settings.php:539 themes/Sunrise/search-advanced.php:34
-#: themes/Sunrise/settings.php:340 themes/Sunrise/settings.php:533
+#: themes/Fifteen/settings.php:539
 msgid "Comments"
 msgstr ""
 
 #: backstage/users.php:131 backstage/users.php:749 backstage/users.php:883
-#: themes/Fifteen/settings.php:546 themes/Sunrise/settings.php:540
+#: themes/Fifteen/settings.php:546
 msgid "Admin note"
 msgstr ""
 
@@ -3207,7 +3149,6 @@ msgid "Delete users"
 msgstr ""
 
 #: backstage/users.php:438 themes/Fifteen/me-delete.php:16
-#: themes/Sunrise/me-delete.php:16
 msgid ""
 "Deleted users and/or comments cannot be restored. If you choose not to "
 "delete the comments made by this user, the comments can only be deleted "
@@ -3215,7 +3156,6 @@ msgid ""
 msgstr ""
 
 #: backstage/users.php:442 themes/Fifteen/me-delete.php:20
-#: themes/Sunrise/me-delete.php:20
 msgid "Delete all comments and threads this user has made"
 msgstr ""
 
@@ -3281,44 +3221,36 @@ msgid "Email address"
 msgstr ""
 
 #: backstage/users.php:842 profile.php:55 themes/Fifteen/settings.php:78
-#: themes/Sunrise/settings.php:75
 msgid "Real name"
 msgstr ""
 
-#: backstage/users.php:846 include/draw_functions.php:652
-#: include/draw_functions.php:825 themes/Fifteen/settings.php:295
-#: themes/Sunrise/settings.php:289
+#: backstage/users.php:846 include/draw_functions.php:668
+#: include/draw_functions.php:841 themes/Fifteen/settings.php:295
 msgid "Website"
 msgstr ""
 
 #: backstage/users.php:848 themes/Fifteen/settings.php:314
-#: themes/Sunrise/settings.php:308
 msgid "Facebook"
 msgstr ""
 
 #: backstage/users.php:852 themes/Fifteen/settings.php:305
-#: themes/Sunrise/settings.php:299
 msgid "Microsoft Account"
 msgstr ""
 
 #: backstage/users.php:854 themes/Fifteen/settings.php:323
-#: themes/Sunrise/settings.php:317
 msgid "Twitter"
 msgstr ""
 
 #: backstage/users.php:858 themes/Fifteen/settings.php:332
-#: themes/Sunrise/settings.php:326
 msgid "Google+"
 msgstr ""
 
 #: backstage/users.php:860 profile.php:58 themes/Fifteen/settings.php:92
-#: themes/Sunrise/settings.php:89
 msgid "Location"
 msgstr ""
 
 #: backstage/users.php:864 themes/Fifteen/profile.php:50
-#: themes/Fifteen/settings.php:109 themes/Sunrise/profile.php:48
-#: themes/Sunrise/settings.php:106
+#: themes/Fifteen/settings.php:109
 msgid "Signature"
 msgstr ""
 
@@ -3628,7 +3560,7 @@ msgstr ""
 msgid "The most recent threads at %s."
 msgstr ""
 
-#: extern.php:458 themes/Sunrise/footer.php:76
+#: extern.php:458
 msgid "Guests online"
 msgstr ""
 
@@ -3636,19 +3568,17 @@ msgstr ""
 msgid "Users online"
 msgstr ""
 
-#: extern.php:492 themes/Fifteen/footer.php:61 themes/Sunrise/footer.php:58
+#: extern.php:492 themes/Fifteen/footer.php:60
 msgid "Newest user"
 msgstr ""
 
 #: extern.php:493 profile.php:65 themes/Fifteen/help.php:210
-#: themes/Fifteen/search-advanced.php:55 themes/Sunrise/help.php:217
-#: themes/Sunrise/search-advanced.php:33 themes/Sunrise/settings.php:39
+#: themes/Fifteen/search-advanced.php:55
 msgid "Threads"
 msgstr ""
 
 #: footer.php:21 footer.php:47 include/general_functions.php:50
 #: themes/Fifteen/notifications.php:39 themes/Fifteen/notifications.php:55
-#: themes/Sunrise/notifications.php:28 themes/Sunrise/notifications.php:47
 msgid "No new notifications"
 msgstr ""
 
@@ -3665,7 +3595,7 @@ msgid "Unanswered"
 msgstr ""
 
 #: help.php:16 include/backstage_functions.php:132
-#: include/general_functions.php:82 themes/Sunrise/help.php:8
+#: include/general_functions.php:82
 msgid "Help"
 msgstr ""
 
@@ -3701,7 +3631,6 @@ msgstr ""
 #: include/backstage_functions.php:130 include/backstage_functions.php:181
 #: include/general_functions.php:78 include/me_functions.php:24
 #: include/me_functions.php:36 settings.php:820 themes/Fifteen/settings.php:36
-#: themes/Sunrise/settings.php:32
 msgid "Settings"
 msgstr ""
 
@@ -3725,7 +3654,6 @@ msgstr ""
 #: include/me_functions.php:18 include/me_functions.php:30 notifications.php:64
 #: profile.php:113 settings.php:171 settings.php:431 settings.php:820
 #: themes/Fifteen/help.php:136 themes/Fifteen/settings.php:38
-#: themes/Sunrise/help.php:141 themes/Sunrise/settings.php:36
 msgid "Profile"
 msgstr ""
 
@@ -3883,16 +3811,14 @@ msgid ""
 msgstr ""
 
 #: include/draw_functions.php:16 themes/Fifteen/inbox-new.php:34
-#: themes/Sunrise/inbox-new.php:15
 msgid "Comment errors"
 msgstr ""
 
 #: include/draw_functions.php:41 themes/Fifteen/inbox-new.php:52
-#: themes/Sunrise/inbox-new.php:33
 msgid "Comment preview"
 msgstr ""
 
-#: include/draw_functions.php:66 themes/Fifteen/thread.php:41
+#: include/draw_functions.php:66
 msgid "Pin thread"
 msgstr ""
 
@@ -3934,13 +3860,13 @@ msgstr ""
 msgid "Superscript"
 msgstr ""
 
-#: include/draw_functions.php:105 include/draw_functions.php:712
-#: include/draw_functions.php:737 include/draw_functions.php:848
+#: include/draw_functions.php:105 include/draw_functions.php:728
+#: include/draw_functions.php:753 include/draw_functions.php:864
 msgid "Quote"
 msgstr ""
 
 #: include/draw_functions.php:106 include/draw_functions.php:124
-#: themes/Fifteen/help.php:28 themes/Sunrise/help.php:30
+#: themes/Fifteen/help.php:28
 msgid "Code"
 msgstr ""
 
@@ -3968,177 +3894,172 @@ msgstr ""
 msgid "Start typing..."
 msgstr ""
 
-#: include/draw_functions.php:156 include/draw_functions.php:1072
+#: include/draw_functions.php:156 include/draw_functions.php:1113
 #: themes/Fifteen/login.php:44 themes/Fifteen/report.php:12
-#: themes/Sunrise/login.php:44
 msgid "Submit"
 msgstr ""
 
-#: include/draw_functions.php:307
+#: include/draw_functions.php:309
 #, php-format
 msgid "<a href=\"comment.php?fid=%s\">Start the first thread in this forum</a>"
 msgstr ""
 
-#: include/draw_functions.php:382 include/functions.php:1098
+#: include/draw_functions.php:385 include/draw_functions.php:469
+#: include/functions.php:1098
 msgid "Never"
 msgstr ""
 
-#: include/draw_functions.php:393
+#: include/draw_functions.php:396
 msgid "There are no forums in this board yet."
 msgstr ""
 
-#: include/draw_functions.php:598
+#: include/draw_functions.php:614
 msgid "The board is empty, select a forum and create a thread to begin."
 msgstr ""
 
-#: include/draw_functions.php:636 include/draw_functions.php:805
+#: include/draw_functions.php:652 include/draw_functions.php:821
 msgid "From:"
 msgstr ""
 
-#: include/draw_functions.php:640
+#: include/draw_functions.php:656
 msgid "Comment:"
 msgstr ""
 
-#: include/draw_functions.php:657 include/draw_functions.php:673
-#: include/draw_functions.php:830 include/draw_functions.php:840
+#: include/draw_functions.php:673 include/draw_functions.php:689
+#: include/draw_functions.php:846 include/draw_functions.php:856
 msgid "IP log"
 msgstr ""
 
-#: include/draw_functions.php:664 include/draw_functions.php:833
+#: include/draw_functions.php:680 include/draw_functions.php:849
 msgid "Note:"
 msgstr ""
 
-#: include/draw_functions.php:691 include/draw_functions.php:693
-#: include/draw_functions.php:725 include/draw_functions.php:727
-#: include/draw_functions.php:1057 themes/Fifteen/report.php:12
+#: include/draw_functions.php:707 include/draw_functions.php:709
+#: include/draw_functions.php:741 include/draw_functions.php:743
+#: include/draw_functions.php:1098 themes/Fifteen/report.php:12
 msgid "Report"
 msgstr ""
 
-#: include/draw_functions.php:703 include/draw_functions.php:732
-#: include/draw_functions.php:914 themes/Fifteen/soft.php:14
+#: include/draw_functions.php:719 include/draw_functions.php:748
+#: include/draw_functions.php:930 themes/Fifteen/soft.php:14
 msgid "Soft delete"
 msgstr ""
 
-#: include/draw_functions.php:705 include/draw_functions.php:734
+#: include/draw_functions.php:721 include/draw_functions.php:750
 msgid "Soft reset"
 msgstr ""
 
-#: include/draw_functions.php:717 include/draw_functions.php:741
-#: themes/Fifteen/unsolved.php:12 themes/Sunrise/unsolved.php:11
+#: include/draw_functions.php:733 include/draw_functions.php:757
+#: themes/Fifteen/unsolved.php:12
 msgid "Unsolved"
 msgstr ""
 
-#: include/draw_functions.php:719 include/draw_functions.php:743
-#: themes/Fifteen/answer.php:13 themes/Sunrise/answer.php:11
+#: include/draw_functions.php:735 include/draw_functions.php:759
+#: themes/Fifteen/answer.php:13
 msgid "Answer"
 msgstr ""
 
-#: include/draw_functions.php:790
+#: include/draw_functions.php:806
 msgid "Online:"
 msgstr ""
 
-#: include/draw_functions.php:790
+#: include/draw_functions.php:806
 msgid "Offline"
 msgstr ""
 
-#: include/draw_functions.php:808 profile.php:50
+#: include/draw_functions.php:824 profile.php:50
 msgid "Registered since"
 msgstr ""
 
-#: include/draw_functions.php:811
+#: include/draw_functions.php:827
 msgid "Comments:"
 msgstr ""
 
-#: include/draw_functions.php:821
+#: include/draw_functions.php:837
 msgid "PM"
 msgstr ""
 
-#: include/draw_functions.php:889 search.php:97 search.php:147 search.php:269
+#: include/draw_functions.php:905 search.php:97 search.php:147 search.php:269
 #: search.php:494
 msgid "Your search returned no hits."
 msgstr ""
 
-#: include/draw_functions.php:897 include/draw_functions.php:911
+#: include/draw_functions.php:913 include/draw_functions.php:927
 #: themes/Fifteen/delete.php:17 themes/Fifteen/soft.php:17
-#: themes/Sunrise/delete.php:15
 msgid ""
 "This is the first comment in the thread, the whole thread will be "
 "permanently deleted."
 msgstr ""
 
-#: include/draw_functions.php:897 themes/Fifteen/delete.php:17
-#: themes/Sunrise/delete.php:15
+#: include/draw_functions.php:913 themes/Fifteen/delete.php:17
 msgid ""
 "The comment you have chosen to delete is set out below for you to review "
 "before proceeding."
 msgstr ""
 
-#: include/draw_functions.php:899 include/draw_functions.php:913
-#: include/draw_functions.php:927 include/draw_functions.php:1071
-#: themes/Fifteen/comment.php:13 themes/Fifteen/comment.php:15
-#: themes/Fifteen/edit.php:12 themes/Fifteen/inbox-delete-comment.php:18
-#: themes/Sunrise/comment.php:13 themes/Sunrise/comment.php:15
-#: themes/Sunrise/delete.php:17 themes/Sunrise/edit.php:12
-#: themes/Sunrise/inbox-delete-comment.php:18
+#: include/draw_functions.php:915 include/draw_functions.php:929
+#: include/draw_functions.php:943 include/draw_functions.php:1112
+#: themes/Fifteen/comment.php:14 themes/Fifteen/comment.php:16
+#: themes/Fifteen/edit.php:13 themes/Fifteen/inbox-delete-comment.php:18
 msgid "Cancel"
 msgstr ""
 
-#: include/draw_functions.php:911 themes/Fifteen/soft.php:17
+#: include/draw_functions.php:927 themes/Fifteen/soft.php:17
 msgid ""
 "The comment you have chosen to delete is set out below for you to review "
 "before proceeding. Deleting this comment is not permanent. If you want to "
 "delete a comment permanently, please use delete instead."
 msgstr ""
 
-#: include/draw_functions.php:925 themes/Fifteen/reset.php:17
+#: include/draw_functions.php:941 themes/Fifteen/reset.php:17
 msgid ""
 "This comment has been soft deleted. We'll enable it again with a click on "
 "the button."
 msgstr ""
 
-#: include/draw_functions.php:928 themes/Fifteen/reset.php:14
+#: include/draw_functions.php:944 themes/Fifteen/reset.php:14
 msgid "Reset comment"
 msgstr ""
 
-#: include/draw_functions.php:937
+#: include/draw_functions.php:953
 #, php-format
 msgid "Thread started by %s - %s"
 msgstr ""
 
-#: include/draw_functions.php:937
+#: include/draw_functions.php:953
 #, php-format
 msgid "Comment by %s - %s"
 msgstr ""
 
-#: include/draw_functions.php:947
+#: include/draw_functions.php:963
 msgid "You must agree to the following in order to register"
 msgstr ""
 
-#: include/draw_functions.php:955 themes/Fifteen/rules.php:13
+#: include/draw_functions.php:971 themes/Fifteen/rules.php:13
 msgid "Agree"
 msgstr ""
 
-#: include/draw_functions.php:1039
+#: include/draw_functions.php:1080
 msgid "Mail"
 msgstr ""
 
-#: include/draw_functions.php:1042
+#: include/draw_functions.php:1083
 msgid "Send"
 msgstr ""
 
-#: include/draw_functions.php:1063 themes/Fifteen/report.php:16
+#: include/draw_functions.php:1104 themes/Fifteen/report.php:16
 msgid "Tell us why you are reporting this"
 msgstr ""
 
-#: include/draw_functions.php:1090
+#: include/draw_functions.php:1131
 msgid "Forums to search in"
 msgstr ""
 
-#: include/draw_functions.php:1117
+#: include/draw_functions.php:1158
 msgid "Forum to search in"
 msgstr ""
 
-#: include/draw_functions.php:1159
+#: include/draw_functions.php:1200
 msgid "Luna"
 msgstr ""
 
@@ -4251,9 +4172,7 @@ msgstr ""
 #: include/general_functions.php:28 register.php:23 register.php:244
 #: themes/Fifteen/index.php:45 themes/Fifteen/login.php:21
 #: themes/Fifteen/login.php:26 themes/Fifteen/register.php:14
-#: themes/Sunrise/index.php:35 themes/Sunrise/login.php:21
-#: themes/Sunrise/login.php:26 themes/Sunrise/register.php:8
-#: themes/Sunrise/register.php:13
+#: themes/Sunrise/index.php:45
 msgid "Register"
 msgstr ""
 
@@ -4262,12 +4181,11 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: include/inbox_functions.php:32 themes/Fifteen/inbox-view.php:28
-#: themes/Sunrise/inbox.php:38 viewinbox.php:221
+#: viewinbox.php:221
 msgid "Reply"
 msgstr ""
 
 #: include/inbox_functions.php:34 themes/Fifteen/inbox.php:44
-#: themes/Sunrise/inbox.php:40
 msgid "Compose"
 msgstr ""
 
@@ -4321,11 +4239,11 @@ msgstr ""
 msgid "No users online"
 msgstr ""
 
-#: index.php:45 themes/Fifteen/footer.php:23 themes/Sunrise/footer.php:22
+#: index.php:45 themes/Fifteen/footer.php:22
 msgid "RSS active thread feed"
 msgstr ""
 
-#: index.php:47 themes/Fifteen/footer.php:23 themes/Sunrise/footer.php:22
+#: index.php:47 themes/Fifteen/footer.php:22
 msgid "Atom active thread feed"
 msgstr ""
 
@@ -4515,7 +4433,7 @@ msgid "Wrong username and/or password."
 msgstr ""
 
 #: login.php:59 themes/Fifteen/index.php:46 themes/Fifteen/login.php:26
-#: themes/Sunrise/index.php:36 themes/Sunrise/login.php:26
+#: themes/Sunrise/index.php:46
 msgid "Forgotten password"
 msgstr ""
 
@@ -4595,7 +4513,7 @@ msgid ""
 "<board_mailer> Mailer"
 msgstr ""
 
-#: misc.php:133 themes/Sunrise/mail.php:11
+#: misc.php:133
 msgid "Send email to"
 msgstr ""
 
@@ -4740,7 +4658,7 @@ msgstr ""
 msgid "This forum is not accepting new registrations."
 msgstr ""
 
-#: register.php:23 themes/Sunrise/help.php:12 themes/Sunrise/rules.php:8
+#: register.php:23
 msgid "Forum rules"
 msgstr ""
 
@@ -4975,12 +4893,11 @@ msgid ""
 msgstr ""
 
 #: settings.php:431 settings.php:560 settings.php:565
-#: themes/Fifteen/me-modals.php:5 themes/Sunrise/me-modals.php:5
+#: themes/Fifteen/me-modals.php:5
 msgid "Change email address"
 msgstr ""
 
 #: settings.php:432 themes/Fifteen/me-modals.php:11
-#: themes/Sunrise/me-modals.php:11
 msgid "New email"
 msgstr ""
 
@@ -5030,7 +4947,6 @@ msgid "Signatures cannot have more than %s lines."
 msgstr ""
 
 #: settings.php:802 themes/Fifteen/me-modals.php:54
-#: themes/Sunrise/me-modals.php:54
 msgid "Change avatar"
 msgstr ""
 
@@ -5042,86 +4958,84 @@ msgstr ""
 msgid "No signature currently stored in profile."
 msgstr ""
 
-#: themes/Fifteen/answer.php:17 themes/Sunrise/answer.php:16
+#: themes/Fifteen/answer.php:17
 msgid "Are you certain that this comment is the solution to your thread?"
 msgstr ""
 
-#: themes/Fifteen/comment.php:13 themes/Sunrise/comment.php:13
+#: themes/Fifteen/comment.php:14
 #, php-format
-msgid "New thread in \"%s\""
+msgid "New thread in %s"
 msgstr ""
 
-#: themes/Fifteen/comment.php:15 themes/Sunrise/comment.php:15
+#: themes/Fifteen/comment.php:16
 #, php-format
-msgid "New comment in \"%s\""
+msgid "New comment in %s"
 msgstr ""
 
-#: themes/Fifteen/edit.php:12 themes/Sunrise/edit.php:12
+#: themes/Fifteen/edit.php:13
 #, php-format
-msgid "Edit \"%s\""
+msgid "Edit %s"
 msgstr ""
 
-#: themes/Fifteen/footer.php:26 themes/Sunrise/footer.php:25 viewforum.php:77
+#: themes/Fifteen/footer.php:25 viewforum.php:77
 msgid "RSS forum feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:26 themes/Sunrise/footer.php:25 viewforum.php:79
+#: themes/Fifteen/footer.php:25 viewforum.php:79
 msgid "Atom forum feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:29 themes/Sunrise/footer.php:28 thread.php:137
+#: themes/Fifteen/footer.php:28 thread.php:137
 msgid "RSS thread feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:29 themes/Sunrise/footer.php:28 thread.php:139
+#: themes/Fifteen/footer.php:28 thread.php:139
 msgid "Atom thread feed"
 msgstr ""
 
-#: themes/Fifteen/footer.php:49 themes/Sunrise/footer.php:49
+#: themes/Fifteen/footer.php:48
 msgid "User"
 msgstr ""
 
-#: themes/Fifteen/footer.php:53 themes/Fifteen/settings.php:41
-#: themes/Sunrise/footer.php:52
+#: themes/Fifteen/footer.php:52 themes/Fifteen/settings.php:41
 msgid "Thread"
 msgstr ""
 
-#: themes/Fifteen/footer.php:68 themes/Fifteen/footer.php:76
-#: themes/Sunrise/footer.php:65 themes/Sunrise/footer.php:73
+#: themes/Fifteen/footer.php:67 themes/Fifteen/footer.php:75
 msgid "User online"
 msgstr ""
 
-#: themes/Fifteen/footer.php:80
+#: themes/Fifteen/footer.php:79
 msgid "Guest online"
 msgstr ""
 
-#: themes/Fifteen/footer.php:98 themes/Sunrise/footer.php:98
+#: themes/Fifteen/footer.php:96
 #, php-format
 msgid "Powered by %s"
 msgstr ""
 
-#: themes/Fifteen/footer.php:105 themes/Sunrise/footer.php:107
+#: themes/Fifteen/footer.php:102
 msgid "We use cookies to give you the best experience on this board."
 msgstr ""
 
-#: themes/Fifteen/footer.php:108 themes/Fifteen/index.php:37
-#: themes/Sunrise/footer.php:110 themes/Sunrise/index.php:27
+#: themes/Fifteen/footer.php:105 themes/Fifteen/index.php:37
+#: themes/Sunrise/index.php:37
 msgid "Don't show again"
 msgstr ""
 
-#: themes/Fifteen/forum.php:12
+#: themes/Fifteen/forum.php:12 themes/Sunrise/forum.php:12
 msgid "Back to index"
 msgstr ""
 
-#: themes/Fifteen/forum.php:16 themes/Sunrise/forum.php:13
+#: themes/Fifteen/forum.php:16
 msgid "Subforums"
 msgstr ""
 
-#: themes/Fifteen/forum.php:31
+#: themes/Fifteen/forum.php:31 themes/Sunrise/forum.php:31
 msgid "Moderate forum"
 msgstr ""
 
-#: themes/Fifteen/help.php:23 themes/Sunrise/help.php:24
+#: themes/Fifteen/help.php:23
 msgid ""
 "BBCode is a collection of tags that are used to change the look of text in "
 "this forum. Below you can find all the available BBCodes and how to use "
@@ -5136,19 +5050,19 @@ msgstr ""
 msgid "Media"
 msgstr ""
 
-#: themes/Fifteen/help.php:27 themes/Sunrise/help.php:29
+#: themes/Fifteen/help.php:27
 msgid "Quotes"
 msgstr ""
 
-#: themes/Fifteen/help.php:29 themes/Sunrise/help.php:31
+#: themes/Fifteen/help.php:29
 msgid "Lists"
 msgstr ""
 
-#: themes/Fifteen/help.php:35 themes/Sunrise/help.php:36
+#: themes/Fifteen/help.php:35
 msgid "The following tags change the appearance of text:"
 msgstr ""
 
-#: themes/Fifteen/help.php:36 themes/Sunrise/help.php:37
+#: themes/Fifteen/help.php:36
 msgid "Bold text"
 msgstr ""
 
@@ -5161,119 +5075,109 @@ msgstr ""
 #: themes/Fifteen/help.php:54 themes/Fifteen/help.php:55
 #: themes/Fifteen/help.php:56 themes/Fifteen/help.php:57
 #: themes/Fifteen/help.php:59 themes/Fifteen/help.php:122
-#: themes/Fifteen/help.php:124 themes/Sunrise/help.php:37
-#: themes/Sunrise/help.php:38 themes/Sunrise/help.php:39
-#: themes/Sunrise/help.php:40 themes/Sunrise/help.php:41
-#: themes/Sunrise/help.php:42 themes/Sunrise/help.php:43
-#: themes/Sunrise/help.php:44 themes/Sunrise/help.php:45
-#: themes/Sunrise/help.php:46 themes/Sunrise/help.php:48
-#: themes/Sunrise/help.php:50 themes/Sunrise/help.php:55
-#: themes/Sunrise/help.php:56 themes/Sunrise/help.php:57
-#: themes/Sunrise/help.php:58 themes/Sunrise/help.php:60
-#: themes/Sunrise/help.php:124 themes/Sunrise/help.php:126
+#: themes/Fifteen/help.php:124
 msgid "produces"
 msgstr ""
 
-#: themes/Fifteen/help.php:37 themes/Sunrise/help.php:38
+#: themes/Fifteen/help.php:37
 msgid "Underlined text"
 msgstr ""
 
-#: themes/Fifteen/help.php:38 themes/Sunrise/help.php:39
+#: themes/Fifteen/help.php:38
 msgid "Italic text"
 msgstr ""
 
-#: themes/Fifteen/help.php:39 themes/Sunrise/help.php:40
+#: themes/Fifteen/help.php:39
 msgid "Strike-through text"
 msgstr ""
 
-#: themes/Fifteen/help.php:40 themes/Sunrise/help.php:41
+#: themes/Fifteen/help.php:40
 msgid "Inserted text"
 msgstr ""
 
-#: themes/Fifteen/help.php:41 themes/Sunrise/help.php:42
+#: themes/Fifteen/help.php:41
 msgid "Red text"
 msgstr ""
 
-#: themes/Fifteen/help.php:42 themes/Sunrise/help.php:43
+#: themes/Fifteen/help.php:42
 msgid "Blue text"
 msgstr ""
 
-#: themes/Fifteen/help.php:43 themes/Sunrise/help.php:44
+#: themes/Fifteen/help.php:43
 msgid "Subscript text"
 msgstr ""
 
-#: themes/Fifteen/help.php:44 themes/Sunrise/help.php:45
+#: themes/Fifteen/help.php:44
 msgid "Superscript text"
 msgstr ""
 
-#: themes/Fifteen/help.php:45 themes/Sunrise/help.php:46
+#: themes/Fifteen/help.php:45
 msgid "Heading text"
 msgstr ""
 
-#: themes/Fifteen/help.php:47 themes/Sunrise/help.php:48
+#: themes/Fifteen/help.php:47
 msgid "Sized text"
 msgstr ""
 
-#: themes/Fifteen/help.php:49 themes/Sunrise/help.php:50
+#: themes/Fifteen/help.php:49
 msgid "Centered text"
 msgstr ""
 
-#: themes/Fifteen/help.php:53 themes/Sunrise/help.php:54
+#: themes/Fifteen/help.php:53
 msgid ""
 "You can create links to other locations or to email addresses using the "
 "following tags:"
 msgstr ""
 
-#: themes/Fifteen/help.php:57 themes/Sunrise/help.php:58
+#: themes/Fifteen/help.php:57
 msgid "My email address"
 msgstr ""
 
-#: themes/Fifteen/help.php:58 themes/Sunrise/help.php:59
+#: themes/Fifteen/help.php:58
 msgid ""
 "If you want to display an image you can use the img tag. The text appearing "
 "after the \"=\" sign in the opening tag is used for the alt attribute and "
 "should be included whenever possible."
 msgstr ""
 
-#: themes/Fifteen/help.php:59 themes/Sunrise/help.php:60
+#: themes/Fifteen/help.php:59
 msgid "Luna BBCode Test"
 msgstr ""
 
-#: themes/Fifteen/help.php:61 themes/Sunrise/help.php:62
+#: themes/Fifteen/help.php:61
 msgid ""
 "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode "
 "below, you can embed one of those services videos."
 msgstr ""
 
-#: themes/Fifteen/help.php:62 themes/Sunrise/help.php:63
+#: themes/Fifteen/help.php:62
 msgid "Put the link to the video here"
 msgstr ""
 
-#: themes/Fifteen/help.php:65 themes/Sunrise/help.php:66
+#: themes/Fifteen/help.php:65
 msgid "If you want to quote someone, you should use the quote tag."
 msgstr ""
 
 #: themes/Fifteen/help.php:66 themes/Fifteen/help.php:68
-#: themes/Sunrise/help.php:67 themes/Sunrise/help.php:69
 msgid "This is the text I want to quote."
 msgstr ""
 
-#: themes/Fifteen/help.php:67 themes/Sunrise/help.php:68
+#: themes/Fifteen/help.php:67
 msgid "produces a quote box like this:"
 msgstr ""
 
-#: themes/Fifteen/help.php:68 themes/Sunrise/help.php:69
+#: themes/Fifteen/help.php:68
 msgid "wrote"
 msgstr ""
 
-#: themes/Fifteen/help.php:69 themes/Sunrise/help.php:70
+#: themes/Fifteen/help.php:69
 msgid ""
 "If you don't want to quote anyone in particular, you can use the quote tag "
 "without specifying a name. If a username contains the characters [ or ] you "
 "can enclose it in quote marks."
 msgstr ""
 
-#: themes/Fifteen/help.php:72 themes/Sunrise/help.php:73
+#: themes/Fifteen/help.php:72
 msgid ""
 "When displaying source code you should make sure that you use the code tag. "
 "Text displayed with the code tag will use a monospaced font and will not be "
@@ -5281,18 +5185,16 @@ msgid ""
 msgstr ""
 
 #: themes/Fifteen/help.php:73 themes/Fifteen/help.php:75
-#: themes/Fifteen/help.php:90 themes/Sunrise/help.php:74
-#: themes/Sunrise/help.php:76 themes/Sunrise/help.php:92
+#: themes/Fifteen/help.php:90
 msgid "This is some code."
 msgstr ""
 
 #: themes/Fifteen/help.php:74 themes/Fifteen/help.php:85
-#: themes/Fifteen/help.php:90 themes/Sunrise/help.php:75
-#: themes/Sunrise/help.php:87 themes/Sunrise/help.php:92
+#: themes/Fifteen/help.php:90
 msgid "produces a code box like this:"
 msgstr ""
 
-#: themes/Fifteen/help.php:76 themes/Sunrise/help.php:77
+#: themes/Fifteen/help.php:76
 msgid ""
 "You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, "
 "Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be "
@@ -5300,7 +5202,7 @@ msgid ""
 "<code>[code]</code>."
 msgstr ""
 
-#: themes/Fifteen/help.php:93 themes/Sunrise/help.php:95
+#: themes/Fifteen/help.php:93
 msgid ""
 "To create a list you can use the list tag. You can create 2 types of lists "
 "using the list tag."
@@ -5308,50 +5210,42 @@ msgstr ""
 
 #: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
-#: themes/Sunrise/help.php:96 themes/Sunrise/help.php:99
-#: themes/Sunrise/help.php:101 themes/Sunrise/help.php:104
 msgid "Example list item 1."
 msgstr ""
 
 #: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
-#: themes/Sunrise/help.php:96 themes/Sunrise/help.php:99
-#: themes/Sunrise/help.php:101 themes/Sunrise/help.php:104
 msgid "Example list item 2."
 msgstr ""
 
 #: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
 #: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
-#: themes/Sunrise/help.php:96 themes/Sunrise/help.php:99
-#: themes/Sunrise/help.php:101 themes/Sunrise/help.php:104
 msgid "Example list item 3."
 msgstr ""
 
-#: themes/Fifteen/help.php:95 themes/Sunrise/help.php:97
+#: themes/Fifteen/help.php:95
 msgid "produces a bulleted list."
 msgstr ""
 
-#: themes/Fifteen/help.php:100 themes/Sunrise/help.php:102
+#: themes/Fifteen/help.php:100
 msgid "produces a numbered list."
 msgstr ""
 
-#: themes/Fifteen/help.php:106 themes/Sunrise/help.php:108
+#: themes/Fifteen/help.php:106
 msgid ""
 "If enabled, the forum can convert a series of smilies to graphical "
 "representations. The following smilies you can use are:"
 msgstr ""
 
 #: themes/Fifteen/help.php:122 themes/Fifteen/help.php:124
-#: themes/Sunrise/help.php:124 themes/Sunrise/help.php:126
-#: themes/Sunrise/me-modals.php:62
 msgid "and"
 msgstr ""
 
-#: themes/Fifteen/help.php:132 themes/Sunrise/help.php:136
+#: themes/Fifteen/help.php:132
 msgid "General use"
 msgstr ""
 
-#: themes/Fifteen/help.php:133 themes/Sunrise/help.php:137
+#: themes/Fifteen/help.php:133
 msgid "Explains some of the basics on how to work with this forum software."
 msgstr ""
 
@@ -5359,68 +5253,68 @@ msgstr ""
 msgid "Forums + threads"
 msgstr ""
 
-#: themes/Fifteen/help.php:142 themes/Sunrise/help.php:146
+#: themes/Fifteen/help.php:142
 msgid "What do the labels in front of thread titles mean?"
 msgstr ""
 
-#: themes/Fifteen/help.php:143 themes/Sunrise/help.php:147
+#: themes/Fifteen/help.php:143
 msgid ""
 "You'll see that some of the threads are labeled, different labels have "
 "different meanings."
 msgstr ""
 
-#: themes/Fifteen/help.php:147 themes/Sunrise/help.php:151
+#: themes/Fifteen/help.php:147
 msgid "Label"
 msgstr ""
 
-#: themes/Fifteen/help.php:148 themes/Sunrise/help.php:152
+#: themes/Fifteen/help.php:148
 msgid "Explanation"
 msgstr ""
 
-#: themes/Fifteen/help.php:154 themes/Sunrise/help.php:158
+#: themes/Fifteen/help.php:154
 msgid "Threads marked with a check are solved according to the author."
 msgstr ""
 
-#: themes/Fifteen/help.php:158 themes/Sunrise/help.php:162
+#: themes/Fifteen/help.php:158
 msgid ""
 "Pinned threads are usually important to read. It's worth it to take a look "
 "there."
 msgstr ""
 
-#: themes/Fifteen/help.php:162 themes/Sunrise/help.php:166
+#: themes/Fifteen/help.php:162
 msgid ""
 "Much like pinned threads, these are important, however, they do not stay on "
 "the top of the list."
 msgstr ""
 
-#: themes/Fifteen/help.php:166 themes/Sunrise/help.php:170
+#: themes/Fifteen/help.php:166
 msgid ""
 "When a you see a closed label, it means you can't comment on that thread any "
 "more, unless you have a permission that overwrites this. The thread is still "
 "available to read, though."
 msgstr ""
 
-#: themes/Fifteen/help.php:170 themes/Sunrise/help.php:174
+#: themes/Fifteen/help.php:170
 msgid ""
 "This thread has been moved to another forum. Admins and moderators can "
 "choose to show this notification, or simply not show it. The original forum "
 "where this thread was located in, won't show and thread stats anymore."
 msgstr ""
 
-#: themes/Fifteen/help.php:174 themes/Sunrise/help.php:178
+#: themes/Fifteen/help.php:174
 msgid ""
 "This thread has received a new comment since you last visited the board."
 msgstr ""
 
-#: themes/Fifteen/help.php:179 themes/Sunrise/help.php:183
+#: themes/Fifteen/help.php:179
 msgid "This little dot appears when you have made a comment in this thread."
 msgstr ""
 
-#: themes/Fifteen/help.php:184 themes/Sunrise/help.php:188
+#: themes/Fifteen/help.php:184
 msgid "Smilies, signatures, avatars and images are not visible?"
 msgstr ""
 
-#: themes/Fifteen/help.php:185 themes/Sunrise/help.php:189
+#: themes/Fifteen/help.php:185
 msgid ""
 "You can change the behavior of the thread view in your profile settings. "
 "There you can enable smilies, signatures, avatars and images in comments, "
@@ -5428,37 +5322,36 @@ msgid ""
 "those features."
 msgstr ""
 
-#: themes/Fifteen/help.php:186 themes/Sunrise/help.php:190
+#: themes/Fifteen/help.php:186
 msgid "Why can't I see some threads or forums?"
 msgstr ""
 
 #: themes/Fifteen/help.php:187 themes/Fifteen/help.php:191
-#: themes/Fifteen/help.php:199 themes/Sunrise/help.php:191
-#: themes/Sunrise/help.php:195 themes/Sunrise/help.php:203
+#: themes/Fifteen/help.php:199
 msgid ""
 "You might not have the correct permissions to do so, ask the forum "
 "administrator for more help."
 msgstr ""
 
-#: themes/Fifteen/help.php:190 themes/Sunrise/help.php:194
+#: themes/Fifteen/help.php:190
 msgid "Why can't I see any profiles?"
 msgstr ""
 
-#: themes/Fifteen/help.php:192 themes/Sunrise/help.php:196
+#: themes/Fifteen/help.php:192
 msgid "My profile doesn't contain as much as others?"
 msgstr ""
 
-#: themes/Fifteen/help.php:193 themes/Sunrise/help.php:197
+#: themes/Fifteen/help.php:193
 msgid ""
 "Your profile will only display fields that are enabled and filled in in your "
 "settings. You might want to see if you missed some fields."
 msgstr ""
 
-#: themes/Fifteen/help.php:196 themes/Sunrise/help.php:200
+#: themes/Fifteen/help.php:196
 msgid "Are there more options to search?"
 msgstr ""
 
-#: themes/Fifteen/help.php:197 themes/Sunrise/help.php:201
+#: themes/Fifteen/help.php:197
 msgid ""
 "When you go to the search page, you'll find yourself on a page with 1 search "
 "box. Below that search box there is a link to Advanced search, here you can "
@@ -5466,25 +5359,25 @@ msgid ""
 "if disabled by the forum admin."
 msgstr ""
 
-#: themes/Fifteen/help.php:198 themes/Sunrise/help.php:202
+#: themes/Fifteen/help.php:198
 msgid "Why can't I search in more than one forum at once?"
 msgstr ""
 
-#: themes/Fifteen/help.php:206 themes/Sunrise/help.php:212
+#: themes/Fifteen/help.php:206
 msgid "Moderating"
 msgstr ""
 
-#: themes/Fifteen/help.php:207 themes/Sunrise/help.php:213
+#: themes/Fifteen/help.php:207
 msgid ""
 "Admins and moderators need help sometimes, too! The basics of moderating are "
 "explained here."
 msgstr ""
 
-#: themes/Fifteen/help.php:216 themes/Sunrise/help.php:222
+#: themes/Fifteen/help.php:216
 msgid "How do I moderate a forum?"
 msgstr ""
 
-#: themes/Fifteen/help.php:217 themes/Sunrise/help.php:223
+#: themes/Fifteen/help.php:217
 msgid ""
 "The moderation options are available at the bottom of the page. Those "
 "features aren't available for all moderators. When you click this button, "
@@ -5492,11 +5385,11 @@ msgid ""
 "there, you can move, delete, merge, close and open multiple threads at once."
 msgstr ""
 
-#: themes/Fifteen/help.php:220 themes/Sunrise/help.php:226
+#: themes/Fifteen/help.php:220
 msgid "How do I moderate a thread?"
 msgstr ""
 
-#: themes/Fifteen/help.php:221 themes/Sunrise/help.php:227
+#: themes/Fifteen/help.php:221
 msgid ""
 "The moderation options are available at the bottom of the page. Those "
 "features aren't available for all moderators. When you click this button, "
@@ -5505,24 +5398,24 @@ msgid ""
 "thread at once."
 msgstr ""
 
-#: themes/Fifteen/help.php:222 themes/Sunrise/help.php:228
+#: themes/Fifteen/help.php:222
 msgid ""
 "Next to the \"Moderate thread\" button, you can find options to move, open "
 "or close the thread. You can also pin the thread from there, or unpin it."
 msgstr ""
 
-#: themes/Fifteen/help.php:225 themes/Sunrise/help.php:231
+#: themes/Fifteen/help.php:225
 msgid "How do I moderate an user?"
 msgstr ""
 
-#: themes/Fifteen/help.php:226 themes/Sunrise/help.php:232
+#: themes/Fifteen/help.php:226
 msgid ""
 "Moderating options are available in the users profile. You can find the "
 "moderation options under \"Administration\" in the users profile menu. Those "
 "features aren't available for all moderators."
 msgstr ""
 
-#: themes/Fifteen/help.php:227 themes/Sunrise/help.php:233
+#: themes/Fifteen/help.php:227
 msgid ""
 "The Administration page allow you to check if the user has an admin note, "
 "and you can also change that note if required. You can also change the "
@@ -5531,7 +5424,7 @@ msgid ""
 "moderator account to be able to actually use those permissions."
 msgstr ""
 
-#: themes/Fifteen/help.php:228 themes/Sunrise/help.php:234
+#: themes/Fifteen/help.php:228
 msgid ""
 "Finally, you can ban or delete a user from his profile. If you want to ban "
 "and/or delete multiple users at once, you're probably better off with the "
@@ -5539,78 +5432,78 @@ msgid ""
 msgstr ""
 
 #: themes/Fifteen/inbox-delete-comment.php:16
-#: themes/Sunrise/inbox-delete-comment.php:16
 msgid "Are you sure that you want to delete the message(s) from your inbox?"
 msgstr ""
 
-#: themes/Fifteen/inbox-delete.php:12 themes/Sunrise/inbox-delete.php:12
+#: themes/Fifteen/inbox-delete.php:12
 msgid "Confirm deletion"
 msgstr ""
 
-#: themes/Fifteen/inbox-delete.php:18 themes/Sunrise/inbox-delete.php:18
+#: themes/Fifteen/inbox-delete.php:18
 msgid "Are you sure you want to delete the selected messages?"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:37 themes/Sunrise/inbox.php:31
+#: themes/Fifteen/inbox.php:37
 msgid "Mark as unread"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:59 themes/Sunrise/inbox.php:52
+#: themes/Fifteen/inbox.php:59
 msgid "Messages"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:60 themes/Sunrise/inbox.php:53
+#: themes/Fifteen/inbox.php:60
 msgid "Sender"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:61 themes/Sunrise/inbox.php:54
+#: themes/Fifteen/inbox.php:61
 msgid "Receiver(s)"
 msgstr ""
 
-#: themes/Fifteen/inbox.php:124 themes/Sunrise/inbox.php:120
+#: themes/Fifteen/inbox.php:124
 msgid "No messages"
 msgstr ""
 
-#: themes/Fifteen/index.php:24 themes/Sunrise/index.php:12
+#: themes/Fifteen/index.php:24 themes/Sunrise/index.php:24
 #, php-format
 msgid "Hi there, %s"
 msgstr ""
 
 #: themes/Fifteen/index.php:29 themes/Fifteen/index.php:43
-#: themes/Sunrise/index.php:19 themes/Sunrise/index.php:33
+#: themes/Sunrise/index.php:29 themes/Sunrise/index.php:43
 #, php-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: themes/Fifteen/index.php:34 themes/Sunrise/index.php:24
+#: themes/Fifteen/index.php:34 themes/Sunrise/index.php:34
 msgid "Extend your details"
 msgstr ""
 
-#: themes/Fifteen/index.php:35 themes/Sunrise/index.php:25
+#: themes/Fifteen/index.php:35 themes/Sunrise/index.php:35
 msgid "Get help"
 msgstr ""
 
-#: themes/Fifteen/index.php:36 themes/Sunrise/index.php:26
+#: themes/Fifteen/index.php:36 themes/Sunrise/index.php:36
 msgid "Search the board"
 msgstr ""
 
-#: themes/Fifteen/index.php:77
+#: themes/Fifteen/index.php:77 themes/Sunrise/index.php:77
 msgid "Welcome back"
 msgstr ""
 
-#: themes/Fifteen/index.php:94 themes/Sunrise/header.php:51
+#: themes/Fifteen/index.php:94 themes/Sunrise/index.php:94
 msgid "Search in comments"
 msgstr ""
 
-#: themes/Fifteen/index.php:128 themes/Sunrise/index.php:59
+#: themes/Fifteen/index.php:128 themes/Sunrise/forum.php:16
+#: themes/Sunrise/index.php:102
 msgid "Recent activity"
 msgstr ""
 
-#: themes/Fifteen/login.php:35 themes/Sunrise/login.php:35
+#: themes/Fifteen/login.php:35
 msgid "Request password"
 msgstr ""
 
-#: themes/Fifteen/login.php:51 themes/Sunrise/login.php:51
+#: themes/Fifteen/login.php:51
 msgid "Back"
 msgstr ""
 
@@ -5618,35 +5511,33 @@ msgstr ""
 msgid "Send an email"
 msgstr ""
 
-#: themes/Fifteen/me-delete.php:13 themes/Sunrise/me-delete.php:13
+#: themes/Fifteen/me-delete.php:13
 msgid "Please confirm that you want to delete the user"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:13 themes/Sunrise/me-modals.php:13
+#: themes/Fifteen/me-modals.php:13
 msgid ""
 "An email will be sent to your new address with an activation link. You must "
 "click the link in the email you receive to activate the new address."
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:28 themes/Fifteen/settings.php:62
-#: themes/Sunrise/me-modals.php:28 themes/Sunrise/settings.php:59
 msgid "Change password"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:35 themes/Sunrise/me-modals.php:35
+#: themes/Fifteen/me-modals.php:35
 msgid "Old password"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:37 themes/Sunrise/me-modals.php:37
+#: themes/Fifteen/me-modals.php:37
 msgid "New password"
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:38 themes/Sunrise/me-modals.php:38
+#: themes/Fifteen/me-modals.php:38
 msgid "Confirm new password"
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:39 themes/Fifteen/register.php:27
-#: themes/Sunrise/me-modals.php:39 themes/Sunrise/register.php:27
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
 
@@ -5657,7 +5548,7 @@ msgid ""
 "your comments. It has to be smaller than %s by %s pixels and %s bytes."
 msgstr ""
 
-#: themes/Fifteen/me-modals.php:66 themes/Sunrise/me-modals.php:66
+#: themes/Fifteen/me-modals.php:66
 msgid "Upload"
 msgstr ""
 
@@ -5665,11 +5556,11 @@ msgstr ""
 msgid "Seen"
 msgstr ""
 
-#: themes/Fifteen/notifications.php:36 themes/Sunrise/notifications.php:24
+#: themes/Fifteen/notifications.php:36
 msgid "Mark as seen"
 msgstr ""
 
-#: themes/Fifteen/notifications.php:52 themes/Sunrise/notifications.php:43
+#: themes/Fifteen/notifications.php:52
 msgid "Delete notifications"
 msgstr ""
 
@@ -5691,77 +5582,75 @@ msgid "comments since"
 msgstr ""
 
 #: themes/Fifteen/profile.php:39 themes/Fifteen/settings.php:40
-#: themes/Sunrise/profile.php:34
 msgid "Contact"
 msgstr ""
 
-#: themes/Fifteen/register.php:18 themes/Sunrise/register.php:18
+#: themes/Fifteen/register.php:18
 msgid "If you are human please leave this field blank!"
 msgstr ""
 
-#: themes/Fifteen/register.php:20 themes/Sunrise/register.php:20
+#: themes/Fifteen/register.php:20
 msgid "Enter a username between 2 and 25 characters long"
 msgstr ""
 
-#: themes/Fifteen/register.php:41 themes/Sunrise/register.php:41
+#: themes/Fifteen/register.php:41
 msgid "Your password will be sent to this address, make sure it's valid"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:27 themes/Sunrise/search-advanced.php:15
+#: themes/Fifteen/search-advanced.php:27
 msgid "Keyword"
 msgstr ""
 
 #: themes/Fifteen/search-advanced.php:30 themes/Fifteen/search-advanced.php:42
-#: themes/Sunrise/search-advanced.php:16 themes/Sunrise/search-advanced.php:24
 msgid "Author"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:34 themes/Sunrise/search-advanced.php:18
+#: themes/Fifteen/search-advanced.php:34
 msgid "Comment text and thread subject"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:35 themes/Sunrise/search-advanced.php:19
+#: themes/Fifteen/search-advanced.php:35
 msgid "Comment text only"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:36 themes/Sunrise/search-advanced.php:20
+#: themes/Fifteen/search-advanced.php:36
 msgid "Thread subject only"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:41 themes/Sunrise/search-advanced.php:23
+#: themes/Fifteen/search-advanced.php:41
 msgid "Comment time"
 msgstr ""
 
-#: themes/Fifteen/search-advanced.php:44 themes/Sunrise/search-advanced.php:26
+#: themes/Fifteen/search-advanced.php:44
 msgid "Forum"
 msgstr ""
 
-#: themes/Fifteen/settings.php:42 themes/Sunrise/settings.php:40
+#: themes/Fifteen/settings.php:42
 msgid "Time"
 msgstr ""
 
-#: themes/Fifteen/settings.php:85 themes/Sunrise/settings.php:82
+#: themes/Fifteen/settings.php:85
 msgid "Leave blank to use default"
 msgstr ""
 
-#: themes/Fifteen/settings.php:101 themes/Sunrise/settings.php:98
+#: themes/Fifteen/settings.php:101
 msgid "Avatar"
 msgstr ""
 
-#: themes/Fifteen/settings.php:101 themes/Sunrise/settings.php:98
+#: themes/Fifteen/settings.php:101
 msgid "Upload an image to represent you"
 msgstr ""
 
-#: themes/Fifteen/settings.php:109 themes/Sunrise/settings.php:106
+#: themes/Fifteen/settings.php:109
 msgid "Write a small piece to attach to every comment you make"
 msgstr ""
 
-#: themes/Fifteen/settings.php:112 themes/Sunrise/settings.php:109
+#: themes/Fifteen/settings.php:112
 #, php-format
 msgid "Max length: %s characters / Max lines: %s"
 msgstr ""
 
-#: themes/Fifteen/settings.php:116 themes/Sunrise/settings.php:113
+#: themes/Fifteen/settings.php:116
 msgid "Signature preview"
 msgstr ""
 
@@ -5769,115 +5658,113 @@ msgstr ""
 msgid "Enforce the accent on the board."
 msgstr ""
 
-#: themes/Fifteen/settings.php:153 themes/Sunrise/settings.php:145
+#: themes/Fifteen/settings.php:153
 msgid "Night mode"
 msgstr ""
 
-#: themes/Fifteen/settings.php:158 themes/Sunrise/settings.php:150
+#: themes/Fifteen/settings.php:158
 msgid "Never use night mode."
 msgstr ""
 
-#: themes/Fifteen/settings.php:164 themes/Sunrise/settings.php:156
+#: themes/Fifteen/settings.php:164
 msgid "Always use night mode."
 msgstr ""
 
-#: themes/Fifteen/settings.php:170 themes/Sunrise/settings.php:162
+#: themes/Fifteen/settings.php:170
 msgid "Enable night mode automatically."
 msgstr ""
 
-#: themes/Fifteen/settings.php:177 themes/Sunrise/settings.php:170
+#: themes/Fifteen/settings.php:177
 msgid "Backstage accent"
 msgstr ""
 
-#: themes/Fifteen/settings.php:202 themes/Sunrise/settings.php:196
+#: themes/Fifteen/settings.php:202
 msgid "Language"
 msgstr ""
 
-#: themes/Fifteen/settings.php:219 themes/Sunrise/settings.php:213
+#: themes/Fifteen/settings.php:219
 msgid "First Run"
 msgstr ""
 
-#: themes/Fifteen/settings.php:224 themes/Sunrise/settings.php:218
+#: themes/Fifteen/settings.php:224
 msgid "Show the First Run window on the index."
 msgstr ""
 
-#: themes/Fifteen/settings.php:249 themes/Sunrise/settings.php:243
+#: themes/Fifteen/settings.php:249
 msgid "Email settings"
 msgstr ""
 
-#: themes/Fifteen/settings.php:254 themes/Sunrise/settings.php:248
+#: themes/Fifteen/settings.php:254
 msgid "Display your email address."
 msgstr ""
 
-#: themes/Fifteen/settings.php:260 themes/Sunrise/settings.php:254
+#: themes/Fifteen/settings.php:260
 msgid "Hide your email address but allow form email."
 msgstr ""
 
-#: themes/Fifteen/settings.php:266 themes/Sunrise/settings.php:260
+#: themes/Fifteen/settings.php:266
 msgid "Hide your email address and disallow form email."
 msgstr ""
 
-#: themes/Fifteen/settings.php:279 themes/Sunrise/settings.php:273
+#: themes/Fifteen/settings.php:279
 msgid ""
 "Include a plain text version of new comments in subscription notification "
 "emails."
 msgstr ""
 
-#: themes/Fifteen/settings.php:286 themes/Sunrise/settings.php:280
+#: themes/Fifteen/settings.php:286
 msgid "Automatically subscribe to every thread you comment in."
 msgstr ""
 
-#: themes/Fifteen/settings.php:352 themes/Sunrise/settings.php:346
+#: themes/Fifteen/settings.php:352
 msgid "Show user avatars with their comments."
 msgstr ""
 
-#: themes/Fifteen/settings.php:359 themes/Sunrise/settings.php:353
+#: themes/Fifteen/settings.php:359
 msgid "Show images in comments."
 msgstr ""
 
-#: themes/Fifteen/settings.php:372 themes/Sunrise/settings.php:366
+#: themes/Fifteen/settings.php:372
 msgid "Show user signatures."
 msgstr ""
 
-#: themes/Fifteen/settings.php:379 themes/Sunrise/settings.php:373
+#: themes/Fifteen/settings.php:379
 msgid "Show images in user signatures."
 msgstr ""
 
-#: themes/Fifteen/settings.php:386 themes/Sunrise/settings.php:380
+#: themes/Fifteen/settings.php:386
 msgid "Show smilies as graphic icons."
 msgstr ""
 
-#: themes/Fifteen/settings.php:411 themes/Sunrise/settings.php:405
+#: themes/Fifteen/settings.php:411
 msgid "Time zone"
 msgstr ""
 
 #: themes/Fifteen/settings.php:468 themes/Fifteen/settings.php:502
-#: themes/Sunrise/settings.php:462 themes/Sunrise/settings.php:496
 msgid "Delete or ban user"
 msgstr ""
 
 #: themes/Fifteen/settings.php:470 themes/Fifteen/settings.php:505
-#: themes/Sunrise/settings.php:464 themes/Sunrise/settings.php:499
 msgid "Ban user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:476 themes/Sunrise/settings.php:470
+#: themes/Fifteen/settings.php:476
 msgid "Choose user group"
 msgstr ""
 
-#: themes/Fifteen/settings.php:504 themes/Sunrise/settings.php:498
+#: themes/Fifteen/settings.php:504
 msgid "Delete user"
 msgstr ""
 
-#: themes/Fifteen/settings.php:511 themes/Sunrise/settings.php:505
+#: themes/Fifteen/settings.php:511
 msgid "Set moderator access"
 msgstr ""
 
-#: themes/Fifteen/settings.php:511 themes/Sunrise/settings.php:505
+#: themes/Fifteen/settings.php:511
 msgid "Update forums"
 msgstr ""
 
-#: themes/Fifteen/settings.php:513 themes/Sunrise/settings.php:507
+#: themes/Fifteen/settings.php:513
 msgid ""
 "Choose which forums this user should be allowed to moderate. Note: This only "
 "applies to moderators. Administrators always have full permissions in all "
@@ -5892,107 +5779,52 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: themes/Fifteen/thread.php:27
-msgid "Moderate thread"
+#: themes/Fifteen/thread.php:29 themes/Fifteen/thread.php:54
+msgid "Show all"
 msgstr ""
 
-#: themes/Fifteen/thread.php:29 themes/Sunrise/thread.php:49
-msgid "Show all comments"
+#: themes/Fifteen/thread.php:33 themes/Fifteen/thread.php:58
+msgid "Closed"
 msgstr ""
 
-#: themes/Fifteen/thread.php:33
-msgid "Open thread"
+#: themes/Fifteen/thread.php:35 themes/Fifteen/thread.php:60
+msgid "Opened"
 msgstr ""
 
-#: themes/Fifteen/thread.php:35
-msgid "Close thread"
+#: themes/Fifteen/thread.php:39 themes/Fifteen/thread.php:64
+msgid "Unpinned"
 msgstr ""
 
-#: themes/Fifteen/thread.php:39
-msgid "Unpin thread"
+#: themes/Fifteen/thread.php:41 themes/Fifteen/thread.php:66
+msgid "Pinned"
 msgstr ""
 
-#: themes/Fifteen/thread.php:45
-msgid "Unimportant thread"
+#: themes/Fifteen/thread.php:45 themes/Fifteen/thread.php:70
+msgid "Important"
 msgstr ""
 
-#: themes/Fifteen/thread.php:47
-msgid "Important thread"
-msgstr ""
-
-#: themes/Fifteen/unsolved.php:16 themes/Sunrise/unsolved.php:16
-msgid "Are you certain that this comment isn't the solution to your thread?"
-msgstr ""
-
-#: themes/Fifteen/users.php:21 themes/Sunrise/users.php:15
-msgid "Sort by username"
-msgstr ""
-
-#: themes/Fifteen/users.php:22 themes/Sunrise/users.php:16
-msgid "Sort by registration date"
-msgstr ""
-
-#: themes/Fifteen/users.php:23 themes/Sunrise/users.php:17
-msgid "Sort by number of comments"
-msgstr ""
-
-#: themes/Sunrise/help.php:27
-msgid "Text style"
-msgstr ""
-
-#: themes/Sunrise/help.php:28
-msgid "Multimedia"
-msgstr ""
-
-#: themes/Sunrise/help.php:32
-msgid "Smilies"
-msgstr ""
-
-#: themes/Sunrise/help.php:140
-msgid "Forums and threads"
-msgstr ""
-
-#: themes/Sunrise/inbox-new.php:49
-msgid "Write message"
-msgstr ""
-
-#: themes/Sunrise/inbox-new.php:62
-msgid "Send to"
-msgstr ""
-
-#: themes/Sunrise/inbox-new.php:62
-#, php-format
-msgid "Separate names with commas, maximum %s names"
-msgstr ""
-
-#: themes/Sunrise/me-modals.php:62
-msgid ""
-"An avatar is a small image that will be displayed under your username in "
-"your comments. It must not be any bigger than"
-msgstr ""
-
-#: themes/Sunrise/register.php:13
-msgid "Enter the requested data"
-msgstr ""
-
-#: themes/Sunrise/settings.php:37
-msgid "Personalize"
-msgstr ""
-
-#: themes/Sunrise/thread.php:61
-msgid "Unpin"
-msgstr ""
-
-#: themes/Sunrise/thread.php:63
-msgid "Pin"
-msgstr ""
-
-#: themes/Sunrise/thread.php:67
+#: themes/Fifteen/thread.php:47 themes/Fifteen/thread.php:72
 msgid "Unimportant"
 msgstr ""
 
-#: themes/Sunrise/thread.php:69
-msgid "Important"
+#: themes/Fifteen/unsolved.php:16
+msgid "Are you certain that this comment isn't the solution to your thread?"
+msgstr ""
+
+#: themes/Fifteen/users.php:21
+msgid "Sort by username"
+msgstr ""
+
+#: themes/Fifteen/users.php:22
+msgid "Sort by registration date"
+msgstr ""
+
+#: themes/Fifteen/users.php:23
+msgid "Sort by number of comments"
+msgstr ""
+
+#: themes/Sunrise/objects/thread2.php:7
+msgid "In"
 msgstr ""
 
 #: userlist.php:53

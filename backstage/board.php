@@ -261,9 +261,9 @@ elseif (isset($_POST['update_positions'])) {
 				echo "\t\t\t\t\t\t\t".'<option value="'.$forum_list['id'].'"'.$selected.'>'.luna_htmlspecialchars($forum_list['forum_name']).'</option>'."\n";
 		}
 	}
+    echo '</optgroup>';
 
 ?>
-							</optgroup>
 						</select>
 					</div>
 				</div>
