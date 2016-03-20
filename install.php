@@ -178,7 +178,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="backstage/css/accents/<?php echo rand(1, 12) ?>.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/accents/<?php echo rand(1, 15) ?>.css" />
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		function process_form(the_form) {
@@ -439,7 +439,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	// Insert some other default data
 	Installer::insert_default_groups(); // groups
 	Installer::insert_default_users($username, $password1, $email, $default_lang); // users
-	Installer::instert_default_menu(); // menus
+	Installer::insert_default_menu(); // menus
 	Installer::insert_default_data(); // other stuff, like ranks
 
 	$alerts = array();

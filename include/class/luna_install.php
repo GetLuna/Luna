@@ -203,6 +203,9 @@ class Installer {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id=1');
 		if ($db->num_rows($result))
 		error(sprintf(__('A table called "%susers" is already present in the database "%s". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix', 'luna'), $db->prefix, $db_name));
+        
+        // Random value for the accent
+        $accent = rand(1, 15);
 
 		// Start a transaction
 		$db->start_transaction();
@@ -1295,7 +1298,7 @@ class Installer {
 				'color_scheme'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> rand(1, 12)
+					'default'		=> $accent
 				),
 				'adapt_time'		=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1305,7 +1308,7 @@ class Installer {
 				'accent'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> rand(1, 12)
+					'default'		=> $accent
 				),
 				'enforce_accent'	=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1441,7 +1444,7 @@ class Installer {
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
 			'o_default_style'			=> $default_style,
-			'o_default_accent'			=> rand(1, 12),
+			'o_default_accent'			=> $accent,
 			'o_allow_accent_color'		=> 1,
 			'o_allow_night_mode'		=> 1,
 			'o_default_user_group'		=> 4,
