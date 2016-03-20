@@ -914,7 +914,6 @@ function clean_paragraphs($text) {
 
 	$text = str_replace('<p><br />', '<br /><p>', $text);
 	$text = str_replace('<br /></p>', '</p><br />', $text);
-	$text = str_replace('<p></p>', '<br /><br />', $text);
 
 	return $text;
 }
