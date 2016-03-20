@@ -1431,7 +1431,7 @@ class Installer {
 			'o_board_tags'				=> NULL,
 			'o_timezone'				=> 'UTC',
 			'o_time_format'				=> __('H:i', 'luna'),
-			'o_date_format'				=> __('j M Y', 'luna'),
+			'o_date_format'				=> __('j F Y', 'luna'),
 			'o_timeout_visit'			=> 1800,
 			'o_timeout_online'			=> 300,
 			'o_show_user_info'			=> 1,

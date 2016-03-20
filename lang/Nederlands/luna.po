@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-20 16:59+0100\n"
-"PO-Revision-Date: 2016-03-20 17:00+0100\n"
+"POT-Creation-Date: 2016-03-20 19:52+0100\n"
+"PO-Revision-Date: 2016-03-20 19:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -4081,8 +4081,8 @@ msgid "H:i"
 msgstr "H:i"
 
 #: include/class/luna_install.php:1434
-msgid "j M Y"
-msgstr "j M Y"
+msgid "j F Y"
+msgstr "j F Y"
 
 #: include/class/luna_install.php:1475
 msgid ""
@@ -6476,6 +6476,9 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "j M Y"
+#~ msgstr "j M Y"
 
 #~ msgid "Current theme"
 #~ msgstr "Huidige theme"
