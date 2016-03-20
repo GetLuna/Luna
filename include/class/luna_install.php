@@ -1538,7 +1538,7 @@ class Installer {
 		return $db;
 	}
 
-	public static function insert_default_users($username, $password, $email, $language, $style) {
+	public static function insert_default_users($username, $password, $email, $language) {
 		global $db, $db_type;
 
 		$now = time();
@@ -1551,7 +1551,7 @@ class Installer {
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, num_comments, last_comment, registered, registration_ip, last_visit, salt) VALUES(1, \''.$db->escape($username).'\', \''.luna_sha512($password, $salt).'\', \''.$email.'\', \''.$db->escape($language).'\' 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', \''.$salt.'\')')
+		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, num_comments, last_comment, registered, registration_ip, last_visit, salt) VALUES(1, \''.$db->escape($username).'\', \''.luna_sha512($password, $salt).'\', \''.$email.'\', \''.$db->escape($language).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', \''.$salt.'\')')
 			or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 		$db->end_transaction();

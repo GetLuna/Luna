@@ -128,7 +128,7 @@ body {
 .bkg-png .jumbotron.profile,
 .bkg-png .navbar,
 .bkg-png .heading,
-.bkg-png.bkg-force body,
+.bkg-png.enforce body,
 .bkg-png.bkg-force .title-block-primary {
     background-image: url('../../img/header.png') !important;
     background-position: center top;
@@ -139,7 +139,7 @@ body {
 .bkg-jpg .jumbotron.profile,
 .bkg-jpg .navbar,
 .bkg-jpg .heading,
-.bkg-jpg.bkg-force body,
+.bkg-jpg.enforce body,
 .bkg-jpg.bkg-force .title-block-primary {
     background-image: url('../../img/header.jpg') !important;
     background-position: center top;
