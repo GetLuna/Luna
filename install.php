@@ -376,7 +376,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-                                <label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?><span class="help-block"><?php _e('No trailing slash', 'luna') ?></span>span></label>
+                                <label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?><span class="help-block"><?php _e('No trailing slash', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
 								</div>
@@ -438,7 +438,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 	// Insert some other default data
 	Installer::insert_default_groups(); // groups
-	Installer::insert_default_users($username, $password1, $email, $default_lang, $default_style); // users
+	Installer::insert_default_users($username, $password1, $email, $default_lang); // users
 	Installer::instert_default_menu(); // menus
 	Installer::insert_default_data(); // other stuff, like ranks
 
