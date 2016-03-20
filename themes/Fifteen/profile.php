@@ -66,13 +66,15 @@ if (!defined('FORUM'))
             <div class="tab-footer">
                 <?php echo $user_activities ?>
             </div>
-            <?php if (!empty($user_messaging)): ?>
+            <?php if (!empty($user_messaging) || (($user['email_setting'] != '0' && ($luna_user['g_send_email'] == '1')))): ?>
                 <div class="title-block title-block-primary">
                     <h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Contact', 'luna') ?><?php if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { echo '<span class="naviton"><a class="btn btn-default" href="misc.php?email='.$id.'"><span class="fa fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a></span>'; } ?></h2>
                 </div>
-                <div class="tab-content tab-contact">
-                    <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-                </div>
+                <?php if (!empty($user_messaging)): ?>
+                    <div class="tab-content tab-contact">
+                        <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+                    </div>
+                <?php endif; ?>
             <?php
             endif;
 

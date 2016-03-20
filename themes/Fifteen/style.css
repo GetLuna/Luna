@@ -1067,6 +1067,10 @@ hr {
     margin-top: 10px;
 }
 
+.title-block + .title-block {
+    margin-top: 10px;
+}
+
 /* Addons */
 #mail-addon,
 #website-addon,
