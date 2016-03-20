@@ -1325,7 +1325,12 @@ hr {
 	border-left: 6px solid #e8e8e8;
 }
 
+.list-group.list-group-thread .list-group-item.new-item {
+    background: #eee;
+}
+
 .list-group-transparent .list-group-item,
+.night .list-group-transparent .list-group-item,
 .list-group-transparent a.list-group-item.list-group-item-danger  {
 	color: #fff;
 	background: rgba(255, 255, 255, .2);
@@ -1471,7 +1476,11 @@ blockquote footer {
 }
 
 .night .list-group.list-group-thread .list-group-item:hover {
-    background-color: #505050;
+    background: #5a5a5a;
+}
+
+.night .list-group.list-group-thread .list-group-item.new-item {
+    background: #505050;
 }
 
 .night .list-group-thread .list-group-item .label {
