@@ -23,6 +23,10 @@
     font-size: 17px;
 }
 
+.list-group-item.clearfix .thread-title {
+    white-space: nowrap;
+}
+
 .list-group-item.clearfix .forum-description,
 .list-group-item.clearfix .thread-meta {
     font-size: 13px;

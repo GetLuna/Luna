@@ -9,7 +9,7 @@
 	<div class="col-sm-1 hidden-xs text-center">
 		<?php echo '<h5>'.$cur_forum['num_comments'].'</h5> <h6><small>'.$comments_label.'</small></h6>';  ?>
 	</div>
-	<div class="col-sm-5 col-xs-6">
+	<div class="col-sm-5 col-xs-6 overflow">
 		<?php echo $last_comment ?>
 	</div>
 </div>

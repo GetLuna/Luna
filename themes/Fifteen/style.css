@@ -119,6 +119,11 @@ body {
     box-shadow: none;
 }
 
+.overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Header customization */
 .bkg-png .jumbotron.profile,
 .bkg-png .navbar,
