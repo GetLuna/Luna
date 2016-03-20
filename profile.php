@@ -62,11 +62,11 @@ $comments_field = '';
 if ($luna_user['g_search'] == '1') {
 	$quick_searches = array();
 	if ($user['num_comments'] > 0) {
-		$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_threads&amp;user_id='.$id.'">'.__('Threads', 'luna').'</a>';
-		$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_comments&amp;user_id='.$id.'">'.__('Comments', 'luna').'</a>';
+		$quick_searches[] = '<a class="btn btn-default" href="search.php?action=show_user_threads&amp;user_id='.$id.'">'.__('Threads', 'luna').'</a>';
+		$quick_searches[] = '<a class="btn btn-default" href="search.php?action=show_user_comments&amp;user_id='.$id.'">'.__('Comments', 'luna').'</a>';
 	}
 	if ( ( $luna_user['is_admmod'] || $luna_user['id'] == $id ) && $luna_config['o_thread_subscriptions'] == '1')
-		$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Subscriptions', 'luna').'</a>';
+		$quick_searches[] = '<a class="btn btn-default" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Subscriptions', 'luna').'</a>';
 
 	if (!empty($quick_searches))
 		$user_activities = implode('', $quick_searches);
@@ -78,9 +78,6 @@ $user_messaging = array();
 
 if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 	$user_messaging[] = '<div class="input-group"><a href="mailto:'.luna_htmlspecialchars($user['email']).'" class="input-group-addon" id="mail-addon"><span class="fa fa-fw fa-envelope-o"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars($user['email']).'" aria-describedby="mail-addon" readonly="readonly" /></div>';
-
-elseif ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-	$user_messaging[] = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="fa fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a>';
 
 if ($user['url'] != '')
 	$user_messaging[] = '<div class="input-group"><a href="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" aria-describedby="website-addon" readonly="readonly" /></div>';

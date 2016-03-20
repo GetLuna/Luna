@@ -76,7 +76,6 @@ body {
 }
 
 .tab-footer {
-    background: #444;
     padding: 10px;
     margin-top: -10px;
     margin-bottom: 10px;
@@ -749,7 +748,7 @@ hr {
         margin-top: 4px;
 	}
     
-    .title-block-forum .naviton .btn {
+    .title-block .naviton .btn {
         float: right;
     }
 }
@@ -1049,6 +1048,63 @@ hr {
 	.stats .col-xs-12:not(:last-child) {
 		margin-bottom: 15px;
 	}
+}
+
+.tab-about h3 {
+    font-size: 150%;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.tab-about h3 small {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #aaa;
+}
+
+.tab-contact .input-group:not(:first-child) {
+    margin-top: 10px;
+}
+
+/* Addons */
+#mail-addon,
+#website-addon,
+#microsoft-addon,
+#facebook-addon,
+#twitter-addon,
+#google-addon {
+	color: #fff;
+}
+
+#mail-addon {
+	background-color: #fdcd00;
+    border-color: #fdcd00;
+}
+
+#website-addon {
+	background-color: #00c48a;
+    border-color: #00c48a;
+}
+
+#microsoft-addon {
+	background-color: #21c9ff;
+    border-color: #21c9ff;
+}
+
+#facebook-addon {
+	background-color: #4862a3;
+    border-color: #4862a3;
+}
+
+#twitter-addon {
+	background-color: #00acee;
+    border-color: #00acee;
+}
+
+#google-addon {
+	background-color: #da4836;
+    border-color: #da4836;
 }
 
 /* Container */

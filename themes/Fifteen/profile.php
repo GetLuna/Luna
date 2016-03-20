@@ -28,18 +28,50 @@ if (!defined('FORUM'))
             <div class="title-block title-block-primary">
                 <h2><i class="fa fa-fw fa-user"></i> <?php echo luna_htmlspecialchars($user['username']) ?></h2>
             </div>
-            <div class="tab-content">
-                <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
+            <div class="tab-content tab-about">
+                <div class="row">
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Titel', 'luna') ?></small>
+                        <?php echo get_title($user) ?>
+                    </h3>
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Comments', 'luna') ?></small>
+                        <?php echo $user['num_comments'] ?>
+                    </h3>
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Latest comment', 'luna') ?></small>
+                        <?php echo $last_comment ?>
+                    </h3>
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Registered since', 'luna') ?></small>
+                        <?php echo format_time($user['registered'], true) ?>
+                    </h3>
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Latest visit', 'luna') ?></small>
+                        <?php echo format_time($user['last_visit'], true) ?>
+                    </h3>
+                    <?php if ($user['realname'] != '') { ?>
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Real name', 'luna') ?></small>
+                        <?php echo $user['realname'] ?>
+                    </h3>
+                    <?php } if ($user['location'] != '') { ?>
+                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
+                        <small><?php _e('Location', 'luna') ?></small>
+                        <?php echo $user['location'] ?>
+                    </h3>
+                    <?php } ?>
+                </div>
             </div>
             <div class="tab-footer">
                 <?php echo $user_activities ?>
             </div>
             <?php if (!empty($user_messaging)): ?>
                 <div class="title-block title-block-primary">
-                    <h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Contact', 'luna') ?></h2>
+                    <h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Contact', 'luna') ?><?php if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { echo '<span class="naviton"><a class="btn btn-default" href="misc.php?email='.$id.'"><span class="fa fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a></span>'; } ?></h2>
                 </div>
-                <div class="tab-content">
-                    <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?>
+                <div class="tab-content tab-contact">
+                    <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
                 </div>
             <?php
             endif;

@@ -1,6 +1,5 @@
 .list-group-item.clearfix {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 5px 0 7px;
 }
 
 .list-group-item.clearfix h5 {

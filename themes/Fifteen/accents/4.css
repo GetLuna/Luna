@@ -28,6 +28,7 @@
 [disabled].btn-primary,
 .category-header,
 .profile-header .jumbotron,
+.tab-footer,
 .title-block-primary,
 .title-block-primary .btn-pagination .btn-primary,
 .list-group.list-group-luna .list-group-item.active {
@@ -109,7 +110,7 @@ a,
 blockquote footer,
 blockquote small,
 blockquote .small {
-	color:#a268bf;
+	color: #a268bf;
 }
 
 a:hover,
