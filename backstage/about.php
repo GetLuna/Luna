@@ -28,18 +28,21 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.4 Preview 3</span></p><h2>Emerald</h2>
+						<p class="meta"><span class="release-version">1.4 Preview 4</span></p><h2>Emerald</h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Fifteen has received a fully reimagned design based on Airalin', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Sunrise has also been reimagned based on the new Fifteen look', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('You can now add custom CSS to the theme you\'re using', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Luna\'s default placeholder avatar can now be replaced', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Notifications now get marked as read when clicked', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('New notification tools on the Notification page in the profile', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('You can now upload a header background to use in your theme and the Backstage', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('You can now respond on Inbox messages from the message view', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Luna now has a Dutch translation included by default', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Luna now uses salts and SHA-512 to save passwords', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('We now include animate.css with Luna', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Components now live in their own folder in the Luna root', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Users can now disable or enable First Run from their profile', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('The editor will now put items under a button if the screen becomes to small', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('When you have a notification, the icon will animate', 'luna') ?></li>
@@ -48,9 +51,8 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved Backstage UI and night mode', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('The editor no longer has an emoticon menu', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('The code base no longer supports PHP 5.2 anymore', 'luna') ?></li>
-                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes 7 bugs', 'luna') ?></li>
-							<hr />
-							<li><div class="stater"><em class="state state-note"><?php _e('Note', 'luna') ?></em></div><?php _e('Sunrise has multiple visual issues in this Preview', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('Notifications can no longer be marked as read/trashed from the fly-out', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes 15 bugs', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
