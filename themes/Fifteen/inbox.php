@@ -33,15 +33,15 @@ if (!defined('FORUM'))
 					<div class="tab-content">
 						<div class="btn-toolbar btn-toolbar-profile">
 							<div class="btn-group">
-								<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna') ?></button>
-								<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php _e('Mark as unread', 'luna') ?></button>
+								<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Read', 'luna') ?></button>
+								<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php _e('Unread', 'luna') ?></button>
 							</div>
 							<div class="btn-group">
 								<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
 								<?php include load_page('inbox-delete-comment.php'); ?>
 							</div>
 							<div class="btn-group pull-right">
-								<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> <?php _e('Compose', 'luna') ?></a>
+								<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> <?php _e('New', 'luna') ?></a>
 							</div>
 						</div>
 						<?php echo paginate($num_pages, $page, 'inbox.php?') ?>
