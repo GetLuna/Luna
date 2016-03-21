@@ -211,5 +211,3 @@ if (!defined('LUNA_SEARCH_MAX_WORD'))
 
 if (!defined('LUNA_MAX_COOKIE_SIZE'))
 	define('LUNA_MAX_COOKIE_SIZE', 4048);
-
-require LUNA_ROOT.'include/notifications.php';

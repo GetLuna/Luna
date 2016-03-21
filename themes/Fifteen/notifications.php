@@ -33,52 +33,16 @@ if (!defined('FORUM'))
 			</div>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="new">
-<?php if (empty($unviewed_notifications)) { ?>
-				    <div class="alert alert-info"><?php _e('No new notifications.', 'luna'); ?></div>
-<?php
-} else {
-?>
-                    <a class="btn btn-primary" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=readnoti"><span class="fa fa-fw fa-eye"></span> <?php _e('Seen all', 'luna') ?></a>
-<?php
-	foreach ($unviewed_notifications as $notification) {
-?>
-                    <div class="notification-row clearfix">
-                        <div class="col-xs-10">
-                             <a class="btn btn-default btn-block" href="notifications.php?notification=<?php echo $notification->id; ?>"><span class="fa fa-fw <?php echo $notification->icon; ?>"></span>&nbsp; <?php echo $notification->message; ?><span class="timestamp pull-right hidden-xxs"><?php echo format_time($notification->time, false, null, $luna_config['o_time_format'], true, true); ?></span></a>
-                        </div>
-                        <div class="col-xs-2">
-                            <a class="btn btn-primary btn-block" href="notifications.php?read_notification=<?php echo $notification->id; ?>"><span class="fa fa-fw fa-eye"></span><span class="hidden-xxs"> <?php _e('Seen', 'luna') ?></span></a>
-                        </div>
-                    </div>
-<?php
-	}
-}
-?>
+                    <?php if ($num_not_seen == '0') { ?>
+                        <a class="btn btn-primary" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=readnoti"><span class="fa fa-fw fa-eye"></span> <?php _e('Seen all', 'luna') ?></a>
+                    <?php } ?>
+                    <?php echo $not; ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="seen">
-					<div class="list-group list-group-thread">
-		<?php if (empty($viewed_notifications)) { ?>
-						<a class="list-group-item disabled" href="notifications.php?id=<?php echo $id; ?>"><?php _e('No new notifications', 'luna'); ?></a>
-<?php
-} else {
-?>
-                    <a class="btn btn-danger" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=delnoti"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove all', 'luna') ?></a>
-<?php
-	foreach ($viewed_notifications as $notification) {
-?>
-						<div class="notification-row clearfix">
-                            <div class="col-xs-10">
-                                 <a class="btn btn-default btn-block" href="notifications.php?notification=<?php echo $notification->id; ?>"><span class="fa fa-fw <?php echo $notification->icon; ?>"></span>&nbsp; <?php echo $notification->message; ?><span class="timestamp pull-right hidden-xxs"><?php echo format_time($notification->time, false, null, $luna_config['o_time_format'], true, true); ?></span></a>
-                            </div>
-                            <div class="col-xs-2">
-                                <a class="btn btn-danger btn-block" href="notifications.php?remove_notification=<?php echo $notification->id; ?>"><span class="fa fa-fw fa-trash"></span><span class="hidden-xxs"> <?php _e('Remove', 'luna') ?></span></a>
-                            </div>
-                        </div>
-<?php
-	}
-}
-?>
-					</div>
+                    <?php if ($num_not_unseen == '0') { ?>
+                        <a class="btn btn-danger" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=delnoti"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove all', 'luna') ?></a>
+                    <?php } ?>
+                    <?php echo $not_seen; ?>
 				</div>
 			</div>
 		</div>

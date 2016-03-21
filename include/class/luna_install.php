@@ -1606,8 +1606,8 @@ class Installer {
 		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-		require LUNA_ROOT.'include/notifications.php';
-		new_notification('2', 'backstage/about.php', 'Welcome to Luna, discover the possibilities!', 'fa-moon-o');
+		require LUNA_ROOT.'include/general_functions.php';
+		new_notification('2', 'backstage/about.php', __('Welcome to Luna, discover the possibilities!', 'luna'), 'fa-moon-o');
 
 		$db->end_transaction();
 	}

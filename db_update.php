@@ -48,7 +48,6 @@ if (!defined('LUNA_DEBUG'))
 
 // Load the functions script
 require LUNA_ROOT.'include/functions.php';
-require LUNA_ROOT.'include/notifications.php';
 require LUNA_ROOT.'include/draw_functions.php';
 require LUNA_ROOT.'include/general_functions.php';
 
