@@ -119,7 +119,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 		while ($cur_notifi = $db->fetch_assoc($notification_result)) {
 			$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
-			$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw luni luni-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
+			$ind_notification[] = '<li><a href="notifications.php?notification='.$cur_notifi['id'].'"><span class="fa fa-fw luni luni-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
 		}
 	}
 
@@ -132,7 +132,8 @@ if ($luna_config['o_notification_flyout'] == 1) {
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
-						<li><a class="pull-right" href="notifications.php">'.__( 'More', 'luna' ).' <i class="fa fa-fw fa-arrow-right"></i></a></li>
+                        <li class="dropdown-footer hidden-xs"><a class="pull-right" href="notifications.php">'.__('More', 'luna').' <i class="fa fa-fw fa-arrow-right"></i></a></li>
+                        <li class="dropdown-footer hidden-lg hidden-md hidden-sm"><a href="notifications.php">'.__('More', 'luna').' <i class="fa fa-fw fa-arrow-right"></i></a></li>
 					</ul>
 				</li>';
 } else {

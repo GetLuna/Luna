@@ -161,6 +161,13 @@ body {
     background: none !important;
 }
 
+/* Responsive utility class */
+@media all and (max-width:530px) {
+	.hidden-xxs {
+        display: none;
+	}
+}
+
 /* Fonts */
 body {
 	font-family: "Segoe UI","Open Sans",Helvetica,Arial,sans-serif;
@@ -573,7 +580,7 @@ hr {
 
 @media screen and (min-width: 768px) {
 	.notification-menu .timestamp {
-		color: #aaa;
+		color: rgba(255,255,255,.5);
 	}
 }
 
@@ -585,27 +592,6 @@ hr {
 
 .notification-menu li {
 	position: relative;
-}
-
-.notification-menu li .notification-action {
-	color: #fff;
-	text-align: center;
-	padding: 10px;
-	top: 0;
-	position: absolute;
-	display: none;
-}
-
-.notification-menu li .notification-action.action-check {
-	right: 0;
-}
-
-.notification-menu li .notification-action.action-delete {
-	right: 38px;
-}
-
-.notification-menu li:hover .notification-action {
-	display: block;
 }
 
 .notification-menu li:hover .notification-link {
@@ -621,6 +607,28 @@ hr {
 
 .notification-menu li:hover .notification-link .timestamp {
 	display: none;
+}
+
+.notification-row:not(:first-child) {
+    margin-top: 1px;
+}
+
+.notification-row .col-xs-10,
+.notification-row .col-xs-2 {
+    padding: 0;
+}
+
+.notification-row .btn {
+    padding: 8px 12px;
+}
+
+.notification-row .btn-default {
+    background: #eee;
+    text-align: left;
+}
+
+.notification-row .btn-default:hover {
+    background: #ddd;
 }
 
 /* Search form */
@@ -1706,6 +1714,18 @@ blockquote footer {
 
 .night .btn-pagination .btn.btn-default:hover {
     background: #5d5d5d;
+}
+
+.night .notification-row .btn {
+    color: #fff;
+}
+
+.night .notification-row .btn-default {
+    background: #4f4f4f;
+}
+
+.night .notification-row .btn-default:hover {
+    background: #5a5a5a;
 }
 
 .night .alert-info {
