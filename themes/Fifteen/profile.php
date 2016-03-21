@@ -31,7 +31,7 @@ if (!defined('FORUM'))
             <div class="tab-content tab-about">
                 <div class="row">
                     <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
-                        <small><?php _e('Titel', 'luna') ?></small>
+                        <small><?php _e('Title', 'luna') ?></small>
                         <?php echo get_title($user) ?>
                     </h3>
                     <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
