@@ -33,13 +33,13 @@ if (!defined('FORUM'))
 			</div>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="new">
-                    <?php if ($num_not_seen == '0') { ?>
+                    <?php if ($num_not_seen != '0') { ?>
                         <a class="btn btn-primary" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=readnoti"><span class="fa fa-fw fa-eye"></span> <?php _e('Seen all', 'luna') ?></a>
                     <?php } ?>
                     <?php echo $not; ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="seen">
-                    <?php if ($num_not_unseen == '0') { ?>
+                    <?php if ($num_not_unseen != '0') { ?>
                         <a class="btn btn-danger" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=delnoti"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove all', 'luna') ?></a>
                     <?php } ?>
                     <?php echo $not_seen; ?>
