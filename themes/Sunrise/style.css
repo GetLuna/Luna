@@ -28,6 +28,7 @@
 }
 
 .list-group-item.clearfix .forum-description,
+.list-group-item.clearfix .thread-desc,
 .list-group-item.clearfix .thread-meta {
     font-size: 13px;
 }
