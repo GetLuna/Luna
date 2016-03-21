@@ -43,9 +43,6 @@ if (!defined('FORUM')) {
 // Load the functions script
 require LUNA_ROOT.'include/functions.php';
 
-// Load the security functions
-require LUNA_ROOT.'include/class/luna_nonces.php';
-
 // Load UTF-8 functions
 require LUNA_ROOT.'include/utf8/utf8.php';
 

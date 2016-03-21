@@ -37,7 +37,7 @@ $db->end_transaction();
 				</div>
 			</div>
 		</div>
-		<script src="../vendor/js/jquery.js"></script>
+		<script src="../vendor/js/jquery.min.js"></script>
 		<script src="../vendor/js/bootstrap.min.js"></script>
 		<script src="../vendor/js/colours.min.js"></script>
 		<script language="javascript">

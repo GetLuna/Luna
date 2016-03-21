@@ -42,14 +42,8 @@ elseif (file_exists('../img/header.jpg'))
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>
-		<style>
-		body.js .hide-if-js, body.no-js .hide-if-no-js {
-			display: none !important;
-		}
-		</style>
 	</head>
 	<body class="no-js">
-		<script type="text/javascript">document.body.className = document.body.className.replace( 'no-js', 'js' );</script>
 <?php
 require_once LUNA_ROOT.'include/backstage_functions.php';
 

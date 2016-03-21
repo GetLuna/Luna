@@ -1195,11 +1195,3 @@ function draw_wall_error($description, $action = NULL, $title = NULL) {
 </html>
 <?php
 }
-
-function draw_user_nav_menu() {
-	global $luna_user;
-
-	$items = get_user_nav_menu_items();
-
-	require get_view_path('user-navmenu.php');
-}
