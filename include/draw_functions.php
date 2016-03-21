@@ -445,8 +445,8 @@ function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 
-			$threads_label = __('thread', 'threads', $cur_forum['num_threads'], 'luna');
-			$comments_label = __('comment', 'comments', $cur_forum['num_comments'], 'luna');
+			$threads_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
+			$comments_label = _n('comment', 'comments', $cur_forum['num_comments'], 'luna');
 
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
