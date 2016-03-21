@@ -65,5 +65,6 @@ require 'header.php';
 __('users', 'luna');
 __('threads', 'luna');
 __('comments', 'luna');
+__('views', 'luna');
 
 require 'footer.php';

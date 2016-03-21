@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-21 10:24+0100\n"
-"PO-Revision-Date: 2016-03-21 10:24+0100\n"
+"POT-Creation-Date: 2016-03-21 10:48+0100\n"
+"PO-Revision-Date: 2016-03-21 10:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -183,6 +183,10 @@ msgstr "conversaties"
 #: backstage/about.php:67
 msgid "comments"
 msgstr "reacties"
+
+#: backstage/about.php:68
+msgid "views"
+msgstr "weergaven"
 
 #: backstage/appearance.php:17 backstage/appearance.php:26
 #: backstage/email.php:16 backstage/features.php:16
@@ -1844,7 +1848,8 @@ msgid "There are no new reports."
 msgstr "Er zijn geen nieuwe rapporten."
 
 #: backstage/index.php:171 db_update.php:717 db_update.php:802
-#: include/draw_functions.php:365 include/draw_functions.php:449
+#: include/draw_functions.php:300 include/draw_functions.php:365
+#: include/draw_functions.php:449
 msgid "comment"
 msgstr "reactie"
 
@@ -2242,8 +2247,7 @@ msgstr "door"
 msgid "Go to the first new comment in the thread."
 msgstr "Ga naar de eerste nieuwe reactie in de conversatie."
 
-#: backstage/moderate.php:940 include/draw_functions.php:300
-#: include/draw_functions.php:607
+#: backstage/moderate.php:940 include/draw_functions.php:607
 msgid "reply"
 msgstr "reactie"
 
@@ -5611,7 +5615,7 @@ msgstr "Abonneer"
 msgid "Subforums"
 msgstr "Subforums"
 
-#: themes/Fifteen/forum.php:41 themes/Sunrise/forum.php:41
+#: themes/Fifteen/forum.php:41 themes/Sunrise/forum.php:43
 msgid "Moderate forum"
 msgstr "Modereer forum"
 
@@ -6150,7 +6154,7 @@ msgstr "Welkom terug"
 msgid "Search in comments"
 msgstr "Zoeken in reacties"
 
-#: themes/Fifteen/index.php:128 themes/Sunrise/forum.php:26
+#: themes/Fifteen/index.php:128 themes/Sunrise/forum.php:27
 #: themes/Sunrise/index.php:102
 msgid "Recent activity"
 msgstr "Recente activiteiten"

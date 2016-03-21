@@ -18,7 +18,8 @@
 }
 
 .list-group-item.clearfix .forum-title,
-.list-group-item.clearfix .thread-title {
+.list-group-item.clearfix .thread-title,
+.list-group-item.clearfix .thread-date {
     font-size: 17px;
 }
 

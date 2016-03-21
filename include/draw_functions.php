@@ -297,7 +297,7 @@ function draw_threads_list() {
 			else
 				$subject_multipage = null;
 
-			$replies_label = _n('reply', 'replies', $cur_thread['num_replies'], 'luna');
+			$comments_label = _n('comment', 'comments', $cur_thread['num_replies'], 'luna');
 			$views_label = _n('view', 'views', $cur_thread['num_views'], 'luna');
 
 			require get_view_path('thread.php');
