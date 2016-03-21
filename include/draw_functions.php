@@ -226,10 +226,7 @@ function draw_threads_list() {
 			$status_text = array();
 			$item_status = ($thread_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_thread['subject']) > 53)
-				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
-			else
-				$subject = luna_htmlspecialchars($cur_thread['subject']);
+			$subject = luna_htmlspecialchars($cur_thread['subject']);
 			$last_comment_date = '<a href="thread.php?pid='.$cur_thread['last_comment_id'].'#p'.$cur_thread['last_comment_id'].'">'.format_time($cur_thread['last_comment']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
@@ -373,13 +370,10 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 
 			// If there is a last_comment/last_commenter
 			if ($cur_forum['last_comment'] != '') {
-				if (luna_strlen($cur_forum['subject']) > 53)
-					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
-
-					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span></span>';
-					else
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span></span>';
+                if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
+                    $last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span></span>';
+                else
+                    $last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span></span>';
 			} else
 				$last_comment = '<span class="thread-title">'.__('Never', 'luna').'</span>';
 
@@ -457,13 +451,10 @@ function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 
 			// If there is a last_comment/last_commenter
 			if ($cur_forum['last_comment'] != '') {
-				if (luna_strlen($cur_forum['subject']) > 53)
-					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
-
-					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span></span>';
-					else
-						$last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span></span>';
+                if ($luna_user['g_view_users'] == '1' && $cur_forum['last_commenter_id'] > '1')
+                    $last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_commenter_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span></span>';
+                else
+                    $last_comment = '<a href="thread.php?pid='.$cur_forum['last_comment_id'].'#p'.$cur_forum['last_comment_id'].'" class="thread-title">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="thread-meta"><span class="bytime">'.format_time($cur_forum['last_comment']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span></span>';
 			} else
 				$last_comment = '<span class="thread-title">'.__('Never', 'luna').'</span>';
 
@@ -520,10 +511,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 			$status_text = array();
 			$item_status = ($thread_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_thread['subject']) > 53)
-				$subject = utf8_substr($cur_thread['subject'], 0, 50).'...';
-			else
-				$subject = luna_htmlspecialchars($cur_thread['subject']);
+            $subject = luna_htmlspecialchars($cur_thread['subject']);
 			$last_comment_date = '<a href="thread.php?pid='.$cur_thread['last_comment_id'].'#p'.$cur_thread['last_comment_id'].'">'.format_time($cur_thread['last_comment']).'</a>';
 
 			if (is_null($cur_thread['moved_to'])) {
