@@ -29,8 +29,8 @@ if (!defined('FORUM'))
 			<a href="#" class="notification-action action-delete" data-action="delete"><span class="fa fa-fw fa-trash"></span></a>
 		</script>
 
-		<script src="include/js/vendor/underscore-min.js"></script>
-		<script src="include/js/vendor/backbone-min.js"></script>
+		<script src="vendor/js/underscore-min.js"></script>
+		<script src="vendor/js/backbone-min.js"></script>
 		<script src="include/js/luna-backbone.js"></script>
 		<script src="include/js/luna.js"></script>
 		<script src="include/js/luna-heartbeat.js"></script>

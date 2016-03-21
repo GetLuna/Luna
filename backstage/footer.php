@@ -37,9 +37,9 @@ $db->end_transaction();
 				</div>
 			</div>
 		</div>
-		<script src="../include/js/vendor/jquery.js"></script>
-		<script src="../include/js/vendor/bootstrap.min.js"></script>
-		<script src="../include/js/vendor/colours.min.js"></script>
+		<script src="../vendor/js/jquery.js"></script>
+		<script src="../vendor/js/bootstrap.min.js"></script>
+		<script src="../vendor/js/colours.min.js"></script>
 		<script language="javascript">
 			var flat_palette = [
 				"#1abc9c", "#64b450", "#38a2eb", "#826eb4", "#555555",

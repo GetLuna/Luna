@@ -176,7 +176,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna') ?></title>
-		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/accents/<?php echo rand(1, 15) ?>.css" />
 		<script type="text/javascript">
@@ -470,7 +470,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna') ?></title>
-		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 	</head>
 	<body>

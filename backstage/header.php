@@ -35,8 +35,8 @@ elseif (file_exists('../img/header.jpg'))
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" href="../include/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../include/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../vendor/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/accents/<?php echo $luna_user['accent'] ?>.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
