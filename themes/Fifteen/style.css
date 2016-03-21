@@ -112,6 +112,7 @@ body {
 /* General styles */
 * {
 	border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 .form-control:focus {
@@ -1061,6 +1062,10 @@ hr {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #aaa;
+}
+
+.input-group-addon + .form-control {
+    border-left: none;
 }
 
 .tab-contact .input-group:not(:first-child) {
