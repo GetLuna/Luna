@@ -78,9 +78,6 @@ function draw_editor($height, $meta_enabled = null) {
 ?>
 <div class="editor">
 	<input type="hidden" name="form_sent" value="1" />
-	<div class="alert alert-warning hide-if-js" role="alert">
-		<p><?php _e('The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though.', 'luna' ); ?></p>
-	</div>
 <?php
 	if ($luna_user['is_guest'] && $meta_enabled) {
 ?>
@@ -146,7 +143,6 @@ function draw_editor($height, $meta_enabled = null) {
 			$action = 'message';
 		else
 			$action = ($fid ? 'thread' : 'comment');
-		LunaNonces::field($action);
 	?>
 	<div class="btn-toolbar btn-toolbar-bottom">
 		<div class="btn-group">

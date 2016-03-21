@@ -43,7 +43,7 @@ elseif (file_exists('../img/header.jpg'))
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>
 	</head>
-	<body class="no-js">
+	<body>
 <?php
 require_once LUNA_ROOT.'include/backstage_functions.php';
 

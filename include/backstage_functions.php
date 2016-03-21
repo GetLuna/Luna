@@ -135,11 +135,6 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 						<li><a href="<?php echo $logout_url; ?>"><i class="fa fa-fw fa-sign-out"></i> <?php _e('Logout', 'luna') ?></a></li>
 					</ul>
 				</li>
-				<li id="navlogout" class="hide-if-js">
-					<a href="<?php echo $logout_url; ?>" title="<?php echo $item['logout']['title']; ?>">
-						<span class="fa fa-fw fa-sign-out"></span>
-					</a>
-				</li>
 			</ul>
 		</div>
 	</div>

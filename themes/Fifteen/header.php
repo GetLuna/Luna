@@ -24,7 +24,7 @@ $body_classes = check_style_mode();
         } ?>
 		</style>
 	</head>
-	<body class="no-js">
+	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
         <div id="header">
             <div class="navbar navbar-inverse navbar-static-top">
