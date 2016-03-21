@@ -21,12 +21,14 @@ if (!defined('FORUM'))
 				<?php } ?>
 			</div>
 			<?php } ?>
-			<hr />
-            <div class="title-block title-block-primary">
-                <h5><?php _e('Recent activity', 'luna') ?></h5>
-            </div>
-            <div class="list-group list-group-thread">
-                <?php draw_index_threads_list(7, 'thread2.php'); ?>
+            <div class="hidden-xs">
+                <hr />
+                <div class="title-block title-block-primary">
+                    <h5><?php _e('Recent activity', 'luna') ?></h5>
+                </div>
+                <div class="list-group list-group-thread">
+                    <?php draw_index_threads_list(7, 'thread2.php'); ?>
+                </div>
             </div>
 			<?php if ($luna_user['g_search'] == '1') { ?>
                 <hr />
