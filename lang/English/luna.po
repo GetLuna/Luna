@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-20 20:08+0100\n"
-"PO-Revision-Date: 2016-03-20 20:12+0100\n"
+"POT-Creation-Date: 2016-03-21 10:24+0100\n"
+"PO-Revision-Date: 2016-03-21 10:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -51,9 +51,9 @@ msgstr ""
 
 #: backstage/about.php:33 backstage/about.php:34 backstage/about.php:35
 #: backstage/about.php:36 backstage/about.php:37 backstage/about.php:38
-#: backstage/about.php:39 header.php:56 header.php:57
+#: backstage/about.php:39 backstage/about.php:40 header.php:56 header.php:57
 #: include/draw_functions.php:350 include/draw_functions.php:434
-#: themes/Fifteen/notifications.php:30
+#: themes/Fifteen/inbox.php:44 themes/Fifteen/notifications.php:30
 msgid "New"
 msgstr ""
 
@@ -62,106 +62,122 @@ msgid "Fifteen has received a fully reimagned design based on Airalin"
 msgstr ""
 
 #: backstage/about.php:34
-msgid "You can now add custom CSS to the theme you're using"
+msgid "Sunrise has also been reimagned based on the new Fifteen look"
 msgstr ""
 
 #: backstage/about.php:35
-msgid "Luna's default placeholder avatar can now be replaced"
+msgid "You can now add custom CSS to the theme you're using"
 msgstr ""
 
 #: backstage/about.php:36
+msgid "Luna's default placeholder avatar can now be replaced"
+msgstr ""
+
+#: backstage/about.php:37
 msgid ""
 "You can now upload a header background to use in your theme and the Backstage"
 msgstr ""
 
-#: backstage/about.php:37
+#: backstage/about.php:38
 msgid "You can now respond on Inbox messages from the message view"
 msgstr ""
 
-#: backstage/about.php:38
+#: backstage/about.php:39
 msgid ""
 "Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents"
 msgstr ""
 
-#: backstage/about.php:39
+#: backstage/about.php:40
 msgid "Luna now has a Dutch translation included by default"
 msgstr ""
 
-#: backstage/about.php:40 backstage/about.php:41
+#: backstage/about.php:41 backstage/about.php:42
 #: include/backstage_functions.php:160
 msgid "System"
 msgstr ""
 
-#: backstage/about.php:40
+#: backstage/about.php:41
 msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr ""
 
-#: backstage/about.php:41
+#: backstage/about.php:42
 msgid "We now include animate.css with Luna"
 msgstr ""
 
-#: backstage/about.php:42 backstage/about.php:43 backstage/about.php:44
-#: backstage/about.php:45 backstage/about.php:46 backstage/about.php:47
+#: backstage/about.php:43 backstage/about.php:44 backstage/about.php:45
+#: backstage/about.php:46 backstage/about.php:47 backstage/about.php:48
 msgid "Improved"
 msgstr ""
 
-#: backstage/about.php:42
+#: backstage/about.php:43
 msgid "Users can now disable or enable First Run from their profile"
 msgstr ""
 
-#: backstage/about.php:43
+#: backstage/about.php:44
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 
-#: backstage/about.php:44
+#: backstage/about.php:45
 msgid "When you have a notification, the icon will animate"
 msgstr ""
 
-#: backstage/about.php:45
+#: backstage/about.php:46
 msgid "Advanced search has an improved UI"
 msgstr ""
 
-#: backstage/about.php:46
+#: backstage/about.php:47
 msgid "About can now be translated to other languages"
 msgstr ""
 
-#: backstage/about.php:47
+#: backstage/about.php:48
 msgid "Improved Backstage UI and night mode"
 msgstr ""
 
-#: backstage/about.php:48 backstage/about.php:49
+#: backstage/about.php:49 backstage/about.php:50
 msgid "Removed"
 msgstr ""
 
-#: backstage/about.php:48
+#: backstage/about.php:49
 msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
-#: backstage/about.php:49
+#: backstage/about.php:50
 msgid "The code base no longer supports PHP 5.2 anymore"
 msgstr ""
 
-#: backstage/about.php:50
+#: backstage/about.php:51
 msgid "Fixed"
 msgstr ""
 
-#: backstage/about.php:50
+#: backstage/about.php:51
 msgid "Fixes 7 bugs"
 msgstr ""
 
-#: backstage/about.php:52
+#: backstage/about.php:53
 msgid "Note"
 msgstr ""
 
-#: backstage/about.php:52
+#: backstage/about.php:53
 msgid "Sunrise has multiple visual issues in this Preview"
 msgstr ""
 
-#: backstage/about.php:58
+#: backstage/about.php:59
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
+msgstr ""
+
+#: backstage/about.php:65
+msgid "users"
+msgstr ""
+
+#: backstage/about.php:66
+msgid "threads"
+msgstr ""
+
+#: backstage/about.php:67
+msgid "comments"
 msgstr ""
 
 #: backstage/appearance.php:17 backstage/appearance.php:26
@@ -652,7 +668,7 @@ msgstr ""
 
 #: backstage/bans.php:366 backstage/board.php:95 backstage/board.php:467
 #: backstage/board.php:572 backstage/board.php:636 backstage/censoring.php:141
-#: backstage/ranks.php:152
+#: backstage/ranks.php:152 themes/Fifteen/notifications.php:70
 msgid "Remove"
 msgstr ""
 
@@ -2444,7 +2460,6 @@ msgid "Reports"
 msgstr ""
 
 #: backstage/reports.php:87 include/draw_functions.php:1191 search.php:392
-#: themes/Fifteen/inbox.php:36 viewforum.php:91
 msgid "Mark as read"
 msgstr ""
 
@@ -2491,7 +2506,7 @@ msgid "Essentials"
 msgstr ""
 
 #: backstage/settings.php:212 backstage/users.php:840 profile.php:41
-#: themes/Fifteen/settings.php:85
+#: themes/Fifteen/profile.php:34 themes/Fifteen/settings.php:85
 msgid "Title"
 msgstr ""
 
@@ -3094,8 +3109,8 @@ msgstr ""
 
 #: backstage/users.php:130 backstage/users.php:158 backstage/users.php:748
 #: backstage/users.php:765 extern.php:494 profile.php:43 profile.php:66
-#: themes/Fifteen/search-advanced.php:56 themes/Fifteen/settings.php:346
-#: themes/Fifteen/settings.php:539
+#: themes/Fifteen/profile.php:38 themes/Fifteen/search-advanced.php:56
+#: themes/Fifteen/settings.php:346 themes/Fifteen/settings.php:539
 msgid "Comments"
 msgstr ""
 
@@ -3221,7 +3236,8 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: backstage/users.php:842 profile.php:55 themes/Fifteen/settings.php:78
+#: backstage/users.php:842 profile.php:55 themes/Fifteen/profile.php:55
+#: themes/Fifteen/settings.php:78
 msgid "Real name"
 msgstr ""
 
@@ -3246,11 +3262,12 @@ msgstr ""
 msgid "Google+"
 msgstr ""
 
-#: backstage/users.php:860 profile.php:58 themes/Fifteen/settings.php:92
+#: backstage/users.php:860 profile.php:58 themes/Fifteen/profile.php:60
+#: themes/Fifteen/settings.php:92
 msgid "Location"
 msgstr ""
 
-#: backstage/users.php:864 themes/Fifteen/profile.php:50
+#: backstage/users.php:864 themes/Fifteen/profile.php:84
 #: themes/Fifteen/settings.php:109
 msgid "Signature"
 msgstr ""
@@ -3579,7 +3596,7 @@ msgid "Threads"
 msgstr ""
 
 #: footer.php:21 footer.php:47 include/general_functions.php:50
-#: themes/Fifteen/notifications.php:39 themes/Fifteen/notifications.php:55
+#: themes/Fifteen/notifications.php:38 themes/Fifteen/notifications.php:60
 msgid "No new notifications"
 msgstr ""
 
@@ -3653,7 +3670,7 @@ msgstr ""
 
 #: include/backstage_functions.php:127 include/general_functions.php:70
 #: include/me_functions.php:18 include/me_functions.php:30 notifications.php:64
-#: profile.php:113 settings.php:171 settings.php:431 settings.php:820
+#: profile.php:110 settings.php:171 settings.php:431 settings.php:820
 #: themes/Fifteen/help.php:136 themes/Fifteen/settings.php:38
 msgid "Profile"
 msgstr ""
@@ -3968,7 +3985,7 @@ msgstr ""
 msgid "Offline"
 msgstr ""
 
-#: include/draw_functions.php:824 profile.php:50
+#: include/draw_functions.php:824 profile.php:50 themes/Fifteen/profile.php:46
 msgid "Registered since"
 msgstr ""
 
@@ -4186,7 +4203,7 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-#: include/inbox_functions.php:34 themes/Fifteen/inbox.php:44
+#: include/inbox_functions.php:34
 msgid "Compose"
 msgstr ""
 
@@ -4643,16 +4660,12 @@ msgstr ""
 msgid "Send a message"
 msgstr ""
 
-#: profile.php:46
+#: profile.php:46 themes/Fifteen/profile.php:42
 msgid "Latest comment"
 msgstr ""
 
-#: profile.php:52
+#: profile.php:52 themes/Fifteen/profile.php:50
 msgid "Latest visit"
-msgstr ""
-
-#: profile.php:83 settings.php:553
-msgid "Send email"
 msgstr ""
 
 #: register.php:20
@@ -4921,6 +4934,10 @@ msgid ""
 "The file you tried to upload is wider and/or higher than the maximum allowed"
 msgstr ""
 
+#: settings.php:553 themes/Fifteen/profile.php:71
+msgid "Send email"
+msgstr ""
+
 #: settings.php:562
 msgid "Unverified"
 msgstr ""
@@ -5028,11 +5045,21 @@ msgstr ""
 msgid "Back to index"
 msgstr ""
 
-#: themes/Fifteen/forum.php:16
+#: themes/Fifteen/forum.php:18 themes/Fifteen/thread.php:18
+#: themes/Sunrise/forum.php:18 thread.php:147 viewforum.php:88
+msgid "Unsubscribe"
+msgstr ""
+
+#: themes/Fifteen/forum.php:20 themes/Fifteen/thread.php:20
+#: themes/Sunrise/forum.php:20 thread.php:149 viewforum.php:90
+msgid "Subscribe"
+msgstr ""
+
+#: themes/Fifteen/forum.php:26
 msgid "Subforums"
 msgstr ""
 
-#: themes/Fifteen/forum.php:31 themes/Sunrise/forum.php:31
+#: themes/Fifteen/forum.php:41 themes/Sunrise/forum.php:41
 msgid "Moderate forum"
 msgstr ""
 
@@ -5444,8 +5471,12 @@ msgstr ""
 msgid "Are you sure you want to delete the selected messages?"
 msgstr ""
 
+#: themes/Fifteen/inbox.php:36
+msgid "Read"
+msgstr ""
+
 #: themes/Fifteen/inbox.php:37
-msgid "Mark as unread"
+msgid "Unread"
 msgstr ""
 
 #: themes/Fifteen/inbox.php:59
@@ -5495,7 +5526,7 @@ msgstr ""
 msgid "Search in comments"
 msgstr ""
 
-#: themes/Fifteen/index.php:128 themes/Sunrise/forum.php:16
+#: themes/Fifteen/index.php:128 themes/Sunrise/forum.php:26
 #: themes/Sunrise/index.php:102
 msgid "Recent activity"
 msgstr ""
@@ -5553,16 +5584,8 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: themes/Fifteen/notifications.php:31
+#: themes/Fifteen/notifications.php:31 themes/Fifteen/notifications.php:48
 msgid "Seen"
-msgstr ""
-
-#: themes/Fifteen/notifications.php:36
-msgid "Mark as seen"
-msgstr ""
-
-#: themes/Fifteen/notifications.php:52
-msgid "Delete notifications"
 msgstr ""
 
 #: themes/Fifteen/objects/comment.php:8
@@ -5582,7 +5605,7 @@ msgstr ""
 msgid "comments since"
 msgstr ""
 
-#: themes/Fifteen/profile.php:39 themes/Fifteen/settings.php:40
+#: themes/Fifteen/profile.php:71 themes/Fifteen/settings.php:40
 msgid "Contact"
 msgstr ""
 
@@ -5770,14 +5793,6 @@ msgid ""
 "Choose which forums this user should be allowed to moderate. Note: This only "
 "applies to moderators. Administrators always have full permissions in all "
 "forums."
-msgstr ""
-
-#: themes/Fifteen/thread.php:18 thread.php:147 viewforum.php:86
-msgid "Unsubscribe"
-msgstr ""
-
-#: themes/Fifteen/thread.php:20 thread.php:149 viewforum.php:88
-msgid "Subscribe"
 msgstr ""
 
 #: themes/Fifteen/thread.php:29 themes/Fifteen/thread.php:54
