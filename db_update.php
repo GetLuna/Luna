@@ -824,7 +824,7 @@ switch ($stage) {
 
 		// Give a "Success" notifcation
 		if ($luna_config['o_cur_version'] != Version::LUNA_VERSION)
-			new_notification('2', 'backstage/index.php', 'Luna has been updated to '.Version::LUNA_VERSION, 'fa-cloud-upload');
+			new_notification('2', 'backstage/about.php', 'Luna has been updated to '.Version::LUNA_VERSION, 'fa-cloud-upload');
 
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
