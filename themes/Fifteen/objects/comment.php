@@ -13,8 +13,7 @@
 	<div class="comment-body">
 		<?php echo $cur_comment['message']."\n" ?>
 		<?php if (!isset($inbox)) { if ($cur_comment['edited'] != '') echo '<p class="comment-edited"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'; }; ?>
-		<?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
-		<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="comment-signature">'.$signature.'</div>'."\n"; ?>
-		<?php if (!$luna_user['is_guest']) { ?><div class="comment-actions btn-group fade-50"><?php if (count($comment_actions)) echo implode(" &middot; ", $comment_actions) ?></div><?php } ?>
+		<?php if (!$luna_user['is_guest']) { ?><div class="comment-actions btn-group fade-50"><?php if (count($comment_actions)) echo implode("", $comment_actions) ?></div><?php } ?>
+		<?php if ($signature != '') echo '<hr />'.'<div class="comment-signature">'.$signature.'</div>'."\n"; ?>
 	</div>
 </div>

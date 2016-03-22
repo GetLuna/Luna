@@ -689,64 +689,32 @@ function draw_comment_list() {
 		}
 
 		// Generation comment action array (quote, edit, delete etc.)
-		if (!$is_admmod) {
-			if (!$luna_user['is_guest']) {
-				if ($cur_comment['marked'] == false) {
-					$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
-				} else {
-					$comment_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
-				}
-			}
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && ($cur_comment['commenter_id'] == $luna_user['id']) && ($luna_user['g_edit_comments'] == 1)) || ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)))
+            $comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-pencil"></i> '.__('Edit', 'luna').'</a>';
+        
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)) || $is_admmod)
+            $comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
+        
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && ($cur_forum['solved'] == 1) && ($luna_user['username'] == $started_by) && ($cur_comment['id'] == $cur_thread['answer'])) || (($cur_forum['solved'] == 1) && ($cur_comment['id'] == $cur_thread['answer'])))
+            $comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-cross"></i> '.__('Unsolved', 'luna').'</a>';
+        
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && ($cur_forum['solved'] == 1) && ($luna_user['username'] == $started_by) && ($cur_comment['id'] != $cur_thread['answer'])) || (($cur_forum['solved'] == 1) && ($cur_comment['id'] != $cur_thread['answer'])))
+            $comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
+        
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && ($cur_comment['commenter_id'] == $luna_user['id']) && (($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1) && ($cur_comment['soft'] == 0)) || (($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) && $cur_comment['soft'] == 0))
+            $comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fa fa-fw fa-eye-slash"></i> '.__('Soft delete', 'luna').'</a>';
+        
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && ($cur_comment['commenter_id'] == $luna_user['id']) && (($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1) && ($cur_comment['soft'] == 1)) || (($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) && $cur_comment['soft'] == 1))
+            $comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fa fa-fw fa-eye"></i> '.__('Soft reset', 'luna').'</a>';
+        
+        if (((!$is_admmod) && ($cur_thread['closed'] == 0) && ($cur_comment['commenter_id'] == $luna_user['id']) && (($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1)) || ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)))
+            $comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fa fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
 
-			if ($cur_thread['closed'] == 0) {
-				if ($cur_comment['commenter_id'] == $luna_user['id']) {
-					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
-						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
-					if ((($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1)) {
-						if ($cur_comment['soft'] == 0)
-							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
-						else
-							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
-					}
-					if ($luna_user['g_edit_comments'] == 1)
-						$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
-				}
-
-				if (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)
-					$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
-
-				if ($cur_forum['solved'] == 1) {
-					if ($luna_user['username'] == $started_by) {
-						if ($cur_comment['id'] == $cur_thread['answer'])
-							$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
-						else
-							$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
-					}
-				}
-			}
-		} else {
-			if ($cur_comment['marked'] == false)
-				$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
-			else
-				$comment_actions[] = '<a disabled="disabled" href="misc.php?report='.$cur_comment['id'].'">'.__('Report', 'luna').'</a>';
-
-			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) {
-				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
-				if ($cur_comment['soft'] == 0)
-					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
-				else
-					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
-				$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'">'.__('Edit', 'luna').'</a>';
-			}
-			$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'">'.__('Quote', 'luna').'</a>';
-
-			if ($cur_forum['solved'] == 1) {
-				if ($cur_comment['id'] == $cur_thread['answer'])
-					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
-				else
-					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
-			}
-		}
+        if ((!$is_admmod && !$luna_user['is_guest'] && $cur_comment['marked'] == false) || ($cur_comment['marked'] == false))
+            $comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
+        
+        if ((!$is_admmod && !$luna_user['is_guest'] && $cur_comment['marked'] == true) || ($cur_comment['marked'] == true))
+            $comment_actions[] = '<a class="btn btn-danger" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_comment['message'] = parse_message($cur_comment['message']);
