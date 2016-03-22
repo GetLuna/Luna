@@ -9,8 +9,7 @@ $body_classes = check_style_mode();
 		<?php load_meta(); ?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="vendor/css/animate.css">
-		<link rel="stylesheet" type="text/css" href="vendor/css/prism.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/prism.css">
 		<?php load_css(); ?>
 		<script src="vendor/js/jquery.min.js"></script>
 		<script src="vendor/js/bootstrap.min.js"></script>
