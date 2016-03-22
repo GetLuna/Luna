@@ -126,7 +126,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	$notifications = implode('<li class="divider"></li>', $ind_notification);
 	$notification_menu_item = '
 					<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a>
+					<a href="#" class="dropdown-toggle'.(($num_notifications != 0)? ' flash' : '').'" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a>
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">'.__( 'Notifications', 'luna' ).'</li>
 						<li class="divider"></li>
@@ -142,7 +142,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	else
 		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 
-	$notification_menu_item = '<li><a href="notifications.php">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a></li>';
+	$notification_menu_item = '<li><a href="notifications.php" class="flash">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a></li>';
 }
 
 // Generate navigation items

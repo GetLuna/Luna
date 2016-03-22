@@ -1499,6 +1499,17 @@ footer .back-to-top {
 	}
 }
 
+/* Animations */
+.flash {
+    animation: flash 3s infinite;
+}
+
+@keyframes flash {
+    50% {
+        opacity: 0;
+    }
+}
+
 /* BBCode */
 .underline {
 	text-decoration: underline;
