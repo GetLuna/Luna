@@ -71,7 +71,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 
 		// Check if it's a banned email address
 		if (is_banned_email($email1)) {
-			if ($luna_config['p_allow_banned_email'] == '0')
+			if ($luna_config['o_allow_banned_email'] == '0')
 				$errors[] = __('The email address you entered is banned in this forum. Please choose another email address.', 'luna');
 
 			$banned_email = true; // Used later when we send an alert email
@@ -83,7 +83,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 
 		$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($email1).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result)) {
-			if ($luna_config['p_allow_dupe_email'] == '0')
+			if ($luna_config['o_allow_dupe_email'] == '0')
 				$errors[] = __('Someone else is already registered with that email address. Please choose another email address.', 'luna');
 
 			while ($cur_dupe = $db->fetch_assoc($result))

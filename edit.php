@@ -67,7 +67,7 @@ if (isset($_POST['form_sent'])) {
 			$errors[] = __('Threads must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
 		elseif (luna_strlen($subject) > 70)
 			$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
-		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
+		elseif ($luna_config['o_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
 			$errors[] = __('Subjects cannot contain only capital letters.', 'luna');
 	}
 
@@ -77,7 +77,7 @@ if (isset($_POST['form_sent'])) {
 	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_COMMENT_SIZE bytes, not characters
 	if (strlen($message) > LUNA_MAX_COMMENT_SIZE)
 		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_COMMENT_SIZE));
-	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
+	elseif ($luna_config['o_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax

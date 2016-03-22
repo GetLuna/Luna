@@ -123,7 +123,7 @@ if (($cur_thread['comment'] == '1' || ($cur_thread['comment'] == '' && $luna_use
 	$required_fields = array('req_message' => __('Message', 'luna'));
 	if ($luna_user['is_guest']) {
 		$required_fields['req_username'] = __('Name', 'luna');
-		if ($luna_config['p_force_guest_email'] == '1')
+		if ($luna_config['o_force_guest_email'] == '1')
 			$required_fields['req_email'] = __('Email', 'luna');
 	}
 

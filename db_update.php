@@ -642,10 +642,10 @@ switch ($stage) {
 		build_config(2, 'o_thread_views', 'o_topic_views');
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(1, 'o_has_commented', (isset($luna_config['o_has_posted']) ? $luna_config['o_has_posted'] : '1'));
-		build_config(2, 'o_pms_enabled', 'o_enable_inbox');
-		build_config(2, 'o_pms_max_receiver', 'o_max_receivers');
-		build_config(2, 'o_pms_mess_per_page', 'o_message_per_page');
-		build_config(2, 'o_pms_notification', 'o_inbox_notification');
+		build_config(2, 'o_enable_inbox', 'o_pms_enabled');
+		build_config(2, 'o_max_receivers', 'o_pms_max_receiver');
+		build_config(2, 'o_message_per_page', 'o_pms_mess_per_page');
+		build_config(2, 'o_inbox_notification', 'o_pms_notification');
 		build_config(0, 'o_has_posted');
 
 		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
@@ -690,6 +690,16 @@ switch ($stage) {
         // Luna 1.4 upgrade support
 		build_config(1, 'o_use_custom_css', '0');
 		build_config(1, 'o_custom_css', 'NULL');
+		build_config(2, 'o_message_img_tag', 'p_message_img_tag');
+		build_config(2, 'o_message_all_caps', 'p_message_all_caps');
+		build_config(2, 'o_subject_all_caps', 'p_subject_all_caps');
+		build_config(2, 'o_sig_all_caps', 'p_sig_all_caps');
+		build_config(2, 'o_sig_img_tag', 'p_sig_img_tag');
+		build_config(2, 'o_sig_length', 'p_sig_length');
+		build_config(2, 'o_sig_lines', 'p_sig_lines');
+		build_config(2, 'o_allow_banned_email', 'p_allow_banned_email');
+		build_config(2, 'o_allow_dupe_email', 'p_allow_dupe_email');
+		build_config(2, 'o_force_guest_email', 'p_force_guest_email');
         
 		$db->drop_field('users', 'style') or error('Unable to drop style field', __FILE__, __LINE__, $db->error());
 		$db->alter_field('users', 'password', 'VARCHAR(512)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());

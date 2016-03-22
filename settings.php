@@ -332,7 +332,7 @@ if (isset($_POST['update_group_membership'])) {
 
 		// Check if it's a banned email address
 		if (is_banned_email($new_email)) {
-			if ($luna_config['p_allow_banned_email'] == '0')
+			if ($luna_config['o_allow_banned_email'] == '0')
 				message(__('The email address you entered is banned in this forum. Please choose another email address.', 'luna'));
 			elseif ($luna_config['o_mailing_list'] != '') {
 				// Load the "banned email change" template
@@ -363,7 +363,7 @@ User profile: <profile_url>
 		// Check if someone else already has registered with that email address
 		$result = $db->query('SELECT id, username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($new_email).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result)) {
-			if ($luna_config['p_allow_dupe_email'] == '0')
+			if ($luna_config['o_allow_dupe_email'] == '0')
 				message(__('Someone else is already registered with that email address. Please choose another email address.', 'luna'));
 			elseif ($luna_config['o_mailing_list'] != '') {
 				while ($cur_dupe = $db->fetch_assoc($result))
@@ -685,11 +685,11 @@ To change your email address, please visit the following page:
 			$form['signature'] = luna_linebreaks(luna_trim($_POST['signature']));
 
 			// Validate signature
-			if (luna_strlen($form['signature']) > $luna_config['p_sig_length'])
-				message(sprintf(__('Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters.', 'luna'), $luna_config['p_sig_length'], luna_strlen($form['signature']) - $luna_config['p_sig_length']));
-			elseif (substr_count($form['signature'], "\n") > ($luna_config['p_sig_lines']-1))
-				message(sprintf(__('Signatures cannot have more than %s lines.', 'luna'), $luna_config['p_sig_lines']));
-			elseif ($form['signature'] && $luna_config['p_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
+			if (luna_strlen($form['signature']) > $luna_config['o_sig_length'])
+				message(sprintf(__('Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters.', 'luna'), $luna_config['o_sig_length'], luna_strlen($form['signature']) - $luna_config['o_sig_length']));
+			elseif (substr_count($form['signature'], "\n") > ($luna_config['o_sig_lines']-1))
+				message(sprintf(__('Signatures cannot have more than %s lines.', 'luna'), $luna_config['o_sig_lines']));
+			elseif ($form['signature'] && $luna_config['o_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
 				$form['signature'] = utf8_ucwords(utf8_strtolower($form['signature']));
 
 			$errors = array();

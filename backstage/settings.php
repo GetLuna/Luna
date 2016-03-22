@@ -474,13 +474,13 @@ foreach ($timezones as $timezone) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['o_allow_banned_email'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow users to use a banned email address, mailing list will be warned when this happens.', 'luna') ?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['o_allow_dupe_email'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow users to use an email address that is already used, mailing list will be warned when this happens.', 'luna') ?>
                                     </label>
                                 </div>

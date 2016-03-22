@@ -200,7 +200,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		$errors[] = __('Threads must contain a subject.', 'luna');
 	elseif (luna_strlen($p_subject) > '70')
 		$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
-	elseif ($luna_config['p_subject_all_caps'] == '0' && strtoupper($p_subject) == $p_subject && $luna_user['is_admmod'])
+	elseif ($luna_config['o_subject_all_caps'] == '0' && strtoupper($p_subject) == $p_subject && $luna_user['is_admmod'])
 		$p_subject = ucwords(strtolower($p_subject));
 
 	// Clean up message from POST
@@ -213,7 +213,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_COMMENT_SIZE bytes, not characters
 	elseif (strlen($p_message) > LUNA_MAX_COMMENT_SIZE)
 		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_COMMENT_SIZE));
-	elseif ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
+	elseif ($luna_config['o_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 
 	// Validate BBCode syntax

@@ -322,7 +322,7 @@ if (isset($_GET['saved']))
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['p_message_img_tag'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['o_message_img_tag'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow the BBCode [img] tag in comments.', 'luna') ?>
                                     </label>
                                 </div>
@@ -339,7 +339,7 @@ if (isset($_GET['saved']))
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['p_sig_img_tag'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['o_sig_img_tag'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow the BBCode [img] tag in user signatures.', 'luna') ?>
                                     </label>
                                 </div>
@@ -394,13 +394,13 @@ if (isset($_GET['saved']))
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['o_message_all_caps'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow a comment to contain only capital letters.', 'luna') ?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($luna_config['p_subject_all_caps'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($luna_config['o_subject_all_caps'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow a subject to contain only capital letters.', 'luna') ?>
                                     </label>
                                 </div>
@@ -411,7 +411,7 @@ if (isset($_GET['saved']))
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['o_force_guest_email'] == '1') echo ' checked' ?> />
                                         <?php _e('Require guests to supply an email address when commenting.', 'luna') ?>
                                     </label>
                                 </div>
@@ -514,7 +514,7 @@ if (isset($_GET['saved']))
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($luna_config['p_sig_all_caps'] == '1') echo ' checked' ?> />
+                                        <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($luna_config['o_sig_all_caps'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow a signature to contain only capital letters.', 'luna') ?>
                                     </label>
                                 </div>
@@ -523,13 +523,13 @@ if (isset($_GET['saved']))
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Maximum signature length', 'luna') ?><span class="help-block"><?php _e('Maximum amount of characters a signature can have', 'luna') ?></span></label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
+                                <input type="number" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['o_sig_length'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Maximum signature lines', 'luna') ?><span class="help-block"><?php _e('Maximum amount of lines a signature can have', 'luna') ?></span></label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
+                                <input type="number" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['o_sig_lines'] ?>" />
                             </div>
                         </div>
                     </fieldset>

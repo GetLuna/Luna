@@ -1516,16 +1516,16 @@ class Installer {
 			'o_board_statistics'		=> 1,
 			'o_notification_flyout'		=> 1,
 			'o_update_ring'				=> 1,
-			'p_message_img_tag'			=> 1,
-			'p_message_all_caps'		=> 1,
-			'p_subject_all_caps'		=> 1,
-			'p_sig_all_caps'			=> 1,
-			'p_sig_img_tag'				=> 0,
-			'p_sig_length'				=> 400,
-			'p_sig_lines'				=> 4,
-			'p_allow_banned_email'		=> 1,
-			'p_allow_dupe_email'		=> 0,
-			'p_force_guest_email'		=> 1
+			'o_message_img_tag'			=> 1,
+			'o_message_all_caps'		=> 1,
+			'o_subject_all_caps'		=> 1,
+			'o_sig_all_caps'			=> 1,
+			'o_sig_img_tag'				=> 0,
+			'o_sig_length'				=> 400,
+			'o_sig_lines'				=> 4,
+			'o_allow_banned_email'		=> 1,
+			'o_allow_dupe_email'		=> 0,
+			'o_force_guest_email'		=> 1
 		);
 
 		foreach ($luna_config as $conf_name => $conf_value) {

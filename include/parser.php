@@ -689,7 +689,7 @@ function do_bbcode($text, $is_signature = false) {
 	// Vimeo Videos
 	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.vimeo.com/video/$4"></iframe></div>';
 
-	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1')) {
+	if (($is_signature && $luna_config['o_sig_img_tag'] == '1') || (!$is_signature && $luna_config['o_message_img_tag'] == '1')) {
 		$pattern_callback[] = '%\[img\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
 		$pattern_callback[] = '%\[img=([^\[]*?)\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
 		if ($is_signature) {

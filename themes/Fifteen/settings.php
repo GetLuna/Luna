@@ -109,7 +109,7 @@ else
 								<label class="col-sm-3 control-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
-									<span class="help-block"><?php printf(__('Max length: %s characters / Max lines: %s', 'luna'), forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
+									<span class="help-block"><?php printf(__('Max length: %s characters / Max lines: %s', 'luna'), forum_number_format($luna_config['o_sig_length']), $luna_config['o_sig_lines']) ?></span>
 								</div>
 							</div>
 							<div class="form-group">
@@ -341,7 +341,7 @@ else
 					</div>
 					<div role="tabpanel" class="tab-pane" id="thread">
 						<fieldset class="form-horizontal form-setting">
-							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
+							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_message_img_tag'] == '1'): ?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
 									<div class="col-sm-9">
@@ -352,7 +352,7 @@ else
 													<?php _e('Show user avatars with their comments.', 'luna') ?>
 												</label>
 											</div>
-										<?php endif; if ($luna_config['p_message_img_tag'] == '1'): ?>
+										<?php endif; if ($luna_config['o_message_img_tag'] == '1'): ?>
 											<div class="checkbox">
 												<label>
 													<input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked' ?> />
@@ -372,7 +372,7 @@ else
 													<?php _e('Show user signatures.', 'luna') ?>
 												</label>
 											</div>
-										<?php if ($luna_config['p_sig_img_tag'] == '1'): ?>
+										<?php if ($luna_config['o_sig_img_tag'] == '1'): ?>
 											<div class="checkbox">
 												<label>
 													<input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked' ?> />

@@ -66,7 +66,7 @@ if (isset($_POST['form_sent'])) {
 			$errors[] = __('Threads must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
 		elseif (luna_strlen($subject) > 70)
 			$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
-		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
+		elseif ($luna_config['o_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
 			$errors[] = __('Subjects cannot contain only capital letters.', 'luna');
 	}
 
@@ -79,13 +79,13 @@ if (isset($_POST['form_sent'])) {
 	// Otherwise it should be in $_POST
 	else {
 		$username = luna_trim($_POST['req_username']);
-		$email = strtolower(luna_trim(($luna_config['p_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
+		$email = strtolower(luna_trim(($luna_config['o_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
 		$banned_email = false;
 
 		// It's a guest, so we have to validate the username
 		check_username($username);
 
-		if ($luna_config['p_force_guest_email'] == '1' || $email != '') {
+		if ($luna_config['o_force_guest_email'] == '1' || $email != '') {
 			require LUNA_ROOT.'include/email.php';
 			if (!is_valid_email($email))
 				$errors[] = __('The email address you entered is invalid.', 'luna');
@@ -93,7 +93,7 @@ if (isset($_POST['form_sent'])) {
 			// Check if it's a banned email address
 			// we should only check guests because members' addresses are already verified
 			if ($luna_user['is_guest'] && is_banned_email($email)) {
-				if ($luna_config['p_allow_banned_email'] == '0')
+				if ($luna_config['o_allow_banned_email'] == '0')
 					$errors[] = __('The email address you entered is banned in this forum. Please choose another email address.', 'luna');
 
 				$banned_email = true; // Used later when we send an alert email
@@ -107,7 +107,7 @@ if (isset($_POST['form_sent'])) {
 	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_COMMENT_SIZE bytes, not characters
 	if (strlen($message) > LUNA_MAX_COMMENT_SIZE)
 		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_COMMENT_SIZE));
-	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
+	elseif ($luna_config['o_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax
@@ -157,7 +157,7 @@ if (isset($_POST['form_sent'])) {
 				}
 			} else {
 				// It's a guest. Insert the new comment
-				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
+				$email_sql = ($luna_config['o_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 			}
@@ -297,7 +297,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 			} else {
 				// Create the comment ("thread comment")
-				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
+				$email_sql = ($luna_config['o_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_ip, commenter_email, message, hide_smilies, commented, thread_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
