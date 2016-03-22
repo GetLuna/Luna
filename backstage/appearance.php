@@ -32,8 +32,6 @@ if (isset($_POST['form_sent'])) {
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_comment_count'	=> isset($_POST['form']['show_comment_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
-		'emoji'					=> isset($_POST['form']['emoji']) ? '1' : '0',
-		'emoji_size'			=> intval($_POST['form']['emoji_size']),
 		'disp_threads'			=> intval($_POST['form']['disp_threads']),
 		'disp_comments'			=> intval($_POST['form']['disp_comments']),
 		'board_statistics'		=> isset($_POST['form']['board_statistics']) ? '1' : '0',
@@ -161,7 +159,7 @@ if (isset($_GET['saved']))
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Theme settings', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Theme', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -234,7 +232,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Display settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Display', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -268,27 +266,6 @@ if (isset($_GET['saved']))
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Emoji', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
-                                        <?php _e('Use emojis instead of emoticons.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The size emoticons and emojis are shown in', 'luna') ?></span></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
-                                    <span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?><span class="help-block"><?php _e('Default amount of threads per page', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[disp_threads]" maxlength="2" value="<?php echo $luna_config['o_disp_threads'] ?>" />
@@ -305,7 +282,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Header settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Header', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -337,7 +314,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Footer settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Footer', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>

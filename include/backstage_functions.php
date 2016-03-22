@@ -14,32 +14,26 @@ function load_admin_nav($section, $page) {
 	// What page are we on?
 	if ($page == 'index')
 		$page_title = '<span class="fa fa-fw fa-tachometer"></span> '.__('Backstage', 'luna');
-	elseif ($page == 'stats')
-		$page_title = '<span class="fa fa-fw fa-info-circle"></span> '.__('System info', 'luna');
 	elseif ($page == 'update')
-		$page_title = '<span class="fa fa-fw fa-cloud-upload"></span> '.__('Luna software update', 'luna');
+		$page_title = '<span class="fa fa-fw fa-cloud-upload"></span> '.__('Luna software information', 'luna');
 	elseif ($page == 'about')
 		$page_title = '<span class="fa fa-fw fa-moon-o"></span> '.__('About Luna', 'luna');
 
 	elseif ($page == 'board')
-		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> '.__('Board', 'luna');
-	elseif ($page == 'moderate')
-		$page_title = '<span class="fa fa-fw fa-tasks"></span> '.__('Moderate', 'luna');
+		$page_title = '<span class="fa fa-fw fa-list"></span> '.__('Board', 'luna');
+	elseif ($page == 'reports')
+		$page_title = '<span class="fa fa-fw fa-flag"></span> '.__('Reports', 'luna');
 	elseif ($page == 'censoring')
 		$page_title = '<span class="fa fa-fw fa-eye-slash"></span> '.__('Censoring', 'luna');
-	elseif ($page == 'reports')
-		$page_title = '<span class="fa fa-fw fa-exclamation-triangle"></span> '.__('Reports', 'luna');
+	elseif ($page == 'moderate')
+		$page_title = '<span class="fa fa-fw fa-tasks"></span> '.__('Moderate', 'luna');
 
 	elseif ($page == 'users')
 		$page_title = '<span class="fa fa-fw fa-search"></span> '.__('Search', 'luna');
-	elseif ($page == 'tools')
-		$page_title = '<span class="fa fa-fw fa-wrench"></span> '.__('Tools', 'luna');
 	elseif ($page == 'ranks')
-		$page_title = '<span class="fa fa-fw fa-chevron-up"></span> '.__('Ranks', 'luna');
+		$page_title = '<span class="fa fa-fw fa-trophy"></span> '.__('Ranks', 'luna');
 	elseif ($page == 'groups')
 		$page_title = '<span class="fa fa-fw fa-group"></span> '.__('Groups', 'luna');
-	elseif ($page == 'permissions')
-		$page_title = '<span class="fa fa-fw fa-check-circle"></span> '.__('Permissions', 'luna');
 	elseif ($page == 'bans')
 		$page_title = '<span class="fa fa-fw fa-ban"></span> '.__('Bans', 'luna');
 
@@ -49,10 +43,6 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-sliders"></span> '.__('Features', 'luna');
 	elseif ($page == 'appearance')
 		$page_title = '<span class="fa fa-fw fa-eye"></span> '.__('Appearance', 'luna');
-	elseif ($page == 'registration')
-		$page_title = '<span class="fa fa-fw fa-plus-circle"></span> '.__('Registration', 'luna');
-	elseif ($page == 'email')
-		$page_title = '<span class="fa fa-fw fa-envelope"></span> '.__('Email', 'luna');
 	elseif ($page == 'menu')
 		$page_title = '<span class="fa fa-fw fa-bars"></span> '.__('Menu', 'luna');
 	elseif ($page == 'theme')
@@ -62,8 +52,6 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> '.__('Maintenance', 'luna');
 	elseif ($page == 'prune')
 		$page_title = '<span class="fa fa-fw fa-recycle"></span> '.__('Prune', 'luna');
-	elseif ($page == 'database')
-		$page_title = '<span class="fa fa-fw fa-database"></span> '.__('Database management', 'luna');
 
 	elseif ($page == 'info')
 		$page_title = '<span class="fa fa-fw fa-info-circle"></span> '.__('Info', 'luna');
@@ -152,23 +140,20 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 			<?php if ($section == 'backstage') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-fw fa-tachometer"></span><span class="hidden-xs"> <?php _e('Backstage', 'luna') ?></span></a></li>
-				<li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php _e('System', 'luna') ?></span></a></li>
 				<li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-fw fa-cloud-upload"></span><span class="hidden-xs"> <?php _e('Update', 'luna') ?></span></a></li>
 				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="fa fa-fw fa-moon-o"></span><span class="hidden-xs"> <?php _e('About', 'luna') ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'content') { ?>
 			<ul class="nav nav-tabs" role="tablist">
-				<li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-sort-amount-desc"></span><span class="hidden-xs"> <?php _e('Board', 'luna') ?></span></a></li>
+				<li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-list"></span><span class="hidden-xs"> <?php _e('Board', 'luna') ?></span></a></li>
+				<li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-fw fa-flag"></span><span class="hidden-xs"> <?php _e('Reports', 'luna') ?></span></a></li>
 				<li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-fw fa-eye-slash"></span><span class="hidden-xs"> <?php _e('Censoring', 'luna') ?></span></a></li>
-				<li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-fw fa-exclamation-triangle"></span><span class="hidden-xs"> <?php _e('Reports', 'luna') ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'users') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><span class="fa fa-fw fa-search"></span><span class="hidden-xs"> <?php _e('Search', 'luna') ?></span></a></li>
-				<li<?php if($page == 'tools') echo ' class="active"' ?>><a href="tools.php"><span class="fa fa-fw fa-wrench"></span><span class="hidden-xs"> <?php _e('Tools', 'luna') ?></span></a></li>
-				<li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><span class="fa fa-fw fa-chevron-up"></span><span class="hidden-xs"> <?php _e('Ranks', 'luna') ?></span></a></li>
+				<li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><span class="fa fa-fw fa-trophy"></span><span class="hidden-xs"> <?php _e('Ranks', 'luna') ?></span></a></li>
 				<li<?php if($page == 'groups') echo ' class="active"' ?>><a href="groups.php"><span class="fa fa-fw fa-group"></span><span class="hidden-xs"> <?php _e('Groups', 'luna') ?></span></a></li>
-				<li<?php if($page == 'permissions') echo ' class="active"' ?>><a href="permissions.php"><span class="fa fa-fw fa-check-circle"></span><span class="hidden-xs"> <?php _e('Permissions', 'luna') ?></span></a></li>
 				<li<?php if($page == 'bans') echo ' class="active"' ?>><a href="bans.php"><span class="fa fa-fw fa-ban"></span><span class="hidden-xs"> <?php _e('Bans', 'luna') ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'settings') { ?>
@@ -176,16 +161,13 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 				<li<?php if($page == 'settings') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-fw fa-cogs"></span><span class="hidden-xs"> <?php _e('Settings', 'luna') ?></span></a></li>
 				<li<?php if($page == 'features') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-fw fa-sliders"></span><span class="hidden-xs"> <?php _e('Features', 'luna') ?></span></a></li>
 				<li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-fw fa-eye"></span><span class="hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
-				<li<?php if($page == 'registration') echo ' class="active"' ?>><a href="registration.php"><span class="fa fa-fw fa-plus-circle"></span><span class="hidden-xs"> <?php _e('Registration', 'luna') ?></span></a></li>
-				<li<?php if($page == 'email') echo ' class="active"' ?>><a href="email.php"><span class="fa fa-fw fa-envelope"></span><span class="hidden-xs"> <?php _e('Email', 'luna') ?></span></a></li>
-				<li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-fw fa-bars"></span><span class="hidden-xs"> <?php _e('Menu', 'luna') ?></span></a></li>
 				<li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Theme', 'luna') ?></span></a></li>
+				<li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-fw fa-bars"></span><span class="hidden-xs"> <?php _e('Menu', 'luna') ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'maintenance') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> <?php _e('Maintenance', 'luna') ?></span></a></li>
 				<li<?php if($page == 'prune') echo ' class="active"' ?>><a href="prune.php"><span class="fa fa-fw fa-recycle"></span><span class="hidden-xs"> <?php _e('Prune', 'luna') ?></span></a></li>
-				<li<?php if($page == 'database') echo ' class="active"' ?>><a href="database.php"><span class="fa fa-fw fa-database"></span><span class="hidden-xs"> <?php _e('Database', 'luna') ?></span></a></li>
 			</ul>
 			<?php } ?>
 		</div>

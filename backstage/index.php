@@ -162,18 +162,17 @@ if ($db->num_rows($result)) {
                 </tbody>
             </table>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
-                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
-                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
+        <form class="form-horizontal" method="post" action="index.php">
+            <input type="hidden" name="form_sent" value="1" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna') ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 	<div class="col-sm-4">
 <?php
@@ -195,25 +194,18 @@ if ($install_file_exists) : ?>
             <p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?></p>
         </div>
 <?php endif; ?>
-        <form class="form-horizontal" method="post" action="index.php">
-            <input type="hidden" name="form_sent" value="1" />
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna') ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
-                </div>
-            </div>
-        </form>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Back-up', 'luna') ?></h3>
+                <h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
             </div>
             <div class="panel-body">
-                <a class="btn btn-block btn-primary" href="database.php"><?php _e('Create new backup', 'luna') ?></a>
+                <div class="row">
+                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
+                </div>
             </div>
-         </div>
+        </div>
 	</div>
 </div>
 <?php

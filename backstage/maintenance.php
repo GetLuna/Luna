@@ -217,7 +217,7 @@ if (isset($_GET['cache_cleared']))
                 <div class="panel-body">
                     <input type="hidden" name="action" value="rebuild" />
                     <fieldset>
-                        <p><?php _e('If you changes something about threads and comments in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!', 'luna') ?></p>
+                        <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php _e('If you changes something about threads and comments in the database you should rebuild the search index. This process can take a while and increase the server load during. Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Comments per cycle', 'luna') ?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
                             <div class="col-sm-9">
@@ -241,7 +241,6 @@ if (isset($_GET['cache_cleared']))
                                 </div>
                             </div>
                         </div>
-                        <p><?php _e('Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></p>
                     </fieldset>
                 </div>
             </div>
