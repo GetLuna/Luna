@@ -1506,7 +1506,7 @@ footer .back-to-top {
 
 @keyframes flash {
     50% {
-        opacity: 0;
+        opacity: .2;
     }
 }
 
