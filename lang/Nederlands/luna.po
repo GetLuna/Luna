@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-22 17:52+0100\n"
-"PO-Revision-Date: 2016-03-22 17:55+0100\n"
+"POT-Creation-Date: 2016-03-22 22:22+0100\n"
+"PO-Revision-Date: 2016-03-22 22:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -1697,7 +1697,7 @@ msgstr ""
 "klaar gezet, maar er zijn mogelijk een paar instellingen die je wilt wijzgen "
 "of pagina's die je wilt bezoeken."
 
-#: backstage/index.php:102
+#: backstage/index.php:102 backstage/index.php:216
 msgid "What's new"
 msgstr "Wat is nieuw"
 
@@ -1778,7 +1778,7 @@ msgstr ""
 msgid "The file install.php still exists, but should be removed."
 msgstr "Het bestand install.php bestaat nog, je kan dit best verwijderen."
 
-#: backstage/index.php:203 db_update.php:716 db_update.php:801
+#: backstage/index.php:203 db_update.php:726 db_update.php:811
 #: include/draw_functions.php:292 include/draw_functions.php:357
 #: include/draw_functions.php:438
 msgid "comment"
@@ -1792,6 +1792,19 @@ msgstr "conversatie"
 #: backstage/index.php:205
 msgid "user"
 msgstr "gebruiker"
+
+#: backstage/index.php:211
+msgid "Welcome to Luna Preview"
+msgstr "Welkom bij de Luna Preview"
+
+#: backstage/index.php:214
+msgid "Thank you for helping us build the next version of Luna."
+msgstr ""
+"Bedankt om ons te helpen bij het ontwikkelen van de volgende versie van Luna."
+
+#: backstage/index.php:215
+msgid "Report an issue"
+msgstr "Meld een probleem"
 
 #: backstage/loader.php:24 backstage/moderate.php:20 backstage/moderate.php:70
 #: backstage/moderate.php:650 backstage/users.php:205 backstage/users.php:323
@@ -3576,25 +3589,25 @@ msgstr "Update"
 msgid "Update Luna"
 msgstr "Update Luna"
 
-#: db_update.php:716 db_update.php:749
+#: db_update.php:726 db_update.php:759
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr "Parsen van %1$s %2$s ..."
 
-#: db_update.php:749
+#: db_update.php:759
 msgid "signature"
 msgstr "handtekening"
 
-#: db_update.php:801
+#: db_update.php:811
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr "Hergenereren index voor %1$s %2$s"
 
-#: db_update.php:869
+#: db_update.php:879
 msgid "If this takes to long, the automatic redirect might have failed."
 msgstr "Als dit te lang duurt wordt je mogelijk niet automatisch doorgestuurt."
 
-#: db_update.php:869
+#: db_update.php:879
 msgid "Click here"
 msgstr "Klik hier"
 

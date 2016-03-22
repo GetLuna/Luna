@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-22 17:51+0100\n"
-"PO-Revision-Date: 2016-03-22 17:51+0100\n"
+"POT-Creation-Date: 2016-03-22 22:24+0100\n"
+"PO-Revision-Date: 2016-03-22 22:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -1595,7 +1595,7 @@ msgid ""
 "want to change. So let us help you with that first!"
 msgstr ""
 
-#: backstage/index.php:102
+#: backstage/index.php:102 backstage/index.php:216
 msgid "What's new"
 msgstr ""
 
@@ -1674,7 +1674,7 @@ msgstr ""
 msgid "The file install.php still exists, but should be removed."
 msgstr ""
 
-#: backstage/index.php:203 db_update.php:716 db_update.php:801
+#: backstage/index.php:203 db_update.php:726 db_update.php:811
 #: include/draw_functions.php:292 include/draw_functions.php:357
 #: include/draw_functions.php:438
 msgid "comment"
@@ -1687,6 +1687,18 @@ msgstr ""
 
 #: backstage/index.php:205
 msgid "user"
+msgstr ""
+
+#: backstage/index.php:211
+msgid "Welcome to Luna Preview"
+msgstr ""
+
+#: backstage/index.php:214
+msgid "Thank you for helping us build the next version of Luna."
+msgstr ""
+
+#: backstage/index.php:215
+msgid "Report an issue"
 msgstr ""
 
 #: backstage/loader.php:24 backstage/moderate.php:20 backstage/moderate.php:70
@@ -3308,25 +3320,25 @@ msgstr ""
 msgid "Update Luna"
 msgstr ""
 
-#: db_update.php:716 db_update.php:749
+#: db_update.php:726 db_update.php:759
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr ""
 
-#: db_update.php:749
+#: db_update.php:759
 msgid "signature"
 msgstr ""
 
-#: db_update.php:801
+#: db_update.php:811
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr ""
 
-#: db_update.php:869
+#: db_update.php:879
 msgid "If this takes to long, the automatic redirect might have failed."
 msgstr ""
 
-#: db_update.php:869
+#: db_update.php:879
 msgid "Click here"
 msgstr ""
 

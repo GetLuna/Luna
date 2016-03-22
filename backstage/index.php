@@ -206,6 +206,16 @@ if ($install_file_exists) : ?>
                 </div>
             </div>
         </div>
+        <div class="panel panel-warning panel-colored">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Welcome to Luna Preview', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php _e('Thank you for helping us build the next version of Luna.', 'luna') ?></p>
+                <a class="btn btn-default" href="http://github.com/getluna/luna/issues/new"><i class="fa fa-fw fa-github"></i> <?php _e('Report an issue', 'luna') ?></a>
+                <a class="btn btn-default" href="about.php"><i class="fa fa-fw fa-moon-o"></i> <?php _e('What\'s new', 'luna') ?></a>
+            </div>
+        </div>
 	</div>
 </div>
 <?php

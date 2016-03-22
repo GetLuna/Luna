@@ -416,12 +416,17 @@ h3.panel-title {
 
 .panel-warning,
 .panel-warning > .panel-heading {
-	border-color: #ffc600;
+	border-color: #ffa200;
 }
 
 .panel-warning > .panel-heading {
 	color: #fff;
-	background-color: #ffc600;
+	background-color: #ffa200;
+}
+
+.panel-warning.panel-colored > .panel-body {
+	color: #fff;
+	background-color: #ffb900;
 }
 
 .panel-danger > .panel-heading {
