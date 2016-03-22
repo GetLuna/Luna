@@ -459,7 +459,7 @@ function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 	}
 }
 
-function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php') {
+function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php', $link_to_new = false) {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
 
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
@@ -569,7 +569,12 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 			}
 
-			$url = 'thread.php?id='.$thread_id;
+            if ($link_to_new == false) {
+                $url = 'thread.php?id='.$thread_id;
+            } else {
+                $url = 'thread.php?id='.$thread_id.'&amp;action=new';
+            }
+            
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['commenter']).'</span>';
 
 			if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') {

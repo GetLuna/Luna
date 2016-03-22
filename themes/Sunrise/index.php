@@ -102,7 +102,7 @@ if ($luna_user['first_run'] == '0') {
                 <h5><?php _e('Recent activity', 'luna') ?></h5>
             </div>
             <div class="list-group list-group-thread">
-                <?php draw_index_threads_list(7, 'thread2.php'); ?>
+                <?php draw_index_threads_list(7, 'thread2.php', true); ?>
             </div>
 			<?php if ($luna_user['g_search'] == '1') { ?>
 			<hr />
