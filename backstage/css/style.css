@@ -33,7 +33,7 @@ th {
 
 .main {
 	background: #fff;
-	padding: 10px 15px;
+	padding: 10px 20px;
 }
 
 .main :last-child {
@@ -89,8 +89,8 @@ th {
 .col-xs-10,
 .col-xs-11,
 .col-xs-12 {
-	padding-right: 10px;
-	padding-left: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
 .row {
@@ -703,8 +703,8 @@ a.label-new {
 
 @media all and (max-width: 767px) {
     .alert {
-		margin-top: 0;
-		margin-bottom: 0;
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 }
 
@@ -1126,6 +1126,10 @@ a.label-new {
     color: #bbb;
 }
 
+.night .container.main {
+    background: #404040;
+}
+
 .night .panel-body,
 .night .panel {
     background: #404040;
@@ -1177,8 +1181,8 @@ a.label-new {
 .night .nav-tabs li.active a,
 .night .nav-tabs li.active a:hover,
 .night .nav-tabs li.active a:focus {
-    background: #292929;
-    border-color: #292929;
+    background: #404040;
+    border-color: #404040;
     color: #fff;
 }
 
