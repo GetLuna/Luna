@@ -112,9 +112,9 @@ body {
 /* General styles */
 * {
 	border-radius: 0 !important;
-    box-shadow: none !important;
 }
 
+.form-control,
 .form-control:focus {
     box-shadow: none;
 }
@@ -535,8 +535,7 @@ hr {
     margin: 0;
 }
 	
-.navbar-nav .open .dropdown-menu > li > a,
-.navbar-nav .open .dropdown-menu .dropdown-header {
+.dropdown-menu > li > a {
     padding: 10px 15px;
 }
 
@@ -1468,6 +1467,11 @@ footer a:hover {
 
 footer .dropup {
     display: inline;
+}
+
+footer .dropdown-toggle {
+	color: #fff !important;
+	text-decoration: none;
 }
 
 footer .back-to-top {
