@@ -238,7 +238,7 @@ if (isset($_GET['saved']))
         <form class="form-horizontal" method="post" enctype="multipart/form-data" action="settings.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Essentials', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Branding', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -282,7 +282,7 @@ if (isset($_GET['saved']))
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">
-                                <?php _e('Favicon', 'luna') ?><span class="help-block"><?php _e('You can upload a faviconr here to show in the Mainstage and Backstage', 'luna') ?></span>
+                                <?php _e('Favicon', 'luna') ?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna') ?></span>
                                 <?php if (file_exists(LUNA_ROOT.'/favicon.png')) { ?>
                                     <a class="btn btn-danger" href="?remove-favicon"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna') ?></a>
                                 <?php } ?>
