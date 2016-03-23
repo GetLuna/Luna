@@ -57,7 +57,6 @@ if (!defined('FORUM'))
 					<p><code>[email=myname@example.com]<?php _e('My email address', 'luna') ?>[/email]</code> <?php _e('produces', 'luna') ?> <a href="mailto:myname@example.com"><?php _e('My email address', 'luna') ?></a></p>
 					<p><a id="img"></a><?php _e('If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.', 'luna') ?></p>
 					<p><code>[img=<?php _e('Luna BBCode Test', 'luna') ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php _e('produces', 'luna') ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php _e('Luna BBCode Test', 'luna') ?>" /></p>
-					<br />
 					<p><?php _e('Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.', 'luna') ?></p>
 					<p><code>[video]<?php _e('Put the link to the video here', 'luna') ?>[/video]</code></p>
 				</div>
