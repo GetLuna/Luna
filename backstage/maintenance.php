@@ -106,7 +106,7 @@ if ($action == 'rebuild') {
 
 	ob_end_clean();
 	ob_start();
-	header('Location: backstage/maintenance.php'.$query_str);
+	header('Location: maintenance.php'.$query_str);
 	exit;
 }
 
