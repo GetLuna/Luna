@@ -366,14 +366,6 @@ label .help-block {
 	border: none;
 }
 
-.bkg-jpg .nav-tabs > li > a:hover,
-.bkg-jpg .nav-tabs > li > a:focus,
-.bkg-png .nav-tabs > li > a:hover,
-.bkg-png .nav-tabs > li > a:focus {
-	background-color: rgba(255,255,255,.1);
-	border-color: rgba(255,255,255,0);
-}
-
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
@@ -385,8 +377,8 @@ label .help-block {
 .nav-tabs > li > a:hover,
 .nav > li > a:hover,
 .nav > li > a:focus {
-	background-color: #555;
-	border-color: #555;
+	background-color: rgba(255,255,255,.2);
+	border-color: rgba(255,255,255,0);
 }
 
 @media all and (max-width: 767px) {
