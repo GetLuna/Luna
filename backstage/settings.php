@@ -289,7 +289,7 @@ if (isset($_GET['saved']))
                             </label>
                             <div class="col-sm-9">
                                 <?php if (file_exists(LUNA_ROOT.'/favicon.png')) { ?>
-                                    <img class="img-responsive img-bs-avatar" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Default favicon', 'luna') ?>" />
+                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Default favicon', 'luna') ?>" />
                                 <?php } ?>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="51200" />
                                 <input name="req_file" type="file" />

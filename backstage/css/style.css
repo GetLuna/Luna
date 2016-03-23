@@ -252,10 +252,16 @@ label .help-block {
 	padding-bottom: 5px;
 }
 
-/* Avatars within settings */
+/* Images within settings */
 .img-bs-avatar {
     margin-bottom: 10px;
     max-height: 128px;
+    width: auto;
+}
+
+.img-bs-favicon {
+    margin-bottom: 10px;
+    max-height: 42px;
     width: auto;
 }
 
