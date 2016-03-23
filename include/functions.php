@@ -1167,7 +1167,7 @@ function confirm_referrer($scripts, $error_msg = false) {
 
 	// There is no referrer
 	if (empty($_SERVER['HTTP_REFERER']))
-		message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
+		message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Backstage > Settings and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
 
 	$referrer = parse_url(strtolower($_SERVER['HTTP_REFERER']));
 	// Remove www subdomain if it exists
@@ -1187,7 +1187,7 @@ function confirm_referrer($scripts, $error_msg = false) {
 
 	// Check the host and path match. Ignore the scheme, port, etc.
 	if ($referrer['host'] != $valid_host || !in_array($referrer['path'], $valid_paths))
-		message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
+		message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Backstage > Settings and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
 }
 
 

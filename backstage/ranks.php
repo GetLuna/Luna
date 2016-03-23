@@ -87,15 +87,16 @@ $focus_element = array('ranks', 'new_rank');
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('users', 'ranks');
-
-if ($luna_config['o_ranks'] == 0) {
 ?>
-<div class="alert alert-danger">
-	<?php echo sprintf(__('<strong>User ranks is disabled in %s.</strong>', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
-</div>
-<?php } ?>
 <div class="row">
 	<form id="ranks" method="post" action="ranks.php">
+        <div class="col-sm-12">
+            <?php if ($luna_config['o_ranks'] == 0) { ?>
+            <div class="alert alert-danger">
+                <i class="fa fa-fw fa-exclamation"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
+            </div>
+            <?php } ?>
+        </div>
 		<div class="col-sm-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">

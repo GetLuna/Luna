@@ -297,12 +297,12 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Announcements', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Announcement', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Announcements', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Announcement', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -314,13 +314,13 @@ if (isset($_GET['saved']))
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Announcement title', 'luna') ?><span class="help-block"><?php _e('You can leave this empty if there is no title', 'luna') ?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Title', 'luna') ?><span class="help-block"><?php _e('You can leave this empty if there is no title', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[announcement_title]" value="<?php echo $luna_config['o_announcement_title'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Announcement type', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="form[announcement_type]" value="default"<?php if ($luna_config['o_announcement_type'] == 'default') echo ' checked' ?>>
@@ -345,7 +345,7 @@ if (isset($_GET['saved']))
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Announcement message', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Message', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
                             </div>
@@ -549,7 +549,7 @@ foreach ($timezones as $timezone) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Use rules', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Rules', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -560,7 +560,7 @@ foreach ($timezones as $timezone) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Rules', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Message', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
                             </div>
@@ -610,7 +610,7 @@ foreach ($timezones as $timezone) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Cookie bar URL', 'luna') ?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna') ?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Cookie info URL', 'luna') ?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
                             </div>
@@ -658,10 +658,14 @@ foreach ($timezones as $timezone) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"></label>
+                            <label class="col-sm-3 control-label"><?php _e('SMTP encryption', 'luna') ?></label>
                             <div class="col-sm-9">
-                                <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') echo ' checked' ?> />
-                                <?php _e('Encrypts the connection to the SMTP server using SSL, only when required and supported.', 'luna') ?>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') echo ' checked' ?> />
+                                        <?php _e('Encrypts the connection to the SMTP server using SSL, only when required and supported.', 'luna') ?>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

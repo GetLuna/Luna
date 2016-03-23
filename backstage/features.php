@@ -146,7 +146,7 @@ if (isset($_GET['saved']))
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[censoring]" value="1" <?php if ($luna_config['o_censoring'] == '1') echo ' checked' ?> />
-                                        <?php printf(__('Censor words in comments. See %s for more info.', 'luna'), '<a href="censoring.php">'.__('Censoring', 'luna').'</a>') ?>
+                                        <?php _e('Censor words in comments.', 'luna') ?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
@@ -175,7 +175,7 @@ if (isset($_GET['saved']))
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[ranks]" value="1" <?php if ($luna_config['o_ranks'] == '1') echo ' checked' ?> />
-                                        <?php printf(__('Use user ranks. See %s for more info.', 'luna'), '<a href="ranks.php">'.__('Ranks', 'luna').'</a>') ?>
+                                        <?php _e('Use user ranks.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@ if (isset($_GET['saved']))
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Use Inbox', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Inbox', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -220,7 +220,7 @@ if (isset($_GET['saved']))
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Receivers', 'luna') ?><span class="help-block"><?php _e('The number of receivers an Inbox message can have.', 'luna') ?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Receivers', 'luna') ?><span class="help-block"><?php _e('The number of receivers an Inbox message can have', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[max_receivers]" maxlength="5" value="<?php echo $luna_config['o_max_receivers'] ?>" />
                             </div>
@@ -300,13 +300,13 @@ if (isset($_GET['saved']))
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[allow_center]" value="1" <?php if ($luna_config['o_allow_center'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow users to use the center tag within threads and their signature.', 'luna') ?>
+                                        <?php _e('Allow the use of the [center]-tag.', 'luna') ?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[allow_size]" value="1" <?php if ($luna_config['o_allow_size'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow users to use the size tag within threads and their signature.', 'luna') ?>
+                                        <?php _e('Allow the use of the [size]-tag.', 'luna') ?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
@@ -323,7 +323,7 @@ if (isset($_GET['saved']))
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['o_message_img_tag'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow the BBCode [img] tag in comments.', 'luna') ?>
+                                        <?php _e('Allow the use of the [img]-tag.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>
@@ -340,7 +340,7 @@ if (isset($_GET['saved']))
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['o_sig_img_tag'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow the BBCode [img] tag in user signatures.', 'luna') ?>
+                                        <?php _e('Allow the use of the [img]-tag.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>

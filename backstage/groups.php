@@ -162,7 +162,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Use Inbox', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Inbox', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>

@@ -33,11 +33,7 @@ th {
 
 .main {
 	background: #fff;
-	padding: 10px 20px;
-}
-
-.main :last-child {
-    margin-bottom: 0;
+	padding: 10px 20px 0;
 }
 
 /* Bootstrap changes */

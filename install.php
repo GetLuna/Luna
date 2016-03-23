@@ -158,7 +158,7 @@ if (!forum_is_writable(LUNA_CACHE_DIR))
 
 // Check if default avatar directory is writable
 if (!forum_is_writable(LUNA_ROOT.'img/avatars/'))
-	$alerts[] = sprintf(__('<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), LUNA_ROOT.'img/avatars/');
+	$alerts[] = sprintf(__('<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Backstage > Settings). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), LUNA_ROOT.'img/avatars/');
 
 if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	// Determine available database extensions
@@ -446,7 +446,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 	// Check if we disabled uploading avatars because file_uploads was disabled
 	if (!$avatars)
-		$alerts[] = __('<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features.', 'luna');
+		$alerts[] = __('<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Backstage > Settings > Features.', 'luna');
 
 	// Generate the config.php file data
 	$config = Installer::generate_config_file($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix);
