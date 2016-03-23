@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-23 09:24+0100\n"
-"PO-Revision-Date: 2016-03-23 09:24+0100\n"
+"POT-Creation-Date: 2016-03-23 09:42+0100\n"
+"PO-Revision-Date: 2016-03-23 09:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -4171,8 +4171,8 @@ msgstr ""
 
 #: install.php:228
 msgid ""
-"The language used for this install script. The default language used for the "
-"board itself can be set below."
+"The language used for the installer, the default language for the board can "
+"be set below"
 msgstr ""
 
 #: install.php:247

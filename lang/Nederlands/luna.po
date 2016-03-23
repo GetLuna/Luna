@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-23 09:24+0100\n"
-"PO-Revision-Date: 2016-03-23 09:24+0100\n"
+"POT-Creation-Date: 2016-03-23 09:41+0100\n"
+"PO-Revision-Date: 2016-03-23 09:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -4506,11 +4506,11 @@ msgstr "Installatie taal"
 
 #: install.php:228
 msgid ""
-"The language used for this install script. The default language used for the "
-"board itself can be set below."
+"The language used for the installer, the default language for the board can "
+"be set below"
 msgstr ""
-"De taal die gebruikt wordt voor de installatie. De standaardtaal voor het "
-"forum zelf kan je onderaan aanpassen."
+"De taal voor de installer, de standaard taal voor het forum kan onderaan "
+"ingesteld worden"
 
 #: install.php:247
 msgid "Change language"
@@ -6353,6 +6353,13 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid ""
+#~ "The language used for this install script. The default language used for "
+#~ "the board itself can be set below."
+#~ msgstr ""
+#~ "De taal die gebruikt wordt voor de installatie. De standaardtaal voor het "
+#~ "forum zelf kan je onderaan aanpassen."
 
 #~ msgid "Essentials"
 #~ msgstr "Essentieel"

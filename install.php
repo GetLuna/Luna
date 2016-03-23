@@ -225,7 +225,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Install language', 'luna') ?><span class="help-block"><?php _e('The language used for this install script. The default language used for the board itself can be set below.', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Install language', 'luna') ?><span class="help-block"><?php _e('The language used for the installer, the default language for the board can be set below', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="install_lang">
 <?php
