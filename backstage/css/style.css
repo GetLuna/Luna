@@ -17,7 +17,7 @@
 
 body {
 	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
-	background-color: #444;
+	background-color: #e8e8e8;
 }
 
 td,
@@ -31,15 +31,71 @@ th {
 	}
 }
 
-/* Bootstrap cahnges */
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-	padding-right: 5px;
-	padding-left: 5px;
+.main {
+	background: #fff;
+	padding: 10px 15px;
+}
+
+.main :last-child {
+    margin-bottom: 0;
+}
+
+/* Bootstrap changes */
+.col-lg-1,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-md-1,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-sm-1,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-xs-1,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12 {
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 .row {
-	padding-right: 10px;
-	padding-left: 10px;
+    padding-right: -15px;
+    padding-left: -15px;
 }
 
 /* Header customization */
@@ -151,6 +207,12 @@ label .help-block {
 .bkg-jpg .navbar-inverse .navbar-toggle:hover,
 .bkg-jpg .navbar-inverse .navbar-toggle:focus {
     background: none !important;
+}
+
+@media (min-width:768px) {
+    .navbar .container {
+        padding-right: 0;
+    }
 }
 
 .navbar-default .navbar-brand,
@@ -266,7 +328,7 @@ label .help-block {
 }
 
 /* Heading - jumbotron and navtabs */
-.jumbotron .row {
+.jumbotron .container {
     padding-left: 0;
     padding-right: 0;
 }
@@ -288,16 +350,6 @@ label .help-block {
 	.jumboheader {
 		margin-bottom: 0;
 	}
-    
-	.content > .container > .row,
-    .jumboheader .container {
-        padding-right: 0;
-        padding-left: 0;
-	}
-    
-    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-        padding: 0;
-    }
 }
 
 .jumboheader h2 {
@@ -314,17 +366,6 @@ label .help-block {
 	border: none;
 }
 
-.bkg-jpg .nav-tabs > li.active > a,
-.bkg-jpg .nav-tabs > li.active > a:hover,
-.bkg-jpg .nav-tabs > li.active > a:focus,
-.bkg-png .nav-tabs > li.active > a,
-.bkg-png .nav-tabs > li.active > a:hover,
-.bkg-png .nav-tabs > li.active > a:focus {
-	color: #fff;
-	border-color: rgba(255,255,255,0);
-	background-color: rgba(255,255,255,.2);
-}
-
 .bkg-jpg .nav-tabs > li > a:hover,
 .bkg-jpg .nav-tabs > li > a:focus,
 .bkg-png .nav-tabs > li > a:hover,
@@ -336,9 +377,9 @@ label .help-block {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-	color: #fff;
-	border-color: #444;
-	background-color: #444;
+	color: #444;
+	border-color: #fff;
+	background-color: #fff;
 }
 
 .nav-tabs > li > a:hover,
@@ -360,7 +401,7 @@ label .help-block {
 
 /* Panels */
 .panel {
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 10px;
 }
 
@@ -389,10 +430,6 @@ h3.panel-title {
 
 .panel-footer {
 	border-top-color: #e8e8e8;
-}
-
-.panel {
-	border: none;
 }
 
 .panel-default
@@ -459,19 +496,6 @@ h3.panel-title {
 .panel-body .form-group:last-child,
 .panel-body p:last-child {
 	margin-bottom: 0;
-}
-
-@media all and (min-width: 768px) {
-	.panel {
-		margin-top: 10px;
-	}
-}
-
-@media all and (max-width: 767px) {
-	.panel {
-		margin-bottom: 0;
-        margin-top: 0;
-	}
 }
 
 /* Forms */
@@ -672,15 +696,9 @@ a.label-new {
 /* Alerts */
 .alert {
 	border: none;
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 10px;
     padding: 10px;
-}
-
-@media all and (min-width: 768px) {
-    .alert {
-		margin-top: 10px;
-	}
 }
 
 @media all and (max-width: 767px) {

@@ -35,6 +35,7 @@
 	}
 }
 
+.panel-default,
 .panel-default .panel-heading {
 	border-color: #ea69ae;
 }
@@ -52,13 +53,4 @@
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
 	border-color: #d15196;
-}
-
-@media all and (max-width:767px) {
-	.nav-tabs > li.active > a,
-	.nav-tabs > li.active > a:hover,
-	.nav-tabs > li.active > a:focus {
-		background-color: #ea69ae;
-		border-color: #ea69ae;
-	}
 }
