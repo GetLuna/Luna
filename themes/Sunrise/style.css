@@ -44,3 +44,7 @@
 .subforumview .title-block + .list-group-thread.subforum-list {
     display: none;
 }
+
+.list-group-thread.subforum-list + .btn-pagination {
+    margin-top: 1px;
+}
