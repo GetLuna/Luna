@@ -481,6 +481,11 @@ h3.panel-title {
     margin-right: 0;
 }
 
+.form-horizontal .col-sm-9 .row {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .form-horizontal .control-label {
     font-size: 16px;
     font-weight: 500;
