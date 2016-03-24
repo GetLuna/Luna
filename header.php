@@ -154,7 +154,7 @@ else
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 if ($luna_user['is_guest'])
-	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.__( 'Register', 'luna' ).'</a></li>  
+	$usermenu = '<li id="navregister"'.((LUNA_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.__( 'Register', 'luna' ).'</a></li>  
 				 <li><a href="#" data-toggle="modal" data-target="#login-form">'.__( 'Login', 'luna' ).'</a></li>';
 else
 	$usermenu = $backstage.$notification_menu_item.$inbox_menu_item.'
