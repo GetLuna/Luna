@@ -37,6 +37,9 @@ $db->end_transaction();
 				</div>
 			</div>
 		</div>
+        <footer class="container">
+            <span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?> '<i><?php echo Version::LUNA_CODE_NAME_SEM ?></i>' &middot; <?php echo Version::LUNA_CORE_VERSION ?></span>
+        </footer>
 		<script src="../vendor/js/jquery.min.js"></script>
 		<script src="../vendor/js/bootstrap.min.js"></script>
 		<script src="../vendor/js/colours.min.js"></script>

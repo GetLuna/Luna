@@ -9,6 +9,7 @@
 	background-color: #ff7521;
 }
 
+footer,
 .jumboheader {
 	background-color: #ff5a21;
 }
@@ -17,6 +18,7 @@
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
+.btn-primary:hover:active,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -46,6 +48,7 @@
 
 .panel-primary > .panel-heading,
 .btn-primary:hover,
+.btn-primary:hover:active,
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
