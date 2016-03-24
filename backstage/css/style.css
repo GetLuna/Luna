@@ -354,8 +354,13 @@ label .help-block {
 	margin-bottom: 15px;
 }
 
+.nav-tabs.nav-main {
+    padding-top: 10px;
+}
+
 .nav-tabs > li > a {
 	color: #fff;
+    margin-right: 0;
 }
 
 .nav-tabs {
@@ -377,14 +382,7 @@ label .help-block {
 	border-color: rgba(255,255,255,0);
 }
 
-@media all and (max-width: 767px) {
-	.nav-tabs {
-		padding-top: 10px;
-	}
 
-	.nav-tabs > li > a {
-		margin-right: 0;
-	}
 }
 
 /* Panels */
