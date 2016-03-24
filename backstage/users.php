@@ -597,12 +597,6 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	$comments_greater = isset($_GET['comments_greater']) ? luna_trim($_GET['comments_greater']) : '';
 	$comments_less = isset($_GET['comments_less']) ? luna_trim($_GET['comments_less']) : '';
-	$last_comment_after = isset($_GET['last_comment_after']) ? luna_trim($_GET['last_comment_after']) : '';
-	$last_comment_before = isset($_GET['last_comment_before']) ? luna_trim($_GET['last_comment_before']) : '';
-	$last_visit_after = isset($_GET['last_visit_after']) ? luna_trim($_GET['last_visit_after']) : '';
-	$last_visit_before = isset($_GET['last_visit_before']) ? luna_trim($_GET['last_visit_before']) : '';
-	$registered_after = isset($_GET['registered_after']) ? luna_trim($_GET['registered_after']) : '';
-	$registered_before = isset($_GET['registered_before']) ? luna_trim($_GET['registered_before']) : '';
 	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_comment', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
 	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
 	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
@@ -614,65 +608,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	if (preg_match('%[^0-9]%', $comments_greater.$comments_less))
 		message_backstage(__('You entered a non-numeric value into a numeric only column.', 'luna'));
 
-	// Try to convert date/time to timestamps
-	if ($last_comment_after != '') {
-		$query_str[] = 'last_comment_after='.$last_comment_after;
-
-		$last_comment_after = strtotime($last_comment_after);
-		if ($last_comment_after === false || $last_comment_after == -1)
-			message_backstage(__('You entered an invalid date/time.', 'luna'));
-
-		$conditions[] = 'u.last_comment>'.$last_comment_after;
-	}
-	if ($last_comment_before != '') {
-		$query_str[] = 'last_comment_before='.$last_comment_before;
-
-		$last_comment_before = strtotime($last_comment_before);
-		if ($last_comment_before === false || $last_comment_before == -1)
-			message_backstage(__('You entered an invalid date/time.', 'luna'));
-
-		$conditions[] = 'u.last_comment<'.$last_comment_before;
-	}
-	if ($last_visit_after != '') {
-		$query_str[] = 'last_visit_after='.$last_visit_after;
-
-		$last_visit_after = strtotime($last_visit_after);
-		if ($last_visit_after === false || $last_visit_after == -1)
-			message_backstage(__('You entered an invalid date/time.', 'luna'));
-
-		$conditions[] = 'u.last_visit>'.$last_visit_after;
-	}
-	if ($last_visit_before != '') {
-		$query_str[] = 'last_visit_before='.$last_visit_before;
-
-		$last_visit_before = strtotime($last_visit_before);
-		if ($last_visit_before === false || $last_visit_before == -1)
-			message_backstage(__('You entered an invalid date/time.', 'luna'));
-
-		$conditions[] = 'u.last_visit<'.$last_visit_before;
-	}
-	if ($registered_after != '') {
-		$query_str[] = 'registered_after='.$registered_after;
-
-		$registered_after = strtotime($registered_after);
-		if ($registered_after === false || $registered_after == -1)
-			message_backstage(__('You entered an invalid date/time.', 'luna'));
-
-		$conditions[] = 'u.registered>'.$registered_after;
-	}
-	if ($registered_before != '') {
-		$query_str[] = 'registered_before='.$registered_before;
-
-		$registered_before = strtotime($registered_before);
-		if ($registered_before === false || $registered_before == -1)
-			message_backstage(__('You entered an invalid date/time.', 'luna'));
-
-		$conditions[] = 'u.registered<'.$registered_before;
-	}
-
 	$like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
 	foreach ($form as $key => $input) {
-		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'url', 'facebook', 'msn', 'twitter', 'google', 'location', 'signature', 'admin_note'))) {
+		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'admin_note'))) {
 			$conditions[] = 'u.'.$db->escape($key).' '.$like_command.' \''.$db->escape(str_replace('*', '%', $input)).'\'';
 			$query_str[] = 'form%5B'.$key.'%5D='.urlencode($input);
 		}
@@ -820,51 +758,41 @@ if (isset($_GET['saved']))
 if (isset($_GET['deleted']))
     echo '<div class="alert alert-danger"><i class="fa fa-fw fa-check"></i> '.__('The user has been deleted.', 'luna').'</div>';
 ?>
-        <form id="find_user" method="get" action="users.php">
+        <form id="find_user" method="get" action="users.php" class="form-horizontal">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php _e('User search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
                 </div>
                 <fieldset>
                     <div class="panel-body">
-                        <p><?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
-                    </div>
-                    <table class="table">
-                        <tr>
-                            <th><?php _e('Username', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="2" /></td>
-                            <th><?php _e('Email address', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="3" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Title', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[title]" maxlength="50" tabindex="4" /></td>
-                            <th><?php _e('Real name', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Website', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[url]" maxlength="100" tabindex="6" /></td>
-                            <th><?php _e('Facebook', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[facebook]" maxlength="50" tabindex="7" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Microsoft Account', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="8" /></td>
-                            <th><?php _e('Twitter', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[twitter]" maxlength="50" tabindex="9" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Google+', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[google]" maxlength="50" tabindex="10" /></td>
-                            <th><?php _e('Location', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="11" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Signature', 'luna') ?></th>
-                            <td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="12" /></td>
-                            <th><?php _e('User group', 'luna') ?></th>
-                            <td>
+                        <p class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="2" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Email address', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="3" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Title', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="form[title]" maxlength="50" tabindex="4" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Real name', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('User group', 'luna') ?></label>
+                            <div class="col-sm-9">
                                 <select class="form-control" name="user_group" tabindex="23">
                                     <option value="-1" selected><?php _e('All groups', 'luna') ?></option>
                                     <option value="0"><?php _e('Unverified users', 'luna') ?></option>
@@ -877,74 +805,66 @@ if (isset($_GET['deleted']))
 
 ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Admin note', 'luna') ?></th>
-                            <td colspan="3"><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Number of comments less than', 'luna') ?></th>
-                            <td><input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" /></td>
-                            <th><?php _e('Number of comments greater than', 'luna') ?></th>
-                            <td><input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Last comment is before', 'luna') ?></th>
-                            <td><input type="date" class="form-control" name="last_comment_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
-                            <th><?php _e('Last comment is after', 'luna') ?></th>
-                            <td><input type="date" class="form-control" name="last_comment_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Last visit is before', 'luna') ?></th>
-                            <td><input type="date" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
-                            <th><?php _e('Last visit is after', 'luna') ?></th>
-                            <td><input type="date" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Registered before', 'luna') ?></th>
-                            <td><input type="date" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
-                            <th><?php _e('Registered after', 'luna') ?></th>
-                            <td><input type="date" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
-                        </tr>
-                        <tr>
-                            <th><?php _e('Order by', 'luna') ?></th>
-                            <td colspan="3">
-                                <select class="form-control" name="order_by" tabindex="22">
-                                    <option value="username" selected><?php _e('Username', 'luna') ?></option>
-                                    <option value="email"><?php _e('Email', 'luna') ?></option>
-                                    <option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
-                                    <option value="last_comment"><?php _e('Last comment', 'luna') ?></option>
-                                    <option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
-                                    <option value="registered"><?php _e('Registered', 'luna') ?></option>
-                                </select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">
-                                    <option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
-                                    <option value="DESC"><?php _e('Descending', 'luna') ?></option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Admin note', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Less comments than', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('More comments than', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Order by', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="order_by" tabindex="22">
+                                            <option value="username" selected><?php _e('Username', 'luna') ?></option>
+                                            <option value="email"><?php _e('Email', 'luna') ?></option>
+                                            <option value="num_comments"><?php _e('Number of comments', 'luna') ?></option>
+                                            <option value="last_comment"><?php _e('Last comment', 'luna') ?></option>
+                                            <option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
+                                            <option value="registered"><?php _e('Registered', 'luna') ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="direction" tabindex="23">
+                                            <option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
+                                            <option value="DESC"><?php _e('Descending', 'luna') ?></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
             </div>
         </form>
-        <div class="panel panel-default">
+        <form method="get" action="users.php" class="form-horizontal panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('IP search', 'luna') ?></h3>
+                <h3 class="panel-title"><?php _e('IP search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit"><span class="fa fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
-                <form method="get" action="users.php">
-                    <fieldset>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit"><span class="fa fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button>
-                            </span>
-                        </div>
-                        <span class="help-block"><?php _e('The IP address to search for in the comment database.', 'luna') ?></span>
-                    </fieldset>
-                </form>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php _e('IP search', 'luna') ?><span class="help-block"><?php _e('The IP address to search for in the comment database', 'luna') ?></span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <?php
