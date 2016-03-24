@@ -563,11 +563,10 @@ elseif (isset($_GET['del_group'])) {
 		<div class="panel panel-default">
 			<form id="groups" method="post" action="groups.php">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo __('Add new group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo __('Add', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php echo __('New group base', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo __('Add', 'luna') ?></button></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
-						<span class="help-block"><?php echo __('Select a group the new group will be based on.', 'luna') ?></span>
 						<select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
@@ -588,12 +587,11 @@ while ($cur_group = $db->fetch_assoc($result)) {
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo __('Set default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
+				<h3 class="panel-title"><?php echo __('Default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<form id="groups" method="post" action="groups.php">
 					<fieldset>
-						<span class="help-block"><?php echo __('The default group in which new users will be placed.', 'luna') ?></span>
 						<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
