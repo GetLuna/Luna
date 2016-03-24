@@ -592,44 +592,6 @@ fieldset[disabled] .form-control {
 	background-color: #008be4;
 }
 
-/* Styles page */
-@media all and (min-width:1200px) {
-	.modal-lg {
-		width: 1200px;
-	}
-}
-
-.style-entry {
-	margin-bottom: -15px;
-}
-
-.thumbnail {
-	margin-bottom: 0;
-}
-
-.modal-open {
-    padding-right: 0px !important;
-}
-
-.panel-style .thumbnail {
-	padding: 0;
-	border: none;
-}
-
-.panel-style .panel-footer {
-	border: none;
-}
-
-.panel-style {
-	border: 1px #dfdfdf solid;
-	margin-top: 20px;
-}
-
-.panel-current .thumbnail {
-	padding: 0;
-	border: none;
-}
-
 /* Form groups */
 .form-group:last-child {
 	margin-bottom: 0;

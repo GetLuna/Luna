@@ -1603,7 +1603,7 @@ function forum_list_styles() {
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(LUNA_ROOT.'themes/'.$entry) && file_exists(LUNA_ROOT.'themes/'.$entry.'/style.css'))
+		if (is_dir(LUNA_ROOT.'themes/'.$entry) && file_exists(LUNA_ROOT.'themes/'.$entry.'/information.php'))
 			$styles[] = $entry;
 	}
 	$d->close();
@@ -1630,8 +1630,8 @@ function forum_list_accents($stage) {
 
 	$accents = array();
 
-	if ($stage == 'main' && is_dir(LUNA_ROOT.'themes/'.$cur_theme.'/accents/'))
-		$d = dir(LUNA_ROOT.'themes/'.$cur_theme.'/accents/');
+	if ($stage == 'main' && is_dir(LUNA_ROOT.'themes/'.$cur_theme.'/css/accents/'))
+		$d = dir(LUNA_ROOT.'themes/'.$cur_theme.'/css/accents/');
 	if ($stage == 'back')
 		$d = dir(LUNA_ROOT.'backstage/css/accents/');
 
@@ -2102,26 +2102,26 @@ function load_css() {
 
 	// If there is a parent theme, we need to load its CSS too
 	if ($theme_info->parent_theme != '') {
-		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/style.css" />'."\n";
+		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/style.css" />'."\n";
 
 		// Also load a color scheme
-		if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css'))) {
+		if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
 			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
-				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
+				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 			else
-				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
+				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
 		}
 	}
 
 	// Load the themes actual CSS
-	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/style.css" />'."\n";
+	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/style.css" />'."\n";
 
 	// And load its color scheme
-	if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_config['o_default_accent'].'.css'))) {
+	if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
 		if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
-			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
+			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 		else
-			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
+			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
 	}
 }
 

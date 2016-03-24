@@ -45,8 +45,6 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-eye"></span> '.__('Appearance', 'luna');
 	elseif ($page == 'menu')
 		$page_title = '<span class="fa fa-fw fa-bars"></span> '.__('Menu', 'luna');
-	elseif ($page == 'theme')
-		$page_title = '<span class="fa fa-fw fa-paint-brush"></span> '.__('Theme', 'luna');
 
 	elseif ($page == 'maintenance')
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> '.__('Maintenance', 'luna');
@@ -160,7 +158,6 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
             <li<?php if($page == 'settings') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-fw fa-cogs"></span><span class="hidden-xs"> <?php _e('Settings', 'luna') ?></span></a></li>
             <li<?php if($page == 'features') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-fw fa-sliders"></span><span class="hidden-xs"> <?php _e('Features', 'luna') ?></span></a></li>
             <li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-fw fa-eye"></span><span class="hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
-            <li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Theme', 'luna') ?></span></a></li>
             <li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-fw fa-bars"></span><span class="hidden-xs"> <?php _e('Menu', 'luna') ?></span></a></li>
         </ul>
         <?php } if ($section == 'maintenance') { ?>

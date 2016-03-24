@@ -161,7 +161,7 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 
 // Check style
 $default_style = $luna_config['o_default_style'];
-if (!file_exists(LUNA_ROOT.'themes/'.$default_style.'/style.css'))
+if (!file_exists(LUNA_ROOT.'themes/'.$default_style.'/css/style.css'))
 	$default_style = 'Fifteen';
 
 // Empty all output buffers and stop buffering
@@ -200,7 +200,7 @@ switch ($stage) {
 			break;
 
 		// Change the default style if the old doesn't exist anymore
-		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
+		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/css/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
 		// Legacy support: FluxBB 1.4
@@ -854,7 +854,7 @@ switch ($stage) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
 
 		// Check the default style still exists!
-		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
+		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/css/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Fifteen\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 		// This feels like a good time to synchronize the forums

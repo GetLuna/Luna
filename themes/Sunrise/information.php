@@ -15,12 +15,10 @@ $xmlstr = <<<XML
 	<id>sunrise</id>
 	<name>Sunrise</name>
 	<developer>Studio 384</developer>
-	<date>23 March 2016</date>
-	<version>3.0-alpha.1</version>
-	<minversion>1.4-alpha.4</minversion>
-	<maxversion>1.4-alpha.4</maxversion>
-	<description>Fifteen is the default theme of the Luna. This modern, fresh, yet colorfull design makes your board an unique piece! Version 2 of the theme is based on the Luna 2's default theme Airalin and was backported for Luna 1.4.</description>
-    <parent_theme>Fifteen</parent_theme>
+	<date>24 March 2016</date>
+	<version>3.0-alpha.2</version>
+	<minversion>1.4-alpha.5</minversion>
+	<maxversion>1.4-alpha.5</maxversion>
 </style>
 XML;
 ?>

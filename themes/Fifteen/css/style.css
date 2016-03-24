@@ -130,7 +130,7 @@ body {
 .bkg-png .heading,
 .bkg-png.enforce body,
 .bkg-png.bkg-force .title-block-primary {
-    background-image: url('../../img/header.png') !important;
+    background-image: url('../../../img/header.png') !important;
     background-position: center top;
     background-size: cover;
     background-attachment: fixed;
@@ -141,7 +141,7 @@ body {
 .bkg-jpg .heading,
 .bkg-jpg.enforce body,
 .bkg-jpg.bkg-force .title-block-primary {
-    background-image: url('../../img/header.jpg') !important;
+    background-image: url('../../../img/header.jpg') !important;
     background-position: center top;
     background-size: cover;
     background-attachment: fixed;

@@ -26,6 +26,7 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
 	$form = array(
+		'default_style'         => luna_trim($_POST['form']['default_style']),
 		'default_accent'		=> intval($_POST['form']['default_accent']),
 		'allow_accent_color'	=> isset($_POST['form']['allow_accent_color']) ? '1' : '0',
 		'allow_night_mode'		=> isset($_POST['form']['allow_night_mode']) ? '1' : '0',
@@ -154,12 +155,31 @@ if (isset($_GET['saved']))
             <input type="hidden" name="form_sent" value="1" />
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Theme capabilities', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Theme', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Theme', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="form[default_style]">
+<?php
+		$styles = forum_list_styles();
+
+		foreach ($styles as $temp) {
+			if ($luna_config['o_default_style'] == $temp)
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
+		}
+
+?>
+								</select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Accents', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -175,9 +195,8 @@ if (isset($_GET['saved']))
                                 </div>
                             </div>
                         </div>
-                        <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Default', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="btn-group accent-group" data-toggle="buttons">
 <?php
