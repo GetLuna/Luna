@@ -18,8 +18,6 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 1)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-
-
 // Get list of forums and threads with new comments since last visit
 if (!$luna_user['is_guest']) {
 	$result = $db->query('SELECT f.id, f.last_comment FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.last_comment>'.$luna_user['last_visit']) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
@@ -111,13 +109,13 @@ elseif ($luna_config['o_feed_type'] == '2')
 $forum_actions = array();
 
 // Subscribe
-if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') {
+if (!$luna_user['is_guest'] && $luna_config['o_forum_subscriptions'] == '1') {
 	$token_url = '&amp;csrf_token='.luna_csrf_token();
 
-	if ($cur_thread['is_subscribed'])
-		$thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
+	if ($cur_forum['is_subscribed'])
+		$thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
 	else
-		$thread_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
+		$thread_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
 }
 
 $forum_id = $id;
