@@ -141,3 +141,23 @@ footer,
 .navbar-default .navbar-nav > .open > a:focus {
 	text-shadow: 0 0 5px 1px rgba(100,100,100,.5);
 }
+
+a.list-group-item:hover,
+a:focus,
+.editor .btn,
+a {
+	color: #ddd;
+}
+
+a:hover,
+a:active {
+	color: #ccc;
+}
+
+.night .comment-default a,
+.night .list-group-thread a,
+.night .list-group-thread a:focus,
+.night .table a,
+.night .user-entry a {
+    color: #ccc;
+}

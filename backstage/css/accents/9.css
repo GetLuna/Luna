@@ -57,3 +57,23 @@ footer,
 .pagination > .active > span:focus {
 	border-color: #ff4021;
 }
+
+a.list-group-item:hover,
+a:focus,
+.editor .btn,
+a {
+	color:#ff5a21;
+}
+
+a:hover,
+a:active {
+	color: #ff4021;
+}
+
+.night .comment-default a,
+.night .list-group-thread a,
+.night .list-group-thread a:focus,
+.night .table a,
+.night .user-entry a {
+    color: #ffae7c;
+}
