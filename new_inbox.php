@@ -24,6 +24,8 @@ if (!$luna_user['use_inbox'] == '1')
 if (!$luna_config['o_enable_inbox'] == '1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
+$id = $luna_user['id'];
+
 $p_destinataire = '';
 $p_contact = '';
 $p_subject = '';
