@@ -986,7 +986,7 @@ function draw_search_results() {
 			$subject = luna_htmlspecialchars($cur_search['subject']);
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['commenter']).'</span>';
         
-            $$url = 'thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'];
+            $url = 'thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'];
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
@@ -1013,9 +1013,8 @@ function draw_search_results() {
 				$icon_type = 'icon icon-new';
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 			}
-
-			// Insert the status text before the subject
-			$subject = implode(' ', $status_text).' '.$subject;
+        
+            $subject_status = implode(' ', $status_text);
 
 			$num_pages_thread = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_comments']);
 
