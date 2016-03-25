@@ -983,8 +983,10 @@ function draw_search_results() {
 			$item_status = ($thread_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
 
-			$subject = '<a href="thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a>';
+			$subject = luna_htmlspecialchars($cur_search['subject']);
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['commenter']).'</span>';
+        
+            $$url = 'thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'];
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
@@ -1047,10 +1049,11 @@ function draw_search_results() {
                         $faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
                     else
                         $faicon = '';
+                    
+                    $forum_name = '<a class="in-forum" href="viewforum.php?id='.$cur_forum['id'].'" style="color: '.$forum_color.';">'.$faicon.' '.$forum_name.'</a>';
                 }
             }
 
-            $forum_name = '<a class="in-forum" href="viewforum.php?id='.$cur_thread['forum_id'].'" style="color: '.$forum_color.';">'.$faicon.' '.$forum_name.'</a>';
 
 			require get_view_path('search-thread.php');
 		//}
