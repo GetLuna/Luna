@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-25 09:37+0100\n"
-"PO-Revision-Date: 2016-03-25 09:37+0100\n"
+"POT-Creation-Date: 2016-03-25 09:39+0100\n"
+"PO-Revision-Date: 2016-03-25 09:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -205,7 +205,7 @@ msgstr "gebruikers"
 msgid "threads"
 msgstr "conversaties"
 
-#: backstage/about.php:72
+#: backstage/about.php:72 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr "reacties"
 
@@ -5956,10 +5956,6 @@ msgstr "Door %s"
 msgid "on"
 msgstr "op"
 
-#: themes/Fifteen/objects/comment.php:9
-msgid "posts"
-msgstr "berichten"
-
 #: themes/Fifteen/objects/user.php:16
 msgid "comments since"
 msgstr "reacties sinds"
@@ -6250,6 +6246,9 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "posts"
+#~ msgstr "berichten"
 
 #~ msgid "Theme capabilities"
 #~ msgstr "Thema mogelijkheden"
