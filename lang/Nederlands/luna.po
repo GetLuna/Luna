@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-24 10:57+0100\n"
-"PO-Revision-Date: 2016-03-24 10:58+0100\n"
+"POT-Creation-Date: 2016-03-25 09:37+0100\n"
+"PO-Revision-Date: 2016-03-25 09:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -2666,9 +2666,11 @@ msgstr ""
 "\" paneel tonen in Help."
 
 #: backstage/settings.php:563
-msgid "Enter rules or useful information, required when rules are enabled"
+msgid ""
+"Enter rules or useful information, required when rules are enabled, in HTML"
 msgstr ""
-"Geef regels of nuttige info op, \"Gebruik forum regels\" moet aan staan"
+"Geef regels of nuttige info op, \"Gebruik forum regels\" moet aan staan, in "
+"HTML"
 
 #: backstage/settings.php:570
 msgid "Default email setting"

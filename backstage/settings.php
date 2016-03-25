@@ -560,7 +560,7 @@ foreach ($timezones as $timezone) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Message', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Message', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled, in HTML', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
                             </div>

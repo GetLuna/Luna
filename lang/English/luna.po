@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-24 10:58+0100\n"
-"PO-Revision-Date: 2016-03-24 10:58+0100\n"
+"POT-Creation-Date: 2016-03-25 09:37+0100\n"
+"PO-Revision-Date: 2016-03-25 09:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -2525,7 +2525,8 @@ msgid ""
 msgstr ""
 
 #: backstage/settings.php:563
-msgid "Enter rules or useful information, required when rules are enabled"
+msgid ""
+"Enter rules or useful information, required when rules are enabled, in HTML"
 msgstr ""
 
 #: backstage/settings.php:570
