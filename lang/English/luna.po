@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-25 09:40+0100\n"
-"PO-Revision-Date: 2016-03-25 09:40+0100\n"
+"POT-Creation-Date: 2016-03-25 09:50+0100\n"
+"PO-Revision-Date: 2016-03-25 09:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -477,19 +477,19 @@ msgstr ""
 #: delete.php:25 edit.php:19 edit.php:24 extern.php:280 extern.php:500
 #: inbox.php:97 misc.php:43 misc.php:56 misc.php:60 misc.php:148 misc.php:167
 #: misc.php:174 misc.php:225 misc.php:248 misc.php:272 misc.php:298
-#: misc.php:307 misc.php:325 misc.php:344 misc.php:372 new_inbox.php:48
-#: new_inbox.php:54 new_inbox.php:67 new_inbox.php:74 new_inbox.php:89
-#: new_inbox.php:102 new_inbox.php:107 new_inbox.php:125 new_inbox.php:318
-#: new_inbox.php:365 new_inbox.php:378 notifications.php:25
+#: misc.php:307 misc.php:325 misc.php:344 misc.php:372 new_inbox.php:50
+#: new_inbox.php:56 new_inbox.php:69 new_inbox.php:76 new_inbox.php:91
+#: new_inbox.php:104 new_inbox.php:109 new_inbox.php:127 new_inbox.php:320
+#: new_inbox.php:367 new_inbox.php:380 notifications.php:25
 #: notifications.php:35 notifications.php:49 notifications.php:63
 #: notifications.php:128 profile.php:23 profile.php:27 search.php:43
 #: search.php:70 search.php:78 search.php:323 search.php:349 search.php:453
 #: settings.php:241 settings.php:297 settings.php:542 settings.php:577
 #: settings.php:723 settings.php:731 settings.php:746 thread.php:21
 #: thread.php:27 thread.php:78 viewforum.php:19 viewforum.php:56
-#: viewinbox.php:45 viewinbox.php:76 viewinbox.php:88 viewinbox.php:96
-#: viewinbox.php:104 viewinbox.php:127 viewinbox.php:181 viewinbox.php:196
-#: viewinbox.php:219
+#: viewinbox.php:47 viewinbox.php:78 viewinbox.php:90 viewinbox.php:98
+#: viewinbox.php:106 viewinbox.php:129 viewinbox.php:183 viewinbox.php:198
+#: viewinbox.php:221
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
@@ -654,7 +654,7 @@ msgstr ""
 #: backstage/bans.php:354 backstage/bans.php:446 backstage/index.php:125
 #: backstage/reports.php:61 backstage/reports.php:118
 #: backstage/settings.php:348 backstage/settings.php:563 comment.php:529
-#: edit.php:130 misc.php:134 new_inbox.php:388 thread.php:123 viewinbox.php:202
+#: edit.php:130 misc.php:134 new_inbox.php:390 thread.php:123 viewinbox.php:204
 msgid "Message"
 msgstr ""
 
@@ -794,7 +794,7 @@ msgid "Thread start"
 msgstr ""
 
 #: backstage/board.php:292 comment.php:529 edit.php:130
-#: include/draw_functions.php:1069 misc.php:134 new_inbox.php:392
+#: include/draw_functions.php:1072 misc.php:134 new_inbox.php:394
 #: themes/Fifteen/comment.php:42 themes/Fifteen/inbox-new.php:83
 #: themes/Fifteen/inbox-view.php:38 themes/Fifteen/search-advanced.php:43
 msgid "Subject"
@@ -1628,7 +1628,7 @@ msgstr ""
 #: backstage/index.php:136 backstage/index.php:137 backstage/index.php:139
 #: backstage/reports.php:73 backstage/reports.php:74 backstage/reports.php:76
 #: backstage/reports.php:129 backstage/reports.php:130
-#: backstage/reports.php:132 themes/Fifteen/inbox.php:107 viewinbox.php:191
+#: backstage/reports.php:132 themes/Fifteen/inbox.php:107 viewinbox.php:193
 msgid "Deleted"
 msgstr ""
 
@@ -1701,13 +1701,13 @@ msgstr ""
 #: edit.php:44 edit.php:47 inbox.php:17 inbox.php:21 inbox.php:25 misc.php:22
 #: misc.php:37 misc.php:52 misc.php:144 misc.php:243 misc.php:267 misc.php:291
 #: misc.php:302 misc.php:320 misc.php:337 misc.php:348 misc.php:361
-#: new_inbox.php:17 new_inbox.php:21 new_inbox.php:25 new_inbox.php:113
+#: new_inbox.php:17 new_inbox.php:21 new_inbox.php:25 new_inbox.php:115
 #: search.php:74 search.php:280 search.php:510 settings.php:28 settings.php:33
 #: settings.php:76 settings.php:93 settings.php:178 settings.php:237
 #: settings.php:246 settings.php:293 settings.php:302 settings.php:443
 #: settings.php:529 settings.php:587 userlist.php:16 viewinbox.php:19
-#: viewinbox.php:23 viewinbox.php:27 viewinbox.php:117 viewinbox.php:147
-#: viewinbox.php:167 viewinbox.php:210
+#: viewinbox.php:23 viewinbox.php:27 viewinbox.php:119 viewinbox.php:149
+#: viewinbox.php:169 viewinbox.php:212
 msgid "You do not have permission to access this page."
 msgstr ""
 
@@ -1911,11 +1911,11 @@ msgstr ""
 msgid "Are you sure you want to delete the selected comments?"
 msgstr ""
 
-#: backstage/moderate.php:186 comment.php:64 edit.php:65 new_inbox.php:200
+#: backstage/moderate.php:186 comment.php:64 edit.php:65 new_inbox.php:202
 msgid "Threads must contain a subject."
 msgstr ""
 
-#: backstage/moderate.php:188 comment.php:68 edit.php:69 new_inbox.php:202
+#: backstage/moderate.php:188 comment.php:68 edit.php:69 new_inbox.php:204
 msgid "Subjects cannot be longer than 70 characters."
 msgstr ""
 
@@ -2007,13 +2007,13 @@ msgstr ""
 #: include/draw_functions.php:451 include/draw_functions.php:453
 #: include/draw_functions.php:517 include/draw_functions.php:519
 #: include/draw_functions.php:578 include/draw_functions.php:987
-#: include/draw_functions.php:1026 include/draw_functions.php:1028
+#: include/draw_functions.php:1028 include/draw_functions.php:1030
 #: themes/Fifteen/inbox.php:84
 msgid "by"
 msgstr ""
 
 #: backstage/moderate.php:925 include/draw_functions.php:271
-#: include/draw_functions.php:569 include/draw_functions.php:1012
+#: include/draw_functions.php:569 include/draw_functions.php:1014
 msgid "Go to the first new comment in the thread."
 msgstr ""
 
@@ -2242,7 +2242,7 @@ msgstr ""
 msgid "Reports"
 msgstr ""
 
-#: backstage/reports.php:87 include/draw_functions.php:1181 search.php:392
+#: backstage/reports.php:87 include/draw_functions.php:1184 search.php:392
 msgid "Mark as read"
 msgstr ""
 
@@ -3064,7 +3064,7 @@ msgid ""
 "email address."
 msgstr ""
 
-#: comment.php:109 edit.php:79 new_inbox.php:215
+#: comment.php:109 edit.php:79 new_inbox.php:217
 #, php-format
 msgid "Comments cannot be longer than %s bytes."
 msgstr ""
@@ -3073,7 +3073,7 @@ msgstr ""
 msgid "Comments cannot contain only capital letters."
 msgstr ""
 
-#: comment.php:119 edit.php:89 misc.php:77 new_inbox.php:211
+#: comment.php:119 edit.php:89 misc.php:77 new_inbox.php:213
 msgid "You must enter a message."
 msgstr ""
 
@@ -3330,7 +3330,7 @@ msgstr ""
 msgid "You must select some messages"
 msgstr ""
 
-#: inbox.php:93 new_inbox.php:386 viewinbox.php:204
+#: inbox.php:93 new_inbox.php:388 viewinbox.php:206
 msgid "Private Messages"
 msgstr ""
 
@@ -3581,7 +3581,7 @@ msgstr ""
 msgid "Start typing..."
 msgstr ""
 
-#: include/draw_functions.php:152 include/draw_functions.php:1103
+#: include/draw_functions.php:152 include/draw_functions.php:1106
 #: themes/Fifteen/login.php:44 themes/Fifteen/report.php:12
 msgid "Submit"
 msgstr ""
@@ -3642,7 +3642,7 @@ msgstr ""
 
 #: include/draw_functions.php:724 include/draw_functions.php:726
 #: include/draw_functions.php:749 include/draw_functions.php:751
-#: include/draw_functions.php:1088 themes/Fifteen/report.php:12
+#: include/draw_functions.php:1091 themes/Fifteen/report.php:12
 msgid "Report"
 msgstr ""
 
@@ -3685,7 +3685,7 @@ msgid ""
 msgstr ""
 
 #: include/draw_functions.php:906 include/draw_functions.php:920
-#: include/draw_functions.php:934 include/draw_functions.php:1102
+#: include/draw_functions.php:934 include/draw_functions.php:1105
 #: themes/Fifteen/comment.php:14 themes/Fifteen/comment.php:16
 #: themes/Fifteen/edit.php:13 themes/Fifteen/inbox-delete-comment.php:18
 msgid "Cancel"
@@ -3730,31 +3730,31 @@ msgstr ""
 msgid "Agree"
 msgstr ""
 
-#: include/draw_functions.php:1070
+#: include/draw_functions.php:1073
 msgid "Mail"
 msgstr ""
 
-#: include/draw_functions.php:1073
+#: include/draw_functions.php:1076
 msgid "Send"
 msgstr ""
 
-#: include/draw_functions.php:1094 themes/Fifteen/report.php:16
+#: include/draw_functions.php:1097 themes/Fifteen/report.php:16
 msgid "Tell us why you are reporting this"
 msgstr ""
 
-#: include/draw_functions.php:1121
+#: include/draw_functions.php:1124
 msgid "Forums to search in"
 msgstr ""
 
-#: include/draw_functions.php:1148
+#: include/draw_functions.php:1151
 msgid "Forum to search in"
 msgstr ""
 
-#: include/draw_functions.php:1190
+#: include/draw_functions.php:1193
 msgid "Luna"
 msgstr ""
 
-#: include/email.php:225 new_inbox.php:267 new_inbox.php:279
+#: include/email.php:225 new_inbox.php:269 new_inbox.php:281
 #, php-format
 msgid "%s Mailer"
 msgstr ""
@@ -3904,7 +3904,7 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: include/inbox_functions.php:32 themes/Fifteen/inbox-view.php:28
-#: viewinbox.php:221
+#: viewinbox.php:223
 msgid "Reply"
 msgstr ""
 
@@ -4292,47 +4292,47 @@ msgstr ""
 msgid "You're not subscribed to this thread."
 msgstr ""
 
-#: new_inbox.php:133
+#: new_inbox.php:135
 #, php-format
 msgid ""
 "At least % seconds have to pass between sends. Please wait a little while "
 "and try send the message again."
 msgstr ""
 
-#: new_inbox.php:137
+#: new_inbox.php:139
 msgid "Can't save message, your boxes are full."
 msgstr ""
 
-#: new_inbox.php:158
+#: new_inbox.php:160
 msgid "You must give at least one receiver"
 msgstr ""
 
-#: new_inbox.php:160
+#: new_inbox.php:162
 #, php-format
 msgid "You can send a message at the same time only to %s receivers maximum."
 msgstr ""
 
-#: new_inbox.php:177
+#: new_inbox.php:179
 #, php-format
 msgid "%s has left the conversation."
 msgstr ""
 
-#: new_inbox.php:183
+#: new_inbox.php:185
 #, php-format
 msgid "%s disabled the private messages."
 msgstr ""
 
-#: new_inbox.php:186
+#: new_inbox.php:188
 #, php-format
 msgid "%s inbox is full, you can not send you message to this user."
 msgstr ""
 
-#: new_inbox.php:188
+#: new_inbox.php:190
 #, php-format
 msgid "There's no user with the username \"%s\"."
 msgstr ""
 
-#: new_inbox.php:234
+#: new_inbox.php:236
 msgid ""
 "Subject: You received a new private message on <board_title>\n"
 "\n"
@@ -4345,7 +4345,7 @@ msgid ""
 "(Do not reply to this message)"
 msgstr ""
 
-#: new_inbox.php:243
+#: new_inbox.php:245
 msgid ""
 "Subject: You received a private message on <board_title>\n"
 "\n"
@@ -4365,7 +4365,7 @@ msgid ""
 "(Do not reply to this message)"
 msgstr ""
 
-#: new_inbox.php:386
+#: new_inbox.php:388
 msgid "Send a message"
 msgstr ""
 
@@ -5345,7 +5345,7 @@ msgid "on"
 msgstr ""
 
 #: themes/Fifteen/objects/user.php:16
-msgid "comments since"
+msgid "comment since"
 msgstr ""
 
 #: themes/Fifteen/profile.php:71 themes/Fifteen/settings.php:40
@@ -5618,14 +5618,14 @@ msgstr ""
 msgid "User list"
 msgstr ""
 
-#: viewinbox.php:157
+#: viewinbox.php:159
 msgid "Delete message"
 msgstr ""
 
-#: viewinbox.php:200
+#: viewinbox.php:202
 msgid "with"
 msgstr ""
 
-#: viewinbox.php:204
+#: viewinbox.php:206
 msgid "View a private discussion"
 msgstr ""
