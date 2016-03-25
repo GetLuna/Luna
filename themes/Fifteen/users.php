@@ -11,7 +11,7 @@ if (!defined('FORUM'))
 			<div class="title-block title-block-primary">
 				<h2><i class="fa fa-fw fa-users"></i> <?php _e('Users', 'luna') ?></h2>
 			</div>
-			<div class="tab-content">
+			<div class="tab-content tab-content-fix">
 				<?php if ($luna_user['g_search_users'] == '1') { ?>
 					<form class="filters" id="userlist" method="get" action="userlist.php">
 						<div class="row tab-fix">
@@ -39,7 +39,7 @@ if (!defined('FORUM'))
 				<?php } ?>
 				<hr />
 				<div class="row tab-fix">
-					<div class="col-xs-12">
+					<div class="col-lg-12">
 						<?php echo $paging_links ?>
 					</div>
 				</div>
@@ -47,7 +47,7 @@ if (!defined('FORUM'))
 					<?php draw_user_list() ?>
 				</div>
 				<div class="row tab-fix">
-					<div class="col-xs-12">
+					<div class="col-lg-12">
 						<?php echo $paging_links ?>
 					</div>
 				</div>

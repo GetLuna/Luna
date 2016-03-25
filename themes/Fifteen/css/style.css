@@ -979,7 +979,7 @@ hr {
 .user-entry {
 	background-color: #eee;
 	padding: 0;
-	margin-bottom: 10px !important;
+	margin-bottom: 0;
     margin-top: 10px !important;
 	height: 100px;
 }
@@ -1000,6 +1000,18 @@ hr {
 
 .tab-fix {
 	padding: 0 5px;
+}
+
+.tab-content-fix {
+    padding: 10px 15px;
+}
+
+.tab-content-fix hr {
+    margin-bottom: 0;
+}
+
+.tab-fix .col-lg-12 {
+    margin-top: 10px;
 }
 
 /* Profile */
