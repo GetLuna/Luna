@@ -19,6 +19,7 @@ $xmlstr = <<<XML
 	<version>3.0-alpha.2</version>
 	<minversion>1.4-alpha.5</minversion>
 	<maxversion>1.4-alpha.5</maxversion>
+    <parent_theme>fifteen</parent_theme>
 </style>
 XML;
 ?>
