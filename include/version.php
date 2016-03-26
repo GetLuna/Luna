@@ -7,13 +7,10 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const LUNA_VERSION = '1.4-alpha.4.1';
-	const LUNA_CORE_VERSION = '1.4.5530';
-	const LUNA_CORE_REVISION = '140a41';
-
-	// The Luna Core code name
-	const LUNA_CODE_NAME = 'emerald';
-	const LUNA_CODE_NAME_SEM = 'Emerald';
+	const LUNA_VERSION = '2.0-alpha.4.2';
+	const LUNA_CORE_VERSION = '2.0.5530';
+	const LUNA_CORE_REVISION = '200a41';
+	const LUNA_CODE_NAME = 'Emerald';
 
 	// The database version number, every change in the database requires this number to go one up
 	const LUNA_DB_VERSION = '91.20';
