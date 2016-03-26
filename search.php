@@ -423,12 +423,15 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		// throw away the first $start_from of $search_ids, only keep the top $per_page of $search_ids
 		$search_ids = array_slice($search_ids, $start_from, $per_page);
+        
+        if (!$luna_user['g_soft_delete_view'])
+            $sql_soft = 'soft = 0 AND ';
 
 		// Run the query and fetch the results
 		if ($show_as == 'comments')
-			$result = $db->query('SELECT p.id AS pid, p.commenter AS pcommenter, p.commented AS pcommented, p.commenter_id, p.message, p.hide_smilies, t.id AS tid, t.commenter, t.subject, t.first_comment_id, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_replies, t.forum_id, t.pinned, t.closed, t.solved, t.important, f.forum_name FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.id IN('.implode(',', $search_ids).') ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id AS pid, p.commenter AS pcommenter, p.commented AS pcommented, p.commenter_id, p.message, p.hide_smilies, t.id AS tid, t.commenter, t.subject, t.first_comment_id, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_replies, t.forum_id, t.pinned, t.closed, t.solved, t.important, f.forum_name FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE '.$sql_addition.'p.id IN('.implode(',', $search_ids).') ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
 		else
-			$result = $db->query('SELECT t.id AS tid, t.commenter, t.subject, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_replies, t.closed, t.solved, t.important, t.pinned, t.forum_id, t.pinned, t.closed, f.forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE t.id IN('.implode(',', $search_ids).') ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id AS tid, t.commenter, t.subject, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_replies, t.closed, t.solved, t.important, t.pinned, t.forum_id, t.pinned, t.closed, f.forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE '.$sql_addition.'t.id IN('.implode(',', $search_ids).') ORDER BY '.$sort_by_sql.' '.$sort_dir) or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
 
 		$search_set = array();
 		while ($row = $db->fetch_assoc($result))
