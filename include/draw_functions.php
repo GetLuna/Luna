@@ -702,7 +702,7 @@ function draw_comment_list() {
 				if ($cur_forum['solved'] == 1)
 					if ($luna_user['username'] == $started_by)
 						if ($cur_comment['id'] == $cur_thread['answer'])
-							$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-cross"></i> '.__('Unsolved', 'luna').'</a>';
+							$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
 						else
 							$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
@@ -732,7 +732,7 @@ function draw_comment_list() {
 
 			if ($cur_forum['solved'] == 1)
 				if ($cur_comment['id'] == $cur_thread['answer'])
-					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-cross"></i> '.__('Unsolved', 'luna').'</a>';
+					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
 				else
 					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
