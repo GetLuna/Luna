@@ -2137,6 +2137,7 @@ function load_meta() {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">'."\n";
 
 	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
+    echo '<link rel="icon" href="/favicon.png" />';
 
 	if (!empty($luna_config['o_board_tags']))
 		echo '<meta name="keywords" content="'.$luna_config['o_board_tags'].'">'."\n";
