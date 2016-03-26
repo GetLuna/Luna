@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-25 09:50+0100\n"
-"PO-Revision-Date: 2016-03-25 09:50+0100\n"
+"POT-Creation-Date: 2016-03-26 09:34+0100\n"
+"PO-Revision-Date: 2016-03-26 09:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -843,7 +843,7 @@ msgid "Thread start"
 msgstr "Conversatie gestart door"
 
 #: backstage/board.php:292 comment.php:529 edit.php:130
-#: include/draw_functions.php:1072 misc.php:134 new_inbox.php:394
+#: include/draw_functions.php:1071 misc.php:134 new_inbox.php:394
 #: themes/Fifteen/comment.php:42 themes/Fifteen/inbox-new.php:83
 #: themes/Fifteen/inbox-view.php:38 themes/Fifteen/search-advanced.php:43
 msgid "Subject"
@@ -1703,7 +1703,7 @@ msgstr "Verander functionaliteit"
 msgid "Change settings"
 msgstr "Verander instellingen"
 
-#: backstage/index.php:118 backstage/reports.php:52
+#: backstage/index.php:118 backstage/reports.php:52 header.php:48
 msgid "New reports"
 msgstr "Nieuwe rapporten"
 
@@ -2126,7 +2126,7 @@ msgstr "Modereren van \"%s\""
 #: include/draw_functions.php:451 include/draw_functions.php:453
 #: include/draw_functions.php:517 include/draw_functions.php:519
 #: include/draw_functions.php:578 include/draw_functions.php:987
-#: include/draw_functions.php:1028 include/draw_functions.php:1030
+#: include/draw_functions.php:1027 include/draw_functions.php:1029
 #: themes/Fifteen/inbox.php:84
 msgid "by"
 msgstr "door"
@@ -2368,7 +2368,7 @@ msgstr "Geen rangen ingesteld"
 msgid "Reports"
 msgstr "Rapporten"
 
-#: backstage/reports.php:87 include/draw_functions.php:1184 search.php:392
+#: backstage/reports.php:87 include/draw_functions.php:1183 search.php:392
 msgid "Mark as read"
 msgstr "Markeer als gelezen"
 
@@ -3546,9 +3546,25 @@ msgstr "Nieuwste gebruiker"
 msgid "Threads"
 msgstr "Conversaties"
 
+#: header.php:52
+msgid "Maintenance mode is enabled"
+msgstr "Onderhoud is geactiveerd"
+
+#: header.php:56 header.php:57
+msgid "Show all new comments since your last visit"
+msgstr "Toon alle nieuwe reacties sinds je laatste bezoek"
+
+#: header.php:62 header.php:64
+msgid "Show all active threads"
+msgstr "Toon alle active conversaties"
+
 #: header.php:62 header.php:64
 msgid "Active"
 msgstr "Actief"
+
+#: header.php:63 header.php:65
+msgid "Show all unansewered threads"
+msgstr "Toon alle onbeantwoorde conversaties"
 
 #: header.php:63 header.php:65
 msgid "Unanswered"
@@ -3863,7 +3879,7 @@ msgstr "Lijst  punt"
 msgid "Start typing..."
 msgstr "Start met typen"
 
-#: include/draw_functions.php:152 include/draw_functions.php:1106
+#: include/draw_functions.php:152 include/draw_functions.php:1105
 #: themes/Fifteen/login.php:44 themes/Fifteen/report.php:12
 msgid "Submit"
 msgstr "Verzenden"
@@ -3926,7 +3942,7 @@ msgstr "Verberg"
 
 #: include/draw_functions.php:724 include/draw_functions.php:726
 #: include/draw_functions.php:749 include/draw_functions.php:751
-#: include/draw_functions.php:1091 themes/Fifteen/report.php:12
+#: include/draw_functions.php:1090 themes/Fifteen/report.php:12
 msgid "Report"
 msgstr "Rapport"
 
@@ -3971,7 +3987,7 @@ msgid ""
 msgstr "De gekozen reactie is hieronder uitgezet ter controle."
 
 #: include/draw_functions.php:906 include/draw_functions.php:920
-#: include/draw_functions.php:934 include/draw_functions.php:1105
+#: include/draw_functions.php:934 include/draw_functions.php:1104
 #: themes/Fifteen/comment.php:14 themes/Fifteen/comment.php:16
 #: themes/Fifteen/edit.php:13 themes/Fifteen/inbox-delete-comment.php:18
 msgid "Cancel"
@@ -4020,27 +4036,27 @@ msgstr "Je moet akkoord gaan met het volgende om te registreren"
 msgid "Agree"
 msgstr "Akkoortd"
 
-#: include/draw_functions.php:1073
+#: include/draw_functions.php:1072
 msgid "Mail"
 msgstr "Mail"
 
-#: include/draw_functions.php:1076
+#: include/draw_functions.php:1075
 msgid "Send"
 msgstr "Verstuur"
 
-#: include/draw_functions.php:1097 themes/Fifteen/report.php:16
+#: include/draw_functions.php:1096 themes/Fifteen/report.php:16
 msgid "Tell us why you are reporting this"
 msgstr "Waarom rapporteer je dit"
 
-#: include/draw_functions.php:1124
+#: include/draw_functions.php:1123
 msgid "Forums to search in"
 msgstr "Forums om in te zoeken"
 
-#: include/draw_functions.php:1151
+#: include/draw_functions.php:1150
 msgid "Forum to search in"
 msgstr "Forum om in te zoeken"
 
-#: include/draw_functions.php:1193
+#: include/draw_functions.php:1192
 msgid "Luna"
 msgstr "Luna"
 

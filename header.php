@@ -45,24 +45,24 @@ if (!$luna_user['is_guest']) {
 			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
 
 			if ($db->result($result_header))
-				$page_statusinfo[] = '<li class="reportlink"><strong><a href="backstage/reports.php">New reports</a></strong></li>';
+				$page_statusinfo[] = '<li class="reportlink"><strong><a href="backstage/reports.php">'.__('New reports', 'luna').'</a></strong></li>';
 		}
 
 		if ($luna_config['o_maintenance'] == '1')
-			$page_statusinfo[] = '<li class="maintenancelink"><strong><a href="backstage/settings.php#maintenance">Maintenance mode is enabled</a></strong></li>';
+			$page_statusinfo[] = '<li class="maintenancelink"><strong><a href="backstage/settings.php#maintenance">'.__('Maintenance mode is enabled', 'luna').'</a></strong></li>';
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
-		$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_new" title="'.__('New', 'luna').'"><span class="fa fa-fw fa-newspaper-o"></span> '.__('New', 'luna').'</a>';
-		$page_threadsearches_inline[] = '<a href="search.php?action=show_new" title="'.__('New', 'luna').'"><span class="fa fa-fw fa-newspaper-o"></span> '.__('New', 'luna').'</a>';
+		$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_new" title="'.__('Show all new comments since your last visit', 'luna').'"><span class="fa fa-fw fa-newspaper-o"></span> '.__('New', 'luna').'</a>';
+		$page_threadsearches_inline[] = '<a href="search.php?action=show_new" title="'.__('Show all new comments since your last visit', 'luna').'"><span class="fa fa-fw fa-newspaper-o"></span> '.__('New', 'luna').'</a>';
 }
 
 // Quick searches
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_recent" title="'.__('Active', 'luna').'"><span class="fa fa-fw fa-clock-o"></span> '.__('Active', 'luna').'</a>';
-	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'"><span class="fa fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
-	$page_threadsearches_inline[] = '<a href="search.php?action=show_recent" title="'.__('Active', 'luna').'"><span class="fa fa-fw fa-clock-o"></span> '.__('Active', 'luna').'</a>';
-	$page_threadsearches_inline[] = '<a href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'"><span class="fa fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
+	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_recent" title="'.__('Show all active threads', 'luna').'"><span class="fa fa-fw fa-clock-o"></span> '.__('Active', 'luna').'</a>';
+	$page_threadsearches[] = '<a class="list-group-item" href="search.php?action=show_unanswered" title="'.__('Show all unansewered threads', 'luna').'"><span class="fa fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
+	$page_threadsearches_inline[] = '<a href="search.php?action=show_recent" title="'.__('Show all active threads', 'luna').'"><span class="fa fa-fw fa-clock-o"></span> '.__('Active', 'luna').'</a>';
+	$page_threadsearches_inline[] = '<a href="search.php?action=show_unanswered" title="'.__('Show all unansewered threads', 'luna').'"><span class="fa fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
 }
 
 // Generate all that jazz
