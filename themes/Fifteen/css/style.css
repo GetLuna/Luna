@@ -628,6 +628,7 @@ hr {
 
 .notification-row .btn {
     padding: 8px 12px;
+    white-space: normal;
 }
 
 .notification-row .btn-default {
