@@ -1,3 +1,6 @@
+html, body {
+    direction: rtl;
+}
 .flip.text-right {
 	text-align: left;
 }
