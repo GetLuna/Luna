@@ -1529,6 +1529,7 @@ blockquote.pull-right {
 	text-align: left;
 }
 
+/* Fix our own themes */
 .tab-content .form-group .col-sm-9 {
 	padding-left: 0;
 	padding-right: 15px;
