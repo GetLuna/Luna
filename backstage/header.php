@@ -47,6 +47,10 @@ elseif (file_exists('../img/header.jpg'))
 		<link rel="stylesheet" href="../vendor/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/accents/<?php echo $luna_user['accent'] ?>.css" />
+        <?php
+            if (__('Direction of language', 'luna') == 'rtl')
+                echo '<link rel="stylesheet" type="text/css" href="../vendor/css/bidirect.css" />';
+          ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>

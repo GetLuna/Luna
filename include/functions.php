@@ -2102,14 +2102,14 @@ function load_css() {
 
 	// If there is a parent theme, we need to load its CSS too
 	if ($theme_info->parent_theme != '') {
-		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/style.css" />'."\n";
+		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/style.css" />';
 
 		// Also load a color scheme
 		if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
 			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
-				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
+				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
 			else
-				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
+				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css" />';
 		}
 	}
 
@@ -2119,10 +2119,13 @@ function load_css() {
 	// And load its color scheme
 	if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
 		if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
-			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
+			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
 		else
-			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
+			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css" />';
 	}
+    
+    if (__('Direction of language', 'luna') == 'rtl')
+        echo '<link rel="stylesheet" type="text/css" href="vendor/css/bidirect.css" />';
 }
 
 //
