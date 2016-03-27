@@ -1528,10 +1528,33 @@ blockquote.pull-right {
 	padding-right: 0;
 	text-align: left;
 }
+
 .tab-content .form-group .col-sm-9 {
 	padding-left: 0;
 	padding-right: 15px;
 }
+@media (min-width:768px) {
+    .backstage .navbar .container {
+        padding-right: 15px;
+        padding-left:  0;
+    }
+}
+.nav-tabs > li > a {
+    margin-right: 0;
+}
+.form-horizontal .panel-body > .form-group > .col-sm-9, .form-horizontal .panel-body > fieldset > .form-group > .col-sm-9 {
+    padding-right: 5px;
+    padding-left: 0;
+}
+.form-horizontal .panel-body > .form-group > .col-sm-3, .form-horizontal .panel-body > fieldset > .form-group > .col-sm-3 {
+    padding-right: 0;
+    padding-left: 5px;
+}
+.panel-title .btn {
+    margin-left: -10px;
+}
+
+/* Flip icons */
 .fa-chevron-left,
 .fa-chevron-right,
 .fa-arrow-left,

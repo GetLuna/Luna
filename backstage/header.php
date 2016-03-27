@@ -38,7 +38,7 @@ elseif (file_exists('../img/header.jpg'))
 
 ?>
 <!DOCTYPE html>
-<html class="<?php echo $body_classes ?>">
+<html class="<?php echo $body_classes ?> backstage">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
