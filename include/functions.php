@@ -2175,6 +2175,9 @@ function check_style_mode() {
     else
         $body_classes .= ' ltr';
 
+    if (file_exists('img/header.png') || file_exists('img/header.jpg')
+        $body_classes .= ' bkg';
+
     if (file_exists('img/header.png'))
         $body_classes .= ' bkg-png';
     elseif (file_exists('img/header.jpg'))
