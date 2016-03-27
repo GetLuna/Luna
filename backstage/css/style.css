@@ -95,22 +95,24 @@ th {
 }
 
 /* Header customization */
+.bkg .jumboheader,
+.bkg .navbar,
+.bkg .restrict-size {
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .bkg-png .jumboheader,
 .bkg-png .navbar,
 .bkg-png .restrict-size {
     background-image: url('../../img/header.png') !important;
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 .bkg-jpg .jumboheader,
 .bkg-jpg .navbar,
 .bkg-jpg .restrict-size {
     background-image: url('../../img/header.jpg') !important;
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 .restrict-size {
@@ -191,17 +193,13 @@ label .help-block {
     margin-bottom: 0;
 }
 
-.bkg-png .navbar,
-.bkg-jpg .navbar {
+.bkg .navbar {
     border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-.bkg-png .navbar-inverse .navbar-toggle,
-.bkg-png .navbar-inverse .navbar-toggle:hover,
-.bkg-png .navbar-inverse .navbar-toggle:focus,
-.bkg-jpg .navbar-inverse .navbar-toggle,
-.bkg-jpg .navbar-inverse .navbar-toggle:hover,
-.bkg-jpg .navbar-inverse .navbar-toggle:focus {
+.bkg .navbar-inverse .navbar-toggle,
+.bkg .navbar-inverse .navbar-toggle:hover,
+.bkg .navbar-inverse .navbar-toggle:focus {
     background: none !important;
 }
 

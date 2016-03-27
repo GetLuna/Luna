@@ -22,6 +22,14 @@ if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour
 	$body_classes = 'night';
 else
 	$body_classes = 'normal';
+    
+if (__('Direction of language', 'luna') == 'rtl')
+    $body_classes .= ' rtl';
+else
+    $body_classes .= ' ltr';
+
+if (file_exists('../img/header.png') || file_exists('../img/header.jpg')
+    $body_classes .= ' bkg';
 
 if (file_exists('../img/header.png'))
     $body_classes .= ' bkg-png';

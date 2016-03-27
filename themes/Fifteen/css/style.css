@@ -125,15 +125,22 @@ body {
 }
 
 /* Header customization */
+.bkg .jumbotron.profile,
+.bkg .navbar,
+.bkg .heading,
+.bkg.enforce body,
+.bkg.bkg-force .title-block-primary {
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .bkg-png .jumbotron.profile,
 .bkg-png .navbar,
 .bkg-png .heading,
 .bkg-png.enforce body,
 .bkg-png.bkg-force .title-block-primary {
     background-image: url('../../../img/header.png') !important;
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 .bkg-jpg .jumbotron.profile,
@@ -142,22 +149,15 @@ body {
 .bkg-jpg.enforce body,
 .bkg-jpg.bkg-force .title-block-primary {
     background-image: url('../../../img/header.jpg') !important;
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
-.bkg-png .navbar,
-.bkg-jpg .navbar {
+.bkg .navbar {
     border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-.bkg-png .navbar-inverse .navbar-toggle,
-.bkg-png .navbar-inverse .navbar-toggle:hover,
-.bkg-png .navbar-inverse .navbar-toggle:focus,
-.bkg-jpg .navbar-inverse .navbar-toggle,
-.bkg-jpg .navbar-inverse .navbar-toggle:hover,
-.bkg-jpg .navbar-inverse .navbar-toggle:focus {
+.bkg .navbar-inverse .navbar-toggle,
+.bkg .navbar-inverse .navbar-toggle:hover,
+.bkg .navbar-inverse .navbar-toggle:focus {
     background: none !important;
 }
 
