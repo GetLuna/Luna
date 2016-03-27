@@ -1029,7 +1029,14 @@ a.label-new {
 	font-size: 30px;
 	font-weight: 100;
     line-height: 1.4;
+    margin-top: 0;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.release-notes h2 small {
+	font-size: 20px;
+	font-weight: 100;
+    color: #aaa;
 }
 
 .release-notes {
@@ -1048,7 +1055,7 @@ a.label-new {
 
 .release-notes .meta {
     color: #808080;
-    margin-top: 2.6em !important;
+    margin-top: 1.3em !important;
     float: right;
 }
 
