@@ -1,10 +1,8 @@
 <?php
 require ('header.php');
-
-$body_classes = check_style_mode();
 ?>
 <!DOCTYPE html>
-<html class="<?php echo $body_classes ?>">
+<html class="<?php echo check_style_mode() ?>">
 	<head>
 		<?php load_meta(); ?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">

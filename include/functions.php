@@ -2169,6 +2169,11 @@ function check_style_mode() {
 
 	if ($luna_user['enforce_accent'] == 1)
 		$body_classes .= ' enforce';
+    
+    if (__('Direction of language', 'luna') == 'rtl')
+        $body_classes .= ' rtl';
+    else
+        $body_classes .= ' ltr';
 
     if (file_exists('img/header.png'))
         $body_classes .= ' bkg-png';
