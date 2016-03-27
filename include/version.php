@@ -8,7 +8,7 @@
 class Version {
 	// See http://getluna.org/docs/version.php for more info
 	const LUNA_VERSION = '2.0-alpha.4.2';
-	const LUNA_CORE_VERSION = '2.0.5542';
+	const LUNA_CORE_VERSION = '2.0.5547';
 	const LUNA_CORE_REVISION = '200a42';
 	const LUNA_CODE_NAME = 'Emerald';
 
