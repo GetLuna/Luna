@@ -228,10 +228,7 @@ function draw_threads_list() {
 			if (is_null($cur_thread['moved_to'])) {
 				$thread_id = $cur_thread['id'];
 
-				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_commenter_id'] > '1')
-					$last_commenter = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_commenter_id'].'">'.luna_htmlspecialchars($cur_thread['last_commenter']).'</a></span>';
-				else
-					$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_commenter']).'</span>';
+				$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_commenter']).'</span>';
 			} else {
 				$last_commenter = '';
 				$thread_id = $cur_thread['moved_to'];
@@ -513,10 +510,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 			if (is_null($cur_thread['moved_to'])) {
 				$thread_id = $cur_thread['id'];
 
-				if ($luna_user['g_view_users'] == '1' && $cur_thread['last_commenter_id'] > '1')
-					$last_commenter = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_thread['last_commenter_id'].'">'.luna_htmlspecialchars($cur_thread['last_commenter']).'</a></span>';
-				else
-					$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_commenter']).'</span>';
+				$last_commenter = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_thread['last_commenter']).'</span>';
 
 				foreach ($luna_forums as $cur_forum) {
 					if ($cur_thread['forum_id'] == $cur_forum['id']) {
@@ -1023,10 +1017,7 @@ function draw_search_results() {
 			else
 				$subject_multipage = null;
 
-			if ($cur_search['last_commenter_id'] > '1' && $luna_user['g_view_users'] == '1')
-				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_comment_id'].'#p'.$cur_search['last_comment_id'].'">'.format_time($cur_search['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_commenter_id'].'">'.luna_htmlspecialchars($cur_search['last_commenter']).'</a>';
-			else
-				$last_commenter = '<a href="thread.php?pid='.$cur_search['last_comment_id'].'#p'.$cur_search['last_comment_id'].'">'.format_time($cur_search['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_commenter']);
+			$last_commenter = '<a href="thread.php?pid='.$cur_search['last_comment_id'].'#p'.$cur_search['last_comment_id'].'">'.format_time($cur_search['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_commenter']);
 
             // Load cached forums
             if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
