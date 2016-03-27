@@ -20,6 +20,14 @@ body {
 	background-color: #e8e8e8;
 }
 
+body.ltr {
+    direction: ltr;
+}
+
+body.rtl {
+    direction: rtl;
+}
+
 td,
 th {
 	vertical-align: middle !important;

@@ -109,6 +109,14 @@ body {
 	}
 }
 
+body.ltr {
+    direction: ltr;
+}
+
+body.rtl {
+    direction: rtl;
+}
+
 /* General styles */
 * {
 	border-radius: 0 !important;
