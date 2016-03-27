@@ -41,11 +41,6 @@ if (isset($_POST['form_sent'])) {
 		'mailing_list'			=> luna_trim($_POST['form']['mailing_list']),
 		'cookie_bar'			=> isset($_POST['form']['cookie_bar']) ? '1' : '0',
 		'cookie_bar_url'		=> luna_trim($_POST['form']['cookie_bar_url']),
-		'avatars'				=> isset($_POST['form']['avatars']) ? '1' : '0',
-		'avatars_dir'			=> luna_trim($_POST['form']['avatars_dir']),
-		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
-		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
-		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
 		'announcement'			=> isset($_POST['form']['announcement']) ? '1' : '0',
 		'announcement_title'	=> luna_trim($_POST['form']['announcement_title']),
 		'announcement_type'		=> luna_trim($_POST['form']['announcement_type']),
@@ -95,10 +90,6 @@ if (isset($_POST['form_sent'])) {
 
 	if ($form['mailing_list'] != '')
 		$form['mailing_list'] = strtolower(preg_replace('%\s%S', '', $form['mailing_list']));
-
-	// Make sure avatars_dir doesn't end with a slash
-	if (substr($form['avatars_dir'], -1) == '/')
-		$form['avatars_dir'] = substr($form['avatars_dir'], 0, -1);
 
 	// Change or enter a SMTP password
 	if (isset($_POST['form']['smtp_change_pass'])) {

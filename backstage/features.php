@@ -48,7 +48,16 @@ if (isset($_POST['form_sent'])) {
 		'sig_all_caps'			=> isset($_POST['form']['sig_all_caps']) ? '1' : '0',
 		'sig_length'			=> luna_trim($_POST['form']['sig_length']),
 		'sig_lines'				=> luna_trim($_POST['form']['sig_lines']),
+		'avatars'				=> isset($_POST['form']['avatars']) ? '1' : '0',
+		'avatars_dir'			=> luna_trim($_POST['form']['avatars_dir']),
+		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
+		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
+		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
 	);
+
+	// Make sure avatars_dir doesn't end with a slash
+	if (substr($form['avatars_dir'], -1) == '/')
+		$form['avatars_dir'] = substr($form['avatars_dir'], 0, -1);
 
 	foreach ($form as $key => $input) {
 		// Only update values that have changed
