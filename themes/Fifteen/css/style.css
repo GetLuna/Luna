@@ -537,6 +537,7 @@ hr {
 	
 .dropdown-menu > li > a {
     padding: 10px 15px;
+    white-space: normal;
 }
 
 @media (max-width:767px) {
