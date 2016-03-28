@@ -125,7 +125,8 @@ if (!isset($_POST['form_sent'])) {
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
 	$title = Version::LUNA_CODE_NAME;
-	$description = __('You can do anything', 'luna');
+	$slogan = __('You can do anything', 'luna');
+	$description = NULL;
 	$default_lang = $install_lang;
 	$default_style = Installer::DEFAULT_STYLE;
 } else {
@@ -140,7 +141,8 @@ if (!isset($_POST['form_sent'])) {
 	$password1 = luna_trim($_POST['req_password1']);
 	$password2 = luna_trim($_POST['req_password2']);
 	$title = luna_trim($_POST['req_title']);
-	$description = luna_trim($_POST['desc']);
+	$slogan = luna_trim($_POST['slogan']);
+	$description = luna_trim($_POST['description']);
 	$base_url = luna_trim($_POST['req_base_url']);
 	$default_lang = luna_trim($_POST['req_default_lang']);
 	$default_style = luna_trim($_POST['req_default_style']);
@@ -364,15 +366,21 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Board title', 'luna') ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Title', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Slogan', 'luna') ?></label>
 								<div class="col-sm-9">
-									<input id="desc" type="text" class="form-control" name="desc" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
+									<input id="slogan" type="text" class="form-control" name="slogan" value="<?php echo luna_htmlspecialchars($slogan) ?>" maxlength="255" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php _e('Description', 'luna') ?></label>
+								<div class="col-sm-9">
+									<input id="description" type="text" class="form-control" name="description" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -434,7 +442,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	$avatars = in_array(strtolower(@ini_get('file_uploads')), array('on', 'true', '1'));
 
 	// Create the tables
-	$db = Installer::create_database($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $title, $description, $default_lang, $default_style, $email, $avatars, $base_url);
+	$db = Installer::create_database($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $title, $slogan, $description, $default_lang, $default_style, $email, $avatars, $base_url);
 
 	// Insert some other default data
 	Installer::insert_default_groups(); // groups

@@ -26,7 +26,8 @@ if (isset($_POST['form_sent'])) {
 
 	$form = array(
 		'board_title'			=> luna_trim($_POST['form']['board_title']),
-		'board_desc'			=> luna_trim($_POST['form']['board_desc']),
+		'board_slogan'			=> luna_trim($_POST['form']['board_slogan']),
+		'board_description'   	=> luna_trim($_POST['form']['board_description']),
 		'default_lang'			=> luna_trim($_POST['form']['default_lang']),
 		'board_tags'			=> luna_trim($_POST['form']['board_tags']),
 		'base_url'				=> luna_trim($_POST['form']['base_url']),
@@ -241,9 +242,15 @@ if (isset($_GET['saved']))
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Slogan', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="form[board_slogan]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Description', 'luna') ?></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
+                                <input type="text" class="form-control" name="form[board_description]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_description']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">

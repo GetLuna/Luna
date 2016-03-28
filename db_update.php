@@ -700,6 +700,8 @@ switch ($stage) {
 		build_config(2, 'o_allow_banned_email', 'p_allow_banned_email');
 		build_config(2, 'o_allow_dupe_email', 'p_allow_dupe_email');
 		build_config(2, 'o_force_guest_email', 'p_force_guest_email');
+		build_config(2, 'o_board_slogan', 'o_board_desc');
+		build_config(1, 'o_board_description', 'NULL');
         
 		$db->drop_field('users', 'style') or error('Unable to drop style field', __FILE__, __LINE__, $db->error());
 		$db->alter_field('users', 'password', 'VARCHAR(512)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());

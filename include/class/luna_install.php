@@ -184,7 +184,7 @@ class Installer {
 		}
 	}
 
-	public static function create_database($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $title, $description, $default_lang, $default_style, $email, $avatars, $base_url) {
+	public static function create_database($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $title, $slogan, $description, $default_lang, $default_style, $email, $avatars, $base_url) {
 
 		// Validate prefix
 		if (strlen($db_prefix) > 0 && (!preg_match('%^[a-zA-Z_][a-zA-Z0-9_]*$%', $db_prefix) || strlen($db_prefix) > 40))
@@ -1430,7 +1430,8 @@ class Installer {
 			'o_searchindex_revision'	=> Version::LUNA_SI_VERSION,
 			'o_parser_revision'			=> Version::LUNA_PARSER_VERSION,
 			'o_board_title'				=> $title,
-			'o_board_desc'				=> $description,
+			'o_board_slogan'			=> $slogan,
+			'o_board_description'		=> $description,
 			'o_board_tags'				=> NULL,
 			'o_timezone'				=> 'UTC',
 			'o_time_format'				=> __('H:i', 'luna'),
