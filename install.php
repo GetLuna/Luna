@@ -432,10 +432,8 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 							</div>
 						</fieldset>
 					</div>
-					<div class="panel-footer">
-						<button type="submit" class="btn btn-primary" name="start"><i class="fa fa-fw fa-check"></i> <?php _e('Start install', 'luna') ?></button>
-					</div>
 				</div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" name="start"><i class="fa fa-fw fa-check"></i> <?php _e('Start install', 'luna') ?></button>
 			</form>
 		</div>
 	</body>
