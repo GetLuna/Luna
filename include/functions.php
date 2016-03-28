@@ -2132,7 +2132,7 @@ function load_css() {
 // Get the meta tags that are required
 //
 function load_meta() {
-	global $id, $page_title, $p, $luna_config;
+	global $id, $page_title, $p, $luna_config, $meta_description;
 
 	// We need these tags no matter what
 	echo '<meta charset="utf-8">'."\n";
@@ -2141,6 +2141,11 @@ function load_meta() {
 
 	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
     echo '<link rel="icon" href="/favicon.png" />';
+
+	if ($meta_description != '')
+		echo '<meta name="description" content="'.$meta_description.'">'."\n";
+    else if ($luna_config['o_board_description'] != '')
+		echo '<meta name="description" content="'.$luna_config['o_board_description'].'">'."\n";
 
 	if (!empty($luna_config['o_board_tags']))
 		echo '<meta name="keywords" content="'.$luna_config['o_board_tags'].'">'."\n";

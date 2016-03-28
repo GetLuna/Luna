@@ -121,6 +121,7 @@ if (!$luna_user['is_guest'] && $luna_config['o_forum_subscriptions'] == '1') {
 $forum_id = $id;
 $footer_style = 'viewforum';
 
+$meta_description = $cur_forum['forum_desc'];
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
 define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'viewforum');
