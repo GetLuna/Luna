@@ -66,7 +66,11 @@ if ($action == 'disable_cookiebar') {
 	redirect('index.php');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
+if ($luna_config['o_board_slogan'] == '')
+    $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
+else
+    $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' &middot '.$luna_config['o_board_slogan']);
+
 define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'index');
 $footer_style = 'index';
