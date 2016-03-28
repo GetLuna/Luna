@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.4\n"
-"POT-Creation-Date: 2016-03-27 23:28+0200\n"
-"PO-Revision-Date: 2016-03-27 23:28+0200\n"
+"POT-Creation-Date: 2016-03-28 10:54+0200\n"
+"PO-Revision-Date: 2016-03-28 10:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: backstage/moderate.php:297 backstage/moderate.php:472
 #: backstage/moderate.php:595 backstage/moderate.php:680
 #: backstage/moderate.php:834 backstage/prune.php:89 backstage/prune.php:211
-#: backstage/ranks.php:85 backstage/reports.php:42 backstage/settings.php:218
+#: backstage/ranks.php:85 backstage/reports.php:42 backstage/settings.php:219
 #: backstage/update.php:132 backstage/users.php:34 backstage/users.php:109
 #: backstage/users.php:280 backstage/users.php:422 backstage/users.php:537
 #: backstage/users.php:649 backstage/users.php:747 include/functions.php:1051
@@ -102,7 +102,7 @@ msgid "Luna now has a Dutch translation included by default"
 msgstr ""
 
 #: backstage/about.php:44 backstage/about.php:45 backstage/about.php:46
-#: backstage/settings.php:667
+#: backstage/settings.php:674
 msgid "System"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 
 #: backstage/about.php:49 backstage/about.php:50 backstage/about.php:51
 #: backstage/about.php:52 backstage/about.php:53 backstage/about.php:54
-#: backstage/about.php:55
+#: backstage/about.php:55 backstage/about.php:56
 msgid "Improved"
 msgstr ""
 
@@ -162,61 +162,66 @@ msgid "Improved Backstage UI and night mode"
 msgstr ""
 
 #: backstage/about.php:55
-msgid "Multiple improvements upon accessibility"
-msgstr ""
-
-#: backstage/about.php:56 backstage/about.php:57 backstage/about.php:58
-#: backstage/about.php:59 backstage/about.php:60
-msgid "Removed"
+msgid "Multiple improvements on accessibility"
 msgstr ""
 
 #: backstage/about.php:56
-msgid "The editor no longer has an emoticon menu"
+msgid ""
+"Luna now provides a description meta tag to prevent weird search results"
+msgstr ""
+
+#: backstage/about.php:57 backstage/about.php:58 backstage/about.php:59
+#: backstage/about.php:60 backstage/about.php:61
+msgid "Removed"
 msgstr ""
 
 #: backstage/about.php:57
-msgid "The code base no longer supports PHP 5.2 anymore"
+msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
 #: backstage/about.php:58
-msgid "Notifications can no longer be marked as read/trashed from the fly-out"
+msgid "The code base no longer supports PHP 5.2 anymore"
 msgstr ""
 
 #: backstage/about.php:59
-msgid "You can no longer manage the database from the Backstage"
+msgid "Notifications can no longer be marked as read/trashed from the fly-out"
 msgstr ""
 
 #: backstage/about.php:60
+msgid "You can no longer manage the database from the Backstage"
+msgstr ""
+
+#: backstage/about.php:61
 msgid "Tools to add new users have been removed"
 msgstr ""
 
-#: backstage/about.php:61
+#: backstage/about.php:62
 msgid "Fixed"
 msgstr ""
 
-#: backstage/about.php:61
+#: backstage/about.php:62
 msgid "Fixes 26 bugs"
 msgstr ""
 
-#: backstage/about.php:67
+#: backstage/about.php:68
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
 msgstr ""
 
-#: backstage/about.php:73
+#: backstage/about.php:74
 msgid "users"
 msgstr ""
 
-#: backstage/about.php:74
+#: backstage/about.php:75
 msgid "threads"
 msgstr ""
 
-#: backstage/about.php:75 themes/Fifteen/objects/comment.php:9
+#: backstage/about.php:76 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr ""
 
-#: backstage/about.php:76
+#: backstage/about.php:77
 msgid "views"
 msgstr ""
 
@@ -231,24 +236,24 @@ msgid ""
 msgstr ""
 
 #: backstage/appearance.php:80 backstage/features.php:82
-#: backstage/settings.php:165 settings.php:459
+#: backstage/settings.php:166 settings.php:459
 msgid ""
 "The selected file was too large to upload. The server didn't allow the "
 "upload."
 msgstr ""
 
 #: backstage/appearance.php:84 backstage/features.php:86
-#: backstage/settings.php:169 settings.php:463
+#: backstage/settings.php:170 settings.php:463
 msgid "The selected file was only partially uploaded. Please try again."
 msgstr ""
 
 #: backstage/appearance.php:88 backstage/features.php:90
-#: backstage/settings.php:173 settings.php:471
+#: backstage/settings.php:174 settings.php:471
 msgid "PHP was unable to save the uploaded file to a temporary location."
 msgstr ""
 
 #: backstage/appearance.php:94 backstage/features.php:96
-#: backstage/settings.php:179 settings.php:447 settings.php:467
+#: backstage/settings.php:180 settings.php:447 settings.php:467
 #: settings.php:477
 msgid "You did not select a file for upload."
 msgstr ""
@@ -260,14 +265,14 @@ msgid ""
 msgstr ""
 
 #: backstage/appearance.php:107 backstage/features.php:109
-#: backstage/settings.php:192 settings.php:494
+#: backstage/settings.php:193 settings.php:494
 msgid ""
 "The server was unable to save the uploaded file. Please contact the forum "
 "administrator at"
 msgstr ""
 
 #: backstage/appearance.php:130 backstage/features.php:120
-#: backstage/settings.php:203 settings.php:522
+#: backstage/settings.php:204 settings.php:522
 msgid "An unknown error occurred. Please try again."
 msgstr ""
 
@@ -278,7 +283,7 @@ msgstr ""
 
 #: backstage/appearance.php:152 backstage/board.php:516
 #: backstage/features.php:142 backstage/index.php:80
-#: backstage/maintenance.php:171 backstage/settings.php:227
+#: backstage/maintenance.php:171 backstage/settings.php:228
 #: backstage/update.php:141 backstage/users.php:757
 msgid "Your settings have been saved."
 msgstr ""
@@ -296,11 +301,11 @@ msgstr ""
 #: backstage/features.php:396 backstage/features.php:434
 #: backstage/features.php:505 backstage/groups.php:48 backstage/groups.php:590
 #: backstage/index.php:169 backstage/maintenance.php:178 backstage/menu.php:101
-#: backstage/ranks.php:124 backstage/settings.php:232
-#: backstage/settings.php:291 backstage/settings.php:349
-#: backstage/settings.php:405 backstage/settings.php:447
-#: backstage/settings.php:491 backstage/settings.php:588
-#: backstage/settings.php:614 backstage/settings.php:667
+#: backstage/ranks.php:124 backstage/settings.php:233
+#: backstage/settings.php:298 backstage/settings.php:356
+#: backstage/settings.php:412 backstage/settings.php:454
+#: backstage/settings.php:498 backstage/settings.php:595
+#: backstage/settings.php:621 backstage/settings.php:674
 #: backstage/update.php:148 backstage/users.php:304
 #: themes/Fifteen/me-modals.php:17 themes/Fifteen/me-modals.php:43
 #: themes/Fifteen/settings.php:36 themes/Fifteen/settings.php:494
@@ -319,7 +324,7 @@ msgstr ""
 msgid "Allow users to change the night mode settings."
 msgstr ""
 
-#: backstage/appearance.php:199 backstage/settings.php:318
+#: backstage/appearance.php:199 backstage/settings.php:325
 #: themes/Fifteen/settings.php:436 themes/Fifteen/settings.php:454
 msgid "Default"
 msgstr ""
@@ -484,9 +489,9 @@ msgstr ""
 #: backstage/moderate.php:727 backstage/moderate.php:743
 #: backstage/moderate.php:759 backstage/moderate.php:774
 #: backstage/moderate.php:790 backstage/moderate.php:806 backstage/ranks.php:48
-#: backstage/settings.php:81 backstage/settings.php:120
-#: backstage/settings.php:123 backstage/settings.php:126
-#: backstage/settings.php:129 backstage/users.php:19 comment.php:19
+#: backstage/settings.php:82 backstage/settings.php:121
+#: backstage/settings.php:124 backstage/settings.php:127
+#: backstage/settings.php:130 backstage/users.php:19 comment.php:19
 #: comment.php:28 comment.php:462 comment.php:466 comment.php:525 delete.php:18
 #: delete.php:25 edit.php:19 edit.php:24 extern.php:280 extern.php:500
 #: inbox.php:97 misc.php:43 misc.php:56 misc.php:60 misc.php:148 misc.php:167
@@ -551,7 +556,7 @@ msgstr ""
 #: backstage/bans.php:101 backstage/bans.php:350 backstage/bans.php:414
 #: backstage/bans.php:428 backstage/bans.php:469 backstage/login.php:21
 #: backstage/users.php:127 backstage/users.php:683 backstage/users.php:770
-#: backstage/users.php:834 install.php:189 install.php:306 install.php:333
+#: backstage/users.php:834 install.php:191 install.php:308 install.php:335
 #: register.php:245 themes/Fifteen/index.php:56 themes/Fifteen/login.php:13
 #: themes/Fifteen/register.php:20 themes/Fifteen/settings.php:53
 #: themes/Sunrise/index.php:56
@@ -580,12 +585,12 @@ msgid "here"
 msgstr ""
 
 #: backstage/bans.php:114 backstage/bans.php:351 backstage/bans.php:440
-#: backstage/bans.php:471 backstage/settings.php:472 backstage/users.php:128
+#: backstage/bans.php:471 backstage/settings.php:479 backstage/users.php:128
 #: backstage/users.php:684 backstage/users.php:835 comment.php:529
 #: include/draw_functions.php:85 include/draw_functions.php:642
 #: include/draw_functions.php:644 include/draw_functions.php:674
 #: include/draw_functions.php:816 include/draw_functions.php:818
-#: include/draw_functions.php:844 install.php:192 install.php:352
+#: include/draw_functions.php:844 install.php:194 install.php:354
 #: register.php:245 themes/Fifteen/comment.php:36 themes/Fifteen/login.php:42
 #: themes/Fifteen/register.php:41 themes/Fifteen/settings.php:67 thread.php:127
 msgid "Email"
@@ -667,7 +672,7 @@ msgstr ""
 
 #: backstage/bans.php:354 backstage/bans.php:446 backstage/index.php:125
 #: backstage/reports.php:61 backstage/reports.php:118
-#: backstage/settings.php:339 backstage/settings.php:554 comment.php:529
+#: backstage/settings.php:346 backstage/settings.php:561 comment.php:529
 #: edit.php:130 misc.php:134 new_inbox.php:390 thread.php:123 viewinbox.php:204
 msgid "Message"
 msgstr ""
@@ -779,7 +784,7 @@ msgstr ""
 msgid "Forum name"
 msgstr ""
 
-#: backstage/board.php:233 backstage/settings.php:244
+#: backstage/board.php:233 backstage/settings.php:251 install.php:381
 msgid "Description"
 msgstr ""
 
@@ -905,7 +910,7 @@ msgstr ""
 
 #: backstage/board.php:542 backstage/board.php:561 backstage/board.php:660
 #: backstage/menu.php:83 backstage/menu.php:106 comment.php:535
-#: include/draw_functions.php:84 install.php:188 install.php:300
+#: include/draw_functions.php:84 install.php:190 install.php:302
 #: themes/Fifteen/comment.php:35 thread.php:125
 msgid "Name"
 msgstr ""
@@ -979,7 +984,7 @@ msgstr ""
 msgid "No censor words in list."
 msgstr ""
 
-#: backstage/features.php:105 backstage/settings.php:188
+#: backstage/features.php:105 backstage/settings.php:189
 msgid ""
 "The file you tried to upload is not of an allowed type. Only png is allowed."
 msgstr ""
@@ -1172,7 +1177,7 @@ msgstr ""
 msgid "Allow a subject to contain only capital letters."
 msgstr ""
 
-#: backstage/features.php:419 include/class/luna_install.php:1572
+#: backstage/features.php:419 include/class/luna_install.php:1573
 msgid "Guests"
 msgstr ""
 
@@ -1474,8 +1479,8 @@ msgid "Time users have to wait between comments"
 msgstr ""
 
 #: backstage/groups.php:321 backstage/groups.php:330 backstage/groups.php:340
-#: backstage/groups.php:349 backstage/settings.php:386
-#: backstage/settings.php:396
+#: backstage/groups.php:349 backstage/settings.php:393
+#: backstage/settings.php:403
 msgid "seconds"
 msgstr ""
 
@@ -1511,7 +1516,7 @@ msgid ""
 msgstr ""
 
 #: backstage/groups.php:405 backstage/ranks.php:21 backstage/ranks.php:55
-#: backstage/settings.php:65
+#: backstage/settings.php:66
 msgid "You must enter a title."
 msgstr ""
 
@@ -1576,7 +1581,7 @@ msgid "Manage groups"
 msgstr ""
 
 #: backstage/header.php:26 backstage/header.php:51 include/functions.php:2127
-#: include/functions.php:2176
+#: include/functions.php:2181
 msgid "Direction of language"
 msgstr "ltr"
 
@@ -1585,7 +1590,7 @@ msgstr "ltr"
 msgid "Backstage"
 msgstr ""
 
-#: backstage/header.php:83 include/general_functions.php:45 install.php:200
+#: backstage/header.php:83 include/general_functions.php:45 install.php:202
 msgid "is a required field in this form."
 msgstr ""
 
@@ -1687,7 +1692,7 @@ msgstr ""
 msgid "The file install.php still exists, but should be removed."
 msgstr ""
 
-#: backstage/index.php:203 db_update.php:726 db_update.php:811
+#: backstage/index.php:203 db_update.php:728 db_update.php:813
 #: include/draw_functions.php:289 include/draw_functions.php:354
 #: include/draw_functions.php:435
 msgid "comment"
@@ -1747,7 +1752,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: backstage/login.php:24 install.php:312 install.php:339 register.php:245
+#: backstage/login.php:24 install.php:314 install.php:341 register.php:245
 #: settings.php:432 themes/Fifteen/index.php:57 themes/Fifteen/login.php:14
 #: themes/Fifteen/me-modals.php:12 themes/Fifteen/register.php:27
 #: themes/Fifteen/settings.php:60 themes/Sunrise/index.php:57
@@ -1777,7 +1782,7 @@ msgid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
 #: backstage/maintenance.php:129 db_update.php:181
-#: include/class/luna_install.php:1498
+#: include/class/luna_install.php:1499
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -1955,7 +1960,7 @@ msgid "New subject"
 msgstr ""
 
 #: backstage/moderate.php:353 backstage/users.php:176
-#: include/class/luna_install.php:1551 include/functions.php:447
+#: include/class/luna_install.php:1552 include/functions.php:447
 #: include/functions.php:891 search.php:222 settings.php:676
 msgid "Guest"
 msgstr ""
@@ -2121,8 +2126,8 @@ msgstr ""
 msgid "The number of days old a notification must be to be pruned"
 msgstr ""
 
-#: backstage/prune.php:235 backstage/settings.php:314 install.php:186
-#: install.php:277
+#: backstage/prune.php:235 backstage/settings.php:321 install.php:188
+#: install.php:279
 msgid "Type"
 msgstr ""
 
@@ -2279,366 +2284,370 @@ msgstr ""
 msgid "There are no read reports."
 msgstr ""
 
-#: backstage/settings.php:74
+#: backstage/settings.php:75
 msgid ""
 "Your installation does not support automatic conversion of internationalized "
 "domain names. As your base URL contains special characters, you "
 "<strong>must</strong> use an online converter."
 msgstr ""
 
-#: backstage/settings.php:102 backstage/settings.php:142
+#: backstage/settings.php:103 backstage/settings.php:143
 msgid ""
 "You need to enter the SMTP password twice exactly the same to change it."
 msgstr ""
 
-#: backstage/settings.php:108
+#: backstage/settings.php:109
 msgid "Enter your announcement here."
 msgstr ""
 
-#: backstage/settings.php:115
+#: backstage/settings.php:116
 msgid "Enter your rules here."
 msgstr ""
 
-#: backstage/settings.php:132
+#: backstage/settings.php:133
 msgid ""
 "The value of \"Timeout online\" must be smaller than the value of \"Timeout "
 "visit\"."
 msgstr ""
 
-#: backstage/settings.php:218
+#: backstage/settings.php:219
 msgid "Global settings"
 msgstr ""
 
-#: backstage/settings.php:232
+#: backstage/settings.php:233
 msgid "Branding"
 msgstr ""
 
-#: backstage/settings.php:238 backstage/settings.php:308
-#: backstage/users.php:782 profile.php:41 themes/Fifteen/profile.php:34
-#: themes/Fifteen/settings.php:85
+#: backstage/settings.php:239 backstage/settings.php:315
+#: backstage/users.php:782 install.php:369 profile.php:41
+#: themes/Fifteen/profile.php:34 themes/Fifteen/settings.php:85
 msgid "Title"
 msgstr ""
 
-#: backstage/settings.php:250 install.php:385
+#: backstage/settings.php:245 install.php:375
+msgid "Slogan"
+msgstr ""
+
+#: backstage/settings.php:257 install.php:393
 msgid "Default language"
 msgstr ""
 
-#: backstage/settings.php:269
+#: backstage/settings.php:276
 msgid "Tags"
 msgstr ""
 
-#: backstage/settings.php:269
+#: backstage/settings.php:276
 msgid "Add some words that describe your board, separated by a comma"
 msgstr ""
 
-#: backstage/settings.php:276
+#: backstage/settings.php:283
 msgid "Favicon"
 msgstr ""
 
-#: backstage/settings.php:276
+#: backstage/settings.php:283
 msgid "You can upload a favicon here to show in the browser"
 msgstr ""
 
-#: backstage/settings.php:280
+#: backstage/settings.php:287
 msgid "Default favicon"
 msgstr ""
 
-#: backstage/settings.php:291 backstage/settings.php:296
-#: include/class/luna_install.php:1490
+#: backstage/settings.php:298 backstage/settings.php:303
+#: include/class/luna_install.php:1491
 msgid "Announcement"
 msgstr ""
 
-#: backstage/settings.php:301
+#: backstage/settings.php:308
 msgid "Enable this to display the below message in the board."
 msgstr ""
 
-#: backstage/settings.php:308
+#: backstage/settings.php:315
 msgid "You can leave this empty if there is no title"
 msgstr ""
 
-#: backstage/settings.php:322 include/backstage_functions.php:55
+#: backstage/settings.php:329 include/backstage_functions.php:55
 #: include/functions.php:1023 include/functions.php:1051
 #: include/functions.php:1059
 msgid "Info"
 msgstr ""
 
-#: backstage/settings.php:326
+#: backstage/settings.php:333
 msgid "Success"
 msgstr ""
 
-#: backstage/settings.php:330
+#: backstage/settings.php:337
 msgid "Warning"
 msgstr ""
 
-#: backstage/settings.php:334
+#: backstage/settings.php:341
 msgid "Danger"
 msgstr ""
 
-#: backstage/settings.php:349
+#: backstage/settings.php:356
 msgid "Time and timeouts"
 msgstr ""
 
-#: backstage/settings.php:354 themes/Fifteen/settings.php:426
+#: backstage/settings.php:361 themes/Fifteen/settings.php:426
 msgid "Time format"
 msgstr ""
 
-#: backstage/settings.php:354 backstage/settings.php:360
+#: backstage/settings.php:361 backstage/settings.php:367
 #, php-format
 msgid "Now: %s. See %s for more info"
 msgstr ""
 
-#: backstage/settings.php:354 backstage/settings.php:360
+#: backstage/settings.php:361 backstage/settings.php:367
 msgid "PHP manual"
 msgstr ""
 
-#: backstage/settings.php:360 themes/Fifteen/settings.php:444
+#: backstage/settings.php:367 themes/Fifteen/settings.php:444
 msgid "Date format"
 msgstr ""
 
-#: backstage/settings.php:366
+#: backstage/settings.php:373
 msgid "Default time zone"
 msgstr ""
 
-#: backstage/settings.php:382
+#: backstage/settings.php:389
 msgid "Visit timeout"
 msgstr ""
 
-#: backstage/settings.php:382
+#: backstage/settings.php:389
 msgid "Time before a visit ends"
 msgstr ""
 
-#: backstage/settings.php:391
+#: backstage/settings.php:398
 msgid "Online timeout"
 msgstr ""
 
-#: backstage/settings.php:391
+#: backstage/settings.php:398
 msgid "Time before someone isn't online anymore"
 msgstr ""
 
-#: backstage/settings.php:405
+#: backstage/settings.php:412
 msgid "Syndication"
 msgstr ""
 
-#: backstage/settings.php:410
+#: backstage/settings.php:417
 msgid "Default feed type"
 msgstr ""
 
-#: backstage/settings.php:414
+#: backstage/settings.php:421
 msgid "None"
 msgstr ""
 
-#: backstage/settings.php:418
+#: backstage/settings.php:425
 msgid "RSS"
 msgstr ""
 
-#: backstage/settings.php:422
+#: backstage/settings.php:429
 msgid "Atom"
 msgstr ""
 
-#: backstage/settings.php:427
+#: backstage/settings.php:434
 msgid "Duration to cache feeds"
 msgstr ""
 
-#: backstage/settings.php:427
+#: backstage/settings.php:434
 msgid "Reduce sources by caching feeds"
 msgstr ""
 
-#: backstage/settings.php:430
+#: backstage/settings.php:437
 msgid "Don't cache"
 msgstr ""
 
-#: backstage/settings.php:436
+#: backstage/settings.php:443
 #, php-format
 msgid "%d minutes"
 msgstr ""
 
-#: backstage/settings.php:447
+#: backstage/settings.php:454
 msgid "E-mail"
 msgstr ""
 
-#: backstage/settings.php:452
+#: backstage/settings.php:459
 msgid "Admin email"
 msgstr ""
 
-#: backstage/settings.php:458
+#: backstage/settings.php:465
 msgid "Webmaster email"
 msgstr ""
 
-#: backstage/settings.php:458
+#: backstage/settings.php:465
 msgid "The email where the boards mails will be addressed from"
 msgstr ""
 
-#: backstage/settings.php:464
+#: backstage/settings.php:471
 msgid "Reporting method"
 msgstr ""
 
-#: backstage/settings.php:464
+#: backstage/settings.php:471
 msgid "How should we handle reports?"
 msgstr ""
 
-#: backstage/settings.php:468
+#: backstage/settings.php:475
 msgid "Internal"
 msgstr ""
 
-#: backstage/settings.php:476
+#: backstage/settings.php:483
 msgid "Both"
 msgstr ""
 
-#: backstage/settings.php:481
+#: backstage/settings.php:488
 msgid "Mailing list"
 msgstr ""
 
-#: backstage/settings.php:481
+#: backstage/settings.php:488
 msgid ""
 "A comma separated list of subscribers who get e-mails when new reports are "
 "made"
 msgstr ""
 
-#: backstage/settings.php:491 backstage/settings.php:525
+#: backstage/settings.php:498 backstage/settings.php:532
 msgid "Registration"
 msgstr ""
 
-#: backstage/settings.php:497
+#: backstage/settings.php:504
 msgid "New registrations"
 msgstr ""
 
-#: backstage/settings.php:502
+#: backstage/settings.php:509
 msgid "Allow new users to be made by people."
 msgstr ""
 
-#: backstage/settings.php:508
+#: backstage/settings.php:515
 msgid "Notify people on the mailing list when new user registers.  "
 msgstr ""
 
-#: backstage/settings.php:514
+#: backstage/settings.php:521
 msgid "Verify"
 msgstr ""
 
-#: backstage/settings.php:519
+#: backstage/settings.php:526
 msgid "Send a random password to users to verify their email address.  "
 msgstr ""
 
-#: backstage/settings.php:530
+#: backstage/settings.php:537
 msgid ""
 "Allow users to use a banned email address, mailing list will be warned when "
 "this happens."
 msgstr ""
 
-#: backstage/settings.php:536
+#: backstage/settings.php:543
 msgid ""
 "Allow users to use an email address that is already used, mailing list will "
 "be warned when this happens."
 msgstr ""
 
-#: backstage/settings.php:543 include/class/luna_install.php:1496
+#: backstage/settings.php:550 include/class/luna_install.php:1497
 #: themes/Fifteen/help.php:13 themes/Fifteen/rules.php:13
 msgid "Rules"
 msgstr ""
 
-#: backstage/settings.php:548
+#: backstage/settings.php:555
 msgid ""
 "Require users to agree with the rules. This will enable a \"Rules\" panel in "
 "Help."
 msgstr ""
 
-#: backstage/settings.php:554
+#: backstage/settings.php:561
 msgid ""
 "Enter rules or useful information, required when rules are enabled, in HTML"
 msgstr ""
 
-#: backstage/settings.php:561
+#: backstage/settings.php:568
 msgid "Default email setting"
 msgstr ""
 
-#: backstage/settings.php:561
+#: backstage/settings.php:568
 msgid "Default privacy setting for new registrations"
 msgstr ""
 
-#: backstage/settings.php:566
+#: backstage/settings.php:573
 msgid "Display email address to other users."
 msgstr ""
 
-#: backstage/settings.php:572
+#: backstage/settings.php:579
 msgid "Hide email address but allow form e-mail."
 msgstr ""
 
-#: backstage/settings.php:578
+#: backstage/settings.php:585
 msgid "Hide email address and disallow form email."
 msgstr ""
 
-#: backstage/settings.php:588 backstage/settings.php:593
+#: backstage/settings.php:595 backstage/settings.php:600
 msgid "Cookie bar"
 msgstr ""
 
-#: backstage/settings.php:593 themes/Fifteen/footer.php:105
+#: backstage/settings.php:600 themes/Fifteen/footer.php:105
 msgid "More info"
 msgstr ""
 
-#: backstage/settings.php:598
+#: backstage/settings.php:605
 msgid "Show a bar with information about cookies at the bottom of the page."
 msgstr ""
 
-#: backstage/settings.php:604
+#: backstage/settings.php:611
 msgid "Cookie info URL"
 msgstr ""
 
-#: backstage/settings.php:604
+#: backstage/settings.php:611
 msgid ""
 "Use your own URL for cookie information, by default, we provide our own page"
 msgstr ""
 
-#: backstage/settings.php:614
+#: backstage/settings.php:621
 msgid "SMTP settings"
 msgstr ""
 
-#: backstage/settings.php:620
+#: backstage/settings.php:627
 msgid "SMTP server address"
 msgstr ""
 
-#: backstage/settings.php:620
+#: backstage/settings.php:627
 msgid "The address of an external SMTP server to send emails with"
 msgstr ""
 
-#: backstage/settings.php:626
+#: backstage/settings.php:633
 msgid "SMTP username"
 msgstr ""
 
-#: backstage/settings.php:626
+#: backstage/settings.php:633
 msgid "Username for SMTP server, only if required"
 msgstr ""
 
-#: backstage/settings.php:632
+#: backstage/settings.php:639
 msgid "SMTP password"
 msgstr ""
 
-#: backstage/settings.php:632
+#: backstage/settings.php:639
 msgid "Password and confirmation for SMTP server, only when required"
 msgstr ""
 
-#: backstage/settings.php:637
+#: backstage/settings.php:644
 msgid ""
 "Check this if you want to change or delete the currently stored password."
 msgstr ""
 
-#: backstage/settings.php:652
+#: backstage/settings.php:659
 msgid "SMTP encryption"
 msgstr ""
 
-#: backstage/settings.php:657
+#: backstage/settings.php:664
 msgid ""
 "Encrypts the connection to the SMTP server using SSL, only when required and "
 "supported."
 msgstr ""
 
-#: backstage/settings.php:673
+#: backstage/settings.php:680
 msgid "Root URL"
 msgstr ""
 
-#: backstage/settings.php:680 themes/Fifteen/search.php:16
+#: backstage/settings.php:687 themes/Fifteen/search.php:16
 msgid "Advanced"
 msgstr ""
 
-#: backstage/settings.php:685
+#: backstage/settings.php:692
 msgid ""
 "Gzip output sent to the browser. This will reduce bandwidth usage, but use "
 "some more CPU. This feature requires that PHP is configured with zlib. If "
@@ -3234,25 +3243,25 @@ msgstr ""
 msgid "Update Luna"
 msgstr ""
 
-#: db_update.php:726 db_update.php:759
+#: db_update.php:728 db_update.php:761
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr ""
 
-#: db_update.php:759
+#: db_update.php:761
 msgid "signature"
 msgstr ""
 
-#: db_update.php:811
+#: db_update.php:813
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr ""
 
-#: db_update.php:879
+#: db_update.php:881
 msgid "If this takes to long, the automatic redirect might have failed."
 msgstr ""
 
-#: db_update.php:879
+#: db_update.php:881
 msgid "Click here"
 msgstr ""
 
@@ -3481,51 +3490,51 @@ msgid ""
 "must choose a different table prefix"
 msgstr ""
 
-#: include/class/luna_install.php:1436
+#: include/class/luna_install.php:1437
 msgid "H:i"
 msgstr ""
 
-#: include/class/luna_install.php:1437
+#: include/class/luna_install.php:1438
 msgid "j F Y"
 msgstr ""
 
-#: include/class/luna_install.php:1478
+#: include/class/luna_install.php:1479
 msgid ""
 "Wow, it's great to have you here, welcome and thanks for joining us. We've "
 "set up your account and you're ready to go. Though we like to point out some "
 "actions you might want to do first."
 msgstr ""
 
-#: include/class/luna_install.php:1568
+#: include/class/luna_install.php:1569
 msgid "Administrators"
 msgstr ""
 
-#: include/class/luna_install.php:1568 settings.php:676
+#: include/class/luna_install.php:1569 settings.php:676
 msgid "Administrator"
 msgstr ""
 
-#: include/class/luna_install.php:1570
+#: include/class/luna_install.php:1571
 msgid "Moderators"
 msgstr ""
 
-#: include/class/luna_install.php:1570 settings.php:676
+#: include/class/luna_install.php:1571 settings.php:676
 msgid "Moderator"
 msgstr ""
 
-#: include/class/luna_install.php:1574
+#: include/class/luna_install.php:1575
 msgid "Members"
 msgstr ""
 
-#: include/class/luna_install.php:1603
+#: include/class/luna_install.php:1604
 msgid "New member"
 msgstr ""
 
-#: include/class/luna_install.php:1606 include/functions.php:903
+#: include/class/luna_install.php:1607 include/functions.php:903
 #: settings.php:676
 msgid "Member"
 msgstr ""
 
-#: include/class/luna_install.php:1610
+#: include/class/luna_install.php:1611
 msgid "Welcome to Luna, discover the possibilities!"
 msgstr ""
 
@@ -4015,7 +4024,7 @@ msgstr ""
 msgid "You can do anything"
 msgstr ""
 
-#: install.php:157
+#: install.php:159
 #, php-format
 msgid ""
 "<strong>The cache directory is currently not writable!</strong> In order for "
@@ -4024,7 +4033,7 @@ msgid ""
 "chmod to 0777."
 msgstr ""
 
-#: install.php:161
+#: install.php:163
 #, php-format
 msgid ""
 "<strong>The avatar directory is currently not writable!</strong> If you want "
@@ -4034,124 +4043,120 @@ msgid ""
 "to set the appropriate directory permissions. If in doubt, chmod to 0777."
 msgstr ""
 
-#: install.php:168
+#: install.php:170
 msgid ""
 "PHP needs to have support for either MySQL or SQLite to run Luna to be "
 "installed. Non is available, though"
 msgstr ""
 
-#: install.php:178 install.php:472 install.php:480
+#: install.php:180 install.php:480 install.php:488
 msgid "Luna Installation"
 msgstr ""
 
-#: install.php:187 install.php:294
+#: install.php:189 install.php:296
 msgid "Server hostname"
 msgstr ""
 
-#: install.php:190
+#: install.php:192
 msgid "Administrator password 1"
 msgstr ""
 
-#: install.php:191
+#: install.php:193
 msgid "Administrator password 2"
 msgstr ""
 
-#: install.php:193 install.php:367
+#: install.php:195
 msgid "Board title"
 msgstr ""
 
-#: install.php:194 install.php:379
+#: install.php:196 install.php:387
 msgid "No trailing slash"
 msgstr ""
 
-#: install.php:218
+#: install.php:220
 #, php-format
 msgid "Install Luna %s"
 msgstr ""
 
-#: install.php:223
+#: install.php:225
 msgid "Choose the install script language"
 msgstr ""
 
-#: install.php:228
+#: install.php:230
 msgid "Install language"
 msgstr ""
 
-#: install.php:228
+#: install.php:230
 msgid ""
 "The language used for the installer, the default language for the board can "
 "be set below"
 msgstr ""
 
-#: install.php:247
+#: install.php:249
 msgid "Change language"
 msgstr ""
 
-#: install.php:255
+#: install.php:257
 msgid "The following errors need to be corrected:"
 msgstr ""
 
-#: install.php:272
+#: install.php:274
 msgid "Database setup"
 msgstr ""
 
-#: install.php:277
+#: install.php:279
 msgid "What database do you want to use?"
 msgstr ""
 
-#: install.php:294
+#: install.php:296
 msgid "Where's the server?"
 msgstr ""
 
-#: install.php:300
+#: install.php:302
 msgid "The database name"
 msgstr ""
 
-#: install.php:306
+#: install.php:308
 msgid "Your database username"
 msgstr ""
 
-#: install.php:318
+#: install.php:320
 msgid "Table prefix"
 msgstr ""
 
-#: install.php:318
+#: install.php:320
 msgid "Set for more Luna installation in this database"
 msgstr ""
 
-#: install.php:328
+#: install.php:330
 msgid "Administration setup"
 msgstr ""
 
-#: install.php:333
+#: install.php:335
 msgid "2 to 25 characters long"
 msgstr ""
 
-#: install.php:339
+#: install.php:341
 msgid "At least 6 characters long"
 msgstr ""
 
-#: install.php:362
+#: install.php:364
 msgid "Board setup"
 msgstr ""
 
-#: install.php:373
-msgid "Board description"
-msgstr ""
-
-#: install.php:379
+#: install.php:387
 msgid "Board URL"
 msgstr ""
 
-#: install.php:403
+#: install.php:411
 msgid "Default theme"
 msgstr ""
 
-#: install.php:423
+#: install.php:431
 msgid "Start install"
 msgstr ""
 
-#: install.php:449
+#: install.php:457
 msgid ""
 "<strong>File uploads appear to be disallowed on this server!</strong> If you "
 "want users to be able to upload their own avatar images you must enable the "
@@ -4159,30 +4164,30 @@ msgid ""
 "enabled, avatar uploads can be enabled in Backstage > Settings > Features."
 msgstr ""
 
-#: install.php:483
+#: install.php:491
 msgid ""
 "Luna has been installed. To finalize the installation please follow the "
 "instructions below."
 msgstr ""
 
-#: install.php:490
+#: install.php:498
 msgid ""
 "To finalize the installation, you need to click on the button below to "
 "download a file called config.php. You then need to upload this file to the "
 "root directory of your Luna installation."
 msgstr ""
 
-#: install.php:491
+#: install.php:499
 msgid ""
 "Once you have uploaded config.php, Luna will be fully installed! At that "
 "point, you may <a href=\"index.php\">go to the forum index</a>."
 msgstr ""
 
-#: install.php:510
+#: install.php:518
 msgid "Download config.php file"
 msgstr ""
 
-#: install.php:518
+#: install.php:526
 msgid ""
 "Luna has been fully installed! You may now <a href=\"index.php\">go to the "
 "forum index</a>."
