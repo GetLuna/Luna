@@ -1327,3 +1327,26 @@ a.label-new {
     background-color: #a94442;
     color: #f2dede;
 }
+
+/* Installer */
+.installer .jumbotron-brand {
+    color: #fff;
+    background-color: #136cab;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    margin-bottom: 10px;
+}
+
+.installer .brand {
+    font-weight: 600;
+}
+
+.installer h1 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.installer h2 {
+    margin: 0;
+    text-transform: lowercase;
+}

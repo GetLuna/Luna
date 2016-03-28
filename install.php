@@ -68,15 +68,15 @@ $install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_
 // Make sure we got a valid language string
 $install_lang = preg_replace('%[\.\\\/]%', '', $install_lang);
 
+// If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
+if (!file_exists(LUNA_ROOT.'lang/'.$install_lang.'/luna.mo'))
+	$install_lang = 'English';
+
 // Load l10n
 require_once LUNA_ROOT.'include/pomo/MO.php';
 require_once LUNA_ROOT.'include/l10n.php';
 
-// Attempt to load the language file
-if (file_exists(LUNA_ROOT.'lang/English/luna.mo'))
-	load_textdomain('luna', LUNA_ROOT.'lang/English/luna.mo');
-else
-	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
+load_textdomain('luna', LUNA_ROOT.'lang/'.$install_lang.'/luna.mo');
 
 // If a config file is in place
 if (file_exists(LUNA_ROOT.'config.php')) {
@@ -179,8 +179,13 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="backstage/css/accents/<?php echo rand(1, 15) ?>.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/accents/2.css" />
+        <?php
+            if (__('Direction of language', 'luna') == 'rtl')
+                echo '<link rel="stylesheet" type="text/css" href="vendor/css/bidirect.css" />';
+        ?>
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		function process_form(the_form) {
@@ -215,28 +220,31 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		}
 		</style>
 	</head>
-	<body onload="document.getElementById('install').start.disabled=false;" onunload="">
+	<body class="installer" onload="document.getElementById('install').start.disabled=false;" onunload="">
+        <div class="jumbotron jumbotron-brand text-center">
+			<h1><?php echo _e('Install<span class="brand">Luna</span>', 'luna') ?></h1>
+            <h2>You can do anything</h2>
+        </div>
 		<div class="container">
-			<h1 class="background-title"><?php echo sprintf(__('Install Luna %s', 'luna'), Version::LUNA_VERSION) ?></h1>
 			<?php if (count($languages) > 1): ?>
 			<form  class="form-horizontal" id="install" method="post" action="install.php">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Choose the install script language', 'luna') ?></h3>
+						<h3 class="panel-title"><?php _e('Install language', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-primary" name="start"><i class="fa fa-fw fa-language"></i> <?php _e('Change language', 'luna') ?></button></span></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Install language', 'luna') ?><span class="help-block"><?php _e('The language used for the installer, the default language for the board can be set below', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Language', 'luna') ?><span class="help-block"><?php _e('The language used for the installer, the default language for the board can be set below', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="install_lang">
 <?php
 
 		foreach ($languages as $temp) {
 			if ($temp == $install_lang)
-				echo "\t\t\t\t\t".'<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
+				echo '<option value="'.$temp.'" selected>'.$temp.'</option>';
 			else
-				echo "\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
+				echo '<option value="'.$temp.'">'.$temp.'</option>';
 		}
 
 ?>
@@ -245,16 +253,13 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 							</div>
 						</fieldset>
 					</div>
-					<div class="panel-footer">
-						<input type="submit" class="btn btn-primary" name="start" value="<?php _e('Change language', 'luna') ?>" />
-					</div>
 				</div>
 			</form>
 <?php endif; ?>
 <?php if (!empty($alerts)): ?>
 			<div class="panel panel-warning">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('The following errors need to be corrected:', 'luna') ?></h3>
+					<h3 class="panel-title"><?php _e('Errors', 'luna') ?></h3>
 				</div>
 				<div class="panel-body">
 					<div class="forminfo error-info">
@@ -271,12 +276,12 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				<div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo luna_htmlspecialchars($install_lang) ?>" /></div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Database setup', 'luna') ?></h3>
+						<h3 class="panel-title"><?php _e('Database', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?><span class="help-block"><?php _e('What database do you want to use?', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?><span class="help-block"><?php _e('We\'ve listed everything this server knows', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="req_db_type">
 <?php
@@ -293,19 +298,19 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Server hostname', 'luna') ?><span class="help-block"><?php _e('Where\'s the server?', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Server hostname', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Name', 'luna') ?><span class="help-block"><?php _e('The database name', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Name', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Your database username', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
 								</div>
@@ -327,7 +332,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Administration setup', 'luna') ?></h3>
+						<h3 class="panel-title"><?php _e('Administration', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
@@ -361,7 +366,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Board setup', 'luna') ?></h3>
+						<h3 class="panel-title"><?php _e('Board', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
@@ -428,7 +433,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 						</fieldset>
 					</div>
 					<div class="panel-footer">
-						<input type="submit" class="btn btn-primary" name="start" value="<?php _e('Start install', 'luna') ?>" />
+						<button type="submit" class="btn btn-primary" name="start"><i class="fa fa-fw fa-check"></i> <?php _e('Start install', 'luna') ?></button>
 					</div>
 				</div>
 			</form>
@@ -514,7 +519,7 @@ foreach ($alerts as $cur_alert)
 ?>
 								</ul>
 							</div>
-<?php endif; ?>						</div>
+<?php endif; ?>
 						<input type="submit" class="btn btn-primary" value="<?php _e('Download config.php file', 'luna') ?>" />
 					</form>
 
