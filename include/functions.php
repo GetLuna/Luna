@@ -1439,28 +1439,58 @@ function error($message, $file = null, $line = null, $db_error = false) {
 		<?php $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), 'Error') ?>
 		<title>Luna error</title>
 		<style type="text/css">
-			body { margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px; }
-			h2 { margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100; }
-			#errorbox div { padding: 0 5px; }
+			body {
+                background: #e8e8e8;
+                color: #333;
+                margin: 10% 25% auto;
+                font: 14px "Segoe UI", Verdana, Arial, Helvetica, sans-serif;
+                letter-spacing: 1px;
+            }
+            a {
+                color: #136cab;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            p {
+                font-weight: 400;
+                margin: 0;
+            }
+			h2 {
+                margin: 0;
+                font-size: 35px;
+                padding: 0;
+                font-weight: 300;
+                color: #136cab;
+            }
+            h3 {
+                font-size: 23px;
+                text-transform: uppercase;
+                margin-bottom: 0;
+                font-weight: 600;
+            }
 		</style>
 	</head>
 	<body>
-		<div id="errorbox">
-			<h2>An error was encountered</h2>
-			<div>
+		<div class="error">
+			<h2>Well... this is embarrassing</h2>
+            <p>Something went wrong while performing the action you requested. You can see more details below. It might be useful to enable debug mode for more info. We would like to ask you to report these error to the <a href="http://forum.getluna.org">Luna developers</a> with detailed info on how this error occurred.</p>
+			<div class="error-details">
 <?php
 
 	if (defined('LUNA_DEBUG') && !is_null($file) && !is_null($line)) {
-		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>Luna reported</strong>: '.$message."\n";
+		echo '<h3>File</h3><p>'.$file.' on line '.$line.'</p>';
+        echo '<h3>Luna reported</h3><p>'.$message.'</p>';
 
 		if ($db_error) {
-			echo "\t\t".'<br /><br /><strong>Database reported:</strong> '.luna_htmlspecialchars($db_error['error_msg']).(($db_error['error_no']) ? ' (Errno: '.$db_error['error_no'].')' : '')."\n";
+			echo '<h3>Database reported</h3><p>'.luna_htmlspecialchars($db_error['error_msg']).(($db_error['error_no']) ? ' (Errno: '.$db_error['error_no'].')' : '').'</p>';
 
 			if ($db_error['error_sql'] != '')
-				echo "\t\t".'<br /><br /><strong>Failed query:</strong> '.luna_htmlspecialchars($db_error['error_sql'])."\n";
+				echo '<h3>Failed query</h3><p>'.luna_htmlspecialchars($db_error['error_sql']).'</p>';
 		}
 	} else
-		echo "\t\t".'Error: <strong>'.$message.'.</strong>'."\n";
+		echo '<h3>Error</h3><p>'.$message.'</p>';
 
 ?>
 			</div>
