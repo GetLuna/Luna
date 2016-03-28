@@ -102,6 +102,16 @@ th {
     padding-left: -15px;
 }
 
+@media (max-width:767px) {
+    .form-group > .col-sm-9 > .row > .col-sm-6 {
+        margin-top: 10px;
+    }
+    
+    .form-group > .col-sm-9 > .row > .col-sm-6:first-child {
+        margin-top: 0;
+    }
+}
+
 /* Header customization */
 .bkg .jumboheader,
 .bkg .navbar,
