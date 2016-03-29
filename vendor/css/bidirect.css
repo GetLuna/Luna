@@ -1554,6 +1554,17 @@ blockquote.pull-right {
 .panel-title .btn {
     margin-left: -10px;
 }
+.stater {
+    float: right;
+}
+.release-notes h2 .version-name {
+    float: right;
+}
+.release-notes h2 .version-name small {
+    float: left;
+    margin-top: 15px;
+    margin-right: 7px;
+}
 
 /* Flip icons */
 .fa-chevron-left,

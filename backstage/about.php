@@ -28,7 +28,7 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<h2>Emerald <small>2.0 Preview 5</small></h2>
+						<h2 class="clearfix"><span class="version-name">Emerald <small>2.0 Preview 5</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Fifteen has received a fully reimagned design based on Airalin', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Sunrise has also been reimagned based on the new Fifteen look', 'luna') ?></li>
