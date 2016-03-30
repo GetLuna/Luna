@@ -280,6 +280,7 @@ label .help-block {
 	
 .dropdown-menu > li > a {
     color: #fff !important;
+    white-space: normal;
 }
 
 .dropdown-menu > li > a:focus,
