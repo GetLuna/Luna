@@ -25,14 +25,14 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 		while ($cur_notifi = $db->fetch_assoc($notification_result)) {
 			$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
-			$ind_notification[] = '<li><a href="../notifications.php?notification='.$cur_notifi['id'].'"><span class="fa fa-fw luni luni-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
+			$ind_notification[] = '<li><a href="../notifications.php?notification='.$cur_notifi['id'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
 		}
 	}
 
 	$notifications = implode('<li class="divider"></li>', $ind_notification);
 	$notification_menu_item = '
 					<li class="dropdown">
-					<a href="#" class="dropdown-toggle'.(($num_notifications != 0)? ' flash' : '').'" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="'.(($num_notifications != 0)? ' flash' : '').'">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></span></a>
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">'.__( 'Notifications', 'luna' ).'</li>
 						<li class="divider"></li>
