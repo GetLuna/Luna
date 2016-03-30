@@ -52,7 +52,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 		<?php if ($mode == 'edit'): ?>					<input type="hidden" name="group_id" value="<?php echo $group_id ?>" />
 		<?php endif; ?><?php if ($mode == 'add'): ?>					<input type="hidden" name="base_group" value="<?php echo $base_group ?>" />
 		<?php endif; ?>					<fieldset>
-				<p><?php echo __('Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect.', 'luna') ?></p>
+				<div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php echo __('Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect. Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?></div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Group title', 'luna') ?></label>
 					<div class="col-sm-9">
@@ -76,88 +76,32 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 								<?php echo __('In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Edit user profiles', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked' ?> tabindex="7" />
-								<?php echo __('If moderator privileges are enabled, allow users to edit user profiles.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Rename users', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked' ?> tabindex="9" />
-								<?php echo __('If moderator privileges are enabled, allow users to rename users.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Change passwords', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked' ?> tabindex="11" />
-								<?php echo __('If moderator privileges are enabled, allow users to change user passwords.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Ban users', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked' ?> tabindex="13" />
-								<?php echo __('If moderator privileges are enabled, allow users to ban users.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-	<?php endif; endif; ?>
-	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Show deleted content', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
-								<?php echo __('Allow users to view threads and comments that have been soft deleted.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Soft delete comments', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="soft_delete_comments" value="1" <?php if ($group['g_soft_delete_comments'] == '1') echo ' checked' ?> />
-								<?php echo __('Allow users to soft delete comments from all users.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Soft delete comments', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="soft_delete_threads" value="1" <?php if ($group['g_soft_delete_threads'] == '1') echo ' checked' ?> />
-								<?php echo __('Allow users to soft delete threads from all users.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked' ?> tabindex="7" />
+                                <?php echo __('Allow moderators to edit user profiles.', 'luna') ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked' ?> tabindex="9" />
+                                <?php echo __('Allow moderators to rename users.', 'luna') ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked' ?> tabindex="11" />
+                                <?php echo __('Allow moderators to change user passwords.', 'luna') ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked' ?> tabindex="13" />
+                                <?php echo __('Allow moderators to ban users.', 'luna') ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
 	<?php endif; endif; ?>
 	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
@@ -173,7 +117,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Inbox', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Receivers', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_inbox_limit'] ?>" />
 						<p class="help-block"><?php echo __('The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.', 'luna') ?></p>
@@ -182,7 +126,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php endif; endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Read board', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Read', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -190,11 +134,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 								<?php echo __('If this is disabled, users will only be able to login and logout.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('View user information', 'luna') ?></label>
-					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked' ?> tabindex="17" />
@@ -204,7 +143,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Comment', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Create', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -212,11 +151,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 								<?php echo __('Allow users to comment in threads.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Create threads', 'luna') ?></label>
-					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="create_threads" value="1"<?php if ($group['g_create_threads'] == '1') echo ' checked' ?> tabindex="21" />
@@ -228,7 +162,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Edit comment', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Edit', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -239,7 +173,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Delete comments', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Delete', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
@@ -247,11 +181,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 								<?php echo __('Allow users to delete their own comments.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Delete threads', 'luna') ?></label>
-					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="delete_threads" value="1"<?php if ($group['g_delete_threads'] == '1') echo ' checked' ?> tabindex="27" />
@@ -260,8 +189,31 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						</div>
 					</div>
 				</div>
-	<?php endif;
-	if ($group['g_id'] != LUNA_GUEST): ?>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo __('Hide', 'luna') ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
+								<?php echo __('Allow users to view threads and comments that have been hidden.', 'luna') ?>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="soft_delete_comments" value="1" <?php if ($group['g_soft_delete_comments'] == '1') echo ' checked' ?> />
+								<?php echo __('Allow users to hide comments from all users.', 'luna') ?>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="soft_delete_threads" value="1" <?php if ($group['g_soft_delete_threads'] == '1') echo ' checked' ?> />
+								<?php echo __('Allow users to hide threads from all users.', 'luna') ?>
+							</label>
+						</div>
+					</div>
+				</div>
+	<?php endif; ?>
+    <?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Set own user title', 'luna') ?></label>
@@ -277,19 +229,14 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Use search', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Search', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked' ?> tabindex="33" />
-								<?php echo __('Allow users to use the search feature.', 'luna') ?>
+								<?php echo __('Allow users to use the search feature for threads and comments.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Search user list', 'luna') ?></label>
-					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked' ?> tabindex="35" />
@@ -351,8 +298,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo __('Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?></p>
-	<?php endif; ?>
 			</fieldset>
 		</div>
 	</div>
