@@ -224,11 +224,12 @@ if (isset($_GET['tid'])) {
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		?>
-
+<div class="row">
+    <div class="col-xs-12">
 		<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Split comments', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="split_comments_comply" value="<?php _e('Split', 'luna') ?>" /></span></h3>
+                    <h3 class="panel-title"><?php _e('Split comments', 'luna') ?><span class="pull-right"><button input type="submit" class="btn btn-primary" name="split_comments_comply"><i class="fa fa-fw fa-code-fork"></i> <?php _e('Split', 'luna') ?></button></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
@@ -251,9 +252,9 @@ if (isset($_GET['tid'])) {
 
 				echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 			}
+            echo '</optgroup>';
 
 		?>
-									</optgroup>
 								</select>
 							</div>
 						</div>
@@ -267,6 +268,8 @@ if (isset($_GET['tid'])) {
 				</div>
 			</div>
 		</form>
+    </div>
+</div>
 
 		<?php
 
@@ -305,7 +308,7 @@ if (isset($_GET['tid'])) {
 			<h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
-			<div class="btn-group btn-breadcrumb">
+			<div class="btn-group btn-breadcrumb btn-group-top">
 					<a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
 					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_thread['forum_name']) ?></a>
 					<a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
@@ -388,8 +391,8 @@ if (isset($_GET['tid'])) {
 				</div>
 				<span class="pull-right"><?php echo $paging_links ?></span>
 				<div class="btn-group pull-right">
-					<button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><span class="fa fa-fw fa-code-fork"></span> <?php _e('Split', 'luna') ?></button>
-					<button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+					<button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><i class="fa fa-fw fa-code-fork"></i> <?php _e('Split', 'luna') ?></button>
+					<button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
 				</div>
 			</div>
 		</form>
@@ -474,11 +477,11 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
 	?>
-
-	<form class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>">
-		<div class="panel panel-default">
+<div class="col-xs-12">
+    <div class="row">
+	   <form class="form-horizontal panel panel-default" method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo ($action == 'single') ? __('Move thread', 'luna') : __('Move threads', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="move_threads_to" value="<?php _e('Move', 'luna') ?>" /></span></h3>
+				<h3 class="panel-title"><?php echo ($action == 'single') ? __('Move thread', 'luna') : __('Move threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-primary" name="move_threads_to"><i class="fa fa-fw fa-arrows-alt"></i> <?php _e('Move', 'luna') ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="threads" value="<?php echo $threads ?>" />
@@ -502,9 +505,9 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 			if ($cur_forum['fid'] != $fid)
 				echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 		}
-
+        echo '</optgroup>';
 	?>
-								</optgroup>
+								
 							</select>
 							<div class="checkbox">
 								<label>
@@ -516,9 +519,9 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 					</div>
 				</fieldset>
 			</div>
-		</div>
-	</form>
-
+	   </form>
+    </div>
+</div>
 	<?php
 
 	require 'footer.php';
@@ -597,25 +600,24 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		?>
-
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Merge threads', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="merge_threads_comply" value="<?php _e('Merge', 'luna') ?>" /></span></h3>
-				</div>
-				<div class="panel-body">
-					<input type="hidden" name="threads" value="<?php echo implode(',', array_map('intval', array_keys($threads))) ?>" />
-					<fieldset>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="with_redirect" value="1" />
-								<?php _e('Leave redirect thread(s)', 'luna') ?>
-							</label>
-						</div>
-					</fieldset>
-				</div>
-			</div>
+<div class="row">
+    <div class="col-xs-12">
+		<form class="panel panel-default" method="post" action="moderate.php?fid=<?php echo $fid ?>">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Merge threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-primary" name="merge_threads_comply"><i class="fa fa-fw fa-compress"></i> <?php _e('Merge', 'luna') ?></button></span></h3>
+            </div>
+            <div class="panel-body">
+                <input type="hidden" name="threads" value="<?php echo implode(',', array_map('intval', array_keys($threads))) ?>" />
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="with_redirect" value="1" />
+                        <?php _e('Leave redirect thread(s)', 'luna') ?>
+                    </label>
+                </div>
+            </div>
 		</form>
+    </div>
+</div>
 
 		<?php
 
@@ -683,8 +685,9 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 	load_admin_nav('content', 'moderate');
 	?>
 
-	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-		<div class="panel panel-danger">
+<div class="row">
+    <div class="col-xs-12">
+        <form method="post" class="panel panel-danger" action="moderate.php?fid=<?php echo $fid ?>">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php _e('Delete threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_threads_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button></span></h3>
 			</div>
@@ -694,8 +697,9 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 					<p><?php _e('Are you sure you want to delete the selected threads?', 'luna') ?></p>
 				</fieldset>
 			</div>
-		</div>
-	</form>
+        </form>
+    </div>
+</div>
 
 	<?php
 	require 'footer.php';
@@ -837,15 +841,15 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 	load_admin_nav('content', 'moderate');
 
 	?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
-		</div>
-		<div class="jumbotron jumbotron-moderate-forum">
-			<h2 class="inline-block"><?php printf(__('Moderating "%s"', 'luna'), luna_htmlspecialchars($cur_forum['forum_name'])) ?></h2><span class="pull-right moderate-pagination"><?php echo $paging_links ?></span>
-		</div>
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-			<div class="panel-body">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php printf(__('Moderating "%s"', 'luna'), luna_htmlspecialchars($cur_forum['forum_name'])) ?></h3>
+            </div>
+            <form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+                <div class="panel-body">
+                    <?php echo $paging_links ?>
 <?php
 
 
@@ -969,18 +973,19 @@ if ($db->num_rows($result)) {
 				</div>
 				<div class="panel-footer">
 					<div class="btn-group">
-						<button type="submit" class="btn btn-primary" name="move_threads"<?php echo $button_status ?>><span class="fa fa-fw fa-reply"></span> <?php _e('Move', 'luna') ?></button>
-						<button type="submit" class="btn btn-primary" name="delete_threads"<?php echo $button_status ?>><span class="fa fa-fw fa-trash-o"></span> <?php _e('Delete', 'luna') ?></button>
-						<button type="submit" class="btn btn-primary" name="merge_threads"<?php echo $button_status ?>><span class="fa fa-fw fa-compress"></span> <?php _e('Merge', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="move_threads"<?php echo $button_status ?>><i class="fa fa-fw fa-arrows-alt"></i> <?php _e('Move', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="delete_threads"<?php echo $button_status ?>><i class="fa fa-fw fa-trash-o"></i> <?php _e('Delete', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="merge_threads"<?php echo $button_status ?>><i class="fa fa-fw fa-compress"></i> <?php _e('Merge', 'luna') ?></button>
 					</div>
 					<div class="btn-group">
-						<button type="submit" class="btn btn-primary" name="open"<?php echo $button_status ?>><span class="fa fa-fw fa-check"></span> <?php _e('Open', 'luna') ?></button>
-						<button type="submit" class="btn btn-primary" name="close"<?php echo $button_status ?>><span class="fa fa-fw fa-times"></span> <?php _e('Close', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="open"<?php echo $button_status ?>><i class="fa fa-fw fa-check"></i> <?php _e('Open', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="close"<?php echo $button_status ?>><i class="fa fa-fw fa-times"></i> <?php _e('Close', 'luna') ?></button>
 					</div>
 				</div>
 			</form>
 		</div>
-	</div>
+    </div>
+</div>
 	<?php
 
 	require 'footer.php';

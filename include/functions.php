@@ -1042,7 +1042,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 // Display a message in the Backstage
 //
 function message_backstage($message, $no_back_link = false, $http_status = null) {
-	global $luna_config;
+	global $luna_config, $luna_user;
 
 	// Did we receive a custom header?
 	if(!is_null($http_status))
@@ -1054,16 +1054,19 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	load_admin_nav('info', 'info');
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Info', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<p><?php echo $message ?></p>
-	</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Info', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php echo $message ?></p>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
-
 	exit;
 }
 

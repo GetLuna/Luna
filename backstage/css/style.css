@@ -554,7 +554,12 @@ h3.panel-title {
 	background-color: #ffb900;
 }
 
+.panel-danger {
+	border-color: #f65625;
+}
+
 .panel-danger > .panel-heading {
+    color: #fff;
 	background-color: #f65625;
 }
 
@@ -639,7 +644,7 @@ fieldset[disabled] .form-control {
 .btn:hover,
 .btn:active,
 .btn:focus {
-    border-color: transparent;
+    border-color: transparent !important;
 }
 
 .panel-title .btn {
@@ -716,6 +721,10 @@ fieldset[disabled] .form-control {
 .active.btn-info,
 .open .btn-info.dropdown-toggle {
 	background-color: #008be4;
+}
+
+.btn-group-top {
+    margin-bottom: 10px;
 }
 
 /* Form groups */
