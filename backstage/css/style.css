@@ -497,6 +497,10 @@ h3.panel-title {
     padding: 10px 15px 10px 10px;
 }
 
+.panel-footer {
+    padding: 10px;
+}
+
 .panel-body,
 .panel .table {
 	border-top: none;
@@ -541,13 +545,16 @@ h3.panel-title {
 	background-color: #ffa200;
 }
 
-.panel-warning.panel-colored > .panel-body {
+.panel-colored {
 	color: #fff;
+    border: none;
+}
+
+.panel-warning.panel-colored > .panel-body {
 	background-color: #ffb900;
 }
 
 .panel-danger > .panel-heading {
-	color: #fff;
 	background-color: #f65625;
 }
 
@@ -637,10 +644,10 @@ fieldset[disabled] .form-control {
 
 .panel-title .btn {
     background-color: transparent;
-	padding: 9px 14px;
+	padding: 9px 14px 10px;
 	border: none;
-	margin-top: -8px;
-	margin-right: -15px;
+	margin-top: -9px;
+	margin-right: -16px;
 }
 
 .panel-title .btn:hover,

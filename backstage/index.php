@@ -81,7 +81,7 @@ if (isset($_GET['saved']))
 ?>
 	<div class="col-sm-8">
 <?php if ($luna_config['o_first_run_backstage'] == 0) { ?>
-        <div class="panel panel-primary hidden-xs">
+        <div class="panel panel-primary panel-colored hidden-xs">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
                     <span class="pull-right">
@@ -93,22 +93,12 @@ if (isset($_GET['saved']))
                 </h3>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="list-group">
-                            <a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
-                            <a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="list-group">
-                            <a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
-                            <a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
-                        </div>
-                    </div>
+                <p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
+                <div class="btn-group-justified">
+                    <a href="about.php" class="btn btn-default"><?php _e('What\'s new', 'luna') ?></a>
+                    <a href="board.php" class="btn btn-default"><?php _e('Create new sections', 'luna') ?></a>
+                    <a href="features.php" class="btn btn-default"><?php _e('Alter functionality', 'luna') ?></a>
+                    <a href="settings.php" class="btn btn-default"><?php _e('Change settings', 'luna') ?></a>
                 </div>
             </div>
         </div>
@@ -212,8 +202,10 @@ if ($install_file_exists) : ?>
             </div>
             <div class="panel-body">
                 <p><?php _e('Thank you for helping us build the next version of Luna.', 'luna') ?></p>
-                <a class="btn btn-default" href="http://github.com/getluna/luna/issues/new"><i class="fa fa-fw fa-github"></i> <?php _e('Report an issue', 'luna') ?></a>
-                <a class="btn btn-default" href="about.php"><i class="fa fa-fw fa-moon-o"></i> <?php _e('What\'s new', 'luna') ?></a>
+                <div class="btn-group-justified">
+                    <a class="btn btn-default" href="http://github.com/getluna/luna/issues/new"><i class="fa fa-fw fa-github"></i> <?php _e('Report an issue', 'luna') ?></a>
+                    <a class="btn btn-default" href="about.php"><i class="fa fa-fw fa-moon-o"></i> <?php _e('What\'s new', 'luna') ?></a>
+                </div>
             </div>
         </div>
 	</div>
