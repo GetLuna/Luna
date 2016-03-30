@@ -82,7 +82,7 @@ require 'header.php';
 ?>
 <div class="row">
     <div class="col-sm-12">
-        <?php if ($luna_config['o_censor'] == 0) { ?>
+        <?php if ($luna_config['o_censoring'] == 0) { ?>
         <div class="alert alert-danger">
             <i class="fa fa-fw fa-exclamation"></i> <?php echo sprintf(__('Censoring is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
         </div>
