@@ -208,6 +208,107 @@ label .help-block {
 	color: #fff;
 }
 
+/* Title block */
+.title {
+	color: #fff;
+	margin-bottom: 7px;
+}
+
+.title-md {
+	padding: 30px 10px 10px 10px;
+}
+
+.title-sm {
+	padding: 10px;
+}
+
+.title h1,
+.title h2,
+.title h3,
+.title h4,
+.title h5,
+.title h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.title .btn {
+	border-color: transparent;
+}
+
+.title-primary {
+	background-color: #136cab;
+}
+
+.title-sm.title-primary {
+	background-color: #2788cb;
+}
+
+.title-md.title-primary .btn {
+	color: #136cab;
+}
+
+.title-md.title-primary .form-control {
+	color: #fff;
+	font-size: 29px;
+	font-weight: 300;
+	background: none;
+	padding: 0;
+	border: none;
+}
+
+.title-sm .form-control {
+	border: none;
+}
+
+.title-sm.title-primary .input-group-addon {
+	color: #fff;
+	background-color: #136cab;
+	border: none;
+}
+
+.title p {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+.title-nav {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.title-nav .nav-tabs {
+	margin-top: 10px;
+	border: none;
+}
+
+.title-nav.title-non .nav-tabs {
+	margin-top: 0;
+}
+
+.title-non {
+	padding-top: 10px;
+}
+
+.title-nav .nav-tabs > li > a {
+	color: rgba(255,255,255,.6);
+	border: none;
+}
+
+.title-nav .nav-tabs > li > a:focus,
+.title-nav .nav-tabs > li > a:hover {
+	color: #fff;
+	background: transparent;
+}
+
+.title-nav .nav-tabs > .active > a,
+.title-nav .nav-tabs > .active > a:focus,
+.title-nav .nav-tabs > .active > a:hover {
+	color: #136cab;
+	border: none;
+	background: #fff;
+}
+
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;

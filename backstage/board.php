@@ -103,16 +103,40 @@ elseif (isset($_GET['del_forum'])) {
 	}
 }
 
-// Update forum positions
-elseif (isset($_POST['update_positions'])) {
+// Update forums
+elseif ( isset( $_POST['update_board'] ) ) {
 	confirm_referrer('backstage/board.php');
+	
+	$forum_items = $_POST['forum'];
+	$category_items = $_POST['cat'];
 
-	foreach ($_POST['position'] as $forum_id => $disp_position) {
-		$disp_position = trim($disp_position);
-		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position))
-			message_backstage(__('Position must be a positive integer value.', 'luna'));
+	if ( empty( $forum_items ) && empty( $category_items ) )
+		message_backstage( __( 'No forum and category data was found to save...', 'luna' ), false, '404 Not Found' );
 
-		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+	foreach ( $category_items as $category_id => $cur_category ) {
+		$cur_category['name'] = trim( $cur_category['name'] );
+		$cur_category['position'] = trim( $cur_category['position'] );
+
+		if ( $cur_category['name'] == '' )
+			message_backstage( __( 'You must enter a category name', 'luna' ) );
+		if ( $cur_category['position'] == '' || preg_match('%[^0-9]%', $cur_category['position'] ) )
+			message_backstage( __( 'Position must be a positive integer value.', 'luna' ) );
+
+		$db->query( 'UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape( $cur_category['name'] ).'\', disp_position=\''.$db->escape( $cur_category['position'] ).'\' WHERE id='.intval( $category_id ) ) or error( 'Unable to update categories', __FILE__, __LINE__, $db->error() );
+	}
+
+	foreach ( $forum_items as $forum_id => $cur_forum ) {
+		$cur_forum['name'] = trim( $cur_forum['name'] );
+		$cur_forum['position'] = trim( $cur_forum['position'] );
+		$cur_forum['icon'] = trim( $cur_forum['icon'] );
+		$cur_forum['color'] = trim( $cur_forum['color'] );
+
+		if ( $cur_forum['name'] == '' )
+			message_backstage( __( 'You must enter a forum name', 'luna' ) );
+		if ( $cur_forum['position'] == '' || preg_match('%[^0-9]%', $cur_forum['position'] ) )
+			message_backstage( __( 'Position must be a positive integer value.', 'luna' ) );
+
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape( $cur_forum['name'] ).'\', disp_position=\''.$db->escape( $cur_forum['position'] ).'\', icon=\''.$db->escape( $cur_forum['icon'] ).'\', color=\''.$db->escape( $cur_forum['color'] ).'\' WHERE id='.intval( $forum_id) ) or error( 'Unable to update forums', __FILE__, __LINE__, $db->error() );
 	}
 
 	// Regenerate the forum cache
@@ -585,89 +609,150 @@ if ($db->num_rows($result) > 0) {
 
 ?>
 	<div class="col-lg-8">
-		<form id="edforum" method="post" action="board.php?action=edit">
-			<div class="panel panel-default">
+		<?php if ( $num_cats > 0 ) { ?>
+			<form class="panel panel-default form-horizontal" id="edforum" method="post" action="board.php?action=edit">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Edit forum', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_positions"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e( 'Manage board', 'luna' ) ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_board"><span class="fa fa-fw fa-check"></span> <?php _e( 'Save', 'luna' ) ?></button></span></h3>
 				</div>
-				<fieldset>
+				<div class="panel-body">
 <?php
 
-$cur_index = 4;
-
-$cur_category = 0;
-while ($cur_forum = $db->fetch_assoc($result)) {
-	if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
-		if ($cur_category != 0)
-			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
-
+	$cur_index = 4;
+	
+	// Display all the categories and forums
+	$category = $db->query( 'SELECT id, cat_name, disp_position FROM '.$db->prefix.'categories ORDER BY disp_position, id' ) or error( 'Unable to fetch categories', __FILE__, __LINE__, $db->error() );
+	
+	$cur_category = 0;
+	while ( $cur_category = $db->fetch_assoc( $category ) ) {
 ?>
-					<table class="table table-hover table-forums">
-						<tbody>
-							<tr>
-								<th colspan="3" class="active">
-									<h4><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h4>
-								</th>
-							</tr>
+					<div class="title">
+						<div class="title-md title-primary">
+                            <input type="text" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][name]" placeholder="<?php _e('Category title', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_category['cat_name'] ) ?>" maxlength="80" />
+						</div>
+						<div class="title-sm title-primary">
+                            <input type="number" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_category['disp_position'] ?>" />
+						</div>
+					</div>
 <?php
-
-		$cur_category = $cur_forum['cid'];
+		$forum = $db->query( 'SELECT id, forum_name, disp_position, color, icon FROM '.$db->prefix.'forums WHERE cat_id = '.$cur_category['id'].' AND parent_id = \'\' ORDER BY disp_position, id' ) or error( 'Unable to fetch forums', __FILE__, __LINE__, $db->error() );
+	
+		while ( $cur_forum = $db->fetch_assoc( $forum ) ) {
+			if ( $cur_forum['icon'] != '' )
+				$icon = '<i class="fa fa-fw fa-'.$cur_forum['icon'].'"></i> ';
+			else
+				$icon = '';
+?>
+					<div class="panel" style="border-color: <?php echo $cur_forum['color'] ?>">
+						<div class="panel-heading" style="background: <?php echo $cur_forum['color'] ?>; border-color: <?php echo $cur_forum['color'] ?>;">
+							<h3 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse<?php echo $cur_forum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_forum['id'] ?>">
+                                    <?php echo $icon.luna_htmlspecialchars($cur_forum['forum_name'] ) ?>
+                                </a>
+                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e( 'Edit', 'luna' ) ?></a></span>
+                            </h3>
+						</div>
+						<div class="collapse" id="collapse<?php echo $cur_forum['id'] ?>">
+							<div class="panel-body">
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Name', 'luna' ) ?></label>
+									<div class="col-sm-9">
+                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>" maxlength="80" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Position', 'luna' ) ?></label>
+									<div class="col-sm-9">
+                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_forum['disp_position'] ?>" maxlength="3" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Icon', 'luna' ) ?><span class="help-block"><?php echo '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__( 'Font Awesome icon guide', 'luna' ).'</a>' ?></span></label>
+									<div class="col-sm-9">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                fa fa-fw fa-
+                                            </div>
+                                            <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][posiconition]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['icon'] ) ?>" maxlength="50" />
+                                        </div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Forum color', 'luna' ) ?></label>
+									<div class="col-sm-9">
+										<input class="color" name="forum[<?php echo $cur_forum['id'] ?>][color]" value="<?php echo $cur_forum['color'] ?>" />
+									</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e( 'Remove', 'luna' ) ?></a>
+							</div>
+						</div>
+					</div>
+<?php
+			$subforum = $db->query( 'SELECT id, forum_name, disp_position, color, icon, parent_id FROM '.$db->prefix.'forums WHERE cat_id = '.$cur_category['id'].' AND parent_id = '.$cur_forum['id'].' ORDER BY disp_position, id' ) or error( 'Unable to fetch forums', __FILE__, __LINE__, $db->error() );
+		
+			while ( $cur_subforum = $db->fetch_assoc( $subforum ) ) {
+				if ( $cur_subforum['icon'] != '' )
+					$icon = '<i class="fa fa-fw fa-'.$cur_subforum['icon'].'"></i> ';
+				else
+					$icon = '';
+?>
+					<div class="panel panel-sub" style="border-color: <?php echo $cur_subforum['color'] ?>">
+						<div class="panel-heading" style="background: <?php echo $cur_subforum['color'] ?>; border-color: <?php echo $cur_subforum['color'] ?>;">
+							<h3 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse<?php echo $cur_subforum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_subforum['id'] ?>">
+								<?php echo $icon.luna_htmlspecialchars($cur_subforum['forum_name'] ) ?>
+                                </a>
+                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e( 'Edit', 'luna' ) ?></a></span>
+                            </h3>
+						</div>
+						<div class="collapse" id="collapse<?php echo $cur_subforum['id'] ?>">
+							<div class="panel-body">
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Name', 'luna' ) ?></label>
+									<div class="col-sm-9">
+                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['forum_name'] ) ?>" maxlength="80" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Position', 'luna' ) ?></label>
+									<div class="col-sm-9">
+                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_subforum['disp_position'] ?>" maxlength="3" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Icon', 'luna' ) ?><span class="help-block"><?php echo '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__( 'Font Awesome icon guide', 'luna' ).'</a>' ?></span></label>
+									<div class="col-sm-9">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                fa fa-fw fa-
+                                            </div>
+                                            <input type="text" class="form-control" name="cat[<?php echo $cur_subforum['id'] ?>][posiconition]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['icon'] ) ?>" maxlength="50" />
+                                        </div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label"><?php _e( 'Forum color', 'luna' ) ?></label>
+									<div class="col-sm-9">
+										<input class="color" name="forum[<?php echo $cur_subforum['id'] ?>][color]" value="<?php echo $cur_subforum['color'] ?>" />
+									</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e( 'Remove', 'luna' ) ?></a>
+							</div>
+						</div>
+					</div>
+<?php
+			}
+		}
 	}
-
 ?>
-							<tr>
-								<td class="col-xs-6 col-sm-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
-								<td class="col-xs-4 col-sm-6"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-								<td class="col-xs-2 col-sm-2"><input type="number" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
-							</tr>
-<?php
-
-}
-
-?>
-						</tbody>
-					</table>
-				</fieldset>
-			</div>
-		</form>
-<?php if ($num_cats): ?>
-		<form method="post" action="board.php">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Edit categories', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 				</div>
-				<fieldset>
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="col-xs-8"><?php _e('Name', 'luna') ?></th>
-								<th class="col-xs-4"><?php _e('Position', 'luna') ?></th>
-							</tr>
-						</thead>
-						<tbody>
-<?php
-
-foreach ($cat_list as $cur_cat) {
-
-?>
-							<tr>
-								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo luna_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
-								<td><input type="number" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
-							</tr>
-<?php
-
-}
-
-?>
-						</tbody>
-					</table>
-				</fieldset>
-			</div>
+<?php } ?>
 		</form>
 	</div>
-</div>
-<?php endif;
-	}
-
-require 'footer.php';
+<?php 
+    }
+    require 'footer.php';
 }
