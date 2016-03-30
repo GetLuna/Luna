@@ -147,19 +147,13 @@ if (isset($_GET['saved']))
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('Update ring', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
             </div>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <select class="form-control" id="update_ring" name="form[update_ring]" tabindex="1">
-                                <option value="1" <?php if ($luna_config['o_update_ring'] == 1) { echo 'selected'; } ?>><?php _e('Normal', 'luna') ?></option>
-                                <option value="2" <?php if ($luna_config['o_update_ring'] == 2) { echo 'selected'; } ?>><?php _e('Preview', 'luna') ?></option>
-                                <option value="3" <?php if ($luna_config['o_update_ring'] == 3) { echo 'selected'; } ?>><?php _e('Nightly', 'luna') ?></option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="panel-body">
+                <select class="form-control" id="update_ring" name="form[update_ring]" tabindex="1">
+                    <option value="1" <?php if ($luna_config['o_update_ring'] == 1) { echo 'selected'; } ?>><?php _e('Normal', 'luna') ?></option>
+                    <option value="2" <?php if ($luna_config['o_update_ring'] == 2) { echo 'selected'; } ?>><?php _e('Preview', 'luna') ?></option>
+                    <option value="3" <?php if ($luna_config['o_update_ring'] == 3) { echo 'selected'; } ?>><?php _e('Nightly', 'luna') ?></option>
+                </select>
+            </div>
 		</form>
         <div class="panel panel-default">
             <div class="panel-heading">

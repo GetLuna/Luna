@@ -526,23 +526,16 @@ if (isset($_GET['saved']))
 					<h3 class="panel-title"><?php _e('Add forum', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td>
-									<select class="form-control" name="add_to_cat" tabindex="1">
+					<div class="panel-body">
+				        <select class="form-control" name="add_to_cat" tabindex="1">
 <?php
 		while ($cur_cat = $db->fetch_assoc($result))
 			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 ?>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="<?php _e('Name', 'luna') ?>" required="required" /></td>
-							</tr>
-						</tbody>
-					</table>
+						</select>
+                        <hr />
+						<input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="<?php _e('Name', 'luna') ?>" required="required" />
+                    </div>
 				</fieldset>
 			</div>
 		</form>
@@ -555,13 +548,9 @@ if (isset($_GET['saved']))
 					<h3 class="panel-title"><?php _e('Add categories', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="<?php _e('Name', 'luna') ?>" tabindex="1" /></td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="panel-body">
+                        <input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="<?php _e('Name', 'luna') ?>" tabindex="1" />
+                    </div>
 				</fieldset>
 			</div>
 		</form>
@@ -572,20 +561,14 @@ if (isset($_GET['saved']))
 					<h3 class="panel-title"><?php _e('Delete categories', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td>
-									<select class="form-control" name="cat_to_delete" tabindex="3">
+					<div class="panel-body">
+                        <select class="form-control" name="cat_to_delete" tabindex="3">
 <?php
-									foreach ($cat_list as $cur_cat)
-										echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+                        foreach ($cat_list as $cur_cat)
+                            echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 ?>
-									</select>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+                        </select>
+                    </div>
 				</fieldset>
 			</div>
 		</form>

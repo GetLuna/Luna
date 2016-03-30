@@ -76,20 +76,11 @@ load_admin_nav('settings', 'menu');
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php _e('New item', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 					</div>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td>
-									<input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna') ?>" value="" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna') ?>" value="" />
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="panel-body">
+                        <input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna') ?>" value="" />
+                        <hr />
+                        <input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna') ?>" value="" />
+					</div>
 				</div>
 			</fieldset>
 		</form>

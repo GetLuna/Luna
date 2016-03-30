@@ -102,18 +102,11 @@ require 'header.php';
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php _e('Add rank', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_rank" tabindex="3"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
-				<fieldset>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td><input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna') ?>" maxlength="50" tabindex="1" /></td>
-							</tr>
-							<tr>
-								<td><input type="number" class="form-control" name="new_min_comments" placeholder="<?php _e('Minimum comments', 'luna') ?>" maxlength="7" tabindex="2" /></td>
-							</tr>
-						</tbody>
-					</table>
-				</fieldset>
+                <div class="panel-body">
+                    <input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna') ?>" maxlength="50" tabindex="1" />
+                    <hr />
+                    <input type="number" class="form-control" name="new_min_comments" placeholder="<?php _e('Minimum comments', 'luna') ?>" maxlength="7" tabindex="2" />
+                </div>
 			</div>
 		</div>
 	</form>

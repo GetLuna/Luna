@@ -94,20 +94,14 @@ require 'header.php';
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php _e('Add word', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
-					<fieldset>
+				<fieldset>
 					<div class="panel-body">
 						<p><?php _e('Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted.', 'luna') ?></p>
-					</div>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td><input type="text" class="form-control" placeholder="<?php _e('Censored word', 'luna') ?>" name="new_search_for" maxlength="60" tabindex="1" /></td>
-							</tr>
-							<tr>
-								<td><input type="text" class="form-control" placeholder="<?php _e('Replacement word', 'luna') ?>" name="new_replace_with" maxlength="60" tabindex="2" /></td>
-							</tr>
-						</tbody>
-					</table>
+                        <hr />
+                        <input type="text" class="form-control" placeholder="<?php _e('Censored word', 'luna') ?>" name="new_search_for" maxlength="60" tabindex="1" />
+                        <hr />
+                        <input type="text" class="form-control" placeholder="<?php _e('Replacement word', 'luna') ?>" name="new_replace_with" maxlength="60" tabindex="2" />
+                    </div>
 				</fieldset>
 			</div>
 		</form>

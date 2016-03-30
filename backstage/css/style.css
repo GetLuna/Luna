@@ -44,6 +44,10 @@ th {
 	padding: 10px 20px 0;
 }
 
+hr {
+    margin: 10px -10px;
+}
+
 /* Bootstrap changes */
 .col-lg-1,
 .col-lg-2,
