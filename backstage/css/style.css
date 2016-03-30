@@ -1456,3 +1456,14 @@ a.label-new {
     margin: 0;
     text-transform: lowercase;
 }
+
+/* Bootstrap fixes */
+/* Fixes wrong alignement in date, time, datetime-local and month-fields fields */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='date'].form-control,
+    input[type='time'].form-control,
+    input[type='datetime-local'].form-control,
+    input[type='month'].form-control {
+        line-height: 1.4285;
+    }
+}
