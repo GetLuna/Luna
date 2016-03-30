@@ -584,6 +584,10 @@ footer a:hover {
     margin-bottom: 10px;
 }
 
+.panel-sub {
+	margin-left: 30px;
+}
+
 .panel-heading {
 	height: 38px;
     border: none;
@@ -714,6 +718,10 @@ h3.panel-title {
     .form-horizontal .panel-body > fieldset > .form-group > .col-sm-3 {
         padding-right: 0;
     }
+}
+
+.panel-board :last-child {
+    margin-bottom: 0;
 }
 
 /* Forms */

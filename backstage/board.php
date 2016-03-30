@@ -114,29 +114,29 @@ elseif ( isset( $_POST['update_board'] ) ) {
 		message_backstage( __( 'No forum and category data was found to save...', 'luna' ), false, '404 Not Found' );
 
 	foreach ( $category_items as $category_id => $cur_category ) {
-		$cur_category['name'] = trim( $cur_category['name'] );
-		$cur_category['position'] = trim( $cur_category['position'] );
+		$cur_category['name'] = luna_trim( $cur_category['name'] );
+		$cur_category['position'] = luna_trim( $cur_category['position'] );
 
 		if ( $cur_category['name'] == '' )
 			message_backstage( __( 'You must enter a category name', 'luna' ) );
 		if ( $cur_category['position'] == '' || preg_match('%[^0-9]%', $cur_category['position'] ) )
 			message_backstage( __( 'Position must be a positive integer value.', 'luna' ) );
 
-		$db->query( 'UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape( $cur_category['name'] ).'\', disp_position=\''.$db->escape( $cur_category['position'] ).'\' WHERE id='.intval( $category_id ) ) or error( 'Unable to update categories', __FILE__, __LINE__, $db->error() );
+		$db->query( 'UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape( $cur_category['name'] ).'\', disp_position=\''.$cur_category['position'].'\' WHERE id='.intval( $category_id ) ) or error( 'Unable to update categories', __FILE__, __LINE__, $db->error() );
 	}
 
 	foreach ( $forum_items as $forum_id => $cur_forum ) {
-		$cur_forum['name'] = trim( $cur_forum['name'] );
-		$cur_forum['position'] = trim( $cur_forum['position'] );
-		$cur_forum['icon'] = trim( $cur_forum['icon'] );
-		$cur_forum['color'] = trim( $cur_forum['color'] );
+		$cur_forum['name'] = luna_trim( $cur_forum['name'] );
+		$cur_forum['position'] = luna_trim( $cur_forum['position'] );
+		$cur_forum['icon'] = luna_trim( $cur_forum['icon'] );
+		$cur_forum['color'] = luna_trim( $cur_forum['color'] );
 
 		if ( $cur_forum['name'] == '' )
 			message_backstage( __( 'You must enter a forum name', 'luna' ) );
 		if ( $cur_forum['position'] == '' || preg_match('%[^0-9]%', $cur_forum['position'] ) )
 			message_backstage( __( 'Position must be a positive integer value.', 'luna' ) );
 
-		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape( $cur_forum['name'] ).'\', disp_position=\''.$db->escape( $cur_forum['position'] ).'\', icon=\''.$db->escape( $cur_forum['icon'] ).'\', color=\''.$db->escape( $cur_forum['color'] ).'\' WHERE id='.intval( $forum_id) ) or error( 'Unable to update forums', __FILE__, __LINE__, $db->error() );
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape( $cur_forum['name'] ).'\', disp_position=\''.$cur_forum['position'].'\', icon=\''.$db->escape( $cur_forum['icon'] ).'\', color=\''.$db->escape( $cur_forum['color'] ).'\' WHERE id='.intval( $forum_id) ) or error( 'Unable to update forums', __FILE__, __LINE__, $db->error() );
 	}
 
 	// Regenerate the forum cache
@@ -610,7 +610,7 @@ if ($db->num_rows($result) > 0) {
 ?>
 	<div class="col-lg-8">
 		<?php if ( $num_cats > 0 ) { ?>
-			<form class="panel panel-default form-horizontal" id="edforum" method="post" action="board.php?action=edit">
+			<form class="panel panel-default panel-board form-horizontal" id="edforum" method="post" action="board.php?action=edit">
 				<div class="panel-heading">
                     <h3 class="panel-title"><?php _e( 'Manage board', 'luna' ) ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_board"><span class="fa fa-fw fa-check"></span> <?php _e( 'Save', 'luna' ) ?></button></span></h3>
 				</div>
@@ -656,13 +656,13 @@ if ($db->num_rows($result) > 0) {
 								<div class="form-group row">
 									<label class="col-sm-3 form-control-label"><?php _e( 'Name', 'luna' ) ?></label>
 									<div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>" maxlength="80" />
+                                        <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-3 form-control-label"><?php _e( 'Position', 'luna' ) ?></label>
 									<div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_forum['disp_position'] ?>" maxlength="3" />
+                                        <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_forum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row">
@@ -672,7 +672,7 @@ if ($db->num_rows($result) > 0) {
                                             <div class="input-group-addon">
                                                 fa fa-fw fa-
                                             </div>
-                                            <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][posiconition]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['icon'] ) ?>" maxlength="50" />
+                                            <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][icon]" placeholder="<?php _e('Icon', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['icon'] ) ?>" maxlength="50" />
                                         </div>
 									</div>
 								</div>
@@ -711,13 +711,13 @@ if ($db->num_rows($result) > 0) {
 								<div class="form-group row">
 									<label class="col-sm-3 form-control-label"><?php _e( 'Name', 'luna' ) ?></label>
 									<div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['forum_name'] ) ?>" maxlength="80" />
+                                        <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['forum_name'] ) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-3 form-control-label"><?php _e( 'Position', 'luna' ) ?></label>
 									<div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_subforum['disp_position'] ?>" maxlength="3" />
+                                        <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_subforum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row">
@@ -727,7 +727,7 @@ if ($db->num_rows($result) > 0) {
                                             <div class="input-group-addon">
                                                 fa fa-fw fa-
                                             </div>
-                                            <input type="text" class="form-control" name="cat[<?php echo $cur_subforum['id'] ?>][posiconition]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['icon'] ) ?>" maxlength="50" />
+                                            <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][icon]" placeholder="<?php _e('Icon', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['icon'] ) ?>" maxlength="50" />
                                         </div>
 									</div>
 								</div>
