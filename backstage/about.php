@@ -46,6 +46,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Components now live in their own folder in the Luna root', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Revamped search forms for users and bans, including responsive design', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('The Backstage has a whole new structure', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('You can now see what\'s a subforum and edit more settings in board management', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Users can now disable or enable First Run from their profile', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('The editor will now put items under a button if the screen becomes to small', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('When you have a notification, the icon will animate', 'luna') ?></li>
