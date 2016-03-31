@@ -73,7 +73,7 @@ class DBLayer {
 
 
 	function query($sql, $unbuffered = false) {
-		if (defined('LUNA_SHOW_QUERIES'))
+		if (defined('LUNA_DEBUG'))
 			$q_start = get_microtime();
 
 		if ($unbuffered)
@@ -82,14 +82,14 @@ class DBLayer {
 			$this->query_result = @mysql_query($sql, $this->link_id);
 
 		if ($this->query_result) {
-			if (defined('LUNA_SHOW_QUERIES'))
+			if (defined('LUNA_DEBUG'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
 
 			return $this->query_result;
 		} else {
-			if (defined('LUNA_SHOW_QUERIES'))
+			if (defined('LUNA_DEBUG'))
 				$this->saved_queries[] = array($sql, 0);
 
 			$this->error_no = @mysql_errno($this->link_id);

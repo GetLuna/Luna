@@ -137,7 +137,7 @@ if (defined('LUNA_DEBUG')) {
 $db->end_transaction();
 
 // Display executed queries (if enabled)
-if (defined('LUNA_SHOW_QUERIES'))
+if (defined('LUNA_DEBUG'))
 	display_saved_queries();
 
 
