@@ -7,6 +7,8 @@
 
 define('LUNA_ROOT', '../');
 require '../include/common.php';
+define('LUNA_SECTION', 'settings');
+define('LUNA_PAGE', 'mneu');
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -65,8 +67,6 @@ if (isset($_POST['add_item'])) {
 $result = $db->query('SELECT * FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 require 'header.php';
-load_admin_nav('settings', 'menu');
-
 ?>
 <div class="row">
 	<div class="col-sm-4">

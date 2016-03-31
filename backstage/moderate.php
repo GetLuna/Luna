@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'content');
+define('LUNA_PAGE', 'moderate');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
@@ -41,10 +44,7 @@ if (isset($_GET['get_host'])) {
 // All other functions require moderator/admin access
 $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
 if ($fid < 1) {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('content', 'moderate');
+    require 'header.php';
 
 	?>
 	<div class="panel panel-default">
@@ -128,10 +128,7 @@ if (isset($_GET['tid'])) {
 			redirect('thread.php?id='.$tid);
 		}
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-		define('LUNA_ACTIVE_PAGE', 'admin');
-		require 'header.php';
-		load_admin_nav('content', 'moderate');
+        require 'header.php';
 
 		?>
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
@@ -219,10 +216,7 @@ if (isset($_GET['tid'])) {
 
 		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.create_threads IS NULL OR fp.create_threads=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-		define('LUNA_ACTIVE_PAGE', 'admin');
-		require 'header.php';
-		load_admin_nav('content', 'moderate');
+        require 'header.php';
 		?>
 <div class="row">
     <div class="col-xs-12">
@@ -297,10 +291,7 @@ if (isset($_GET['tid'])) {
 	if ($luna_config['o_censoring'] == '1')
 		$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('content', 'moderate');
+    require 'header.php';
 
 	?>
 	<div class="panel panel-default">
@@ -472,10 +463,7 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 	if ($db->num_rows($result) < 2)
 		message_backstage(__('There are no forums into which you can move threads.', 'luna'));
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('content', 'moderate');
+    require 'header.php';
 	?>
 <div class="col-xs-12">
     <div class="row">
@@ -595,10 +583,7 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 	if (count($threads) < 2)
 		message_backstage(__('You must select at least two threads to merge.', 'luna'));
 	else {
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-		define('LUNA_ACTIVE_PAGE', 'admin');
-		require 'header.php';
-		load_admin_nav('content', 'moderate');
+        require 'header.php';
 		?>
 <div class="row">
     <div class="col-xs-12">
@@ -679,10 +664,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 		redirect('viewforum.php?id='.$fid);
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('content', 'moderate');
+    require 'header.php';
 	?>
 
 <div class="row">
@@ -835,10 +817,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('content', 'moderate');
+    require 'header.php';
 
 	?>
 <div class="row">

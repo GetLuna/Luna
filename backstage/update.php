@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'backstage');
+define('LUNA_PAGE', 'update');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
@@ -129,10 +132,7 @@ if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 2
 	require LUNA_CACHE_DIR.'cache_update.php';
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Update', 'luna'));
-define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('backstage', 'update');
 ?>
 <div class="row">
     <div class="col-sm-12">

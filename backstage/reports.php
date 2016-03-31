@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'content');
+define('LUNA_PAGE', 'reports');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
@@ -39,11 +42,7 @@ if (isset($_POST['zap_id'])) {
 }
 
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Reports', 'luna'));
-define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('content', 'reports');
-
 ?>
 <div class="row">
 	<div class="col-sm-12">

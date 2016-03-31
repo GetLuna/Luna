@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'content');
+define('LUNA_PAGE', 'board');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -76,10 +79,7 @@ elseif (isset($_GET['del_forum'])) {
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 		$forum_name = luna_htmlspecialchars($db->result($result));
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
-		define('LUNA_ACTIVE_PAGE', 'admin');
-		require 'header.php';
-	load_admin_nav('content', 'board');
+        require 'header.php';
 
 ?>
 <div class="row">
@@ -231,10 +231,7 @@ elseif ( isset( $_POST['update_board'] ) ) {
 
 	$cur_index = 7;
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('content', 'board');
+    require 'header.php';
 
 ?>
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
@@ -468,10 +465,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		$result = $db->query('SELECT cat_name FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to fetch category info', __FILE__, __LINE__, $db->error());
 		$cat_name = $db->result($result);
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Categories', 'luna'));
-		define('LUNA_ACTIVE_PAGE', 'admin');
-		require 'header.php';
-	load_admin_nav('content', 'board');
+        require 'header.php';
 
 ?>
 <div class="row">
@@ -523,10 +517,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		redirect('backstage/board.php?saved=true');
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Board', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-		load_admin_nav('content', 'board');
+    require 'header.php';
 ?>
 <div class="row">
 <?php

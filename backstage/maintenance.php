@@ -10,6 +10,9 @@
 define('LUNA_DISABLE_BUFFERING', 1);
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'maintenance');
+define('LUNA_PAGE', 'maintenance');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -159,10 +162,7 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/maintenance.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
-define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('maintenance', 'maintenance');
 ?>
 <div class="row">
 	<div class="col-sm-12">

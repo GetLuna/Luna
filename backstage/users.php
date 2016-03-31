@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'users');
+define('LUNA_PAGE', 'users');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
@@ -34,7 +37,6 @@ if (isset($_GET['ip_stats'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 
 ?>
 <div class="row">
@@ -106,10 +108,7 @@ if (isset($_GET['ip_stats'])) {
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 
 ?>
 <div class="row">
@@ -277,10 +276,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 		redirect('backstage/users.php');
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Change user group', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 
 ?>
 <div class="row">
@@ -419,10 +415,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		redirect('backstage/users.php?deleted=true');
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Delete users', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 
 ?>
 <div class="row">
@@ -534,11 +527,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		redirect('backstage/users.php');
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans2', 'ban_message');
-	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 
 ?>
 <div class="row">
@@ -646,11 +636,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$can_ban = $luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
 	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
-	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 
 ?>
 <div class="row">
@@ -744,11 +731,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	require 'footer.php';
 } else {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'));
 	$focus_element = array('find_user', 'form[username]');
-	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('users', 'users');
 ?>
 <div class="row">
 	<div class="col-sm-12">

@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'users');
+define('LUNA_PAGE', 'ranks');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -82,11 +85,9 @@ elseif (isset($_POST['remove'])) {
 	redirect('backstage/ranks.php');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Ranks', 'luna'));
 $focus_element = array('ranks', 'new_rank');
-define('LUNA_ACTIVE_PAGE', 'admin');
+
 require 'header.php';
-	load_admin_nav('users', 'ranks');
 ?>
 <div class="row">
 	<form id="ranks" method="post" action="ranks.php">

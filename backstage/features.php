@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'settings');
+define('LUNA_PAGE', 'features');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -130,10 +133,7 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/features.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Features', 'luna'));
-define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
-load_admin_nav('settings', 'features');
 ?>
 <div class="row">
 	<div class="col-sm-12">

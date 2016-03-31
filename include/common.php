@@ -182,9 +182,7 @@ if (!defined('LUNA_BANS_LOADED')) {
 	require LUNA_CACHE_DIR.'cache_bans.php';
 }
 
-// Are we admins?
-require_once LUNA_ROOT.'include/backstage_functions.php';
-$is_admin = check_is_admin();
+$is_admin = $luna_user['g_id'] == LUNA_ADMIN ? true : false;
 
 require LUNA_ROOT.'include/general_functions.php';
 require LUNA_ROOT.'include/draw_functions.php';

@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'users');
+define('LUNA_PAGE', 'groups');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -35,12 +38,10 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 		$mode = 'edit';
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 	$required_fields = array('req_title' => __('Group title', 'luna'));
 	$focus_element = array('groups2', 'req_title');
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('users', 'groups');
+
+    require 'header.php';
 ?>
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
@@ -434,10 +435,7 @@ elseif (isset($_GET['del_group'])) {
 			$result = $db->query('SELECT g_title FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group title', __FILE__, __LINE__, $db->error());
 			$group_title = $db->result($result);
 
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-			define('LUNA_ACTIVE_PAGE', 'admin');
-			require 'header.php';
-				load_admin_nav('users', 'groups');
+            require 'header.php';
 
 ?>
 <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
@@ -496,12 +494,7 @@ elseif (isset($_GET['del_group'])) {
 	}
 	require 'footer.php';
 } else {
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-		load_admin_nav('users', 'groups');
-
+    require 'header.php';
 ?>
 <div class="row">
 	<div class="col-sm-4">

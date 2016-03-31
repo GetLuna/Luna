@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'conent');
+define('LUNA_PAGE', 'censoring');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -73,11 +76,9 @@ elseif (isset($_POST['remove'])) {
 	redirect('backstage/censoring.php');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Censoring', 'luna'));
 $focus_element = array('censoring', 'new_search_for');
-define('LUNA_ACTIVE_PAGE', 'admin');
+
 require 'header.php';
-	load_admin_nav('content', 'censoring');
 
 ?>
 <div class="row">

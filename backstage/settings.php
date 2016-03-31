@@ -8,6 +8,9 @@
  */
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'settings');
+define('LUNA_PAGE', 'settings');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -216,10 +219,7 @@ if (isset($_POST['form_sent'])) {
 
 $timestamp = time();
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Global settings', 'luna'));
-define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
-load_admin_nav('settings', 'settings');
 ?>
 <div class="row">
 	<div class="col-sm-12">

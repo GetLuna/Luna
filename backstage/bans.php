@@ -9,6 +9,8 @@
 
 define('LUNA_ROOT', '../');
 require LUNA_ROOT.'include/common.php';
+define('LUNA_SECTION', 'users');
+define('LUNA_PAGE', 'bans');
 
 if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 	header("Location: login.php");
@@ -79,11 +81,9 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		$mode = 'edit';
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans2', 'ban_user');
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('users', 'bans');
+
+    require 'header.php';
 
 ?>
 <div class="row">
@@ -329,10 +329,7 @@ elseif (isset($_GET['find_ban'])) {
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'), __('Search Results', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('users', 'bans');
+    require 'header.php';
 
 ?>
 <div class="row">
@@ -395,13 +392,9 @@ elseif (isset($_GET['find_ban'])) {
 
 	require 'footer.php';
 } else {
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans', 'new_ban_user');
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-		load_admin_nav('users', 'bans');
 
+    require 'header.php';
 ?>
 <div class="row">
 	<div class="col-sm-12">

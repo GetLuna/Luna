@@ -10,6 +10,9 @@
 define('LUNA_DISABLE_BUFFERING', 1);
 
 define('LUNA_ROOT', '../');
+define('LUNA_SECTION', 'maintenance');
+define('LUNA_PAGE', 'prune');
+
 require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
@@ -86,10 +89,7 @@ if ($action == 'prune') {
 	if (!$num_threads)
 		message_backstage(sprintf(__('There are no threads that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('maintenance', 'prune');
+    require 'header.php';
 
 ?>
 <div class="row">
@@ -208,10 +208,7 @@ $result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIM
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
-define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('maintenance', 'prune');
 ?>
 
 <div class="row">
