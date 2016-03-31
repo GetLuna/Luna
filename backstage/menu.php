@@ -12,6 +12,7 @@ define('LUNA_PAGE', 'menu');
 
 if (!$is_admin)
 	header("Location: login.php");
+
 // Add a new item
 if (isset($_POST['add_item'])) {
 	confirm_referrer('backstage/menu.php');
@@ -64,7 +65,7 @@ if (isset($_POST['add_item'])) {
 	redirect('backstage/menu.php');
 }
 
-$result = $db->query('SELECT * FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
+$menus = $db->query('SELECT * FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 require 'header.php';
 ?>
@@ -103,8 +104,7 @@ require 'header.php';
 					</thead>
 					<tbody>
 <?php
-if ($db->num_rows($result)) {
-	while ($cur_item = $db->fetch_assoc($result)) {
+while ($cur_item = $db->fetch_assoc($menus)) {
 ?>
 						<tr>
 							<td>
@@ -129,7 +129,6 @@ else
 							</td>
 						</tr>
 <?php
-	}
 }
 ?>
 					</tbody>
