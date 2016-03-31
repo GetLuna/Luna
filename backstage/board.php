@@ -82,21 +82,18 @@ elseif (isset($_GET['del_forum'])) {
 	load_admin_nav('content', 'board');
 
 ?>
-<form method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
-	<fieldset>
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Confirm delete forum', 'luna') ?></h3>
-			</div>
-			<div class="panel-body">
-				<p><?php printf(__('Are you sure that you want to delete the forum <strong>%s</strong>?', 'luna'), $forum_name) ?> <?php _e('Deleting a forum will delete all comments (if any) in that forum!', 'luna') ?></p>
-			</div>
-			<div class="panel-footer">
-				<button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
-			</div>
-		</div>
-	</fieldset>
-</form>
+<div class="row">
+    <div class="col-xs-12">
+        <form class="panel panel-danger" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Confirm delete forum', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php printf(__('Are you sure that you want to delete the forum <strong>%s</strong>?', 'luna'), $forum_name) ?> <?php _e('Deleting a forum will delete all comments (if any) in that forum!', 'luna') ?></p>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 		require 'footer.php';
@@ -477,22 +474,19 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	load_admin_nav('content', 'board');
 
 ?>
-<form method="post" action="board.php">
-	<input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
-	<fieldset>
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Confirm delete category', 'luna') ?></h3>
-			</div>
-			<div class="panel-body">
-				<p><?php printf(__('Are you sure that you want to delete the category <strong>%s</strong>?', 'luna'), $cat_name) ?> <?php _e('Deleting a category will delete all forums and comments (if any) in this category!', 'luna') ?></p>
-			</div>
-			<div class="panel-footer">
-				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
-			</div>
-		</div>
-	</fieldset>
-</form>
+<div class="row">
+    <div class="col-xs-12">
+        <form class="panel panel-danger" method="post" action="board.php">
+            <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Confirm delete category', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php printf(__('Are you sure that you want to delete the category <strong>%s</strong>?', 'luna'), $cat_name) ?> <?php _e('Deleting a category will delete all forums and comments (if any) in this category!', 'luna') ?></p>
+            </div>
+        </form>
+    </div>
+</div>
 <?php
 
 		require 'footer.php';
