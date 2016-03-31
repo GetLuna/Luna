@@ -1048,10 +1048,7 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	if(!is_null($http_status))
 		header('HTTP/1.1 ' . $http_status);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Info', 'luna'));
-	define('LUNA_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('info', 'info');
+    require 'header.php';
 
 ?>
 <div class="row">
@@ -2118,10 +2115,10 @@ function load_page($page) {
 	include LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 
-	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
-		return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page;
+	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/views/'.$page)))
+		return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/views/'.$page;
 	else
-		return LUNA_ROOT.'themes/'.$theme_info->parent_theme.'/'.$page;
+		return LUNA_ROOT.'themes/'.$theme_info->parent_theme.'/views/'.$page;
 }
 
 //
