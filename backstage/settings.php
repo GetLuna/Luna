@@ -484,6 +484,7 @@ foreach ($timezones as $timezone) {
                                 </label>
                             </div>
                         </div>
+                        <hr />
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Mailing list', 'luna') ?><span class="help-block"><?php _e('A comma separated list of subscribers who get e-mails when new reports are made', 'luna') ?></span></label>
                             <div class="col-sm-9">
