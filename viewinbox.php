@@ -170,7 +170,6 @@ if ($action == 'delete') {
 
 		$cur_delete['message'] = parse_message($cur_delete['message']);
 
-		load_inbox_nav($page);
 		require load_page('inbox-delete-comment.php');
 
 		require load_page('footer.php');

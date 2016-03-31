@@ -846,7 +846,7 @@ function draw_response_list() {
 
 		$username_quickreply = luna_htmlspecialchars($cur_comment['username']);
 
-		$comment_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'">'.__('Quote', 'luna').'</a>';
+		$comment_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_comment['message'] = parse_message($cur_comment['message']);

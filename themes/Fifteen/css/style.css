@@ -210,6 +210,10 @@ h6 {
 	margin-bottom: 0;
 }
 
+.title-block h2 .pull-right{
+    margin-top: -5px;
+}
+
 .title-block-primary {
 	background-color: #1a79bc;
 }
