@@ -8,7 +8,7 @@
  */
 
 define('LUNA_ROOT', '../');
-define('LUNA_SECTION', 'conent');
+define('LUNA_SECTION', 'content');
 define('LUNA_PAGE', 'censoring');
 
 require LUNA_ROOT.'include/common.php';

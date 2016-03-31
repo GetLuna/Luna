@@ -8,7 +8,7 @@
 define('LUNA_ROOT', '../');
 require '../include/common.php';
 define('LUNA_SECTION', 'settings');
-define('LUNA_PAGE', 'mneu');
+define('LUNA_PAGE', 'menu');
 
 if (!$is_admin)
 	header("Location: login.php");
