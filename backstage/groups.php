@@ -52,7 +52,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 		<?php if ($mode == 'edit'): ?>					<input type="hidden" name="group_id" value="<?php echo $group_id ?>" />
 		<?php endif; ?><?php if ($mode == 'add'): ?>					<input type="hidden" name="base_group" value="<?php echo $base_group ?>" />
 		<?php endif; ?>					<fieldset>
-				<div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php echo __('Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect. Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?></div>
+				<div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php echo __('These default permissions apply if no forum specific permissions are in effect. Users must be assigned to moderate one or more forums in their profile for these settings to take effect.', 'luna') ?></div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Group title', 'luna') ?></label>
 					<div class="col-sm-9">
