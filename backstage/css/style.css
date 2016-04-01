@@ -1028,14 +1028,14 @@ a.label-new {
 }
 
 .accent-group .btn {
-	border: 3px solid #fff;
+	border: 3px solid #fff !important;
 }
 
 .accent-group .btn:hover,
 .accent-group .btn:focus,
 .accent-group .btn:active,
 .accent-group .active.btn {
-	border: 3px solid #bbb;
+	border: 3px solid #bbb !important;
 }
 
 .btn-primary.color-accent.accent-1 {
@@ -1414,12 +1414,12 @@ a.label-new {
 }
 
 .night .accent-group .btn {
-    border-color: #444 !important;
+    border: 3px solid #444 !important;
 }
 
 .night .accent-group .btn.active,
 .night .accent-group .btn:hover {
-    border-color: #555 !important;
+    border: 3px solid #555 !important;
 }
 
 .night .comment-default {
