@@ -187,26 +187,6 @@ label .help-block {
 	line-height: 1.8;
 }
 
-.panel-footer > .checkbox {
-	margin-bottom: 0;
-}
-
-.panel-heading a,
-.panel-heading a:focus {
-    background-color: transparent;
-	color: #fff;
-    text-decoration: none;
-}
-
-.panel-heading a.btn {
-	color: rgba(255,255,255,1);
-}
-
-.panel-heading a:hover {
-	color: #fff;
-    text-decoration: none;
-}
-
 .background-title {
 	color: #fff;
 }
@@ -675,6 +655,34 @@ h3.panel-title {
 	background-color: #f65625;
 }
 
+.panel-footer > .checkbox {
+	margin-bottom: 0;
+}
+
+.panel-heading a,
+.panel-heading a:focus {
+    background-color: transparent;
+	color: #fff;
+    text-decoration: none;
+}
+
+.panel-heading a.btn {
+	color: rgba(255,255,255,1);
+}
+
+.panel-heading a:hover {
+	color: #fff;
+    text-decoration: none;
+    background-color: rgba(0,0,0,.1);
+}
+
+.panel-heading a:hover:active,
+.panel-heading a:active {
+	color: #fff;
+    text-decoration: none;
+    background-color: rgba(0,0,0,.2);
+}
+
 .form-horizontal .form-group {
     margin-left: 0;
     margin-right: 0;
@@ -775,11 +783,6 @@ fieldset[disabled] .form-control {
 	padding: 9px 14px;
 	margin-top: -8px;
 	margin-right: -15px;
-}
-
-.panel-title .btn:hover,
-.panel-title .btn:focus {
-    background-color: rgba(0,0,0,.2);
 }
 
 .btn-primary,
