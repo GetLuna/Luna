@@ -56,7 +56,7 @@ if (defined('LUNA_DEBUG')) {
 
 			$(document).ready(function(){
 
-				$('#color').colours({
+				$('.color').colours({
 					palette: flat_palette,
 					color: '#95a5a6',
 					width: 39,

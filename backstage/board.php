@@ -234,30 +234,32 @@ elseif ( isset( $_POST['update_board'] ) ) {
     require 'header.php';
 
 ?>
-<form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Forum details', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Forum name', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Description', 'luna') ?></label>
-					<div class="col-sm-9">
-						<textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Parent section', 'luna') ?></label>
-					<div class="col-sm-9">
-						<select name="parent_id" class="form-control">
-							<option value="0"><?php _e('No parent forum selected', 'luna') ?></option>
+<div class="row">
+    <div class="col-xs-12">
+        <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Forum details', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Forum name', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Description', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Parent section', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <select name="parent_id" class="form-control">
+                                    <option value="0"><?php _e('No parent forum selected', 'luna') ?></option>
 <?php
 
 	if (!in_array($cur_forum['id'],$parent_forums)) {
@@ -282,13 +284,13 @@ elseif ( isset( $_POST['update_board'] ) ) {
     echo '</optgroup>';
 
 ?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Category', 'luna') ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="cat_id" tabindex="3">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Category', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="cat_id" tabindex="3">
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -298,67 +300,67 @@ elseif ( isset( $_POST['update_board'] ) ) {
 	}
 
 ?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Sort threads by', 'luna') ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="sort_by" tabindex="4">
-							<option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php _e('Last comment', 'luna') ?></option>
-							<option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php _e('Thread start', 'luna') ?></option>
-							<option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php _e('Subject', 'luna') ?></option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Icon', 'luna') ?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__('Font Awesome icon guide', 'luna').'</a>') ?></span></label>
-					<div class="col-sm-9">
-						<div class="input-group">
-							<span class="input-group-addon">fa fa-fw fa-</span>
-							<input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="1" />
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Forum color', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input id="color" name="color" value="<?php echo $cur_forum['color'] ?>" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Solved', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') echo ' checked' ?> />
-								<?php _e('Threads in this forum can be marked as solved.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Group permissions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<fieldset>
-			<div class="panel-body">
-				<p><?php printf(__('Here you can set the forum specific permissions for the different user groups. Administrators always have full permissions. Permission settings that differ from the default permissions for the user group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">'.__('User groups', 'luna').'</a>') ?></p>
-				<div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php _e('Revert to default', 'luna') ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
-			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>&#160;</th>
-						<th><?php _e('Read forum', 'luna') ?></th>
-						<th><?php _e('Comment', 'luna') ?></th>
-						<th><?php _e('Create threads', 'luna') ?></th>
-					</tr>
-				</thead>
-				<tbody>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Sort threads by', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="sort_by" tabindex="4">
+                                    <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php _e('Last comment', 'luna') ?></option>
+                                    <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php _e('Thread start', 'luna') ?></option>
+                                    <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php _e('Subject', 'luna') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Icon', 'luna') ?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__('Font Awesome icon guide', 'luna').'</a>') ?></span></label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">fa fa-fw fa-</span>
+                                    <input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="1" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Forum color', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <input class="color" name="color" value="<?php echo $cur_forum['color'] ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Solved', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') echo ' checked' ?> />
+                                        <?php _e('Threads in this forum can be marked as solved.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php _e('Group permissions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                </div>
+                <fieldset>
+                    <div class="panel-body">
+                        <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php printf(__('Permission settings that differ from the default permissions for the group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">'.__('User groups', 'luna').'</a>') ?></div>
+                        <button class="btn btn-warning pull-right" type="submit" name="revert_perms" tabindex="<?php echo $cur_index++ ?>"><i class="fa fa-fw fa-undo"></i> <?php _e('Revert to default', 'luna') ?></button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>&#160;</th>
+                                <th><?php _e('Read forum', 'luna') ?></th>
+                                <th><?php _e('Comment', 'luna') ?></th>
+                                <th><?php _e('Create threads', 'luna') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 <?php
 
 	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_comment, g.g_create_threads, fp.read_forum, fp.comment, fp.create_threads FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.LUNA_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
@@ -374,31 +376,33 @@ elseif ( isset( $_POST['update_board'] ) ) {
 		$create_threads_def = (($create_threads && $cur_perm['g_create_threads'] == '0') || (!$create_threads && ($cur_perm['g_create_threads'] == '' || $cur_perm['g_create_threads'] == '1'))) ? false : true;
 
 ?>
-					<tr>
-						<th class="atcl"><?php echo luna_htmlspecialchars($cur_perm['g_title']) ?></th>
-						<td<?php if (!$read_forum_def) echo ' class="danger"'; ?>>
-							<input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-						</td>
-						<td<?php if (!$comment_def) echo ' class="danger"'; ?>>
-							<input type="hidden" name="comment_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($comment) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-						</td>
-						<td<?php if (!$create_threads_def) echo ' class="danger"'; ?>>
-							<input type="hidden" name="create_threads_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($create_threads) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-						</td>
-					</tr>
+                            <tr>
+                                <th class="atcl"><?php echo luna_htmlspecialchars($cur_perm['g_title']) ?></th>
+                                <td<?php if (!$read_forum_def) echo ' class="danger"'; ?>>
+                                    <input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
+                                    <input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+                                </td>
+                                <td<?php if (!$comment_def) echo ' class="danger"'; ?>>
+                                    <input type="hidden" name="comment_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($comment) ? '1' : '0'; ?>" />
+                                    <input type="checkbox" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+                                </td>
+                                <td<?php if (!$create_threads_def) echo ' class="danger"'; ?>>
+                                    <input type="hidden" name="create_threads_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($create_threads) ? '1' : '0'; ?>" />
+                                    <input type="checkbox" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+                                </td>
+                            </tr>
 <?php
 
 }
 
 ?>
-				</tbody>
-			</table>
-		</fieldset>
-	</div>
-</form>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
 
 <?php
 
