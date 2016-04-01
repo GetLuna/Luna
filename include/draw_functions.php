@@ -36,13 +36,11 @@ function draw_preview_panel($message) {
 		$preview_message = parse_message($message);
 
 ?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Comment preview', 'luna') ?></h3>
-	</div>
-	<div class="panel-body">
-		<?php echo $preview_message ?>
-	</div>
+<div class="title-block title-block-primary">
+    <h2><i class="fa fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
+</div>
+<div class="tab-content">
+    <p><?php echo $preview_message?></p>
 </div>
 <?php
 	}
