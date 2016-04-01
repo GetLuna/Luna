@@ -176,6 +176,12 @@ The message reads as follows:
 		list($subject, $forum_id) = $db->fetch_row($result);
 		define('MARKED', '1');
 
+        // Send a notification to all moderators
+		$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g WHERE (u.group_id=g.g_id AND g.g_moderator = 1)') or error('Unable to fetch ids of administrators and moderators', __FILE__, __LINE__, $db->error());
+
+        while ( $cur_moderator = $db->fetch_assoc( $result ) )
+            new_notification($cur_moderator['id'], 'backstage/reports.php', sprintf(__('A new report was filed by %s', 'luna'), $luna_user['username']), 'fa-flag');
+
 		// Should we use the internal report handling?
 		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2')
 			$db->query('INSERT INTO '.$db->prefix.'reports (comment_id, thread_id, forum_id, reported_by, created, message) VALUES('.$comment_id.', '.$thread_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());

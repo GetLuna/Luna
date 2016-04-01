@@ -9,7 +9,6 @@
 define('LUNA_ROOT', dirname(__FILE__).'/');
 require LUNA_ROOT.'include/common.php';
 require LUNA_ROOT.'include/parser.php';
-require LUNA_ROOT.'include/inbox_functions.php';
 require LUNA_ROOT.'include/me_functions.php';
 
 $inbox = 1;
