@@ -157,7 +157,7 @@ if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((LUNA_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.__( 'Register', 'luna' ).'</a></li>  
 				 <li><a href="#" data-toggle="modal" data-target="#login-form">'.__( 'Login', 'luna' ).'</a></li>';
 else
-	$usermenu = $backstage.$notification_menu_item.$inbox_menu_item.'
+	$usermenu = $backstage.$inbox_menu_item.$notification_menu_item.'
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i> <i class="fa fa-fw fa-angle-down"></i></a>
 					<ul class="dropdown-menu">
