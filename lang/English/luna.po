@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-01 20:24+0200\n"
-"PO-Revision-Date: 2016-04-01 20:24+0200\n"
+"POT-Creation-Date: 2016-04-01 21:11+0200\n"
+"PO-Revision-Date: 2016-04-01 21:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -25,9 +25,10 @@ msgstr ""
 #: backstage/about.php:33 backstage/about.php:34 backstage/about.php:35
 #: backstage/about.php:36 backstage/about.php:37 backstage/about.php:38
 #: backstage/about.php:39 backstage/about.php:40 backstage/about.php:41
-#: backstage/about.php:42 backstage/about.php:43 header.php:56 header.php:57
-#: include/draw_functions.php:337 include/draw_functions.php:418
-#: themes/Fifteen/views/inbox.php:44 themes/Fifteen/views/notifications.php:30
+#: backstage/about.php:42 backstage/about.php:43 backstage/about.php:44
+#: header.php:56 header.php:57 include/draw_functions.php:337
+#: include/draw_functions.php:418 themes/Fifteen/views/inbox.php:44
+#: themes/Fifteen/views/notifications.php:30
 msgid "New"
 msgstr ""
 
@@ -69,140 +70,144 @@ msgid "You can now respond on Inbox messages from the message view"
 msgstr ""
 
 #: backstage/about.php:42
+msgid "Reports now trigger a notification in the Notification Center"
+msgstr ""
+
+#: backstage/about.php:43
 msgid ""
 "Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents"
 msgstr ""
 
-#: backstage/about.php:43
+#: backstage/about.php:44
 msgid "Luna now has a Dutch translation included by default"
 msgstr ""
 
-#: backstage/about.php:44 backstage/about.php:45 backstage/about.php:46
+#: backstage/about.php:45 backstage/about.php:46 backstage/about.php:47
 #: backstage/settings.php:675
 msgid "System"
 msgstr ""
 
-#: backstage/about.php:44
+#: backstage/about.php:45
 msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr ""
 
-#: backstage/about.php:45
+#: backstage/about.php:46
 msgid "Luna now includes full \"Right to Left\"-support"
 msgstr ""
 
-#: backstage/about.php:46
+#: backstage/about.php:47
 msgid "Components now live in their own folder in the Luna root"
 msgstr ""
 
-#: backstage/about.php:47 backstage/about.php:48
+#: backstage/about.php:48 backstage/about.php:49
 msgid "Changed"
 msgstr ""
 
-#: backstage/about.php:47
+#: backstage/about.php:48
 msgid "Revamped search forms for users and bans, including responsive design"
 msgstr ""
 
-#: backstage/about.php:48
+#: backstage/about.php:49
 msgid "The Backstage has a whole new structure"
 msgstr ""
 
-#: backstage/about.php:49 backstage/about.php:50 backstage/about.php:51
-#: backstage/about.php:52 backstage/about.php:53 backstage/about.php:54
-#: backstage/about.php:55 backstage/about.php:56 backstage/about.php:57
+#: backstage/about.php:50 backstage/about.php:51 backstage/about.php:52
+#: backstage/about.php:53 backstage/about.php:54 backstage/about.php:55
+#: backstage/about.php:56 backstage/about.php:57 backstage/about.php:58
 msgid "Improved"
 msgstr ""
 
-#: backstage/about.php:49
+#: backstage/about.php:50
 msgid ""
 "You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 
-#: backstage/about.php:50
+#: backstage/about.php:51
 msgid "Users can now disable or enable First Run from their profile"
 msgstr ""
 
-#: backstage/about.php:51
+#: backstage/about.php:52
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 
-#: backstage/about.php:52
+#: backstage/about.php:53
 msgid "When you have a notification, the icon will animate"
 msgstr ""
 
-#: backstage/about.php:53
+#: backstage/about.php:54
 msgid "Advanced search has an improved UI"
 msgstr ""
 
-#: backstage/about.php:54
+#: backstage/about.php:55
 msgid "About can now be translated to other languages"
 msgstr ""
 
-#: backstage/about.php:55
+#: backstage/about.php:56
 msgid "Improved Backstage UI and night mode"
 msgstr ""
 
-#: backstage/about.php:56
+#: backstage/about.php:57
 msgid "Multiple improvements on accessibility"
 msgstr ""
 
-#: backstage/about.php:57
+#: backstage/about.php:58
 msgid ""
 "Luna now provides a description meta tag to prevent weird search results"
 msgstr ""
 
-#: backstage/about.php:58 backstage/about.php:59 backstage/about.php:60
-#: backstage/about.php:61 backstage/about.php:62
+#: backstage/about.php:59 backstage/about.php:60 backstage/about.php:61
+#: backstage/about.php:62 backstage/about.php:63
 msgid "Removed"
 msgstr ""
 
-#: backstage/about.php:58
+#: backstage/about.php:59
 msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
-#: backstage/about.php:59
+#: backstage/about.php:60
 msgid "The code base no longer supports PHP 5.2 anymore"
 msgstr ""
 
-#: backstage/about.php:60
+#: backstage/about.php:61
 msgid "Notifications can no longer be marked as read/trashed from the fly-out"
 msgstr ""
 
-#: backstage/about.php:61
+#: backstage/about.php:62
 msgid "You can no longer manage the database from the Backstage"
 msgstr ""
 
-#: backstage/about.php:62
+#: backstage/about.php:63
 msgid "Tools to add new users have been removed"
 msgstr ""
 
-#: backstage/about.php:63
+#: backstage/about.php:64
 msgid "Fixed"
 msgstr ""
 
-#: backstage/about.php:63
+#: backstage/about.php:64
 msgid "Fixes 26 bugs"
 msgstr ""
 
-#: backstage/about.php:69
+#: backstage/about.php:70
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
 msgstr ""
 
-#: backstage/about.php:75
+#: backstage/about.php:76
 msgid "users"
 msgstr ""
 
-#: backstage/about.php:76
+#: backstage/about.php:77
 msgid "threads"
 msgstr ""
 
-#: backstage/about.php:77 themes/Fifteen/objects/comment.php:9
+#: backstage/about.php:78 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr ""
 
-#: backstage/about.php:78
+#: backstage/about.php:79
 msgid "views"
 msgstr ""
 
@@ -484,9 +489,9 @@ msgstr ""
 #: settings.php:241 settings.php:297 settings.php:542 settings.php:577
 #: settings.php:723 settings.php:731 settings.php:746 thread.php:21
 #: thread.php:27 thread.php:78 viewforum.php:19 viewforum.php:56
-#: viewinbox.php:47 viewinbox.php:78 viewinbox.php:90 viewinbox.php:98
-#: viewinbox.php:106 viewinbox.php:129 viewinbox.php:182 viewinbox.php:197
-#: viewinbox.php:220
+#: viewinbox.php:46 viewinbox.php:77 viewinbox.php:89 viewinbox.php:97
+#: viewinbox.php:105 viewinbox.php:128 viewinbox.php:181 viewinbox.php:196
+#: viewinbox.php:219
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
@@ -645,7 +650,7 @@ msgstr ""
 #: backstage/bans.php:351 backstage/bans.php:439 backstage/index.php:114
 #: backstage/reports.php:60 backstage/reports.php:117
 #: backstage/settings.php:346 backstage/settings.php:562 comment.php:529
-#: edit.php:130 misc.php:134 new_inbox.php:389 thread.php:123 viewinbox.php:203
+#: edit.php:130 misc.php:134 new_inbox.php:389 thread.php:123 viewinbox.php:202
 msgid "Message"
 msgstr ""
 
@@ -1671,7 +1676,7 @@ msgstr ""
 #: backstage/reports.php:72 backstage/reports.php:73 backstage/reports.php:75
 #: backstage/reports.php:128 backstage/reports.php:129
 #: backstage/reports.php:131 themes/Fifteen/views/inbox.php:107
-#: viewinbox.php:192
+#: viewinbox.php:191
 msgid "Deleted"
 msgstr ""
 
@@ -1748,9 +1753,9 @@ msgstr ""
 #: search.php:74 search.php:280 search.php:513 settings.php:28 settings.php:33
 #: settings.php:76 settings.php:93 settings.php:178 settings.php:237
 #: settings.php:246 settings.php:293 settings.php:302 settings.php:443
-#: settings.php:529 settings.php:587 userlist.php:16 viewinbox.php:19
-#: viewinbox.php:23 viewinbox.php:27 viewinbox.php:119 viewinbox.php:149
-#: viewinbox.php:169 viewinbox.php:211
+#: settings.php:529 settings.php:587 userlist.php:16 viewinbox.php:18
+#: viewinbox.php:22 viewinbox.php:26 viewinbox.php:118 viewinbox.php:148
+#: viewinbox.php:168 viewinbox.php:210
 msgid "You do not have permission to access this page."
 msgstr ""
 
@@ -3339,7 +3344,7 @@ msgstr ""
 msgid "You must select some messages"
 msgstr ""
 
-#: inbox.php:92 new_inbox.php:387 viewinbox.php:205
+#: inbox.php:92 new_inbox.php:387 viewinbox.php:204
 msgid "Private Messages"
 msgstr ""
 
@@ -5183,7 +5188,7 @@ msgstr ""
 msgid "Are you sure you want to delete the selected messages?"
 msgstr ""
 
-#: themes/Fifteen/views/inbox-view.php:28 viewinbox.php:222
+#: themes/Fifteen/views/inbox-view.php:28 viewinbox.php:221
 msgid "Reply"
 msgstr ""
 
@@ -5575,14 +5580,14 @@ msgstr ""
 msgid "User list"
 msgstr ""
 
-#: viewinbox.php:159
+#: viewinbox.php:158
 msgid "Delete message"
 msgstr ""
 
-#: viewinbox.php:201
+#: viewinbox.php:200
 msgid "with"
 msgstr ""
 
-#: viewinbox.php:205
+#: viewinbox.php:204
 msgid "View a private discussion"
 msgstr ""
