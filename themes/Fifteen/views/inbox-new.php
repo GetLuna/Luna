@@ -47,14 +47,12 @@ if (!empty($errors)) {
 	$preview_message = parse_message($p_message);
 
 ?>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Comment preview', 'luna') ?></h3>
-				</div>
-				<div class="panel-body">
-					<p><?php echo $preview_message."\n" ?></p>
-				</div>
-			</div>
+            <div class="title-block title-block-primary">
+                <h2><i class="fa fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
+            </div>
+            <div class="tab-content">
+                <p><?php echo $preview_message."\n" ?></p>
+            </div>
 <?php
 
 }
