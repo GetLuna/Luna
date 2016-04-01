@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-01 21:11+0200\n"
-"PO-Revision-Date: 2016-04-01 21:11+0200\n"
+"POT-Creation-Date: 2016-04-01 22:56+0200\n"
+"PO-Revision-Date: 2016-04-01 22:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -1220,7 +1220,7 @@ msgstr "Sta toe dat reacties enkel uit hoofdletters bestaan."
 msgid "Allow a subject to contain only capital letters."
 msgstr "Sta toe dat onderwerpen enkel uit hoofdletters bestaan."
 
-#: backstage/features.php:419 include/class/luna_install.php:1573
+#: backstage/features.php:419 include/install.php:1573
 msgid "Guests"
 msgstr "Gasten"
 
@@ -1899,8 +1899,7 @@ msgstr "Hergenereren index. Dit is een goed moment om wat koffie te pakken."
 msgid "Processing comment <strong>%s</strong> …"
 msgstr "Reactie <strong>%s</strong> verwerken..."
 
-#: backstage/maintenance.php:132 db_update.php:181
-#: include/class/luna_install.php:1499
+#: backstage/maintenance.php:132 db_update.php:181 include/install.php:1499
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -2077,9 +2076,9 @@ msgstr "Nieuw onderwerp"
 msgid "Moderate"
 msgstr "Modereer"
 
-#: backstage/moderate.php:347 backstage/users.php:175
-#: include/class/luna_install.php:1552 include/functions.php:447
-#: include/functions.php:891 search.php:222 settings.php:676
+#: backstage/moderate.php:347 backstage/users.php:175 include/functions.php:447
+#: include/functions.php:891 include/install.php:1552 search.php:222
+#: settings.php:676
 msgid "Guest"
 msgstr "Gast"
 
@@ -2472,7 +2471,7 @@ msgid "Default favicon"
 msgstr "Standaard favicon"
 
 #: backstage/settings.php:298 backstage/settings.php:303
-#: include/class/luna_install.php:1491
+#: include/install.php:1491
 msgid "Announcement"
 msgstr "Aankondiging"
 
@@ -2664,7 +2663,7 @@ msgstr ""
 "Sta toe dat gebruikers een e-mail adres gebruiken dat al aan een andere "
 "gebruiker is toegewezen, de maillijst wordt gewaarschuwd als dit gebeurd."
 
-#: backstage/settings.php:551 include/class/luna_install.php:1497
+#: backstage/settings.php:551 include/install.php:1497
 #: themes/Fifteen/views/help.php:13 themes/Fifteen/views/rules.php:13
 msgid "Rules"
 msgstr "Regels"
@@ -3456,8 +3455,8 @@ msgstr "Nieuwe reactie"
 msgid "Create thread"
 msgstr "Nieuwe conversatie"
 
-#: db_update.php:140 db_update.php:148 include/class/luna_install.php:162
-#: include/class/luna_install.php:168 install.php:105
+#: db_update.php:140 db_update.php:148 include/install.php:162
+#: include/install.php:168 install.php:105
 #, php-format
 msgid ""
 "You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to "
@@ -3603,155 +3602,6 @@ msgstr "Je moet een bericht selecten"
 #: inbox.php:92 new_inbox.php:387 viewinbox.php:204
 msgid "Private Messages"
 msgstr "Privé berichten"
-
-#: include/class/luna_install.php:77
-msgid "Usernames must be at least 2 characters long."
-msgstr "Gebruikersnamen moeten minstens 2 tekens bevatten."
-
-#: include/class/luna_install.php:79
-msgid "Usernames must not be more than 25 characters long."
-msgstr "Gebruikersnamen mogen maximum 25 tekens bevatten."
-
-#: include/class/luna_install.php:81
-msgid "The username guest is reserved."
-msgstr "De gebruikersnaam gast is gereserveerd."
-
-#: include/class/luna_install.php:83
-msgid "Usernames may not be in the form of an IP address."
-msgstr "Gebruikersnamen mogen niet in de vorm van IP-adressen zijn."
-
-#: include/class/luna_install.php:85
-msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
-msgstr "Gebruikersnamen mogen niet het teken ', \", [ of ] bevatten."
-
-#: include/class/luna_install.php:87
-msgid ""
-"Usernames may not contain any of the text formatting tags (BBCode) that the "
-"forum uses."
-msgstr "Gebruikersnamen mogen geen gebruik maken van opmaak tags."
-
-#: include/class/luna_install.php:90
-msgid "Passwords must be at least 6 characters long."
-msgstr "Wachtwoorden moeten minstens 6 tekens bevatten."
-
-#: include/class/luna_install.php:92 register.php:62 settings.php:259
-msgid "Passwords do not match."
-msgstr "Wachtwoorden komen niet overeen."
-
-#: include/class/luna_install.php:98
-msgid "The administrator email address you entered is invalid."
-msgstr "Het administrator e-mail adres is ongeldig."
-
-#: include/class/luna_install.php:101
-msgid "You must enter a board title."
-msgstr "Je moet je forum een naam geven."
-
-#: include/class/luna_install.php:105
-msgid "The default language chosen doesn't seem to exist."
-msgstr "De gekozen standaard taal bestaat niet."
-
-#: include/class/luna_install.php:109
-msgid "The default style chosen doesn't seem to exist."
-msgstr "HEt gekozen standaard thema bestaat niet."
-
-#: include/class/luna_install.php:147
-#, php-format
-msgid "\"%s\" is not a valid database type"
-msgstr "\"%s\" is geen geldige database type"
-
-#: include/class/luna_install.php:174
-msgid ""
-"The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please "
-"choose a different prefix"
-msgstr ""
-"De tabel prefix 'SQLite_' is gereserveerd voor SQLite. Kies een andere prefix"
-
-#: include/class/luna_install.php:183
-msgid ""
-"InnoDB does not seem to be enabled. Please choose a database layer that does "
-"not have InnoDB support, or enable InnoDB on your MySQL server"
-msgstr ""
-"InnoDB lijkt niet beschikbaar te zijn. Kies een database layer dat geen "
-"InnoDB gebruik, of schakel InnoDB in op je MySQL server."
-
-#: include/class/luna_install.php:191
-#, php-format
-msgid ""
-"The table prefix '%s' contains illegal characters or is too long. The prefix "
-"may contain the letters a to z, any numbers and the underscore character. "
-"They must however not start with a number. The maximum length is 40 "
-"characters. Please choose a different prefix"
-msgstr ""
-"De tabel prefix '%s' bevat verboden tekens of is te lang. De prefix mag "
-"bestaan uit de letters a tot z, elk nummer en een underscore. Het mag niet "
-"starten met een cijfer en mag maximum 40 tekens lang zijn. Kies een andere "
-"prefix."
-
-#: include/class/luna_install.php:205
-#, php-format
-msgid ""
-"A table called \"%susers\" is already present in the database \"%s\". This "
-"could mean that Luna is already installed or that another piece of software "
-"is installed and is occupying one or more of the table names Luna requires. "
-"If you want to install multiple copies of Luna in the same database, you "
-"must choose a different table prefix"
-msgstr ""
-"Een tabel genaamd \"%susers\" bestaat al in de database \"%s\". Dit kan "
-"mogelijk wijzen op een al bestaande Luna installatie of dat een ander "
-"programma is geïnstalleerd dat een of meer tabelnamen gebruikt die Luna ook "
-"gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
-"bewaren kan je een andere prefix instellen."
-
-#: include/class/luna_install.php:1437
-msgid "H:i"
-msgstr "H:i"
-
-#: include/class/luna_install.php:1438
-msgid "j F Y"
-msgstr "j F Y"
-
-#: include/class/luna_install.php:1479
-msgid ""
-"Wow, it's great to have you here, welcome and thanks for joining us. We've "
-"set up your account and you're ready to go. Though we like to point out some "
-"actions you might want to do first."
-msgstr ""
-"Welkom. Het is fijn je hier te hebben, bedankt om te komen. Je account is "
-"aangemaakt en je bent klaar om te starten. We hebben echter nog wat handige "
-"links voor je die je mogelijk wilt bekijken."
-
-#: include/class/luna_install.php:1569
-msgid "Administrators"
-msgstr "Administratoren"
-
-#: include/class/luna_install.php:1569 settings.php:676
-msgid "Administrator"
-msgstr "Administrator"
-
-#: include/class/luna_install.php:1571
-msgid "Moderators"
-msgstr "Moderatoren"
-
-#: include/class/luna_install.php:1571 settings.php:676
-msgid "Moderator"
-msgstr "Moderator"
-
-#: include/class/luna_install.php:1575
-msgid "Members"
-msgstr "Gebruikers"
-
-#: include/class/luna_install.php:1604
-msgid "New member"
-msgstr "Nieuwe gebruikers"
-
-#: include/class/luna_install.php:1607 include/functions.php:903
-#: settings.php:676
-msgid "Member"
-msgstr "Gebruiker"
-
-#: include/class/luna_install.php:1611
-msgid "Welcome to Luna, discover the possibilities!"
-msgstr "Welkom bij Luna, ontdek de mogelijkheden!"
 
 #: include/common.php:199
 msgid ""
@@ -4124,6 +3974,10 @@ msgstr ""
 msgid "Page %s"
 msgstr "Pagina %s"
 
+#: include/functions.php:903 include/install.php:1607 settings.php:676
+msgid "Member"
+msgstr "Gebruiker"
+
 #: include/functions.php:937 include/functions.php:952
 #: include/functions.php:987 include/functions.php:1002
 msgid "…"
@@ -4190,6 +4044,150 @@ msgstr "Query"
 #, php-format
 msgid "Total query time: %s"
 msgstr "Totale query tijd: %s"
+
+#: include/install.php:77
+msgid "Usernames must be at least 2 characters long."
+msgstr "Gebruikersnamen moeten minstens 2 tekens bevatten."
+
+#: include/install.php:79
+msgid "Usernames must not be more than 25 characters long."
+msgstr "Gebruikersnamen mogen maximum 25 tekens bevatten."
+
+#: include/install.php:81
+msgid "The username guest is reserved."
+msgstr "De gebruikersnaam gast is gereserveerd."
+
+#: include/install.php:83
+msgid "Usernames may not be in the form of an IP address."
+msgstr "Gebruikersnamen mogen niet in de vorm van IP-adressen zijn."
+
+#: include/install.php:85
+msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
+msgstr "Gebruikersnamen mogen niet het teken ', \", [ of ] bevatten."
+
+#: include/install.php:87
+msgid ""
+"Usernames may not contain any of the text formatting tags (BBCode) that the "
+"forum uses."
+msgstr "Gebruikersnamen mogen geen gebruik maken van opmaak tags."
+
+#: include/install.php:90
+msgid "Passwords must be at least 6 characters long."
+msgstr "Wachtwoorden moeten minstens 6 tekens bevatten."
+
+#: include/install.php:92 register.php:62 settings.php:259
+msgid "Passwords do not match."
+msgstr "Wachtwoorden komen niet overeen."
+
+#: include/install.php:98
+msgid "The administrator email address you entered is invalid."
+msgstr "Het administrator e-mail adres is ongeldig."
+
+#: include/install.php:101
+msgid "You must enter a board title."
+msgstr "Je moet je forum een naam geven."
+
+#: include/install.php:105
+msgid "The default language chosen doesn't seem to exist."
+msgstr "De gekozen standaard taal bestaat niet."
+
+#: include/install.php:109
+msgid "The default style chosen doesn't seem to exist."
+msgstr "HEt gekozen standaard thema bestaat niet."
+
+#: include/install.php:147
+#, php-format
+msgid "\"%s\" is not a valid database type"
+msgstr "\"%s\" is geen geldige database type"
+
+#: include/install.php:174
+msgid ""
+"The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please "
+"choose a different prefix"
+msgstr ""
+"De tabel prefix 'SQLite_' is gereserveerd voor SQLite. Kies een andere prefix"
+
+#: include/install.php:183
+msgid ""
+"InnoDB does not seem to be enabled. Please choose a database layer that does "
+"not have InnoDB support, or enable InnoDB on your MySQL server"
+msgstr ""
+"InnoDB lijkt niet beschikbaar te zijn. Kies een database layer dat geen "
+"InnoDB gebruik, of schakel InnoDB in op je MySQL server."
+
+#: include/install.php:191
+#, php-format
+msgid ""
+"The table prefix '%s' contains illegal characters or is too long. The prefix "
+"may contain the letters a to z, any numbers and the underscore character. "
+"They must however not start with a number. The maximum length is 40 "
+"characters. Please choose a different prefix"
+msgstr ""
+"De tabel prefix '%s' bevat verboden tekens of is te lang. De prefix mag "
+"bestaan uit de letters a tot z, elk nummer en een underscore. Het mag niet "
+"starten met een cijfer en mag maximum 40 tekens lang zijn. Kies een andere "
+"prefix."
+
+#: include/install.php:205
+#, php-format
+msgid ""
+"A table called \"%susers\" is already present in the database \"%s\". This "
+"could mean that Luna is already installed or that another piece of software "
+"is installed and is occupying one or more of the table names Luna requires. "
+"If you want to install multiple copies of Luna in the same database, you "
+"must choose a different table prefix"
+msgstr ""
+"Een tabel genaamd \"%susers\" bestaat al in de database \"%s\". Dit kan "
+"mogelijk wijzen op een al bestaande Luna installatie of dat een ander "
+"programma is geïnstalleerd dat een of meer tabelnamen gebruikt die Luna ook "
+"gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
+"bewaren kan je een andere prefix instellen."
+
+#: include/install.php:1437
+msgid "H:i"
+msgstr "H:i"
+
+#: include/install.php:1438
+msgid "j F Y"
+msgstr "j F Y"
+
+#: include/install.php:1479
+msgid ""
+"Wow, it's great to have you here, welcome and thanks for joining us. We've "
+"set up your account and you're ready to go. Though we like to point out some "
+"actions you might want to do first."
+msgstr ""
+"Welkom. Het is fijn je hier te hebben, bedankt om te komen. Je account is "
+"aangemaakt en je bent klaar om te starten. We hebben echter nog wat handige "
+"links voor je die je mogelijk wilt bekijken."
+
+#: include/install.php:1569
+msgid "Administrators"
+msgstr "Administratoren"
+
+#: include/install.php:1569 settings.php:676
+msgid "Administrator"
+msgstr "Administrator"
+
+#: include/install.php:1571
+msgid "Moderators"
+msgstr "Moderatoren"
+
+#: include/install.php:1571 settings.php:676
+msgid "Moderator"
+msgstr "Moderator"
+
+#: include/install.php:1575
+msgid "Members"
+msgstr "Gebruikers"
+
+#: include/install.php:1604
+msgid "New member"
+msgstr "Nieuwe gebruikers"
+
+#: include/install.php:1611
+msgid "Welcome to Luna, discover the possibilities!"
+msgstr "Welkom bij Luna, ontdek de mogelijkheden!"
 
 #: include/parser.php:53 include/parser.php:108
 msgid ""

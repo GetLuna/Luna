@@ -23,7 +23,7 @@ require LUNA_ROOT.'include/draw_functions.php';
 require LUNA_ROOT.'include/version.php';
 
 // Load Installer class
-require LUNA_ROOT.'include/class/luna_install.php';
+require LUNA_ROOT.'include/install.php';
 
 // Load UTF-8 functions
 require LUNA_ROOT.'include/utf8/utf8.php';
