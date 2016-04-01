@@ -191,9 +191,11 @@ label .help-block {
 	margin-bottom: 0;
 }
 
-.panel-heading a {
+.panel-heading a,
+.panel-heading a:focus {
     background-color: transparent;
-	color: rgba(255,255,255,.7);
+	color: #fff;
+    text-decoration: none;
 }
 
 .panel-heading a.btn {
@@ -202,6 +204,7 @@ label .help-block {
 
 .panel-heading a:hover {
 	color: #fff;
+    text-decoration: none;
 }
 
 .background-title {
@@ -910,17 +913,9 @@ a.label-new {
     padding: 10px;
 }
 
-@media all and (max-width: 767px) {
-    .alert {
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-}
-
 .alert-success {
 	color: #659e00;
 	background-color: #e5ffb8;
-	border-color: #d1fd88;
 }
 
 .alert-success .alert-link {
@@ -928,9 +923,8 @@ a.label-new {
 }
 
 .alert-info {
-	color: #0085da;
-	background-color: #daf0ff;
-	border-color: #c1e8ff;
+	color: #1a79bc;
+	background-color: #dcedf8;
 }
 
 .alert-info .alert-link {
@@ -940,7 +934,6 @@ a.label-new {
 .alert-warning {
 	color: #e2ab00;
 	background-color: #fff6d9;
-	border-color: #f8e8ae;
 }
 
 .alert-warning .alert-link {
@@ -950,7 +943,6 @@ a.label-new {
 .alert-danger {
 	color: #d34600;
 	background-color: #ffe3d5;
-	border-color: #fdc4ab;
 }
 
 .alert-danger .alert-link {
@@ -1520,8 +1512,8 @@ a.label-new {
 }
 
 .night .alert-info {
-    background-color: #31708f;
-    color: #d9edf7;
+    background-color: #1a79bc;
+    color: #dcedf8;
 }
 
 .night .alert-success {

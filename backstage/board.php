@@ -619,7 +619,10 @@ if ($db->num_rows($result) > 0) {
                             <input type="text" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][name]" placeholder="<?php _e('Category title', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_category['cat_name'] ) ?>" maxlength="80" />
 						</div>
 						<div class="title-sm title-primary">
-                            <input type="number" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_category['disp_position'] ?>" />
+                            <div class="input-group">
+                                <span class="input-group-addon">Position</span>
+                                <input type="number" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_category['disp_position'] ?>" />
+                            </div>
 						</div>
 					</div>
 <?php
