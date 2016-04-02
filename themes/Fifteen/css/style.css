@@ -335,6 +335,10 @@ h6 {
     padding: 6px 12px;
 }
 
+.title-block:last-child {
+    margin-bottom: 10px;
+}
+
 .pagination > .active > a, 
 .pagination > .active > span,
 .pagination > .active > a:hover,
