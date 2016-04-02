@@ -159,7 +159,7 @@ if ($luna_user['is_guest'])
 else
 	$usermenu = $backstage.$inbox_menu_item.$notification_menu_item.'
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i> <i class="fa fa-fw fa-angle-down"></i></a>
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i><span class="visible-xs-inline"> '.luna_htmlspecialchars($luna_user['username']).'</span> <i class="fa fa-fw fa-angle-down"></i></a>
 					<ul class="dropdown-menu">
 						<li><a href="profile.php?id='.$luna_user['id'].'"><i class="fa fa-fw fa-user"></i> '.__( 'Profile', 'luna' ).'</a></li>
 						<li><a href="settings.php"><i class="fa fa-fw fa-cogs"></i> '.__( 'Settings', 'luna' ).'</a></li>

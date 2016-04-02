@@ -551,6 +551,15 @@ hr {
     padding: 10px 15px;
     white-space: normal;
 }
+	
+.dropdown-menu .divider {
+    margin: 0;
+}
+
+.navbar-nav .open .dropdown-menu > li > a,
+.navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 10px 15px !important;
+}
 
 @media (max-width:767px) {
 	.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
