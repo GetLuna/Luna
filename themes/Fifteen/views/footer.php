@@ -114,31 +114,40 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 <?php
 }
 
+
+// End the transaction
+$db->end_transaction();
+?>
+<div class="container main">
+    <div class="row">
+        <div class="col-xs-12">
+<?php
+// Display executed queries (if enabled)
+if (defined('LUNA_DEBUG'))
+	display_saved_queries();
+?>
+        </div>
+    </div>
+</div>
+<div class="footer container text-center">
+<?php
+
 // Display debug info (if enabled/defined)
 if (defined('LUNA_DEBUG')) {
-	echo '<p id="debug">[ ';
-
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $luna_start);
-	echo sprintf(__('Generated in %1$s seconds, %2$s queries executed', 'luna'), $time_diff, $db->get_num_queries());
+	echo sprintf(__('Generated in %1$s seconds &middot; %2$s queries executed', 'luna'), $time_diff, $db->get_num_queries());
 
 	if (function_exists('memory_get_usage')) {
-		echo ' - '.sprintf(__('Memory usage: %1$s', 'luna'), file_size(memory_get_usage()));
+		echo ' &middot; '.sprintf(__('Memory usage: %1$s', 'luna'), file_size(memory_get_usage()));
 
 		if (function_exists('memory_get_peak_usage'))
 			echo ' '.sprintf(__('(Peak: %1$s)', 'luna'), file_size(memory_get_peak_usage()));
 	}
-
-	echo ' ]</p>'."\n";
 }
-
-
-// End the transaction
-$db->end_transaction();
-
-// Display executed queries (if enabled)
-if (defined('LUNA_DEBUG'))
-	display_saved_queries();
+?>
+</div>
+<?php
 
 
 // Close the db connection (and free up any result data)

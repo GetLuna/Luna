@@ -2026,7 +2026,7 @@ function display_saved_queries() {
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php _e('Debug information', 'luna') ?></h3>
 	</div>
-	<table class="table table-bordered table-striped table-hover">
+	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th class="col-xs-1"><?php _e('Time (s)', 'luna') ?></th>

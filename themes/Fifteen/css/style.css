@@ -835,6 +835,22 @@ hr {
     box-shadow: none;
 }
 
+/* Debug */
+.panel-warning.debug {
+	border-color: #ffa200;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+.panel-warning.debug > .panel-heading {
+	border-color: #ffa200;
+}
+
+.panel-warning.debug > .panel-heading {
+	color: #fff;
+	background-color: #ffa200;
+}
+
 /* Jumbotron */
 .jumbotron.first-run {
 	color: #fff;
