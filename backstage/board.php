@@ -744,6 +744,7 @@ if ($db->num_rows($result) > 0) {
 <?php } ?>
 		</form>
 	</div>
+</div>
 <?php 
     }
     require 'footer.php';

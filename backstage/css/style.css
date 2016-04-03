@@ -666,18 +666,19 @@ h3.panel-title {
     text-decoration: none;
 }
 
-.panel-heading a.btn {
+.panel-heading .btn,
+.panel-heading a:hover {
 	color: rgba(255,255,255,1);
 }
 
-.panel-heading a:hover {
+.panel-heading .btn:hover {
 	color: #fff;
     text-decoration: none;
     background-color: rgba(0,0,0,.1);
 }
 
-.panel-heading a:hover:active,
-.panel-heading a:active {
+.panel-heading .btn:hover:active,
+.panel-heading .btn:active {
 	color: #fff;
     text-decoration: none;
     background-color: rgba(0,0,0,.2);
