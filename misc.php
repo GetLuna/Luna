@@ -250,8 +250,21 @@ Reason: <reason>
 
 	$thread_id = intval($_GET['tid']);
 	$comment_id = intval($_GET['answer']);
+
 	if ($comment_id < 1 || $thread_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+    
+    // Fetch some info about the forum
+    if (!$luna_user['is_guest'])
+        $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f JOIN '.$db->prefix.'threads AS t WHERE t.id = '.$thread_id.' AND f.id = t.forum_id') or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+
+    if (!$db->num_rows($result))
+        message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+    $cur_forum = $db->fetch_assoc($result);
+
+    if ($cur_forum['solved'] == 0)
+        message(__('This forum doesn\'t allow you to mark threads as sovled.', 'luna'), false, '403 Forbidden');
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
@@ -274,8 +287,21 @@ Reason: <reason>
 
 	$answer_id = intval($_GET['tid']);
 	$comment_id = intval($_GET['unanswer']);
+
 	if ($answer_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+    
+    // Fetch some info about the forum
+    if (!$luna_user['is_guest'])
+        $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f JOIN '.$db->prefix.'threads AS t WHERE t.id = '.$thread_id.' AND f.id = t.forum_id') or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+
+    if (!$db->num_rows($result))
+        message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+    $cur_forum = $db->fetch_assoc($result);
+
+    if ($cur_forum['solved'] == 0)
+        message(__('This forum doesn\'t allow you to mark threads as sovled.', 'luna'), false, '403 Forbidden');
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
