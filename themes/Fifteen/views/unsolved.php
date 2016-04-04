@@ -4,7 +4,7 @@
 if (!defined('FORUM'))
 	exit;
 ?>
-<form class="form-horizontal" id="report" method="post" action="misc.php?unanswer=<?php echo $comment_id ?>&amp;tid=<?php echo $answer_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+<form class="form-horizontal" id="report" method="post" action="misc.php?unanswer=<?php echo $comment_id ?>&amp;tid=<?php echo $thread_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 	<div class="main container">
 		<div class="row">
 			<div class="col-xs-12">
