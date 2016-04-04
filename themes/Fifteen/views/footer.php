@@ -117,15 +117,14 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 
 // End the transaction
 $db->end_transaction();
+
+// Display executed queries (if enabled)
+if (defined('LUNA_DEBUG')) {
 ?>
 <div class="container main">
     <div class="row">
         <div class="col-xs-12">
-<?php
-// Display executed queries (if enabled)
-if (defined('LUNA_DEBUG'))
-	display_saved_queries();
-?>
+            <?php display_saved_queries(); ?>
         </div>
     </div>
 </div>
@@ -148,7 +147,7 @@ if (defined('LUNA_DEBUG')) {
 ?>
 </div>
 <?php
-
+}
 
 // Close the db connection (and free up any result data)
 $db->close();
