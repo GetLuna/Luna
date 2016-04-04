@@ -475,8 +475,8 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 				<input type="hidden" name="threads" value="<?php echo $threads ?>" />
 				<fieldset>
 					<div class="form-group">
-						<label class="col-sm-2 control-label"><?php _e('Move to', 'luna') ?></label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label"><?php _e('Move to', 'luna') ?></label>
+						<div class="col-sm-9">
 							<select class="form-control" name="move_to_forum">
 	<?php
 
@@ -495,12 +495,11 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 		}
         echo '</optgroup>';
 	?>
-								
 							</select>
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" name="with_redirect" value="1" />
-									<?php _e('Leave redirect thread(s)', 'luna') ?>
+									<?php _e('Leave redirect thread(s).', 'luna') ?>
 								</label>
 							</div>
 						</div>

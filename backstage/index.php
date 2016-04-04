@@ -169,19 +169,17 @@ if ($db->num_rows($result)) {
 if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 		<div class="alert alert-info">
-			<h4><?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>
+			<h4><i class="fa fa-fw fa-moon-o"></i> <?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>
 		</div>
 <?php
 }
 
 if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
-        <div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
+        <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
 <?php endif;
 
 if ($install_file_exists) : ?>
-        <div class="alert alert-warning">
-            <p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?></p>
-        </div>
+        <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('The file install.php still exists, but should be removed.', 'luna') ?></div>
 <?php endif; ?>
         <div class="panel panel-default">
             <div class="panel-heading">

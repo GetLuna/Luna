@@ -255,8 +255,7 @@ Reason: <reason>
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     
     // Fetch some info about the forum
-    if (!$luna_user['is_guest'])
-        $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f JOIN '.$db->prefix.'threads AS t WHERE t.id = '.$thread_id.' AND f.id = t.forum_id') or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f JOIN '.$db->prefix.'threads AS t WHERE t.id = '.$thread_id.' AND f.id = t.forum_id') or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result))
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -292,8 +291,7 @@ Reason: <reason>
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     
     // Fetch some info about the forum
-    if (!$luna_user['is_guest'])
-        $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f JOIN '.$db->prefix.'threads AS t WHERE t.id = '.$thread_id.' AND f.id = t.forum_id') or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f JOIN '.$db->prefix.'threads AS t WHERE t.id = '.$thread_id.' AND f.id = t.forum_id') or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result))
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
