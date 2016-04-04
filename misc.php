@@ -284,10 +284,10 @@ Reason: <reason>
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-	$answer_id = intval($_GET['tid']);
+	$thread_id = intval($_GET['tid']);
 	$comment_id = intval($_GET['unanswer']);
 
-	if ($answer_id < 1)
+	if ($thread_id < 1)
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     
     // Fetch some info about the forum
@@ -305,7 +305,7 @@ Reason: <reason>
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved comment', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$thread_id) or error('Unable to update solved comment', __FILE__, __LINE__, $db->error());
 
 		redirect('thread.php?pid='.$comment_id.'#p'.$comment_id);
 	}

@@ -1474,8 +1474,8 @@ function error($message, $file = null, $line = null, $db_error = false) {
 	</head>
 	<body>
 		<div class="error">
-			<h2>Well... this is embarrassing</h2>
-            <p>Something went wrong while performing the action you requested. You can see more details below. It might be useful to enable debug mode for more info. We would like to ask you to report these error to the <a href="http://forum.getluna.org">Luna developers</a> with detailed info on how this error occurred.</p>
+			<h2>Luna faild to perform your request</h2>
+            <p>Something went wrong while performing the action you requested. You can see more details below. It might be useful to enable debug mode for more info. We would like to ask you to report this error to the <a href="http://forum.getluna.org">Luna developers</a> with detailed info on how this error occurred.</p>
 			<div class="error-details">
 <?php
 
