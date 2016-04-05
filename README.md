@@ -1,4 +1,4 @@
-# Luna 2.0 "Emerald"
+# Luna 2.0 "Emerald" Preview
 
 [![Join the chat at https://gitter.im/GetLuna/Luna](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GetLuna/Luna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -29,6 +29,7 @@ Luna supports updating from all versions of FluxBB since 1.4.0, all versions of 
  - **ModernBB 4**: all versions supported
 - **Luna support**:
  - **Luna 1**: all versions supported
+ - **Luna 3**: all versions supported
 
 ## Links
  - Homepage: http://getluna.org/
