@@ -192,10 +192,10 @@ if (isset($_POST['form_sent'])) {
 					else
 						$cleaned_message = bbcode2email($message, -1);
 
-					// Loop through subscribed users and send emails
+					// Loop through subscribed users and send emails and notifications
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
 						// First of all, add a new notification
-						new_notification($cur_subscriber['id'], get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_commenting['subject'], 'fa-reply');
+						new_notification($cur_subscriber['id'], get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, sprintf(__('%s replied to %s', 'luna'), $username, $cur_commenting['subject']), 'fa-comment');
 
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
@@ -325,6 +325,9 @@ You can unsubscribe by going to <unsubscribe_url>
 
 					// Loop through subscribed users and send emails
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
+						// First of all, add a new notification
+						new_notification($cur_subscriber['id'], get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, sprintf(__('%s created a new thread in %s', 'luna'), $username, $cur_commenting['forum_name']), 'fa-comments-o');
+                        
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new thread" template
