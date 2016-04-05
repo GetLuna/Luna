@@ -263,7 +263,7 @@ Reason: <reason>
     $cur_forum = $db->fetch_assoc($result);
 
     if ($cur_forum['solved'] == 0)
-        message(__('This forum doesn\'t allow you to mark threads as sovled.', 'luna'), false, '403 Forbidden');
+        message(__('This forum doesn\'t allow you to mark threads as solved.', 'luna'), false, '403 Forbidden');
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
@@ -299,7 +299,7 @@ Reason: <reason>
     $cur_forum = $db->fetch_assoc($result);
 
     if ($cur_forum['solved'] == 0)
-        message(__('This forum doesn\'t allow you to mark threads as sovled.', 'luna'), false, '403 Forbidden');
+        message(__('This forum doesn\'t allow you to mark threads as solved.', 'luna'), false, '403 Forbidden');
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
