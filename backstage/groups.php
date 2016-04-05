@@ -343,8 +343,8 @@ elseif (isset($_POST['add_edit_group'])) {
 		$soft_delete_comments = isset($_POST['soft_delete_comments']) ? '1' : '0';
 		$soft_delete_threads = isset($_POST['soft_delete_threads']) ? '1' : '0';
 	} else {
-		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $comment = $create_threads = $edit_comments = $delete_comments = $delete_threads = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_comments = $soft_delete_threads = $inbox_allow = '1';
-		$moderator = $comment_flood = $search_flood = $email_flood = $report_flood = $inbox_limit = '0';
+		$mod_edit_users = $moderator = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $comment = $create_threads = $edit_comments = $delete_comments = $delete_threads = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_comments = $soft_delete_threads = $inbox_allow = '1';
+		$comment_flood = $search_flood = $email_flood = $report_flood = $inbox_limit = '0';
 	}
 
 	if ($title == '')
