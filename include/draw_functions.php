@@ -11,17 +11,15 @@ function draw_error_panel($errors) {
 
 	if (!empty($errors)) {
 ?>
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Comment errors', 'luna') ?></h3>
-		</div>
-		<div class="panel-body">
+<div class="title-block title-block-danger">
+    <h2><i class="fa fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
+</div>
+<div class="tab-content tab-content-danger">
 <?php
 	foreach ($errors as $cur_error)
 		echo $cur_error;
 ?>
-		</div>
-	</div>
+</div>
 <?php
 	}
 
@@ -37,7 +35,7 @@ function draw_preview_panel($message) {
 
 ?>
 <div class="title-block title-block-primary">
-    <h2><i class="fa fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
+    <h2><i class="fa fa-fw fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
 </div>
 <div class="tab-content">
     <p><?php echo $preview_message?></p>
