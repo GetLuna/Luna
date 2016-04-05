@@ -194,6 +194,9 @@ if ($luna_config['o_notification_flyout'] == 1) {
         </div>
         <div class="content">
             <div class="container main">
+                <?php if ($luna_config['o_maintenance'] == '1') { ?>
+                    <div class="row"><div class="col-xs-12"><div class="alert alert-danger"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('Luna is currently set in Maintenance Mode. Do not log off.', 'luna') ?></div></div></div>
+                <?php } ?>
 <?php
 if (isset($required_fields)) {
 	// Output JavaScript to validate form (make sure required fields are filled out)
