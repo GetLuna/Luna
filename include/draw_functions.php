@@ -978,7 +978,10 @@ function draw_search_results() {
 			$subject = luna_htmlspecialchars($cur_search['subject']);
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['commenter']).'</span>';
         
-            $url = 'thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'];
+            if (isset($cur_search['pid']))
+                $url = 'thread.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'];
+            else
+                $url = 'thread.php?id='.$cur_search['tid'];
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
