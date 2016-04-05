@@ -905,10 +905,10 @@ function draw_soft_delete_form($id) {
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
-			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
+			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be hidden.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to hide is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
+				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Hide', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -919,10 +919,10 @@ function draw_soft_reset_form($id) {
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
-			<p><?php _e('This comment has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
+			<p><?php _e('This comment has been hidden. We\'ll unhide it again with a click on the button.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Reset comment', 'luna') ?></button>
+				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Show', 'luna') ?></button>
 			</div>
 		</form>
 <?php

@@ -61,7 +61,7 @@ if (isset($_POST['soft_delete'])) {
 		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
 		// Delete just this one comment
-		$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE id='.$id) or error('Unable to soft delete comment', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE id='.$id) or error('Unable to hide comment', __FILE__, __LINE__, $db->error());
 		update_forum($cur_comment['fid']);
 
 		// Redirect towards the previous comment
@@ -87,7 +87,7 @@ if (isset($_POST['reset'])) {
 		redirect('viewforum.php?id='.$cur_comment['fid']);
 	} else {
 		// Reset just this one comment
-		$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE id='.$id) or error('Unable to soft delete comment', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE id='.$id) or error('Unable to unhide comment', __FILE__, __LINE__, $db->error());
 		update_forum($cur_comment['fid']);
 
 		// Redirect towards the comment

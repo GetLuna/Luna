@@ -736,9 +736,9 @@ function delete_thread($thread_id, $type) {
 	if ($type == "hard")
 		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to delete thread', __FILE__, __LINE__, $db->error());
 	elseif ($type == "soft")
-		$db->query('UPDATE '.$db->prefix.'threads SET soft = 1 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete thread', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET soft = 1 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to hide thread', __FILE__, __LINE__, $db->error());
 	else
-		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to soft delete thread', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET soft = 0 WHERE id='.$thread_id.' OR moved_to='.$thread_id) or error('Unable to unhide thread', __FILE__, __LINE__, $db->error());
 
 	// Create a list of the comment IDs in this thread
 	$comment_ids = '';
@@ -756,9 +756,9 @@ function delete_thread($thread_id, $type) {
 			$db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
 		} else {
 			if ($type == "soft")
-				$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE thread_id='.$thread_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE thread_id='.$thread_id) or error('Unable to hide comments', __FILE__, __LINE__, $db->error());
 			else
-				$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE thread_id='.$thread_id) or error('Unable to soft delete comments', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE thread_id='.$thread_id) or error('Unable to unhide comments', __FILE__, __LINE__, $db->error());
 		}
 	}
 
