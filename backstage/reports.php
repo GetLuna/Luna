@@ -81,6 +81,7 @@ if ( $db->num_rows( $result ) ) {
                         </div>
                         <div class="panel-footer">
                             <button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php _e( 'Mark as read', 'luna' ) ?></button>
+                            <a class="btn btn-danger" href="../delete.php?id=<?php echo $cur_report['pid'] ?>&action=delete"><i class="fa fa-fw fa-trash"></i><?php _e( 'Remove', 'luna' ) ?></a>
                         </div>
                     </div>
 <?php
