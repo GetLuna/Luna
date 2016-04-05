@@ -46,7 +46,7 @@ if (($luna_user['g_delete_comments'] == '0' ||
 if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_comment['commenter_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-// Soft delete comments
+// Hide comments
 if (isset($_POST['soft_delete'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
@@ -72,7 +72,7 @@ if (isset($_POST['soft_delete'])) {
 	}
 }
 
-// Soft delete reset
+// Unhide
 if (isset($_POST['reset'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');

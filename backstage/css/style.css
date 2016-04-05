@@ -292,6 +292,27 @@ label .help-block {
 	background: #fff;
 }
 
+/* Tabpanels */
+.tab-content {
+	padding: 10px;
+	border: 1px solid #136cab;
+	border-top: none;
+}
+
+.tab-content :first-child {
+	margin-top: 0;
+}
+
+.tab-content :last-child {
+	margin-bottom: 0;
+}
+
+/* Reports */
+.panel .breadcrumb {
+    padding: 10px;
+    margin: -10px -10px 10px;
+}
+
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;
