@@ -63,6 +63,11 @@ footer,
 	border-color: #ccc;
 }
 
+.panel-warning.panel-colored,
+.panel-warning.panel-colored .panel-title {
+    color: #fff !important;
+}
+
 .panel-heading,
 .jumbotron .container h2,
 .navbar-default .navbar-nav > .active > a,
@@ -82,6 +87,20 @@ footer,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a,
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav > li > a:hover,
+.nav > li > a:focus,
+.nav-tabs > li > a:hover,
+.panel-colored,
+footer,
+footer a,
+.notification-menu .dropdown-header,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a,
+.panel .panel-heading .panel-title .btn,
+.panel.panel-colored .panel-heading .panel-title .btn:hover,
 .btn-primary {
 	color: #555 !important;
 }
@@ -125,22 +144,23 @@ footer,
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-	text-shadow: 0 0 5px 1px rgba(100,100,100,.5);
+	text-shadow: none;
 }
 
 a.list-group-item:hover,
 a:focus,
 .editor .btn,
 a {
-	color: #ddd;
+	color: #555;
 }
 
+.panel-heading a, .panel-heading a:focus,
 a:hover,
 a:active,
 .title-nav .nav-tabs > .active > a,
 .title-nav .nav-tabs > .active > a:focus,
 .title-nav .nav-tabs > .active > a:hover {
-	color: #ccc;
+	color: #444;
 }
 
 .night .comment-default a,
