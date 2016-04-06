@@ -117,6 +117,11 @@ body.rtl {
     direction: rtl;
 }
 
+.emoji,
+.emoji-ed {
+	font-family: "Segoe UI Emoji","Segoe UI Symbol","Apple Color Emoji","Android Emoji","NotoColorEmoji","EmojiSymbols" !important;
+}
+
 /* General styles */
 * {
 	border-radius: 0 !important;

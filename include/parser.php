@@ -738,7 +738,7 @@ function get_smilies() {
 	// Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
 	if ($luna_config['o_emoji'] == 1) {
 		$smilies = array(
-			':)' => '&#x263a;',
+			':)' => '&#x1f642;',
 			':|' => '&#x1f611;',
 			':(' => '&#x1f629;',
 			':d' => '&#x1f604;',
