@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-06 12:22+0200\n"
-"PO-Revision-Date: 2016-04-06 12:22+0200\n"
+"POT-Creation-Date: 2016-04-06 14:57+0200\n"
+"PO-Revision-Date: 2016-04-06 14:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -392,9 +392,9 @@ msgid "Header"
 msgstr ""
 
 #: backstage/appearance.php:308 backstage/header.php:60 backstage/header.php:62
-#: backstage/header.php:76 header.php:129 header.php:131 header.php:145
-#: include/me_functions.php:23 include/me_functions.php:35
-#: themes/Fifteen/views/notifications.php:28
+#: backstage/header.php:76 backstage/prune.php:220 header.php:129
+#: header.php:131 header.php:145 include/me_functions.php:23
+#: include/me_functions.php:35 themes/Fifteen/views/notifications.php:28
 msgid "Notifications"
 msgstr ""
 
@@ -1549,8 +1549,9 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: backstage/header.php:118 backstage/users.php:37 extern.php:491
-#: themes/Fifteen/views/help.php:210 themes/Fifteen/views/users.php:12
+#: backstage/header.php:118 backstage/prune.php:313 backstage/users.php:37
+#: extern.php:491 themes/Fifteen/views/help.php:210
+#: themes/Fifteen/views/users.php:12
 msgid "Users"
 msgstr ""
 
@@ -1622,7 +1623,7 @@ msgid "Menu"
 msgstr ""
 
 #: backstage/header.php:190 backstage/prune.php:99 backstage/prune.php:113
-#: backstage/prune.php:219 backstage/prune.php:255 backstage/prune.php:314
+#: backstage/prune.php:220 backstage/prune.php:255 backstage/prune.php:313
 msgid "Prune"
 msgstr ""
 
@@ -2095,7 +2096,7 @@ msgstr ""
 msgid "Days to prune must be a positive integer value."
 msgstr ""
 
-#: backstage/prune.php:84 backstage/prune.php:284
+#: backstage/prune.php:84 backstage/prune.php:283
 msgid "All forums"
 msgstr ""
 
@@ -2130,20 +2131,16 @@ msgid ""
 "Pruning complete, all users that matched the requirements have been pruned."
 msgstr ""
 
-#: backstage/prune.php:219
-msgid "Prune notifications"
-msgstr ""
-
-#: backstage/prune.php:224 backstage/prune.php:260 backstage/prune.php:318
+#: backstage/prune.php:216
 #, php-format
-msgid "It's recommended to activate %s during pruning."
+msgid "It's recommended to activate %s while using the options below."
 msgstr ""
 
-#: backstage/prune.php:224 backstage/prune.php:260 backstage/prune.php:318
+#: backstage/prune.php:216
 msgid "maintenance mode"
 msgstr ""
 
-#: backstage/prune.php:226 backstage/prune.php:262
+#: backstage/prune.php:226 backstage/prune.php:261
 msgid "Days old"
 msgstr ""
 
@@ -2168,80 +2165,77 @@ msgstr ""
 msgid "New notifications"
 msgstr ""
 
-#: backstage/prune.php:255
-msgid "Prune old comments"
+#: backstage/prune.php:255 backstage/users.php:129 backstage/users.php:157
+#: backstage/users.php:673 backstage/users.php:690 extern.php:494
+#: profile.php:43 profile.php:66 themes/Fifteen/views/profile.php:38
+#: themes/Fifteen/views/search-advanced.php:56
+#: themes/Fifteen/views/settings.php:346 themes/Fifteen/views/settings.php:539
+msgid "Comments"
 msgstr ""
 
-#: backstage/prune.php:262
+#: backstage/prune.php:261
 msgid "The number of days old a thread must be to be pruned"
 msgstr ""
 
-#: backstage/prune.php:268
+#: backstage/prune.php:267
 msgid "Prune pinned threads"
 msgstr ""
 
-#: backstage/prune.php:272 backstage/prune.php:349 backstage/users.php:563
+#: backstage/prune.php:271 backstage/prune.php:347 backstage/users.php:563
 #: themes/Fifteen/views/answer.php:13 themes/Fifteen/views/unsolved.php:12
 msgid "Yes"
 msgstr ""
 
-#: backstage/prune.php:276 backstage/prune.php:352 backstage/users.php:567
+#: backstage/prune.php:275 backstage/prune.php:350 backstage/users.php:567
 msgid "No"
 msgstr ""
 
-#: backstage/prune.php:281
+#: backstage/prune.php:280
 msgid "Prune from"
 msgstr ""
 
-#: backstage/prune.php:314
-msgid "Prune users"
-msgstr ""
-
-#: backstage/prune.php:320
-msgid "Prune by"
+#: backstage/prune.php:318
+msgid "Minimum days"
 msgstr ""
 
 #: backstage/prune.php:324
-msgid "Registered date"
+msgid "Since"
 msgstr ""
 
-#: backstage/prune.php:328
+#: backstage/prune.php:328 backstage/settings.php:499
+#: backstage/settings.php:533
+msgid "Registration"
+msgstr ""
+
+#: backstage/prune.php:332
 msgid "Last login"
 msgstr ""
 
-#: backstage/prune.php:333
-msgid "Minimum days since registration/last login"
-msgstr ""
-
-#: backstage/prune.php:333
-msgid "The minimum amount of days since event specified above"
-msgstr ""
-
-#: backstage/prune.php:339
+#: backstage/prune.php:337
 msgid "Maximum number of comments"
 msgstr ""
 
-#: backstage/prune.php:339
+#: backstage/prune.php:337
 msgid "How many comments do you require before an users isn't pruned"
 msgstr ""
 
-#: backstage/prune.php:345
-msgid "Delete admins and mods"
+#: backstage/prune.php:343
+msgid "Delete management"
 msgstr ""
 
-#: backstage/prune.php:357
+#: backstage/prune.php:355
 msgid "User status"
 msgstr ""
 
-#: backstage/prune.php:361
+#: backstage/prune.php:359
 msgid "Delete any"
 msgstr ""
 
-#: backstage/prune.php:365
+#: backstage/prune.php:363
 msgid "Delete only verified"
 msgstr ""
 
-#: backstage/prune.php:369
+#: backstage/prune.php:367
 msgid "Delete only unverified"
 msgstr ""
 
@@ -2511,10 +2505,6 @@ msgstr ""
 msgid ""
 "A comma separated list of subscribers who get e-mails when new reports are "
 "made"
-msgstr ""
-
-#: backstage/settings.php:499 backstage/settings.php:533
-msgid "Registration"
 msgstr ""
 
 #: backstage/settings.php:505
@@ -2885,14 +2875,6 @@ msgstr ""
 
 #: backstage/users.php:128 backstage/users.php:672
 msgid "Title/Status"
-msgstr ""
-
-#: backstage/users.php:129 backstage/users.php:157 backstage/users.php:673
-#: backstage/users.php:690 extern.php:494 profile.php:43 profile.php:66
-#: themes/Fifteen/views/profile.php:38
-#: themes/Fifteen/views/search-advanced.php:56
-#: themes/Fifteen/views/settings.php:346 themes/Fifteen/views/settings.php:539
-msgid "Comments"
 msgstr ""
 
 #: backstage/users.php:130 backstage/users.php:674 backstage/users.php:795
