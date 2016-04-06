@@ -1048,21 +1048,66 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	if(!is_null($http_status))
 		header('HTTP/1.1 ' . $http_status);
 
-    require 'header.php';
+	// Send no-cache headers
+	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
+	header('Last-Modified: '.date('D, d M Y H:i:s').' GMT');
+	header('Cache-Control: post-check=0, pre-check=0', false);
+	header('Pragma: no-cache'); // For HTTP/1.0 compatibility
+
+	// Send the Content-type header in case the web server is setup to send something else
+	header('Content-type: text/html; charset=utf-8');
 
 ?>
-<div class="row">
-    <div class="col-xs-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Info', 'luna') ?></h3>
-            </div>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<?php $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), 'Error') ?>
+		<title>Luna error</title>
+		<style type="text/css">
+			body {
+                background: #e8e8e8;
+                color: #333;
+                margin: 10% 25% auto;
+                font: 14px "Segoe UI", Verdana, Arial, Helvetica, sans-serif;
+                letter-spacing: 1px;
+            }
+            a {
+                color: #136cab;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            p {
+                font-weight: 400;
+                margin: 0;
+            }
+			h2 {
+                margin: 0;
+                font-size: 35px;
+                padding: 0;
+                font-weight: 300;
+                color: #136cab;
+            }
+            h3 {
+                font-size: 23px;
+                text-transform: uppercase;
+                margin-bottom: 0;
+                font-weight: 600;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="error">
+			<h2><?php _e('Luna failed to perform your request', 'luna') ?></h2>
             <div class="panel-body">
                 <p><?php echo $message ?></p>
-            </div>
-        </div>
-    </div>
-</div>
+			</div>
+		</div>
+	</body>
+</html>
 <?php
 	exit;
 }

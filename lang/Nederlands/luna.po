@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-05 14:25+0200\n"
-"PO-Revision-Date: 2016-04-05 14:25+0200\n"
+"POT-Creation-Date: 2016-04-06 12:20+0200\n"
+"PO-Revision-Date: 2016-04-06 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -706,7 +706,6 @@ msgid "Expires"
 msgstr "Vervalt"
 
 #: backstage/bans.php:351 backstage/bans.php:439 backstage/index.php:114
-#: backstage/reports.php:60 backstage/reports.php:117
 #: backstage/settings.php:346 backstage/settings.php:562 comment.php:532
 #: edit.php:130 misc.php:134 new_inbox.php:389 thread.php:123 viewinbox.php:202
 msgid "Message"
@@ -716,8 +715,8 @@ msgstr "Bericht"
 msgid "By"
 msgstr "Door"
 
-#: backstage/bans.php:353 backstage/ranks.php:132 backstage/reports.php:61
-#: backstage/users.php:131 backstage/users.php:675
+#: backstage/bans.php:353 backstage/ranks.php:132 backstage/users.php:131
+#: backstage/users.php:675
 msgid "Actions"
 msgstr "Acties"
 
@@ -729,7 +728,8 @@ msgstr "Bewerken"
 
 #: backstage/bans.php:363 backstage/board.php:89 backstage/board.php:480
 #: backstage/board.php:574 backstage/board.php:679 backstage/board.php:734
-#: backstage/censoring.php:143 backstage/ranks.php:147 notifications.php:117
+#: backstage/censoring.php:143 backstage/ranks.php:147 backstage/reports.php:84
+#: notifications.php:117
 msgid "Remove"
 msgstr "Verwijder"
 
@@ -1615,8 +1615,8 @@ msgstr "Standaard groep"
 msgid "Manage groups"
 msgstr "Groepen beheren"
 
-#: backstage/header.php:26 backstage/header.php:91 include/functions.php:2157
-#: include/functions.php:2211 install.php:186
+#: backstage/header.php:26 backstage/header.php:91 include/functions.php:2202
+#: include/functions.php:2256 install.php:186
 msgid "Direction of language"
 msgstr "ltr"
 
@@ -1651,7 +1651,7 @@ msgstr "Instellingen"
 
 #: backstage/header.php:120 backstage/header.php:189
 #: backstage/maintenance.php:178 backstage/maintenance.php:184
-#: db_update.php:183 include/functions.php:1362
+#: db_update.php:183 include/functions.php:1407
 msgid "Maintenance"
 msgstr "Onderhoud"
 
@@ -1757,7 +1757,7 @@ msgstr "Verander functionaliteit"
 msgid "Change settings"
 msgstr "Verander instellingen"
 
-#: backstage/index.php:107 backstage/reports.php:51 header.php:48
+#: backstage/index.php:107 backstage/reports.php:52 header.php:48
 msgid "New reports"
 msgstr "Nieuwe rapporten"
 
@@ -1765,32 +1765,32 @@ msgstr "Nieuwe rapporten"
 msgid "View all"
 msgstr "Toon alles"
 
-#: backstage/index.php:112 backstage/reports.php:58 backstage/reports.php:114
+#: backstage/index.php:112
 msgid "Reported by"
 msgstr "Gerapporteerd door"
 
-#: backstage/index.php:113 backstage/reports.php:59 backstage/reports.php:116
+#: backstage/index.php:113
 msgid "Date and time"
 msgstr "Datum en tijd"
 
-#: backstage/index.php:124 backstage/reports.php:71 backstage/reports.php:127
+#: backstage/index.php:124 backstage/reports.php:64 backstage/reports.php:101
 msgid "Deleted user"
 msgstr "Verwijderde gebruiker"
 
 #: backstage/index.php:125 backstage/index.php:126 backstage/index.php:128
-#: backstage/reports.php:72 backstage/reports.php:73 backstage/reports.php:75
-#: backstage/reports.php:128 backstage/reports.php:129
-#: backstage/reports.php:131 themes/Fifteen/views/inbox.php:109
-#: viewinbox.php:191
+#: backstage/reports.php:65 backstage/reports.php:66 backstage/reports.php:68
+#: backstage/reports.php:70 backstage/reports.php:102 backstage/reports.php:103
+#: backstage/reports.php:105 backstage/reports.php:109
+#: themes/Fifteen/views/inbox.php:109 viewinbox.php:191
 msgid "Deleted"
 msgstr "Verwijderd"
 
-#: backstage/index.php:128 backstage/reports.php:75 backstage/reports.php:131
+#: backstage/index.php:128 backstage/reports.php:68 backstage/reports.php:105
 #, php-format
 msgid "Comment #%s"
 msgstr "Reactie #%s"
 
-#: backstage/index.php:144 backstage/reports.php:95
+#: backstage/index.php:144 backstage/reports.php:92
 msgid "There are no new reports."
 msgstr "Er zijn geen nieuwe rapporten."
 
@@ -2399,23 +2399,24 @@ msgstr "Rangen beheren"
 msgid "No ranks in list"
 msgstr "Geen rangen ingesteld"
 
-#: backstage/reports.php:86 include/draw_functions.php:1173 search.php:392
+#: backstage/reports.php:53
+msgid "Old reports"
+msgstr "Oude rapporten"
+
+#: backstage/reports.php:83 include/draw_functions.php:1173 search.php:392
 msgid "Mark as read"
 msgstr "Markeer als gelezen"
 
-#: backstage/reports.php:109
-msgid "10 last read reports"
-msgstr "10 laatste rapporten"
-
-#: backstage/reports.php:115
-msgid "Marked as read by"
-msgstr "Gemarkeerd als gelezen door"
-
-#: backstage/reports.php:132 backstage/reports.php:133
+#: backstage/reports.php:106 backstage/reports.php:107
 msgid "N/A"
 msgstr "Niet beschikbaar"
 
-#: backstage/reports.php:153
+#: backstage/reports.php:122
+#, php-format
+msgid "Managed by %s"
+msgstr "Gecontroleerd door %s"
+
+#: backstage/reports.php:129
 msgid "There are no read reports."
 msgstr "Er is geen gelezen raport."
 
@@ -2503,7 +2504,6 @@ msgid "You can leave this empty if there is no title"
 msgstr "Je kan dit leeg laten als een titel niet nodig is"
 
 #: backstage/settings.php:329 include/functions.php:1023
-#: include/functions.php:1058
 msgid "Info"
 msgstr "Info"
 
@@ -3732,7 +3732,7 @@ msgstr ""
 "<a href=\"comment.php?fid=%s\">Start de eerste conversatie in dit forum</a>"
 
 #: include/draw_functions.php:367 include/draw_functions.php:448
-#: include/functions.php:1098
+#: include/functions.php:1143
 msgid "Never"
 msgstr "Nooit"
 
@@ -4014,23 +4014,27 @@ msgstr "..."
 msgid "We've got us a situation here."
 msgstr "We hebben hier een probleem"
 
-#: include/functions.php:1114
+#: include/functions.php:1104
+msgid "Luna failed to perform your request"
+msgstr "Luna kon je verzoek niet volbrengen"
+
+#: include/functions.php:1159
 msgid "Today"
 msgstr "Vandaag"
 
-#: include/functions.php:1116
+#: include/functions.php:1161
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: include/functions.php:1133
+#: include/functions.php:1178
 msgid "."
 msgstr "."
 
-#: include/functions.php:1133
+#: include/functions.php:1178
 msgid ","
 msgstr ","
 
-#: include/functions.php:1170 include/functions.php:1190
+#: include/functions.php:1215 include/functions.php:1235
 msgid ""
 "Bad HTTP_REFERER. You were referred to this page from an unauthorized "
 "source. If the problem persists please make sure that \"Base URL\" is "
@@ -4043,31 +4047,31 @@ msgstr ""
 "instelling mogelijk fout ingegeven. Meer informatie over dit probleem kan je "
 "vinden in de Luna documentatie."
 
-#: include/functions.php:1233
+#: include/functions.php:1278
 msgid ""
 "Bad CSRF hash. You were referred to this page from an unauthorized source."
 msgstr ""
 "Slechte CSRF hash. Je bent naar deze pagina doorgestuurt van een ongeldige "
 "bron."
 
-#: include/functions.php:1621
+#: include/functions.php:1666
 #, php-format
 msgid "%s "
 msgstr "%s"
 
-#: include/functions.php:2027
+#: include/functions.php:2072
 msgid "Debug information"
 msgstr "Debug info"
 
-#: include/functions.php:2032
+#: include/functions.php:2077
 msgid "Time (s)"
 msgstr "Tijd (s)"
 
-#: include/functions.php:2033
+#: include/functions.php:2078
 msgid "Query"
 msgstr "Query"
 
-#: include/functions.php:2054
+#: include/functions.php:2099
 #, php-format
 msgid "Total query time: %s"
 msgstr "Totale query tijd: %s"
@@ -6239,6 +6243,12 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "10 last read reports"
+#~ msgstr "10 laatste rapporten"
+
+#~ msgid "Marked as read by"
+#~ msgstr "Gemarkeerd als gelezen door"
 
 #~ msgid "Reports now trigger a notification in the Notification Center"
 #~ msgstr "Rapporten maken nu een notificatie aan in het Notificatie Centrum"
