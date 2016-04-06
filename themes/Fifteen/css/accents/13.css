@@ -132,12 +132,26 @@ a:active {
     color: #ccc;
 }
 
+.title-block-nav .nav-tabs > li > a:focus,
+.title-block-nav .nav-tabs > li > a:hover,
 .title-block,
 .title-block-nav .nav-tabs > li > a, 
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-brand,
 .navbar-inverse .navbar-brand:focus,
 .navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.dropdown-menu > li > a,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover,
+.jumbotron.first-run,
+.jumbotron.first-run a,
+.list-group-transparent a.list-group-item:focus,
+.list-group-transparent a.list-group-item:hover,
+.list-group-transparent a.list-group-item.active,
+.notification-menu .dropdown-header,
 .btn,
 a.list-group-item:hover,
 a:focus,
@@ -158,6 +172,10 @@ footer .footer a,
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
     color: #666;
+}
+
+footer .dropdown-toggle {
+    color: #666 !important;
 }
 
 .bkg .jumbotron .container h2,
