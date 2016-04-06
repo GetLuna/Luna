@@ -1,5 +1,6 @@
 /* Accent 5 - Pink */
 .navbar-default,
+.title-sm.title-primary,
 .panel-default .panel-heading,
 .panel-primary.panel-colored .panel-body,
 .btn-primary,
@@ -15,6 +16,8 @@ footer,
 	background-color: #e35da5;
 }
 
+.title-primary,
+.title-sm.title-primary .input-group-addon,
 .panel-primary > .panel-heading,
 .btn-primary:hover,
 .btn-primary:focus,
@@ -47,6 +50,7 @@ footer,
 	border-color: #e35da5;
 }
 
+.tab-content,
 .panel-primary > .panel-heading,
 .btn-primary:hover,
 .btn-primary:hover:active,
@@ -67,7 +71,10 @@ a {
 }
 
 a:hover,
-a:active {
+a:active,
+.title-nav .nav-tabs > .active > a,
+.title-nav .nav-tabs > .active > a:focus,
+.title-nav .nav-tabs > .active > a:hover {
 	color: #d15196;
 }
 

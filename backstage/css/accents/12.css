@@ -1,5 +1,6 @@
 /* Accent 12 - Beige */
 .navbar-default,
+.title-sm.title-primary,
 .panel-default .panel-heading,
 .panel-primary.panel-colored .panel-body,
 .btn-primary,
@@ -15,6 +16,8 @@ footer,
 	background-color: #bf815a;
 }
 
+.title-primary,
+.title-sm.title-primary .input-group-addon,
 .panel-primary > .panel-heading,
 .btn-primary:hover,
 .btn-primary:focus,
@@ -47,6 +50,7 @@ footer,
 	border-color: #bf815a;
 }
 
+.tab-content,
 .panel-primary > .panel-heading,
 .btn-primary:hover,
 .btn-primary:hover:active,
@@ -59,19 +63,6 @@ footer,
 	border-color: #bf815a;
 }
 
-.night .title-block .btn-pagination .btn.btn-default,
-a.list-group-item:hover,
-a:focus,
-.editor .btn,
-.title-block-nav .nav-tabs > .active > a,
-.title-block-nav .nav-tabs > .active > a:focus,
-.title-block-nav .nav-tabs > .active > a:hover,
-a,
-.title-block-primary .btn,
-blockquote footer,
-blockquote small,
-blockquote .small {
-
 a.list-group-item:hover,
 a:focus,
 .editor .btn,
@@ -80,7 +71,10 @@ a {
 }
 
 a:hover,
-a:active {
+a:active,
+.title-nav .nav-tabs > .active > a,
+.title-nav .nav-tabs > .active > a:focus,
+.title-nav .nav-tabs > .active > a:hover {
 	color: #b57349;
 }
 
