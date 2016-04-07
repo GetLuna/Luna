@@ -297,6 +297,7 @@ label .help-block {
 	padding: 10px;
 	border: 1px solid #136cab;
 	border-top: none;
+    margin-bottom: 10px;
 }
 
 .tab-content :first-child {

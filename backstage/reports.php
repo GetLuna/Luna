@@ -89,7 +89,7 @@ if ( $db->num_rows( $result ) ) {
 } else {
 ?>
                 </form>
-                <h3 class="text-xs-center"><?php _e( 'There are no new reports.', 'luna' ) ?></h3>
+                <h3 class="text-center"><?php _e( 'There are no new reports.', 'luna' ) ?></h3>
 <?php } ?>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="old">
@@ -126,7 +126,7 @@ if ($db->num_rows($result) ) {
 	}
 } else {
 ?>
-                <h3 class="text-xs-center"><?php _e( 'There are no read reports.', 'luna' ) ?></h3>
+                <h3 class="text-center"><?php _e( 'There are no read reports.', 'luna' ) ?></h3>
 <?php } ?>
             </div>
         </div>
