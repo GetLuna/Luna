@@ -84,11 +84,11 @@ if (isset($_GET['tid'])) {
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Fetch some info about the thread
-	$result = $db->query('SELECT t.subject, t.num_replies, t.first_comment_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
-	if (!$db->num_rows($result))
+	$thread_info = $db->query('SELECT t.subject, t.num_replies, t.first_comment_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+	if (!$db->num_rows($thread_info))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$cur_thread = $db->fetch_assoc($result);
+	$cur_thread = $db->fetch_assoc($thread_info);
 
 	// Delete one or more comments
 	if (isset($_POST['delete_comments']) || isset($_POST['delete_comments_comply'])) {
@@ -135,6 +135,8 @@ if (isset($_GET['tid'])) {
         require 'header.php';
 
 		?>
+<div class="row">
+    <div class="col-xs-12">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
@@ -148,6 +150,8 @@ if (isset($_GET['tid'])) {
 				</div>
 			</div>
 		</form>
+    </div>
+</div>
 		<?php
 
 		require 'footer.php';
