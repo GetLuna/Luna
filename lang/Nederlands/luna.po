@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
 "POT-Creation-Date: 2016-04-08 22:52+0200\n"
-"PO-Revision-Date: 2016-04-08 22:52+0200\n"
+"PO-Revision-Date: 2016-04-08 23:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -2167,7 +2167,7 @@ msgstr "Ben je zeker dat je de geselecteerde conversaties wilt verwijderen."
 #: backstage/moderate.php:826
 #, php-format
 msgid "Moderating \"%s\""
-msgstr "Modereren van \"%s\""
+msgstr "Modereer \"%s\""
 
 #: backstage/moderate.php:867 backstage/moderate.php:869
 #: backstage/moderate.php:911 include/draw_functions.php:227

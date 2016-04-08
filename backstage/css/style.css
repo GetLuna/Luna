@@ -1031,6 +1031,47 @@ a.label-new {
 	margin-top: 20px !important;
 }
 
+.list-group-thread .label {
+    padding: .2em .6em;
+    border-radius: 4px !important;
+}
+
+.status-solved {
+    color: #64b450;
+}
+
+.comment.answer {
+    border-left: 6px solid #64b450 !important;
+}
+
+.status-pinned {
+    color: #ffb900;
+}
+
+.comment.soft {
+    border-left: 6px solid #ffb900 !important;
+}
+
+.status-new {
+    color: #b8b8b8;
+}
+
+.status-important {
+    color: #826eb4;
+}
+
+.status-moved {
+    color: #2788cb;
+}
+
+.status-closed {
+    color: #dc3232;
+}
+
+.comment.marked {
+    border-left: 6px solid #dc3232 !important;
+}
+
 /* List groups */
 .list-group-item {
     border: none;

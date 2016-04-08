@@ -875,36 +875,35 @@ if ($db->num_rows($result)) {
 		if ($luna_config['o_censoring'] == '1')
 			$cur_thread['subject'] = censor_words($cur_thread['subject']);
 
-		if ($cur_thread['pinned'] == '1') {
-			$item_status .= ' pinned-item';
-			$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
-		}
+        if ($cur_thread['pinned'] == '1') {
+            $item_status .= ' pinned-item';
+            $status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
+        }
 
-		if (isset($cur_thread['solved'])) {
-			$item_status .= ' solved-item';
-			$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
-		}
+        if (isset($cur_thread['solved'])) {
+            $item_status .= ' solved-item';
+            $status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
+        }
 
-		if ($cur_thread['important']) {
-			$item_status .= ' important-item';
-			$status_text[] = '<span class="label label-primary"><span class="fa fa-fw fa-map-marker"></span></span>';
-		}
+        if ($cur_thread['important']) {
+            $item_status .= ' important-item';
+            $status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
+        }
 
-		if ($cur_thread['moved_to'] != 0) {
-			$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
-			$item_status .= ' moved-item';
-		}
+        if ($cur_thread['moved_to'] != 0) {
+            $status_text[] = '<i class="fa fa-fw fa-arrows-alt status-moved"></i>';
+            $item_status .= ' moved-item';
+        }
 
-		if ($cur_thread['closed'] == '1') {
-			$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
-			$item_status .= ' closed-item';
-		}
+        if ($cur_thread['closed'] == '1') {
+            $status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
+            $item_status .= ' closed-item';
+        }
 
 		if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 			$item_status .= ' new-item';
 			$icon_type = 'icon icon-new';
-			$subject = '<strong>'.$subject.'</strong>';
-			$status_text[] = '<a href="../thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'" class="label label-default label-new"><span class="fa fa-fw fa-bell"></span></a>';
+            $status_text[] = '<a href="../thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 		}
 
 		$url = '../thread.php?id='.$thread_id;
