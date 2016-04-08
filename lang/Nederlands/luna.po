@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-06 14:44+0200\n"
-"PO-Revision-Date: 2016-04-06 14:44+0200\n"
+"POT-Creation-Date: 2016-04-08 22:52+0200\n"
+"PO-Revision-Date: 2016-04-08 22:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -526,7 +526,7 @@ msgstr "Jou copyright"
 #: new_inbox.php:75 new_inbox.php:90 new_inbox.php:103 new_inbox.php:108
 #: new_inbox.php:126 new_inbox.php:319 new_inbox.php:366 new_inbox.php:379
 #: notifications.php:25 notifications.php:35 notifications.php:49
-#: notifications.php:63 notifications.php:128 profile.php:23 profile.php:27
+#: notifications.php:63 notifications.php:128 profile.php:26 profile.php:30
 #: search.php:43 search.php:70 search.php:78 search.php:323 search.php:349
 #: search.php:456 settings.php:241 settings.php:297 settings.php:542
 #: settings.php:577 settings.php:723 settings.php:731 settings.php:746
@@ -1104,7 +1104,7 @@ msgstr "Ontvangers"
 msgid "The number of receivers an Inbox message can have"
 msgstr "Het aantal ontvangers dat een Inbox bericht mag hebben"
 
-#: backstage/features.php:242 backstage/features.php:248 profile.php:69
+#: backstage/features.php:242 backstage/features.php:248 profile.php:72
 #: themes/Fifteen/views/settings.php:274
 msgid "Subscriptions"
 msgstr "Abonnementen"
@@ -1502,7 +1502,7 @@ msgstr "Laat gebruikers zoeken in conversaties en reacties."
 
 #: backstage/groups.php:244
 msgid "Allow users to search for other users in the user list."
-msgstr "Laat gebruikers naar andere gebruikers zoeken"
+msgstr "Laat gebruikers naar andere gebruikers zoeken."
 
 #: backstage/groups.php:252
 msgid "Send e-mails"
@@ -1661,7 +1661,7 @@ msgid "Extensions"
 msgstr "Extensies"
 
 #: backstage/header.php:153 header.php:164 include/me_functions.php:18
-#: include/me_functions.php:30 notifications.php:137 profile.php:110
+#: include/me_functions.php:30 notifications.php:137 profile.php:113
 #: settings.php:171 settings.php:431 settings.php:820
 #: themes/Fifteen/views/help.php:135 themes/Fifteen/views/settings.php:38
 msgid "Profile"
@@ -1859,12 +1859,12 @@ msgstr "Meld een probleem"
 #: misc.php:37 misc.php:52 misc.php:144 misc.php:249 misc.php:285 misc.php:321
 #: misc.php:332 misc.php:350 misc.php:367 misc.php:378 misc.php:391
 #: new_inbox.php:16 new_inbox.php:20 new_inbox.php:24 new_inbox.php:114
-#: search.php:74 search.php:280 search.php:513 settings.php:28 settings.php:33
-#: settings.php:76 settings.php:93 settings.php:178 settings.php:237
-#: settings.php:246 settings.php:293 settings.php:302 settings.php:443
-#: settings.php:529 settings.php:587 userlist.php:16 viewinbox.php:18
-#: viewinbox.php:22 viewinbox.php:26 viewinbox.php:118 viewinbox.php:148
-#: viewinbox.php:168 viewinbox.php:210
+#: profile.php:14 search.php:74 search.php:280 search.php:513 settings.php:28
+#: settings.php:33 settings.php:76 settings.php:93 settings.php:178
+#: settings.php:237 settings.php:246 settings.php:293 settings.php:302
+#: settings.php:443 settings.php:529 settings.php:587 userlist.php:16
+#: viewinbox.php:18 viewinbox.php:22 viewinbox.php:26 viewinbox.php:118
+#: viewinbox.php:148 viewinbox.php:168 viewinbox.php:210
 msgid "You do not have permission to access this page."
 msgstr "Je hebt geen toegang tot deze pagina."
 
@@ -2288,7 +2288,7 @@ msgstr "Nieuwe notificaties"
 
 #: backstage/prune.php:255 backstage/users.php:129 backstage/users.php:157
 #: backstage/users.php:673 backstage/users.php:690 extern.php:494
-#: profile.php:43 profile.php:66 themes/Fifteen/views/profile.php:38
+#: profile.php:46 profile.php:69 themes/Fifteen/views/profile.php:38
 #: themes/Fifteen/views/search-advanced.php:56
 #: themes/Fifteen/views/settings.php:346 themes/Fifteen/views/settings.php:539
 msgid "Comments"
@@ -2452,7 +2452,7 @@ msgid "Branding"
 msgstr "Merknaam en huisstijl"
 
 #: backstage/settings.php:239 backstage/settings.php:315
-#: backstage/users.php:766 install.php:374 profile.php:41
+#: backstage/users.php:766 install.php:374 profile.php:44
 #: themes/Fifteen/views/profile.php:34 themes/Fifteen/views/settings.php:85
 msgid "Title"
 msgstr "Titel"
@@ -3175,7 +3175,7 @@ msgstr ""
 msgid "Email address"
 msgstr "E-mail adres"
 
-#: backstage/users.php:772 profile.php:55 themes/Fifteen/views/profile.php:55
+#: backstage/users.php:772 profile.php:58 themes/Fifteen/views/profile.php:55
 #: themes/Fifteen/views/settings.php:78
 msgid "Real name"
 msgstr "Echte naam"
@@ -3208,7 +3208,7 @@ msgstr "Aantal reacties"
 msgid "Last visit"
 msgstr "Laatste bezoek"
 
-#: backstage/users.php:823 profile.php:48
+#: backstage/users.php:823 profile.php:51
 msgid "Registered"
 msgstr "Geregistreerd"
 
@@ -3572,7 +3572,7 @@ msgstr "Gebruikers online"
 msgid "Newest user"
 msgstr "Nieuwste gebruiker"
 
-#: extern.php:493 profile.php:65 themes/Fifteen/views/help.php:209
+#: extern.php:493 profile.php:68 themes/Fifteen/views/help.php:209
 #: themes/Fifteen/views/search-advanced.php:55
 msgid "Threads"
 msgstr "Conversaties"
@@ -3775,7 +3775,7 @@ msgstr "Online:"
 msgid "Offline"
 msgstr "Offline"
 
-#: include/draw_functions.php:805 profile.php:50
+#: include/draw_functions.php:805 profile.php:53
 #: themes/Fifteen/views/profile.php:46
 msgid "Registered since"
 msgstr "Geregistreerd op"
@@ -4765,15 +4765,15 @@ msgstr "Gezien"
 msgid "No old notifications."
 msgstr "Geen oude notificaties."
 
-#: profile.php:46 themes/Fifteen/views/profile.php:42
+#: profile.php:49 themes/Fifteen/views/profile.php:42
 msgid "Latest comment"
 msgstr "Nieuwste reactie"
 
-#: profile.php:52 themes/Fifteen/views/profile.php:50
+#: profile.php:55 themes/Fifteen/views/profile.php:50
 msgid "Latest visit"
 msgstr "Laatste bezoek"
 
-#: profile.php:58 themes/Fifteen/views/profile.php:60
+#: profile.php:61 themes/Fifteen/views/profile.php:60
 #: themes/Fifteen/views/settings.php:92
 msgid "Location"
 msgstr "Locatie"

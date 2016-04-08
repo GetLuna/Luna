@@ -10,6 +10,9 @@
 define('LUNA_ROOT', dirname(__FILE__).'/');
 require LUNA_ROOT.'include/common.php';
 
+if ($luna_user['g_view_users'] == '0')
+	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
+
 // Load the me functions script
 require LUNA_ROOT.'include/me_functions.php';
 
