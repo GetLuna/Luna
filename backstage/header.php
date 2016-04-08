@@ -37,7 +37,7 @@ elseif (file_exists('../img/header.jpg'))
     $body_classes .= ' bkg-jpg';
 
 // Check for new notifications
-$noticount = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+$noticount = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error('Unable to count notifications', __FILE__, __LINE__, $db->error());
 $num_notifications = $db->result($noticount);
 
 if ($luna_config['o_notification_flyout'] == 1) {

@@ -47,14 +47,18 @@ if ($fid < 1) {
     require 'header.php';
 
 	?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
-		</div>
-		<div class="panel-body">
-			<p><?php _e('Visit a forum or thread and choose "Moderate" in the moderator bar to moderate content.', 'luna') ?></p>
-		</div>
-	</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php _e('Visit a forum or thread and choose "Moderate" in the moderator bar to moderate content.', 'luna') ?></p>
+            </div>
+        </div>
+    </div>
+</div>
 	<?php
 
 	require 'footer.php';
@@ -294,20 +298,22 @@ if (isset($_GET['tid'])) {
     require 'header.php';
 
 	?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
-		</div>
-		<div class="panel-body">
-			<div class="btn-group btn-breadcrumb btn-group-top">
-					<a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
-					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_thread['forum_name']) ?></a>
-					<a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
-				<a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna') ?></a>
-			</div>
-			<span class="pull-right"><?php echo $paging_links ?></span>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
+            </div>
+            <div class="panel-body">
+                <div class="btn-group btn-breadcrumb btn-group-top">
+                        <a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
+                        <a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_thread['forum_name']) ?></a>
+                        <a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
+                    <a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna') ?></a>
+                </div>
+                <span class="pull-right"><?php echo $paging_links ?></span>
 
-			<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+                <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
 	require LUNA_ROOT.'include/parser.php';
@@ -354,39 +360,40 @@ if (isset($_GET['tid'])) {
 		$cur_comment['message'] = parse_message($cur_comment['message']);
 
 ?>
-				<div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstcomment' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>
-						</div>
-						<div class="panel-body">
-							<?php echo $cur_comment['message']."\n" ?>
-							<?php if ($cur_comment['edited'] != '') echo "\t\t\t\t\t\t".'<p class="comment-edited"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'."\n"; ?>
-						</div>
-						<div class="panel-footer">
-							<?php echo ($cur_comment['id'] != $cur_thread['first_comment_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="comments['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
-						</div>
-					</div>
-				</div>
+                    <div id="p<?php echo $cur_comment['id'] ?>" class="comment<?php if($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstcomment' ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'].'#p'.$cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo $cur_comment['message']."\n" ?>
+                                <?php if ($cur_comment['edited'] != '') echo "\t\t\t\t\t\t".'<p class="comment-edited"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_comment['edited_by']).' ('.format_time($cur_comment['edited']).')</em></p>'."\n"; ?>
+                            </div>
+                            <div class="panel-footer">
+                                <?php echo ($cur_comment['id'] != $cur_thread['first_comment_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="comments['.$cur_comment['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
+                            </div>
+                        </div>
+                    </div>
 
 <?php
 
 	}
 
 ?>
-				<div class="btn-group btn-breadcrumb">
-					<a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
-					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_thread['forum_name']) ?></a>
-					<a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
-					<a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna') ?></a>
-				</div>
-				<span class="pull-right"><?php echo $paging_links ?></span>
-				<div class="btn-group pull-right">
-					<button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><i class="fa fa-fw fa-code-fork"></i> <?php _e('Split', 'luna') ?></button>
-					<button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
-				</div>
-			</div>
-		</form>
+                    <div class="btn-group btn-breadcrumb">
+                        <a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
+                        <a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_thread['forum_name']) ?></a>
+                        <a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
+                        <a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna') ?></a>
+                    </div>
+                    <span class="pull-right"><?php echo $paging_links ?></span>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><i class="fa fa-fw fa-code-fork"></i> <?php _e('Split', 'luna') ?></button>
+                        <button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+                    </div>
+                </form>
+            </div>
+        </div>
 	</div>
 </div>
 <?php
