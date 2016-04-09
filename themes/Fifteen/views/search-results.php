@@ -11,12 +11,10 @@ if (!defined('FORUM'))
 			<div class="title-block title-block-primary">
 				<h2><i class="fa fa-fw fa-search"></i> <?php _e('Search results', 'luna') ?></h2>
 			</div>
-			<div class="tab-content">
-				<?php echo $paging_links ?>
-                <div class="list-group list-group-thread">
-				    <?php draw_search_results(); ?>
-                </div>
-			</div>
+            <?php echo $paging_links ?>
+            <div class="list-group list-group-thread">
+                <?php draw_search_results(); ?>
+            </div>
 		</div>
 	</div>
 </div>
