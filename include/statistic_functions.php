@@ -66,16 +66,6 @@ function newest_user() {
 	printf($stats['newest_user']);
 }
 
-function users_online() {
-
-	printf(forum_number_format(num_users_online()));
-}
-
-function guests_online() {
-
-	printf(forum_number_format(num_guests_online()));
-}
-
 function online_list() {
 	global $luna_config, $db, $luna_user;
 

@@ -37,6 +37,9 @@ elseif ($luna_config['o_feed_type'] == 2)
 if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (isset($footer_style)))
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
 
+$num_users = num_users_online();
+$num_guests = num_guests_online();
+
 ?>
         </div>
         <footer>
@@ -60,11 +63,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
                             <?php _e('Newest user', 'luna') ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php users_online() ?></h4>
+                            <h4><?php echo forum_number_format($num_users) ?></h4>
                             <?php if ($luna_config['o_users_online']) { ?>
                             <div class="dropup">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
+                                    <?php echo _n('User online', 'Users online', $num_users, 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -72,11 +75,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
                                 </ul>
                             </div>
                             <?php } else
-                                echo _n('User online', 'Users online', num_users_online(), 'luna'); ?>
+                                echo _n('User online', 'Users online', $num_users, 'luna'); ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php guests_online() ?></h4>
-                            <?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?>
+                            <h4><?php echo forum_number_format($num_guests) ?></h4>
+                            <?php echo _n('Guest online', 'Guests online', $num_guests, 'luna') ?>
                         </div>
                     </div>
                 </div>
