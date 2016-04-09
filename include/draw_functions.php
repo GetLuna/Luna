@@ -483,7 +483,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 		// Load cached forums
 		if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
-			include LUNA_CACHE_DIR.'cache_forums.php';
+			include_once LUNA_CACHE_DIR.'cache_forums.php';
 
 		if (!defined('LUNA_LIST_LOADED')) {
 			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
@@ -1020,7 +1020,7 @@ function draw_search_results() {
 
             // Load cached forums
             if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
-                include LUNA_CACHE_DIR.'cache_forums.php';
+                include_once LUNA_CACHE_DIR.'cache_forums.php';
 
             if (!defined('LUNA_LIST_LOADED')) {
                 if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
