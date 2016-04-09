@@ -467,7 +467,8 @@ else
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-sm-9">
-										<input class="btn btn-danger" type="submit" name="ban" value="<?php _e('Ban user', 'luna') ?>" />
+                                        <button class="btn btn-danger" type="submit" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
+                                        <button class="btn btn-danger" type="submit" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
 									</div>
 								</div>
 								<hr />
