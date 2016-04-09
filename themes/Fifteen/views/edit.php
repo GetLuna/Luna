@@ -24,10 +24,11 @@ if (isset($message))
 ?>
 
             <form id="edit" method="post" action="edit.php?id=<?php echo $id ?>&amp;action=edit" onsubmit="return process_form(this)">
-            <?php if ($can_edit_subject): ?>
-                <input class="info-textfield form-control" type="text" name="req_subject" maxlength="70" value="<?php echo luna_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_comment['subject']) ?>" tabindex="<?php echo $cur_index++ ?>" />
-            <?php endif; ?>
-            <?php draw_editor('20'); ?>
+                <?php if ($can_edit_subject): ?>
+                    <input class="info-textfield form-control" type="text" name="req_subject" maxlength="70" value="<?php echo luna_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_comment['subject']) ?>" tabindex="<?php echo $cur_index++ ?>" />
+                <?php endif; ?>
+                <?php draw_editor('20'); ?>
+                <?php draw_admin_note(); ?>
             </form>
         </div>
     </div>

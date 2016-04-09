@@ -463,16 +463,7 @@ else
 					<?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
 					<div role="tabpanel" class="tab-pane" id="admin">
 						<fieldset class="form-horizontal form-setting">
-							<?php if ($luna_user['g_moderator'] == '1') { ?>
-								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
-									<div class="col-sm-9">
-                                        <button class="btn btn-danger" type="submit" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
-                                        <button class="btn btn-danger" type="submit" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
-									</div>
-								</div>
-								<hr />
-							<?php } else { if ($luna_user['id'] != $id) { ?>
+							<?php if (($luna_user['g_moderator'] == '1')  && $luna_user['id'] != $id) { ?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Choose user group', 'luna') ?></label>
 									<div class="col-sm-9">
@@ -498,12 +489,21 @@ else
 									</div>
 								</div>
 								<hr />
+							<?php } else if ($luna_user['g_moderator'] == '1') { ?>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
+									<div class="col-sm-9">
+                                        <button class="btn btn-danger" type="submit" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
+                                        <button class="btn btn-danger" type="submit" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+									</div>
+								</div>
+								<hr />
 							<?php } ?>
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
 								<div class="col-sm-9">
-									<button type="submit" class="btn btn-danger" name="delete_user"><?php _e('Delete user', 'luna') ?></button>
-									<button type="submit" class="btn btn-danger" name="ban"><?php _e('Ban user', 'luna') ?></button>
+									<button type="submit" class="btn btn-danger" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+									<button type="submit" class="btn btn-danger" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
 								</div>
 							</div>
 							<hr />
@@ -534,24 +534,23 @@ else
 									</div>
 									<hr />
 								<?php } ?>
-							<?php } ?>
-							<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
-								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
-									<div class="col-sm-9">
-										<input type="number" class="form-control" name="num_comments" value="<?php echo $user['num_comments'] ?>" maxlength="8" />
-									</div>
-								</div>
-							<?php endif; if ($luna_user['is_admmod']): ?>
-								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Admin note', 'luna') ?></label>
-									<div class="col-sm-9">
-										<input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
-									</div>
-								</div>
-							<?php endif; ?>
-						</fieldset>
-					</div>
+                                <?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $user['num_comments'] ?>" maxlength="8" />
+                                        </div>
+                                    </div>
+                                <?php endif; if ($luna_user['is_admmod']): ?>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><?php _e('Admin note', 'luna') ?></label>
+                                        <div class="col-sm-9">
+                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </fieldset>
+                        </div>
 					<?php endif; ?>
 				</div>
 			</form>

@@ -744,6 +744,10 @@ class Installer {
 					'datatype'		=> 'MEDIUMTEXT',
 					'allow_null'	=> true
 				),
+				'admin_note'	=> array(
+					'datatype'		=> 'MEDIUMTEXT',
+					'allow_null'	=> true
+				),
 				'hide_smilies'	=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,

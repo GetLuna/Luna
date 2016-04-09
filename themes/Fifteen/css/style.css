@@ -1384,6 +1384,13 @@ hr {
     color: #fff !important;
 }
 
+.admin-note-edit {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: #a94442;
+}
+
 /* Thread listings */
 .logged-guest .middot {
     display: none;
@@ -1816,5 +1823,10 @@ blockquote footer {
 
 .night .alert-danger {
     background-color: #a94442;
+    color: #f2dede;
+}
+
+.night .admin-note-edit {
+    background: transparent;
     color: #f2dede;
 }

@@ -706,6 +706,7 @@ switch ($stage) {
 		$db->drop_field('users', 'style') or error('Unable to drop style field', __FILE__, __LINE__, $db->error());
 		$db->alter_field('users', 'password', 'VARCHAR(512)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'salt', 'VARCHAR(8)', true) or error('Unable to add salt field to user table', __FILE__, __LINE__, $db->error());
+        $db->add_field('comments', 'admin_note', 'MEDIUMTEXT', true) or error('Unable to admin note field to comments', __FILE__, __LINE__, $db->error());
         
         $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
 
