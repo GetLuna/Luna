@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-08 22:52+0200\n"
-"PO-Revision-Date: 2016-04-08 23:22+0200\n"
+"POT-Creation-Date: 2016-04-10 22:10+0200\n"
+"PO-Revision-Date: 2016-04-10 22:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -26,9 +26,10 @@ msgstr "Over Luna %s %s"
 #: backstage/about.php:36 backstage/about.php:37 backstage/about.php:38
 #: backstage/about.php:39 backstage/about.php:40 backstage/about.php:41
 #: backstage/about.php:42 backstage/about.php:43 backstage/about.php:44
-#: backstage/about.php:45 backstage/about.php:46 header.php:56 header.php:57
-#: include/draw_functions.php:335 include/draw_functions.php:416
-#: themes/Fifteen/views/inbox.php:44 themes/Fifteen/views/notifications.php:30
+#: backstage/about.php:45 backstage/about.php:46 backstage/about.php:47
+#: header.php:56 header.php:57 include/draw_functions.php:350
+#: include/draw_functions.php:431 themes/Fifteen/views/inbox.php:44
+#: themes/Fifteen/views/notifications.php:30
 msgid "New"
 msgstr "Nieuw"
 
@@ -58,156 +59,169 @@ msgstr ""
 "Niuewe notificatie hulpmiddelen op de Notificaties-pagina in het profiel"
 
 #: backstage/about.php:39
+msgid "Comments can now have admin notes that are displayed in threads"
+msgstr "Reacties kunnen nu nota's hebben die zichtbaar zijn in conversaties"
+
+#: backstage/about.php:40
 msgid ""
 "You can now upload a header background to use in your theme and the Backstage"
 msgstr "Je kan nu een header uploaden voor in thema's en de Backstage"
 
-#: backstage/about.php:40
+#: backstage/about.php:41
 msgid "You can now manage your boards favicon in Settings"
 msgstr "Je kan nu het favicon van het forum beheren in Instellingen"
 
-#: backstage/about.php:41
+#: backstage/about.php:42
 msgid "You can now respond on Inbox messages from the message view"
 msgstr "Gebruikers kunnen nu direct reageren op Inbox berichten"
 
-#: backstage/about.php:42
+#: backstage/about.php:43
 msgid "Reports now trigger a notifications for admins and moderators"
 msgstr "Rapporten sturen nu notificaties voor admins en moderators"
 
-#: backstage/about.php:43
+#: backstage/about.php:44
 msgid "New threads in a subscribed board now trigger notifications"
 msgstr ""
 "Nieuwe conversaties in forums waarop men geabonneerd is sturen nu "
 "notificaties"
 
-#: backstage/about.php:44
+#: backstage/about.php:45
 msgid ""
 "Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents"
 msgstr ""
 "Fifteen, Sunrise en Backstage hebben een Roos, Donker Rood en Beige accent"
 
-#: backstage/about.php:45
+#: backstage/about.php:46
 msgid "Luna now has a Dutch translation included by default"
 msgstr "Luna heeft nu een Nederlandse vertaling standaard meegeleverd"
 
-#: backstage/about.php:46
+#: backstage/about.php:47
 msgid "Maintenance mode now shows a warning in the Backstage header"
 msgstr "Onderhoudsmodus toont nu een waarschuwing in de Backstage"
 
-#: backstage/about.php:47 backstage/about.php:48 backstage/about.php:49
-#: backstage/settings.php:675
+#: backstage/about.php:48 backstage/about.php:49 backstage/about.php:50
+#: backstage/about.php:51 backstage/settings.php:675
 msgid "System"
 msgstr "Systeem"
 
-#: backstage/about.php:47
+#: backstage/about.php:48
 msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr "Luna gebruikt voortaan salts en SHA-512 om wachtwoorden op te slaan"
 
-#: backstage/about.php:48
+#: backstage/about.php:49
 msgid "Luna now includes full \"Right to Left\"-support"
 msgstr "Luna bied nu volledige \"Rechts naar Links\"-ondersteuning"
 
-#: backstage/about.php:49
+#: backstage/about.php:50
 msgid "Components now live in their own folder in the Luna root"
 msgstr "Componenten zitten nu in hun eigen map in de hoofdmap van Luna"
 
-#: backstage/about.php:50 backstage/about.php:51
+#: backstage/about.php:51
+msgid "Bootstrap and jQuery have been updated to the latest version"
+msgstr "Bootstrap en jQuery zijn bijgewerkt naar de laatste versies"
+
+#: backstage/about.php:52 backstage/about.php:53
 msgid "Changed"
 msgstr "Veranderd"
 
-#: backstage/about.php:50
+#: backstage/about.php:52
 msgid "Revamped search forms for users and bans, including responsive design"
 msgstr ""
 "Nieuwe zoekformulieren voor gebruikers en bans, inclusief responsief design"
 
-#: backstage/about.php:51
+#: backstage/about.php:53
 msgid "The Backstage has a whole new structure"
 msgstr "De Backstage heeft een volledig nieuwe indeling"
 
-#: backstage/about.php:52 backstage/about.php:53 backstage/about.php:54
-#: backstage/about.php:55 backstage/about.php:56 backstage/about.php:57
-#: backstage/about.php:58 backstage/about.php:59 backstage/about.php:60
+#: backstage/about.php:54 backstage/about.php:55 backstage/about.php:56
+#: backstage/about.php:57 backstage/about.php:58 backstage/about.php:59
+#: backstage/about.php:60 backstage/about.php:61 backstage/about.php:62
+#: backstage/about.php:63
 msgid "Improved"
 msgstr "Verbeterd"
 
-#: backstage/about.php:52
+#: backstage/about.php:54
 msgid ""
 "You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 "Je kan nu zien wat een sub forum is en meer instellingen wijzigen in forum "
 "beheer."
 
-#: backstage/about.php:53
+#: backstage/about.php:55
 msgid "Users can now disable or enable First Run from their profile"
 msgstr "Gebruikers kunnen nu Eerste Start beheren vanuit hun profiel"
 
-#: backstage/about.php:54
+#: backstage/about.php:56
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 "De editor verbergt knoppen voortaan in een menu als het scherm te smal wordt"
 
-#: backstage/about.php:55
+#: backstage/about.php:57
 msgid "When you have a notification, the icon will animate"
 msgstr "Een nieuwe notificatie zal het icoon laten flikkeren"
 
-#: backstage/about.php:56
+#: backstage/about.php:58
 msgid "Advanced search has an improved UI"
 msgstr "Geavanceerd zoeken heeft een verbeterde UI"
 
-#: backstage/about.php:57
+#: backstage/about.php:59
 msgid "About can now be translated to other languages"
 msgstr "Over kan nu vertaald worden"
 
-#: backstage/about.php:58
+#: backstage/about.php:60
+msgid "You can now directly manage a reported comment from the Backstage"
+msgstr "Je kan gerapporteerde reacties nu direct beheren vanuit de Backstage"
+
+#: backstage/about.php:61
 msgid "Improved Backstage UI and night mode"
 msgstr "De Backstage UI en nacht modus zijn verbeterd"
 
-#: backstage/about.php:59
+#: backstage/about.php:62
 msgid "Multiple improvements on accessibility"
 msgstr "Verschillende verbeteringen voor toegankelijkheid"
 
-#: backstage/about.php:60
+#: backstage/about.php:63
 msgid ""
 "Luna now provides a description meta tag to prevent weird search results"
 msgstr "Luna geeft nu een beschrijving meta-tag mee voor betere zoekresultaten"
 
-#: backstage/about.php:61 backstage/about.php:62 backstage/about.php:63
-#: backstage/about.php:64 backstage/about.php:65
+#: backstage/about.php:64 backstage/about.php:65 backstage/about.php:66
+#: backstage/about.php:67 backstage/about.php:68
 msgid "Removed"
 msgstr "Verwijderd"
 
-#: backstage/about.php:61
+#: backstage/about.php:64
 msgid "The editor no longer has an emoticon menu"
 msgstr "De editor heeft geen emoticonmenu meer"
 
-#: backstage/about.php:62
+#: backstage/about.php:65
 msgid "The code base no longer supports PHP 5.2 anymore"
 msgstr "The Luna core ondersteund PHP 5.2 niet meer"
 
-#: backstage/about.php:63
+#: backstage/about.php:66
 msgid "Notifications can no longer be marked as read/trashed from the fly-out"
 msgstr ""
 "Notificaties kunnen niet worden gemarkeerd als gelezen/verwijderd vanuit de "
 "fly-out"
 
-#: backstage/about.php:64
+#: backstage/about.php:67
 msgid "You can no longer manage the database from the Backstage"
 msgstr "Database beheer kan niet meer worden uitgevoerd vanuit de Backstage"
 
-#: backstage/about.php:65
+#: backstage/about.php:68
 msgid "Tools to add new users have been removed"
 msgstr "Hulpmiddelen om gebruikers toe te voegen zijn verwijderd"
 
-#: backstage/about.php:66
+#: backstage/about.php:69
 msgid "Fixed"
 msgstr "Herstelt"
 
-#: backstage/about.php:66
-msgid "Fixes 33 bugs"
-msgstr "Herstelt 33 bugs"
+#: backstage/about.php:69
+msgid "Fixes 41 bugs"
+msgstr "Herstelt 41 problemen"
 
-#: backstage/about.php:72
+#: backstage/about.php:75
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
@@ -215,19 +229,19 @@ msgstr ""
 "Luna is ontwikkeld door de %s. Copyright %s. Vrijgegeven onder de GPLv2 "
 "licentie."
 
-#: backstage/about.php:78
+#: backstage/about.php:81
 msgid "users"
 msgstr "gebruikers"
 
-#: backstage/about.php:79
+#: backstage/about.php:82
 msgid "threads"
 msgstr "conversaties"
 
-#: backstage/about.php:80 themes/Fifteen/objects/comment.php:9
+#: backstage/about.php:83 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr "reacties"
 
-#: backstage/about.php:81
+#: backstage/about.php:84
 msgid "views"
 msgstr "weergaven"
 
@@ -315,14 +329,14 @@ msgstr "Thema"
 #: backstage/features.php:302 backstage/features.php:396
 #: backstage/features.php:434 backstage/features.php:505
 #: backstage/groups.php:49 backstage/groups.php:528 backstage/index.php:158
-#: backstage/maintenance.php:178 backstage/menu.php:93 backstage/ranks.php:118
+#: backstage/maintenance.php:178 backstage/menu.php:106 backstage/ranks.php:118
 #: backstage/settings.php:233 backstage/settings.php:298
 #: backstage/settings.php:356 backstage/settings.php:412
 #: backstage/settings.php:454 backstage/settings.php:499
 #: backstage/settings.php:596 backstage/settings.php:622
 #: backstage/settings.php:675 backstage/update.php:148 backstage/users.php:300
 #: themes/Fifteen/views/me-modals.php:17 themes/Fifteen/views/me-modals.php:43
-#: themes/Fifteen/views/settings.php:36 themes/Fifteen/views/settings.php:494
+#: themes/Fifteen/views/settings.php:36 themes/Fifteen/views/settings.php:486
 msgid "Save"
 msgstr "Opslaan"
 
@@ -440,7 +454,7 @@ msgstr ""
 
 #: backstage/appearance.php:320 backstage/bans.php:416
 #: backstage/features.php:193 backstage/groups.php:233 backstage/header.php:179
-#: backstage/users.php:748 search.php:441 search.php:503 search.php:515
+#: backstage/users.php:748 search.php:443 search.php:505 search.php:517
 #: themes/Fifteen/views/help.php:136
 #: themes/Fifteen/views/search-advanced.php:15
 #: themes/Fifteen/views/search-advanced.php:18
@@ -473,7 +487,7 @@ msgstr "Terug omhoog"
 msgid "Show a \"Back to top\" link in the footer."
 msgstr "Toon een \"Terug omhoog\" link in de voet"
 
-#: backstage/appearance.php:363 themes/Fifteen/views/footer.php:89
+#: backstage/appearance.php:363 themes/Fifteen/views/footer.php:92
 msgid "Copyright"
 msgstr "Copyright"
 
@@ -501,24 +515,24 @@ msgstr "Jou copyright"
 #: backstage/bans.php:262 backstage/board.php:25 backstage/board.php:45
 #: backstage/board.php:149 backstage/board.php:169 backstage/board.php:223
 #: backstage/board.php:431 backstage/board.php:506 backstage/loader.php:19
-#: backstage/menu.php:36 backstage/menu.php:46 backstage/moderate.php:31
-#: backstage/moderate.php:35 backstage/moderate.php:80
-#: backstage/moderate.php:85 backstage/moderate.php:99
-#: backstage/moderate.php:106 backstage/moderate.php:160
-#: backstage/moderate.php:164 backstage/moderate.php:172
-#: backstage/moderate.php:177 backstage/moderate.php:405
-#: backstage/moderate.php:410 backstage/moderate.php:416
-#: backstage/moderate.php:421 backstage/moderate.php:457
-#: backstage/moderate.php:523 backstage/moderate.php:532
-#: backstage/moderate.php:622 backstage/moderate.php:630
-#: backstage/moderate.php:712 backstage/moderate.php:728
-#: backstage/moderate.php:744 backstage/moderate.php:759
-#: backstage/moderate.php:775 backstage/moderate.php:791 backstage/ranks.php:51
+#: backstage/menu.php:40 backstage/menu.php:50 backstage/moderate.php:31
+#: backstage/moderate.php:35 backstage/moderate.php:84
+#: backstage/moderate.php:89 backstage/moderate.php:103
+#: backstage/moderate.php:110 backstage/moderate.php:168
+#: backstage/moderate.php:172 backstage/moderate.php:180
+#: backstage/moderate.php:185 backstage/moderate.php:416
+#: backstage/moderate.php:421 backstage/moderate.php:427
+#: backstage/moderate.php:432 backstage/moderate.php:468
+#: backstage/moderate.php:534 backstage/moderate.php:543
+#: backstage/moderate.php:633 backstage/moderate.php:641
+#: backstage/moderate.php:723 backstage/moderate.php:739
+#: backstage/moderate.php:755 backstage/moderate.php:770
+#: backstage/moderate.php:786 backstage/moderate.php:802 backstage/ranks.php:51
 #: backstage/settings.php:85 backstage/settings.php:124
 #: backstage/settings.php:127 backstage/settings.php:130
 #: backstage/settings.php:133 backstage/users.php:22 comment.php:19
 #: comment.php:28 comment.php:465 comment.php:469 comment.php:528 delete.php:18
-#: delete.php:25 edit.php:19 edit.php:24 extern.php:280 extern.php:500
+#: delete.php:25 edit.php:18 edit.php:23 extern.php:280 extern.php:500
 #: inbox.php:96 misc.php:43 misc.php:56 misc.php:60 misc.php:148 misc.php:167
 #: misc.php:174 misc.php:231 misc.php:255 misc.php:261 misc.php:291
 #: misc.php:297 misc.php:328 misc.php:337 misc.php:355 misc.php:374
@@ -528,7 +542,7 @@ msgstr "Jou copyright"
 #: notifications.php:25 notifications.php:35 notifications.php:49
 #: notifications.php:63 notifications.php:128 profile.php:26 profile.php:30
 #: search.php:43 search.php:70 search.php:78 search.php:323 search.php:349
-#: search.php:456 settings.php:241 settings.php:297 settings.php:542
+#: search.php:458 settings.php:241 settings.php:297 settings.php:542
 #: settings.php:577 settings.php:723 settings.php:731 settings.php:746
 #: thread.php:21 thread.php:27 thread.php:78 viewforum.php:19 viewforum.php:56
 #: viewinbox.php:46 viewinbox.php:77 viewinbox.php:89 viewinbox.php:97
@@ -577,6 +591,7 @@ msgstr "Ban reeks"
 
 #: backstage/bans.php:94 backstage/bans.php:124 backstage/users.php:539
 #: backstage/users.php:656 backstage/users.php:716
+#: themes/Fifteen/views/settings.php:496
 msgid "Ban"
 msgstr "Ban"
 
@@ -616,10 +631,10 @@ msgstr "hier"
 #: backstage/bans.php:114 backstage/bans.php:348 backstage/bans.php:433
 #: backstage/bans.php:464 backstage/settings.php:479 backstage/users.php:127
 #: backstage/users.php:671 backstage/users.php:819 comment.php:532
-#: include/draw_functions.php:81 include/draw_functions.php:638
-#: include/draw_functions.php:640 include/draw_functions.php:670
-#: include/draw_functions.php:812 include/draw_functions.php:814
-#: include/draw_functions.php:840 install.php:199 install.php:359
+#: include/draw_functions.php:81 include/draw_functions.php:653
+#: include/draw_functions.php:655 include/draw_functions.php:685
+#: include/draw_functions.php:827 include/draw_functions.php:829
+#: include/draw_functions.php:855 install.php:199 install.php:359
 #: register.php:245 themes/Fifteen/views/comment.php:36
 #: themes/Fifteen/views/login.php:42 themes/Fifteen/views/register.php:41
 #: themes/Fifteen/views/settings.php:67 thread.php:127
@@ -707,7 +722,7 @@ msgstr "Vervalt"
 
 #: backstage/bans.php:351 backstage/bans.php:439 backstage/index.php:114
 #: backstage/settings.php:346 backstage/settings.php:562 comment.php:532
-#: edit.php:130 misc.php:134 new_inbox.php:389 thread.php:123 viewinbox.php:202
+#: edit.php:135 misc.php:134 new_inbox.php:389 thread.php:123 viewinbox.php:202
 msgid "Message"
 msgstr "Bericht"
 
@@ -721,14 +736,14 @@ msgid "Actions"
 msgstr "Acties"
 
 #: backstage/bans.php:363 backstage/board.php:643 backstage/board.php:698
-#: backstage/groups.php:166 backstage/groups.php:569
-#: include/draw_functions.php:686 include/draw_functions.php:719
+#: backstage/groups.php:166 backstage/groups.php:569 backstage/reports.php:84
+#: include/draw_functions.php:701 include/draw_functions.php:734
 msgid "Edit"
 msgstr "Bewerken"
 
 #: backstage/bans.php:363 backstage/board.php:89 backstage/board.php:480
 #: backstage/board.php:574 backstage/board.php:679 backstage/board.php:734
-#: backstage/censoring.php:143 backstage/ranks.php:147 backstage/reports.php:84
+#: backstage/censoring.php:143 backstage/ranks.php:147 backstage/reports.php:85
 #: notifications.php:117
 msgid "Remove"
 msgstr "Verwijder"
@@ -746,7 +761,7 @@ msgid "Add ban"
 msgstr "Ban toevoegen"
 
 #: backstage/bans.php:403 backstage/board.php:539 backstage/board.php:561
-#: backstage/censoring.php:96 backstage/groups.php:504 backstage/menu.php:78
+#: backstage/censoring.php:96 backstage/groups.php:504 backstage/menu.php:82
 #: backstage/ranks.php:104
 msgid "Add"
 msgstr "Toevoegen"
@@ -813,7 +828,7 @@ msgid "You must enter a category name"
 msgstr "Je moet een cateogie naam geven"
 
 #: backstage/board.php:120 backstage/board.php:134 backstage/board.php:516
-#: backstage/menu.php:60
+#: backstage/menu.php:64
 msgid "Position must be a positive integer value."
 msgstr "De positie moet een positief natuurlijk getal zijn."
 
@@ -862,8 +877,8 @@ msgstr "Laatste reactie"
 msgid "Thread start"
 msgstr "Conversatie gestart door"
 
-#: backstage/board.php:312 comment.php:532 edit.php:130
-#: include/draw_functions.php:1061 misc.php:134 new_inbox.php:393
+#: backstage/board.php:312 comment.php:532 edit.php:135
+#: include/draw_functions.php:1076 misc.php:134 new_inbox.php:393
 #: themes/Fifteen/views/comment.php:42 themes/Fifteen/views/inbox-new.php:81
 #: themes/Fifteen/views/inbox-view.php:38
 #: themes/Fifteen/views/search-advanced.php:43
@@ -924,7 +939,7 @@ msgstr "Hetstel standaard instellingen"
 msgid "Read forum"
 msgstr "Lees forum"
 
-#: backstage/board.php:359 themes/Fifteen/views/footer.php:56 thread.php:91
+#: backstage/board.php:359 themes/Fifteen/views/footer.php:59 thread.php:91
 #: thread.php:98
 msgid "Comment"
 msgstr "Reacties"
@@ -956,7 +971,7 @@ msgstr "Nieuw forum"
 
 #: backstage/board.php:550 backstage/board.php:565 backstage/board.php:649
 #: backstage/board.php:651 backstage/board.php:704 backstage/board.php:706
-#: backstage/menu.php:81 backstage/menu.php:98 comment.php:538
+#: backstage/menu.php:85 backstage/menu.php:111 comment.php:538
 #: include/draw_functions.php:80 install.php:195 install.php:307
 #: themes/Fifteen/views/comment.php:35 thread.php:125
 msgid "Name"
@@ -979,7 +994,8 @@ msgid "Category title"
 msgstr "Categorie naam"
 
 #: backstage/board.php:624 backstage/board.php:655 backstage/board.php:657
-#: backstage/board.php:710 backstage/board.php:712 backstage/menu.php:100
+#: backstage/board.php:710 backstage/board.php:712 backstage/menu.php:89
+#: backstage/menu.php:113
 msgid "Position"
 msgstr "Positie"
 
@@ -1230,7 +1246,7 @@ msgstr "Sta toe dat reacties enkel uit hoofdletters bestaan."
 msgid "Allow a subject to contain only capital letters."
 msgstr "Sta toe dat onderwerpen enkel uit hoofdletters bestaan."
 
-#: backstage/features.php:419 include/install.php:1573
+#: backstage/features.php:419 include/install.php:1577
 msgid "Guests"
 msgstr "Gasten"
 
@@ -1322,22 +1338,22 @@ msgstr "Maximale handtekening lijnen"
 msgid "Maximum amount of lines a signature can have"
 msgstr "Het maximaal aantal lijnen in een handtekening"
 
-#: backstage/footer.php:34 themes/Fifteen/views/footer.php:138
+#: backstage/footer.php:34 themes/Fifteen/views/footer.php:141
 #, php-format
 msgid "Generated in %1$s seconds &middot; %2$s queries executed"
 msgstr "Gegenereerd in %1$s seconden &middot; %2$s queries uitgevoerd"
 
-#: backstage/footer.php:37 themes/Fifteen/views/footer.php:141
+#: backstage/footer.php:37 themes/Fifteen/views/footer.php:144
 #, php-format
 msgid "Memory usage: %1$s"
 msgstr "Geheugen gebruik: %1$s"
 
-#: backstage/footer.php:40 themes/Fifteen/views/footer.php:144
+#: backstage/footer.php:40 themes/Fifteen/views/footer.php:147
 #, php-format
 msgid "(Peak: %1$s)"
 msgstr "(Piek: %1$s)"
 
-#: backstage/footer.php:44 themes/Fifteen/views/footer.php:96
+#: backstage/footer.php:44 themes/Fifteen/views/footer.php:99
 #, php-format
 msgid "Powered by %s"
 msgstr "Powered by %s"
@@ -1448,15 +1464,15 @@ msgid "Allow users to edit their own comments."
 msgstr "Sta toe dat gebruikers hun eigen reacties aanpassen."
 
 #: backstage/groups.php:177 backstage/groups.php:451 backstage/groups.php:488
-#: backstage/groups.php:574 backstage/menu.php:102 backstage/menu.php:125
-#: backstage/menu.php:127 backstage/moderate.php:137 backstage/moderate.php:386
-#: backstage/moderate.php:673 backstage/moderate.php:955
+#: backstage/groups.php:574 backstage/menu.php:115 backstage/menu.php:138
+#: backstage/menu.php:140 backstage/moderate.php:143 backstage/moderate.php:396
+#: backstage/moderate.php:684 backstage/moderate.php:965
 #: backstage/users.php:441 backstage/users.php:658 backstage/users.php:718
-#: include/draw_functions.php:701 include/draw_functions.php:730
-#: include/draw_functions.php:897 themes/Fifteen/views/delete.php:14
+#: include/draw_functions.php:716 include/draw_functions.php:745
+#: include/draw_functions.php:912 themes/Fifteen/views/delete.php:14
 #: themes/Fifteen/views/inbox-delete-comment.php:17
 #: themes/Fifteen/views/inbox-delete.php:12 themes/Fifteen/views/inbox.php:40
-#: themes/Fifteen/views/me-delete.php:13
+#: themes/Fifteen/views/me-delete.php:14 themes/Fifteen/views/settings.php:498
 msgid "Delete"
 msgstr "Verwijder"
 
@@ -1470,8 +1486,8 @@ msgstr ""
 "Sta toe dat gebruikers hun eigen conversaties verwijderen (inclusief alle "
 "reacties)."
 
-#: backstage/groups.php:194 include/draw_functions.php:705
-#: include/draw_functions.php:733 include/draw_functions.php:911
+#: backstage/groups.php:194 include/draw_functions.php:720
+#: include/draw_functions.php:748 include/draw_functions.php:926
 #: themes/Fifteen/views/soft.php:14
 msgid "Hide"
 msgstr "Verberg"
@@ -1707,7 +1723,7 @@ msgstr "Groepen"
 msgid "Bans"
 msgstr "Bans"
 
-#: backstage/header.php:187 backstage/menu.php:93
+#: backstage/header.php:187 backstage/menu.php:106
 msgid "Menu"
 msgstr "Menu"
 
@@ -1774,24 +1790,24 @@ msgstr "Gerapporteerd door"
 msgid "Date and time"
 msgstr "Datum en tijd"
 
-#: backstage/index.php:124 backstage/reports.php:64 backstage/reports.php:101
+#: backstage/index.php:124 backstage/reports.php:64 backstage/reports.php:102
 msgid "Deleted user"
 msgstr "Verwijderde gebruiker"
 
 #: backstage/index.php:125 backstage/index.php:126 backstage/index.php:128
 #: backstage/reports.php:65 backstage/reports.php:66 backstage/reports.php:68
-#: backstage/reports.php:70 backstage/reports.php:102 backstage/reports.php:103
-#: backstage/reports.php:105 backstage/reports.php:109
+#: backstage/reports.php:70 backstage/reports.php:103 backstage/reports.php:104
+#: backstage/reports.php:106 backstage/reports.php:110
 #: themes/Fifteen/views/inbox.php:109 viewinbox.php:191
 msgid "Deleted"
 msgstr "Verwijderd"
 
-#: backstage/index.php:128 backstage/reports.php:68 backstage/reports.php:105
+#: backstage/index.php:128 backstage/reports.php:68 backstage/reports.php:106
 #, php-format
 msgid "Comment #%s"
 msgstr "Reactie #%s"
 
-#: backstage/index.php:144 backstage/reports.php:92
+#: backstage/index.php:144 backstage/reports.php:93
 msgid "There are no new reports."
 msgstr "Er zijn geen nieuwe rapporten."
 
@@ -1824,14 +1840,14 @@ msgstr ""
 msgid "The file install.php still exists, but should be removed."
 msgstr "Het bestand install.php bestaat nog, je kan dit best verwijderen."
 
-#: backstage/index.php:190 db_update.php:730 db_update.php:815
-#: include/draw_functions.php:285 include/draw_functions.php:350
-#: include/draw_functions.php:431
+#: backstage/index.php:190 db_update.php:731 db_update.php:816
+#: include/draw_functions.php:300 include/draw_functions.php:365
+#: include/draw_functions.php:446
 msgid "comment"
 msgstr "reactie"
 
-#: backstage/index.php:191 include/draw_functions.php:349
-#: include/draw_functions.php:430
+#: backstage/index.php:191 include/draw_functions.php:364
+#: include/draw_functions.php:445
 msgid "thread"
 msgstr "conversatie"
 
@@ -1852,14 +1868,14 @@ msgstr ""
 msgid "Report an issue"
 msgstr "Meld een probleem"
 
-#: backstage/loader.php:24 backstage/moderate.php:23 backstage/moderate.php:70
-#: backstage/moderate.php:636 backstage/users.php:204 backstage/users.php:319
+#: backstage/loader.php:24 backstage/moderate.php:23 backstage/moderate.php:74
+#: backstage/moderate.php:647 backstage/users.php:204 backstage/users.php:319
 #: backstage/users.php:455 comment.php:45 delete.php:44 delete.php:47
-#: edit.php:44 edit.php:47 inbox.php:16 inbox.php:20 inbox.php:24 misc.php:22
+#: edit.php:43 edit.php:46 inbox.php:16 inbox.php:20 inbox.php:24 misc.php:22
 #: misc.php:37 misc.php:52 misc.php:144 misc.php:249 misc.php:285 misc.php:321
 #: misc.php:332 misc.php:350 misc.php:367 misc.php:378 misc.php:391
 #: new_inbox.php:16 new_inbox.php:20 new_inbox.php:24 new_inbox.php:114
-#: profile.php:14 search.php:74 search.php:280 search.php:513 settings.php:28
+#: profile.php:14 search.php:74 search.php:280 search.php:515 settings.php:28
 #: settings.php:33 settings.php:76 settings.php:93 settings.php:178
 #: settings.php:237 settings.php:246 settings.php:293 settings.php:302
 #: settings.php:443 settings.php:529 settings.php:587 userlist.php:16
@@ -1915,7 +1931,7 @@ msgstr "Hergenereren index. Dit is een goed moment om wat koffie te pakken."
 msgid "Processing comment <strong>%s</strong> …"
 msgstr "Reactie <strong>%s</strong> verwerken..."
 
-#: backstage/maintenance.php:132 db_update.php:181 include/install.php:1499
+#: backstage/maintenance.php:132 db_update.php:181 include/install.php:1503
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -1998,30 +2014,36 @@ msgstr "Index legen"
 
 #: backstage/maintenance.php:239
 msgid ""
-"Select this if you want the search index to be emptied before rebuilding "
-"(see below)."
+"Select this if you want the search index to be emptied before rebuilding."
 msgstr ""
-"Selecteer dit als je de zoekindex wilt verwijderen voordat hij wordt "
-"heropgebouwd."
+"Vink dit aan als je de zoek index wilt legen voordat hij heropgebouwd wordt."
 
-#: backstage/menu.php:24 backstage/menu.php:56
+#: backstage/menu.php:26 backstage/menu.php:60
 msgid "You must give your menu item a title."
 msgstr "Je moet je link een titel geven."
 
-#: backstage/menu.php:26 backstage/menu.php:58
+#: backstage/menu.php:28 backstage/menu.php:62
 msgid "You must give your menu item an URL."
 msgstr "Je moet je link een URL geven."
 
-#: backstage/menu.php:78
+#: backstage/menu.php:30
+msgid "The location must be a positive integer value."
+msgstr "De locatie moet een natuurlijk getal zijn."
+
+#: backstage/menu.php:82
 msgid "New item"
 msgstr "Nieuw item"
 
-#: backstage/menu.php:83 backstage/menu.php:99 include/draw_functions.php:103
+#: backstage/menu.php:87 backstage/menu.php:112 include/draw_functions.php:103
 msgid "URL"
 msgstr "URL"
 
-#: backstage/menu.php:101 include/draw_functions.php:707
-#: include/draw_functions.php:735 include/draw_functions.php:925
+#: backstage/menu.php:94
+msgid "Make this item visible in the menu."
+msgstr "Maak deze link zichtbaar in het menu."
+
+#: backstage/menu.php:114 include/draw_functions.php:722
+#: include/draw_functions.php:750 include/draw_functions.php:940
 msgid "Show"
 msgstr "Toon"
 
@@ -2039,11 +2061,11 @@ msgstr "De host naam is: %s"
 msgid "Show more users for this IP"
 msgstr "Toon meer gebruikers met dit IP"
 
-#: backstage/moderate.php:52 backstage/moderate.php:299
+#: backstage/moderate.php:54 backstage/moderate.php:309
 msgid "Moderate content"
 msgstr "Modereer inhoud"
 
-#: backstage/moderate.php:55
+#: backstage/moderate.php:57
 msgid ""
 "Visit a forum or thread and choose \"Moderate\" in the moderator bar to "
 "moderate content."
@@ -2051,157 +2073,157 @@ msgstr ""
 "Bezoek een forum of conversatie en kies \"Modereer\" in de navigatie om te "
 "modereren."
 
-#: backstage/moderate.php:93 backstage/moderate.php:154
+#: backstage/moderate.php:97 backstage/moderate.php:162
 msgid "You must select at least one comment for split/delete."
 msgstr "Je moet minstens een reactie kiezen om te splitsen/verwijderen."
 
-#: backstage/moderate.php:137
+#: backstage/moderate.php:143
 msgid "Delete comments"
 msgstr "Reactie verwijderen"
 
-#: backstage/moderate.php:142
+#: backstage/moderate.php:148
 msgid "Are you sure you want to delete the selected comments?"
 msgstr "Ben je zeker dat je deze reacties wilt verwijderen?"
 
-#: backstage/moderate.php:183 comment.php:64 edit.php:65 new_inbox.php:201
+#: backstage/moderate.php:191 comment.php:64 edit.php:63 new_inbox.php:201
 msgid "Threads must contain a subject."
 msgstr "Conversaties moeten een onderwerp hebben."
 
-#: backstage/moderate.php:185 comment.php:68 edit.php:69 new_inbox.php:203
+#: backstage/moderate.php:193 comment.php:68 edit.php:67 new_inbox.php:203
 msgid "Subjects cannot be longer than 70 characters."
 msgstr "Het onderwerp mag niet meer dan 70 tekens hebben."
 
-#: backstage/moderate.php:226
+#: backstage/moderate.php:234
 msgid "Split comments"
 msgstr "Splits reacties"
 
-#: backstage/moderate.php:226 backstage/moderate.php:385
+#: backstage/moderate.php:234 backstage/moderate.php:395
 msgid "Split"
 msgstr "Splits"
 
-#: backstage/moderate.php:232 backstage/moderate.php:478
+#: backstage/moderate.php:240 backstage/moderate.php:489
 msgid "Move to"
 msgstr "Verplaats naar"
 
-#: backstage/moderate.php:256
+#: backstage/moderate.php:264
 msgid "New subject"
 msgstr "Nieuw onderwerp"
 
-#: backstage/moderate.php:306 backstage/moderate.php:381
+#: backstage/moderate.php:316 backstage/moderate.php:391
 #: themes/Fifteen/views/thread.php:27 themes/Fifteen/views/thread.php:52
 msgid "Moderate"
 msgstr "Modereer"
 
-#: backstage/moderate.php:347 backstage/users.php:175 include/functions.php:447
-#: include/functions.php:891 include/install.php:1552 search.php:222
+#: backstage/moderate.php:357 backstage/users.php:175 include/functions.php:447
+#: include/functions.php:891 include/install.php:1556 search.php:222
 #: settings.php:676
 msgid "Guest"
 msgstr "Gast"
 
-#: backstage/moderate.php:364 themes/Fifteen/objects/comment.php:15
+#: backstage/moderate.php:374 themes/Fifteen/objects/comment.php:21
 msgid "Last edited by"
 msgstr "Laatst bewerkt door"
 
-#: backstage/moderate.php:367
+#: backstage/moderate.php:377
 msgid "Select"
 msgstr "Selecteer"
 
-#: backstage/moderate.php:367
+#: backstage/moderate.php:377
 msgid "First comment cannot be selected for split/delete."
 msgstr ""
 "Eerste reactie in een conversatie kan niet worden gekozen om te splitsen/"
 "verwijderen."
 
-#: backstage/moderate.php:450 backstage/moderate.php:616
-#: backstage/moderate.php:700
+#: backstage/moderate.php:461 backstage/moderate.php:627
+#: backstage/moderate.php:711
 msgid "You must select at least one thread for move/delete/open/close."
 msgstr ""
 "Je moet minstens één conversatie kiezen om te verplaatsen/verwijderen/openen/"
 "sluiten."
 
-#: backstage/moderate.php:464
+#: backstage/moderate.php:475
 msgid "There are no forums into which you can move threads."
 msgstr "Er zijn geen forums om conversaties naar te verplaatsen."
 
-#: backstage/moderate.php:472
+#: backstage/moderate.php:483
 msgid "Move thread"
 msgstr "Verplaats conversatie"
 
-#: backstage/moderate.php:472
+#: backstage/moderate.php:483
 msgid "Move threads"
 msgstr "Verplaats conversaties"
 
-#: backstage/moderate.php:472 backstage/moderate.php:954
+#: backstage/moderate.php:483 backstage/moderate.php:964
 #: themes/Fifteen/views/thread.php:31 themes/Fifteen/views/thread.php:56
 msgid "Move"
 msgstr "Verplaats"
 
-#: backstage/moderate.php:502
+#: backstage/moderate.php:513
 msgid "Leave redirect thread(s)."
 msgstr "Toon (een) snelkoppeling conversatie(s)."
 
-#: backstage/moderate.php:527 backstage/moderate.php:583
+#: backstage/moderate.php:538 backstage/moderate.php:594
 msgid "You must select at least two threads to merge."
 msgstr "Je moet minstens twee conversaties selecteren om samen te voegen."
 
-#: backstage/moderate.php:591
+#: backstage/moderate.php:602
 msgid "Merge threads"
 msgstr "Conversaties samenvoegen"
 
-#: backstage/moderate.php:591 backstage/moderate.php:956
+#: backstage/moderate.php:602 backstage/moderate.php:966
 msgid "Merge"
 msgstr "Samenvoegen"
 
-#: backstage/moderate.php:598
+#: backstage/moderate.php:609
 msgid "Leave redirect thread(s)"
 msgstr "Laat een doorverwijzing achter"
 
-#: backstage/moderate.php:673
+#: backstage/moderate.php:684
 msgid "Delete threads"
 msgstr "Conversaties verwijderen"
 
-#: backstage/moderate.php:678
+#: backstage/moderate.php:689
 msgid "Are you sure you want to delete the selected threads?"
 msgstr "Ben je zeker dat je de geselecteerde conversaties wilt verwijderen."
 
-#: backstage/moderate.php:826
+#: backstage/moderate.php:837
 #, php-format
 msgid "Moderating \"%s\""
 msgstr "Modereer \"%s\""
 
-#: backstage/moderate.php:867 backstage/moderate.php:869
-#: backstage/moderate.php:911 include/draw_functions.php:227
-#: include/draw_functions.php:268 include/draw_functions.php:363
-#: include/draw_functions.php:365 include/draw_functions.php:444
-#: include/draw_functions.php:446 include/draw_functions.php:509
-#: include/draw_functions.php:568 include/draw_functions.php:977
-#: include/draw_functions.php:1019 themes/Fifteen/views/inbox.php:86
+#: backstage/moderate.php:878 backstage/moderate.php:880
+#: backstage/moderate.php:921 include/draw_functions.php:242
+#: include/draw_functions.php:283 include/draw_functions.php:378
+#: include/draw_functions.php:380 include/draw_functions.php:459
+#: include/draw_functions.php:461 include/draw_functions.php:524
+#: include/draw_functions.php:583 include/draw_functions.php:992
+#: include/draw_functions.php:1034 themes/Fifteen/views/inbox.php:86
 msgid "by"
 msgstr "door"
 
-#: backstage/moderate.php:907 include/draw_functions.php:264
-#: include/draw_functions.php:559 include/draw_functions.php:1007
+#: backstage/moderate.php:917 include/draw_functions.php:279
+#: include/draw_functions.php:574 include/draw_functions.php:1022
 msgid "Go to the first new comment in the thread."
 msgstr "Ga naar de eerste nieuwe reactie in de conversatie."
 
-#: backstage/moderate.php:922 include/draw_functions.php:585
+#: backstage/moderate.php:932 include/draw_functions.php:600
 msgid "reply"
 msgstr "reactie"
 
-#: backstage/moderate.php:923 include/draw_functions.php:286
-#: include/draw_functions.php:586
+#: backstage/moderate.php:933 include/draw_functions.php:301
+#: include/draw_functions.php:601
 msgid "view"
 msgstr "weergave"
 
-#: backstage/moderate.php:947
+#: backstage/moderate.php:957
 msgid "This forum has no threads yet."
 msgstr "Dit forum heeft geen conversaties."
 
-#: backstage/moderate.php:959
+#: backstage/moderate.php:969
 msgid "Open"
 msgstr "Open"
 
-#: backstage/moderate.php:960
+#: backstage/moderate.php:970
 msgid "Close"
 msgstr "Sluiten"
 
@@ -2290,7 +2312,7 @@ msgstr "Nieuwe notificaties"
 #: backstage/users.php:673 backstage/users.php:690 extern.php:494
 #: profile.php:46 profile.php:69 themes/Fifteen/views/profile.php:38
 #: themes/Fifteen/views/search-advanced.php:56
-#: themes/Fifteen/views/settings.php:346 themes/Fifteen/views/settings.php:539
+#: themes/Fifteen/views/settings.php:346 themes/Fifteen/views/settings.php:531
 msgid "Comments"
 msgstr "Reacties"
 
@@ -2399,20 +2421,20 @@ msgstr "Geen rangen ingesteld"
 msgid "Old reports"
 msgstr "Oude rapporten"
 
-#: backstage/reports.php:83 include/draw_functions.php:1173 search.php:392
+#: backstage/reports.php:83 include/draw_functions.php:1188 search.php:392
 msgid "Mark as read"
 msgstr "Markeer als gelezen"
 
-#: backstage/reports.php:106 backstage/reports.php:107
+#: backstage/reports.php:107 backstage/reports.php:108
 msgid "N/A"
 msgstr "Niet beschikbaar"
 
-#: backstage/reports.php:122
+#: backstage/reports.php:123
 #, php-format
 msgid "Managed by %s"
 msgstr "Gecontroleerd door %s"
 
-#: backstage/reports.php:129
+#: backstage/reports.php:130
 msgid "There are no read reports."
 msgstr "Er is geen gelezen raport."
 
@@ -2487,7 +2509,7 @@ msgid "Default favicon"
 msgstr "Standaard favicon"
 
 #: backstage/settings.php:298 backstage/settings.php:303
-#: include/install.php:1491
+#: include/install.php:1495
 msgid "Announcement"
 msgstr "Aankondiging"
 
@@ -2674,7 +2696,7 @@ msgstr ""
 "Sta toe dat gebruikers een e-mail adres gebruiken dat al aan een andere "
 "gebruiker is toegewezen, de maillijst wordt gewaarschuwd als dit gebeurd."
 
-#: backstage/settings.php:551 include/install.php:1497
+#: backstage/settings.php:551 include/install.php:1501
 #: themes/Fifteen/views/help.php:13 themes/Fifteen/views/rules.php:13
 msgid "Rules"
 msgstr "Regels"
@@ -2718,7 +2740,7 @@ msgstr "Verberg e-mail adres en laat geen e-mails toe."
 msgid "Cookie bar"
 msgstr "Cookie balk"
 
-#: backstage/settings.php:601 themes/Fifteen/views/footer.php:105
+#: backstage/settings.php:601 themes/Fifteen/views/footer.php:108
 msgid "More info"
 msgstr "Meer info"
 
@@ -3039,7 +3061,7 @@ msgid "Title/Status"
 msgstr "Titel/status"
 
 #: backstage/users.php:130 backstage/users.php:674 backstage/users.php:795
-#: themes/Fifteen/views/settings.php:546
+#: themes/Fifteen/views/settings.php:538
 msgid "Admin note"
 msgstr "Admin nota"
 
@@ -3093,7 +3115,7 @@ msgstr ""
 msgid "Delete users"
 msgstr "Verwijder gebruiker"
 
-#: backstage/users.php:431 themes/Fifteen/views/me-delete.php:16
+#: backstage/users.php:431 themes/Fifteen/views/me-delete.php:17
 msgid ""
 "Deleted users and/or comments cannot be restored. If you choose not to "
 "delete the comments made by this user, the comments can only be deleted "
@@ -3103,7 +3125,7 @@ msgstr ""
 "reacties laat staan voor deze gebruiker, zal je deze later handmatig moeten "
 "verwijderen."
 
-#: backstage/users.php:435 themes/Fifteen/views/me-delete.php:20
+#: backstage/users.php:435
 msgid "Delete all comments and threads this user has made"
 msgstr "Verwijder alle reacties en conversaties van de gebruiker"
 
@@ -3224,7 +3246,7 @@ msgstr "Zoek IP adres"
 msgid "The IP address to search for in the comment database"
 msgstr "Het IP adres om op te zoeken in reacties"
 
-#: comment.php:14 delete.php:14 edit.php:15 extern.php:74 help.php:14
+#: comment.php:14 delete.php:14 edit.php:14 extern.php:74 help.php:14
 #: index.php:14 search.php:19 thread.php:15 userlist.php:14 viewforum.php:15
 msgid "You do not have permission to view this page."
 msgstr "Je hebt niet de nodige permissies om deze pagina te bekijken."
@@ -3238,7 +3260,7 @@ msgstr ""
 "Minstens %s seconden moeten zijn verlopen tussen reacties. Wacht %s seconden "
 "en probeer dan opnieuw te reageren."
 
-#: comment.php:66 edit.php:67
+#: comment.php:66 edit.php:65
 msgid ""
 "Threads must contain a subject. After applying censoring filters, your "
 "subject was empty."
@@ -3246,7 +3268,7 @@ msgstr ""
 "Conversaties moeten een onderwerp hebben. Na het toepassen van censuur is je "
 "onderwerp leeg."
 
-#: comment.php:70 edit.php:71
+#: comment.php:70 edit.php:69
 msgid "Subjects cannot contain only capital letters."
 msgstr "Het onderwerp mag niet enkel uit hoofdletters bestaan."
 
@@ -3263,20 +3285,20 @@ msgstr ""
 "Het e-mail adres dat je hebt ingevuld is verbannen van dit forum. Kies een "
 "ander e-mail adres."
 
-#: comment.php:109 edit.php:79 new_inbox.php:216
+#: comment.php:109 edit.php:84 new_inbox.php:216
 #, php-format
 msgid "Comments cannot be longer than %s bytes."
 msgstr "Reacties kunnen niet langer zijn dan %s bytes."
 
-#: comment.php:111 edit.php:81
+#: comment.php:111 edit.php:86
 msgid "Comments cannot contain only capital letters."
 msgstr "Reacties mogen niet bestaan uit uitsluitend hoofdletters."
 
-#: comment.php:119 edit.php:89 misc.php:77 new_inbox.php:212
+#: comment.php:119 edit.php:94 misc.php:77 new_inbox.php:212
 msgid "You must enter a message."
 msgstr "Je moet een bericht ingeven."
 
-#: comment.php:125 edit.php:95
+#: comment.php:125 edit.php:100
 msgid ""
 "You must enter a message. After applying censoring filters, your message was "
 "empty."
@@ -3503,30 +3525,30 @@ msgstr "Update"
 msgid "Update Luna"
 msgstr "Update Luna"
 
-#: db_update.php:730 db_update.php:763
+#: db_update.php:731 db_update.php:764
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr "Parsen van %1$s %2$s ..."
 
-#: db_update.php:763
+#: db_update.php:764
 msgid "signature"
 msgstr "handtekening"
 
-#: db_update.php:815
+#: db_update.php:816
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr "Hergenereren index voor %1$s %2$s"
 
-#: db_update.php:840
+#: db_update.php:841
 #, php-format
 msgid "Luna has been updated to %s"
 msgstr "Luna is bijgewerkt naar %s"
 
-#: db_update.php:883
+#: db_update.php:884
 msgid "If this takes to long, the automatic redirect might have failed."
 msgstr "Als dit te lang duurt wordt je mogelijk niet automatisch doorgestuurt."
 
-#: db_update.php:883
+#: db_update.php:884
 msgid "Click here"
 msgstr "Klik hier"
 
@@ -3534,7 +3556,7 @@ msgstr "Klik hier"
 msgid "Delete comment"
 msgstr "Verwijder reactie"
 
-#: edit.php:129
+#: edit.php:134
 msgid "Edit comment"
 msgstr "Reactie bewerken"
 
@@ -3568,7 +3590,7 @@ msgstr "Gasten online"
 msgid "Users online"
 msgstr "Gebruikers online"
 
-#: extern.php:492 themes/Fifteen/views/footer.php:60
+#: extern.php:492 themes/Fifteen/views/footer.php:63
 msgid "Newest user"
 msgstr "Nieuwste gebruiker"
 
@@ -3670,8 +3692,8 @@ msgstr "Subscript"
 msgid "Superscript"
 msgstr "Superscript"
 
-#: include/draw_functions.php:98 include/draw_functions.php:690
-#: include/draw_functions.php:721 include/draw_functions.php:845
+#: include/draw_functions.php:98 include/draw_functions.php:705
+#: include/draw_functions.php:736 include/draw_functions.php:860
 msgid "Quote"
 msgstr "Quote"
 
@@ -3704,96 +3726,104 @@ msgstr "Lijst  punt"
 msgid "Start typing..."
 msgstr "Start met typen"
 
-#: include/draw_functions.php:148 include/draw_functions.php:1095
+#: include/draw_functions.php:148 include/draw_functions.php:1110
 #: themes/Fifteen/views/login.php:44 themes/Fifteen/views/report.php:12
 msgid "Submit"
 msgstr "Verzenden"
 
-#: include/draw_functions.php:294
+#: include/draw_functions.php:188
+msgid "Manage admin note"
+msgstr "Beheer admin nota"
+
+#: include/draw_functions.php:189
+msgid "Add a note to this comment..."
+msgstr "Voeg een nota toe aan deze reactie..."
+
+#: include/draw_functions.php:309
 #, php-format
 msgid "<a href=\"comment.php?fid=%s\">Start the first thread in this forum</a>"
 msgstr ""
 "<a href=\"comment.php?fid=%s\">Start de eerste conversatie in dit forum</a>"
 
-#: include/draw_functions.php:367 include/draw_functions.php:448
+#: include/draw_functions.php:382 include/draw_functions.php:463
 #: include/functions.php:1143
 msgid "Never"
 msgstr "Nooit"
 
-#: include/draw_functions.php:378
+#: include/draw_functions.php:393
 msgid "There are no forums in this board yet."
 msgstr "Er zijn geen forums op deze website."
 
-#: include/draw_functions.php:592
+#: include/draw_functions.php:607
 msgid "The board is empty, select a forum and create a thread to begin."
 msgstr ""
 "Dit forum is leeg, select een forum en maak een conversatie om te beginnen."
 
-#: include/draw_functions.php:630 include/draw_functions.php:802
+#: include/draw_functions.php:645 include/draw_functions.php:817
 msgid "From:"
 msgstr "Van:"
 
-#: include/draw_functions.php:634
+#: include/draw_functions.php:649
 msgid "Comment:"
 msgstr "Reactie:"
 
-#: include/draw_functions.php:646 include/draw_functions.php:822
+#: include/draw_functions.php:661 include/draw_functions.php:837
 #: themes/Fifteen/views/settings.php:295
 msgid "Website"
 msgstr "Website"
 
-#: include/draw_functions.php:651 include/draw_functions.php:667
-#: include/draw_functions.php:827 include/draw_functions.php:837
+#: include/draw_functions.php:666 include/draw_functions.php:682
+#: include/draw_functions.php:842 include/draw_functions.php:852
 msgid "IP log"
 msgstr "IP log"
 
-#: include/draw_functions.php:658 include/draw_functions.php:830
+#: include/draw_functions.php:673 include/draw_functions.php:845
 msgid "Note:"
 msgstr "Nota:"
 
-#: include/draw_functions.php:695 include/draw_functions.php:725
+#: include/draw_functions.php:710 include/draw_functions.php:740
 #: themes/Fifteen/views/unsolved.php:12
 msgid "Unsolved"
 msgstr "Onopgelost"
 
-#: include/draw_functions.php:697 include/draw_functions.php:727
+#: include/draw_functions.php:712 include/draw_functions.php:742
 #: themes/Fifteen/views/answer.php:13
 msgid "Answer"
 msgstr "Opgelost"
 
-#: include/draw_functions.php:714 include/draw_functions.php:716
-#: include/draw_functions.php:739 include/draw_functions.php:741
-#: include/draw_functions.php:1080 themes/Fifteen/views/report.php:12
+#: include/draw_functions.php:729 include/draw_functions.php:731
+#: include/draw_functions.php:754 include/draw_functions.php:756
+#: include/draw_functions.php:1095 themes/Fifteen/views/report.php:12
 msgid "Report"
 msgstr "Rapport"
 
-#: include/draw_functions.php:787
+#: include/draw_functions.php:802
 msgid "Online:"
 msgstr "Online:"
 
-#: include/draw_functions.php:787
+#: include/draw_functions.php:802
 msgid "Offline"
 msgstr "Offline"
 
-#: include/draw_functions.php:805 profile.php:53
+#: include/draw_functions.php:820 profile.php:53
 #: themes/Fifteen/views/profile.php:46
 msgid "Registered since"
 msgstr "Geregistreerd op"
 
-#: include/draw_functions.php:808
+#: include/draw_functions.php:823
 msgid "Comments:"
 msgstr "Reacties:"
 
-#: include/draw_functions.php:818
+#: include/draw_functions.php:833
 msgid "PM"
 msgstr "PM"
 
-#: include/draw_functions.php:886 search.php:97 search.php:147 search.php:269
-#: search.php:497
+#: include/draw_functions.php:901 search.php:97 search.php:147 search.php:269
+#: search.php:499
 msgid "Your search returned no hits."
 msgstr "Je zoekopdracht heeft geen resultaten."
 
-#: include/draw_functions.php:894 themes/Fifteen/views/delete.php:17
+#: include/draw_functions.php:909 themes/Fifteen/views/delete.php:17
 #: themes/Fifteen/views/soft.php:17
 msgid ""
 "This is the first comment in the thread, the whole thread will be "
@@ -3802,28 +3832,28 @@ msgstr ""
 "Dit is de eerste reactie in deze conversatie, de hele conversatie zal "
 "verwijderd worden."
 
-#: include/draw_functions.php:894 themes/Fifteen/views/delete.php:17
+#: include/draw_functions.php:909 themes/Fifteen/views/delete.php:17
 msgid ""
 "The comment you have chosen to delete is set out below for you to review "
 "before proceeding."
 msgstr "De gekozen reactie is hieronder uitgezet ter controle."
 
-#: include/draw_functions.php:896 include/draw_functions.php:910
-#: include/draw_functions.php:924 include/draw_functions.php:1094
+#: include/draw_functions.php:911 include/draw_functions.php:925
+#: include/draw_functions.php:939 include/draw_functions.php:1109
 #: themes/Fifteen/views/comment.php:14 themes/Fifteen/views/comment.php:16
 #: themes/Fifteen/views/edit.php:13
 #: themes/Fifteen/views/inbox-delete-comment.php:18
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: include/draw_functions.php:908
+#: include/draw_functions.php:923
 msgid ""
 "This is the first comment in the thread, the whole thread will be hidden."
 msgstr ""
 "Dit is de openingsreactie van de conversatie, de volledige conversatie zal "
 "worden verborgen."
 
-#: include/draw_functions.php:908
+#: include/draw_functions.php:923
 msgid ""
 "The comment you have chosen to hide is set out below for you to review "
 "before proceeding."
@@ -3831,7 +3861,7 @@ msgstr ""
 "De reactie die je wilt verbergen wordt hieronder getoond zodat je deze kan "
 "nakijken voordat je doorgaat."
 
-#: include/draw_functions.php:922 themes/Fifteen/views/reset.php:17
+#: include/draw_functions.php:937 themes/Fifteen/views/reset.php:17
 msgid ""
 "This comment has been hidden. We'll unhide it again with a click on the "
 "button."
@@ -3839,45 +3869,45 @@ msgstr ""
 "De reactie is verborgen. Je kan hem terug zichtbaar maken door verder te "
 "gaan."
 
-#: include/draw_functions.php:934
+#: include/draw_functions.php:949
 #, php-format
 msgid "Thread started by %s - %s"
 msgstr "Conversatie gestart door %s - %s"
 
-#: include/draw_functions.php:934
+#: include/draw_functions.php:949
 #, php-format
 msgid "Comment by %s - %s"
 msgstr "Reactie door %s - %s"
 
-#: include/draw_functions.php:944
+#: include/draw_functions.php:959
 msgid "You must agree to the following in order to register"
 msgstr "Je moet akkoord gaan met het volgende om te registreren"
 
-#: include/draw_functions.php:952 themes/Fifteen/views/rules.php:13
+#: include/draw_functions.php:967 themes/Fifteen/views/rules.php:13
 msgid "Agree"
 msgstr "Akkoortd"
 
-#: include/draw_functions.php:1062
+#: include/draw_functions.php:1077
 msgid "Mail"
 msgstr "Mail"
 
-#: include/draw_functions.php:1065
+#: include/draw_functions.php:1080
 msgid "Send"
 msgstr "Verstuur"
 
-#: include/draw_functions.php:1086 themes/Fifteen/views/report.php:16
+#: include/draw_functions.php:1101 themes/Fifteen/views/report.php:16
 msgid "Tell us why you are reporting this"
 msgstr "Waarom rapporteer je dit"
 
-#: include/draw_functions.php:1113
+#: include/draw_functions.php:1128
 msgid "Forums to search in"
 msgstr "Forums om in te zoeken"
 
-#: include/draw_functions.php:1140
+#: include/draw_functions.php:1155
 msgid "Forum to search in"
 msgstr "Forum om in te zoeken"
 
-#: include/draw_functions.php:1182
+#: include/draw_functions.php:1197
 msgid "Luna"
 msgstr "Luna"
 
@@ -3985,7 +4015,7 @@ msgstr ""
 msgid "Page %s"
 msgstr "Pagina %s"
 
-#: include/functions.php:903 include/install.php:1607 settings.php:676
+#: include/functions.php:903 include/install.php:1611 settings.php:676
 msgid "Member"
 msgstr "Gebruiker"
 
@@ -4158,15 +4188,15 @@ msgstr ""
 "gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
 "bewaren kan je een andere prefix instellen."
 
-#: include/install.php:1437
+#: include/install.php:1441
 msgid "H:i"
 msgstr "H:i"
 
-#: include/install.php:1438
+#: include/install.php:1442
 msgid "j F Y"
 msgstr "j F Y"
 
-#: include/install.php:1479
+#: include/install.php:1483
 msgid ""
 "Wow, it's great to have you here, welcome and thanks for joining us. We've "
 "set up your account and you're ready to go. Though we like to point out some "
@@ -4176,31 +4206,31 @@ msgstr ""
 "aangemaakt en je bent klaar om te starten. We hebben echter nog wat handige "
 "links voor je die je mogelijk wilt bekijken."
 
-#: include/install.php:1569
+#: include/install.php:1573
 msgid "Administrators"
 msgstr "Administratoren"
 
-#: include/install.php:1569 settings.php:676
+#: include/install.php:1573 settings.php:676
 msgid "Administrator"
 msgstr "Administrator"
 
-#: include/install.php:1571
+#: include/install.php:1575
 msgid "Moderators"
 msgstr "Moderatoren"
 
-#: include/install.php:1571 settings.php:676
+#: include/install.php:1575 settings.php:676
 msgid "Moderator"
 msgstr "Moderator"
 
-#: include/install.php:1575
+#: include/install.php:1579
 msgid "Members"
 msgstr "Gebruikers"
 
-#: include/install.php:1604
+#: include/install.php:1608
 msgid "New member"
 msgstr "Nieuwe gebruikers"
 
-#: include/install.php:1611
+#: include/install.php:1615
 msgid "Welcome to Luna, discover the possibilities!"
 msgstr "Welkom bij Luna, ontdek de mogelijkheden!"
 
@@ -4254,7 +4284,7 @@ msgstr "[%s] was geopend binnen zichzelf, dit is niet toegestaan."
 msgid "image"
 msgstr "afbeelding"
 
-#: include/statistic_functions.php:96
+#: include/statistic_functions.php:86
 msgid "No users online"
 msgstr "Geen gebruikers online"
 
@@ -4983,27 +5013,27 @@ msgstr "Er zijn geen abonnementen van de gebruiker op dit forum."
 msgid "There are no unanswered comments in this forum."
 msgstr "Er zijn geen onbeantwoorde conversaties op dit forum."
 
-#: search.php:445
+#: search.php:447
 #, php-format
 msgid "Threads by %s"
 msgstr "Conversatie door %s"
 
-#: search.php:447
+#: search.php:449
 #, php-format
 msgid "Comments by %s"
 msgstr "Reactie van %s"
 
-#: search.php:458
+#: search.php:460
 #, php-format
 msgid "Subscribed by %s"
 msgstr "Abonnement van %s"
 
-#: search.php:460
+#: search.php:462
 #, php-format
 msgid "Quick search %s"
 msgstr "Snel zoeken %s"
 
-#: search.php:478 themes/Fifteen/views/search-results.php:12
+#: search.php:480 themes/Fifteen/views/search-results.php:12
 msgid "Search results"
 msgstr "Zoek resultaten"
 
@@ -5269,27 +5299,27 @@ msgstr "RSS conversatie feed"
 msgid "Atom thread feed"
 msgstr "Atom conversatie feed"
 
-#: themes/Fifteen/views/footer.php:48
+#: themes/Fifteen/views/footer.php:51
 msgid "User"
 msgstr "Gebruiker"
 
-#: themes/Fifteen/views/footer.php:52 themes/Fifteen/views/settings.php:41
+#: themes/Fifteen/views/footer.php:55 themes/Fifteen/views/settings.php:41
 msgid "Thread"
 msgstr "Conversaties"
 
-#: themes/Fifteen/views/footer.php:67 themes/Fifteen/views/footer.php:75
+#: themes/Fifteen/views/footer.php:70 themes/Fifteen/views/footer.php:78
 msgid "User online"
 msgstr "Gebruiker online"
 
-#: themes/Fifteen/views/footer.php:79
+#: themes/Fifteen/views/footer.php:82
 msgid "Guest online"
 msgstr "Gasten online"
 
-#: themes/Fifteen/views/footer.php:102
+#: themes/Fifteen/views/footer.php:105
 msgid "We use cookies to give you the best experience on this board."
 msgstr "We gebruiken cookies om je een betere ervaring te bieden op dit forum."
 
-#: themes/Fifteen/views/footer.php:105 themes/Fifteen/views/index.php:37
+#: themes/Fifteen/views/footer.php:108 themes/Fifteen/views/index.php:37
 #: themes/Sunrise/views/index.php:37
 msgid "Don't show again"
 msgstr "Niet meer tonen"
@@ -5793,6 +5823,7 @@ msgid "Are you sure that you want to delete the message(s) from your inbox?"
 msgstr "Ben je zeker dat je deze berichten wilt verwijderen van Inbox?"
 
 #: themes/Fifteen/views/inbox-delete.php:12
+#: themes/Fifteen/views/me-delete.php:14
 msgid "Confirm deletion"
 msgstr "Verwijderen bevestigen"
 
@@ -5872,9 +5903,13 @@ msgstr "Terug"
 msgid "Send an email"
 msgstr "Stuur een e-mail"
 
-#: themes/Fifteen/views/me-delete.php:13
-msgid "Please confirm that you want to delete the user"
-msgstr "Bevestig dat je deze gebruiker wilt verwijderen."
+#: themes/Fifteen/views/me-delete.php:19
+msgid "User content"
+msgstr "Gebruikers content"
+
+#: themes/Fifteen/views/me-delete.php:24
+msgid "Delete all comments and threads this user has made."
+msgstr "Verwijder alle reacties en conversaties van deze gebruiker."
 
 #: themes/Fifteen/views/me-modals.php:13
 msgid ""
@@ -6116,31 +6151,23 @@ msgstr "Too emoticons als grafische iconen."
 msgid "Time zone"
 msgstr "Tijdzone"
 
-#: themes/Fifteen/views/settings.php:468 themes/Fifteen/views/settings.php:502
-msgid "Delete or ban user"
-msgstr "Verwijder of verban gebruiker"
-
-#: themes/Fifteen/views/settings.php:470 themes/Fifteen/views/settings.php:505
-msgid "Ban user"
-msgstr "Verban gebruiker"
-
-#: themes/Fifteen/views/settings.php:476
+#: themes/Fifteen/views/settings.php:468
 msgid "Choose user group"
 msgstr "Kies een groep"
 
-#: themes/Fifteen/views/settings.php:504
-msgid "Delete user"
-msgstr "Verwijder gebruiker"
+#: themes/Fifteen/views/settings.php:494
+msgid "Delete or ban user"
+msgstr "Verwijder of verban gebruiker"
 
-#: themes/Fifteen/views/settings.php:511
+#: themes/Fifteen/views/settings.php:504
 msgid "Set moderator access"
 msgstr "Stel moderator toegang in"
 
-#: themes/Fifteen/views/settings.php:511
+#: themes/Fifteen/views/settings.php:504
 msgid "Update forums"
 msgstr "Update forums"
 
-#: themes/Fifteen/views/settings.php:513
+#: themes/Fifteen/views/settings.php:506
 msgid ""
 "Choose which forums this user should be allowed to moderate. Note: This only "
 "applies to moderators. Administrators always have full permissions in all "
@@ -6227,6 +6254,25 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "Fixes 33 bugs"
+#~ msgstr "Herstelt 33 bugs"
+
+#~ msgid ""
+#~ "Select this if you want the search index to be emptied before rebuilding "
+#~ "(see below)."
+#~ msgstr ""
+#~ "Selecteer dit als je de zoekindex wilt verwijderen voordat hij wordt "
+#~ "heropgebouwd."
+
+#~ msgid "Please confirm that you want to delete the user"
+#~ msgstr "Bevestig dat je deze gebruiker wilt verwijderen."
+
+#~ msgid "Ban user"
+#~ msgstr "Verban gebruiker"
+
+#~ msgid "Delete user"
+#~ msgstr "Verwijder gebruiker"
 
 #~ msgid "Delete admins and mods"
 #~ msgstr "Verwijder administratoren en moderatoren"
