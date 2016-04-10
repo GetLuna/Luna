@@ -236,7 +236,7 @@ if (isset($_GET['cache_cleared']))
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked />
-                                        <?php _e('Select this if you want the search index to be emptied before rebuilding (see below).', 'luna') ?>
+                                        <?php _e('Select this if you want the search index to be emptied before rebuilding.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>
