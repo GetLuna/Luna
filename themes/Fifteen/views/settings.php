@@ -489,25 +489,17 @@ else
 									</div>
 								</div>
 								<hr />
-							<?php } else if ($luna_user['g_moderator'] == '1') { ?>
+							<?php } else if ($luna_user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-sm-9">
                                         <button class="btn btn-danger" type="submit" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
-                                        <button class="btn btn-danger" type="submit" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+                                        <?php if ($user['g_id'] == LUNA_ADMIN) { ?>
+                                            <button class="btn btn-danger" type="submit" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+                                        <?php } ?>
 									</div>
 								</div>
 								<hr />
-							<?php } ?>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
-								<div class="col-sm-9">
-									<button type="submit" class="btn btn-danger" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
-									<button type="submit" class="btn btn-danger" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
-								</div>
-							</div>
-							<hr />
-							<?php if ($user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
 									<div class="col-sm-9">
