@@ -29,7 +29,7 @@ Luna supports updating from all versions of FluxBB since 1.4.0, all versions of 
  - **ModernBB 4**: all versions supported
 - **Luna support**:
  - **Luna 1**: all versions supported
- - **Luna 3**: all versions supported
+ - **Luna 2**: all versions supported
 
 ## Links
  - Homepage: http://getluna.org/
