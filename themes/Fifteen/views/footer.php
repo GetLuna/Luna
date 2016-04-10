@@ -154,8 +154,6 @@ if (defined('LUNA_DEBUG')) {
 
 // Close the db connection (and free up any result data)
 $db->close();
-
-require ('footer.php');
 ?>
 	</body>
 </html>
