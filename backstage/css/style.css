@@ -758,6 +758,10 @@ h3.panel-title {
     margin-bottom: 0;
 }
 
+.panel-end-checkbox .checkbox {
+    margin-bottom: 0;
+}
+
 /* Forms */
 .form-control {
 	border-color: #e0e0e0;
@@ -1596,6 +1600,10 @@ a.label-new {
 .night .alert-danger {
     background-color: #a94442;
     color: #f2dede;
+}
+
+.night a.btn.btn-danger {
+    color: #fff !important;
 }
 
 /* Installer */

@@ -19,13 +19,17 @@ if (isset($_POST['add_item'])) {
 
 	$item_name = luna_trim($_POST['name']);
 	$item_url = luna_trim($_POST['url']);
+	$item_position = luna_trim($_POST['position']);
+	$item_visible = isset($_POST['visible']) ? '1' : '0';
 
 	if ($item_name == '')
 		message_backstage(__('You must give your menu item a title.', 'luna'));
 	elseif ($item_url == '')
 		message_backstage(__('You must give your menu item an URL.', 'luna'));
+	if ($item_position == '' || preg_match('%[^0-9]%', $item_position))
+		message_backstage(__('The location must be a positive integer value.', 'luna'));
 
-	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$db->escape($item_url).'\', \''.$db->escape($item_name).'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$db->escape($item_url).'\', \''.$db->escape($item_name).'\', '.$item_position.', '.$item_visible.', 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
 	redirect('backstage/menu.php');
 } elseif (isset($_GET['del_item'])) {
@@ -73,14 +77,23 @@ require 'header.php';
 	<div class="col-sm-4">
 		<form method="post" action="menu.php?action=add_item">
 			<fieldset>
-				<div class="panel panel-default">
+				<div class="panel panel-default panel-end-checkbox">
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php _e('New item', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 					</div>
 					<div class="panel-body">
-                        <input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna') ?>" value="" />
+                        <input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna') ?>" />
                         <hr />
-                        <input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna') ?>" value="" />
+                        <input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna') ?>" />
+                        <hr />
+                        <input type="number" class="form-control" name="position" placeholder="<?php _e('Position', 'luna') ?>" />
+                        <hr />
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="visible" value="1" checked="checked" />
+                                <?php _e('Make this item visible in the menu.', 'luna') ?>
+                            </label>
+                        </div>
 					</div>
 				</div>
 			</fieldset>
