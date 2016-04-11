@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-10 22:13+0200\n"
-"PO-Revision-Date: 2016-04-10 22:13+0200\n"
+"POT-Creation-Date: 2016-04-11 09:42+0200\n"
+"PO-Revision-Date: 2016-04-11 09:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -96,7 +96,7 @@ msgid "Maintenance mode now shows a warning in the Backstage header"
 msgstr ""
 
 #: backstage/about.php:48 backstage/about.php:49 backstage/about.php:50
-#: backstage/about.php:51 backstage/settings.php:675
+#: backstage/about.php:51 backstage/about.php:52 backstage/settings.php:675
 msgid "System"
 msgstr ""
 
@@ -113,123 +113,131 @@ msgid "Components now live in their own folder in the Luna root"
 msgstr ""
 
 #: backstage/about.php:51
-msgid "Bootstrap and jQuery have been updated to the latest version"
-msgstr ""
-
-#: backstage/about.php:52 backstage/about.php:53
-msgid "Changed"
+msgid "Debug mode can now be enabled with one line in the config file"
 msgstr ""
 
 #: backstage/about.php:52
-msgid "Revamped search forms for users and bans, including responsive design"
+msgid "Bootstrap and jQuery have been updated to the latest version"
+msgstr ""
+
+#: backstage/about.php:53 backstage/about.php:54 backstage/about.php:55
+msgid "Changed"
 msgstr ""
 
 #: backstage/about.php:53
-msgid "The Backstage has a whole new structure"
-msgstr ""
-
-#: backstage/about.php:54 backstage/about.php:55 backstage/about.php:56
-#: backstage/about.php:57 backstage/about.php:58 backstage/about.php:59
-#: backstage/about.php:60 backstage/about.php:61 backstage/about.php:62
-#: backstage/about.php:63
-msgid "Improved"
+msgid "Revamped search forms for users and bans, including responsive design"
 msgstr ""
 
 #: backstage/about.php:54
-msgid ""
-"You can now see what's a subforum and edit more settings in board management"
+msgid "The Backstage has a whole new structure"
 msgstr ""
 
 #: backstage/about.php:55
-msgid "Users can now disable or enable First Run from their profile"
+msgid "Luna's file structure has been updated"
+msgstr ""
+
+#: backstage/about.php:56 backstage/about.php:57 backstage/about.php:58
+#: backstage/about.php:59 backstage/about.php:60 backstage/about.php:61
+#: backstage/about.php:62 backstage/about.php:63 backstage/about.php:64
+#: backstage/about.php:65
+msgid "Improved"
 msgstr ""
 
 #: backstage/about.php:56
 msgid ""
-"The editor will now put items under a button if the screen becomes to small"
+"You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 
 #: backstage/about.php:57
-msgid "When you have a notification, the icon will animate"
+msgid "Users can now disable or enable First Run from their profile"
 msgstr ""
 
 #: backstage/about.php:58
-msgid "Advanced search has an improved UI"
+msgid ""
+"The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 
 #: backstage/about.php:59
-msgid "About can now be translated to other languages"
+msgid "When you have a notification, the icon will animate"
 msgstr ""
 
 #: backstage/about.php:60
-msgid "You can now directly manage a reported comment from the Backstage"
+msgid "Advanced search has an improved UI"
 msgstr ""
 
 #: backstage/about.php:61
-msgid "Improved Backstage UI and night mode"
+msgid "About can now be translated to other languages"
 msgstr ""
 
 #: backstage/about.php:62
-msgid "Multiple improvements on accessibility"
+msgid "You can now directly manage a reported comment from the Backstage"
 msgstr ""
 
 #: backstage/about.php:63
+msgid "Improved Backstage UI and night mode"
+msgstr ""
+
+#: backstage/about.php:64
+msgid "Multiple improvements on accessibility"
+msgstr ""
+
+#: backstage/about.php:65
 msgid ""
 "Luna now provides a description meta tag to prevent weird search results"
 msgstr ""
 
-#: backstage/about.php:64 backstage/about.php:65 backstage/about.php:66
-#: backstage/about.php:67 backstage/about.php:68
+#: backstage/about.php:66 backstage/about.php:67 backstage/about.php:68
+#: backstage/about.php:69 backstage/about.php:70
 msgid "Removed"
 msgstr ""
 
-#: backstage/about.php:64
+#: backstage/about.php:66
 msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
-#: backstage/about.php:65
-msgid "The code base no longer supports PHP 5.2 anymore"
-msgstr ""
-
-#: backstage/about.php:66
-msgid "Notifications can no longer be marked as read/trashed from the fly-out"
-msgstr ""
-
 #: backstage/about.php:67
-msgid "You can no longer manage the database from the Backstage"
+msgid "The code base no longer supports PHP 5.2"
 msgstr ""
 
 #: backstage/about.php:68
+msgid "Notifications can no longer be marked as read/trashed from the fly-out"
+msgstr ""
+
+#: backstage/about.php:69
+msgid "You can no longer manage the database from the Backstage"
+msgstr ""
+
+#: backstage/about.php:70
 msgid "Tools to add new users have been removed"
 msgstr ""
 
-#: backstage/about.php:69
+#: backstage/about.php:71
 msgid "Fixed"
 msgstr ""
 
-#: backstage/about.php:69
+#: backstage/about.php:71
 msgid "Fixes 41 bugs"
 msgstr ""
 
-#: backstage/about.php:75
+#: backstage/about.php:77
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
 msgstr ""
 
-#: backstage/about.php:81
+#: backstage/about.php:83
 msgid "users"
 msgstr ""
 
-#: backstage/about.php:82
+#: backstage/about.php:84
 msgid "threads"
 msgstr ""
 
-#: backstage/about.php:83 themes/Fifteen/objects/comment.php:9
+#: backstage/about.php:85 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr ""
 
-#: backstage/about.php:84
+#: backstage/about.php:86
 msgid "views"
 msgstr ""
 
