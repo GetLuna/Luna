@@ -425,7 +425,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$search_ids = array_slice($search_ids, $start_from, $per_page);
         
         if (!$luna_user['g_soft_delete_view'])
-            $sql_soft = 'soft = 0 AND ';
+            $sql_soft = 't.soft = 0 AND ';
         else
             $sql_soft = '';
 
