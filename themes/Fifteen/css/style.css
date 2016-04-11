@@ -1603,6 +1603,19 @@ blockquote footer {
 	font-size: 17px;
 }
 
+.comment-h3 {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.comment-h3:first-child {
+    margin-top: 0;
+}
+
+.comment-h3:last-child {
+    margin-bottom: 0;
+}
+
 .panel.panel-spoiler {
     box-shadow: none;
     border: none;

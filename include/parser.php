@@ -676,12 +676,12 @@ function do_bbcode($text, $is_signature = false) {
 
 	$replace[] = '<strong>$1</strong>';
 	$replace[] = '<em>$1</em>';
-	$replace[] = '<span class="bbu">$1</span>';
-	$replace[] = '<span class="bbs">$1</span>';
+	$replace[] = '<span class="underline">$1</span>';
+	$replace[] = '<span class="strikethrough">$1</span>';
 	$replace[] = '<code>$1</code>';
 	$replace[] = '<ins>$1</ins>';
 	$replace[] = '<span style="color: $1">$2</span>';
-	$replace[] = '<h3>$1</h3>';
+	$replace[] = '<h3 class="comment-h3">$1</h3>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
 	if ($luna_config['o_allow_center'] == 1)
