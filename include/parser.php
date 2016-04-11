@@ -59,7 +59,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 
 	if ($is_signature) {
 		if (preg_match('%\[/?(?:quote|code|video|list|h|spoiler)\b[^\]]*\]%i', $text))
-			$errors[] = __('The quote, code, list, video, and heading BBCodes are not allowed in signatures.', 'luna');
+			$errors[] = __('The quote, code, list, video, spoiler and heading BBCodes are not allowed in signatures.', 'luna');
 	}
 
 	// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
@@ -641,7 +641,7 @@ function do_bbcode($text, $is_signature = false) {
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
 	}
     
-    if (strpos($text, '[spoiler') !== false) {
+    if ($luna_config['o_allow_spoiler'] == 1 && strpos($text, '[spoiler') !== false) {
         $text = str_replace('[spoiler]', "</p><div class=\"panel panel-default panel-spoiler\" style=\"padding: 0px;\"><div class=\"panel-heading\" onclick=\"var e,d,c=this.parentNode,a=c.getElementsByTagName('div')[1],b=this.getElementsByTagName('.fa')[0];if(a.style.display!=''){while(c.parentNode&&(!d||!e||d==e)){e=d;d=(window.getComputedStyle?getComputedStyle(c, null):c.currentStyle)['backgroundColor'];if(d=='transparent'||d=='rgba(0, 0, 0, 0)')d=e;c=c.parentNode;}a.style.display='';a.style.backgroundColor=d;b.innerHTML='&#9650;';}else{a.style.display='none';b.innerHTML='&#9660;';}\" style=\"font-weight: bold; cursor: pointer; font-size: 0.9em;\"><h3 class=\"panel-title\"><i class=\"fa fa-fw fa-angle-down\"></i>".__('Spoiler', 'luna')."</h3></div><div class=\"panel-body\" style=\"display: none;\"><p>", $text);
         $text = preg_replace('#\[spoiler=(.*?)\]#s', '</p><div class="panel panel-default panel-spoiler" style="padding: 0px;"><div class="panel-heading" onclick="var e,d,c=this.parentNode,a=c.getElementsByTagName(\'div\')[1],b=this.getElementsByTagName(\'span\')[0];if(a.style.display!=\'\'){while(c.parentNode&&(!d||!e||d==e)){e=d;d=(window.getComputedStyle?getComputedStyle(c, null):c.currentStyle)[\'backgroundColor\'];if(d==\'transparent\'||d==\'rgba(0, 0, 0, 0)\')d=e;c=c.parentNode;}a.style.display=\'\';a.style.backgroundColor=d;b.innerHTML=\'&#9650;\';}else{a.style.display=\'none\';b.innerHTML=\'&#9660;\';}" style="font-weight: bold; cursor: pointer; font-size: 0.9em;"><h3 class="panel-title"><i class="fa fa-fw fa-angle-down"></i>$1</h3></div><div class="panel-body" style="display: none;"><p>', $text);
         $text = str_replace('[/spoiler]', '</p></div></div><p>', $text);

@@ -690,6 +690,7 @@ switch ($stage) {
         // Luna 1.4 upgrade support
 		build_config(1, 'o_use_custom_css', '0');
 		build_config(1, 'o_custom_css', 'NULL');
+		build_config(1, 'o_allow_spoiler', 0);
 		build_config(2, 'o_message_img_tag', 'p_message_img_tag');
 		build_config(2, 'o_message_all_caps', 'p_message_all_caps');
 		build_config(2, 'o_subject_all_caps', 'p_subject_all_caps');

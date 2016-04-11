@@ -32,6 +32,7 @@ if (isset($_POST['form_sent'])) {
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'allow_center'					=> isset($_POST['form']['allow_center']) ? '1' : '0',
 		'allow_size'					=> isset($_POST['form']['allow_size']) ? '1' : '0',
+		'allow_spoiler'					=> isset($_POST['form']['allow_spoiler']) ? '1' : '0',
 		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
@@ -333,6 +334,12 @@ if (isset($_GET['saved']))
                                     <label>
                                         <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['o_message_img_tag'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow the use of the [img]-tag.', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[allow_spoiler]" value="1" <?php if ($luna_config['o_allow_spoiler'] == '1') echo ' checked' ?> />
+                                        <?php _e('Allow the use of the [spoiler]-tag.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>
