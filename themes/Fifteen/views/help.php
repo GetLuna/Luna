@@ -66,6 +66,17 @@ if (!defined('FORUM'))
 					<p><?php _e('produces a quote box like this:', 'luna') ?></p>
 					<blockquote><footer><cite>James <?php _e('wrote', 'luna') ?></cite></footer><p><?php _e('This is the text I want to quote.', 'luna') ?></p></blockquote>
 					<p><?php _e('If you don\'t want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
+					<p><?php _e('You can also hide parts of your comment if you don\'t want to spoil its content.', 'luna') ?></p>
+					<p><code>[spoiler=<?php _e('Spoiled text', 'luna') ?>]<?php _e('This is the text I don\'t want to spoil.', 'luna') ?>[/spoiler]</code></p>
+                    <div class="panel panel-default panel-spoiler" style="padding: 0px;">
+                        <div class="panel-heading" onclick="var e,d,c=this.parentNode,a=c.getElementsByTagName('div')[1],b=this.getElementsByTagName('span')[0];if(a.style.display!=''){while(c.parentNode&&(!d||!e||d==e)){e=d;d=(window.getComputedStyle?getComputedStyle(c, null):c.currentStyle)['backgroundColor'];if(d=='transparent'||d=='rgba(0, 0, 0, 0)')d=e;c=c.parentNode;}a.style.display='';a.style.backgroundColor=d;b.innerHTML='&#9650;';}else{a.style.display='none';b.innerHTML='&#9660;';}" style="font-weight: bold; cursor: pointer; font-size: 0.9em;">
+                            <h3 class="panel-title"><i class="fa fa-fw fa-angle-down"></i> <?php _e('Spoiled text', 'luna') ?></h3>
+                        </div>
+                        <div class="panel-body" style="display: none;">
+                            <?php _e('This is the text I don\'t want to spoil.', 'luna') ?>
+                        </div>
+                    </div>
+					<p><?php _e('Like the quote tag, you can use the spoiler tag without specifying a title. If a title contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="code">
 					<p><?php _e('When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.', 'luna') ?></p>
