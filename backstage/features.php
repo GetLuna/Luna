@@ -15,6 +15,15 @@ require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
+
+if (isset($_GET['remove-avatar'])) {
+	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
+
+    @unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
+
+	redirect('backstage/features.php?saved=true');
+}
+
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/features.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
