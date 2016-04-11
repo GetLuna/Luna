@@ -105,7 +105,7 @@ if ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $lu
 	$inbox_menu_item = '<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> '.__( 'Inbox', 'luna' ).'</span></a></li>';
 }
 
-if ($luna_user['is_guest']) {
+if (!$luna_user['is_guest']) {
     // Check for new notifications
     $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
     $num_notifications = $db->result($result);
