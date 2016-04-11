@@ -103,7 +103,7 @@ if ($db->num_rows($result) > 0)
 				</div>
 				<div role="tabpanel" class="tab-pane" id="emoji">
 					<p><a id="emoticons"></a><?php _e('If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:', 'luna') ?></p>
-					<div class="row">
+					<div class="clearfix">
 		<?php
 		
 		// Display the smiley set
