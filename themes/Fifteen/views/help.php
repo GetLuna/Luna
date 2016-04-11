@@ -66,6 +66,7 @@ if (!defined('FORUM'))
 					<p><?php _e('produces a quote box like this:', 'luna') ?></p>
 					<blockquote><footer><cite>James <?php _e('wrote', 'luna') ?></cite></footer><p><?php _e('This is the text I want to quote.', 'luna') ?></p></blockquote>
 					<p><?php _e('If you don\'t want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
+					<?php if($luna_config['o_allow_spoiler'] == 1) { ?>
 					<p><?php _e('You can also hide parts of your comment if you don\'t want to spoil its content.', 'luna') ?></p>
 					<p><code>[spoiler=<?php _e('Spoiled text', 'luna') ?>]<?php _e('This is the text I don\'t want to spoil.', 'luna') ?>[/spoiler]</code></p>
                     <div class="panel panel-default panel-spoiler" style="padding: 0px;">
@@ -77,6 +78,7 @@ if (!defined('FORUM'))
                         </div>
                     </div>
 					<p><?php _e('Like the quote tag, you can use the spoiler tag without specifying a title. If a title contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
+                    <?php } ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="code">
 					<p><?php _e('When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.', 'luna') ?></p>
