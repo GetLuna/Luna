@@ -16,10 +16,10 @@ require LUNA_ROOT.'include/common.php';
 if (!$is_admin)
 	header("Location: login.php");
 
-if (isset($_GET['remove-avatar'])) {
+if (isset($_GET['remove-favicon'])) {
 	confirm_referrer('backstage/settings.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
-    @unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
+    @unlink(LUNA_ROOT.'/favicon.png');
 
 	redirect('backstage/settings.php?saved=true');
 }
@@ -281,10 +281,15 @@ if (isset($_GET['saved']))
                         <div class="form-group">
                             <label class="col-sm-3 control-label">
                                 <?php _e('Favicon', 'luna') ?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna') ?></span>
+                                <?php if (file_exists(LUNA_ROOT.'/favicon.png')) { ?>
+                                    <a class="btn btn-danger" href="?remove-favicon"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna') ?></a>
+                                <?php } ?>
                             </label>
                             <div class="col-sm-9">
                                 <?php if (file_exists(LUNA_ROOT.'/favicon.png')) { ?>
-                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Default favicon', 'luna') ?>" />
+                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Favicon', 'luna') ?>" />
+                                <?php } else { ?>
+                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'img/favicon.png' ?>" alt="<?php _e('Default favicon', 'luna') ?>" />
                                 <?php } ?>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="51200" />
                                 <input name="req_file" type="file" />

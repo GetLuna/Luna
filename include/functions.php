@@ -2215,7 +2215,11 @@ function load_meta() {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">'."\n";
 
 	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
-    echo '<link rel="icon" href="/favicon.png" />';
+    
+    if (file_exists('/favicon.png'))
+        echo '<link rel="icon" href="/favicon.png" />';
+    else
+        echo '<link rel="icon" href="/img/favicon.png" />';
 
 	if ($meta_description != '')
 		echo '<meta name="description" content="'.$meta_description.'">'."\n";
