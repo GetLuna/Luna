@@ -1603,6 +1603,25 @@ blockquote footer {
 	font-size: 17px;
 }
 
+.panel.panel-spoiler {
+    box-shadow: none;
+    border: none;
+}
+
+.panel.panel-spoiler .panel-heading {
+    color: #fff;
+    border: none;
+}
+
+.panel.panel-spoiler .panel-body {
+    background-color: #fff !important;
+    padding: 10px;
+}
+
+.panel.panel-spoiler {
+    margin-bottom: 10px;
+}
+
 /* Night mode */
 .night body {
     background: #292929;

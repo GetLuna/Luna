@@ -58,7 +58,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 	}
 
 	if ($is_signature) {
-		if (preg_match('%\[/?(?:quote|code|video|list|h)\b[^\]]*\]%i', $text))
+		if (preg_match('%\[/?(?:quote|code|video|list|h|spoiler)\b[^\]]*\]%i', $text))
 			$errors[] = __('The quote, code, list, video, and heading BBCodes are not allowed in signatures.', 'luna');
 	}
 
@@ -125,7 +125,7 @@ function strip_empty_bbcode($text) {
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|size|center|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|size|center|quote|c|img|url|email|list|sup|sub|video|spoiler)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
 		if ($new_text != $text)
 			$text = $new_text;
 		else
@@ -164,19 +164,19 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'size', 'center', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'size', 'center', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video', 'spoiler');
 	// List of tags that we need to check are open (You could not put b, i, u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
 	$tags_closed = $tags;
 	// Tags we can nest and the depth they can be nested to
-	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5);
+	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5, spoiler => '5');
 	// Tags to ignore the contents of completely (just code)
 	$tags_ignore = array('code', 'c');
 	// Tags not allowed
 	$tags_forbidden = array();
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', '*');
+	$tags_block = array('quote', 'code', 'list', 'h', '*', 'spoiler');
 	// Inline tags, we do not allow new lines in these
 	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub');
 	// Tags we trim interior space
@@ -640,6 +640,13 @@ function do_bbcode($text, $is_signature = false) {
 		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', create_function('$matches', 'return "<blockquote><footer><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".__(\'wrote\',\'luna\')."</cite></footer><p>";'), $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
 	}
+    
+    if (strpos($text, '[spoiler') !== false) {
+        $text = str_replace('[spoiler]', "</p><div class=\"panel panel-default panel-spoiler\" style=\"padding: 0px;\"><div class=\"panel-heading\" onclick=\"var e,d,c=this.parentNode,a=c.getElementsByTagName('div')[1],b=this.getElementsByTagName('.fa')[0];if(a.style.display!=''){while(c.parentNode&&(!d||!e||d==e)){e=d;d=(window.getComputedStyle?getComputedStyle(c, null):c.currentStyle)['backgroundColor'];if(d=='transparent'||d=='rgba(0, 0, 0, 0)')d=e;c=c.parentNode;}a.style.display='';a.style.backgroundColor=d;b.innerHTML='&#9650;';}else{a.style.display='none';b.innerHTML='&#9660;';}\" style=\"font-weight: bold; cursor: pointer; font-size: 0.9em;\"><h3 class=\"panel-title\"><i class=\"fa fa-fw fa-angle-down\"></i>".__('Spoiler', 'luna')."</h3></div><div class=\"panel-body\" style=\"display: none;\"><p>", $text);
+        $text = preg_replace('#\[spoiler=(.*?)\]#s', '</p><div class="panel panel-default panel-spoiler" style="padding: 0px;"><div class="panel-heading" onclick="var e,d,c=this.parentNode,a=c.getElementsByTagName(\'div\')[1],b=this.getElementsByTagName(\'span\')[0];if(a.style.display!=\'\'){while(c.parentNode&&(!d||!e||d==e)){e=d;d=(window.getComputedStyle?getComputedStyle(c, null):c.currentStyle)[\'backgroundColor\'];if(d==\'transparent\'||d==\'rgba(0, 0, 0, 0)\')d=e;c=c.parentNode;}a.style.display=\'\';a.style.backgroundColor=d;b.innerHTML=\'&#9650;\';}else{a.style.display=\'none\';b.innerHTML=\'&#9660;\';}" style="font-weight: bold; cursor: pointer; font-size: 0.9em;"><h3 class="panel-title"><i class="fa fa-fw fa-angle-down"></i>$1</h3></div><div class="panel-body" style="display: none;"><p>', $text);
+        $text = str_replace('[/spoiler]', '</p></div></div><p>', $text);
+    }
+    
 	if (!$is_signature) {
 		$pattern_callback[] = $re_list;
 		$replace_callback[] = 'handle_list_tag($matches[2], $matches[1])';
