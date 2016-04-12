@@ -36,7 +36,7 @@ if (!defined('FORUM'))
                     </h3>
                     <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
                         <small><?php _e('Comments', 'luna') ?></small>
-                        <?php echo $user['num_comments'] ?>
+                        <?php echo luna_number_format($user['num_comments']) ?>
                     </h3>
                     <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
                         <small><?php _e('Latest comment', 'luna') ?></small>
