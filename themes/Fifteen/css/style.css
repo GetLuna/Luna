@@ -1765,8 +1765,20 @@ blockquote footer {
     background: #505050;
 }
 
+.night code {
+    color: #f57998;
+    background: #413d3f;
+}
+
 .night pre {
-    border: #444;
+    color: #eee;
+    border: #333;
+    background: #333;
+}
+
+.night pre code {
+    color: #fff;
+    background: transparent;
 }
 
 .night .status-solved {
