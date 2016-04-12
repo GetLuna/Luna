@@ -45,7 +45,7 @@ if (isset($_REQUEST['markread'])) {
 	$idlist = array_map('intval', $idlist);
 	$idlist = implode(',', array_values($idlist));
 
-	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner='.$luna_user['id'].' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
 } elseif (isset($_REQUEST['markunread'])) { // Mark as unread
 	confirm_referrer('inbox.php');
@@ -57,7 +57,7 @@ if (isset($_REQUEST['markread'])) {
 	$idlist = array_map('intval', $idlist);
 	$idlist = implode(',', array_values($idlist));
 
-	$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner='.$luna_user['id'].' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
 } elseif (isset($_REQUEST['delete_multiple'])) { // Delete comments
 	confirm_referrer('inbox.php');
