@@ -65,7 +65,7 @@ if (!defined('FORUM'))
 							<tbody>
 			<?php
 			// Fetch messages
-			$result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_comment DESC LIMIT ".$limit) or error("Unable to find the list of the Inbox messages.", __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT * FROM '.$db->prefix.'messages WHERE show_message=1 AND owner='.$id.' ORDER BY last_comment DESC LIMIT '.$limit) or error("Unable to find the list of the Inbox messages.", __FILE__, __LINE__, $db->error());
 
             $comment_count = 0;
 			
