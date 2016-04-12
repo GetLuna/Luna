@@ -23,9 +23,6 @@ if (!$luna_user['use_inbox'] == '1')
 if (!$luna_config['o_enable_inbox'] =='1' || $luna_user['g_inbox'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
 
-// User block
-$avatar_user_card = draw_user_avatar($luna_user['id']);
-
 // Page ?
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);
 
@@ -33,6 +30,9 @@ $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUE
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 $id = $luna_user['id'];
+
+// User block
+$avatar_user_card = draw_user_avatar($id);
 
 // Mark as read multiple comments
 if (isset($_REQUEST['markread'])) {
@@ -72,14 +72,14 @@ if (isset($_REQUEST['markread'])) {
 	$number = array_map('intval', $number);
 	$number = count($number);
 
-	$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\'') or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
-	$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-'.$number.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+	$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner='.$id) or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox-'.$number.' WHERE id='.$id) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 	redirect('inbox.php');
 } else {
 
 // Get message count for this box
-$result = $db->query("SELECT COUNT(*) FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."'") or error("Unable to count the messages", __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'messages WHERE show_message=1 AND owner='.$id) or error("Unable to count the messages", __FILE__, __LINE__, $db->error());
 list($num_messages) = $db->fetch_row($result);
 
 // What page are we on ?
