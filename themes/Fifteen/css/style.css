@@ -1735,6 +1735,11 @@ blockquote footer {
     background: #4f4f4f;
 }
 
+.night .panel-body,
+.night .panel {
+    background: #404040;
+}
+
 .night .table > thead > tr > th,
 .night .table > tbody > tr > th,
 .night .table > tfoot > tr > th,
