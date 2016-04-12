@@ -110,10 +110,6 @@ $num_guests = num_guests_online();
 				</form>
 			</div>
 		</div>
-		<style>
-			body { margin-bottom: 40px; }
-			@media screen and (max-width: 767px) { body { margin-bottom: 80px; } }
-		</style>
 <?php
 }
 

@@ -604,6 +604,15 @@ hr {
 	}
 }
 
+.navbar-text {
+    margin-left: 0;
+    color: #fff !important;
+}
+
+.btn-toolbar .btn-link {
+    color: #fff;
+}
+
 .notification-menu {
 	width: 400px;
 }
