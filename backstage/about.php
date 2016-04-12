@@ -50,7 +50,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Luna now includes full "Right to Left"-support', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Components now live in their own folder in the Luna root', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Debug mode can now be enabled with one line in the config file', 'luna') ?></li>
-                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Bootstrap and jQuery have been updated to the latest version', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Bootstrap, Font Awesome and jQuery have been updated to the latest version', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Revamped search forms for users and bans, including responsive design', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('The Backstage has a whole new structure', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Luna\'s file structure has been updated', 'luna') ?></li>
