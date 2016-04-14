@@ -745,7 +745,7 @@ function get_smilies() {
 	// Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
 	if ($luna_config['o_emoji'] == 1) {
 		$smilies = array(
-			':)' => '&#x1f642;',
+			':)' => '&#x1f601;',
 			':|' => '&#x1f611;',
 			':(' => '&#x1f629;',
 			':d' => '&#x1f604;',
@@ -756,8 +756,8 @@ function get_smilies() {
 			':/' => '&#x1f612;',
 			':P' => '&#x1f60b;',
 			':p' => '&#x1f60b;',
-			':lol:' => '&#x1f600;',
-			':-))' => '&#x1f600;',
+			':lol:' => '&#x1f601;',
+			':-))' => '&#x1f601;',
 			':@' => '&#x1f620;',
 			'%)' => '&#x1f606;',
 			'b:' => '&#x1f60e;',
@@ -766,7 +766,7 @@ function get_smilies() {
 			'(A)' => '&#x1f607;',
 			'(a)' => '&#x1f607;',
 			'^-^' => '&#x1f60f;',
-			'^.^' => '&#x1f600;'
+			'^.^' => '&#x1f60f;'
 		);
 	} else {
 		$smilies = array(
@@ -792,6 +792,7 @@ function get_smilies() {
 			'^-^' => 'ohyeah.png',
 			'(a)' => 'angel.png',
 			'(A)' => 'angel.png',
+			'^-^' => 'happy.png',
 			'^.^' => 'happy.png'
 		);
 	}
