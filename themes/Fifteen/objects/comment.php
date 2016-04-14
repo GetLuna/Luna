@@ -6,7 +6,7 @@
 			</div>
 			<div class="media-body">
 				<h4 class="media-heading"><?php printf(__('By %s', 'luna'), $username) ?><small> <?php __('on', 'luna') ?> <a class="commenttime" href="<?php if (!isset($inbox)) { echo 'thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id']; } else { echo 'viewinbox.php?tid='.$cur_comment['shared_id'].'&mid='.$cur_comment['mid']; } ?>"><?php echo format_time($cur_comment['commented']) ?></a></small></h4>
-				<?php echo get_title( $cur_comment ) ?> &middot; <?php echo forum_number_format($cur_comment['num_comments']) ?> <?php _e( 'comments', 'luna' ) ?>
+				<?php echo get_title( $cur_comment ) ?><?php if ($cur_comment['commenter_id'] != 1) { ?> &middot; <?php echo forum_number_format($cur_comment['num_comments']) ?> <?php _e( 'comments', 'luna' ) ?><?php } ?>
 			</div>
 		</div>
 	</div>
