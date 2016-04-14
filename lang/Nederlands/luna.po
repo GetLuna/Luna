@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-12 17:59+0200\n"
-"PO-Revision-Date: 2016-04-12 17:59+0200\n"
+"POT-Creation-Date: 2016-04-14 21:05+0200\n"
+"PO-Revision-Date: 2016-04-14 21:06+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -232,8 +232,8 @@ msgid "Fixed"
 msgstr "Herstelt"
 
 #: backstage/about.php:72
-msgid "Fixes 41 bugs"
-msgstr "Herstelt 41 problemen"
+msgid "Fixes 53 bugs"
+msgstr "Herstelt 53 fouten"
 
 #: backstage/about.php:78
 #, php-format
@@ -530,18 +530,18 @@ msgstr "Jou copyright"
 #: backstage/board.php:149 backstage/board.php:169 backstage/board.php:223
 #: backstage/board.php:431 backstage/board.php:506 backstage/loader.php:19
 #: backstage/menu.php:40 backstage/menu.php:50 backstage/moderate.php:31
-#: backstage/moderate.php:35 backstage/moderate.php:84
-#: backstage/moderate.php:89 backstage/moderate.php:103
-#: backstage/moderate.php:110 backstage/moderate.php:168
-#: backstage/moderate.php:172 backstage/moderate.php:180
-#: backstage/moderate.php:185 backstage/moderate.php:416
-#: backstage/moderate.php:421 backstage/moderate.php:427
-#: backstage/moderate.php:432 backstage/moderate.php:468
-#: backstage/moderate.php:534 backstage/moderate.php:543
-#: backstage/moderate.php:633 backstage/moderate.php:641
-#: backstage/moderate.php:723 backstage/moderate.php:739
-#: backstage/moderate.php:755 backstage/moderate.php:770
-#: backstage/moderate.php:786 backstage/moderate.php:802 backstage/ranks.php:51
+#: backstage/moderate.php:35 backstage/moderate.php:85
+#: backstage/moderate.php:91 backstage/moderate.php:106
+#: backstage/moderate.php:113 backstage/moderate.php:172
+#: backstage/moderate.php:176 backstage/moderate.php:184
+#: backstage/moderate.php:189 backstage/moderate.php:420
+#: backstage/moderate.php:425 backstage/moderate.php:431
+#: backstage/moderate.php:436 backstage/moderate.php:472
+#: backstage/moderate.php:538 backstage/moderate.php:547
+#: backstage/moderate.php:637 backstage/moderate.php:645
+#: backstage/moderate.php:727 backstage/moderate.php:743
+#: backstage/moderate.php:759 backstage/moderate.php:774
+#: backstage/moderate.php:790 backstage/moderate.php:806 backstage/ranks.php:51
 #: backstage/settings.php:85 backstage/settings.php:124
 #: backstage/settings.php:127 backstage/settings.php:130
 #: backstage/settings.php:133 backstage/users.php:22 comment.php:19
@@ -1356,17 +1356,17 @@ msgstr "Maximale handtekening lijnen"
 msgid "Maximum amount of lines a signature can have"
 msgstr "Het maximaal aantal lijnen in een handtekening"
 
-#: backstage/footer.php:34 themes/Fifteen/views/footer.php:141
+#: backstage/footer.php:34 themes/Fifteen/views/footer.php:137
 #, php-format
 msgid "Generated in %1$s seconds &middot; %2$s queries executed"
 msgstr "Gegenereerd in %1$s seconden &middot; %2$s queries uitgevoerd"
 
-#: backstage/footer.php:37 themes/Fifteen/views/footer.php:144
+#: backstage/footer.php:37 themes/Fifteen/views/footer.php:140
 #, php-format
 msgid "Memory usage: %1$s"
 msgstr "Geheugen gebruik: %1$s"
 
-#: backstage/footer.php:40 themes/Fifteen/views/footer.php:147
+#: backstage/footer.php:40 themes/Fifteen/views/footer.php:143
 #, php-format
 msgid "(Peak: %1$s)"
 msgstr "(Piek: %1$s)"
@@ -1483,8 +1483,8 @@ msgstr "Sta toe dat gebruikers hun eigen reacties aanpassen."
 
 #: backstage/groups.php:179 backstage/groups.php:455 backstage/groups.php:492
 #: backstage/groups.php:578 backstage/menu.php:115 backstage/menu.php:138
-#: backstage/menu.php:140 backstage/moderate.php:143 backstage/moderate.php:396
-#: backstage/moderate.php:684 backstage/moderate.php:965
+#: backstage/menu.php:140 backstage/moderate.php:146 backstage/moderate.php:400
+#: backstage/moderate.php:688 backstage/moderate.php:969
 #: backstage/users.php:441 backstage/users.php:658 backstage/users.php:718
 #: include/draw_functions.php:716 include/draw_functions.php:745
 #: include/draw_functions.php:912 themes/Fifteen/views/delete.php:14
@@ -1887,7 +1887,7 @@ msgid "Report an issue"
 msgstr "Meld een probleem"
 
 #: backstage/loader.php:24 backstage/moderate.php:23 backstage/moderate.php:74
-#: backstage/moderate.php:647 backstage/users.php:204 backstage/users.php:319
+#: backstage/moderate.php:651 backstage/users.php:204 backstage/users.php:319
 #: backstage/users.php:455 comment.php:46 delete.php:44 delete.php:47
 #: edit.php:43 edit.php:46 inbox.php:16 inbox.php:20 inbox.php:24 misc.php:22
 #: misc.php:37 misc.php:52 misc.php:144 misc.php:249 misc.php:285 misc.php:321
@@ -2079,7 +2079,7 @@ msgstr "De host naam is: %s"
 msgid "Show more users for this IP"
 msgstr "Toon meer gebruikers met dit IP"
 
-#: backstage/moderate.php:54 backstage/moderate.php:309
+#: backstage/moderate.php:54 backstage/moderate.php:313
 msgid "Moderate content"
 msgstr "Modereer inhoud"
 
@@ -2091,126 +2091,126 @@ msgstr ""
 "Bezoek een forum of conversatie en kies \"Modereer\" in de navigatie om te "
 "modereren."
 
-#: backstage/moderate.php:97 backstage/moderate.php:162
+#: backstage/moderate.php:100 backstage/moderate.php:166
 msgid "You must select at least one comment for split/delete."
 msgstr "Je moet minstens een reactie kiezen om te splitsen/verwijderen."
 
-#: backstage/moderate.php:143
+#: backstage/moderate.php:146
 msgid "Delete comments"
 msgstr "Reactie verwijderen"
 
-#: backstage/moderate.php:148
+#: backstage/moderate.php:151
 msgid "Are you sure you want to delete the selected comments?"
 msgstr "Ben je zeker dat je deze reacties wilt verwijderen?"
 
-#: backstage/moderate.php:191 comment.php:65 edit.php:63 new_inbox.php:201
+#: backstage/moderate.php:195 comment.php:65 edit.php:63 new_inbox.php:201
 msgid "Threads must contain a subject."
 msgstr "Conversaties moeten een onderwerp hebben."
 
-#: backstage/moderate.php:193 comment.php:69 edit.php:67 new_inbox.php:203
+#: backstage/moderate.php:197 comment.php:69 edit.php:67 new_inbox.php:203
 msgid "Subjects cannot be longer than 70 characters."
 msgstr "Het onderwerp mag niet meer dan 70 tekens hebben."
 
-#: backstage/moderate.php:234
+#: backstage/moderate.php:238
 msgid "Split comments"
 msgstr "Splits reacties"
 
-#: backstage/moderate.php:234 backstage/moderate.php:395
+#: backstage/moderate.php:238 backstage/moderate.php:399
 msgid "Split"
 msgstr "Splits"
 
-#: backstage/moderate.php:240 backstage/moderate.php:489
+#: backstage/moderate.php:244 backstage/moderate.php:493
 msgid "Move to"
 msgstr "Verplaats naar"
 
-#: backstage/moderate.php:264
+#: backstage/moderate.php:268
 msgid "New subject"
 msgstr "Nieuw onderwerp"
 
-#: backstage/moderate.php:316 backstage/moderate.php:391
+#: backstage/moderate.php:320 backstage/moderate.php:395
 #: themes/Fifteen/views/thread.php:27 themes/Fifteen/views/thread.php:52
 msgid "Moderate"
 msgstr "Modereer"
 
-#: backstage/moderate.php:357 backstage/users.php:175 include/functions.php:447
+#: backstage/moderate.php:361 backstage/users.php:175 include/functions.php:447
 #: include/functions.php:891 include/install.php:1557 search.php:222
 #: settings.php:676
 msgid "Guest"
 msgstr "Gast"
 
-#: backstage/moderate.php:374 themes/Fifteen/objects/comment.php:21
+#: backstage/moderate.php:378 themes/Fifteen/objects/comment.php:21
 msgid "Last edited by"
 msgstr "Laatst bewerkt door"
 
-#: backstage/moderate.php:377
+#: backstage/moderate.php:381
 msgid "Select"
 msgstr "Selecteer"
 
-#: backstage/moderate.php:377
+#: backstage/moderate.php:381
 msgid "First comment cannot be selected for split/delete."
 msgstr ""
 "Eerste reactie in een conversatie kan niet worden gekozen om te splitsen/"
 "verwijderen."
 
-#: backstage/moderate.php:461 backstage/moderate.php:627
-#: backstage/moderate.php:711
+#: backstage/moderate.php:465 backstage/moderate.php:631
+#: backstage/moderate.php:715
 msgid "You must select at least one thread for move/delete/open/close."
 msgstr ""
 "Je moet minstens één conversatie kiezen om te verplaatsen/verwijderen/openen/"
 "sluiten."
 
-#: backstage/moderate.php:475
+#: backstage/moderate.php:479
 msgid "There are no forums into which you can move threads."
 msgstr "Er zijn geen forums om conversaties naar te verplaatsen."
 
-#: backstage/moderate.php:483
+#: backstage/moderate.php:487
 msgid "Move thread"
 msgstr "Verplaats conversatie"
 
-#: backstage/moderate.php:483
+#: backstage/moderate.php:487
 msgid "Move threads"
 msgstr "Verplaats conversaties"
 
-#: backstage/moderate.php:483 backstage/moderate.php:964
+#: backstage/moderate.php:487 backstage/moderate.php:968
 #: themes/Fifteen/views/thread.php:31 themes/Fifteen/views/thread.php:56
 msgid "Move"
 msgstr "Verplaats"
 
-#: backstage/moderate.php:513
+#: backstage/moderate.php:517
 msgid "Leave redirect thread(s)."
 msgstr "Toon (een) snelkoppeling conversatie(s)."
 
-#: backstage/moderate.php:538 backstage/moderate.php:594
+#: backstage/moderate.php:542 backstage/moderate.php:598
 msgid "You must select at least two threads to merge."
 msgstr "Je moet minstens twee conversaties selecteren om samen te voegen."
 
-#: backstage/moderate.php:602
+#: backstage/moderate.php:606
 msgid "Merge threads"
 msgstr "Conversaties samenvoegen"
 
-#: backstage/moderate.php:602 backstage/moderate.php:966
+#: backstage/moderate.php:606 backstage/moderate.php:970
 msgid "Merge"
 msgstr "Samenvoegen"
 
-#: backstage/moderate.php:609
+#: backstage/moderate.php:613
 msgid "Leave redirect thread(s)"
 msgstr "Laat een doorverwijzing achter"
 
-#: backstage/moderate.php:684
+#: backstage/moderate.php:688
 msgid "Delete threads"
 msgstr "Conversaties verwijderen"
 
-#: backstage/moderate.php:689
+#: backstage/moderate.php:693
 msgid "Are you sure you want to delete the selected threads?"
 msgstr "Ben je zeker dat je de geselecteerde conversaties wilt verwijderen."
 
-#: backstage/moderate.php:837
+#: backstage/moderate.php:841
 #, php-format
 msgid "Moderating \"%s\""
 msgstr "Modereer \"%s\""
 
-#: backstage/moderate.php:878 backstage/moderate.php:880
-#: backstage/moderate.php:921 include/draw_functions.php:242
+#: backstage/moderate.php:882 backstage/moderate.php:884
+#: backstage/moderate.php:925 include/draw_functions.php:242
 #: include/draw_functions.php:283 include/draw_functions.php:378
 #: include/draw_functions.php:380 include/draw_functions.php:459
 #: include/draw_functions.php:461 include/draw_functions.php:524
@@ -2219,29 +2219,29 @@ msgstr "Modereer \"%s\""
 msgid "by"
 msgstr "door"
 
-#: backstage/moderate.php:917 include/draw_functions.php:279
+#: backstage/moderate.php:921 include/draw_functions.php:279
 #: include/draw_functions.php:574 include/draw_functions.php:1022
 msgid "Go to the first new comment in the thread."
 msgstr "Ga naar de eerste nieuwe reactie in de conversatie."
 
-#: backstage/moderate.php:932 include/draw_functions.php:600
+#: backstage/moderate.php:936 include/draw_functions.php:600
 msgid "reply"
 msgstr "reactie"
 
-#: backstage/moderate.php:933 include/draw_functions.php:301
+#: backstage/moderate.php:937 include/draw_functions.php:301
 #: include/draw_functions.php:601
 msgid "view"
 msgstr "weergave"
 
-#: backstage/moderate.php:957
+#: backstage/moderate.php:961
 msgid "This forum has no threads yet."
 msgstr "Dit forum heeft geen conversaties."
 
-#: backstage/moderate.php:969
+#: backstage/moderate.php:973
 msgid "Open"
 msgstr "Open"
 
-#: backstage/moderate.php:970
+#: backstage/moderate.php:974
 msgid "Close"
 msgstr "Sluiten"
 
@@ -6306,6 +6306,9 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "Fixes 41 bugs"
+#~ msgstr "Herstelt 41 problemen"
 
 #~ msgid "Bootstrap and jQuery have been updated to the latest version"
 #~ msgstr "Bootstrap en jQuery zijn bijgewerkt naar de laatste versies"
