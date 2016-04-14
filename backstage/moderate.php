@@ -80,11 +80,13 @@ if (!$luna_user['is_guest'])
 // All other thread moderation features require a thread ID in GET
 if (isset($_GET['tid'])) {
 	$tid = intval($_GET['tid']);
+
 	if ($tid < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Fetch some info about the thread
 	$thread_info = $db->query('SELECT t.subject, t.num_replies, t.first_comment_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+
 	if (!$db->num_rows($thread_info))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -93,6 +95,7 @@ if (isset($_GET['tid'])) {
 	// Delete one or more comments
 	if (isset($_POST['delete_comments']) || isset($_POST['delete_comments_comply'])) {
 		$comments = isset($_POST['comments']) ? $_POST['comments'] : array();
+
 		if (empty($comments))
 			message_backstage(__('You must select at least one comment for split/delete.', 'luna'));
 
@@ -104,9 +107,9 @@ if (isset($_GET['tid'])) {
 
 			// Verify that the comment IDs are valid
 			$admins_sql = ($luna_user['g_id'] != LUNA_ADMIN) ? ' AND commenter_id NOT IN('.implode(',', get_admin_ids()).')' : '';
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id IN('.$comments.') AND thread_id='.$tid.$admins_sql) or error('Unable to check comments', __FILE__, __LINE__, $db->error());
+			$comment_ids = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id IN('.$comments.') AND thread_id='.$tid.$admins_sql) or error('Unable to check comments', __FILE__, __LINE__, $db->error());
 
-			if ($db->num_rows($result) != substr_count($comments, ',') + 1)
+			if ($db->num_rows($comment_ids) != substr_count($comments, ',') + 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 			decrease_comment_counts($comments);
@@ -118,8 +121,8 @@ if (isset($_GET['tid'])) {
 			strip_search_index($comments);
 
 			// Get last_comment, last_comment_id, and last_commenter for the thread after deletion
-			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
-			$last_comment = $db->fetch_assoc($result);
+			$last_info = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+			$last_comment = $db->fetch_assoc($last_info);
 
 			// How many comments did we just delete?
 			$num_comments_deleted = substr_count($comments, ',') + 1;
@@ -155,9 +158,10 @@ if (isset($_GET['tid'])) {
 		<?php
 
 		require 'footer.php';
-
+        exit;
 	} elseif (isset($_POST['split_comments']) || isset($_POST['split_comments_comply'])) {
 		$comments = isset($_POST['comments']) ? $_POST['comments'] : array();
+        
 		if (empty($comments))
 			message_backstage(__('You must select at least one comment for split/delete.', 'luna'));
 
