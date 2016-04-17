@@ -15,6 +15,7 @@ require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
+
 // Add a "default" forum
 if (isset($_POST['add_forum'])) {
 	confirm_referrer('backstage/board.php');
@@ -526,7 +527,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 <div class="row">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
+	echo '<div class="col-lg-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
 ?>
 	<div class="col-lg-4">
 		<form method="post" action="board.php?action=add_forum">
