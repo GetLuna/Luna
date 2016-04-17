@@ -1328,10 +1328,6 @@ hr {
 	margin-bottom: 10px;
 }
 
-:not(:first-child.editor) {
-	margin-top: 10px;
-}
-
 .thread .editor {
     margin-top: 1px;
 }
