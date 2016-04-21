@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-14 21:05+0200\n"
-"PO-Revision-Date: 2016-04-14 21:06+0200\n"
+"POT-Creation-Date: 2016-04-21 08:51+0200\n"
+"PO-Revision-Date: 2016-04-21 08:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -232,8 +232,8 @@ msgid "Fixed"
 msgstr "Herstelt"
 
 #: backstage/about.php:72
-msgid "Fixes 53 bugs"
-msgstr "Herstelt 53 fouten"
+msgid "Fixes 55 bugs"
+msgstr "Herstelt 55 fouten"
 
 #: backstage/about.php:78
 #, php-format
@@ -323,7 +323,7 @@ msgstr ""
 msgid "An unknown error occurred. Please try again."
 msgstr "Een onbekende fout is opgetreden. Probeer het opnieuw."
 
-#: backstage/appearance.php:151 backstage/board.php:529
+#: backstage/appearance.php:151 backstage/board.php:530
 #: backstage/features.php:152 backstage/index.php:79
 #: backstage/maintenance.php:171 backstage/settings.php:228
 #: backstage/update.php:141 backstage/users.php:741
@@ -337,7 +337,7 @@ msgstr "Thema"
 
 #: backstage/appearance.php:157 backstage/appearance.php:253
 #: backstage/appearance.php:303 backstage/appearance.php:335
-#: backstage/board.php:242 backstage/board.php:347 backstage/board.php:604
+#: backstage/board.php:243 backstage/board.php:348 backstage/board.php:605
 #: backstage/features.php:157 backstage/features.php:224
 #: backstage/features.php:252 backstage/features.php:279
 #: backstage/features.php:312 backstage/features.php:412
@@ -526,9 +526,9 @@ msgid "Your copyright"
 msgstr "Jou copyright"
 
 #: backstage/bans.php:25 backstage/bans.php:71 backstage/bans.php:77
-#: backstage/bans.php:262 backstage/board.php:25 backstage/board.php:45
-#: backstage/board.php:149 backstage/board.php:169 backstage/board.php:223
-#: backstage/board.php:431 backstage/board.php:506 backstage/loader.php:19
+#: backstage/bans.php:262 backstage/board.php:26 backstage/board.php:46
+#: backstage/board.php:150 backstage/board.php:170 backstage/board.php:224
+#: backstage/board.php:432 backstage/board.php:507 backstage/loader.php:19
 #: backstage/menu.php:40 backstage/menu.php:50 backstage/moderate.php:31
 #: backstage/moderate.php:35 backstage/moderate.php:85
 #: backstage/moderate.php:91 backstage/moderate.php:106
@@ -749,14 +749,14 @@ msgstr "Door"
 msgid "Actions"
 msgstr "Acties"
 
-#: backstage/bans.php:363 backstage/board.php:643 backstage/board.php:698
+#: backstage/bans.php:363 backstage/board.php:644 backstage/board.php:699
 #: backstage/groups.php:168 backstage/groups.php:573 backstage/reports.php:84
 #: include/draw_functions.php:701 include/draw_functions.php:734
 msgid "Edit"
 msgstr "Bewerken"
 
-#: backstage/bans.php:363 backstage/board.php:89 backstage/board.php:480
-#: backstage/board.php:574 backstage/board.php:679 backstage/board.php:734
+#: backstage/bans.php:363 backstage/board.php:90 backstage/board.php:481
+#: backstage/board.php:575 backstage/board.php:680 backstage/board.php:735
 #: backstage/censoring.php:143 backstage/ranks.php:147 backstage/reports.php:85
 #: notifications.php:117
 msgid "Remove"
@@ -774,7 +774,7 @@ msgstr "Geen resultaat"
 msgid "Add ban"
 msgstr "Ban toevoegen"
 
-#: backstage/bans.php:403 backstage/board.php:539 backstage/board.php:561
+#: backstage/bans.php:403 backstage/board.php:540 backstage/board.php:562
 #: backstage/censoring.php:96 backstage/groups.php:508 backstage/menu.php:82
 #: backstage/ranks.php:104
 msgid "Add"
@@ -818,80 +818,80 @@ msgstr "Oplopend"
 msgid "Descending"
 msgstr "Aflopend"
 
-#: backstage/board.php:89
+#: backstage/board.php:90
 msgid "Confirm delete forum"
 msgstr "Bevestig forum verwijderen"
 
-#: backstage/board.php:92
+#: backstage/board.php:93
 #, php-format
 msgid "Are you sure that you want to delete the forum <strong>%s</strong>?"
 msgstr "Ben je zeker dat je het forum <strong>%s</strong> wilt verwijderen?"
 
-#: backstage/board.php:92
+#: backstage/board.php:93
 msgid "Deleting a forum will delete all comments (if any) in that forum!"
 msgstr ""
 "Als je een forum verwijderd worden ook alle reacties en conversaties in dat "
 "forum verwijderd!"
 
-#: backstage/board.php:111
+#: backstage/board.php:112
 msgid "No forum and category data was found to save..."
 msgstr "Er zijn geen forums en categorieën gevonden om op te slaan..."
 
-#: backstage/board.php:118
+#: backstage/board.php:119
 msgid "You must enter a category name"
 msgstr "Je moet een cateogie naam geven"
 
-#: backstage/board.php:120 backstage/board.php:134 backstage/board.php:516
+#: backstage/board.php:121 backstage/board.php:135 backstage/board.php:517
 #: backstage/menu.php:64
 msgid "Position must be a positive integer value."
 msgstr "De positie moet een positief natuurlijk getal zijn."
 
-#: backstage/board.php:132
+#: backstage/board.php:133
 msgid "You must enter a forum name"
 msgstr "Je moet een forum naam geven"
 
-#: backstage/board.php:166 backstage/board.php:418 backstage/board.php:513
+#: backstage/board.php:167 backstage/board.php:419 backstage/board.php:514
 msgid "You must enter a name"
 msgstr "Je moet een naam ingeven"
 
-#: backstage/board.php:242
+#: backstage/board.php:243
 msgid "Forum details"
 msgstr "Forum details"
 
-#: backstage/board.php:247
+#: backstage/board.php:248
 msgid "Forum name"
 msgstr "Forum naam"
 
-#: backstage/board.php:253 backstage/settings.php:251 install.php:386
+#: backstage/board.php:254 backstage/settings.php:251 install.php:386
 msgid "Description"
 msgstr "Beschrijving"
 
-#: backstage/board.php:259
+#: backstage/board.php:260
 msgid "Parent section"
 msgstr "Bovenliggende sectie"
 
-#: backstage/board.php:262
+#: backstage/board.php:263
 msgid "No parent forum selected"
 msgstr "Geen bovenliggend forum geselecteerd"
 
-#: backstage/board.php:291
+#: backstage/board.php:292
 msgid "Category"
 msgstr "Categorie"
 
-#: backstage/board.php:307
+#: backstage/board.php:308
 msgid "Sort threads by"
 msgstr "Sorteer conversaties op"
 
-#: backstage/board.php:310 backstage/users.php:821
+#: backstage/board.php:311 backstage/users.php:821
 #: themes/Fifteen/views/inbox.php:62
 msgid "Last comment"
 msgstr "Laatste reactie"
 
-#: backstage/board.php:311
+#: backstage/board.php:312
 msgid "Thread start"
 msgstr "Conversatie gestart door"
 
-#: backstage/board.php:312 comment.php:533 edit.php:135
+#: backstage/board.php:313 comment.php:533 edit.php:135
 #: include/draw_functions.php:1076 misc.php:134 new_inbox.php:393
 #: themes/Fifteen/views/comment.php:42 themes/Fifteen/views/inbox-new.php:81
 #: themes/Fifteen/views/inbox-view.php:38
@@ -899,12 +899,12 @@ msgstr "Conversatie gestart door"
 msgid "Subject"
 msgstr "Onderwerp"
 
-#: backstage/board.php:317 backstage/board.php:661 backstage/board.php:667
-#: backstage/board.php:716 backstage/board.php:722
+#: backstage/board.php:318 backstage/board.php:662 backstage/board.php:668
+#: backstage/board.php:717 backstage/board.php:723
 msgid "Icon"
 msgstr "Icoon"
 
-#: backstage/board.php:317
+#: backstage/board.php:318
 #, php-format
 msgid ""
 "The Font Awesome icon you want to show next to the title, for a full "
@@ -912,27 +912,27 @@ msgid ""
 msgstr ""
 "Het Font Awesome icoon dat je wilt gebruiken voor dit forum. Zie de %s."
 
-#: backstage/board.php:317 backstage/board.php:661 backstage/board.php:716
+#: backstage/board.php:318 backstage/board.php:662 backstage/board.php:717
 msgid "Font Awesome icon guide"
 msgstr "Font Awesome icoon gids"
 
-#: backstage/board.php:326 backstage/board.php:672 backstage/board.php:727
+#: backstage/board.php:327 backstage/board.php:673 backstage/board.php:728
 msgid "Forum color"
 msgstr "Forum kleur"
 
-#: backstage/board.php:332
+#: backstage/board.php:333
 msgid "Solved"
 msgstr "Opgelost"
 
-#: backstage/board.php:337
+#: backstage/board.php:338
 msgid "Threads in this forum can be marked as solved."
 msgstr "Conversaties in dit forum mogen als opgelost worden gemarkeerd."
 
-#: backstage/board.php:347
+#: backstage/board.php:348
 msgid "Group permissions"
 msgstr "Groep permissies"
 
-#: backstage/board.php:351
+#: backstage/board.php:352
 msgid ""
 "Permission settings that differ from the default permissions for the group "
 "are marked red. Some permissions are disabled under some conditions."
@@ -941,37 +941,37 @@ msgstr ""
 "in het rood gemarkeerd. Sommige permissies zijn uitgeschakeld in sommige "
 "gevallen."
 
-#: backstage/board.php:351 backstage/groups.php:463
+#: backstage/board.php:352 backstage/groups.php:463
 msgid "User groups"
 msgstr "Groepen"
 
-#: backstage/board.php:352
+#: backstage/board.php:353
 msgid "Revert to default"
 msgstr "Hetstel standaard instellingen"
 
-#: backstage/board.php:358
+#: backstage/board.php:359
 msgid "Read forum"
 msgstr "Lees forum"
 
-#: backstage/board.php:359 themes/Fifteen/views/footer.php:59 thread.php:91
+#: backstage/board.php:360 themes/Fifteen/views/footer.php:59 thread.php:91
 #: thread.php:98
 msgid "Comment"
 msgstr "Reacties"
 
-#: backstage/board.php:360
+#: backstage/board.php:361
 msgid "Create threads"
 msgstr "Nieuwe conversatie"
 
-#: backstage/board.php:480
+#: backstage/board.php:481
 msgid "Confirm delete category"
 msgstr "Bevestig verwijderen categorie"
 
-#: backstage/board.php:483
+#: backstage/board.php:484
 #, php-format
 msgid "Are you sure that you want to delete the category <strong>%s</strong>?"
 msgstr "Ben je zeker dat je de categorie <strong>%s</strong> wilt verwijderen?"
 
-#: backstage/board.php:483
+#: backstage/board.php:484
 msgid ""
 "Deleting a category will delete all forums and comments (if any) in this "
 "category!"
@@ -979,36 +979,36 @@ msgstr ""
 "Het verwijderen van een categorie zal alle forums, conversaties en reacties "
 "in die categorie verwijderen!"
 
-#: backstage/board.php:539
+#: backstage/board.php:540
 msgid "Add forum"
 msgstr "Nieuw forum"
 
-#: backstage/board.php:550 backstage/board.php:565 backstage/board.php:649
-#: backstage/board.php:651 backstage/board.php:704 backstage/board.php:706
+#: backstage/board.php:551 backstage/board.php:566 backstage/board.php:650
+#: backstage/board.php:652 backstage/board.php:705 backstage/board.php:707
 #: backstage/menu.php:85 backstage/menu.php:111 comment.php:539
 #: include/draw_functions.php:80 install.php:195 install.php:307
 #: themes/Fifteen/views/comment.php:35 thread.php:125
 msgid "Name"
 msgstr "Naam"
 
-#: backstage/board.php:561
+#: backstage/board.php:562
 msgid "Add categories"
 msgstr "Categorie toevoegen"
 
-#: backstage/board.php:574
+#: backstage/board.php:575
 msgid "Delete categories"
 msgstr "Verwijder categorie"
 
-#: backstage/board.php:604
+#: backstage/board.php:605
 msgid "Manage board"
 msgstr "Beheer forum"
 
-#: backstage/board.php:619
+#: backstage/board.php:620
 msgid "Category title"
 msgstr "Categorie naam"
 
-#: backstage/board.php:624 backstage/board.php:655 backstage/board.php:657
-#: backstage/board.php:710 backstage/board.php:712 backstage/menu.php:89
+#: backstage/board.php:625 backstage/board.php:656 backstage/board.php:658
+#: backstage/board.php:711 backstage/board.php:713 backstage/menu.php:89
 #: backstage/menu.php:113
 msgid "Position"
 msgstr "Positie"
@@ -6306,6 +6306,9 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "Fixes 53 bugs"
+#~ msgstr "Herstelt 53 fouten"
 
 #~ msgid "Fixes 41 bugs"
 #~ msgstr "Herstelt 41 problemen"
