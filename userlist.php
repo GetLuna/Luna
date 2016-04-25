@@ -55,7 +55,7 @@ if ($luna_user['g_search_users'] == '1')
 	$focus_element = array('userlist', 'username');
 
 // Generate paging links
-$paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;sort_by='.$sort_by);
+$paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;sort='.$sort_by);
 
 define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'userlist');
