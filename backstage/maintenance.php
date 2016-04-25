@@ -15,8 +15,11 @@ define('LUNA_PAGE', 'maintenance');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
+
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild') {

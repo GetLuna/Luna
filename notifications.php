@@ -37,6 +37,7 @@ if (isset($_GET['notification'])) {
     $result = $db->query('UPDATE '.$db->prefix.'notifications SET viewed = 1 WHERE id='.$notification.' AND user_id='.$id) or error('Unable to update notification info', __FILE__, __LINE__, $db->error());
     
     header('Location: '.$notifi['link']);
+    exit;
 }
 
 if (isset($_GET['read_notification'])) {

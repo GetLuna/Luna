@@ -13,8 +13,10 @@ define('LUNA_PAGE', 'update');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -119,6 +121,7 @@ if ($action == 'check_update') {
 	// Regenerate the update cache
 	generate_update_cache();
 	header("Location: update.php");
+    exit;
 }
 
 if (file_exists(LUNA_CACHE_DIR.'cache_update.php'))

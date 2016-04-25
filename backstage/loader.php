@@ -10,8 +10,10 @@
 define('LUNA_ROOT', '../');
 require LUNA_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 // The plugin to load should be supplied via GET
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';

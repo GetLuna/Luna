@@ -13,8 +13,11 @@ define('LUNA_PAGE', 'ranks');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
+
 // Add a rank
 if (isset($_POST['add_rank'])) {
 	$rank = luna_trim($_POST['new_rank']);

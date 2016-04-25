@@ -13,8 +13,11 @@ define('LUNA_PAGE', 'users');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
+
 // Show IP statistics for a certain user ID
 if (isset($_GET['ip_stats'])) {
 	$ip_stats = intval($_GET['ip_stats']);

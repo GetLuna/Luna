@@ -13,8 +13,10 @@ define('LUNA_PAGE', 'board');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 // Add a "default" forum
 if (isset($_POST['add_forum'])) {

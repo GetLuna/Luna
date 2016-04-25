@@ -13,8 +13,10 @@ define('LUNA_PAGE', 'features');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 if (isset($_GET['remove-avatar'])) {
 	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));

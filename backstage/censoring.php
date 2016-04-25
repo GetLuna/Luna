@@ -13,8 +13,11 @@ define('LUNA_PAGE', 'censoring');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
+
 // Add a censor word
 if (isset($_POST['add_word'])) {
 	confirm_referrer('backstage/censoring.php');

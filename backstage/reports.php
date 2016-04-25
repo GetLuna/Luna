@@ -13,8 +13,11 @@ define('LUNA_PAGE', 'reports');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
+
 // Zap a report
 if (isset($_POST['zap_id'])) {
 	confirm_referrer('backstage/reports.php');

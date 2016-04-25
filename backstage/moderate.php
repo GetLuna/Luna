@@ -13,8 +13,10 @@ define('LUNA_PAGE', 'moderate');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins

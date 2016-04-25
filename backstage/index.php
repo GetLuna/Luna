@@ -13,8 +13,10 @@ define('LUNA_PAGE', 'index');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 

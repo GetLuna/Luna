@@ -12,8 +12,10 @@ require LUNA_ROOT.'include/common.php';
 define('LUNA_SECTION', 'users');
 define('LUNA_PAGE', 'bans');
 
-if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0')) {
 	header("Location: login.php");
+    exit;
+}
 
 // Add/edit a ban (stage 1)
 if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {

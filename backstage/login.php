@@ -5,8 +5,10 @@ define('LUNA_ROOT', '../');
 
 require LUNA_ROOT.'include/common.php';
 
-if ($luna_user['is_admmod'])
-	header("Location: index.php");
+if (!$luna_user['is_admmod']) {
+	header("Location: login.php");
+    exit;
+}
 
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';

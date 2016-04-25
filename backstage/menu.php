@@ -10,8 +10,10 @@ require '../include/common.php';
 define('LUNA_SECTION', 'settings');
 define('LUNA_PAGE', 'menu');
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 
 // Add a new item
 if (isset($_POST['add_item'])) {

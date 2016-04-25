@@ -13,8 +13,10 @@ define('LUNA_PAGE', 'groups');
 
 require LUNA_ROOT.'include/common.php';
 
-if (!$is_admin)
+if (!$luna_user['is_admmod']) {
 	header("Location: login.php");
+    exit;
+}
 // Add/edit a group (stage 1)
 if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	if (isset($_POST['add_group'])) {
