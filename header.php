@@ -143,7 +143,7 @@ if (!$luna_user['is_guest']) {
         else
             $notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 
-        $notification_menu_item = '<li><a href="notifications.php" class="flash">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a></li>';
+        $notification_menu_item = '<li><a href="notifications.php" class="'.(($num_notifications != 0)? ' flash' : '').'">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a></li>';
     }
 }
 
