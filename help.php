@@ -19,14 +19,4 @@ require load_page('header.php');
 
 require load_page('help.php');
 
-?>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#user").focus();
-		var hash = location.hash, hashPieces = hash.split('?'), activeTab = $('[href=' + hashPieces[0] + ']');
-		activeTab && activeTab.tab('show');
-	});
-</script>
-<?php
-
 require load_page('footer.php');
