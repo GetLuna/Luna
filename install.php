@@ -482,9 +482,20 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/accents/2.css" />
+		<style>
+		.container {
+			margin: 0 auto 30px;
+		}
+		</style>
 	</head>
-	<body>
+	<body class="installer" onload="document.getElementById('install').start.disabled=false;" onunload="">
+        <div class="jumbotron jumbotron-brand text-center">
+			<h1><?php echo _e('Install<span class="brand">Luna</span>', 'luna') ?></h1>
+            <h2>You can do anything</h2>
+        </div>
 		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-heading">
