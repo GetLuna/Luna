@@ -133,10 +133,7 @@ else
 				$accents = forum_list_accents('main');
 		
 				foreach ($accents as $temp) {
-					if ($luna_user['color_scheme'] == $temp)
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-					else
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
+				    echo '<label class="btn btn-primary color-accent accent-'.$temp.' '.(($luna_user['color_scheme'] == $temp) ? 'active' : '').'"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
 				}
 		?>
 									</div>
@@ -181,10 +178,7 @@ else
 				$accents = forum_list_accents('back');
 		
 				foreach ($accents as $temp) {
-					if ($luna_user['accent'] == $temp)
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-					else
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'"></label>';
+				    echo '<label class="btn btn-primary color-accent accent-'.$temp.' '.(($luna_user['accent'] == $temp) ? 'active' : '').'"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
 				}
 		?>
 									</div>
