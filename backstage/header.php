@@ -83,6 +83,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../vendor/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -91,7 +92,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
             if (__('Direction of language', 'luna') == 'rtl')
                 echo '<link rel="stylesheet" type="text/css" href="../vendor/css/bidirect.css" />';
           ?>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="icon" href="../img/favicon.png" />
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>
 	</head>
