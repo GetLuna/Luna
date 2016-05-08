@@ -102,7 +102,7 @@ if ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $lu
 	else
 		$new_inbox = '';
 
-	$inbox_menu_item = '<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> '.__( 'Inbox', 'luna' ).'</span></a></li>';
+	$inbox_menu_item = '<li><a href="inbox.php"><span class="'.(($num_new_pm > 0)? ' flash' : '').'">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> '.__( 'Inbox', 'luna' ).'</span></span></a></li>';
 }
 
 if (!$luna_user['is_guest']) {
