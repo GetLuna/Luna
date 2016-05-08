@@ -204,7 +204,10 @@ if (isset($_GET['saved']))
 		$accents = forum_list_accents('main');
 
 		foreach ($accents as $temp) {
-            echo '<label class="btn btn-primary color-accent accent-'.$temp.' '.(($luna_config['o_default_accent'] == $temp) ? 'active' : '').'"><input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+			if ($luna_config['o_default_accent'] == $temp)
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+			else
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'"></label>';
 		}
 ?>
                                 </div>
