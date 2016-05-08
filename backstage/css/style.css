@@ -191,6 +191,17 @@ label .help-block {
 	color: #fff;
 }
 
+/* Markup */
+blockquote {
+    font-size: 100%;
+}
+
+blockquote footer {
+    background: transparent !important;
+    font-size: 150%;
+    padding-top: 0;
+}
+
 /* Title block */
 .title {
 	color: #fff;
