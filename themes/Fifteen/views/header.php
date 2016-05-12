@@ -18,10 +18,7 @@ require ('header.php');
 		}
         <?php if ($luna_config['o_use_custom_css']) {
             echo $luna_config['o_custom_css'];
-        } if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
-			body { margin-bottom: 60px; }
-			@media screen and (max-width: 767px) { body { margin-bottom: 80px; } }
-        <?php } ?>
+        } ?>
 		</style>
 	</head>
 	<body>

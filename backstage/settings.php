@@ -45,8 +45,6 @@ if (isset($_POST['form_sent'])) {
 		'feed_ttl'				=> intval($_POST['form']['feed_ttl']),
 		'report_method'			=> intval($_POST['form']['report_method']),
 		'mailing_list'			=> luna_trim($_POST['form']['mailing_list']),
-		'cookie_bar'			=> isset($_POST['form']['cookie_bar']) ? '1' : '0',
-		'cookie_bar_url'		=> luna_trim($_POST['form']['cookie_bar_url']),
 		'announcement'			=> isset($_POST['form']['announcement']) ? '1' : '0',
 		'announcement_title'	=> luna_trim($_POST['form']['announcement_title']),
 		'announcement_type'		=> luna_trim($_POST['form']['announcement_type']),
@@ -593,32 +591,6 @@ foreach ($timezones as $timezone) {
                                         <?php _e('Hide email address and disallow form email.', 'luna') ?>
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Cookie bar', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Cookie bar', 'luna') ?><span class="help-block"><a href="http://getluna.org/docs/cookies.php"><?php _e('More info', 'luna') ?></a></span></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') echo ' checked' ?> />
-                                        <?php _e('Show a bar with information about cookies at the bottom of the page.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Cookie info URL', 'luna') ?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna') ?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
                             </div>
                         </div>
                     </fieldset>
