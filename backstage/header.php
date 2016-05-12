@@ -134,8 +134,8 @@ if ($luna_config['o_notification_flyout'] == 1) {
                             </a>
                             <ul class="dropdown-menu">
         <?php
-                foreach ($plugins as $plugin_name => $plugin)
-                    echo "\t\t\t\t\t".'<li><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
+                foreach ($plugins as $plugin_name => $plugin_entry)
+                    echo "\t\t\t\t\t".'<li><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin_entry).'</a></li>'."\n";
         ?>
                             </ul>
                         </li>

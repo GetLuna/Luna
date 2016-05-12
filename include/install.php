@@ -132,7 +132,7 @@ class Installer {
 				break;
 
 			case 'pgsql':
-				require FORUM_ROOT.'include/dblayer/pgsql.php';
+				require LUNA_ROOT.'include/dblayer/pgsql.php';
 				break;
 
 			case 'sqlite':
