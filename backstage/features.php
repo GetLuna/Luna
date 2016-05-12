@@ -51,7 +51,6 @@ if (isset($_POST['form_sent'])) {
 		'enable_inbox'					=> isset($_POST['form']['enable_inbox']) ? '1' : '0',
 		'inbox_notification'			=> isset($_POST['form']['inbox_notification']) ? '1' : '0',
 		'max_receivers'					=> (intval($_POST['form']['max_receivers']) > 0) ? intval($_POST['form']['max_receivers']) : 5,
-		'emoji'					=> isset($_POST['form']['emoji']) ? '1' : '0',
 		'emoji_size'			=> intval($_POST['form']['emoji_size']),
 		'forum_subscriptions'	        => isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
 		'thread_subscriptions'          => isset($_POST['form']['thread_subscriptions']) ? '1' : '0',
@@ -373,17 +372,6 @@ if (isset($_GET['saved']))
                             </div>
                         </div>
                         <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Emoji', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
-                                        <?php _e('Use emojis instead of emoticons.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The size emoticons and emojis are shown in', 'luna') ?></span></label>
                             <div class="col-sm-9">
