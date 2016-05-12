@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-04-25 22:16+0200\n"
-"PO-Revision-Date: 2016-04-25 22:16+0200\n"
+"POT-Creation-Date: 2016-05-09 08:30+0200\n"
+"PO-Revision-Date: 2016-05-09 08:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -232,8 +232,8 @@ msgid "Fixed"
 msgstr "Herstelt"
 
 #: backstage/about.php:74
-msgid "Fixes 58 bugs"
-msgstr "Herstelt 58 bugs"
+msgid "Fixes 63 bugs"
+msgstr "Herstelt 63 bugs"
 
 #: backstage/about.php:80
 #, php-format
@@ -331,7 +331,7 @@ msgid "Your settings have been saved."
 msgstr "De wijzigingen zijn opgeslagen."
 
 #: backstage/appearance.php:159 backstage/appearance.php:164
-#: backstage/header.php:186
+#: backstage/header.php:187
 msgid "Theme"
 msgstr "Thema"
 
@@ -467,7 +467,7 @@ msgstr ""
 "prestaties."
 
 #: backstage/appearance.php:322 backstage/bans.php:418
-#: backstage/features.php:205 backstage/groups.php:237 backstage/header.php:179
+#: backstage/features.php:205 backstage/groups.php:237 backstage/header.php:180
 #: backstage/users.php:751 search.php:443 search.php:505 search.php:517
 #: themes/Fifteen/views/help.php:149
 #: themes/Fifteen/views/search-advanced.php:15
@@ -1022,7 +1022,7 @@ msgstr "Je moet een woord ingeven om te censureren."
 msgid "Censoring is disabled in %s."
 msgstr "Censuur is uitgeschakeld in %s."
 
-#: backstage/censoring.php:91 backstage/header.php:185 backstage/ranks.php:100
+#: backstage/censoring.php:91 backstage/header.php:186 backstage/ranks.php:100
 msgid "Features"
 msgstr "Functies"
 
@@ -1054,7 +1054,7 @@ msgstr "Beheer woorden"
 msgid "Action"
 msgstr "Acties"
 
-#: backstage/censoring.php:145 backstage/header.php:172
+#: backstage/censoring.php:145 backstage/header.php:173
 msgid "Update"
 msgstr "Update"
 
@@ -1113,7 +1113,7 @@ msgid "Allow search only in 1 forum at a time."
 msgstr "Limiteer zoeken tot een forum per keer."
 
 #: backstage/features.php:226 backstage/features.php:232
-#: backstage/groups.php:114 backstage/header.php:154 header.php:105
+#: backstage/groups.php:114 backstage/header.php:155 header.php:105
 #: inbox.php:92 include/me_functions.php:21 include/me_functions.php:33
 #: themes/Fifteen/views/inbox-delete-comment.php:13
 #: themes/Fifteen/views/inbox-new.php:65 themes/Fifteen/views/inbox-view.php:28
@@ -1649,7 +1649,7 @@ msgstr "Standaard groep"
 msgid "Manage groups"
 msgstr "Groepen beheren"
 
-#: backstage/header.php:26 backstage/header.php:91 include/functions.php:2202
+#: backstage/header.php:26 backstage/header.php:92 include/functions.php:2202
 #: include/functions.php:2260 install.php:186
 msgid "Direction of language"
 msgstr "ltr"
@@ -1663,98 +1663,98 @@ msgstr "Geen nieuwe notificaties"
 msgid "More"
 msgstr "Meer"
 
-#: backstage/header.php:96 backstage/header.php:112 backstage/header.php:171
+#: backstage/header.php:97 backstage/header.php:113 backstage/header.php:172
 #: header.php:154
 msgid "Backstage"
 msgstr "Backstage"
 
-#: backstage/header.php:114 backstage/header.php:116
+#: backstage/header.php:115 backstage/header.php:117
 msgid "Content"
 msgstr "Content"
 
-#: backstage/header.php:118 backstage/prune.php:316 backstage/users.php:40
+#: backstage/header.php:119 backstage/prune.php:316 backstage/users.php:40
 #: extern.php:491 themes/Fifteen/views/help.php:223
 #: themes/Fifteen/views/users.php:12
 msgid "Users"
 msgstr "Gebruikers"
 
-#: backstage/header.php:119 backstage/header.php:155 backstage/header.php:184
+#: backstage/header.php:120 backstage/header.php:156 backstage/header.php:185
 #: header.php:167 include/me_functions.php:24 include/me_functions.php:36
 #: settings.php:820 themes/Fifteen/views/settings.php:36
 msgid "Settings"
 msgstr "Instellingen"
 
-#: backstage/header.php:120 backstage/header.php:189
+#: backstage/header.php:121 backstage/header.php:190
 #: backstage/maintenance.php:181 backstage/maintenance.php:187
 #: db_update.php:183 include/functions.php:1407
 msgid "Maintenance"
 msgstr "Onderhoud"
 
-#: backstage/header.php:132
+#: backstage/header.php:133
 msgid "Extensions"
 msgstr "Extensies"
 
-#: backstage/header.php:153 header.php:166 include/me_functions.php:18
+#: backstage/header.php:154 header.php:166 include/me_functions.php:18
 #: include/me_functions.php:30 notifications.php:138 profile.php:113
 #: settings.php:171 settings.php:431 settings.php:820
 #: themes/Fifteen/views/help.php:148 themes/Fifteen/views/settings.php:38
 msgid "Profile"
 msgstr "Profiel"
 
-#: backstage/header.php:157 header.php:169 help.php:16
+#: backstage/header.php:158 header.php:169 help.php:16
 msgid "Help"
 msgstr "Help"
 
-#: backstage/header.php:158
+#: backstage/header.php:159
 msgid "Support"
 msgstr "Ondersteuning"
 
-#: backstage/header.php:160 header.php:171
+#: backstage/header.php:161 header.php:171
 msgid "Logout"
 msgstr "Afmelden"
 
-#: backstage/header.php:173
+#: backstage/header.php:174
 msgid "About"
 msgstr "Over"
 
-#: backstage/header.php:175 install.php:369
+#: backstage/header.php:176 install.php:369
 msgid "Board"
 msgstr "Forum"
 
-#: backstage/header.php:176
+#: backstage/header.php:177
 msgid "Reports"
 msgstr "Rapporten"
 
-#: backstage/header.php:177
+#: backstage/header.php:178
 msgid "Censoring"
 msgstr "Censureren"
 
-#: backstage/header.php:180
+#: backstage/header.php:181
 msgid "Ranks"
 msgstr "Rangen"
 
-#: backstage/header.php:181
+#: backstage/header.php:182
 msgid "Groups"
 msgstr "Groepen"
 
-#: backstage/header.php:182
+#: backstage/header.php:183
 msgid "Bans"
 msgstr "Bans"
 
-#: backstage/header.php:187 backstage/menu.php:108
+#: backstage/header.php:188 backstage/menu.php:108
 msgid "Menu"
 msgstr "Menu"
 
-#: backstage/header.php:190 backstage/prune.php:102 backstage/prune.php:116
+#: backstage/header.php:191 backstage/prune.php:102 backstage/prune.php:116
 #: backstage/prune.php:223 backstage/prune.php:258 backstage/prune.php:316
 msgid "Prune"
 msgstr "Opruimen"
 
-#: backstage/header.php:198
+#: backstage/header.php:199
 msgid "Luna is currently set in Maintenance Mode. Do not log off."
 msgstr "Luna is momenteel in Onderhoudsmodus. Log niet uit."
 
-#: backstage/header.php:222 include/general_functions.php:45 install.php:207
+#: backstage/header.php:223 include/general_functions.php:45 install.php:207
 msgid "is a required field in this form."
 msgstr "is een vereist veld in dit formulier."
 
@@ -4370,7 +4370,7 @@ msgstr ""
 "PHP moet ondersteuning bieden voor MySQL of SQLite om Luna te installeren. "
 "Geen van beide is beschikbaar."
 
-#: install.php:180 install.php:483 install.php:491
+#: install.php:180 install.php:483 install.php:502
 msgid "Luna Installation"
 msgstr "Luna installatie"
 
@@ -4394,7 +4394,7 @@ msgstr "Forum titel"
 msgid "No trailing slash"
 msgstr "Geen eindstreep"
 
-#: install.php:225
+#: install.php:225 install.php:496
 msgid "Install<span class=\"brand\">Luna</span>"
 msgstr "Installeer<span class=\"brand\">Luna</span>"
 
@@ -4471,14 +4471,14 @@ msgstr ""
 "avatar uploads inschakelen in Backstage > Instellingen > Instellingen > "
 "Avatars."
 
-#: install.php:494
+#: install.php:505
 msgid ""
 "Luna has been installed. To finalize the installation please follow the "
 "instructions below."
 msgstr ""
 "Luna is geïnstalleerd. Volg onderstaande instructies om verder te gaan."
 
-#: install.php:501
+#: install.php:512
 msgid ""
 "To finalize the installation, you need to click on the button below to "
 "download a file called config.php. You then need to upload this file to the "
@@ -4488,7 +4488,7 @@ msgstr ""
 "php bestand te downloaden. Je moet deze vervolgens uploaden naar de hoofdmap "
 "van deze Luna installatie."
 
-#: install.php:502
+#: install.php:513
 msgid ""
 "Once you have uploaded config.php, Luna will be fully installed! At that "
 "point, you may <a href=\"index.php\">go to the forum index</a>."
@@ -4496,11 +4496,11 @@ msgstr ""
 "Zodra config.php is geüpload, is Luna volledig geïnstalleerd. Je kan dan "
 "naar <a href=\"index.php\">de forum index</a> gaan."
 
-#: install.php:521
+#: install.php:532
 msgid "Download config.php file"
 msgstr "Download config.php bestand"
 
-#: install.php:529
+#: install.php:540
 msgid ""
 "Luna has been fully installed! You may now <a href=\"index.php\">go to the "
 "forum index</a>."
@@ -6306,6 +6306,9 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "Fixes 58 bugs"
+#~ msgstr "Herstelt 58 bugs"
 
 #~ msgid "Fixes 55 bugs"
 #~ msgstr "Herstelt 55 fouten"

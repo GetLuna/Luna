@@ -15,11 +15,11 @@ $xmlstr = <<<XML
 	<id>sunrise</id>
 	<name>Sunrise</name>
 	<developer>Studio 384</developer>
-	<date>25 April 2016</date>
-	<version>3.0-rc.1</version>
-	<minversion>2.0-rc.1</minversion>
-	<maxversion>2.0-rc.1</maxversion>
-    <parent_theme>fifteen</parent_theme>
+	<date>9 May 2016</date>
+	<version>3.0.0</version>
+	<minversion>2.0.0</minversion>
+	<maxversion>2.0.0</maxversion>
+    <parent_theme>Fifteen</parent_theme>
 </style>
 XML;
 ?>

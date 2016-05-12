@@ -2216,10 +2216,10 @@ function load_meta() {
 
 	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
     
-    if (file_exists('/favicon.png'))
-        echo '<link rel="icon" href="/favicon.png" />';
+    if (file_exists(LUNA_ROOT.'/favicon.png'))
+        echo '<link rel="icon" href="favicon.png" />';
     else
-        echo '<link rel="icon" href="/img/favicon.png" />';
+        echo '<link rel="icon" href="img/favicon.png" />';
 
 	if ($meta_description != '')
 		echo '<meta name="description" content="'.$meta_description.'">'."\n";

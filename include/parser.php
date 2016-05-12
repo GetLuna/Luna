@@ -692,7 +692,7 @@ function do_bbcode($text, $is_signature = false) {
 	// DailyMotion videos
 	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.dailymotion.com/embed/video/$3"></iframe></div>';
 	// Youtube Videos
-	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.youtube.com/embed/$4"></iframe></div>';
+    $replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/$4" allowfullscreen></iframe></div>';
 	// Vimeo Videos
 	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://player.vimeo.com/video/$4"></iframe></div>';
 

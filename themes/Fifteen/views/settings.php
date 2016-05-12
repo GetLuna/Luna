@@ -36,7 +36,7 @@ else
 					<h2><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="pull-right"><button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-fw fa-user"></i><span class="hidden-sm hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fa fa-fw fa-pencil"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fa fa-fw fa-paint-brush"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fa fa-fw fa-share-alt"></i><span class="hidden-sm hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#thread" aria-controls="thread" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i><span class="hidden-sm hidden-xs"> <?php _e('Thread', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><i class="fa fa-fw fa-clock-o"></i><span class="hidden-sm hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>

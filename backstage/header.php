@@ -73,7 +73,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	else
 		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 
-	$notification_menu_item = '<li><a href="notifications.php" class="'.(($num_notifications != 0)? ' flash' : '').'">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a></li>';
+	$notification_menu_item = '<li><a href="../notifications.php" class="'.(($num_notifications != 0)? ' flash' : '').'">'.$notificon.'<span class="visible-xs-inline"> '.__( 'Notifications', 'luna' ).'</span></a></li>';
 }
 
 ?>
@@ -83,6 +83,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../vendor/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -91,7 +92,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
             if (__('Direction of language', 'luna') == 'rtl')
                 echo '<link rel="stylesheet" type="text/css" href="../vendor/css/bidirect.css" />';
           ?>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="icon" href="../img/favicon.png" />
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>
 	</head>
@@ -183,7 +184,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
                 <?php } if (LUNA_SECTION == 'settings') { ?>
                     <li<?php if(LUNA_PAGE == 'settings') echo ' class="active"' ?>><a href="settings.php"><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a></li>
                     <li<?php if(LUNA_PAGE == 'features') echo ' class="active"' ?>><a href="features.php"><i class="fa fa-fw fa-sliders"></i> <?php _e('Features', 'luna') ?></a></li>
-                    <li<?php if(LUNA_PAGE == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><i class="fa fa-fw fa-eye"></i> <?php _e('Theme', 'luna') ?></a></li>
+                    <li<?php if(LUNA_PAGE == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><i class="fa fa-fw fa-paint-brush"></i> <?php _e('Theme', 'luna') ?></a></li>
                     <li<?php if(LUNA_PAGE == 'menu') echo ' class="active"' ?>><a href="menu.php"><i class="fa fa-fw fa-bars"></i> <?php _e('Menu', 'luna') ?></a></li>
                 <?php } if (LUNA_SECTION == 'maintenance') { ?>
                     <li<?php if(LUNA_PAGE == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><i class="fa fa-fw fa-coffee"></i> <?php _e('Maintenance', 'luna') ?></a></li>
