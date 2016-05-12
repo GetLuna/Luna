@@ -390,7 +390,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 		if ($cur_category > 0)
 			echo $close_tags;
 		else
-			echo '<div class="no-board"><p>'.__('There are no forums in this board yet.', 'luna').'</p></div>';
+			echo '<div class="no-board">'.__('No forums available', 'luna').'</div>';
 	}
 }
 
@@ -604,7 +604,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 		}
 	} else
-		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a thread to begin.', 'luna').'</h3>';
+		echo '<div class="no-thread">'.__('The board is empty, select a forum and create a thread to begin.', 'luna').'</div>';
 }
 
 function draw_comment_list() {

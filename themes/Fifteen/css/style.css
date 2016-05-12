@@ -196,6 +196,19 @@ h6 {
 	font-weight: 700;
 }
 
+.no-board, .no-thread {
+    font-size: 120%;
+    font-weight: 100;
+}
+
+.no-board {
+    padding: 5px 15px;
+}
+
+.no-thread {
+    padding: 10px;
+}
+
 /* Title blocks */
 .title-block {
 	color: #fff;
