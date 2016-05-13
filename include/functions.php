@@ -178,7 +178,7 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 
 		if ($comment_ids != '') {
 			// Decrease the commentcount for users
-			decrease_comment_counts($post_ids);
+			decrease_comment_counts($comment_ids);
 			// Delete threads
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
 			// Delete subscriptions

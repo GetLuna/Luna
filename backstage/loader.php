@@ -33,7 +33,6 @@ if (!file_exists(LUNA_ROOT.'plugins/'.$plugin))
 if (!isset($_SERVER['REQUEST_URI']))
 	$_SERVER['REQUEST_URI'] = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').'?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
 define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 
@@ -41,12 +40,10 @@ require 'header.php';
 // because if we did and a parse error occurred in the plugin, we would only
 // get the "blank page of death"
 include LUNA_ROOT.'plugins/'.$plugin;
+
 if (!defined('LUNA_PLUGIN_LOADED'))
 	message_backstage(sprintf(__('Loading of the plugin - <strong>%s</strong> - failed.', 'luna'), $plugin));
 
 // Output the clearer div
-?>
-</div>
-<?php
 
 require 'footer.php';
