@@ -30,6 +30,20 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update <small>2.0.1</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Font Awesome has been updated to version 4.6.3', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('When no threads or forums exist, the messages are shown in a more polished style', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('Some of the left over Luna Preview elements hav been removed', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes an issue where an URL in a mail would be mising', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes an issue where removing a forum would fail', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes a number of issues with plugins', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes a nesting bug in the board page', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald <small>2.0</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Fifteen has received a fully reimagned design based on Airalin', 'luna') ?></li>

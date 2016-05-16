@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-05-09 08:30+0200\n"
-"PO-Revision-Date: 2016-05-09 08:30+0200\n"
+"POT-Creation-Date: 2016-05-16 14:22+0200\n"
+"PO-Revision-Date: 2016-05-16 14:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group <contact@getluna.org>\n"
 "Language: nl\n"
@@ -22,220 +22,255 @@ msgstr ""
 msgid "About Luna %s %s"
 msgstr "Over Luna %s %s"
 
-#: backstage/about.php:35 backstage/about.php:36 backstage/about.php:37
+#: backstage/about.php:35 backstage/about.php:65 backstage/about.php:66
+#: backstage/about.php:67 backstage/about.php:68 backstage/about.php:69
+#: backstage/settings.php:682
+msgid "System"
+msgstr "Systeem"
+
+#: backstage/about.php:35
+msgid "Font Awesome has been updated to version 4.6.3"
+msgstr "Font Awesome is bijgewerkt naar versie 4.6.3"
+
+#: backstage/about.php:36 backstage/about.php:73 backstage/about.php:74
+#: backstage/about.php:75 backstage/about.php:76 backstage/about.php:77
+#: backstage/about.php:78 backstage/about.php:79 backstage/about.php:80
+#: backstage/about.php:81 backstage/about.php:82
+msgid "Improved"
+msgstr "Verbeterd"
+
+#: backstage/about.php:36
+msgid ""
+"When no threads or forums exist, the messages are shown in a more polished "
+"style"
+msgstr ""
+"Als geen forum of conversatie bestaat worden deze meldingen nu beter "
+"weergegeven"
+
+#: backstage/about.php:37 backstage/about.php:83 backstage/about.php:84
+#: backstage/about.php:85 backstage/about.php:86 backstage/about.php:87
+msgid "Removed"
+msgstr "Verwijderd"
+
+#: backstage/about.php:37
+msgid "Some of the left over Luna Preview elements hav been removed"
+msgstr "De overblijfselen van de Luna Preview zijn verwijderd"
+
 #: backstage/about.php:38 backstage/about.php:39 backstage/about.php:40
-#: backstage/about.php:41 backstage/about.php:42 backstage/about.php:43
-#: backstage/about.php:44 backstage/about.php:45 backstage/about.php:46
-#: backstage/about.php:47 backstage/about.php:48 backstage/about.php:49
-#: backstage/about.php:50 header.php:56 header.php:57
+#: backstage/about.php:41 backstage/about.php:88
+msgid "Fixed"
+msgstr "Herstelt"
+
+#: backstage/about.php:38
+msgid "Fixes an issue where an URL in a mail would be mising"
+msgstr "Herstelt een probleem met een URL die niet werd getoond in een mail"
+
+#: backstage/about.php:39
+msgid "Fixes an issue where removing a forum would fail"
+msgstr ""
+"Herstelt een probleem waardoor het verwijderen van een forum niet zou werken"
+
+#: backstage/about.php:40
+msgid "Fixes a number of issues with plugins"
+msgstr "Herstelt enkele problemen met plugins"
+
+#: backstage/about.php:41
+msgid "Fixes a nesting bug in the board page"
+msgstr "Herstelt een probleem in de markup van de forum pagina"
+
+#: backstage/about.php:49 backstage/about.php:50 backstage/about.php:51
+#: backstage/about.php:52 backstage/about.php:53 backstage/about.php:54
+#: backstage/about.php:55 backstage/about.php:56 backstage/about.php:57
+#: backstage/about.php:58 backstage/about.php:59 backstage/about.php:60
+#: backstage/about.php:61 backstage/about.php:62 backstage/about.php:63
+#: backstage/about.php:64 header.php:56 header.php:57
 #: include/draw_functions.php:350 include/draw_functions.php:431
 #: themes/Fifteen/views/inbox.php:44 themes/Fifteen/views/notifications.php:30
 msgid "New"
 msgstr "Nieuw"
 
-#: backstage/about.php:35
+#: backstage/about.php:49
 msgid "Fifteen has received a fully reimagned design based on Airalin"
 msgstr "Fifteen heeft een volledig nieuw ontwerp gebaseerd op Airalin"
 
-#: backstage/about.php:36
+#: backstage/about.php:50
 msgid "Sunrise has also been reimagned based on the new Fifteen look"
 msgstr "Sunrise heeft ook een nieuwe uiterlijk gebaseerd op Fifteen"
 
-#: backstage/about.php:37
+#: backstage/about.php:51
 msgid "You can now add custom CSS to the theme you're using"
 msgstr "Je kan nu je eigen CSS toevoegen aan een thema"
 
-#: backstage/about.php:38
+#: backstage/about.php:52
 msgid "Luna's default placeholder avatar can now be replaced"
 msgstr "De standaard avatar kan nu worden aangepast"
 
-#: backstage/about.php:39
+#: backstage/about.php:53
 msgid "Notifications now get marked as read when clicked"
 msgstr "Notificaties worden nu gemarkeerd als gelezen als er op geklikt wordt"
 
-#: backstage/about.php:40
+#: backstage/about.php:54
 msgid "New notification tools on the Notification page in the profile"
 msgstr ""
 "Niuewe notificatie hulpmiddelen op de Notificaties-pagina in het profiel"
 
-#: backstage/about.php:41
+#: backstage/about.php:55
 msgid "Comments can now have admin notes that are displayed in threads"
 msgstr "Reacties kunnen nu nota's hebben die zichtbaar zijn in conversaties"
 
-#: backstage/about.php:42
+#: backstage/about.php:56
 msgid ""
 "You can now upload a header background to use in your theme and the Backstage"
 msgstr "Je kan nu een header uploaden voor in thema's en de Backstage"
 
-#: backstage/about.php:43
+#: backstage/about.php:57
 msgid "You can now manage your boards favicon in Settings"
 msgstr "Je kan nu het favicon van het forum beheren in Instellingen"
 
-#: backstage/about.php:44
+#: backstage/about.php:58
 msgid "You can now respond on Inbox messages from the message view"
 msgstr "Gebruikers kunnen nu direct reageren op Inbox berichten"
 
-#: backstage/about.php:45
+#: backstage/about.php:59
 msgid "Reports now trigger a notifications for admins and moderators"
 msgstr "Rapporten sturen nu notificaties voor admins en moderators"
 
-#: backstage/about.php:46
+#: backstage/about.php:60
 msgid "New threads in a subscribed board now trigger notifications"
 msgstr ""
 "Nieuwe conversaties in forums waarop men geabonneerd is sturen nu "
 "notificaties"
 
-#: backstage/about.php:47
+#: backstage/about.php:61
 msgid ""
 "Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents"
 msgstr ""
 "Fifteen, Sunrise en Backstage hebben een Roos, Donker Rood en Beige accent"
 
-#: backstage/about.php:48
+#: backstage/about.php:62
 msgid "The parser now supports the spoiler-tag optionally"
 msgstr "De parser biedt optionele ondersteunding voor de spoiler-tag"
 
-#: backstage/about.php:49
+#: backstage/about.php:63
 msgid "Luna now has a Dutch translation included by default"
 msgstr "Luna heeft nu een Nederlandse vertaling standaard meegeleverd"
 
-#: backstage/about.php:50
+#: backstage/about.php:64
 msgid "Maintenance mode now shows a warning in the Backstage header"
 msgstr "Onderhoudsmodus toont nu een waarschuwing in de Backstage"
 
-#: backstage/about.php:51 backstage/about.php:52 backstage/about.php:53
-#: backstage/about.php:54 backstage/about.php:55 backstage/settings.php:682
-msgid "System"
-msgstr "Systeem"
-
-#: backstage/about.php:51
+#: backstage/about.php:65
 msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr "Luna gebruikt voortaan salts en SHA-512 om wachtwoorden op te slaan"
 
-#: backstage/about.php:52
+#: backstage/about.php:66
 msgid "Luna now includes full \"Right to Left\"-support"
 msgstr "Luna bied nu volledige \"Rechts naar Links\"-ondersteuning"
 
-#: backstage/about.php:53
+#: backstage/about.php:67
 msgid "Components now live in their own folder in the Luna root"
 msgstr "Componenten zitten nu in hun eigen map in de hoofdmap van Luna"
 
-#: backstage/about.php:54
+#: backstage/about.php:68
 msgid "Debug mode can now be enabled with one line in the config file"
 msgstr ""
 "Debug mode can nu worden geactiveerd met een lijn in het config bestand"
 
-#: backstage/about.php:55
+#: backstage/about.php:69
 msgid ""
 "Bootstrap, Font Awesome and jQuery have been updated to the latest version"
 msgstr "Bootstrap, Font Awesome en jQuery zijn voorzien van de laatste versie"
 
-#: backstage/about.php:56 backstage/about.php:57 backstage/about.php:58
+#: backstage/about.php:70 backstage/about.php:71 backstage/about.php:72
 msgid "Changed"
 msgstr "Veranderd"
 
-#: backstage/about.php:56
+#: backstage/about.php:70
 msgid "Revamped search forms for users and bans, including responsive design"
 msgstr ""
 "Nieuwe zoekformulieren voor gebruikers en bans, inclusief responsief design"
 
-#: backstage/about.php:57
+#: backstage/about.php:71
 msgid "The Backstage has a whole new structure"
 msgstr "De Backstage heeft een volledig nieuwe indeling"
 
-#: backstage/about.php:58
+#: backstage/about.php:72
 msgid "Luna's file structure has been updated"
 msgstr "Luna's bestandsstructuur is aangepast"
 
-#: backstage/about.php:59 backstage/about.php:60 backstage/about.php:61
-#: backstage/about.php:62 backstage/about.php:63 backstage/about.php:64
-#: backstage/about.php:65 backstage/about.php:66 backstage/about.php:67
-#: backstage/about.php:68
-msgid "Improved"
-msgstr "Verbeterd"
-
-#: backstage/about.php:59
+#: backstage/about.php:73
 msgid ""
 "You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 "Je kan nu zien wat een sub forum is en meer instellingen wijzigen in forum "
 "beheer."
 
-#: backstage/about.php:60
+#: backstage/about.php:74
 msgid "Users can now disable or enable First Run from their profile"
 msgstr "Gebruikers kunnen nu Eerste Start beheren vanuit hun profiel"
 
-#: backstage/about.php:61
+#: backstage/about.php:75
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 "De editor verbergt knoppen voortaan in een menu als het scherm te smal wordt"
 
-#: backstage/about.php:62
+#: backstage/about.php:76
 msgid "When you have a notification, the icon will animate"
 msgstr "Een nieuwe notificatie zal het icoon laten flikkeren"
 
-#: backstage/about.php:63
+#: backstage/about.php:77
 msgid "Advanced search has an improved UI"
 msgstr "Geavanceerd zoeken heeft een verbeterde UI"
 
-#: backstage/about.php:64
+#: backstage/about.php:78
 msgid "About can now be translated to other languages"
 msgstr "Over kan nu vertaald worden"
 
-#: backstage/about.php:65
+#: backstage/about.php:79
 msgid "You can now directly manage a reported comment from the Backstage"
 msgstr "Je kan gerapporteerde reacties nu direct beheren vanuit de Backstage"
 
-#: backstage/about.php:66
+#: backstage/about.php:80
 msgid "Improved Backstage UI and night mode"
 msgstr "De Backstage UI en nacht modus zijn verbeterd"
 
-#: backstage/about.php:67
+#: backstage/about.php:81
 msgid "Multiple improvements on accessibility"
 msgstr "Verschillende verbeteringen voor toegankelijkheid"
 
-#: backstage/about.php:68
+#: backstage/about.php:82
 msgid ""
 "Luna now provides a description meta tag to prevent weird search results"
 msgstr "Luna geeft nu een beschrijving meta-tag mee voor betere zoekresultaten"
 
-#: backstage/about.php:69 backstage/about.php:70 backstage/about.php:71
-#: backstage/about.php:72 backstage/about.php:73
-msgid "Removed"
-msgstr "Verwijderd"
-
-#: backstage/about.php:69
+#: backstage/about.php:83
 msgid "The editor no longer has an emoticon menu"
 msgstr "De editor heeft geen emoticonmenu meer"
 
-#: backstage/about.php:70
+#: backstage/about.php:84
 msgid "The code base no longer supports PHP 5.2"
 msgstr "Alle ondersteuning voor PHP 5.2 en lager is verwijderd"
 
-#: backstage/about.php:71
+#: backstage/about.php:85
 msgid "Notifications can no longer be marked as read/trashed from the fly-out"
 msgstr ""
 "Notificaties kunnen niet worden gemarkeerd als gelezen/verwijderd vanuit de "
 "fly-out"
 
-#: backstage/about.php:72
+#: backstage/about.php:86
 msgid "You can no longer manage the database from the Backstage"
 msgstr "Database beheer kan niet meer worden uitgevoerd vanuit de Backstage"
 
-#: backstage/about.php:73
+#: backstage/about.php:87
 msgid "Tools to add new users have been removed"
 msgstr "Hulpmiddelen om gebruikers toe te voegen zijn verwijderd"
 
-#: backstage/about.php:74
-msgid "Fixed"
-msgstr "Herstelt"
-
-#: backstage/about.php:74
+#: backstage/about.php:88
 msgid "Fixes 63 bugs"
 msgstr "Herstelt 63 bugs"
 
-#: backstage/about.php:80
+#: backstage/about.php:94
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
@@ -243,19 +278,19 @@ msgstr ""
 "Luna is ontwikkeld door de %s. Copyright %s. Vrijgegeven onder de GPLv2 "
 "licentie."
 
-#: backstage/about.php:86
+#: backstage/about.php:100
 msgid "users"
 msgstr "gebruikers"
 
-#: backstage/about.php:87
+#: backstage/about.php:101
 msgid "threads"
 msgstr "conversaties"
 
-#: backstage/about.php:88 themes/Fifteen/objects/comment.php:9
+#: backstage/about.php:102 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr "reacties"
 
-#: backstage/about.php:89
+#: backstage/about.php:103
 msgid "views"
 msgstr "weergaven"
 
@@ -613,7 +648,7 @@ msgstr "Ban"
 #: backstage/bans.php:423 backstage/bans.php:464 backstage/login.php:25
 #: backstage/users.php:129 backstage/users.php:673 backstage/users.php:757
 #: backstage/users.php:821 install.php:196 install.php:313 install.php:340
-#: register.php:245 themes/Fifteen/views/index.php:56
+#: register.php:246 themes/Fifteen/views/index.php:56
 #: themes/Fifteen/views/login.php:13 themes/Fifteen/views/register.php:20
 #: themes/Fifteen/views/settings.php:53 themes/Sunrise/views/index.php:56
 msgid "Username"
@@ -649,7 +684,7 @@ msgstr "hier"
 #: include/draw_functions.php:655 include/draw_functions.php:685
 #: include/draw_functions.php:827 include/draw_functions.php:829
 #: include/draw_functions.php:855 install.php:199 install.php:359
-#: register.php:245 themes/Fifteen/views/comment.php:36
+#: register.php:246 themes/Fifteen/views/comment.php:36
 #: themes/Fifteen/views/login.php:42 themes/Fifteen/views/register.php:41
 #: themes/Fifteen/views/settings.php:67 thread.php:127
 msgid "Email"
@@ -1614,7 +1649,7 @@ msgstr ""
 "<b>Warning:</b> Na het verwijderen van een groep kan deze niet herstelt "
 "worden."
 
-#: backstage/groups.php:465 backstage/loader.php:36 backstage/users.php:40
+#: backstage/groups.php:465 backstage/users.php:40
 #: themes/Fifteen/views/settings.php:44
 msgid "Admin"
 msgstr "Admin"
@@ -1776,7 +1811,7 @@ msgstr ""
 "klaar gezet, maar er zijn mogelijk een paar instellingen die je wilt wijzgen "
 "of pagina's die je wilt bezoeken."
 
-#: backstage/index.php:99 backstage/index.php:206
+#: backstage/index.php:99
 msgid "What's new"
 msgstr "Wat is nieuw"
 
@@ -1873,19 +1908,6 @@ msgstr "conversatie"
 msgid "user"
 msgstr "gebruiker"
 
-#: backstage/index.php:200
-msgid "Welcome to Luna Preview"
-msgstr "Welkom bij de Luna Preview"
-
-#: backstage/index.php:203
-msgid "Thank you for helping us build the next version of Luna."
-msgstr ""
-"Bedankt om ons te helpen bij het ontwikkelen van de volgende versie van Luna."
-
-#: backstage/index.php:205
-msgid "Report an issue"
-msgstr "Meld een probleem"
-
 #: backstage/loader.php:26 backstage/moderate.php:25 backstage/moderate.php:76
 #: backstage/moderate.php:653 backstage/users.php:207 backstage/users.php:322
 #: backstage/users.php:458 comment.php:46 delete.php:44 delete.php:47
@@ -1919,7 +1941,7 @@ msgstr "Plugin - <strong>%s</strong - laden is gefaald.."
 msgid "Login"
 msgstr "Aanmelden"
 
-#: backstage/login.php:28 install.php:319 install.php:346 register.php:245
+#: backstage/login.php:28 install.php:319 install.php:346 register.php:246
 #: settings.php:432 themes/Fifteen/views/index.php:57
 #: themes/Fifteen/views/login.php:14 themes/Fifteen/views/me-modals.php:12
 #: themes/Fifteen/views/register.php:27 themes/Fifteen/views/settings.php:60
@@ -3645,7 +3667,7 @@ msgstr "Toon alle onbeantwoorde conversaties"
 msgid "Unanswered"
 msgstr "Onbeantwoord"
 
-#: header.php:159 register.php:23 register.php:244
+#: header.php:159 register.php:23 register.php:245
 #: themes/Fifteen/views/index.php:45 themes/Fifteen/views/login.php:21
 #: themes/Fifteen/views/login.php:26 themes/Fifteen/views/register.php:14
 #: themes/Sunrise/views/index.php:45
@@ -3773,8 +3795,8 @@ msgid "Never"
 msgstr "Nooit"
 
 #: include/draw_functions.php:393
-msgid "There are no forums in this board yet."
-msgstr "Er zijn geen forums op deze website."
+msgid "No forums available"
+msgstr "Geen forums beschikbaar"
 
 #: include/draw_functions.php:607
 msgid "The board is empty, select a forum and create a thread to begin."
@@ -4955,7 +4977,7 @@ msgstr ""
 "<board_mailer> Mailer\n"
 "(Reageer niet op dit bericht)"
 
-#: register.php:208
+#: register.php:209
 msgid ""
 "Subject: Welcome to <board_title>!\n"
 "\n"
@@ -4986,7 +5008,7 @@ msgstr ""
 "<board_mailer> Mailer\n"
 "(Reageer niet op dit bericht)"
 
-#: register.php:235
+#: register.php:236
 msgid ""
 "Thank you for registering. Your password has been sent to the specified "
 "address. If it doesn't arrive you can contact the forum administrator at"
@@ -4995,7 +5017,7 @@ msgstr ""
 "adres. Als de e-mail niet aankomt neem je best contact op met de "
 "administrator op"
 
-#: register.php:245
+#: register.php:246
 msgid "Confirm password"
 msgstr "Bevestig wachtwoord"
 
@@ -6306,6 +6328,20 @@ msgstr "met"
 #: viewinbox.php:204
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "Welcome to Luna Preview"
+#~ msgstr "Welkom bij de Luna Preview"
+
+#~ msgid "Thank you for helping us build the next version of Luna."
+#~ msgstr ""
+#~ "Bedankt om ons te helpen bij het ontwikkelen van de volgende versie van "
+#~ "Luna."
+
+#~ msgid "Report an issue"
+#~ msgstr "Meld een probleem"
+
+#~ msgid "There are no forums in this board yet."
+#~ msgstr "Er zijn geen forums op deze website."
 
 #~ msgid "Fixes 58 bugs"
 #~ msgstr "Herstelt 58 bugs"
