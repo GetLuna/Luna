@@ -1,4 +1,4 @@
-# Luna 2.0 "Emerald" Preview
+# Luna 2.0 "Emerald"
 
 [![Join the chat at https://gitter.im/GetLuna/Luna](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GetLuna/Luna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
