@@ -29,16 +29,14 @@ if (!defined('FORUM'))
 // If there are errors, we display them
 if (!empty($errors)) {
 ?>
-			<div class="panel panel-danger">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Comment errors', 'luna') ?></h3>
-				</div>
-				<div class="panel-body">
+            <div class="title-block title-block-danger">
+                <h2><i class="fa fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
+            </div>
+            <div class="tab-content tab-content-danger">
 			<?php
 				foreach ($errors as $cur_error)
 					echo "\t\t\t\t".$cur_error."\n";
 			?>
-				</div>
 			</div>
 <?php
 
