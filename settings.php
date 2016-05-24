@@ -223,9 +223,7 @@ if (isset($_POST['update_group_membership'])) {
 		if ($key == '' || $key != $cur_user['activate_key'])
 			message(__('The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 		else {
-            $salt = random_pass(8);
-            
-			$db->query('UPDATE '.$db->prefix.'users SET password=\''.$db->escape(luna_sha512($cur_user['activate_string'], $salt)).'\', activate_string=NULL, activate_key=NULL, salt='.$salt.' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET activate_string=NULL, activate_key=NULL WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
 
 			message(__('Your password has been updated. You can now login with your new password.', 'luna'), true);
 		}
