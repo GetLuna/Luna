@@ -1027,7 +1027,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 ?>
 <div class="main container">
 	<div class="error-message">
-		<h2><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
+		<h2><?php _e('Info', 'luna') ?></h2>
 		<p><?php echo $message ?></p>
 	</div>
 </div>
