@@ -15,8 +15,100 @@ require LUNA_ROOT.'include/utf8/strcasecmp.php';
 // Load the me functions script
 require LUNA_ROOT.'include/me_functions.php';
 
-$id = isset($_GET['id']) ? intval($_GET['id']) : $luna_user['id'];
+
 $action = isset($_GET['action']) ? $_GET['action'] : null;
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+if ($id < 2)
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+if ($action != 'change_pass' || !isset($_GET['key']))
+{
+	if ($luna_user['g_read_board'] == '0')
+		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
+	else if ($luna_user['g_view_users'] == '0' && ($luna_user['is_guest'] || $luna_user['id'] != $id))
+		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
+}
+
+if ($action == 'change_pass') {
+	if (isset($_GET['key'])) {
+        $new_key_setting = true;
+		// If the user is already logged in we shouldn't be here :)
+		if (!$luna_user['is_guest']) {
+			header('Location: index.php');
+			exit;
+		}
+
+		$key = $_GET['key'];
+
+		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch new password', __FILE__, __LINE__, $db->error());
+		$cur_user = $db->fetch_assoc($result);
+
+		if ($key == '' || $key != $cur_user['activate_key'])
+			message(__('The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+		else {
+			$db->query('UPDATE '.$db->prefix.'users SET activate_string=NULL, activate_key=NULL WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+
+			message(__('Your password has been updated. You can now login with your new password.', 'luna'), true);
+		}
+	}
+
+	// Make sure we are allowed to change this user's password
+	if ($luna_user['id'] != $id) {
+		if (!$luna_user['is_admmod']) // A regular user trying to change another user's password?
+			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
+		elseif ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's password?
+			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+			if (!$db->num_rows($result))
+				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+			list($group_id, $is_moderator) = $db->fetch_row($result);
+
+			if ($luna_user['g_mod_edit_users'] == '0' || $luna_user['g_mod_change_passwords'] == '0' || $group_id == LUNA_ADMIN || $is_moderator == '1')
+				message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
+		}
+	}
+
+	if (isset($_POST['form_sent'])) {
+		// Make sure they got here from the site
+		confirm_referrer('settings.php');
+
+		$old_password = isset($_POST['req_old_password']) ? luna_trim($_POST['req_old_password']) : '';
+		$new_password1 = luna_trim($_POST['req_new_password1']);
+		$new_password2 = luna_trim($_POST['req_new_password2']);
+
+		if ($new_password1 != $new_password2)
+			message(__('Passwords do not match.', 'luna'));
+		if (luna_strlen($new_password1) < 6)
+			message(__('Passwords must be at least 6 characters long. Please choose another (longer) password.', 'luna'));
+
+		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch password', __FILE__, __LINE__, $db->error());
+		$cur_user = $db->fetch_assoc($result);
+
+		$authorized = false;
+
+		if (!empty($cur_user['password'])) {
+			$old_password_hash = luna_sha512($old_password, $cur_user['salt']);
+
+			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
+				$authorized = true;
+		}
+
+		if (!$authorized)
+			message(__('Wrong old password.', 'luna'));
+
+        $new_salt = random_pass(8);
+        
+		$new_password_hash = luna_sha512($new_password1, $new_salt);
+
+		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\', salt=\''.$new_salt.'\' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+
+		if ($luna_user['id'] == $id)
+			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
+
+		redirect('settings.php?id='.$id);
+	}
+}
 
 if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 	(!$luna_user['is_admmod'] ||																	// and we are not an admin or mod
@@ -207,83 +299,6 @@ if (isset($_POST['update_group_membership'])) {
 	}
 
 	redirect('settings.php?&amp;id='.$id);
-} elseif ($action == 'change_pass') {
-	if (isset($_GET['key'])) {
-		// If the user is already logged in we shouldn't be here :)
-		if (!$luna_user['is_guest']) {
-			header('Location: index.php');
-			exit;
-		}
-
-		$key = $_GET['key'];
-
-		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch new password', __FILE__, __LINE__, $db->error());
-		$cur_user = $db->fetch_assoc($result);
-
-		if ($key == '' || $key != $cur_user['activate_key'])
-			message(__('The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
-		else {
-			$db->query('UPDATE '.$db->prefix.'users SET activate_string=NULL, activate_key=NULL WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
-
-			message(__('Your password has been updated. You can now login with your new password.', 'luna'), true);
-		}
-	}
-
-	// Make sure we are allowed to change this user's password
-	if ($luna_user['id'] != $id) {
-		if (!$luna_user['is_admmod']) // A regular user trying to change another user's password?
-			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-		elseif ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's password?
-			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-			if (!$db->num_rows($result))
-				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-			list($group_id, $is_moderator) = $db->fetch_row($result);
-
-			if ($luna_user['g_mod_edit_users'] == '0' || $luna_user['g_mod_change_passwords'] == '0' || $group_id == LUNA_ADMIN || $is_moderator == '1')
-				message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-		}
-	}
-
-	if (isset($_POST['form_sent'])) {
-		// Make sure they got here from the site
-		confirm_referrer('settings.php');
-
-		$old_password = isset($_POST['req_old_password']) ? luna_trim($_POST['req_old_password']) : '';
-		$new_password1 = luna_trim($_POST['req_new_password1']);
-		$new_password2 = luna_trim($_POST['req_new_password2']);
-
-		if ($new_password1 != $new_password2)
-			message(__('Passwords do not match.', 'luna'));
-		if (luna_strlen($new_password1) < 6)
-			message(__('Passwords must be at least 6 characters long. Please choose another (longer) password.', 'luna'));
-
-		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch password', __FILE__, __LINE__, $db->error());
-		$cur_user = $db->fetch_assoc($result);
-
-		$authorized = false;
-
-		if (!empty($cur_user['password'])) {
-			$old_password_hash = luna_sha512($old_password, $cur_user['salt']);
-
-			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
-				$authorized = true;
-		}
-
-		if (!$authorized)
-			message(__('Wrong old password.', 'luna'));
-
-        $new_salt = random_pass(8);
-        
-		$new_password_hash = luna_sha512($new_password1, $new_salt);
-
-		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\', salt=\''.$new_salt.'\' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
-
-		if ($luna_user['id'] == $id)
-			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
-
-		redirect('settings.php?id='.$id);
-	}
 } elseif ($action == 'change_email') {
 	// Make sure we are allowed to change this user's email
 	if ($luna_user['id'] != $id) {
