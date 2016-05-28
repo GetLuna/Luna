@@ -167,7 +167,8 @@ To change your password, please visit the following page:
                     $salt = random_pass(8);
                     $password_hash = luna_sha512($new_password, $salt);
 
-					$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.db->escape($password_hash).'\', activate_key=\''.db->escape($new_password_key).'\', salt=\''.$salt.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id']) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
+				    $db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($password_hash).'\', activate_key=\''.$db->escape($new_password_key).'\', salt=\''.$salt.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id'])
+                        or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 					// Do the user specific replacements to the template
 					$cur_mail_message = str_replace('<username>', $cur_hit['username'], $mail_message);
