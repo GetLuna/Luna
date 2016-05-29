@@ -30,7 +30,22 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<h2 class="clearfix"><span class="version-name">Emerald Update <small>2.0.1</small></span></h2>
+						<h2 class="clearfix"><span class="version-name">Emerald Update 2 <small>2.0.2</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('jQuery has been updated to version 2.2.4', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Info messages no longer feel like an error if they\'re not', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Custom CSS is now loaded before emoji CSS to allow custom web fonts', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved error design in Inbox', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('The quick reply box in Inbox has been replaced with a Reply-button', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('An issue with signing in has been resolved', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes the password reset link which was broken in certain situations', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes wrong avatars in Inbox conversations', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 1 <small>2.0.1</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Font Awesome has been updated to version 4.6.3', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('When no threads or forums exist, the messages are shown in a more polished style', 'luna') ?></li>

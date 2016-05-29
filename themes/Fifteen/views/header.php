@@ -13,12 +13,12 @@ require ('header.php');
 		<script src="vendor/js/bootstrap.min.js"></script>
 		<script src="vendor/js/prism.js"></script>
 		<style>
-		.emoji {
-			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
-		}
         <?php if ($luna_config['o_use_custom_css']) {
             echo $luna_config['o_custom_css'];
         } ?>
+		.emoji {
+			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
+		}
 		</style>
 	</head>
 	<body>

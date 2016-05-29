@@ -34,12 +34,7 @@ draw_response_list();
 
 echo $paging_links;
 ?>
-			<form method="post" id="comment" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
-                <input type="hidden" name="req_subject" placeholder="<?php _e('Subject', 'luna') ?>" value="<?php echo ($p_subject != '' ? luna_htmlspecialchars($p_subject) : ''); ?>" />
-                <input type="hidden" name="form_user" value="<?php echo luna_htmlspecialchars($luna_user['username']) ?>" />
-				<input type="hidden" name="reply" value="1" />
-                <?php draw_editor('10'); ?>
-			</form>
+			<a type="button" class="btn btn-primary btn-lg btn-block btn-bottom" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a>
 		</div>
 	</div>
 </div>

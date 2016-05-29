@@ -1264,6 +1264,11 @@ hr {
     margin-bottom: 0;
 }
 
+.btn-bottom {
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
 /* Modal forms */
 #login-form .modal-xs,
 #delete-form .modal-xs {
