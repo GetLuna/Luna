@@ -17,7 +17,7 @@ require LUNA_ROOT.'include/me_functions.php';
 
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$id = isset($_GET['id']) ? intval($_GET['id']) : $luna_user['id'];
 
 if ($id < 2)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
