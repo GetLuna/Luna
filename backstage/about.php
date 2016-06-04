@@ -30,6 +30,14 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 3 <small>2.0.3</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Password reset would fail to reset the password in some situations', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 2 <small>2.0.2</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('jQuery has been updated to version 2.2.4', 'luna') ?></li>
