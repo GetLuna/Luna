@@ -184,7 +184,7 @@ if (isset($_GET['saved']))
                     </tr>
                     <tr>
                         <td><?php _e('Bootstrap version', 'luna') ?></td>
-                        <td>3.3.6</td>
+                        <td>3.3.7</td>
                     </tr>
                     <tr>
                         <td><?php _e('Font Awesome version', 'luna') ?></td>
