@@ -406,100 +406,6 @@ switch ($stage) {
 		}
 
 		// Add the messages table
-		if (!$db->table_exists('messages')) {
-			$schema = array(
-				'FIELDS'			=> array(
-					'id'				=> array(
-						'datatype'		=> 'SERIAL',
-						'allow_null'	=> false
-					),
-					'shared_id'		=> array(
-						'datatype'		=> 'INT(10)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'last_shared_id'	=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'last_comment'			=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> true,
-						'default'			=> '0'
-					),
-					'last_comment_id'		=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> true,
-						'default'			=> '0'
-					),
-					'last_commenter'		=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'owner'				=> array(
-						'datatype'			=> 'INTEGER',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'subject'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false
-					),
-					'message'			=> array(
-						'datatype'			=> 'MEDIUMTEXT',
-						'allow_null'		=> false
-					),
-					'hide_smilies'	=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'show_message'	=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'sender'	=> array(
-						'datatype'		=> 'VARCHAR(200)',
-						'allow_null'	=> false
-					),
-					'receiver'	=> array(
-						'datatype'		=> 'VARCHAR(200)',
-						'allow_null'	=> true
-					),
-					'sender_id'	=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'receiver_id'	=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> true,
-						'default'			=> '0'
-					),
-					'sender_ip'	=> array(
-						'datatype'			=> 'VARCHAR(39)',
-						'allow_null'		=> true
-					),
-					'commented'	=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-					),
-					'showed'	=> array(
-						'datatype'			=> 'TINYINT(1)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					)
-				),
-				'PRIMARY KEY'		=> array('id'),
-			);
-
-			$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
-		}
-
-		// Add the messages table
 		if (!$db->table_exists('notifications')) {
 			$schema = array(
 				'FIELDS'			=> array(
@@ -589,8 +495,6 @@ switch ($stage) {
 		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_replies', 'g_comment', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_flood', 'g_comment_flood', 'SMALLINT(6)');
-		$db->rename_field('groups', 'g_pm', 'g_inbox', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_pm_limit', 'g_inbox_limit', 'INT');
 		$db->rename_field('forum_perms', 'post_topics', 'create_threads', 'TINYINT(1)');
 		$db->rename_field('forum_perms', 'post_replies', 'comment', 'TINYINT(1)');
 		$db->rename_field('forums', 'num_posts', 'num_comments', 'MEDIUMINT(8)');
@@ -623,10 +527,6 @@ switch ($stage) {
 		$db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
-		$db->rename_field('users', 'use_pm', 'use_inbox', 'TINYINT(1)');
-		$db->rename_field('users', 'notify_pm', 'notify_inbox', 'TINYINT(1)');
-		$db->rename_field('users', 'notify_pm_full', 'notify_inbox_full', 'TINYINT(1)');
-		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 
 		build_config(0, 'o_topic_review');
 		build_config(0, 'o_video_height');
@@ -640,10 +540,6 @@ switch ($stage) {
 		build_config(2, 'o_thread_views', 'o_topic_views');
 		build_config(2, 'o_show_comment_count', 'o_show_post_count');
 		build_config(1, 'o_has_commented', (isset($luna_config['o_has_posted']) ? $luna_config['o_has_posted'] : '1'));
-		build_config(2, 'o_enable_inbox', 'o_pms_enabled');
-		build_config(2, 'o_max_receivers', 'o_pms_max_receiver');
-		build_config(2, 'o_message_per_page', 'o_pms_mess_per_page');
-		build_config(2, 'o_inbox_notification', 'o_pms_notification');
 		build_config(0, 'o_has_posted');
 
 		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
@@ -656,20 +552,6 @@ switch ($stage) {
 
 			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
-
-			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
-			build_config(1, 'o_enable_inbox', '1');
-			build_config(1, 'o_max_receivers', '5');
-			build_config(1, 'o_message_per_page', '10');
-			build_config(1, 'o_inbox_notification', '1');
-
-			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
-			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
-			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-			$db->add_field('users', 'use_inbox', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-			$db->add_field('users', 'notify_inbox', 'TINYINT(1)', false, '1', 'use_inbox') or error('Unable to add column "notify_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-			$db->add_field('users', 'notify_inbox_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "notify_inbox_full" to table "users"', __FILE__, __LINE__, $db->error());
-			$db->add_field('users', 'num_inbox', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_inbox" to table "users"', __FILE__, __LINE__, $db->error());
 
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
@@ -710,9 +592,32 @@ switch ($stage) {
         $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
         
         // Luna 3.0 upgrade support
-        
 		build_config(0, 'o_cookie_bar');
 		build_config(0, 'o_cookie_bar_url');
+        build_config(0, 'o_enable_inbox');
+        build_config(0, 'o_max_receivers');
+        build_config(0, 'o_message_per_page');
+        build_config(0, 'o_inbox_notification');
+		build_config(0, 'o_enable_inbox');
+		build_config(0, 'o_max_receivers');
+		build_config(0, 'o_message_per_page');
+		build_config(0, 'o_inbox_notification');
+
+        $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
+        $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());
+        $db->drop_field('users', 'use_inbox') or error('Unable to drop column "use_inbox" from table "users"', __FILE__, __LINE__, $db->error());
+        $db->drop_field('users', 'notify_inbox') or error('Unable to drop column "notify_inbox" from table "users"', __FILE__, __LINE__, $db->error());
+        $db->drop_field('users', 'notify_inbox_full') or error('Unable to drop column "notify_inbox_full" from table "users"', __FILE__, __LINE__, $db->error());
+        $db->drop_field('users', 'num_inbox') or error('Unable to drop column "num_inbox" from table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_pm') or error('Unable to drop column "g_pm" from table "groups"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_pm_limit') or error('Unable to drop column "g_pm_limit" from table "groups"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'use_pm') or error('Unable to drop column "use_pm" from table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_pm') or error('Unable to drop column "notify_pm" from table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_pm_full') or error('Unable to drop column "notify_pm_full" from table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'num_pms') or error('Unable to drop column "num_pms" from table "users"', __FILE__, __LINE__, $db->error());
+
+		if ($db->table_exists('messages'))
+			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());
 
 		break;
 

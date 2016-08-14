@@ -129,14 +129,10 @@ function draw_editor($height, $meta_enabled = null) {
 			echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 		elseif (LUNA_ACTIVE_PAGE == 'edit')
 			echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_comment['message']);
-		elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
-			echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
 	?></textarea>
 	<?php
 		if (LUNA_ACTIVE_PAGE == 'edit')
 			$action = 'edit-comment';
-		elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
-			$action = 'message';
 		else
 			$action = ($fid ? 'thread' : 'comment');
 	?>
@@ -772,108 +768,6 @@ function draw_comment_list() {
 		require get_view_path('comment.php');
 	}
 
-}
-
-function draw_response_list() {
-	global $result, $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $inbox;
-
-	while ($cur_comment = $db->fetch_assoc($result)) {
-		$comment_count++;
-		$user_avatar = '';
-		$user_info = array();
-		$user_contacts = array();
-		$comment_actions = array();
-		$is_online = '';
-		$signature = '';
-
-		// If the commenter is a registered user
-		if ($cur_comment['id']) {
-			if ($luna_user['g_view_users'] == '1')
-				$username = '<a href="profile.php?id='.$cur_comment['sender_id'].'">'.luna_htmlspecialchars($cur_comment['sender']).'</a>';
-			else
-				$username = luna_htmlspecialchars($cur_comment['sender']);
-
-			$user_title = get_title($cur_comment);
-
-			if ($luna_config['o_censoring'] == '1')
-				$user_title = censor_words($user_title);
-
-			// Format the online indicator
-			$is_online = ($cur_comment['is_online'] == $cur_comment['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
-
-			if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
-				if (isset($user_avatar_cache[$cur_comment['sender_id']]))
-					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']];
-				else
-					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']] = generate_avatar_markup($cur_comment['sender_id']);
-			}
-
-			// We only show location, register date, comment count and the contact links if "Show user info" is enabled
-			if ($luna_config['o_show_user_info'] == '1') {
-				if ($cur_comment['location'] != '') {
-					if ($luna_config['o_censoring'] == '1')
-						$cur_comment['location'] = censor_words($cur_comment['location']);
-
-					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_comment['location']).'</span></dd>';
-				}
-
-				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_comment['registered'], true).'</span></dd>';
-
-				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'.__('Comments:', 'luna').' '.forum_number_format($cur_comment['num_comments']).'</span></dd>';
-
-				// Now let's deal with the contact links (Email and URL)
-				if ((($cur_comment['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
-					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['email'].'">'.__('Email', 'luna').'</a></span>';
-				elseif ($cur_comment['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_comment['sender_id'].'">'.__('Email', 'luna').'</a></span>';
-
-				if ($luna_config['o_enable_inbox'] == '1' && !$luna_user['is_guest'] && $luna_user['g_inbox'] == '1' && $luna_user['use_inbox'] == '1' && $cur_comment['use_inbox'] == '1') {
-					$pid = isset($cur_comment['sender_id']) ? $cur_comment['sender_id'] : $cur_comment['sender_id'];
-					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
-				}
-
-				if ($cur_comment['url'] != '')
-					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_comment['url']).'">'.__('Website', 'luna').'</a></span>';
-
-			}
-
-			if ($luna_user['is_admmod']) {
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_ip'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
-
-				if ($cur_comment['admin_note'] != '')
-					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_comment['admin_note']).'</strong></span></dd>';
-			}
-		} else { // If the commenter is a guest (or a user that has been deleted)
-			$username = luna_htmlspecialchars($cur_comment['username']);
-			$user_title = get_title($cur_comment);
-
-			if ($luna_user['is_admmod'])
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_comment['sender_id'].'" title="'.$cur_comment['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
-
-			if ($luna_config['o_show_user_info'] == '1' && $cur_comment['commenter_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_comment['commenter_email'].'">'.__('Email', 'luna').'</a></span>';
-		}
-
-		$username_quickreply = luna_htmlspecialchars($cur_comment['username']);
-
-		$comment_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
-
-		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
-		$cur_comment['message'] = parse_message($cur_comment['message']);
-
-		// Do signature parsing/caching
-		if ($luna_config['o_signatures'] == '1' && $cur_comment['signature'] != '' && $luna_user['show_sig'] != '0') {
-			if (isset($signature_cache[$cur_comment['id']]))
-				$signature = $signature_cache[$cur_comment['id']];
-			else {
-				$signature = parse_signature($cur_comment['signature']);
-				$signature_cache[$cur_comment['id']] = $signature;
-			}
-		}
-
-		require get_view_path('comment.php');
-	}
 }
 
 function draw_user_list() {

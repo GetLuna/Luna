@@ -89,22 +89,6 @@ $tpl_temp .= '</div>';
 $links = array();
 $menu_title = $luna_config['o_board_title'];
 
-$inbox_menu_item = '';  
-  
-$num_new_pm = 0;
-if ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $luna_user['use_inbox'] == '1') {
-	// Check for new messages
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
-	$num_new_pm = $db->result($result);
-
-	if ($num_new_pm > 0)
-		$new_inbox = $num_new_pm.' ';
-	else
-		$new_inbox = '';
-
-	$inbox_menu_item = '<li><a href="inbox.php"><span class="'.(($num_new_pm > 0)? ' flash' : '').'">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> '.__( 'Inbox', 'luna' ).'</span></span></a></li>';
-}
-
 if (!$luna_user['is_guest']) {
     // Check for new notifications
     $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
@@ -159,7 +143,7 @@ if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((LUNA_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.__( 'Register', 'luna' ).'</a></li>  
 				 <li><a href="#" data-toggle="modal" data-target="#login-form">'.__( 'Login', 'luna' ).'</a></li>';
 else
-	$usermenu = $backstage.$inbox_menu_item.$notification_menu_item.'
+	$usermenu = $backstage.$notification_menu_item.'
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i><span class="visible-xs-inline"> '.luna_htmlspecialchars($luna_user['username']).'</span> <i class="fa fa-fw fa-angle-down"></i></a>
 					<ul class="dropdown-menu">

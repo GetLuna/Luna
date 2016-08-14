@@ -547,16 +547,6 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '60'
 				),
-				'g_inbox'						=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
-				'g_inbox_limit'				=> array(
-					'datatype'		=> 'INT',
-					'allow_null'	=> false,
-					'default'		=> '20'
-				),
 				'g_report_flood'			=> array(
 					'datatype'		=> 'SMALLINT(6)',
 					'allow_null'	=> false,
@@ -1274,26 +1264,6 @@ class Installer {
 					'datatype'		=> 'VARCHAR(8)',
 					'allow_null'	=> true
 				),
-				'use_inbox'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
-				'notify_inbox'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
-				'notify_inbox_full'=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'num_inbox'	=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
 				'first_run'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
@@ -1333,97 +1303,6 @@ class Installer {
 			$schema['UNIQUE KEYS']['username_idx'] = array('username(25)');
 
 		$db->create_table('users', $schema) or error('Unable to create users table', __FILE__, __LINE__, $db->error());
-
-		$schema = array(
-			'FIELDS'			=> array(
-				'id'				=> array(
-					'datatype'		=> 'SERIAL',
-					'allow_null'	=> false
-				),
-				'shared_id'		=> array(
-					'datatype'		=> 'INT(10)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'last_shared_id'	=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'last_comment'			=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> true,
-					'default'			=> '0'
-				),
-				'last_comment_id'		=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> true,
-					'default'			=> '0'
-				),
-				'last_commenter'		=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'owner'				=> array(
-					'datatype'			=> 'INTEGER',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'subject'			=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false
-				),
-				'message'			=> array(
-					'datatype'			=> 'MEDIUMTEXT',
-					'allow_null'		=> false
-				),
-				'hide_smilies'	=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'show_message'	=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'sender'	=> array(
-					'datatype'		=> 'VARCHAR(200)',
-					'allow_null'	=> false
-				),
-				'receiver'	=> array(
-					'datatype'		=> 'VARCHAR(200)',
-					'allow_null'	=> true
-				),
-				'sender_id'	=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'receiver_id'	=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> true,
-					'default'			=> '0'
-				),
-				'sender_ip'	=> array(
-					'datatype'			=> 'VARCHAR(39)',
-					'allow_null'		=> true
-				),
-				'commented'	=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-				),
-				'showed'	=> array(
-					'datatype'			=> 'TINYINT(1)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				)
-			),
-			'PRIMARY KEY'		=> array('id'),
-		);
-
-		$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
 
 		// Insert config data
 		$luna_config = array(
@@ -1506,10 +1385,6 @@ class Installer {
 			'o_feed_ttl'				=> 0,
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
-			'o_enable_inbox'			=> 1,
-			'o_message_per_page'		=> 10,
-			'o_max_receivers'			=> 5,
-			'o_inbox_notification'		=> 1,
 			'o_emoji'					=> 1,
 			'o_emoji_size'				=> 16,
 			'o_back_to_top'				=> 1,

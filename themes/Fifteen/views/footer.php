@@ -100,8 +100,6 @@ $num_guests = num_guests_online();
             </div>
         </footer>
 <?php
-}
-
 
 // End the transaction
 $db->end_transaction();

@@ -231,20 +231,6 @@ else
 					</div>
 					<div role="tabpanel" class="tab-pane" id="contact">
 						<fieldset class="form-horizontal form-setting">
-							<?php if ($luna_config['o_enable_inbox'] == 1) { ?>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Inbox', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[use_inbox]" value="1"<?php if ($user['use_inbox'] == '1') echo ' checked' ?> />
-											<?php _e('Allow users to send messages with Inbox.', 'luna') ?>
-										</label>
-									</div>
-								</div>
-							</div>
-							<hr />
-							<?php } ?>
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Email settings', 'luna') ?></label>
 								<div class="col-sm-9">

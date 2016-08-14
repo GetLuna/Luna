@@ -550,7 +550,7 @@ To change your email address, please visit the following page:
 	redirect('settings.php?id='.$id);
 } else {
 
-	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_inbox, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.salt, u.first_run, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.salt, u.first_run, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -628,7 +628,6 @@ To change your email address, please visit the following page:
 			'show_avatars'		=> isset($_POST['form']['show_avatars']) ? '1' : '0',
 			'first_run'		    => isset($_POST['form']['first_run']) ? '0' : '1',
 			'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
-			'use_inbox'			=> isset($_POST['form']['use_inbox']) ? '1' : '0',
 			'email_setting'		=> intval($_POST['form']['email_setting']),
 			'notify_with_comment'	=> isset($_POST['form']['notify_with_comment']) ? '1' : '0',
 			'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0'

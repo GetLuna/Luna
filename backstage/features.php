@@ -48,9 +48,6 @@ if (isset($_POST['form_sent'])) {
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
 		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
-		'enable_inbox'					=> isset($_POST['form']['enable_inbox']) ? '1' : '0',
-		'inbox_notification'			=> isset($_POST['form']['inbox_notification']) ? '1' : '0',
-		'max_receivers'					=> (intval($_POST['form']['max_receivers']) > 0) ? intval($_POST['form']['max_receivers']) : 5,
 		'emoji'					=> isset($_POST['form']['emoji']) ? '1' : '0',
 		'emoji_size'			=> intval($_POST['form']['emoji_size']),
 		'forum_subscriptions'	        => isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
@@ -216,34 +213,6 @@ if (isset($_GET['saved']))
                                         <?php _e('Allow search only in 1 forum at a time.', 'luna') ?>
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Inbox', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Inbox', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[enable_inbox]" value="1" <?php if ($luna_config['o_enable_inbox'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow users to use Inbox.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Receivers', 'luna') ?><span class="help-block"><?php _e('The number of receivers an Inbox message can have', 'luna') ?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[max_receivers]" maxlength="5" value="<?php echo $luna_config['o_max_receivers'] ?>" />
                             </div>
                         </div>
                     </fieldset>
