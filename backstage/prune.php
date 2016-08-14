@@ -129,44 +129,6 @@ if ($action == 'prune') {
 if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 	require LUNA_ROOT.'include/cache.php';
 
-if (isset($_POST['notiprune'])) {
-	if ($_POST['prune_type'] == 1)
-		$type = ' AND viewed = 1';
-	elseif ($_POST['prune_type'] == 2)
-		$type = ' AND viewed = 0';
-	else
-		$type = '';
-
-	$prune_days = intval($_POST['prune_days']);
-	if ($prune_days != 0) {
-		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
-
-		$prune_date_sql = ($prune_date != -1) ? ' WHERE time<'.$prune_date : '';
-	} else
-		$prune_date_sql = '';
-
-	// Fetch notifications to prune
-	$result = $db->query('SELECT id FROM '.$db->prefix.'notifications'.$prune_date_sql.$type, true) or error('Unable to fetch notification IDs', __FILE__, __LINE__, $db->error());
-
-	$notification_ids = '';
-	while ($row = $db->fetch_row($result))
-		$notification_ids .= (($notification_ids != '') ? ',' : '').$row[0];
-
-	if ($notification_ids != '') {
-		// Fetch posts to prune
-		$result = $db->query('SELECT id FROM '.$db->prefix.'notifications WHERE id IN('.$notification_ids.')', true) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
-
-		$notification_ids = '';
-		while ($row = $db->fetch_row($result))
-			$notification_ids .= (($notification_ids != '') ? ',' : '').$row[0];
-
-		if ($notification_ids != '')
-			$db->query('DELETE FROM '.$db->prefix.'notifications WHERE id IN('.$notification_ids.')') or error('Unable to prune notifications', __FILE__, __LINE__, $db->error());
-	}
-
-	message_backstage(__('Pruning complete. Notifications pruned.', 'luna'));
-}
-
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['comments']) == '')
@@ -217,41 +179,6 @@ require 'header.php';
 <div class="row">
 	<div class="col-sm-12">
         <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php printf(__('It\'s recommended to activate %s while using the options below.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></div>
-        <form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="action" value="notiprune" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a notification must be to be pruned', 'luna') ?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="prune_days" maxlength="3" tabindex="5" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="prune_type" value="0" tabindex="6" />
-                                    <?php _e('All notifications', 'luna') ?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="prune_type" value="1" checked />
-                                    <?php _e('Seen notifications', 'luna') ?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="prune_type" value="2" />
-                                    <?php _e('New notifications', 'luna') ?>
-                                </label>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-        </form>
         <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
             <div class="panel panel-default">
                 <div class="panel-heading">
