@@ -338,18 +338,6 @@ function luna_setcookie($user_id, $password_hash, $expire) {
 
 //
 // Set a cookie, Luna style!
-// Wrapper for forum_setcookie
-//
-function luna_cookiebarcookie() {
-	// In a year, we'll ask again
-	$expire = time() + 31536000;
-
-	forum_setcookie('LunaCookieBar', 1, $expire);
-}
-
-
-//
-// Set a cookie, Luna style!
 //
 function forum_setcookie($name, $value, $expire) {
 	global $cookie_path, $cookie_domain, $cookie_secure, $luna_config;

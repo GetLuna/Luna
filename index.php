@@ -59,13 +59,6 @@ if ($action == 'do_not_show') {
 	redirect('index.php');
 }
 
-// Or want to disable the cookiebar
-if ($action == 'disable_cookiebar') {
-	luna_cookiebarcookie();
-
-	redirect('index.php');
-}
-
 if ($luna_config['o_board_slogan'] == '')
     $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
 else

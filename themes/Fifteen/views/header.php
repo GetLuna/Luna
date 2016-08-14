@@ -19,10 +19,6 @@ require ('header.php');
 		.emoji {
 			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
 		}
-        <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
-			body { margin-bottom: 60px; }
-			@media screen and (max-width: 767px) { body { margin-bottom: 80px; } }
-        <?php } ?>
 		</style>
 	</head>
 	<body>

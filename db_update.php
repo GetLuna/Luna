@@ -294,7 +294,6 @@ switch ($stage) {
 		build_config(1, 'o_enable_advanced_search', '1');
 
 		// ModernBB 3.4 upgrade support
-		build_config(1, 'o_cookie_bar', '0');
 		build_config(1, 'o_moderated_by', '1');
 
 		// ModernBB 3.4 Update 1 upgrade support
@@ -566,7 +565,6 @@ switch ($stage) {
 		build_config(1, 'o_announcement_title', '');
 		build_config(1, 'o_announcement_type', 'info');
 		build_config(1, 'o_board_tags', '');
-		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies.php');
 		build_config(1, 'o_default_accent', '2');
 
 		// Luna 1.2 upgrade support
@@ -710,6 +708,11 @@ switch ($stage) {
         $db->add_field('comments', 'admin_note', 'MEDIUMTEXT', true) or error('Unable to admin note field to comments', __FILE__, __LINE__, $db->error());
         
         $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
+        
+        // Luna 3.0 upgrade support
+        
+		build_config(0, 'o_cookie_bar');
+		build_config(0, 'o_cookie_bar_url');
 
 		break;
 
