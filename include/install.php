@@ -1277,7 +1277,6 @@ class Installer {
 			'o_feed_ttl'				=> 0,
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
-			'o_update_ring'				=> 1,
 			'o_message_img_tag'			=> 1,
 			'o_message_all_caps'		=> 1,
 			'o_subject_all_caps'		=> 1,

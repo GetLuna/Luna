@@ -321,7 +321,6 @@ switch ($stage) {
 		build_config(0, 'o_show_search');
 		build_config(0, 'o_show_userlist');
 		build_config(0, 'o_show_version');
-		build_config(1, 'o_update_ring', '1');
 		build_config(0, 'o_user_menu_sidebar');
 
 		// Add the menu table
@@ -515,6 +514,7 @@ switch ($stage) {
 		build_config(0, 'o_custom_copyright');
 		build_config(0, 'o_show_copyright');
 		build_config(0, 'o_header_search');
+		build_config(0, 'o_update_ring');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());

@@ -41,14 +41,6 @@ if (isset($_POST['form_sent'])) {
 if (file_exists(LUNA_CACHE_DIR.'cache_update.php'))
 	include LUNA_CACHE_DIR.'cache_update.php';
 
-if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
-	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
-		require LUNA_ROOT.'include/cache.php';
-
-	generate_update_cache();
-	require LUNA_CACHE_DIR.'cache_update.php';
-}
-
 $result = $db->query('SELECT SUM(num_threads), SUM(num_comments) FROM '.$db->prefix.'forums') or error('Unable to fetch thread/comment count', __FILE__, __LINE__, $db->error());
 list($stats['total_threads'], $stats['total_comments']) = array_map('intval', $db->fetch_row($result));
 
@@ -128,23 +120,6 @@ if ($db->num_rows($result)) {
         </form>
     </div>
 	<div class="col-sm-4">
-<?php
-//Update checking
-if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
-?>
-		<div class="alert alert-info">
-			<h4><i class="fa fa-fw fa-moon-o"></i> <?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>
-		</div>
-<?php
-}
-
-if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
-        <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
-<?php endif;
-
-if ($install_file_exists) : ?>
-        <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('The file install.php still exists, but should be removed.', 'luna') ?></div>
-<?php endif; ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
