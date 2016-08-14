@@ -148,13 +148,6 @@ if (isset($_POST['form_sent'])) {
 		}
 	}
 
-	if ($action == 'clear_cache') {
-		confirm_referrer('backstage/maintenance.php');
-
-		delete_all(LUNA_ROOT.'cache');
-		redirect('backstage/maitenance.php?cache_cleared=true');
-	}
-
 	// Regenerate the config cache
 	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 		require LUNA_ROOT.'include/cache.php';
@@ -199,19 +192,6 @@ if (isset($_GET['cache_cleared']))
                 </div>
             </div>
         </form>
-        <div class="panel panel-default form-horizontal">
-            <div class="panel-heading">
-                <h3 class="panel-title" id="cache"><?php _e('Cache', 'luna') ?></h3>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Cache', 'luna') ?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna') ?></span></label>
-                    <div class="col-sm-9">
-                        <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna') ?></a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <form class="form-horizontal" method="get" action="maintenance.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
