@@ -314,12 +314,11 @@ switch ($stage) {
 		// Luna 1.0 upgrade support
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
 		build_config(0, 'o_additional_navlinks');
 		build_config(1, 'o_admin_note');
@@ -337,7 +336,6 @@ switch ($stage) {
 		build_config(0, 'o_header_title');
 		build_config(0, 'o_menu_title');
 		build_config(0, 'o_notifications');
-		build_config(1, 'o_notification_flyout', '1');
 		build_config(0, 'o_post_responsive');
 		build_config(0, 'o_private_message');
 		build_config(0, 'o_quickpost');
@@ -401,63 +399,6 @@ switch ($stage) {
 			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
-
-		// Add the messages table
-		if (!$db->table_exists('notifications')) {
-			$schema = array(
-				'FIELDS'			=> array(
-					'id'				=> array(
-						'datatype'			=> 'SERIAL',
-						'allow_null'		=> false
-					),
-					'user_id'			=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'message'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'icon'				=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'link'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'time'				=> array(
-						'datatype'			=> 'INT(11)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'viewed'			=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-				),
-				'PRIMARY KEY'		=> array('id'),
-			);
-
-			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
-		}
-
-		// Remove reading_list table
-		if ($db->table_exists('reading_list'))
-			$db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
-
-		// Remove sending_lists table
-		if ($db->table_exists('sending_lists'))
-			$db->drop_table('sending_lists') or error('Unable to drop sending_lists table', __FILE__, __LINE__, $db->error());
-
-		// Remove contacts table
-		if ($db->table_exists('contacts'))
-			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
 		// Luna 1.1 upgrade support
 		build_config(1, 'o_announcement_title', '');
@@ -597,6 +538,7 @@ switch ($stage) {
 		build_config(0, 'o_default_accent');
 		build_config(0, 'o_emoji');
 		build_config(0, 'o_emoji_size');
+		build_config(0, 'o_notification_flyout');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());
@@ -617,6 +559,8 @@ switch ($stage) {
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());
+		if ($db->table_exists('notifications'))
+			$db->drop_table('notifications') or error('Unable to drop notifications table', __FILE__, __LINE__, $db->error());
 
 		break;
 
@@ -743,10 +687,6 @@ switch ($stage) {
 
 	// Show results page
 	case 'finish':
-
-		// Give a "Success" notifcation
-		if ($luna_config['o_cur_version'] != Version::LUNA_VERSION)
-			new_notification('2', 'backstage/about.php', sprintf( __('Luna has been updated to %s', 'luna'), Version::LUNA_VERSION), 'fa-cloud-upload');
 
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());

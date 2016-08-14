@@ -195,9 +195,6 @@ if (isset($_POST['form_sent'])) {
 
 					// Loop through subscribed users and send emails and notifications
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
-						// First of all, add a new notification
-						new_notification($cur_subscriber['id'], get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, sprintf(__('%s replied to %s', 'luna'), $username, $cur_commenting['subject']), 'fa-comment');
-
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new reply" template

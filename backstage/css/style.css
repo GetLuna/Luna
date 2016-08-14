@@ -448,64 +448,6 @@ blockquote footer {
 	padding-bottom: 5px;
 }
 
-.notification-menu {
-	width: 400px;
-}
-
-@media screen and (min-width: 768px) {
-	.notification-menu .timestamp {
-		color: rgba(255,255,255,.5);
-	}
-}
-
-.notification-menu .dropdown-header {
-	color: #fff;
-	font-size: 23px;
-	padding: 10px 10px 5px 10px;
-}
-
-.notification-menu li {
-	position: relative;
-}
-
-.notification-menu li:hover .notification-link {
-	text-overflow: ellipsis;
-	opacity: .8;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.notification-menu .notification-link .timestamp {
-	color: rgba(255,255,255,.6);
-}
-
-.notification-menu li:hover .notification-link .timestamp {
-	display: none;
-}
-
-.notification-row:not(:first-child) {
-    margin-top: 1px;
-}
-
-.notification-row .col-xs-10,
-.notification-row .col-xs-2 {
-    padding: 0;
-}
-
-.notification-row .btn {
-    padding: 8px 12px;
-    white-space: normal;
-}
-
-.notification-row .btn-default {
-    background: #eee;
-    text-align: left;
-}
-
-.notification-row .btn-default:hover {
-    background: #ddd;
-}
-
 /* Images within settings */
 .img-bs-avatar {
     margin-bottom: 10px;

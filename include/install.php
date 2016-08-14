@@ -609,49 +609,6 @@ class Installer {
 
 
 		$schema = array(
-			'FIELDS'			=> array(
-				'id'				=> array(
-					'datatype'			=> 'SERIAL',
-					'allow_null'		=> false
-				),
-				'user_id'			=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'message'			=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'icon'				=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'link'			=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'time'				=> array(
-					'datatype'			=> 'INT(11)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'viewed'			=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-			),
-			'PRIMARY KEY'		=> array('id'),
-		);
-
-		$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
-
-
-		$schema = array(
 			'FIELDS'		=> array(
 				'user_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
@@ -1365,7 +1322,6 @@ class Installer {
 			'o_custom_copyright'		=> NULL,
 			'o_header_search'			=> 1,
 			'o_board_statistics'		=> 1,
-			'o_notification_flyout'		=> 1,
 			'o_update_ring'				=> 1,
 			'o_message_img_tag'			=> 1,
 			'o_message_all_caps'		=> 1,
@@ -1456,9 +1412,6 @@ class Installer {
 
 		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-
-		require LUNA_ROOT.'include/general_functions.php';
-		new_notification('2', 'backstage/about.php', __('Welcome to Luna, discover the possibilities!', 'luna'), 'fa-moon-o');
 
 		$db->end_transaction();
 	}
