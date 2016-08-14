@@ -35,9 +35,7 @@ if (isset($_POST['form_sent'])) {
 		'show_comment_count'	=> isset($_POST['form']['show_comment_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
 		'disp_threads'			=> intval($_POST['form']['disp_threads']),
-		'disp_comments'			=> intval($_POST['form']['disp_comments']),
-		'use_custom_css'		=> isset($_POST['form']['use_custom_css']) ? '1' : '0',
-		'custom_css'			=> luna_trim($_POST['form']['custom_css']),
+		'disp_comments'			=> intval($_POST['form']['disp_comments'])
 	);
 
 	// Make sure the number of displayed threads and comments is between 3 and 75
@@ -166,24 +164,6 @@ if (isset($_GET['saved']))
 
 ?>
 								</select>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Custom CSS', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[use_custom_css]" value="1" <?php if ($luna_config['o_use_custom_css'] == '1') echo ' checked' ?> />
-                                        <?php _e('Use the custom CSS as defined below.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('CSS code', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control form-control-mono" name="form[custom_css]" placeholder="/* <?php _e('Custom CSS') ?> */" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_custom_css']) ?></textarea>
                             </div>
                         </div>
                         <hr />

@@ -463,9 +463,7 @@ switch ($stage) {
 		build_config(0, 'o_default_timezone');
 		build_config(1, 'o_timezone', 'UTC');
         
-        // Luna 1.4 upgrade support
-		build_config(1, 'o_use_custom_css', '0');
-		build_config(1, 'o_custom_css', 'NULL');
+        // Luna 2.0 upgrade support
 		build_config(1, 'o_allow_spoiler', 0);
 		build_config(2, 'o_message_img_tag', 'p_message_img_tag');
 		build_config(2, 'o_message_all_caps', 'p_message_all_caps');
@@ -515,6 +513,8 @@ switch ($stage) {
 		build_config(0, 'o_show_copyright');
 		build_config(0, 'o_header_search');
 		build_config(0, 'o_update_ring');
+		build_config(0, 'o_use_custom_css');
+		build_config(0, 'o_custom_css');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());

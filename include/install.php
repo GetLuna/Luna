@@ -1267,8 +1267,6 @@ class Installer {
 			'o_announcement_message'	=> __('Announcement', 'luna'),
 			'o_announcement_title'		=> NULL,
 			'o_announcement_type'		=> 'info',
-			'o_use_custom_css'			=> 0,
-			'o_custom_css'              => NULL,
 			'o_rules'					=> 0,
 			'o_rules_message'			=> __('Rules', 'luna'),
 			'o_maintenance'				=> 0,

@@ -12,11 +12,6 @@ require ('header.php');
 		<script src="vendor/js/jquery.min.js"></script>
 		<script src="vendor/js/bootstrap.min.js"></script>
 		<script src="vendor/js/prism.js"></script>
-		<style>
-        <?php if ($luna_config['o_use_custom_css']) {
-            echo $luna_config['o_custom_css'];
-        } ?>
-		</style>
 	</head>
 	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
