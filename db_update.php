@@ -318,15 +318,10 @@ switch ($stage) {
 		build_config(0, 'o_additional_navlinks');
 		build_config(1, 'o_admin_note');
 		build_config(0, 'o_admin_notes');
-		build_config(1, 'o_back_to_top', '1');
 		build_config(0, 'o_backstage_dark');
-		build_config(1, 'o_board_statistics', '1');
 		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
-		build_config(1, 'o_copyright_type', '0');
-		build_config(1, 'o_custom_copyright');
 		build_config(0, 'o_forum_new_style');
 		build_config(0, 'o_header_desc');
-		build_config(1, 'o_header_search', '1');
 		build_config(0, 'o_header_title');
 		build_config(0, 'o_menu_title');
 		build_config(0, 'o_notifications');
@@ -334,7 +329,6 @@ switch ($stage) {
 		build_config(0, 'o_private_message');
 		build_config(0, 'o_quickpost');
 		build_config(0, 'o_reading_list');
-		build_config(1, 'o_show_copyright', '1');
 		build_config(0, 'o_show_index');
 		build_config(0, 'o_show_rules');
 		build_config(0, 'o_show_search');
@@ -530,6 +524,12 @@ switch ($stage) {
 		build_config(0, 'o_first_run_message');
 		build_config(0, 'o_first_run_backstage');
 		build_config(0, 'o_show_first_run');
+		build_config(0, 'o_back_to_top');
+		build_config(0, 'o_board_statistics');
+		build_config(0, 'o_copyright_type');
+		build_config(0, 'o_custom_copyright');
+		build_config(0, 'o_show_copyright');
+		build_config(0, 'o_header_search');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());

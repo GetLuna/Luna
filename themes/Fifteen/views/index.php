@@ -23,7 +23,7 @@ if (!defined('FORUM'))
 			<div class="container-avatar hidden-xs">
 				<img src="<?php echo get_avatar( $luna_user['id'] ) ?>" alt="Avatar" class="img-avatar img-center">
 			</div>
-			<?php if ($luna_config['o_header_search'] && $luna_user['g_search'] == '1'): ?>
+			<?php if ($luna_user['g_search'] == '1'): ?>
 			<form id="search" class="input-group search-form" method="get" action="search.php?section=simple">
 				<input type="hidden" name="action" value="search" />
 				<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in comments', 'luna') ?>" maxlength="100" />

@@ -86,15 +86,8 @@ $num_guests = num_guests_online();
             <?php endif; ?>
             <div class="footer container">
                 <span class="pull-left">
-<?php
-	if ($luna_config['o_show_copyright'] == '1') {
-		if ($luna_config['o_copyright_type'] == '0')
-			echo __('Copyright', 'luna').' &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
-		if ($luna_config['o_copyright_type'] == '1')
-			echo $luna_config['o_custom_copyright'];
-	}
-?>
-                <?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
+                    <?php echo __('Copyright', 'luna').' &copy; '.date('Y').' &middot; '.$luna_config['o_board_title']; ?>
+                    <a href="#" class="back-to-top"><i class="fa fa-fw fa-chevron-up"></i></a>
                 </span>
                 <span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
             </div>
