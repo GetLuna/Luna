@@ -309,7 +309,6 @@ switch ($stage) {
 
 		// Luna 1.0 upgrade support
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
@@ -414,11 +413,9 @@ switch ($stage) {
 		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
-		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_replies', 'g_comment', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_flood', 'g_comment_flood', 'SMALLINT(6)');
 		$db->rename_field('forum_perms', 'post_topics', 'create_threads', 'TINYINT(1)');
@@ -479,13 +476,8 @@ switch ($stage) {
 			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
-			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
-			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
-
 			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-			$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 
 		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
@@ -556,6 +548,10 @@ switch ($stage) {
 		$db->drop_field('users', 'adapt_time') or error('Unable to drop column "adapt_time" from table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'color_scheme') or error('Unable to drop column "color_scheme" from table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'first_run') or error('Unable to drop first_run field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_soft_delete_view') or error('Unable to drop g_soft_delete_view field', __FILE__, __LINE__, $db->error());
+        $db->drop_field('groups', 'g_soft_delete_comments') or error('Unable to drop g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
+        $db->drop_field('groups', 'g_soft_delete_threads') or error('Unable to drop g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
+        $db->drop_field('threads', 'soft') or error('Unable to drop soft field', __FILE__, __LINE__, $db->error());
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());

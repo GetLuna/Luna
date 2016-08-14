@@ -46,55 +46,6 @@ if (($luna_user['g_delete_comments'] == '0' ||
 if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_comment['commenter_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-// Hide comments
-if (isset($_POST['soft_delete'])) {
-	// Make sure they got here from the site
-	confirm_referrer('delete.php');
-
-	require LUNA_ROOT.'include/search_idx.php';
-
-	if ($is_thread_comment) {
-		// Delete the thread and all of its comments
-		delete_thread($cur_comment['tid'], "soft");
-		update_forum($cur_comment['fid']);
-
-		redirect('viewforum.php?id='.$cur_comment['fid']);
-	} else {
-		// Delete just this one comment
-		$db->query('UPDATE '.$db->prefix.'comments SET soft = 1 WHERE id='.$id) or error('Unable to hide comment', __FILE__, __LINE__, $db->error());
-		update_forum($cur_comment['fid']);
-
-		// Redirect towards the previous comment
-		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$cur_comment['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
-		$comment_id = $db->result($result);
-
-		redirect('thread.php?pid='.$comment_id.'#p'.$comment_id);
-	}
-}
-
-// Unhide
-if (isset($_POST['reset'])) {
-	// Make sure they got here from the site
-	confirm_referrer('delete.php');
-
-	require LUNA_ROOT.'include/search_idx.php';
-
-	if ($is_thread_comment) {
-		// Reset the thread and all of its comments
-		delete_thread($cur_comment['tid'], "reset");
-		update_forum($cur_comment['fid']);
-
-		redirect('viewforum.php?id='.$cur_comment['fid']);
-	} else {
-		// Reset just this one comment
-		$db->query('UPDATE '.$db->prefix.'comments SET soft = 0 WHERE id='.$id) or error('Unable to unhide comment', __FILE__, __LINE__, $db->error());
-		update_forum($cur_comment['fid']);
-
-		// Redirect towards the comment
-		redirect('thread.php?pid='.$id.'#p'.$id);
-	}
-}
-
 if (isset($_POST['delete'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
@@ -128,10 +79,6 @@ $cur_comment['message'] = parse_message($cur_comment['message']);
 
 require load_page('header.php');
 
-if ($action == "reset")
-	require load_page('reset.php');
-if ($action == "soft")
-	require load_page('soft.php');
 if ($action == "delete")
 	require load_page('delete.php');
 

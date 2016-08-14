@@ -192,10 +192,7 @@ function draw_threads_list() {
 	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_threads, $cur_forum;
 
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	if ($luna_user['g_soft_delete_view'])
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
-	else
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
@@ -208,16 +205,10 @@ function draw_threads_list() {
 		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
 			// When not showing a commented label
-			if (!$luna_user['is_admmod'])
-				$sql_addition = 'soft = 0 AND ';
-
-			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, important, solved AS answer, moved_to, soft FROM '.$db->prefix.'threads WHERE '.$sql_addition.'id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
+			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, important, solved AS answer, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a commented label
-			if (!$luna_user['g_soft_delete_view'])
-				$sql_addition = 't.soft = 0 AND ';
-
-			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.important, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.important, t.solved AS answer FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
 
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -476,18 +467,10 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 			$thread_ids[] = $cur_thread_id;
 
 		// Fetch list of threads to display on this page
-		$sql_soft = NULL;
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
-			if (!$luna_user['g_soft_delete_view'])
-				$sql_soft = 'soft = 0 AND ';
-
-			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, important, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE '.$sql_soft.'id IN('.implode(',', $thread_ids).') ORDER BY last_comment DESC';
-
+			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, important, moved_to, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY last_comment DESC';
 		} else {
-			if (!$luna_user['g_soft_delete_view'])
-				$sql_soft = 't.soft = 0 AND ';
-
-			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.important, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.last_comment DESC';
+			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.important, t.moved_to, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.last_comment DESC';
 		}
 
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -607,7 +590,7 @@ function draw_comment_list() {
 	global $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective commenter/online status)
-	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.commenter AS username, p.commenter_id, p.commenter_ip, p.commenter_email, p.message, p.admin_note, p.hide_smilies, p.commented, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.commenter AS username, p.commenter_id, p.commenter_ip, p.commenter_email, p.message, p.admin_note, p.hide_smilies, p.commented, p.edited, p.edited_by, p.marked, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	while ($cur_comment = $db->fetch_assoc($result)) {
 		$comment_count++;
 		$user_avatar = '';
@@ -710,12 +693,6 @@ function draw_comment_list() {
 				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
 						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fa fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
-                    
-					if ((($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1))
-						if ($cur_comment['soft'] == 0)
-							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fa fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
-						else
-							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fa fa-fw fa-eye"></i> '.__('Show', 'luna').'</a>';
 					
 				}
 			}
@@ -737,14 +714,8 @@ function draw_comment_list() {
 				else
 					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
-			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) {
+			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids))
 				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fa fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
-                
-				if ($cur_comment['soft'] == 0)
-					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fa fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
-				else
-					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fa fa-fw fa-eye"></i> '.__('Show', 'luna').'</a>';
-			}
             
 			if ($cur_comment['marked'] == false)
 				$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
@@ -804,34 +775,6 @@ function draw_delete_form($id) {
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
-			</div>
-		</form>
-<?php
-}
-
-function draw_soft_delete_form($id) {
-	global $is_thread_comment;
-
-?>
-		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
-			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be hidden.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to hide is set out below for you to review before proceeding.', 'luna') ?></p>
-			<div class="btn-toolbar">
-				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Hide', 'luna') ?></button>
-			</div>
-		</form>
-<?php
-}
-
-function draw_soft_reset_form($id) {
-	global $is_thread_comment;
-
-?>
-		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
-			<p><?php _e('This comment has been hidden. We\'ll unhide it again with a click on the button.', 'luna') ?></p>
-			<div class="btn-toolbar">
-				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Show', 'luna') ?></button>
 			</div>
 		</form>
 <?php

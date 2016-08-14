@@ -173,29 +173,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Hide', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
-                                        <?php echo __('Allow users to view threads and comments that have been hidden.', 'luna') ?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="soft_delete_comments" value="1" <?php if ($group['g_soft_delete_comments'] == '1') echo ' checked' ?> />
-                                        <?php echo __('Allow users to hide comments from all users.', 'luna') ?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="soft_delete_threads" value="1" <?php if ($group['g_soft_delete_threads'] == '1') echo ' checked' ?> />
-                                        <?php echo __('Allow users to hide threads from all users.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
             <?php endif; ?>
             <?php if ($group['g_id'] != LUNA_GUEST): ?>
                         <hr />
@@ -322,11 +299,8 @@ elseif (isset($_POST['add_edit_group'])) {
 		$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
 		$email_flood = (isset($_POST['email_flood']) && $_POST['email_flood'] >= 0) ? intval($_POST['email_flood']) : '0';
 		$report_flood = (isset($_POST['report_flood']) && $_POST['report_flood'] >= 0) ? intval($_POST['report_flood']) : '0';
-		$soft_delete_view = isset($_POST['soft_delete_view']) ? '1' : '0';
-		$soft_delete_comments = isset($_POST['soft_delete_comments']) ? '1' : '0';
-		$soft_delete_threads = isset($_POST['soft_delete_threads']) ? '1' : '0';
 	} else {
-		$mod_edit_users = $moderator = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $comment = $create_threads = $edit_comments = $delete_comments = $delete_threads = $set_title = $search = $search_users = $send_email = $soft_delete_view = $soft_delete_comments = $soft_delete_threads = '1';
+		$mod_edit_users = $moderator = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $comment = $create_threads = $edit_comments = $delete_comments = $delete_threads = $set_title = $search = $search_users = $send_email = '1';
 		$comment_flood = $search_flood = $email_flood = $report_flood = '0';
 	}
 
@@ -340,7 +314,7 @@ elseif (isset($_POST['add_edit_group'])) {
 		if ($db->num_rows($result))
 			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
-		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_comments, g_soft_delete_threads) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$comment.', '.$create_threads.', '.$edit_comments.', '.$delete_comments.', '.$delete_threads.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$comment_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$soft_delete_view.', '.$soft_delete_comments.', '.$soft_delete_threads.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_comment, g_create_threads, g_edit_comments, g_delete_comments, g_delete_threads, g_set_title, g_search, g_search_users, g_send_email, g_comment_flood, g_search_flood, g_email_flood, g_report_flood) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$comment.', '.$create_threads.', '.$edit_comments.', '.$delete_comments.', '.$delete_threads.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$comment_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
 
 		// Now lets copy the forum specific permissions from the group which this group is based on
@@ -352,7 +326,7 @@ elseif (isset($_POST['add_edit_group'])) {
 		if ($db->num_rows($result))
 			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
-		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_comment='.$comment.', g_create_threads='.$create_threads.', g_edit_comments='.$edit_comments.', g_delete_comments='.$delete_comments.', g_delete_threads='.$delete_threads.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_comment_flood='.$comment_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_comments='.$soft_delete_comments.', g_soft_delete_threads='.$soft_delete_threads.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_comment='.$comment.', g_create_threads='.$create_threads.', g_edit_comments='.$edit_comments.', g_delete_comments='.$delete_comments.', g_delete_threads='.$delete_threads.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_comment_flood='.$comment_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/groups.php');
