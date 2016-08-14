@@ -163,7 +163,6 @@ elseif ( isset( $_POST['update_board'] ) ) {
 		$sort_by = intval($_POST['sort_by']);
 		$icon = luna_trim($_POST['icon']);
 		$color = luna_trim($_POST['color']);
-		$solved = isset($_POST['solved']) ? '1' : '0';
 
 		if ($forum_name == '')
 			message_backstage(__('You must enter a name', 'luna'));
@@ -173,7 +172,7 @@ elseif ( isset( $_POST['update_board'] ) ) {
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
-		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', icon=\''.$db->escape($icon).'\', color=\''.$db->escape($color).'\', solved='.$solved.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', icon=\''.$db->escape($icon).'\', color=\''.$db->escape($color).'\' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
@@ -220,7 +219,7 @@ elseif ( isset( $_POST['update_board'] ) ) {
 	}
 
 	// Fetch forum info
-	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_threads, sort_by, cat_id, icon, color, solved FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_threads, sort_by, cat_id, icon, color FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -329,17 +328,6 @@ elseif ( isset( $_POST['update_board'] ) ) {
                             <label class="col-sm-3 control-label"><?php _e('Forum color', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <input class="color" name="color" value="<?php echo $cur_forum['color'] ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Solved', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') echo ' checked' ?> />
-                                        <?php _e('Threads in this forum can be marked as solved.', 'luna') ?>
-                                    </label>
-                                </div>
                             </div>
                         </div>
                     </fieldset>

@@ -378,7 +378,6 @@ switch ($stage) {
 		build_config(1, 'o_board_tags', '');
 
 		// Luna 1.2 upgrade support
-		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
 
 		// Luna 1.3 upgrade support
@@ -446,16 +445,12 @@ switch ($stage) {
 		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'users SET num_comments=0 WHERE num_comments=null') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 
-		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
 
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
 			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
-
-			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
-			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 
 		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
@@ -538,6 +533,9 @@ switch ($stage) {
         $db->drop_field('groups', 'g_soft_delete_threads') or error('Unable to drop g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
         $db->drop_field('threads', 'soft') or error('Unable to drop soft field', __FILE__, __LINE__, $db->error());
         $db->drop_field('comments', 'hide_smilies') or error('Unable to drop hide_smilies field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('threads', 'important') or error('Unable to drop important field', __FILE__, __LINE__, $db->error());
+        $db->drop_field('threads', 'solved') or error('Unable to drop solved field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'solved') or error('Unable to drop solved field', __FILE__, __LINE__, $db->error());
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());

@@ -205,10 +205,10 @@ function draw_threads_list() {
 		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
 			// When not showing a commented label
-			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, important, solved AS answer, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
+			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a commented label
-			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.important, t.solved AS answer FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.pinned DESC, t.'.$sort_by.', t.id DESC';
 		}
 
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -238,16 +238,6 @@ function draw_threads_list() {
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
-			}
-
-			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
-				$item_status .= ' solved-item';
-				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
-			}
-
-			if ($cur_thread['important']) {
-				$item_status .= ' important-item';
-				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
@@ -468,9 +458,9 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_commented'] == '0') {
-			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, important, moved_to, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY last_comment DESC';
+			$sql = 'SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to forum_id FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY last_comment DESC';
 		} else {
-			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.important, t.moved_to, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.last_comment DESC';
+			$sql = 'SELECT p.commenter_id AS has_commented, t.id, t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.last_commenter_id, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'comments AS p ON t.id=p.thread_id AND p.commenter_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $thread_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.commenter, t.commented, t.last_comment, t.last_comment_id, t.last_commenter, t.num_views, t.num_replies, t.closed, t.pinned, t.moved_to, p.commenter_id' : '').' ORDER BY t.last_comment DESC';
 		}
 
 		$result = $db->query($sql) or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
@@ -525,16 +515,6 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
-			}
-
-			if (isset($cur_thread['answer'])) {
-				$item_status .= ' solved-item';
-				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
-			}
-
-			if ($cur_thread['important']) {
-				$item_status .= ' important-item';
-				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
@@ -682,13 +662,6 @@ function draw_comment_list() {
                 
 				if (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)
 					$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
-
-				if ($cur_forum['solved'] == 1)
-					if ($luna_user['username'] == $started_by)
-						if ($cur_comment['id'] == $cur_thread['answer'])
-							$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
-						else
-							$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
 				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
@@ -707,12 +680,6 @@ function draw_comment_list() {
 				$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-pencil"></i> '.__('Edit', 'luna').'</a>';
             
 			$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
-
-			if ($cur_forum['solved'] == 1)
-				if ($cur_comment['id'] == $cur_thread['answer'])
-					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
-				else
-					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
 			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids))
 				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fa fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
@@ -836,16 +803,6 @@ function draw_search_results() {
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
 				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
-			}
-
-			if (isset($cur_search['solved'])) {
-				$item_status .= ' solved-item';
-				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
-			}
-
-			if ($cur_search['important']) {
-				$item_status .= ' important-item';
-				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_search['closed'] != '0') {

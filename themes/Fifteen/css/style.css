@@ -636,24 +636,12 @@ hr {
 }
 
 /* Forum status indicators */
-.status-solved {
-    color: #64b450;
-}
-
-.comment.answer {
-    border-left: 6px solid #64b450 !important;
-}
-
 .status-pinned {
     color: #ffb900;
 }
 
 .status-new {
     color: #b8b8b8;
-}
-
-.status-important {
-    color: #826eb4;
 }
 
 .status-moved {

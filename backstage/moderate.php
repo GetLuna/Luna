@@ -749,7 +749,6 @@ elseif (isset($_GET['pin'])) {
 	redirect('thread.php?id='.$pin);
 }
 
-
 // unpin a thread
 elseif (isset($_GET['unpin'])) {
 	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
@@ -763,37 +762,6 @@ elseif (isset($_GET['unpin'])) {
 	$db->query('UPDATE '.$db->prefix.'threads SET pinned=\'0\' WHERE id='.$unpin.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
 
 	redirect('thread.php?id='.$unpin);
-}
-
-// Mark as important
-elseif (isset($_GET['important'])) {
-	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-
-	check_csrf($_GET['csrf_token']);
-
-	$important = intval($_GET['important']);
-	if ($important < 1)
-		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-	$db->query('UPDATE '.$db->prefix.'threads SET important=\'1\' WHERE id='.$important.' AND forum_id='.$fid) or error('Unable to mark thread as important', __FILE__, __LINE__, $db->error());
-
-	redirect('thread.php?id='.$important);
-}
-
-
-// Mark as unimportant
-elseif (isset($_GET['unimportant'])) {
-	confirm_referrer(array('thread.php', 'backstage/moderate.php'));
-
-	check_csrf($_GET['csrf_token']);
-
-	$unimportant = intval($_GET['unimportant']);
-	if ($unimportant < 1)
-		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-	$db->query('UPDATE '.$db->prefix.'threads SET important=\'0\' WHERE id='.$unimportant.' AND forum_id='.$fid) or error('Unable to mark thread as unimportant', __FILE__, __LINE__, $db->error());
-
-	redirect('thread.php?id='.$unimportant);
 }
 
 // If absolutely none of them are going on
@@ -858,7 +826,7 @@ if ($db->num_rows($result)) {
 		$thread_ids[] = $cur_thread_id;
 
 	// Select threads
-	$result = $db->query('SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to, solved, important FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch thread list for forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, commenter, subject, commented, last_comment, last_comment_id, last_commenter, last_commenter_id, num_views, num_replies, closed, pinned, moved_to FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $thread_ids).') ORDER BY pinned DESC, '.$sort_by.', id DESC') or error('Unable to fetch thread list for forum', __FILE__, __LINE__, $db->error());
 
 	$button_status = '';
 	$thread_count = 0;
@@ -895,16 +863,6 @@ if ($db->num_rows($result)) {
         if ($cur_thread['pinned'] == '1') {
             $item_status .= ' pinned-item';
             $status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
-        }
-
-        if (isset($cur_thread['solved'])) {
-            $item_status .= ' solved-item';
-            $status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
-        }
-
-        if ($cur_thread['important']) {
-            $item_status .= ' important-item';
-            $status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
         }
 
         if ($cur_thread['moved_to'] != 0) {

@@ -161,16 +161,8 @@ if ($db->num_rows($result) > 0)
 						</thead>
 						<tbody>
 							<tr>
-								<td><span class="fa fa-fw fa-check status-solved"></span></td>
-								<td><?php _e('Threads marked with a check are solved according to the author.', 'luna') ?></td>
-							</tr>
-							<tr>
 								<td><span class="fa fa-fw fa-thumb-tack status-pinned"></span></td>
 								<td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
-							</tr>
-							<tr>
-								<td><span class="fa fa-fw fa-map-marker status-important"></span></td>
-								<td><?php _e('Much like pinned threads, these are important, however, they do not stay on the top of the list.', 'luna') ?></td>
 							</tr>
 							<tr>
 								<td><span class="fa fa-fw fa-lock status-closed"></span></td>
