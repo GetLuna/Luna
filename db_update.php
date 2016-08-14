@@ -330,8 +330,6 @@ switch ($stage) {
 		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
 		build_config(1, 'o_copyright_type', '0');
 		build_config(1, 'o_custom_copyright');
-		build_config(1, 'o_emoji', '1');
-		build_config(1, 'o_emoji_size', '16');
 		build_config(1, 'o_first_run_backstage', '0');
 		build_config(0, 'o_forum_new_style');
 		build_config(0, 'o_header_desc');
@@ -597,6 +595,8 @@ switch ($stage) {
 		build_config(0, 'o_allow_accent_color');
 		build_config(0, 'o_allow_night_mode');
 		build_config(0, 'o_default_accent');
+		build_config(0, 'o_emoji');
+		build_config(0, 'o_emoji_size');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());

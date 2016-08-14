@@ -48,8 +48,6 @@ if (isset($_POST['form_sent'])) {
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
 		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
-		'emoji'					=> isset($_POST['form']['emoji']) ? '1' : '0',
-		'emoji_size'			=> intval($_POST['form']['emoji_size']),
 		'forum_subscriptions'	        => isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
 		'thread_subscriptions'          => isset($_POST['form']['thread_subscriptions']) ? '1' : '0',
 		'message_img_tag'		=> isset($_POST['form']['message_img_tag']) ? '1' : '0',
@@ -338,27 +336,6 @@ if (isset($_GET['saved']))
                                         <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['o_sig_img_tag'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow the use of the [img]-tag.', 'luna') ?>
                                     </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Emoji', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
-                                        <?php _e('Use emojis instead of emoticons.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The size emoticons and emojis are shown in', 'luna') ?></span></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
-                                    <span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
                                 </div>
                             </div>
                         </div>

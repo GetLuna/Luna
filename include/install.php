@@ -1359,8 +1359,6 @@ class Installer {
 			'o_feed_ttl'				=> 0,
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
-			'o_emoji'					=> 1,
-			'o_emoji_size'				=> 16,
 			'o_back_to_top'				=> 1,
 			'o_show_copyright'			=> 1,
 			'o_copyright_type'			=> 0,

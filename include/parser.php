@@ -747,59 +747,30 @@ function get_smilies() {
 	global $luna_config;
 
 	// Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
-	if ($luna_config['o_emoji'] == 1) {
-		$smilies = array(
-			':)' => '&#x1f601;',
-			':|' => '&#x1f611;',
-			':(' => '&#x1f629;',
-			':d' => '&#x1f604;',
-			':D' => '&#x1f604;',
-			':o' => '&#x1f62f;',
-			':O' => '&#x1f62f;',
-			';)' => '&#x1f609;',
-			':/' => '&#x1f612;',
-			':P' => '&#x1f60b;',
-			':p' => '&#x1f60b;',
-			':lol:' => '&#x1f601;',
-			':-))' => '&#x1f601;',
-			':@' => '&#x1f620;',
-			'%)' => '&#x1f606;',
-			'b:' => '&#x1f60e;',
-			'B:' => '&#x1f60e;',
-			':hc:' => '&#x1f605;',
-			'(A)' => '&#x1f607;',
-			'(a)' => '&#x1f607;',
-			'^-^' => '&#x1f60f;',
-			'^.^' => '&#x1f60f;'
-		);
-	} else {
-		$smilies = array(
-			':)' => 'smile.png',
-			':|' => 'neutral.png',
-			':(' => 'sad.png',
-			':d' => 'big_smile.png',
-			':D' => 'big_smile.png',
-			':o' => 'yikes.png',
-			':O' => 'yikes.png',
-			';)' => 'wink.png',
-			':/' => 'hmm.png',
-			':P' => 'tongue.png',
-			':p' => 'tongue.png',
-			':lol:' => 'happy.png',
-			':-))' => 'happy.png',
-			':@' => 'angry.png',
-			'%)' => 'roll.png',
-			'b:' => 'cool.png',
-			'B:' => 'cool.png',
-			':hc:' => 'happycry.png',
-			'(A)' => 'angel.png',
-			'^-^' => 'ohyeah.png',
-			'(a)' => 'angel.png',
-			'(A)' => 'angel.png',
-			'^-^' => 'happy.png',
-			'^.^' => 'happy.png'
-		);
-	}
+    $smilies = array(
+        ':)' => '&#x1f601;',
+        ':|' => '&#x1f611;',
+        ':(' => '&#x1f629;',
+        ':d' => '&#x1f604;',
+        ':D' => '&#x1f604;',
+        ':o' => '&#x1f62f;',
+        ':O' => '&#x1f62f;',
+        ';)' => '&#x1f609;',
+        ':/' => '&#x1f612;',
+        ':P' => '&#x1f60b;',
+        ':p' => '&#x1f60b;',
+        ':lol:' => '&#x1f601;',
+        ':-))' => '&#x1f601;',
+        ':@' => '&#x1f620;',
+        '%)' => '&#x1f606;',
+        'b:' => '&#x1f60e;',
+        'B:' => '&#x1f60e;',
+        ':hc:' => '&#x1f605;',
+        '(A)' => '&#x1f607;',
+        '(a)' => '&#x1f607;',
+        '^-^' => '&#x1f60f;',
+        '^.^' => '&#x1f60f;'
+    );
 
 	return $smilies;
 }
@@ -817,10 +788,7 @@ function do_smilies($text) {
 
 	foreach ($smilies as $smiley_text => $smiley_img) {
 		if (strpos($text, $smiley_text) !== false)
-			if ($luna_config['o_emoji'] == 1)
-				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$smiley_img.'</span>', $text);
-			else
-				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="'.$luna_config['o_emoji_size'].'" height="'.$luna_config['o_emoji_size'].'" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
+            $text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$smiley_img.'</span>', $text);
 	}
 
 	return substr($text, 1, -1);
