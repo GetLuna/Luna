@@ -1678,42 +1678,6 @@ function forum_list_styles() {
 
 
 //
-// Fetch a list of available frontend styles
-//
-function forum_list_accents($stage) {
-	global $luna_config;
-
-	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
-	$theme_info = new SimpleXMLElement($xmlstr);
-
-	if (isset($theme_info->parent_theme))
-		$cur_theme = $theme_info->parent_theme;
-	else
-		$cur_theme = $luna_config['o_default_style'];
-
-	$accents = array();
-
-	if ($stage == 'main' && is_dir(LUNA_ROOT.'themes/'.$cur_theme.'/css/accents/'))
-		$d = dir(LUNA_ROOT.'themes/'.$cur_theme.'/css/accents/');
-	if ($stage == 'back')
-		$d = dir(LUNA_ROOT.'backstage/css/accents/');
-
-	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
-			continue;
-
-		if (substr($entry, -4) == '.css')
-			$accents[] = substr($entry, 0, -4);
-	}
-	$d->close();
-
-	natcasesort($accents);
-
-	return $accents;
-}
-
-
-//
 // Fetch a list of available language packs
 //
 function forum_list_langs() {
@@ -2166,26 +2130,12 @@ function load_css() {
 	// If there is a parent theme, we need to load its CSS too
 	if ($theme_info->parent_theme != '') {
 		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/style.css" />';
-
-		// Also load a color scheme
-		if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
-			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
-				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
-			else
-				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/'.$luna_user['color_scheme'].'.css" />';
-		}
+        echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/css/accents/2.css" />';
 	}
 
 	// Load the themes actual CSS
 	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/style.css" />'."\n";
-
-	// And load its color scheme
-	if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
-		if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
-			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
-		else
-			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css" />';
-	}
+    echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/2.css" />';
     
     if (__('Direction of language', 'luna') == 'rtl')
         echo '<link rel="stylesheet" type="text/css" href="vendor/css/bidirect.css" />';
@@ -2236,14 +2186,6 @@ function check_style_mode() {
     $body_classes = "";
 
 	$hour = date('G', time());
-
-	if (($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19)))) && $luna_config['o_allow_night_mode'] == '1')
-		$body_classes .= 'night';
-	else
-		$body_classes .= 'normal';
-
-	if ($luna_user['enforce_accent'] == 1)
-		$body_classes .= ' enforce';
     
     if (__('Direction of language', 'luna') == 'rtl')
         $body_classes .= ' rtl';

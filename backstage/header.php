@@ -18,10 +18,6 @@ header('Content-type: text/html; charset=utf-8');
 $p = isset($p) ? $p : null;
 
 $hour = date("g", time());
-if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
-	$body_classes = 'night';
-else
-	$body_classes = 'normal';
     
 if (__('Direction of language', 'luna') == 'rtl')
     $body_classes .= ' rtl';
@@ -87,7 +83,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../vendor/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/accents/<?php echo $luna_user['accent'] ?>.css" />
+		<link rel="stylesheet" type="text/css" href="css/accents/2.css" />
         <?php
             if (__('Direction of language', 'luna') == 'rtl')
                 echo '<link rel="stylesheet" type="text/css" href="../vendor/css/bidirect.css" />';

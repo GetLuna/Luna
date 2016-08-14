@@ -31,9 +31,6 @@ if (isset($_POST['form_sent'])) {
 
 	$form = array(
 		'default_style'         => luna_trim($_POST['form']['default_style']),
-		'default_accent'		=> intval($_POST['form']['default_accent']),
-		'allow_accent_color'	=> isset($_POST['form']['allow_accent_color']) ? '1' : '0',
-		'allow_night_mode'		=> isset($_POST['form']['allow_night_mode']) ? '1' : '0',
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_comment_count'	=> isset($_POST['form']['show_comment_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
@@ -176,41 +173,6 @@ if (isset($_GET['saved']))
 
 ?>
 								</select>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Accents', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_accent_color]" value="1" <?php if ($luna_config['o_allow_accent_color'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow users to set their own accent color.', 'luna') ?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_night_mode]" value="1" <?php if ($luna_config['o_allow_night_mode'] == '1') echo ' checked' ?> />
-                                        <?php _e('Allow users to change the night mode settings.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Default', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="btn-group accent-group" data-toggle="buttons">
-<?php
-		$accents = forum_list_accents('main');
-
-		foreach ($accents as $temp) {
-			if ($luna_config['o_default_accent'] == $temp)
-				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-			else
-				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'"></label>';
-		}
-?>
-                                </div>
                             </div>
                         </div>
                         <hr />
