@@ -205,20 +205,16 @@ switch ($stage) {
 
 		// Legacy support: FluxBB 1.4
 
-		// Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 
-		// Add the last_report_sent column to the users table and the g_report_flood column to the groups table
 		$db->add_field('users', 'last_report_sent', 'INT(10) UNSIGNED', true, null, 'last_email_sent') or error('Unable to add last_report_sent field', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_report_flood', 'SMALLINT(6)', false, 60, 'g_email_flood') or error('Unable to add g_report_flood field', __FILE__, __LINE__, $db->error());
 
-		// Set non-default g_send_email, g_flood_email and g_flood_report values properly
 		$db->query('UPDATE '.$db->prefix.'groups SET g_send_email = 0 WHERE g_id = 3') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 
-		// if we don't have the forum_subscriptions table, create it
 		if (!$db->table_exists('forum_subscriptions'))
 		{
 			$schema = array(
@@ -240,11 +236,8 @@ switch ($stage) {
 			$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
 		}
 
-		// Insert new config option o_forum_subscriptions
-		if (!array_key_exists('o_forum_subscriptions', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_forum_subscriptions', '1');
 
-		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
@@ -317,27 +310,19 @@ switch ($stage) {
 
 		build_config(0, 'o_additional_navlinks');
 		build_config(1, 'o_admin_note');
-		build_config(0, 'o_admin_notes');
-		build_config(0, 'o_backstage_dark');
 		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
-		build_config(0, 'o_forum_new_style');
 		build_config(0, 'o_header_desc');
 		build_config(0, 'o_header_title');
 		build_config(0, 'o_menu_title');
-		build_config(0, 'o_notifications');
 		build_config(0, 'o_post_responsive');
-		build_config(0, 'o_private_message');
 		build_config(0, 'o_quickpost');
-		build_config(0, 'o_reading_list');
 		build_config(0, 'o_show_index');
 		build_config(0, 'o_show_rules');
 		build_config(0, 'o_show_search');
 		build_config(0, 'o_show_userlist');
 		build_config(0, 'o_show_version');
-		build_config(0, 'o_smilies');
 		build_config(1, 'o_update_ring', '1');
 		build_config(0, 'o_user_menu_sidebar');
-		build_config(0, 'p_message_bbcode');
 
 		// Add the menu table
 		if (!$db->table_exists('menu')) {
