@@ -36,9 +36,6 @@ if (isset($_POST['form_sent'])) {
 		'ranks'							=> isset($_POST['form']['ranks']) ? '1' : '0',
 		'thread_views'					=> isset($_POST['form']['thread_views']) ? '1' : '0',
 		'has_commented'					=> isset($_POST['form']['has_commented']) ? '1' : '0',
-		'show_first_run'				=> isset($_POST['form']['show_first_run']) ? '1' : '0',
-		'first_run_guests'				=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
-		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
 		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'allow_center'					=> isset($_POST['form']['allow_center']) ? '1' : '0',
@@ -238,39 +235,6 @@ if (isset($_GET['saved']))
                                         <?php _e('Enable users to subscribe to threads.', 'luna') ?>
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('First run', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('General settings', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[show_first_run]" value="1" <?php if ($luna_config['o_show_first_run'] == '1') echo ' checked' ?> />
-                                        <?php _e('Show the first run panel when an user logs in for the first time.', 'luna') ?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[first_run_guests]" value="1" <?php if ($luna_config['o_first_run_guests'] == '1') echo ' checked' ?> />
-                                        <?php _e('Show the first run panel to guests with login field and registration button.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Welcome text', 'luna') ?><span class="help-block"><?php _e('The introduction to the forum displayed in the middle of the first run panel', 'luna') ?></span>  </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
                             </div>
                         </div>
                     </fieldset>

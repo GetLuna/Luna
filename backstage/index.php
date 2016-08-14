@@ -37,21 +37,6 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/index.php?saved=true');
 }
 
-if (isset($_POST['first_run_disable'])) {
-	confirm_referrer(array('backstage/index.php', 'backstage/'));
-
-	$db->query('UPDATE '.$db->prefix.'config SET conf_value=1 WHERE conf_name=\'o_first_run_backstage\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
-
-	// Regenerate the config cache
-	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
-		require LUNA_ROOT.'include/cache.php';
-
-	generate_config_cache();
-	clear_feed_cache();
-
-	redirect('backstage/index.php?saved=true');
-}
-
 // Collect some statistics from the database
 if (file_exists(LUNA_CACHE_DIR.'cache_update.php'))
 	include LUNA_CACHE_DIR.'cache_update.php';
@@ -81,29 +66,6 @@ if (isset($_GET['saved']))
 	echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
 ?>
 	<div class="col-sm-8">
-<?php if ($luna_config['o_first_run_backstage'] == 0) { ?>
-        <div class="panel panel-primary panel-colored hidden-xs">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
-                    <span class="pull-right">
-                        <form class="form-horizontal" method="post" action="index.php">
-                            <input type="hidden" name="first_run_disable" value="1" />
-                            <button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
-                        </form>
-                    </span>
-                </h3>
-            </div>
-            <div class="panel-body">
-                <p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-                <div class="btn-group-justified">
-                    <a href="about.php" class="btn btn-default"><?php _e('What\'s new', 'luna') ?></a>
-                    <a href="board.php" class="btn btn-default"><?php _e('Create new sections', 'luna') ?></a>
-                    <a href="features.php" class="btn btn-default"><?php _e('Alter functionality', 'luna') ?></a>
-                    <a href="settings.php" class="btn btn-default"><?php _e('Change settings', 'luna') ?></a>
-                </div>
-            </div>
-        </div>
-<?php } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('New reports', 'luna') ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php _e('View all', 'luna') ?></a></span></h3>

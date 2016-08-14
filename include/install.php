@@ -1217,11 +1217,6 @@ class Installer {
 				'activate_key'		=> array(
 					'datatype'		=> 'VARCHAR(8)',
 					'allow_null'	=> true
-				),
-				'first_run'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
@@ -1291,10 +1286,6 @@ class Installer {
 			'o_webmaster_email'			=> $email,
 			'o_forum_subscriptions'		=> 1,
 			'o_thread_subscriptions'	=> 1,
-			'o_first_run_message'		=> __('Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
-			'o_show_first_run'			=> 1,
-			'o_first_run_guests'		=> 1,
-			'o_first_run_backstage'		=> 0,
 			'o_smtp_host'				=> NULL,
 			'o_smtp_user'				=> NULL,
 			'o_smtp_pass'				=> NULL,

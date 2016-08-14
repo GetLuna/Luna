@@ -283,11 +283,7 @@ switch ($stage) {
 		build_config(0, 'o_show_dot');
 
 		// ModernBB 3.2 upgrade support
-		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
-		build_config(1, 'o_first_run_guests', '1');
-		build_config(1, 'o_first_run_message');
 		build_config(0, 'o_redirect_delay');
-		build_config(1, 'o_show_first_run', '1');
 
 		// ModernBB 3.3 upgrade support
 		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
@@ -329,7 +325,6 @@ switch ($stage) {
 		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
 		build_config(1, 'o_copyright_type', '0');
 		build_config(1, 'o_custom_copyright');
-		build_config(1, 'o_first_run_backstage', '0');
 		build_config(0, 'o_forum_new_style');
 		build_config(0, 'o_header_desc');
 		build_config(1, 'o_header_search', '1');
@@ -539,6 +534,10 @@ switch ($stage) {
 		build_config(0, 'o_emoji');
 		build_config(0, 'o_emoji_size');
 		build_config(0, 'o_notification_flyout');
+		build_config(0, 'o_first_run_guests');
+		build_config(0, 'o_first_run_message');
+		build_config(0, 'o_first_run_backstage');
+		build_config(0, 'o_show_first_run');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());
@@ -556,6 +555,7 @@ switch ($stage) {
 		$db->drop_field('users', 'enforce_accent') or error('Unable to drop enforce_accent field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'adapt_time') or error('Unable to drop column "adapt_time" from table "users"', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'color_scheme') or error('Unable to drop column "color_scheme" from table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'first_run') or error('Unable to drop first_run field', __FILE__, __LINE__, $db->error());
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());
