@@ -677,11 +677,6 @@ class Installer {
 					'datatype'		=> 'MEDIUMTEXT',
 					'allow_null'	=> true
 				),
-				'hide_smilies'	=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
 				'commented'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,

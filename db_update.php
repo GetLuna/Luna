@@ -552,6 +552,7 @@ switch ($stage) {
         $db->drop_field('groups', 'g_soft_delete_comments') or error('Unable to drop g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_soft_delete_threads') or error('Unable to drop g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
         $db->drop_field('threads', 'soft') or error('Unable to drop soft field', __FILE__, __LINE__, $db->error());
+        $db->drop_field('comments', 'hide_smilies') or error('Unable to drop hide_smilies field', __FILE__, __LINE__, $db->error());
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());
