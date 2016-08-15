@@ -431,8 +431,6 @@ switch ($stage) {
 		build_config(0, 'o_topic_review');
 		build_config(0, 'o_video_height');
 		build_config(0, 'o_video_width');
-		build_config(1, 'o_allow_center', 0);
-		build_config(1, 'o_allow_size', 0);
 		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
 		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
 		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
@@ -444,7 +442,6 @@ switch ($stage) {
 
 		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'users SET num_comments=0 WHERE num_comments=null') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
-
 
 			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
 			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
@@ -459,7 +456,6 @@ switch ($stage) {
 		build_config(1, 'o_timezone', 'UTC');
         
         // Luna 2.0 upgrade support
-		build_config(1, 'o_allow_spoiler', 0);
 		build_config(2, 'o_message_img_tag', 'p_message_img_tag');
 		build_config(2, 'o_message_all_caps', 'p_message_all_caps');
 		build_config(2, 'o_subject_all_caps', 'p_subject_all_caps');
@@ -510,6 +506,9 @@ switch ($stage) {
 		build_config(0, 'o_update_ring');
 		build_config(0, 'o_use_custom_css');
 		build_config(0, 'o_custom_css');
+		build_config(0, 'o_allow_spoiler');
+		build_config(0, 'o_allow_center');
+		build_config(0, 'o_allow_size');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());

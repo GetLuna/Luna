@@ -58,8 +58,8 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 	}
 
 	if ($is_signature) {
-		if (preg_match('%\[/?(?:quote|code|video|list|h|spoiler)\b[^\]]*\]%i', $text))
-			$errors[] = __('The quote, code, list, video, spoiler and heading BBCodes are not allowed in signatures.', 'luna');
+		if (preg_match('%\[/?(?:quote|code|video|list|h)\b[^\]]*\]%i', $text))
+			$errors[] = __('The quote, code, list, video and heading BBCodes are not allowed in signatures.', 'luna');
 	}
 
 	// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
@@ -125,7 +125,7 @@ function strip_empty_bbcode($text) {
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|size|center|quote|c|img|url|email|list|sup|sub|video|spoiler)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
 		if ($new_text != $text)
 			$text = $new_text;
 		else
@@ -164,19 +164,19 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'size', 'center', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video', 'spoiler');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video');
 	// List of tags that we need to check are open (You could not put b, i, u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
 	$tags_closed = $tags;
 	// Tags we can nest and the depth they can be nested to
-	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5, spoiler => '5');
+	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5);
 	// Tags to ignore the contents of completely (just code)
 	$tags_ignore = array('code', 'c');
 	// Tags not allowed
 	$tags_forbidden = array();
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', '*', 'spoiler');
+	$tags_block = array('quote', 'code', 'list', 'h', '*');
 	// Inline tags, we do not allow new lines in these
 	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub');
 	// Tags we trim interior space
@@ -191,9 +191,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 		'email' => array('img'),
 		'img' 	=> array(),
 		'h'		=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email'),
-		'video'	=> array('url'),
-		'center'=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email', 'img'),
-		'size'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sub', 'sup', 'url', 'email')
+		'video'	=> array('url')
 	);
 	// Tags we can automatically fix bad nesting
 	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'color', 'url', 'email', 'h');
@@ -641,16 +639,6 @@ function do_bbcode($text, $is_signature = false) {
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
 	}
     
-    if ($luna_config['o_allow_spoiler'] == 1 && strpos($text, '[spoiler') !== false) {
-        $count = 0;
-        $spoiler = mt_rand();
-
-        $text = preg_replace('%\[spoiler\]\s*%', '</p><div class="panel panel-default panel-spoiler"><div class="panel-heading" role="tab" id="heading'.$spoiler.$count.'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$spoiler.$count.'" aria-expanded="true" aria-controls="collapse'.$spoiler.$count.'"><span class="fa fa-fw fa-angle-down"></span> '.__('Spoiler', 'luna').'</a></h4></div><div id="collapse'.$spoiler.$count.'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$spoiler.$count.'"><div class="panel-body"><p>', $text, -1, $count);
-        $text = preg_replace('%\[spoiler=(.*?)\]\s*%', '</p><div class="panel panel-default panel-spoiler"><div class="panel-heading" role="tab" id="heading'.$spoiler.$count.'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$spoiler.$count.'" aria-expanded="true" aria-controls="collapse'.$spoiler.$count.'"><span class="fa fa-fw fa-angle-down"></span> $1</a></h4></div><div id="collapse'.$spoiler.$count.'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$spoiler.$count.'"><div class="panel-body"><p>', $text, -1, $count);
-
-        $text = str_replace('[/spoiler]', '</p></div></div></div><p>', $text);
-    }
-    
 	if (!$is_signature) {
 		$pattern_callback[] = $re_list;
 		$replace_callback[] = 'handle_list_tag($matches[2], $matches[1])';
@@ -666,10 +654,6 @@ function do_bbcode($text, $is_signature = false) {
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
 	$pattern[] = '%\[sup\](.*?)\[/sup\]%ms';
 	$pattern[] = '%\[sub\](.*?)\[/sub\]%ms';
-	if ($luna_config['o_allow_center'] == 1)
-		$pattern[] = '%\[center\](.*?)\[/center\]%ms';
-	if ($luna_config['o_allow_size'] == 1)
-		$pattern[] = '%\[size=([50-250]*)](.*?)\[/size\]%ms';
 
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -688,10 +672,6 @@ function do_bbcode($text, $is_signature = false) {
 	$replace[] = '<h3 class="comment-h3">$1</h3>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
-	if ($luna_config['o_allow_center'] == 1)
-		$replace[] = '</p><p style="text-align: center">$1</p><p>';
-	if ($luna_config['o_allow_size'] == 1)
-		$replace[] = '<span style="font-size: $1%">$2</span>';
 
 	// DailyMotion videos
 	$replace[] = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.dailymotion.com/embed/video/$3"></iframe></div>';

@@ -43,11 +43,6 @@ if (!defined('FORUM'))
 					<p><code>[sub]<?php _e('Subscript text', 'luna') ?>[/sub]</code> <?php _e('produces', 'luna') ?> <sub><?php _e('Subscript text', 'luna') ?></sub></p>
 					<p><code>[sup]<?php _e('Superscript text', 'luna') ?>[/sup]</code> <?php _e('produces', 'luna') ?> <sup><?php _e('Superscript text', 'luna') ?></sup></p>
 					<p><code>[h]<?php _e('Heading text', 'luna') ?>[/h]</code> <?php _e('produces', 'luna') ?></p> <h4><?php _e('Heading text', 'luna') ?></h4>
-					<?php if($luna_config['o_allow_size'] == 1) { ?>
-						<p><code>[size=200]<?php _e('Sized text', 'luna') ?>[/size]</code> <?php _e('produces', 'luna') ?></p> <p style="font-size: 200%"><?php _e('Sized text', 'luna') ?></p>
-					<?php } if($luna_config['o_allow_center'] == 1) { ?>
-						<p><code>[center]<?php _e('Centered text', 'luna') ?>[/center]</code> <?php _e('produces', 'luna') ?></p> <p style="text-align: center"><?php _e('Centered text', 'luna') ?></p>
-					<?php } ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="media">
 					<p><?php _e('You can create links to other locations or to email addresses using the following tags:', 'luna') ?></p>
@@ -66,21 +61,6 @@ if (!defined('FORUM'))
 					<p><?php _e('produces a quote box like this:', 'luna') ?></p>
 					<blockquote><footer><cite>James <?php _e('wrote', 'luna') ?></cite></footer><p><?php _e('This is the text I want to quote.', 'luna') ?></p></blockquote>
 					<p><?php _e('If you don\'t want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
-					<?php if($luna_config['o_allow_spoiler'] == 1) { ?>
-					<p><?php _e('You can also hide parts of your comment if you don\'t want to spoil its content.', 'luna') ?></p>
-					<p><code>[spoiler=<?php _e('Spoiled text', 'luna') ?>]<?php _e('This is the text I don\'t want to spoil.', 'luna') ?>[/spoiler]</code></p>
-                    <div class="panel panel-default panel-spoiler">
-                        <div class="panel-heading" role="tab" id="heading">
-                            <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse"><span class="fa fa-fw fa-angle-down"></span> <?php _e('Spoiled text', 'luna') ?></a></h4>
-                        </div>
-                        <div id="collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading">
-                            <div class="panel-body">
-                                <?php _e('This is the text I don\'t want to spoil.', 'luna') ?>
-                            </div>
-                        </div>
-                    </div>
-					<p><?php _e('Like the quote tag, you can use the spoiler tag without specifying a title. If a title contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
-                    <?php } ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="code">
 					<p><?php _e('When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.', 'luna') ?></p>
