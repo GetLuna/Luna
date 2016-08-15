@@ -509,6 +509,7 @@ switch ($stage) {
 		build_config(0, 'o_allow_spoiler');
 		build_config(0, 'o_allow_center');
 		build_config(0, 'o_allow_size');
+		build_config(0, 'o_smilies_sig');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());
@@ -535,6 +536,7 @@ switch ($stage) {
 		$db->drop_field('threads', 'important') or error('Unable to drop important field', __FILE__, __LINE__, $db->error());
         $db->drop_field('threads', 'solved') or error('Unable to drop solved field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('forums', 'solved') or error('Unable to drop solved field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_smilies') or error('Unable to drop show_smilies field', __FILE__, __LINE__, $db->error());
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());

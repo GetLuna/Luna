@@ -36,7 +36,6 @@ if (isset($_POST['form_sent'])) {
 		'ranks'							=> isset($_POST['form']['ranks']) ? '1' : '0',
 		'thread_views'					=> isset($_POST['form']['thread_views']) ? '1' : '0',
 		'has_commented'					=> isset($_POST['form']['has_commented']) ? '1' : '0',
-		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
@@ -219,12 +218,6 @@ if (isset($_GET['saved']))
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Signatures', 'luna') ?></label>
                             <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked' ?> />
-                                        <?php _e('Convert smilies to small graphic icons in user signatures.', 'luna') ?>
-                                    </label>
-                                </div>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['o_sig_img_tag'] == '1') echo ' checked' ?> />

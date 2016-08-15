@@ -894,9 +894,7 @@ function parse_signature($text) {
 	if (strpos($text, '[') !== false && strpos($text, ']') !== false)
 		$text = do_bbcode($text, true);
 
-	if ($luna_config['o_smilies_sig'] == '1' && $luna_user['show_smilies'] == '1')
-		$text = do_smilies($text);
-
+    $text = do_smilies($text);
 
 	// Deal with newlines, tabs and multiple spaces
 	$pattern = array("\n", "\t", '  ', '  ');
