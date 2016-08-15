@@ -570,7 +570,7 @@ function draw_comment_list() {
 	global $db, $luna_config, $id, $comment_ids, $is_admmod, $start_from, $comment_count, $admin_ids, $luna_user, $cur_thread, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective commenter/online status)
-	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.commenter AS username, p.commenter_id, p.commenter_ip, p.commenter_email, p.message, p.admin_note, p.commented, p.edited, p.edited_by, p.marked, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.email, u.title, u.url, u.signature, u.email_setting, u.num_comments, u.registered, u.admin_note, p.id, p.commenter AS username, p.commenter_id, p.commenter_ip, p.commenter_email, p.message, p.admin_note, p.commented, p.edited, p.edited_by, p.marked, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.commenter_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $comment_ids).') ORDER BY p.id', true) or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 	while ($cur_comment = $db->fetch_assoc($result)) {
 		$comment_count++;
 		$user_avatar = '';
@@ -597,13 +597,6 @@ function draw_comment_list() {
 
 			// We only show location, register date, comment count and the contact links if "Show user info" is enabled
 			if ($luna_config['o_show_user_info'] == '1') {
-				if ($cur_comment['location'] != '') {
-					if ($luna_config['o_censoring'] == '1')
-						$cur_comment['location'] = censor_words($cur_comment['location']);
-
-					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_comment['location']).'</span></dd>';
-				}
-
 				if ($luna_config['o_show_comment_count'] == '1' || $luna_user['is_admmod'])
 					$user_info[] = '<dd><span>'._n('Comment:', 'Comments:', $cur_comment['num_comments'], 'luna').' '.forum_number_format($cur_comment['num_comments']).'</span></dd>';
 

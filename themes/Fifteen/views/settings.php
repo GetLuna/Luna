@@ -88,12 +88,6 @@ else
 								</div>
 							</div>
 							<?php endif; ?>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Location', 'luna') ?></label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
-								</div>
-							</div>
 							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_signatures'] == '1') { ?>
 							<hr />
 							<?php } if ($luna_config['o_avatars'] == '1') { ?>
@@ -173,53 +167,6 @@ else
 											<input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked' ?> />
 											<?php _e('Hide your email address and disallow form email.', 'luna') ?>
 										</label>
-									</div>
-								</div>
-							</div>
-							<hr />
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="input-group input">
-										<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span>
-										<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
-									</div>
-								</div>
-							</div>
-							<hr />
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Microsoft Account', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="input-group input">
-										<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span>
-										<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Facebook', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="input-group">
-										<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></span>
-										<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Twitter', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="input-group">
-										<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></span>
-										<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Google+', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="input-group">
-										<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span>
-										<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
 									</div>
 								</div>
 							</div>

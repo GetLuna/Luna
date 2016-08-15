@@ -263,9 +263,6 @@ switch ($stage) {
 		build_config(1, 'o_moderated_by', '1');
 
 		// ModernBB 3.4 Update 1 upgrade support
-		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'icq') or error('Unable to drop icq field from user table', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'jabber') or error('Unable to drop jabber field', __FILE__, __LINE__, $db->error());
@@ -511,6 +508,11 @@ switch ($stage) {
         $db->drop_field('threads', 'solved') or error('Unable to drop solved field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('forums', 'solved') or error('Unable to drop solved field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'show_smilies') or error('Unable to drop show_smilies field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'facebook') or error('Unable to drop facebook field from user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'google') or error('Unable to drop google field from user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'twitter') or error('Unable to drop twitter field from user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'msn') or error('Unable to drop msn field from user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'url') or error('Unable to drop url field from user table', __FILE__, __LINE__, $db->error());
 
 		if ($db->table_exists('messages'))
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());

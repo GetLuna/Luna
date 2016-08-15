@@ -991,30 +991,6 @@ class Installer {
 					'datatype'		=> 'VARCHAR(40)',
 					'allow_null'	=> true
 				),
-				'url'				=> array(
-					'datatype'		=> 'VARCHAR(100)',
-					'allow_null'	=> true
-				),
-				'facebook'			=> array(
-					'datatype'		=> 'VARCHAR(50)',
-					'allow_null'	=> true
-				),
-				'msn'				=> array(
-					'datatype'		=> 'VARCHAR(80)',
-					'allow_null'	=> true
-				),
-				'twitter'			=> array(
-					'datatype'		=> 'VARCHAR(50)',
-					'allow_null'	=> true
-				),
-				'google'			=> array(
-					'datatype'		=> 'VARCHAR(50)',
-					'allow_null'	=> true
-				),
-				'location'			=> array(
-					'datatype'		=> 'VARCHAR(30)',
-					'allow_null'	=> true
-				),
 				'signature'			=> array(
 					'datatype'		=> 'TEXT',
 					'allow_null'	=> true

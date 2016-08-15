@@ -55,11 +55,6 @@ if (!defined('FORUM'))
                         <small><?php _e('Real name', 'luna') ?></small>
                         <?php echo $user['realname'] ?>
                     </h3>
-                    <?php } if ($user['location'] != '') { ?>
-                    <h3 class="col-lg-3 col-md-4 col-sm-6 text-center">
-                        <small><?php _e('Location', 'luna') ?></small>
-                        <?php echo $user['location'] ?>
-                    </h3>
                     <?php } ?>
                 </div>
             </div>
