@@ -34,7 +34,7 @@ forum_remove_bad_characters();
 // Reverse the effect of register_globals
 forum_unregister_globals();
 
-// It might happen you are redirected to this page from backstage/update.php
+// It might happen you are redirected to this page from backstage/index.php
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 // Disable error reporting for uninitialized variables

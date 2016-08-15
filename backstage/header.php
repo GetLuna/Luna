@@ -123,7 +123,6 @@ elseif (file_exists('../img/header.jpg'))
                 <ul class="nav nav-tabs nav-main" role="tablist">
                 <?php if (LUNA_SECTION == 'backstage') { ?>
                     <li<?php if(LUNA_PAGE == 'index') echo ' class="active"' ?>><a href="index.php"><i class="fa fa-fw fa-tachometer"></i> <?php _e('Backstage', 'luna') ?></a></li>
-                    <li<?php if(LUNA_PAGE == 'update') echo ' class="active"' ?>><a href="update.php"><i class="fa fa-fw fa-cloud-upload"></i> <?php _e('Update', 'luna') ?></a></li>
                     <li<?php if(LUNA_PAGE == 'about') echo ' class="active"' ?>><a href="about.php"><i class="fa fa-fw fa-moon-o"></i> <?php _e('About', 'luna') ?></a></li>
                 <?php } if (LUNA_SECTION == 'content') { ?>
                     <li<?php if(LUNA_PAGE == 'board') echo ' class="active"' ?>><a href="board.php"><i class="fa fa-fw fa-list"></i> <?php _e('Board', 'luna') ?></a></li>
