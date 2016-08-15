@@ -7,8 +7,6 @@
  * Bootstrap:			3.3.5
  */
 
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
-
 /* General fixes */
 * {
 	border-radius: 0 !important;
@@ -16,7 +14,7 @@
 }
 
 body {
-	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 	background-color: #e8e8e8;
 }
 
@@ -158,7 +156,7 @@ h6,
 .h6,
 .btn,
 .navbar {
-	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 }
 
@@ -487,7 +485,7 @@ blockquote footer {
 }
 
 .jumboheader h2 {
-	font-family: "Segoe UI Light", "Open Sans";
+	font-family: "Segoe UI Light";
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
