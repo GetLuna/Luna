@@ -371,10 +371,6 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			$db->query('UPDATE '.$db->prefix.'forums SET moderators='.$cur_moderators.' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		}
 
-		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete thread subscriptions', __FILE__, __LINE__, $db->error());
-		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to delete forum subscriptions', __FILE__, __LINE__, $db->error());
-
 		// Remove them from the online list (if they happen to be logged in)
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to remove users from online list', __FILE__, __LINE__, $db->error());
 

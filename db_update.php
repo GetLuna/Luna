@@ -215,29 +215,6 @@ switch ($stage) {
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 
-		if (!$db->table_exists('forum_subscriptions'))
-		{
-			$schema = array(
-				'FIELDS'		=> array(
-					'user_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'forum_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					)
-				),
-				'PRIMARY KEY'	=> array('user_id', 'forum_id')
-			);
-
-			$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
-		}
-
-		build_config(1, 'o_forum_subscriptions', '1');
-
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
@@ -381,14 +358,11 @@ switch ($stage) {
 		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
 
 		// Luna 1.3 upgrade support
-		$db->rename_table('subscriptions', 'thread_subscriptions');
-		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
 		$db->rename_table('topics', 'threads');
 		$db->rename_table('posts', 'comments');
 		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
 		$db->rename_field('comments', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
-		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
 		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
 		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
@@ -431,8 +405,6 @@ switch ($stage) {
 		build_config(0, 'o_topic_review');
 		build_config(0, 'o_video_height');
 		build_config(0, 'o_video_width');
-		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
-		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
 		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
 		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
 		build_config(2, 'o_thread_views', 'o_topic_views');
@@ -510,6 +482,8 @@ switch ($stage) {
 		build_config(0, 'o_allow_center');
 		build_config(0, 'o_allow_size');
 		build_config(0, 'o_smilies_sig');
+		build_config(0, 'o_forum_subscriptions');
+		build_config(0, 'o_thread_subscriptions');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());
@@ -542,6 +516,10 @@ switch ($stage) {
 			$db->drop_table('messages') or error('Unable to drop messages table', __FILE__, __LINE__, $db->error());
 		if ($db->table_exists('notifications'))
 			$db->drop_table('notifications') or error('Unable to drop notifications table', __FILE__, __LINE__, $db->error());
+		if ($db->table_exists('forum_subscriptions'))
+			$db->drop_table('forum_subscriptions') or error('Unable to drop forum_subscriptions table', __FILE__, __LINE__, $db->error());
+		if ($db->table_exists('thread_subscriptions'))
+			$db->drop_table('thread_subscriptions') or error('Unable to drop thread_subscriptions table', __FILE__, __LINE__, $db->error());
 
 		break;
 

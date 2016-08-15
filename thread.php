@@ -72,7 +72,7 @@ if ($pid) {
 if ($luna_user['is_guest'])
 	$result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment, s.user_id AS is_subscribed FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -139,15 +139,6 @@ elseif ($luna_config['o_feed_type'] == '2')
 	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.__('Atom thread feed', 'luna').'" />');
 
 $thread_actions = array();
-
-if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') {
-	$token_url = '&amp;csrf_token='.luna_csrf_token();
-
-	if ($cur_thread['is_subscribed'])
-		$thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
-	else
-		$thread_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
-}
 
 $result = $db->query('SELECT * FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'threads AS t ON (f.id = t.forum_id) WHERE t.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 

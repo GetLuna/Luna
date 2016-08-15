@@ -68,8 +68,6 @@ if ($luna_user['g_search'] == '1') {
 		$quick_searches[] = '<a class="btn btn-default" href="search.php?action=show_user_threads&amp;user_id='.$id.'">'.__('Threads', 'luna').'</a>';
 		$quick_searches[] = '<a class="btn btn-default" href="search.php?action=show_user_comments&amp;user_id='.$id.'">'.__('Comments', 'luna').'</a>';
 	}
-	if ( ( $luna_user['is_admmod'] || $luna_user['id'] == $id ) && $luna_config['o_thread_subscriptions'] == '1')
-		$quick_searches[] = '<a class="btn btn-default" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Subscriptions', 'luna').'</a>';
 
 	if (!empty($quick_searches))
 		$user_activities = implode('', $quick_searches);

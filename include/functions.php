@@ -181,8 +181,6 @@ function prune($forum_id, $prune_pinned, $prune_date) {
 			decrease_comment_counts($comment_ids);
 			// Delete threads
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$thread_ids.')') or error('Unable to prune threads', __FILE__, __LINE__, $db->error());
-			// Delete subscriptions
-			$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$thread_ids.')') or error('Unable to prune subscriptions', __FILE__, __LINE__, $db->error());
 			// Delete comments
 			$db->query('DELETE FROM '.$db->prefix.'comments WHERE id IN('.$comment_ids.')') or error('Unable to prune comments', __FILE__, __LINE__, $db->error());
 
@@ -736,11 +734,6 @@ function delete_thread($thread_id, $type) {
         strip_search_index($comment_ids);
         // Delete comments in thread
         $db->query('DELETE FROM '.$db->prefix.'comments WHERE thread_id='.$thread_id) or error('Unable to delete comments', __FILE__, __LINE__, $db->error());
-	}
-
-	if ($type != "reset") {
-		// Delete any subscriptions for this thread
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$thread_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 	}
 }
 

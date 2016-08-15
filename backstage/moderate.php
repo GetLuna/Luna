@@ -209,9 +209,6 @@ if (isset($_GET['tid'])) {
 			// Move the comments to the new thread
 			$db->query('UPDATE '.$db->prefix.'comments SET thread_id='.$new_tid.' WHERE id IN('.$comments.')') or error('Unable to move comments into new thread', __FILE__, __LINE__, $db->error());
 
-			// Apply every subscription to both threads
-			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'thread_subscriptions WHERE thread_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
-
 			// Get last_comment, last_comment_id, and last_commenter from the thread and update it
 			$result = $db->query('SELECT id, commenter, commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 			$last_comment_data = $db->fetch_assoc($result);
@@ -563,18 +560,6 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
 		// Merge the comments into the thread
 		$db->query('UPDATE '.$db->prefix.'comments SET thread_id='.$merge_to_tid.' WHERE thread_id IN('.implode(',', $threads).')') or error('Unable to merge the comments into the thread', __FILE__, __LINE__, $db->error());
 
-		// Update any subscriptions
-		$result = $db->query('SELECT DISTINCT user_id FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN ('.implode(',', $threads).')') or error('Unable to fetch subscriptions of merged threads', __FILE__, __LINE__, $db->error());
-
-		$subscribed_users = array();
-		while ($row = $db->fetch_row($result))
-			$subscribed_users[] = $row[0];
-
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN ('.implode(',', $threads).')') or error('Unable to delete subscriptions of merged threads', __FILE__, __LINE__, $db->error());
-
-		foreach ($subscribed_users as $cur_user_id)
-			$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (thread_id, user_id) VALUES ('.$merge_to_tid.', '.$cur_user_id.')') or error('Unable to re-enter subscriptions for merge thread', __FILE__, __LINE__, $db->error());
-
 		// Without redirection the old threads are removed
 		if (!isset($_POST['with_redirect']))
 			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $threads).') AND id != '.$merge_to_tid) or error('Unable to delete old threads', __FILE__, __LINE__, $db->error());
@@ -655,9 +640,6 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 
 		// Delete the threads and any redirect threads
 		$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.$threads.') OR moved_to IN('.$threads.')') or error('Unable to delete thread', __FILE__, __LINE__, $db->error());
-
-		// Delete any subscriptions
-		$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE thread_id IN('.$threads.')') or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
 		// Create a list of the comment IDs in this thread and then strip the search index
 		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id IN('.$threads.')') or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());

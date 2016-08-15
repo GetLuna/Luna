@@ -41,8 +41,6 @@ if (isset($_POST['form_sent'])) {
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
 		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
-		'forum_subscriptions'	        => isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
-		'thread_subscriptions'          => isset($_POST['form']['thread_subscriptions']) ? '1' : '0',
 		'message_img_tag'		=> isset($_POST['form']['message_img_tag']) ? '1' : '0',
 		'message_all_caps'		=> isset($_POST['form']['message_all_caps']) ? '1' : '0',
 		'subject_all_caps'		=> isset($_POST['form']['subject_all_caps']) ? '1' : '0',
@@ -153,33 +151,6 @@ if (isset($_GET['saved']))
                                     <label>
                                         <input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked' ?> />
                                         <?php _e('Allow search only in 1 forum at a time.', 'luna') ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Subscriptions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Subscriptions', 'luna') ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($luna_config['o_forum_subscriptions'] == '1') echo ' checked' ?> />
-                                        <?php _e('Enable users to subscribe to forums.', 'luna') ?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[thread_subscriptions]" value="1" <?php if ($luna_config['o_thread_subscriptions'] == '1') echo ' checked' ?> />
-                                        <?php _e('Enable users to subscribe to threads.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>

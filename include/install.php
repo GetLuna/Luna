@@ -867,44 +867,6 @@ class Installer {
 
 		$schema = array(
 			'FIELDS'		=> array(
-				'user_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'thread_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				)
-			),
-			'PRIMARY KEY'	=> array('user_id', 'thread_id')
-		);
-
-		$db->create_table('thread_subscriptions', $schema) or error('Unable to create thread subscriptions table', __FILE__, __LINE__, $db->error());
-
-
-		$schema = array(
-			'FIELDS'		=> array(
-				'user_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'forum_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				)
-			),
-			'PRIMARY KEY'	=> array('user_id', 'forum_id')
-		);
-
-		$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
-
-
-		$schema = array(
-			'FIELDS'		=> array(
 				'id'			=> array(
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
@@ -1235,8 +1197,6 @@ class Installer {
 			'o_base_url'				=> $base_url,
 			'o_admin_email'				=> $email,
 			'o_webmaster_email'			=> $email,
-			'o_forum_subscriptions'		=> 1,
-			'o_thread_subscriptions'	=> 1,
 			'o_smtp_host'				=> NULL,
 			'o_smtp_user'				=> NULL,
 			'o_smtp_pass'				=> NULL,

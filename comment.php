@@ -20,7 +20,7 @@ if ($tid < 1 && $fid < 1 || $tid > 0 && $fid > 0)
 
 // Fetch some info about the thread and/or the forum
 if ($tid)
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_threads, t.subject, t.closed, s.user_id AS is_subscribed, t.id AS tid FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_threads, t.subject, t.closed, t.id AS tid FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
 	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.comment, fp.create_threads FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
@@ -28,7 +28,6 @@ if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 $cur_commenting = $db->fetch_assoc($result);
-$is_subscribed = $tid && $cur_commenting['is_subscribed'];
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_commenting['moderators'] != '') ? unserialize($cur_commenting['moderators']) : array();
@@ -126,7 +125,6 @@ if (isset($_POST['form_sent'])) {
 		}
 	}
 
-	$subscribe = isset($_POST['subscribe']) ? '1' : '0';
 	$pin_thread = isset($_POST['pin_thread']) && $is_admmod ? '1' : '0';
 
 	// Replace four-byte characters (MySQL cannot handle them)
@@ -146,14 +144,6 @@ if (isset($_POST['form_sent'])) {
 				// Insert the new comment
 				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$now.', '.$tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
-
-				// To subscribe or not to subscribe, that ...
-				if ($luna_config['o_thread_subscriptions'] == '1') {
-					if ($subscribe && !$is_subscribed)
-						$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
-					elseif (!$subscribe && $is_subscribed)
-						$db->query('DELETE FROM '.$db->prefix.'thread_subscriptions WHERE user_id='.$luna_user['id'].' AND thread_id='.$tid) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
-				}
 			} else {
 				// It's a guest. Insert the new comment
 				$email_sql = ($luna_config['o_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
@@ -172,106 +162,6 @@ if (isset($_POST['form_sent'])) {
 			update_search_index('comment', $new_pid, $message);
 
 			update_forum($cur_commenting['fid']);
-
-			// Should we send out notifications?
-			if ($luna_config['o_thread_subscriptions'] == '1') {
-				// Get the comment time for the previous comment in this thread
-				$result = $db->query('SELECT commented FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
-				$previous_comment_time = $db->result($result);
-
-				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_comment, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_commenting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_comment_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.thread_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result)) {
-					require_once LUNA_ROOT.'include/email.php';
-
-					$notification_emails = array();
-
-					if ($luna_config['o_censoring'] == '1')
-						$cleaned_message = bbcode2email($censored_message, -1);
-					else
-						$cleaned_message = bbcode2email($message, -1);
-
-					// Loop through subscribed users and send emails and notifications
-					while ($cur_subscriber = $db->fetch_assoc($result)) {
-						// Is the subscription email for $cur_subscriber['language'] cached or not?
-						if (!isset($notification_emails[$cur_subscriber['language']])) {
-								// Load the "new reply" template
-								$mail_tpl = trim(__('Subject: Reply to thread: "<thread_subject>"
-
-<replier> has replied to the thread "<thread_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
-
-The comment is located at <comment_url>
-
-You can unsubscribe by going to <unsubscribe_url>
-
---
-<board_mailer> Mailer
-(Do not reply to this message)', 'luna'));
-
-								// Load the "new reply full" template (with comment included)
-								$mail_tpl_full = trim(__('Subject: Reply to thread: "<thread_subject>"
-
-<replier> has replied to the thread "<thread_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
-
-The comment is located at <comment_url>
-
-The message reads as follows:
------------------------------------------------------------------------
-
-<message>
-
------------------------------------------------------------------------
-
-You can unsubscribe by going to <unsubscribe_url>
-
---
-<board_mailer> Mailer
-(Do not reply to this message)', 'luna'));
-
-								// The first row contains the subject (it also starts with "Subject:")
-								$first_crlf = strpos($mail_tpl, "\n");
-								$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
-								$mail_message = trim(substr($mail_tpl, $first_crlf));
-
-								$first_crlf = strpos($mail_tpl_full, "\n");
-								$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf-8));
-								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
-
-								$mail_subject = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_subject);
-								$mail_message = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_message);
-								$mail_message = str_replace('<replier>', $username, $mail_message);
-								$mail_message = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
-								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message);
-								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
-
-								$mail_subject_full = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_subject_full);
-								$mail_message_full = str_replace('<thread_subject>', $cur_commenting['subject'], $mail_message_full);
-								$mail_message_full = str_replace('<replier>', $username, $mail_message_full);
-								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-								$mail_message_full = str_replace('<comment_url>', get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
-								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message_full);
-								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
-
-								$notification_emails[$cur_subscriber['language']][0] = $mail_subject;
-								$notification_emails[$cur_subscriber['language']][1] = $mail_message;
-								$notification_emails[$cur_subscriber['language']][2] = $mail_subject_full;
-								$notification_emails[$cur_subscriber['language']][3] = $mail_message_full;
-
-								$mail_subject = $mail_message = $mail_subject_full = $mail_message_full = null;
-						}
-
-						// We have to double check here because the templates could be missing
-						if (isset($notification_emails[$cur_subscriber['language']])) {
-							if ($cur_subscriber['notify_with_comment'] == '0')
-								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
-							else
-								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][2], $notification_emails[$cur_subscriber['language']][3]);
-						}
-					}
-
-					unset($cleaned_message);
-				}
-			}
 		}
 		// If it's a new thread
 		elseif ($fid) {
@@ -285,10 +175,6 @@ You can unsubscribe by going to <unsubscribe_url>
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest']) {
-				// To subscribe or not to subscribe, that ...
-				if ($luna_config['o_thread_subscriptions'] == '1' && $subscribe)
-					$db->query('INSERT INTO '.$db->prefix.'thread_subscriptions (user_id, thread_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
-
 				// Create the comment ("thread comment")
 				$db->query('INSERT INTO '.$db->prefix.'comments (commenter, commenter_id, commenter_ip, message, commented, thread_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$now.', '.$new_tid.')') or error('Unable to create comment', __FILE__, __LINE__, $db->error());
 			} else {
@@ -304,106 +190,6 @@ You can unsubscribe by going to <unsubscribe_url>
 			update_search_index('comment', $new_pid, $message, $subject);
 
 			update_forum($fid);
-
-			// Should we send out notifications?
-			if ($luna_config['o_forum_subscriptions'] == '1') {
-				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_comment, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_commenting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_commenting['fid'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result)) {
-					require_once LUNA_ROOT.'include/email.php';
-
-					$notification_emails = array();
-
-					if ($luna_config['o_censoring'] == '1')
-						$cleaned_message = bbcode2email($censored_message, -1);
-					else
-						$cleaned_message = bbcode2email($message, -1);
-
-					// Loop through subscribed users and send emails
-					while ($cur_subscriber = $db->fetch_assoc($result)) {
-						// First of all, add a new notification
-						new_notification($cur_subscriber['id'], get_base_url().'/thread.php?pid='.$new_pid.'#p'.$new_pid, sprintf(__('%s created a new thread in %s', 'luna'), $username, $cur_commenting['forum_name']), 'fa-comments-o');
-                        
-						// Is the subscription email for $cur_subscriber['language'] cached or not?
-						if (!isset($notification_emails[$cur_subscriber['language']])) {
-								// Load the "new thread" template
-								$mail_tpl = trim(__('Subject: New thread in forum: "<forum_name>"
-
-<commenter> has commented a new thread "<thread_subject>" in the forum "<forum_name>", to which you are subscribed.
-
-The thread is located at <thread_url>
-
-You can unsubscribe by going to <unsubscribe_url>
-
---
-<board_mailer> Mailer
-(Do not reply to this message)', 'luna'));
-
-								// Load the "new thread full" template (with comment included)
-								$mail_tpl_full = trim(__('Subject: New thread in forum: "<forum_name>"
-
-<commenter> has commented a new thread "<thread_subject>" in the forum "<forum_name>", to which you are subscribed.
-
-The thread is located at <thread_url>
-
-The message reads as follows:
------------------------------------------------------------------------
-
-<message>
-
------------------------------------------------------------------------
-
-You can unsubscribe by going to <unsubscribe_url>
-
---
-<board_mailer> Mailer
-(Do not reply to this message)', 'luna'));
-
-								// The first row contains the subject (it also starts with "Subject:")
-								$first_crlf = strpos($mail_tpl, "\n");
-								$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
-								$mail_message = trim(substr($mail_tpl, $first_crlf));
-
-								$first_crlf = strpos($mail_tpl_full, "\n");
-								$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf-8));
-								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
-
-								$mail_subject = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_subject);
-								$mail_message = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
-								$mail_message = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_message);
-								$mail_message = str_replace('<commenter>', $username, $mail_message);
-								$mail_message = str_replace('<thread_url>', get_base_url().'/thread.php?id='.$new_tid, $mail_message);
-								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_commenting['fid'], $mail_message);
-								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
-
-								$mail_subject_full = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_subject_full);
-								$mail_message_full = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message_full);
-								$mail_message_full = str_replace('<forum_name>', $cur_commenting['forum_name'], $mail_message_full);
-								$mail_message_full = str_replace('<commenter>', $username, $mail_message_full);
-								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-								$mail_message_full = str_replace('<thread_url>', get_base_url().'/thread.php?id='.$new_tid, $mail_message_full);
-								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_commenting['fid'], $mail_message_full);
-								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
-
-								$notification_emails[$cur_subscriber['language']][0] = $mail_subject;
-								$notification_emails[$cur_subscriber['language']][1] = $mail_message;
-								$notification_emails[$cur_subscriber['language']][2] = $mail_subject_full;
-								$notification_emails[$cur_subscriber['language']][3] = $mail_message_full;
-
-								$mail_subject = $mail_message = $mail_subject_full = $mail_message_full = null;
-						}
-
-						// We have to double check here because the templates could be missing
-						if (isset($notification_emails[$cur_subscriber['language']])) {
-							if ($cur_subscriber['notify_with_comment'] == '0')
-								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
-							else
-								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][2], $notification_emails[$cur_subscriber['language']][3]);
-						}
-					}
-
-					unset($cleaned_message);
-				}
 			}
 		}
 

@@ -64,14 +64,10 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$search_in = (!isset($_GET['search_in']) || $_GET['search_in'] == '0') ? 0 : (($_GET['search_in'] == '1') ? 1 : -1);
 	}
 	// If it's a user search (by ID)
-	elseif ($action == 'show_user_comments' || $action == 'show_user_threads' || $action == 'show_subscriptions') {
+	elseif ($action == 'show_user_comments' || $action == 'show_user_threads') {
 		$user_id = (isset($_GET['user_id'])) ? intval($_GET['user_id']) : $luna_user['id'];
 		if ($user_id < 2)
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-		// Subscribed threads can only be viewed by admins, moderators and the users themselves
-		if ($action == 'show_subscriptions' && !$luna_user['is_admmod'] && $user_id != $luna_user['id'])
-			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 	} elseif ($action == 'show_recent')
 		$interval = isset($_GET['value']) ? intval($_GET['value']) : 86400;
 	elseif ($action != 'show_new' && $action != 'show_unanswered')
@@ -267,7 +263,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			$num_hits = count($search_ids);
 			if (!$num_hits)
 				message(__('Your search returned no hits.', 'luna'));
-		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_comments' || $action == 'show_user_threads' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
+		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_comments' || $action == 'show_user_threads' || $action == 'show_unanswered') {
 			$search_type = array('action', $action);
 			$show_as = 'threads';
 			// We want to sort things after last comment
@@ -315,20 +311,6 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 					message(__('There are no threads by this user in this forum.', 'luna'));
 
 				// Pass on the user ID so that we can later know whose threads we're searching for
-				$search_type[2] = $user_id;
-			}
-			// If it's a search for subscribed threads
-			elseif ($action == 'show_subscriptions') {
-				if ($luna_user['is_guest'])
-					message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-				$result = $db->query('SELECT t.id FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$user_id.') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY t.last_comment DESC') or error('Unable to fetch thread list', __FILE__, __LINE__, $db->error());
-				$num_hits = $db->num_rows($result);
-
-				if (!$num_hits)
-					message(__('This user is currently not subscribed to any threads.', 'luna'));
-
-				// Pass on user ID so that we can later know whose subscriptions we're searching for
 				$search_type[2] = $user_id;
 			}
 			// If it's a search for unanswered comments
@@ -447,18 +429,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_threads&amp;user_id='.$search_type[2].'">'.sprintf(__('Threads by %s', 'luna'), luna_htmlspecialchars($search_set[0]['commenter'])).'</a>';
 			elseif ($search_type[1] == 'show_user_comments')
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_comments&amp;user_id='.$search_type[2].'">'.sprintf(__('Comments by %s', 'luna'), luna_htmlspecialchars($search_set[0]['pcommenter'])).'</a>';
-			elseif ($search_type[1] == 'show_subscriptions') {
-				// Fetch username of subscriber
-				$subscriber_id = $search_type[2];
-				$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$subscriber_id) or error('Unable to fetch username of subscriber', __FILE__, __LINE__, $db->error());
-
-				if ($db->num_rows($result))
-					$subscriber_name = $db->result($result);
-				else
-					message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$subscriber_id.'">'.sprintf(__('Subscribed by %s', 'luna'), luna_htmlspecialchars($subscriber_name)).'</a>';
-			} else
+			else
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action='.$search_type[1].'">'.sprintf(__('Quick search %s', 'luna'), $search_type[1]).'</a>';
 		} else {
 			$keywords = $author = '';

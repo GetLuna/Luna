@@ -176,28 +176,6 @@ else
 									</div>
 								</div>
 							</div>
-							<?php if ($luna_config['o_forum_subscriptions'] == '1' || $luna_config['o_thread_subscriptions'] == '1') { ?>
-							<hr />
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Subscriptions', 'luna') ?></label>
-								<div class="col-sm-9">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[notify_with_comment]" value="1"<?php if ($user['notify_with_comment'] == '1') echo ' checked' ?> />
-											<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
-										</label>
-									</div>
-									<?php if ($luna_config['o_thread_subscriptions'] == '1') { ?>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked' ?> />
-											<?php _e('Automatically subscribe to every thread you comment in.', 'luna') ?>
-										</label>
-									</div>
-									<?php } ?>
-								</div>
-							</div>
-							<?php } ?>
 							<hr />
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>

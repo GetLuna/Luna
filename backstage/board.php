@@ -67,10 +67,7 @@ elseif (isset($_GET['del_forum'])) {
 		// Delete the forum and any forum specific group permissions
 		$db->query('DELETE FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to delete forum', __FILE__, __LINE__, $db->error());
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
-
-		// Delete any subscriptions for this forum
-		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
-
+        
 		// Regenerate the forum cache
 		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
 			require LUNA_ROOT.'include/cache.php';
