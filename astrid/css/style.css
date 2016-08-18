@@ -1,0 +1,221 @@
+body {
+    background: #f8f8f8;
+    font-size: .9rem;
+}
+
+/* Grid mods */
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.row.row-padding {
+    padding: 0 10px;
+}
+
+/* Copntainers */
+.container.content {
+    background: #fff;
+    padding: 10px 20px 0;
+}
+
+/* Jumbotrons */
+.jumbotron {
+    margin-bottom: 0;
+}
+
+.jumbotron .lead {
+    margin-bottom: 0;
+}
+
+/* Navbar */
+.navbar-brand {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* Forms */
+.form-control {
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Cards */
+.card {
+    margin-bottom: 10px;
+}
+
+.card-block {
+    padding: 10px;
+}
+
+:first-child.card-header {
+    padding: 10px;
+}
+
+.card-table {
+    padding: 0;
+}
+
+.card-table .table {
+    margin-bottom: 0;
+}
+
+.card-table .table thead th {
+    border-top: none;
+}
+
+.table td, .table th {
+    padding: 10px;
+}
+
+.card-inverse {
+    color: #fff;
+}
+
+.card-header .btn {
+    margin: -16px -10px -10px 0;
+    font-weight: 600;
+    padding: 12.8px;
+    border: none;
+}
+
+.card-statistics h4 {
+    margin-bottom: 0;
+}
+
+.card-statistics h4 small {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.card-success {
+    background-color: #64b450;
+}
+
+.card-success .card-header {
+    border: none;
+    background-color: #529e3f;
+}
+
+.card-success .btn-secondary {
+    color: #529e3f;
+}
+
+.card-primary {
+    background-color: #2788cb;
+}
+
+.card-warning {
+    background-color: #ffb900;
+}
+
+.card-warning .card-header {
+    border: none;
+    background-color: #ffa200;
+}
+
+.card-warning .btn-secondary {
+    color: #ffa200;
+}
+
+.card-danger {
+    background-color: #dc3232;
+}
+
+.card-danger .card-header {
+    border: none;
+    background-color: #cb2929;
+}
+
+.card-danger .btn-secondary {
+    color: #cb2929;
+}
+
+/* Buttons */
+.btn {
+    font-size: 14px;
+}
+
+.card-inverse .btn {
+    border: none;
+}
+
+/* Footer */
+footer.container {
+    padding: 10px;
+}
+
+footer.container p {
+    margin-bottom: 0;
+}
+
+footer a {
+    color: #fff;
+}
+
+footer a:hover, footer a:active, footer a:focus {
+    color: #fff;
+}
+
+/* Theming */
+* {
+    border-radius: 0 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .active > .nav-link:focus, .navbar-light .navbar-nav .active > .nav-link:hover, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.active:focus, .navbar-light .navbar-nav .nav-link.active:hover, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .nav-link.open:focus, .navbar-light .navbar-nav .nav-link.open:hover, .navbar-light .navbar-nav .open > .nav-link, .navbar-light .navbar-nav .open > .nav-link:focus, .navbar-light .navbar-nav .open > .nav-link:hover {
+    color: #2788cb !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: #2788cb;
+    border-color: #207fc1;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background: #207fc1;
+    border-color: #1775b5;
+}
+
+.jumbotron {
+    background: #2788cb;
+    color: #fff;
+}
+
+.card {
+    border: none;
+}
+
+.card:not(.card-inverse) .card-block {
+    border-width: 0 1px 1px;
+    border-color: rgba(0,0,0,.125);
+    border-style: solid;
+}
+
+.card:not(.card-inverse) .card-header {
+    border-bottom: solid 4px #2788cb;
+    color: #2788cb;
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 10px !important;
+    text-transform: uppercase;
+}
+
+footer {
+    background: #2788cb;
+    color: #fff;
+}
