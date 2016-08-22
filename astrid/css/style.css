@@ -1,5 +1,5 @@
 body {
-    background: #f8f8f8;
+    background: #e8e8e8;
     font-size: .9rem;
 }
 
@@ -9,19 +9,127 @@ body {
     padding-right: 5px;
 }
 
+.col-xs-12.col-padding {
+    padding: 0;
+}
+
 .row.row-padding {
     padding: 0 10px;
 }
 
-/* Copntainers */
-.container.content {
+/* Containers */
+.container-fluid.main {
     background: #fff;
-    padding: 10px 20px 0;
+}
+
+.settings {
+    padding: 10px 5px 0;
+}
+
+/* Page */
+.page {
+    padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    padding: 0;
+}
+
+.sidebar .list-group {
+    border: none;
+}
+
+.sidebar .list-group-item:last-child {
+    border: none;
+}
+
+.sidebar .list-group-item:first-child {
+    border-top: none;
+}
+
+.sidebar .list-group-item.list-group-item-inverse {
+    background: #444;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sidebar .list-group-item.list-group-item-inverse:hover {
+    background: #333;
+}
+
+.sidebar .list-group-item {
+    padding: 12px;
+    border: none;
+    background: #f8f8f8;
+    margin-bottom: 0;
+}
+
+.sidebar .list-group-item:hover {
+    padding: 12px;
+    border: none;
+    background: #eee;
+}
+
+.sidebar .list-group-profile h4.media-heading {
+    margin: -4px 0 0;
+    font-size: 27px;
+}
+
+.sidebar .list-group-profile h5 {
+    font-weight: 600;
+    margin: -4px 0 0;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.sidebar .list-group-profile h6 {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: .4;
+    line-height: 1;
+    font-size: 13px;
+}
+
+@media all and (max-width:767px) {
+    .list-group-item {
+        text-align: center;
+    }
+    
+    .sidebar .media-left {
+        padding: 0;
+    }
+    
+    .sidebar .media-object {
+        width: 100%;
+        height: auto;
+    }
+    
+    .sidebar .media-body {
+        display: none;
+    }
 }
 
 /* Jumbotrons */
 .jumbotron {
     margin-bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.jumbotron-page-title {
+    padding: 12px;
+    
+}
+
+.jumbotron-page-title h1.page-title {
+    font-size: .9rem;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .jumbotron .lead {
@@ -144,11 +252,11 @@ body {
 }
 
 /* Footer */
-footer.container {
+footer.container-fluid {
     padding: 10px;
 }
 
-footer.container p {
+footer.container-fluid p {
     margin-bottom: 0;
 }
 
@@ -169,28 +277,37 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 
-.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .active > .nav-link:focus, .navbar-light .navbar-nav .active > .nav-link:hover, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.active:focus, .navbar-light .navbar-nav .nav-link.active:hover, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .nav-link.open:focus, .navbar-light .navbar-nav .nav-link.open:hover, .navbar-light .navbar-nav .open > .nav-link, .navbar-light .navbar-nav .open > .nav-link:focus, .navbar-light .navbar-nav .open > .nav-link:hover {
-    color: #2788cb !important;
+.navbar.bg-blue {
+    background: #136cab;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-dark .navbar-nav .nav-link {
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .btn-primary {
-    background: #2788cb;
-    border-color: #207fc1;
+    background: #1a76b7;
+    border-color: #1a76b7;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background: #207fc1;
-    border-color: #1775b5;
+    background: #136cab;
+    border-color: #136cab;
 }
 
 .jumbotron {
-    background: #2788cb;
+    background: #1a76b7;
     color: #fff;
+}
+
+.jumbotron-page-title {
+    background: #136cab;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #136cab;
+    border-color: #136cab;
 }
 
 .card {
@@ -204,8 +321,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card:not(.card-inverse) .card-header {
-    border-bottom: solid 4px #2788cb;
-    color: #2788cb;
+    border-bottom: solid 4px #1a76b7;
+    color: #1a76b7;
 }
 
 .card-header {
@@ -216,6 +333,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 footer {
-    background: #2788cb;
+    background: #1a76b7;
     color: #fff;
 }

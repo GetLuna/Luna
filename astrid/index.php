@@ -5,14 +5,17 @@ include( '../include/common.glt.php' );
 include( 'include/header.php' );
 
 ?>
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Welcome to Luna Preview</h1>
-        <p class="lead">You're using the Backstage 7 Preview, for more settings, go back to the old Backstage.</p>
+<div class="content">
+    <div class="col-xs-12 col-padding">
+        <div class="jumbotron jumbotron-page-title">
+            <h1 class="page-title">Backstage</h1>
+        </div>
+        <div class="jumbotron text-xs-center">
+            <h1 class="display-4">Welcome to Luna Preview</h1>
+            <p class="lead hidden-sm-down">You're using the Backstage 7 Preview, for more settings, go back to the old Backstage.</p>
+        </div>
     </div>
-</div>
-<div class="container content">
-    <div class="row">
+    <div class="col-xs-12 settings">
         <div class="col-xl-8">
             <div class="card">
                 <div class="card-header">
