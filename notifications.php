@@ -26,7 +26,11 @@ if ($id < 2)
 
 // Handle notifications 
 if (isset($_GET['notification'])) {
-    $notification = $_GET['notification'];
+    if ( is_int($db->escape($_GET['notification'])) )
+        $notification = $_GET['notification'];
+    else
+	   message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+        
 
     $result = $db->query('SELECT link FROM '.$db->prefix.'notifications WHERE id='.$notification.' AND user_id='.$id) or error('Unable to fetch notification info', __FILE__, __LINE__, $db->error());
     $notifi = $db->fetch_assoc($result);
@@ -41,7 +45,10 @@ if (isset($_GET['notification'])) {
 }
 
 if (isset($_GET['read_notification'])) {
-    $notification = $_GET['read_notification'];
+    if ( is_int($db->escape($_GET['read_notification'])) )
+        $notification = $_GET['read_notification'];
+    else
+	   message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
     $result = $db->query('SELECT id FROM '.$db->prefix.'notifications WHERE id='.$notification.' AND user_id='.$id) or error('Unable to fetch notification info', __FILE__, __LINE__, $db->error());
     $notifi = $db->fetch_assoc($result);
@@ -55,7 +62,10 @@ if (isset($_GET['read_notification'])) {
 }
 
 if (isset($_GET['remove_notification'])) {
-    $notification = $_GET['remove_notification'];
+    if ( is_int($db->escape($_GET['remove_notification'])) )
+        $notification = $_GET['remove_notification'];
+    else
+	   message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
     $result = $db->query('SELECT id, user_id, link FROM '.$db->prefix.'notifications WHERE id='.$notification.' AND user_id='.$id) or error('Unable to fetch notification info', __FILE__, __LINE__, $db->error());
     $notifi = $db->fetch_assoc($result);
