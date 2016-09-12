@@ -6,23 +6,27 @@ if (!defined('FORUM'))
 
 
 ?>
-<div class="index profile-header container-fluid">
-	<div class="jumbotron profile">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h2 class="username"><?php _e( 'Welcome back', 'luna' ) ?></h2>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<?php if (!$luna_user['is_guest']) { ?>
+    <div class="index profile-header container-fluid">
+        <div class="jumbotron profile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="username"><?php _e( 'Welcome back', 'luna' ) ?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <div class="main index profile container">
 	<div class="row">
 		<div class="col-sm-3 col-xs-12 sidebar">
+            <?php if (!$luna_user['is_guest']) { ?>
 			<div class="container-avatar hidden-xs">
 				<img src="<?php echo get_avatar( $luna_user['id'] ) ?>" alt="Avatar" class="img-avatar img-center">
 			</div>
+            <?php } ?>
 			<?php if ($luna_user['g_search'] == '1'): ?>
 			<form id="search" class="input-group search-form" method="get" action="search.php?section=simple">
 				<input type="hidden" name="action" value="search" />
