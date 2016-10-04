@@ -221,11 +221,11 @@ if ($db->num_rows($result)) {
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><span class="pull-right"><a href="index.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span></h3>
+				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><span class="pull-right"><a href="index.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check', 'luna') ?></a></span></h3>
 			</div>
 			<div class="panel-body">
 <?php
-if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
+if (version_compare(Version::LUNA_VERSION, $update_cache, 'lt')) {
 ?>
 				<h3><?php _e('A new version is available!', 'luna') ?></h3>
 				<p><?php printf(__('A new version, Luna %s has been released. It\'s a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates.', 'luna'), $update_cache) ?></p>
@@ -234,7 +234,7 @@ if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 					<a href="http://getluna.org/release-notes.php" class="btn btn-primary"><i class="fa fa-fw fa-refresh"></i> <?php _e('Changelog', 'luna') ?></a>
 				</div>
 <?php
-} elseif (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'eq')) {
+} elseif (version_compare(Version::LUNA_VERSION, $update_cache, 'eq')) {
 ?>
 				<h3><?php _e('You\'re up-to-date!', 'luna') ?></h3>
 				<p><?php _e('You\'re on our latest release! Nothing to worry about.', 'luna') ?></p>

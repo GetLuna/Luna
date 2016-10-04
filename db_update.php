@@ -154,7 +154,7 @@ switch ($db_type) {
 if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::LUNA_DB_VERSION &&
 		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::LUNA_SI_VERSION &&
 		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::LUNA_PARSER_VERSION &&
-		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::LUNA_CORE_VERSION, '>=')) {
+		array_key_exists('o_cur_version', $luna_config) && version_compare($luna_config['o_cur_version'], Version::LUNA_VERSION, '>=')) {
 	draw_wall_error(__('Your forum is already as up-to-date as this script can make it', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">'.__('Continue', 'luna').'</a>', __('Let\'s get started', 'luna'));
 	exit;
 }
@@ -271,7 +271,6 @@ switch ($stage) {
 		// ModernBB 3.5 upgrade support
 		$db->add_field('forums', 'parent_id', 'INT', true, 0) or error('Unable to add parent_id field', __FILE__, __LINE__, $db->error());
 		build_config(0, 'o_antispam_api');
-		build_config(1, 'o_core_version', Version::LUNA_CORE_VERSION);
 		build_config(0, 'o_index_update_check');
 
 		// Luna 1.0 upgrade support
@@ -481,6 +480,7 @@ switch ($stage) {
 		build_config(0, 'o_smilies_sig');
 		build_config(0, 'o_forum_subscriptions');
 		build_config(0, 'o_thread_subscriptions');
+		build_config(0, 'o_core_version');
 
         $db->drop_field('groups', 'g_inbox') or error('Unable to drop column "g_inbox" from table "groups"', __FILE__, __LINE__, $db->error());
         $db->drop_field('groups', 'g_inbox_limit') or error('Unable to drop column "g_inbox_limit" from table "groups"', __FILE__, __LINE__, $db->error());
@@ -651,7 +651,6 @@ switch ($stage) {
 
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CODE_NAME.'\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
 
 		// And the database revision number

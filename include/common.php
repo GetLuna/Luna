@@ -128,7 +128,7 @@ if (!isset($base_url)) {
 }
 
 // Verify that we are running the proper database schema revision
-if (!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::LUNA_CORE_VERSION, '<')) {
+if (!array_key_exists('o_cur_version', $luna_config) || version_compare($luna_config['o_cur_version'], Version::LUNA_VERSION, '<')) {
 	header('Location: '.$base_url.'/db_update.php');
 
 	exit;

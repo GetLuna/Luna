@@ -1129,7 +1129,6 @@ class Installer {
 		// Insert config data
 		$luna_config = array(
 			'o_cur_version'				=> Version::LUNA_VERSION,
-			'o_core_version'			=> Version::LUNA_CORE_VERSION,
 			'o_code_name'				=> Version::LUNA_CODE_NAME,
 			'o_database_revision'		=> Version::LUNA_DB_VERSION,
 			'o_searchindex_revision'	=> Version::LUNA_SI_VERSION,
