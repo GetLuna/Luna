@@ -349,6 +349,8 @@ blockquote footer {
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a {
 	color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .navbar-default .navbar-toggle,
@@ -538,6 +540,7 @@ footer a:hover {
 .panel {
     margin-top: 0;
     margin-bottom: 10px;
+    border: none;
 }
 
 .panel-sub {
@@ -550,8 +553,8 @@ footer a:hover {
 }
 
 h3.panel-title {
-	font-size: 130%;
-	margin-top: -2px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .panel-body {
@@ -569,6 +572,7 @@ h3.panel-title {
 .panel-body,
 .panel .table {
 	border-top: none;
+    background: #f8f8f8;
 }
 
 .panel-footer {
@@ -716,7 +720,7 @@ h3.panel-title {
 /* Forms */
 .form-control {
 	border-color: #e0e0e0;
-	background-color: #fafafa;
+	background-color: #fff;
 }
 
 .form-control-mono {
@@ -751,10 +755,12 @@ fieldset[disabled] .form-control {
 
 .panel-title .btn {
     background-color: transparent;
-	padding: 9px 14px 10px;
+	padding: 9px 14px;
 	border: none;
-	margin-top: -9px;
+	margin-top: -10px;
 	margin-right: -16px;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .panel-colored .panel-title .btn {
