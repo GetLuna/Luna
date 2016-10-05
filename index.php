@@ -75,6 +75,7 @@ define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'index');
 $footer_style = 'index';
 
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('index.php');

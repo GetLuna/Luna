@@ -101,6 +101,7 @@ $user_username = luna_htmlspecialchars($user['username']);
 $user_usertitle = get_title($user);
 
 define('LUNA_ACTIVE_PAGE', 'inbox');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 ?>

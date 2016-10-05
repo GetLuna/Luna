@@ -396,6 +396,7 @@ if ($r == '0' && $q == '0' && $edit == '0') {
 	$focus_element[] = 'req_message';
 
 define('LUNA_ACTIVE_PAGE', 'new-inbox');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('inbox-new.php');

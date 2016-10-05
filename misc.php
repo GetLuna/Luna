@@ -134,6 +134,7 @@ The message reads as follows:
 	$required_fields = array('req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
 	$focus_element = array('email', 'req_subject');
 	define('LUNA_ACTIVE_PAGE', 'misc');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('mail.php');
@@ -239,6 +240,7 @@ Reason: <reason>
 	$required_fields = array('req_reason' => __('Reason', 'luna'));
 	$focus_element = array('report', 'req_reason');
 	define('LUNA_ACTIVE_PAGE', 'misc');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('report.php');
@@ -275,6 +277,7 @@ Reason: <reason>
 	}
 
 	define('LUNA_ACTIVE_PAGE', 'misc');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('answer.php');
@@ -311,6 +314,7 @@ Reason: <reason>
 	}
 
 	define('LUNA_ACTIVE_PAGE', 'misc');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('unsolved.php');

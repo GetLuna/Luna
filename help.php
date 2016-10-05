@@ -15,6 +15,7 @@ if ($luna_user['g_read_board'] == '0')
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Help', 'luna'));
 define('LUNA_ACTIVE_PAGE', 'help');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('help.php');

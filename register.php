@@ -22,6 +22,7 @@ if ($luna_config['o_regs_allow'] == '0')
 if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Register', 'luna'), __('Forum rules', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'register');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('rules.php');
@@ -246,6 +247,7 @@ Login at <login_url> to activate the account.
 	$required_fields = array('req_user' => __('Username', 'luna'), 'req_password1' => __('Password', 'luna'), 'req_password2' => __('Confirm password', 'luna'), 'req_email1' => __('Email', 'luna'), 'req_email2' => __('Email', 'luna').' 2');
 	$focus_element = array('register', 'req_user');
 	define('LUNA_ACTIVE_PAGE', 'register');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('register.php');

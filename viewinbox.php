@@ -158,6 +158,7 @@ if ($action == 'delete') {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Delete message', 'luna'));
 
 		define('LUNA_ACTIVE_PAGE', 'pm');
+        include LUNA_ROOT.'header.php';
 		require load_page('header.php');
 
 		// If you're not the owner of the message, you can't delete it.
@@ -204,6 +205,7 @@ if ($action == 'delete') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('View a private discussion', 'luna'));
 
 	define('LUNA_ACTIVE_PAGE', 'pm');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])

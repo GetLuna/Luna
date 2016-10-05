@@ -135,6 +135,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Ed
 $required_fields = array('req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
 $focus_element = array('edit', 'req_message');
 define('LUNA_ACTIVE_PAGE', 'edit');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 $cur_index = 1;

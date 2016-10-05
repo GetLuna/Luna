@@ -112,6 +112,7 @@ if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
 // View or edit?
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
 define('LUNA_ACTIVE_PAGE', 'me');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('profile.php');

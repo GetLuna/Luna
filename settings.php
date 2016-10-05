@@ -262,6 +262,7 @@ if (isset($_POST['update_group_membership'])) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Confirm delete user', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'profile');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require load_page('me-delete.php');
@@ -445,6 +446,7 @@ To change your email address, please visit the following page:
 	$required_fields = array('req_new_email' => __('New email', 'luna'), 'req_password' => __('Password', 'luna'));
 	$focus_element = array('change_email', 'req_new_email');
 	define('LUNA_ACTIVE_PAGE', 'me');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 	require get_view_path('me-change_email.tpl.php');
@@ -832,6 +834,7 @@ To change your email address, please visit the following page:
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Settings', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'me');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 	require load_page('me-modals.php');
 	require load_page('settings.php');

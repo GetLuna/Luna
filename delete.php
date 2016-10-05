@@ -126,6 +126,7 @@ define ('LUNA_ACTIVE_PAGE', 'delete');
 require LUNA_ROOT.'include/parser.php';
 $cur_comment['message'] = parse_message($cur_comment['message']);
 
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 if ($action == "reset")

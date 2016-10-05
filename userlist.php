@@ -59,6 +59,7 @@ $paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($use
 
 define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'userlist');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('users.php');

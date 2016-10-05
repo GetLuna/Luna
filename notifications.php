@@ -147,6 +147,7 @@ $avatar_user_card = draw_user_avatar($id);
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
 define('LUNA_ACTIVE_PAGE', 'me');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('notifications.php');

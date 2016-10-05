@@ -1022,6 +1022,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Info', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'index');
+    include LUNA_ROOT.'header.php';
 	require load_page('header.php');
 
 ?>

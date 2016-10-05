@@ -125,6 +125,7 @@ $meta_description = $cur_forum['forum_desc'];
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
 define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'viewforum');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('forum.php');

@@ -542,6 +542,7 @@ else {
 
 $cur_index = 1;
 define('LUNA_ACTIVE_PAGE', 'comment');
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('comment.php');

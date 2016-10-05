@@ -492,6 +492,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		if (!$luna_user['is_guest'])
 			$tracked_threads = get_tracked_threads();
 
+        include LUNA_ROOT.'header.php';
 		require load_page('header.php');
 		require load_page('search-results.php');
 		require load_page('footer.php');
@@ -505,6 +506,7 @@ if (!$search_id) {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
 		$focus_element = array('search', 'keywords');
 		define('LUNA_ACTIVE_PAGE', 'search');
+        include LUNA_ROOT.'header.php';
 		require load_page('header.php');
 
 		require load_page('search.php');
@@ -517,6 +519,7 @@ if (!$search_id) {
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
 			$focus_element = array('search', 'keywords');
 			define('LUNA_ACTIVE_PAGE', 'search');
+            include LUNA_ROOT.'header.php';
 			require load_page('header.php');
 
 			require load_page('search-advanced.php');
