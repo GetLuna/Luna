@@ -54,17 +54,36 @@ elseif (file_exists('../img/header.jpg'))
 	<body>
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header hidden-lg hidden-sm hidden-md">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../index.php"><i class="fa fa-fw fa-angle-left hidden-xs"></i><span class="visible-xs-inline"><?php echo $luna_config['o_board_title'] ?></span></a>
+                    <a class="navbar-brand" href="../index.php"><?php echo $luna_config['o_board_title'] ?></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+        <?php
+        $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token();
+        ?>
+                        <li class="dropdown usermenu">
+                            <a href="../profile.php?id=<?php echo $luna_user['id'] ?>" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
+                                <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?><span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href=".."><i class="fa fa-fw fa-angle-left"></i> <?php echo $luna_config['o_board_title'] ?></a></li>
+                                <li class="divider"></li>
+                                <li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><i class="fa fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a></li>
+                                <li><a href="../settings.php?id=<?php echo $luna_user['id'] ?>"><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?php echo $logout_url; ?>"><i class="fa fa-fw fa-sign-out"></i> <?php _e('Logout', 'luna') ?></a></li>
+                                <li class="divider"></li>
+                                <li><a href="../help.php"><i class="fa fa-fw fa-info-circle"></i> <?php _e('Help', 'luna') ?></a></li>
+                                <li><a href="http://getluna.org"><i class="fa fa-fw fa-moon-o"></i> GetLuna.org</a></li>
+                            </ul>
+                        </li>
                         <li class="<?php if (LUNA_SECTION == 'backstage') echo 'active'; ?>"><a href="index.php"><i class="fa fa-fw fa-dashboard"></i> <?php _e('Backstage', 'luna') ?></a></li>
                         <?php if ($is_admin) { ?>
                             <li class="<?php if (LUNA_SECTION == 'content') echo 'active'; ?>"><a href="board.php"><i class="fa fa-fw fa-file"></i> <?php _e('Content', 'luna') ?></a></li>
@@ -95,25 +114,6 @@ elseif (file_exists('../img/header.jpg'))
                             </ul>
                         </li>
         <?php } ?>
-                    </ul>
-        <?php
-        $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token();
-        ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown usermenu">
-                            <a href="../profile.php?id=<?php echo $luna_user['id'] ?>" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
-                                <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?><span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><i class="fa fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a></li>
-                                <li><a href="../settings.php?id=<?php echo $luna_user['id'] ?>"><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a></li>
-                                <li class="divider"></li>
-                                <li><a href="../help.php"><i class="fa fa-fw fa-info-circle"></i> <?php _e('Help', 'luna') ?></a></li>
-                                <li><a href="http://getluna.org"><i class="fa fa-fw fa-support"></i> <?php _e('Support', 'luna') ?></a></li>
-                                <li class="divider"></li>
-                                <li><a href="<?php echo $logout_url; ?>"><i class="fa fa-fw fa-sign-out"></i> <?php _e('Logout', 'luna') ?></a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -343,6 +343,12 @@ blockquote footer {
 @media (min-width:768px) {
     .navbar .container {
         padding-right: 0;
+        padding-left: 0;
+    }
+    
+    .navbar-default .navbar-toggle, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 
