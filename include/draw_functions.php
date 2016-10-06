@@ -1019,7 +1019,7 @@ function draw_search_results() {
 			if (!$luna_user['is_guest'] && $cur_search['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_search['tid']]) || $tracked_threads['threads'][$cur_search['tid']] < $cur_search['last_comment']) && (!isset($tracked_threads['forums'][$cur_search['forum_id']]) || $tracked_threads['forums'][$cur_search['forum_id']] < $cur_search['last_comment'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
 			}
         
             $subject_status = implode(' ', $status_text);
