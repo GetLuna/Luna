@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2016-10-05 18:57+0200\n"
-"PO-Revision-Date: 2016-10-05 18:57+0200\n"
+"POT-Creation-Date: 2016-10-06 13:18+0200\n"
+"PO-Revision-Date: 2016-10-06 13:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -22,311 +22,325 @@ msgstr ""
 msgid "About Luna %s %s"
 msgstr ""
 
-#: backstage/about.php:35 backstage/about.php:53 backstage/about.php:68
-#: backstage/about.php:98 backstage/about.php:99 backstage/about.php:100
-#: backstage/about.php:101 backstage/about.php:102 backstage/settings.php:682
+#: backstage/about.php:35 backstage/about.php:45 backstage/about.php:63
+#: backstage/about.php:78 backstage/about.php:108 backstage/about.php:109
+#: backstage/about.php:110 backstage/about.php:111 backstage/about.php:112
+#: backstage/settings.php:682
 msgid "System"
 msgstr ""
 
 #: backstage/about.php:35
-msgid "Bootstrap 3.3.6 has been updated to version 3.3.7"
+msgid "Simple searches now list results descending"
 msgstr ""
 
-#: backstage/about.php:36 backstage/about.php:37 backstage/about.php:45
-#: backstage/about.php:58 backstage/about.php:59 backstage/about.php:60
-#: backstage/about.php:71 backstage/about.php:72 backstage/about.php:73
-#: backstage/about.php:74 backstage/about.php:121
+#: backstage/about.php:36 backstage/about.php:37 backstage/about.php:46
+#: backstage/about.php:47 backstage/about.php:55 backstage/about.php:68
+#: backstage/about.php:69 backstage/about.php:70 backstage/about.php:81
+#: backstage/about.php:82 backstage/about.php:83 backstage/about.php:84
+#: backstage/about.php:131
 msgid "Fixed"
 msgstr ""
 
 #: backstage/about.php:36
-msgid "Fixes an SQL injection with notifications"
+msgid "Fixes notification links being broken"
 msgstr ""
 
 #: backstage/about.php:37
-msgid "Fixes a memory leak in PHP 5.6 on XAMPP"
+msgid "Fixing missing ids for threads in the bell icon in search results"
 msgstr ""
 
 #: backstage/about.php:45
-msgid "Password reset would fail to reset the password in some situations"
+msgid "Bootstrap 3.3.6 has been updated to version 3.3.7"
 msgstr ""
 
-#: backstage/about.php:53
-msgid "jQuery has been updated to version 2.2.4"
+#: backstage/about.php:46
+msgid "Fixes an SQL injection with notifications"
 msgstr ""
 
-#: backstage/about.php:54 backstage/about.php:55 backstage/about.php:56
-#: backstage/about.php:69 backstage/about.php:106 backstage/about.php:107
-#: backstage/about.php:108 backstage/about.php:109 backstage/about.php:110
-#: backstage/about.php:111 backstage/about.php:112 backstage/about.php:113
-#: backstage/about.php:114 backstage/about.php:115
-msgid "Improved"
-msgstr ""
-
-#: backstage/about.php:54
-msgid "Info messages no longer feel like an error if they're not"
+#: backstage/about.php:47
+msgid "Fixes a memory leak in PHP 5.6 on XAMPP"
 msgstr ""
 
 #: backstage/about.php:55
+msgid "Password reset would fail to reset the password in some situations"
+msgstr ""
+
+#: backstage/about.php:63
+msgid "jQuery has been updated to version 2.2.4"
+msgstr ""
+
+#: backstage/about.php:64 backstage/about.php:65 backstage/about.php:66
+#: backstage/about.php:79 backstage/about.php:116 backstage/about.php:117
+#: backstage/about.php:118 backstage/about.php:119 backstage/about.php:120
+#: backstage/about.php:121 backstage/about.php:122 backstage/about.php:123
+#: backstage/about.php:124 backstage/about.php:125
+msgid "Improved"
+msgstr ""
+
+#: backstage/about.php:64
+msgid "Info messages no longer feel like an error if they're not"
+msgstr ""
+
+#: backstage/about.php:65
 msgid "Custom CSS is now loaded before emoji CSS to allow custom web fonts"
 msgstr ""
 
-#: backstage/about.php:56
+#: backstage/about.php:66
 msgid "Improved error design in Inbox"
 msgstr ""
 
-#: backstage/about.php:57 backstage/about.php:70 backstage/about.php:116
-#: backstage/about.php:117 backstage/about.php:118 backstage/about.php:119
-#: backstage/about.php:120
+#: backstage/about.php:67 backstage/about.php:80 backstage/about.php:126
+#: backstage/about.php:127 backstage/about.php:128 backstage/about.php:129
+#: backstage/about.php:130
 msgid "Removed"
 msgstr ""
 
-#: backstage/about.php:57
+#: backstage/about.php:67
 msgid "The quick reply box in Inbox has been replaced with a Reply-button"
 msgstr ""
 
-#: backstage/about.php:58
+#: backstage/about.php:68
 msgid "An issue with signing in has been resolved"
 msgstr ""
 
-#: backstage/about.php:59
+#: backstage/about.php:69
 msgid "Fixes the password reset link which was broken in certain situations"
 msgstr ""
 
-#: backstage/about.php:60
+#: backstage/about.php:70
 msgid "Fixes wrong avatars in Inbox conversations"
 msgstr ""
 
-#: backstage/about.php:68
+#: backstage/about.php:78
 msgid "Font Awesome has been updated to version 4.6.3"
 msgstr ""
 
-#: backstage/about.php:69
+#: backstage/about.php:79
 msgid ""
 "When no threads or forums exist, the messages are shown in a more polished "
 "style"
 msgstr ""
 
-#: backstage/about.php:70
+#: backstage/about.php:80
 msgid "Some of the left over Luna Preview elements hav been removed"
 msgstr ""
 
-#: backstage/about.php:71
+#: backstage/about.php:81
 msgid "Fixes an issue where an URL in a mail would be mising"
 msgstr ""
 
-#: backstage/about.php:72
+#: backstage/about.php:82
 msgid "Fixes an issue where removing a forum would fail"
 msgstr ""
 
-#: backstage/about.php:73
+#: backstage/about.php:83
 msgid "Fixes a number of issues with plugins"
 msgstr ""
 
-#: backstage/about.php:74
+#: backstage/about.php:84
 msgid "Fixes a nesting bug in the board page"
 msgstr ""
 
-#: backstage/about.php:82 backstage/about.php:83 backstage/about.php:84
-#: backstage/about.php:85 backstage/about.php:86 backstage/about.php:87
-#: backstage/about.php:88 backstage/about.php:89 backstage/about.php:90
-#: backstage/about.php:91 backstage/about.php:92 backstage/about.php:93
-#: backstage/about.php:94 backstage/about.php:95 backstage/about.php:96
-#: backstage/about.php:97 header.php:56 header.php:57
+#: backstage/about.php:92 backstage/about.php:93 backstage/about.php:94
+#: backstage/about.php:95 backstage/about.php:96 backstage/about.php:97
+#: backstage/about.php:98 backstage/about.php:99 backstage/about.php:100
+#: backstage/about.php:101 backstage/about.php:102 backstage/about.php:103
+#: backstage/about.php:104 backstage/about.php:105 backstage/about.php:106
+#: backstage/about.php:107 header.php:56 header.php:57
 #: include/draw_functions.php:350 include/draw_functions.php:431
 #: themes/Fifteen/views/inbox.php:44 themes/Fifteen/views/notifications.php:30
 msgid "New"
 msgstr ""
 
-#: backstage/about.php:82
+#: backstage/about.php:92
 msgid "Fifteen has received a fully reimagned design based on Airalin"
 msgstr ""
 
-#: backstage/about.php:83
+#: backstage/about.php:93
 msgid "Sunrise has also been reimagned based on the new Fifteen look"
 msgstr ""
 
-#: backstage/about.php:84
+#: backstage/about.php:94
 msgid "You can now add custom CSS to the theme you're using"
 msgstr ""
 
-#: backstage/about.php:85
+#: backstage/about.php:95
 msgid "Luna's default placeholder avatar can now be replaced"
 msgstr ""
 
-#: backstage/about.php:86
+#: backstage/about.php:96
 msgid "Notifications now get marked as read when clicked"
 msgstr ""
 
-#: backstage/about.php:87
+#: backstage/about.php:97
 msgid "New notification tools on the Notification page in the profile"
 msgstr ""
 
-#: backstage/about.php:88
+#: backstage/about.php:98
 msgid "Comments can now have admin notes that are displayed in threads"
 msgstr ""
 
-#: backstage/about.php:89
+#: backstage/about.php:99
 msgid ""
 "You can now upload a header background to use in your theme and the Backstage"
 msgstr ""
 
-#: backstage/about.php:90
+#: backstage/about.php:100
 msgid "You can now manage your boards favicon in Settings"
 msgstr ""
 
-#: backstage/about.php:91
+#: backstage/about.php:101
 msgid "You can now respond on Inbox messages from the message view"
 msgstr ""
 
-#: backstage/about.php:92
+#: backstage/about.php:102
 msgid "Reports now trigger a notifications for admins and moderators"
 msgstr ""
 
-#: backstage/about.php:93
+#: backstage/about.php:103
 msgid "New threads in a subscribed board now trigger notifications"
 msgstr ""
 
-#: backstage/about.php:94
+#: backstage/about.php:104
 msgid ""
 "Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents"
 msgstr ""
 
-#: backstage/about.php:95
+#: backstage/about.php:105
 msgid "The parser now supports the spoiler-tag optionally"
 msgstr ""
 
-#: backstage/about.php:96
+#: backstage/about.php:106
 msgid "Luna now has a Dutch translation included by default"
 msgstr ""
 
-#: backstage/about.php:97
+#: backstage/about.php:107
 msgid "Maintenance mode now shows a warning in the Backstage header"
 msgstr ""
 
-#: backstage/about.php:98
+#: backstage/about.php:108
 msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr ""
 
-#: backstage/about.php:99
+#: backstage/about.php:109
 msgid "Luna now includes full \"Right to Left\"-support"
 msgstr ""
 
-#: backstage/about.php:100
+#: backstage/about.php:110
 msgid "Components now live in their own folder in the Luna root"
 msgstr ""
 
-#: backstage/about.php:101
+#: backstage/about.php:111
 msgid "Debug mode can now be enabled with one line in the config file"
 msgstr ""
 
-#: backstage/about.php:102
+#: backstage/about.php:112
 msgid ""
 "Bootstrap, Font Awesome and jQuery have been updated to the latest version"
 msgstr ""
 
-#: backstage/about.php:103 backstage/about.php:104 backstage/about.php:105
+#: backstage/about.php:113 backstage/about.php:114 backstage/about.php:115
 msgid "Changed"
 msgstr ""
 
-#: backstage/about.php:103
+#: backstage/about.php:113
 msgid "Revamped search forms for users and bans, including responsive design"
 msgstr ""
 
-#: backstage/about.php:104
+#: backstage/about.php:114
 msgid "The Backstage has a whole new structure"
 msgstr ""
 
-#: backstage/about.php:105
+#: backstage/about.php:115
 msgid "Luna's file structure has been updated"
 msgstr ""
 
-#: backstage/about.php:106
+#: backstage/about.php:116
 msgid ""
 "You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 
-#: backstage/about.php:107
+#: backstage/about.php:117
 msgid "Users can now disable or enable First Run from their profile"
 msgstr ""
 
-#: backstage/about.php:108
+#: backstage/about.php:118
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 
-#: backstage/about.php:109
+#: backstage/about.php:119
 msgid "When you have a notification, the icon will animate"
 msgstr ""
 
-#: backstage/about.php:110
+#: backstage/about.php:120
 msgid "Advanced search has an improved UI"
 msgstr ""
 
-#: backstage/about.php:111
+#: backstage/about.php:121
 msgid "About can now be translated to other languages"
 msgstr ""
 
-#: backstage/about.php:112
+#: backstage/about.php:122
 msgid "You can now directly manage a reported comment from the Backstage"
 msgstr ""
 
-#: backstage/about.php:113
+#: backstage/about.php:123
 msgid "Improved Backstage UI and night mode"
 msgstr ""
 
-#: backstage/about.php:114
+#: backstage/about.php:124
 msgid "Multiple improvements on accessibility"
 msgstr ""
 
-#: backstage/about.php:115
+#: backstage/about.php:125
 msgid ""
 "Luna now provides a description meta tag to prevent weird search results"
 msgstr ""
 
-#: backstage/about.php:116
+#: backstage/about.php:126
 msgid "The editor no longer has an emoticon menu"
 msgstr ""
 
-#: backstage/about.php:117
+#: backstage/about.php:127
 msgid "The code base no longer supports PHP 5.2"
 msgstr ""
 
-#: backstage/about.php:118
+#: backstage/about.php:128
 msgid "Notifications can no longer be marked as read/trashed from the fly-out"
 msgstr ""
 
-#: backstage/about.php:119
+#: backstage/about.php:129
 msgid "You can no longer manage the database from the Backstage"
 msgstr ""
 
-#: backstage/about.php:120
+#: backstage/about.php:130
 msgid "Tools to add new users have been removed"
 msgstr ""
 
-#: backstage/about.php:121
+#: backstage/about.php:131
 msgid "Fixes 63 bugs"
 msgstr ""
 
-#: backstage/about.php:127
+#: backstage/about.php:137
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
 msgstr ""
 
-#: backstage/about.php:133
+#: backstage/about.php:143
 msgid "users"
 msgstr ""
 
-#: backstage/about.php:134
+#: backstage/about.php:144
 msgid "threads"
 msgstr ""
 
-#: backstage/about.php:135 themes/Fifteen/objects/comment.php:9
+#: backstage/about.php:145 themes/Fifteen/objects/comment.php:9
 msgid "comments"
 msgstr ""
 
-#: backstage/about.php:136
+#: backstage/about.php:146
 msgid "views"
 msgstr ""
 
@@ -521,7 +535,7 @@ msgstr ""
 #: themes/Fifteen/views/help.php:149
 #: themes/Fifteen/views/search-advanced.php:15
 #: themes/Fifteen/views/search-advanced.php:18
-#: themes/Fifteen/views/search.php:13 themes/Fifteen/views/search.php:25
+#: themes/Fifteen/views/search.php:13 themes/Fifteen/views/search.php:26
 #: themes/Fifteen/views/users.php:30
 msgid "Search"
 msgstr ""
@@ -5394,11 +5408,11 @@ msgstr ""
 msgid "Welcome back"
 msgstr ""
 
-#: themes/Fifteen/views/index.php:94 themes/Sunrise/views/index.php:94
+#: themes/Fifteen/views/index.php:95 themes/Sunrise/views/index.php:94
 msgid "Search in comments"
 msgstr ""
 
-#: themes/Fifteen/views/index.php:128 themes/Sunrise/views/forum.php:27
+#: themes/Fifteen/views/index.php:129 themes/Sunrise/views/forum.php:27
 #: themes/Sunrise/views/index.php:102
 msgid "Recent activity"
 msgstr ""
