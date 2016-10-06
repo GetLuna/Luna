@@ -91,6 +91,7 @@ if ($luna_user['first_run'] == '0') {
 			<?php } if ($luna_config['o_header_search'] && $luna_user['g_search'] == '1'): ?>
 			<form id="search" class="input-group search-form" method="get" action="search.php?section=simple">
 				<input type="hidden" name="action" value="search" />
+                <input type="hidden" name="sort_dir" value="DESC" />
 				<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in comments', 'luna') ?>" maxlength="100" />
 				<span class="input-group-btn">
 					<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s"><i class="fa fa-fw fa-search"></i></button>
