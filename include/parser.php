@@ -637,7 +637,7 @@ function do_bbcode($text, $is_signature = false) {
 
 	if (strpos($text, '[quote') !== false) {
 		$text = preg_replace('%\[quote\]\s*%', '</p><blockquote><p>', $text);
-		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', create_function('$matches', 'return "<blockquote><footer><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".__(\'wrote\',\'luna\')."</cite></footer><p>";'), $text);
+        $text = preg_replace('%\[quote=(?P<quote>(?:&quot;|&\#039;|"|\'))?((?(quote)[^\r\n]+?|[^\r\n\]]++))(?(quote)(?P=quote))\]\s*%', '</p><blockquote><footer><cite>$2 '.__('wrote', 'luna').'</cite></footer><p>', $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
 	}
     
