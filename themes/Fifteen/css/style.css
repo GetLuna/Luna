@@ -1902,5 +1902,5 @@ blockquote footer {
 }
 
 .night .panel.panel-spoiler .panel-body {
-    background-color: #444;
+    background-color: #444 !important;
 }
