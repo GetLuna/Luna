@@ -1900,3 +1900,7 @@ blockquote footer {
     background: transparent;
     color: #f2dede;
 }
+
+.night .panel.panel-spoiler .panel-body {
+    background-color: #444;
+}
