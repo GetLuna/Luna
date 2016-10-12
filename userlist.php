@@ -30,7 +30,7 @@ if (isset($_GET['sort'])) {
 	$sort_by = $_GET['sort'];
 } else {
 	$sort_query = 'username ASC';
-	$sort_by = '';
+	$sort_by = 'username';
 }
 
 // Create any SQL for the WHERE clause
