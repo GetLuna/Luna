@@ -489,7 +489,7 @@ else
 									</div>
 								</div>
 								<hr />
-							<?php } else if ($luna_user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
+							<?php } else if ($user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-sm-9">
