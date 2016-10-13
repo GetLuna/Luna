@@ -1,6 +1,3 @@
-<?php
-require ('header.php');
-?>
 <!DOCTYPE html>
 <html class="<?php echo check_style_mode() ?>">
 	<head>
