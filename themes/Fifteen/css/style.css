@@ -760,6 +760,10 @@ hr {
 	background-color: #bbb;
 }
 
+.list-group-thread .list-group-item.soft {
+    border-right: 6px solid #ffb900 !important;
+}
+
 .list-group-thread .label {
 	padding: .2em .6em;
 	border-radius: 4px !important;
