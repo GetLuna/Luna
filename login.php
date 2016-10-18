@@ -163,11 +163,8 @@ To change your password, please visit the following page:
 					// Generate a new password and a new password activation code
 					$new_password = random_pass(12);
 					$new_password_key = random_pass(8);
-                    
-                    $salt = random_pass(8);
-                    $password_hash = luna_sha512($new_password, $salt);
 
-				    $db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($password_hash).'\', activate_key=\''.$db->escape($new_password_key).'\', salt=\''.$salt.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id'])
+				    $db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($new_password).'\', activate_key=\''.$db->escape($new_password_key).'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id'])
                         or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 					// Do the user specific replacements to the template
