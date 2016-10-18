@@ -30,6 +30,21 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 6 <small>2.0.6</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Hidden threads now have a yellow indicator on the right hand side', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('The Mainstage won\'t show notifications twice anymore', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Some BBCodes would break with certain uses of hard returns', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes content of spoiler-tags being unreadable in night mode', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Editing a user will no longer change the accent color of that user', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes sorting of the userlist on the second page', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes moderator forums being unavailable in the profile admin settings', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes an undisclosed security issue', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 5 <small>2.0.5</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Simple searches now list results descending', 'luna') ?></li>
