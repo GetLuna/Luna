@@ -1267,7 +1267,7 @@ class Installer {
 					'allow_null'	=> true
 				),
 				'activate_string'	=> array(
-					'datatype'		=> 'VARCHAR(80)',
+					'datatype'		=> 'VARCHAR(128)',
 					'allow_null'	=> true
 				),
 				'activate_key'		=> array(
