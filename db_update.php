@@ -687,7 +687,7 @@ switch ($stage) {
 		build_config(0, 'o_default_timezone');
 		build_config(1, 'o_timezone', 'UTC');
         
-        // Luna 1.4 upgrade support
+        // Luna 2.0 upgrade support
 		build_config(1, 'o_use_custom_css', '0');
 		build_config(1, 'o_custom_css', 'NULL');
 		build_config(1, 'o_allow_spoiler', 0);
@@ -710,6 +710,7 @@ switch ($stage) {
         $db->add_field('comments', 'admin_note', 'MEDIUMTEXT', true) or error('Unable to admin note field to comments', __FILE__, __LINE__, $db->error());
         
         $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
+        $db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
 
 		break;
 
