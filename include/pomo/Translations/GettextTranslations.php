@@ -25,7 +25,7 @@ class GettextTranslations extends Translations
     {
         if (!isset($this->_gettext_select_plural_form)
             || is_null($this->_gettext_select_plural_form)) {
-            list( $nplurals, $expression ) = $this->nplurals_and_expression_from_header($this->get_header('Plural-Forms'));
+            list($nplurals, $expression) = $this->nplurals_and_expression_from_header($this->get_header('Plural-Forms'));
             $this->_nplurals = $nplurals;
             $this->_gettext_select_plural_form = $this->make_plural_form_function($nplurals, $expression);
         }
@@ -60,7 +60,7 @@ class GettextTranslations extends Translations
             \$index = (int) ($expression);
 
             return (\$index < $nplurals) ? \$index : $nplurals - 1;";
-        return create_function('$n', $func_body);
+        return function ($n) {$func_body;};
     }
 
     /**
@@ -88,7 +88,7 @@ class GettextTranslations extends Translations
                     break;
                 case ';':
                     $res .= str_repeat(')', $depth) . ';';
-                    $depth= 0;
+                    $depth = 0;
                     break;
                 default:
                     $res .= $char;
