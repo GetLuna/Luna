@@ -1,0 +1,150 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+@accent: #1a79bc;
+@accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21, #ff7521, #ff4444, #c71f1f, #c78d68, #ccc, #999, #444;
+@font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+
+// Bootstrap components
+@import 'grid.less';
+@import 'navbar.less';
+@import 'buttons.less';
+@import 'panels.less';
+@import 'forms.less';
+
+// Rubine components
+@import 'jumboheader.less';
+@import 'release.less';
+@import 'custom.less';
+@import 'title.less';
+@import 'colorpicker.less';
+
+// Luna components
+@import 'accents.less';
+@import 'night.less';
+
+// Luna CSS
+* {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+body {
+	font-family: @font-stack !important;
+    background-color: #f4f4f4;
+}
+
+.panel-body {
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 300;
+    }
+}
+
+.studio384 {
+    font-family: "Century Gothic", @font-stack !important;
+}
+
+.container.main {
+    background-color: #fff;
+    padding: 10px 20px 0;
+}
+
+.brand {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: @accent;
+    padding: 10px;
+    color: #fff;
+    
+    a, a:hover {
+        color: #fff;
+    }
+}
+
+.alert {
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+    &.alert-warning {
+        color: #d9ab1a;
+        background-color: #fff6d9;
+    }
+    
+    &.alert-danger {
+        color: #c74d11;
+        background-color: #ffe3d5;
+    }
+    
+    &.alert-success {
+        color: #548e23;
+        background-color: #dff0d8;
+    }
+    
+    &.alert-info {
+        color: #1a79bc;
+        background-color: #dcedf8;
+    }
+}
+
+.container.main .tab-content {
+    border: 1px solid @accent;
+    border-top: none;
+    margin-bottom: 10px;
+    
+    .tab-pane {
+        padding: 10px;
+    }
+    
+    h3 {
+        margin: 0;
+    }
+}
+
+// Installer
+.installer {
+    .jumbotron-brand {
+        color: #fff;
+        background-color: #136cab;
+        padding-top: 20px;
+        padding-bottom: 25px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        margin: 0;
+        text-transform: lowercase;
+    }
+}
+
+// Functions
+.for(@list, @code) {
+    & {
+        .loop(@i:1) when (@i =< length(@list)) {
+            @value: extract(@list, @i);
+
+            @code();
+
+            .loop(@i + 1);
+        }
+
+        .loop();
+    }
+}

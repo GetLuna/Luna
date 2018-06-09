@@ -1,5 +1,4 @@
 /* Accent 1 - ModernBB Blue */
-.navbar-default,
 .title-sm.title-primary,
 .panel-default .panel-heading,
 .panel-primary.panel-colored .panel-body,
@@ -11,11 +10,13 @@
 	background-color: #14a3ff;
 }
 
+.navbar-default,
 footer,
 .jumboheader {
 	background-color: #0b95ed;
 }
 
+.navbar-nav .open .dropdown-menu,
 .title-primary,
 .title-sm.title-primary .input-group-addon,
 .panel-primary > .panel-heading,
@@ -35,10 +36,16 @@ footer,
 	background-color: #0589de;
 }
 
-@media all and (min-width:768px) {
-	.dropdown-menu {
-		background-color: #0589de;
-	}
+.primary .nav-tabs > li.active > a,
+.primary .nav-tabs > li.active > a:hover,
+.primary .nav-tabs > li.active > a:focus,
+.secondary .nav-tabs > li > a,
+.secondary .nav-tabs > li > a:hover,
+.secondary .nav-tabs > li > a:focus,
+.secondary .nav-tabs > li.active > a,
+.secondary .nav-tabs > li.active > a:hover,
+.secondary .nav-tabs > li.active > a:focus {
+	color: #0589de;
 }
 
 .panel-default,

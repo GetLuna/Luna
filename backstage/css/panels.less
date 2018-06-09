@@ -1,0 +1,76 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+// Panels
+.panel {
+    margin-bottom: 10px;
+    
+    &.panel-default {
+        border-color: @accent;
+    }
+    
+    &.panel-primary {
+        border-color: @accent;
+        
+        &.panel-colored {
+            background-color: lighten(@accent, 5%);
+            color: #fff;
+        }
+    }
+        
+    .panel-heading {
+        height: 38px;
+        padding: 10px;
+        background-color: @accent;
+        color: #fff;
+        border-color: @accent;
+
+        .btn {
+            padding: 9px 12px 10px;
+            background: none;
+            margin-top: -11px !important;
+            margin-right: -11px !important;
+
+            &:hover {
+                background-color: rgba(0,0,0,.1);
+            }
+        }
+    }
+    
+    .panel-body {
+        padding: 10px;
+        
+        &.panel-stats {
+            .col-xs-4 {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+        
+        :first-child {
+            margin-top: 0;
+        }
+        
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    .panel-footer {
+        :first-child {
+            margin-top: 0;
+        }
+        
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    .table  {
+        margin-bottom: 0;
+    }
+}

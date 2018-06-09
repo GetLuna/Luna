@@ -1,5 +1,4 @@
 /* Accent 4 - Purple */
-.navbar-default,
 .title-sm.title-primary,
 .panel-default .panel-heading,
 .panel-primary.panel-colored .panel-body,
@@ -11,11 +10,13 @@
 	background-color: #b679d4;
 }
 
+.navbar-default,
 footer,
 .jumboheader {
 	background-color: #a268bf;
 }
 
+.navbar-nav .open .dropdown-menu,
 .title-primary,
 .title-sm.title-primary .input-group-addon,
 .panel-primary > .panel-heading,
@@ -35,10 +36,16 @@ footer,
 	background-color: #8b54a7;
 }
 
-@media all and (min-width:768px) {
-	.dropdown-menu {
-		background-color: #8b54a7;
-	}
+.primary .nav-tabs > li.active > a,
+.primary .nav-tabs > li.active > a:hover,
+.primary .nav-tabs > li.active > a:focus,
+.secondary .nav-tabs > li > a,
+.secondary .nav-tabs > li > a:hover,
+.secondary .nav-tabs > li > a:focus,
+.secondary .nav-tabs > li.active > a,
+.secondary .nav-tabs > li.active > a:hover,
+.secondary .nav-tabs > li.active > a:focus {
+	color: #8b54a7;
 }
 
 .panel-default,

@@ -1,0 +1,83 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+// Title
+.title {
+    padding: 10px;
+    
+    & + .title {
+        margin-bottom: 10px;
+    }
+    
+    .form-control {
+        background: none;
+        border: none;
+        color: #fff;
+    }
+    
+    &.title-primary {
+        background-color: @accent;
+        
+        &.title-md .form-control {
+            color: #fff;
+            font-size: 29px;
+            font-weight: 300;
+            background: none;
+            padding: 0;
+            border: none;
+        }
+
+        
+        & + .title-primary {
+            background-color: lighten(@accent, 5%);
+            
+            .form-control {
+                background: #eee;
+                color: #000;
+            }
+        }
+    }
+    
+    .input-group-addon {
+        border: none;
+        background-color: @accent;
+        color: #fff;
+    }
+    
+    &.title-nav {
+        padding-bottom: 0;
+    }
+    
+    .nav-tabs {
+        border-bottom: none;
+        
+        li {
+            margin-bottom: 0 !important;
+        }
+        
+        li.active > a,
+        li > a {
+            border: none;
+            margin: 0;
+        }
+        
+        li.active > a,
+        li.active > a:hover,
+        li.active > a:focus {
+            color: @accent;
+            background: #fff;
+        }
+        
+        li > a {
+            color: #fff;
+            
+            &:hover {
+                background: rgba(255,255,255,.2);
+            }
+        }
+    }
+}

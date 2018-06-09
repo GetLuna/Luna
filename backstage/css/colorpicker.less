@@ -1,0 +1,108 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+// Color picker
+.color-picker {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: left;
+	white-space: nowrap;
+	vertical-align: middle;
+	margin-bottom: 0;
+	cursor: pointer;
+	user-select: none;
+    color: #333;
+    line-height: 1.428571429;
+    background-color: #fff;
+    padding: 6px 9px 6px 12px;
+    border: 1px solid #ccc;
+
+    .rcp-caption {
+        float: left;
+        padding-right: 10px;
+    }
+
+    .rcp-color {
+        background-color: white;
+        width: 20px;
+        height: 20px;
+        float: right;
+    }
+
+    .color-popup {
+        clear: both;
+        position: absolute;
+        z-index: 1000;
+        background-color: white;
+        padding: 0 9px 9px 0;
+        display: inline-block;
+        max-width: 266px !important;
+        border: 1px solid rgba(0,0,0,.15);
+        float: left;
+
+        .rcp-bottom {
+            text-align: center;
+            padding-top: 6px;
+            border-top: 1px solid #ccc;
+            margin-top: 9px;
+            margin-right: -9px;
+            margin-bottom: -4px;
+
+            input[type='text'] {
+                display: inline-block;
+                font-size: 14px;
+                padding: 3px 6px;
+                border: 1px solid #ccc;
+                width: 130px;
+
+                &.rcp-error {
+                    border-color: #da3030;
+                    background-color: #ffc8c8;
+                }
+            }
+        }
+
+        span {
+            cursor: pointer;
+            display: block;
+            background-color: gray;
+            margin-left: 9px;
+            margin-top: 9px !important;
+            width: 42px;
+            height: 42px;
+            float: left;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        background-color: #ebebeb;
+        border-color: #adadad;
+    }
+
+    &:focus {
+        outline: thin dotted #333;
+        outline-offset: -2px;
+    }
+
+    &.active,
+    &:active {
+        background-color: #ebebeb;
+        border-color: #adadad;
+        outline: 0;
+    }
+
+    &.disabled,
+    &[disabled] {
+        pointer-events: none;
+        cursor: not-allowed;
+        background-color: #fff;
+        border-color: #ccc;
+        opacity: .65;
+    }
+}

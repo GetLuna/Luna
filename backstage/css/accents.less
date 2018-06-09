@@ -1,0 +1,145 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+/* Color choise */
+.accent-group {
+    .btn {
+        border: 3px solid #fff !important;
+    
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            border: 3px solid #bbb !important;
+        }
+
+        &.color-accent.btn-primary {
+            padding: 21px;
+            margin-left: 1px;
+            margin-right: 1px;
+            
+            .for(@accents, {
+                &.accent-@{i} {
+                    background-color: @value !important;
+                }
+            });
+        }
+    }
+}
+
+// Luna accents
+.for(@accents, {
+    &.accent-@{i} {
+        .navbar {
+            &.navbar-inverse {
+                background-color: @value;
+
+                .open > a,
+                .open > a:hover,
+                .open > a:focus {
+                    background-color: darken(@value, 5%);
+                }
+
+                .dropdown-menu {
+                    background-color: darken(@value, 5%);
+
+                    a {
+                        &:hover {
+                            background-color: darken(@value, 10%);
+                        }
+                    }
+
+                    .divider {
+                        background-color: darken(@value, 10%);
+                    }
+                }
+            }
+        }
+
+
+        .jumboheader {    
+            &.primary {
+                background: @value;
+            }
+
+            &.secondary {
+                .nav-tabs {
+                    li > a {
+                        color: @value;
+                    }
+                }
+            }
+
+            .nav-tabs {        
+                li.active > a,
+                li.active > a:hover,
+                li.active > a:focus {
+                    color: @value;
+                }
+            }
+        }
+
+        .panel {
+            &.panel-default {
+                border-color: @value;
+            }
+    
+            &.panel-primary {
+                border-color: @value;
+
+                &.panel-colored {
+                    background-color: lighten(@value, 5%);
+                }
+            }
+
+            .panel-heading {
+                background-color: @value;
+                border-color: @value;
+            }
+        }
+        
+        .title {
+            &.title-primary {
+                background-color: @value;
+                
+                & + .title-primary {
+                    background-color: lighten(@value, 5%);
+                }
+            }
+
+            .input-group-addon {
+                background-color: @value;
+            }
+
+            .nav-tabs {
+                li.active > a,
+                li.active > a:hover,
+                li.active > a:focus {
+                    color: @value;
+                }
+            }
+        }
+
+        .bkg {
+            .jumboheader {
+                &.secondary {
+                    .nav-tabs {
+                        li.active > a,
+                        li.active > a:hover,
+                        li.active > a:focus {
+                            color: @value;
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            background-color: @value;
+        }
+    }
+});

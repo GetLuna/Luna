@@ -1,0 +1,70 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+// Jumboheader
+.jumboheader {
+    padding: 0;
+    margin-bottom: 0;
+    
+    .container {
+        padding: 0;
+    }
+    
+    &.primary {
+        background: @accent;
+    }
+    
+    &.secondary {
+        padding-top: 5px;
+        background: #e8e8e8;
+        
+        .nav-tabs {
+            li > a {
+                color: @accent;
+            
+                &:hover {
+                    background: rgba(255,255,255,.4);
+                }
+            }
+            
+            li.active > a,
+            li.active > a:hover,
+            li.active > a:focus {
+                background: #fff;
+            }
+        }
+    }
+    
+    .nav-tabs {
+        border-bottom: none;
+        
+        li {
+            margin-bottom: 0 !important;
+        }
+        
+        li.active > a,
+        li > a {
+            border: none;
+            margin: 0;
+        }
+        
+        li.active > a,
+        li.active > a:hover,
+        li.active > a:focus {
+            color: @accent;
+            background: #e8e8e8;
+        }
+        
+        li > a {
+            color: #fff;
+            
+            &:hover {
+                background: rgba(255,255,255,.2);
+            }
+        }
+    }
+}
