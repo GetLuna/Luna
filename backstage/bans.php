@@ -391,19 +391,20 @@ elseif (isset($_GET['find_ban'])) {
             <div class="panel-body">
                 <?php echo $paging_links ?>
             </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="col-xs-1"><?php _e('Username', 'luna')?></th>
-                        <th class="col-xs-2"><?php _e('Email', 'luna')?></th>
-                        <th class="col-xs-1"><?php _e('IP', 'luna')?></th>
-                        <th class="col-xs-1"><?php _e('Expires', 'luna')?></th>
-                        <th class="col-xs-3"><?php _e('Message', 'luna')?></th>
-                        <th class="col-xs-1"><?php _e('By', 'luna')?></th>
-                        <th class="col-xs-3"><?php _e('Actions', 'luna')?></th>
-                    </tr>
-                </thead>
-                <tbody>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th class="col-xs-1"><?php _e('Username', 'luna')?></th>
+							<th class="col-xs-2"><?php _e('Email', 'luna')?></th>
+							<th class="col-xs-1"><?php _e('IP', 'luna')?></th>
+							<th class="col-xs-1"><?php _e('Expires', 'luna')?></th>
+							<th class="col-xs-3"><?php _e('Message', 'luna')?></th>
+							<th class="col-xs-1"><?php _e('By', 'luna')?></th>
+							<th class="col-xs-3"><?php _e('Actions', 'luna')?></th>
+						</tr>
+					</thead>
+					<tbody>
 	<?php
 
     $result = $db->query('SELECT b.id, b.username, b.ip, b.email, b.message, b.expire, b.ban_creator, u.username AS ban_creator_username FROM ' . $db->prefix . 'bans AS b LEFT JOIN ' . $db->prefix . 'users AS u ON b.ban_creator=u.id WHERE b.id>0' . (!empty($conditions) ? ' AND ' . implode(' AND ', $conditions) : '') . ' ORDER BY ' . $db->escape($order_by) . ' ' . $db->escape($direction) . ' LIMIT ' . $start_from . ', 50') or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
@@ -414,15 +415,15 @@ elseif (isset($_GET['find_ban'])) {
             $expire = format_time($ban_data['expire'], true);
 
             ?>
-                    <tr>
-                        <td><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-                        <td><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
-                        <td><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
-                        <td><?php echo $expire ?></td>
-                        <td><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-                        <td><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id=' . $ban_data['ban_creator'] . '">' . luna_htmlspecialchars($ban_data['ban_creator_username']) . '</a>' : __('Unknown', 'luna') ?></td>
-                        <td><?php echo $actions ?></td>
-                    </tr>
+						<tr>
+							<td><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
+							<td><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
+							<td><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
+							<td><?php echo $expire ?></td>
+							<td><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
+							<td><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id=' . $ban_data['ban_creator'] . '">' . luna_htmlspecialchars($ban_data['ban_creator_username']) . '</a>' : __('Unknown', 'luna') ?></td>
+							<td><?php echo $actions ?></td>
+						</tr>
 <?php
 
         }
@@ -431,8 +432,9 @@ elseif (isset($_GET['find_ban'])) {
     }
 
     ?>
-                </tbody>
-            </table>
+					</tbody>
+				</table>
+			</div>
             <div class="panel-body">
                 <?php echo $paging_links ?>
             </div>

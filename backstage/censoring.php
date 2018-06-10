@@ -122,15 +122,16 @@ require 'header.php';
 			</div>
 			<form id="censoring" method="post" action="censoring.php">
 				<fieldset>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th class="col-xs-4"><?php _e('Censored word', 'luna')?></th>
-								<th class="col-xs-4"><?php _e('Replacement word', 'luna')?></th>
-								<th class="col-xs-4"><?php _e('Action', 'luna')?></th>
-							</tr>
-						</thead>
-						<tbody>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="col-xs-4"><?php _e('Censored word', 'luna')?></th>
+									<th class="col-xs-4"><?php _e('Replacement word', 'luna')?></th>
+									<th class="col-xs-4"><?php _e('Action', 'luna')?></th>
+								</tr>
+							</thead>
+							<tbody>
 <?php
 
 $result = $db->query('SELECT id, search_for, replace_with FROM ' . $db->prefix . 'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
@@ -138,20 +139,20 @@ if ($db->num_rows($result)) {
 
     while ($cur_word = $db->fetch_assoc($result)) {
         ?>
-							<tr>
-								<td>
-									<input type="text" class="form-control" name="search_for[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['search_for']) ?>" maxlength="60" />
-								</td>
-								<td>
-									<input type="text" class="form-control" name="replace_with[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['replace_with']) ?>" maxlength="60" />
-								</td>
-								<td>
-									<div class="btn-group">
-										<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna')?></button>
-										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
-									</div>
-								</td>
-								</tr>
+								<tr>
+									<td>
+										<input type="text" class="form-control" name="search_for[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['search_for']) ?>" maxlength="60" />
+									</td>
+									<td>
+										<input type="text" class="form-control" name="replace_with[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['replace_with']) ?>" maxlength="60" />
+									</td>
+									<td>
+										<div class="btn-group">
+											<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna')?></button>
+											<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+										</div>
+									</td>
+									</tr>
 <?php
 }
 } else {
@@ -159,8 +160,9 @@ if ($db->num_rows($result)) {
 }
 
 ?>
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
 				</fieldset>
 			</form>
 		</div>

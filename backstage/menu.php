@@ -115,40 +115,35 @@ require 'header.php';
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php _e('Menu', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
 				</div>
-				<table class="table">
-					<thead>
-						<tr>
-							<th><?php _e('Name', 'luna')?></th>
-							<th><?php _e('URL', 'luna')?></th>
-							<th class="col-xs-1"><?php _e('Position', 'luna')?></th>
-							<th class="col-xs-1"><?php _e('Show', 'luna')?></th>
-							<th class="col-xs-1"><?php _e('Delete', 'luna')?></th>
-						</tr>
-					</thead>
-					<tbody>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th><?php _e('Name', 'luna')?></th>
+								<th><?php _e('URL', 'luna')?></th>
+								<th class="col-xs-1"><?php _e('Position', 'luna')?></th>
+								<th class="col-xs-1"><?php _e('Show', 'luna')?></th>
+								<th class="col-xs-1"><?php _e('Delete', 'luna')?></th>
+							</tr>
+						</thead>
+						<tbody>
 <?php
 while ($cur_item = $db->fetch_assoc($menus)) {
     ?>
-						<tr>
-							<td>
-								<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][name]" value="<?php echo $cur_item['name'] ?>" />
-							</td>
-							<td>
-								<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][url]" value="<?php echo $cur_item['url'] ?>" <?php if ($cur_item['sys_entry'] == 1) {
-        echo ' readonly';
-    }
-    ?> />
-							</td>
-							<td>
-								<input type="number" class="form-control" name="item[<?php echo $cur_item['id'] ?>][order]" value="<?php echo $cur_item['disp_position'] ?>" />
-							</td>
-							<td>
-								<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][visible]" <?php if ($cur_item['visible'] == 1) {
-        echo ' checked';
-    }
-    ?> />
-							</td>
-							<td>
+							<tr>
+								<td>
+									<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][name]" value="<?php echo $cur_item['name'] ?>" />
+								</td>
+								<td>
+									<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][url]" value="<?php echo $cur_item['url'] ?>" <?php if ($cur_item['sys_entry'] == 1) { echo ' readonly'; } ?> />
+								</td>
+								<td>
+									<input type="number" class="form-control" name="item[<?php echo $cur_item['id'] ?>][order]" value="<?php echo $cur_item['disp_position'] ?>" />
+								</td>
+								<td>
+									<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][visible]" <?php if ($cur_item['visible'] == 1) { echo ' checked'; } ?> />
+								</td>
+								<td>
 <?php
 if ($cur_item['sys_entry'] == 0) {
         echo '<a href="menu.php?del_item=' . $cur_item['id'] . '" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> ' . __('Delete', 'luna') . '</a>';
@@ -157,13 +152,14 @@ if ($cur_item['sys_entry'] == 0) {
     }
 
     ?>
-							</td>
-						</tr>
+								</td>
+							</tr>
 <?php
 }
 ?>
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</form>
 	</div>

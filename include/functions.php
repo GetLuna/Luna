@@ -2271,14 +2271,15 @@ function display_saved_queries()
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php _e('Debug information', 'luna')?></h3>
 	</div>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th class="col-xs-1"><?php _e('Time (s)', 'luna')?></th>
-				<th class="col-xs-11"><?php _e('Query', 'luna')?></th>
-			</tr>
-		</thead>
-		<tbody>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th class="col-xs-1"><?php _e('Time (s)', 'luna')?></th>
+					<th class="col-xs-11"><?php _e('Query', 'luna')?></th>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 
     $query_time_total = 0.0;
@@ -2286,20 +2287,21 @@ function display_saved_queries()
         $query_time_total += $cur_query[1];
 
         ?>
-			<tr>
-				<td><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
-				<td><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
-			</tr>
+				<tr>
+					<td><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
+					<td><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
+				</tr>
 <?php
 
     }
 
     ?>
-			<tr>
-				<td colspan="2"><?php printf(__('Total query time: %s', 'luna'), $query_time_total . ' s')?></td>
-			</tr>
-		</tbody>
-	</table>
+				<tr>
+					<td colspan="2"><?php printf(__('Total query time: %s', 'luna'), $query_time_total . ' s')?></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 <?php
 

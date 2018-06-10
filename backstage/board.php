@@ -391,16 +391,17 @@ elseif (isset($_POST['update_board'])) {
                         <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php printf(__('Permission settings that differ from the default permissions for the group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">' . __('User groups', 'luna') . '</a>')?></div>
                         <button class="btn btn-warning pull-right" type="submit" name="revert_perms" tabindex="<?php echo $cur_index++ ?>"><i class="fas fa-fw fa-undo"></i> <?php _e('Revert to default', 'luna')?></button>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>&#160;</th>
-                                <th><?php _e('Read forum', 'luna')?></th>
-                                <th><?php _e('Comment', 'luna')?></th>
-                                <th><?php _e('Create threads', 'luna')?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>&#160;</th>
+									<th><?php _e('Read forum', 'luna')?></th>
+									<th><?php _e('Comment', 'luna')?></th>
+									<th><?php _e('Create threads', 'luna')?></th>
+								</tr>
+							</thead>
+							<tbody>
 <?php
 
     $result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_comment, g.g_create_threads, fp.read_forum, fp.comment, fp.create_threads FROM ' . $db->prefix . 'groups AS g LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id=' . $forum_id . ') WHERE g.g_id!=' . LUNA_ADMIN . ' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
@@ -416,37 +417,25 @@ elseif (isset($_POST['update_board'])) {
         $create_threads_def = (($create_threads && $cur_perm['g_create_threads'] == '0') || (!$create_threads && ($cur_perm['g_create_threads'] == '' || $cur_perm['g_create_threads'] == '1'))) ? false : true;
 
         ?>
-                            <tr>
-                                <th class="atcl"><?php echo luna_htmlspecialchars($cur_perm['g_title']) ?></th>
-                                <td<?php if (!$read_forum_def) {
-            echo ' class="danger"';
-        }
-        ?>>
-                                    <input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
-                                    <input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-                                </td>
-                                <td<?php if (!$comment_def) {
-            echo ' class="danger"';
-        }
-        ?>>
-                                    <input type="hidden" name="comment_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($comment) ? '1' : '0'; ?>" />
-                                    <input type="checkbox" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-                                </td>
-                                <td<?php if (!$create_threads_def) {
-            echo ' class="danger"';
-        }
-        ?>>
-                                    <input type="hidden" name="create_threads_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($create_threads) ? '1' : '0'; ?>" />
-                                    <input type="checkbox" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-                                </td>
-                            </tr>
-<?php
-
-    }
-
-    ?>
-                        </tbody>
-                    </table>
+								<tr>
+									<th class="atcl"><?php echo luna_htmlspecialchars($cur_perm['g_title']) ?></th>
+									<td<?php if (!$read_forum_def) { echo ' class="danger"'; } ?>>
+										<input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
+										<input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+									</td>
+									<td<?php if (!$comment_def) { echo ' class="danger"'; } ?>>
+										<input type="hidden" name="comment_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($comment) ? '1' : '0'; ?>" />
+										<input type="checkbox" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+									</td>
+									<td<?php if (!$create_threads_def) { echo ' class="danger"'; } ?>>
+										<input type="hidden" name="create_threads_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($create_threads) ? '1' : '0'; ?>" />
+										<input type="checkbox" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+									</td>
+								</tr>
+	<?php } ?>
+							</tbody>
+						</table>
+					</div>
                 </fieldset>
             </div>
         </form>

@@ -52,16 +52,17 @@ if (isset($_GET['ip_stats'])) {
             <div class="panel-body">
                 <?php echo $paging_links ?>
             </div>
-            <table class="table table-js table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th><?php _e('IP/IP-ranges', 'luna')?></th>
-                        <th><?php _e('Last used', 'luna')?></th>
-                        <th><?php _e('Times found', 'luna')?></th>
-                        <th><?php _e('Action', 'luna')?></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="table-responsive">
+				<table class="table table-js table-striped table-hover">
+					<thead>
+						<tr>
+							<th><?php _e('IP/IP-ranges', 'luna')?></th>
+							<th><?php _e('Last used', 'luna')?></th>
+							<th><?php _e('Times found', 'luna')?></th>
+							<th><?php _e('Action', 'luna')?></th>
+						</tr>
+					</thead>
+					<tbody>
 <?php
 
     $result = $db->query('SELECT commenter_ip, MAX(commented) AS last_used, COUNT(id) AS used_times FROM ' . $db->prefix . 'comments WHERE commenter_id=' . $ip_stats . ' GROUP BY commenter_ip ORDER BY last_used DESC LIMIT ' . $start_from . ', 50') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
@@ -69,12 +70,12 @@ if (isset($_GET['ip_stats'])) {
         while ($cur_ip = $db->fetch_assoc($result)) {
 
             ?>
-                    <tr>
-                        <td><a href="../moderate.php?get_host=<?php echo $cur_ip['commenter_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?></a></td>
-                        <td><?php echo format_time($cur_ip['last_used']) ?></td>
-                        <td><?php echo $cur_ip['used_times'] ?></td>
-                        <td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?>"><?php _e('Find more users for this ip', 'luna')?></a></td>
-                    </tr>
+						<tr>
+							<td><a href="../moderate.php?get_host=<?php echo $cur_ip['commenter_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?></a></td>
+							<td><?php echo format_time($cur_ip['last_used']) ?></td>
+							<td><?php echo $cur_ip['used_times'] ?></td>
+							<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['commenter_ip']) ?>"><?php _e('Find more users for this ip', 'luna')?></a></td>
+						</tr>
 <?php
 
         }
@@ -83,8 +84,9 @@ if (isset($_GET['ip_stats'])) {
     }
 
     ?>
-                </tbody>
-            </table>
+					</tbody>
+				</table>
+			</div>
             <div class="panel-body">
                 <?php echo $paging_links ?>
             </div>
@@ -126,18 +128,19 @@ if (isset($_GET['ip_stats'])) {
             <div class="panel-body">
                 <?php echo $paging_links ?>
             </div>
-            <table class="table table-js table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th><?php _e('Username', 'luna')?></th>
-                        <th><?php _e('Email', 'luna')?></th>
-                        <th><?php _e('Title/Status', 'luna')?></th>
-                        <th class="text-center"><?php _e('Comments', 'luna')?></th>
-                        <th><?php _e('Admin note', 'luna')?></th>
-                        <th><?php _e('Actions', 'luna')?></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="table-responsive">
+				<table class="table table-js table-striped table-hover">
+					<thead>
+						<tr>
+							<th><?php _e('Username', 'luna')?></th>
+							<th><?php _e('Email', 'luna')?></th>
+							<th><?php _e('Title/Status', 'luna')?></th>
+							<th class="text-center"><?php _e('Comments', 'luna')?></th>
+							<th><?php _e('Admin note', 'luna')?></th>
+							<th><?php _e('Actions', 'luna')?></th>
+						</tr>
+					</thead>
+					<tbody>
 <?php
 
     $result = $db->query('SELECT DISTINCT commenter_id, commenter FROM ' . $db->prefix . 'comments WHERE commenter_ip=\'' . $db->escape($ip) . '\' ORDER BY commenter ASC LIMIT ' . $start_from . ', 50') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
@@ -163,27 +166,27 @@ if (isset($_GET['ip_stats'])) {
 
                 $actions = '<a href="users.php?ip_stats=' . $user_data[$cur_commenter['commenter_id']]['id'] . '">' . __('IP stats', 'luna') . '</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id=' . $user_data[$cur_commenter['commenter_id']]['id'] . '">' . __('Comments', 'luna') . '</a>';
                 ?>
-                    <tr>
-                        <td><?php echo '<a href="../profile.php?id=' . $user_data[$cur_commenter['commenter_id']]['id'] . '">' . luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['username']) . '</a>' ?></td>
-                        <td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?></a></td>
-                        <td><?php echo $user_title ?></td>
-                        <td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['commenter_id']]['num_comments']) ?></td>
-                        <td><?php echo ($user_data[$cur_commenter['commenter_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['admin_note']) : '&#160;' ?></td>
-                        <td><?php echo $actions ?></td>
-                    </tr>
+						<tr>
+							<td><?php echo '<a href="../profile.php?id=' . $user_data[$cur_commenter['commenter_id']]['id'] . '">' . luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['username']) . '</a>' ?></td>
+							<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['email']) ?></a></td>
+							<td><?php echo $user_title ?></td>
+							<td class="text-center"><?php echo forum_number_format($user_data[$cur_commenter['commenter_id']]['num_comments']) ?></td>
+							<td><?php echo ($user_data[$cur_commenter['commenter_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_commenter['commenter_id']]['admin_note']) : '&#160;' ?></td>
+							<td><?php echo $actions ?></td>
+						</tr>
 <?php
 
             } else {
 
                 ?>
-                    <tr>
-                        <td><?php echo luna_htmlspecialchars($cur_commenter['commenter']) ?></td>
-                        <td>&#160;</td>
-                        <td><?php _e('Guest', 'luna')?></td>
-                        <td>&#160;</td>
-                        <td>&#160;</td>
-                        <td>&#160;</td>
-                    </tr>
+						<tr>
+							<td><?php echo luna_htmlspecialchars($cur_commenter['commenter']) ?></td>
+							<td>&#160;</td>
+							<td><?php _e('Guest', 'luna')?></td>
+							<td>&#160;</td>
+							<td>&#160;</td>
+							<td>&#160;</td>
+						</tr>
 <?php
 
             }
@@ -193,8 +196,9 @@ if (isset($_GET['ip_stats'])) {
     }
 
     ?>
-                </tbody>
-            </table>
+					</tbody>
+				</table>
+			</div>
             <div class="panel-body">
                 <?php echo $paging_links ?>
             </div>
@@ -707,19 +711,20 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
                         </span>
                     <?php endif;?>
                 </div>
-                <table class="table table-js table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <?php if ($can_action): ?><th style="width: 25px;"><input type="checkbox" id="checkall" /></th><?php endif;?>
-                            <th><?php _e('Username', 'luna')?></th>
-                            <th><?php _e('Email', 'luna')?></th>
-                            <th><?php _e('Title/Status', 'luna')?></th>
-                            <th class="text-center"><?php _e('Comments', 'luna')?></th>
-                            <th><?php _e('Admin note', 'luna')?></th>
-                            <th><?php _e('Actions', 'luna')?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+				<div class="table-responsive">
+					<table class="table table-js table-striped table-hover">
+						<thead>
+							<tr>
+								<?php if ($can_action): ?><th style="width: 25px;"><input type="checkbox" id="checkall" /></th><?php endif;?>
+								<th><?php _e('Username', 'luna')?></th>
+								<th><?php _e('Email', 'luna')?></th>
+								<th><?php _e('Title/Status', 'luna')?></th>
+								<th class="text-center"><?php _e('Comments', 'luna')?></th>
+								<th><?php _e('Admin note', 'luna')?></th>
+								<th><?php _e('Actions', 'luna')?></th>
+							</tr>
+						</thead>
+						<tbody>
 <?php
 
     $result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_comments, u.admin_note, g.g_id, g.g_user_title FROM ' . $db->prefix . 'users AS u LEFT JOIN ' . $db->prefix . 'groups AS g ON g.g_id=u.group_id WHERE u.id>1' . (!empty($conditions) ? ' AND ' . implode(' AND ', $conditions) : '') . ' ORDER BY ' . $db->escape($order_by) . ' ' . $db->escape($direction) . ' LIMIT ' . $start_from . ', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -735,14 +740,14 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
             $actions = '<a href="users.php?ip_stats=' . $user_data['id'] . '">' . __('IP stats', 'luna') . '</a> &middot; <a href="../search.php?action=show_user_comments&amp;user_id=' . $user_data['id'] . '">' . __('Comments', 'luna') . '</a>';
 
             ?>
-                        <tr>
-                            <?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif;?>
-                            <td><?php echo '<a href="../profile.php?id=' . $user_data['id'] . '">' . luna_htmlspecialchars($user_data['username']) . '</a>' ?></td>
-                            <td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
-                            <td class="text-center"><?php echo forum_number_format($user_data['num_comments']) ?></td>
-                            <td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-                            <td><?php echo $actions ?></td>
-                        </tr>
+							<tr>
+								<?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif;?>
+								<td><?php echo '<a href="../profile.php?id=' . $user_data['id'] . '">' . luna_htmlspecialchars($user_data['username']) . '</a>' ?></td>
+								<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
+								<td class="text-center"><?php echo forum_number_format($user_data['num_comments']) ?></td>
+								<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+								<td><?php echo $actions ?></td>
+							</tr>
 <?php
 
         }
@@ -751,8 +756,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
     }
 
     ?>
-                    </tbody>
-                </table>
+						</tbody>
+					</table>
+				</div>
                 <div class="panel-body">
                     <?php echo $paging_links ?>
                     <?php if ($can_action): ?>

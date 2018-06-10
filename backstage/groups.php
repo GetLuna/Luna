@@ -639,8 +639,9 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php echo __('Manage groups', 'luna') ?></h3>
 			</div>
-			<table class="table">
-				<tbody>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
 <?php
 
     $cur_index = 5;
@@ -649,22 +650,23 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
 
     while ($cur_group = $db->fetch_assoc($result)) {
         ?>
-					<tr>
-						<td>
-						<a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-pencil-alt-square-o"></span> <?php echo __('Edit', 'luna') ?></a>
-						</td>
-						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
-						<td>
-							<?php if ($cur_group['g_id'] > LUNA_MEMBER) {?>
-								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></a>
-							<?php }?>
-						</td>
-					</tr>
+                        <tr>
+                            <td>
+                            <a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-pencil-alt-square-o"></span> <?php echo __('Edit', 'luna') ?></a>
+                            </td>
+                            <td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
+                            <td>
+                                <?php if ($cur_group['g_id'] > LUNA_MEMBER) {?>
+                                    <a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></a>
+                                <?php }?>
+                            </td>
+                        </tr>
 <?php
 }
     ?>
-				</tbody>
-			</table>
+                    </tbody>
+                </table>
+		    </div>
 		</div>
 	</div>
 </div>

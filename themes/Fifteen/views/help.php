@@ -150,46 +150,48 @@ if ($db->num_rows($result) > 0)
 				<div role="tabpanel" class="tab-pane active" id="forum">
 					<h3><?php _e('What do the labels in front of thread titles mean?', 'luna') ?></h3>
 					<p><?php _e('You\'ll see that some of the threads are labeled, different labels have different meanings.', 'luna') ?></p>
-					<table class="table">
-						<thead>
-							<tr>
-								<th><?php _e('Label', 'luna') ?></th>
-								<th><?php _e('Explanation', 'luna') ?></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><span class="fas fa-fw fa-check status-solved"></span></td>
-								<td><?php _e('Threads marked with a check are solved according to the author.', 'luna') ?></td>
-							</tr>
-							<tr>
-								<td><span class="fas fa-fw fa-thumbtack status-pinned"></span></td>
-								<td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
-							</tr>
-							<tr>
-								<td><span class="fas fa-fw fa-map-marker status-important"></span></td>
-								<td><?php _e('Much like pinned threads, these are important, however, they do not stay on the top of the list.', 'luna') ?></td>
-							</tr>
-							<tr>
-								<td><span class="fas fa-fw fa-lock status-closed"></span></td>
-								<td><?php _e('When a you see a closed label, it means you can\'t comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though.', 'luna') ?></td>
-							</tr>
-							<tr>
-								<td><span class="fas fa-fw fa-arrows-alt status-moved"></span></td>
-								<td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
-							</tr>
-							<tr>
-								<td><span class="fas fa-fw fa-bell status-new"></span></td>
-								<td><?php _e('This thread has received a new comment since you last visited the board.', 'luna') ?></td>
-							</tr>
-							<?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
-							<tr>
-								<td>&middot;</td>
-								<td><?php _e('This little dot appears when you have made a comment in this thread.', 'luna') ?></td>
-							</tr>
-							<?php } ?>
-						</tbody>
-					</table>
+            		<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th><?php _e('Label', 'luna') ?></th>
+									<th><?php _e('Explanation', 'luna') ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><span class="fas fa-fw fa-check status-solved"></span></td>
+									<td><?php _e('Threads marked with a check are solved according to the author.', 'luna') ?></td>
+								</tr>
+								<tr>
+									<td><span class="fas fa-fw fa-thumbtack status-pinned"></span></td>
+									<td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
+								</tr>
+								<tr>
+									<td><span class="fas fa-fw fa-map-marker status-important"></span></td>
+									<td><?php _e('Much like pinned threads, these are important, however, they do not stay on the top of the list.', 'luna') ?></td>
+								</tr>
+								<tr>
+									<td><span class="fas fa-fw fa-lock status-closed"></span></td>
+									<td><?php _e('When a you see a closed label, it means you can\'t comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though.', 'luna') ?></td>
+								</tr>
+								<tr>
+									<td><span class="fas fa-fw fa-arrows-alt status-moved"></span></td>
+									<td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
+								</tr>
+								<tr>
+									<td><span class="fas fa-fw fa-bell status-new"></span></td>
+									<td><?php _e('This thread has received a new comment since you last visited the board.', 'luna') ?></td>
+								</tr>
+								<?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
+								<tr>
+									<td>&middot;</td>
+									<td><?php _e('This little dot appears when you have made a comment in this thread.', 'luna') ?></td>
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					</div>
 					<h3><?php _e('Smilies, signatures, avatars and images are not visible?', 'luna') ?></h3>
 					<p><?php _e('You can change the behavior of the thread view in your profile settings. There you can enable smilies, signatures, avatars and images in comments, but they should be enabled by default unless your forum admin has disabled those features.', 'luna') ?></p>
 					<h3><?php _e('Why can\'t I see some threads or forums?', 'luna') ?></h3>

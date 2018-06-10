@@ -116,15 +116,16 @@ if (isset($_GET['saved'])) {
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('New reports', 'luna')?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fas fa-fw fa-eye"></span> <?php _e('View all', 'luna')?></a></span></h3>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="col-lg-3"><?php _e('Reported by', 'luna')?></th>
-                        <th class="col-lg-3"><?php _e('Date and time', 'luna')?></th>
-                        <th class="col-lg-6"><?php _e('Message', 'luna')?></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-lg-3"><?php _e('Reported by', 'luna')?></th>
+                            <th class="col-lg-3"><?php _e('Date and time', 'luna')?></th>
+                            <th class="col-lg-6"><?php _e('Message', 'luna')?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM ' . $db->prefix . 'reports AS r LEFT JOIN ' . $db->prefix . 'comments AS p ON r.comment_id=p.id LEFT JOIN ' . $db->prefix . 'threads AS t ON r.thread_id=t.id LEFT JOIN ' . $db->prefix . 'forums AS f ON r.forum_id=f.id LEFT JOIN ' . $db->prefix . 'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -139,27 +140,28 @@ if ($db->num_rows($result)) {
         $report_location = array($forum, $thread, $comment_id);
 
         ?>
-                    <tr>
-                        <td><?php printf($reporter)?></td>
-                        <td><?php printf(format_time($cur_report['created']))?></td>
-                        <td><?php echo $comment ?></td>
-                    </tr>
+                        <tr>
+                            <td><?php printf($reporter)?></td>
+                            <td><?php printf(format_time($cur_report['created']))?></td>
+                            <td><?php echo $comment ?></td>
+                        </tr>
 <?php
 
     }
 } else {
 
     ?>
-                    <tr>
-                        <td colspan="4"><?php _e('There are no new reports.', 'luna')?></td>
-                    </tr>
+                        <tr>
+                            <td colspan="4"><?php _e('There are no new reports.', 'luna')?></td>
+                        </tr>
 <?php
 
 }
 
 ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <form class="form-horizontal" method="post" action="index.php">
             <input type="hidden" name="form_sent" value="1" />

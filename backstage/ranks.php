@@ -135,29 +135,30 @@ $result = $db->query('SELECT id, rank, min_comments FROM ' . $db->prefix . 'rank
 if ($db->num_rows($result)) {
 
     ?>
-					<table class="table">
-						<thead>
-							<tr>
-								<th><?php _e('Rank title', 'luna')?></th>
-								<th class="col-lg-2"><?php _e('Minimum comments', 'luna')?></th>
-								<th><?php _e('Actions', 'luna')?></th>
-							</tr>
-						</thead>
-						<tbody>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th><?php _e('Rank title', 'luna')?></th>
+									<th class="col-lg-2"><?php _e('Minimum comments', 'luna')?></th>
+									<th><?php _e('Actions', 'luna')?></th>
+								</tr>
+							</thead>
+							<tbody>
 <?php
 while ($cur_rank = $db->fetch_assoc($result)) {
         ?>
-							<tr>
-								<td>
-									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][rank]" value="<?php echo luna_htmlspecialchars($cur_rank['rank']) ?>" maxlength="50" />
-								</td>
-								<td>
-									<input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_comments]" value="<?php echo $cur_rank['min_comments'] ?>" maxlength="7" />
-								</td>
-								<td>
-									<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
-								</td>
-							</tr>
+								<tr>
+									<td>
+										<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][rank]" value="<?php echo luna_htmlspecialchars($cur_rank['rank']) ?>" maxlength="50" />
+									</td>
+									<td>
+										<input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_comments]" value="<?php echo $cur_rank['min_comments'] ?>" maxlength="7" />
+									</td>
+									<td>
+										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+									</td>
+								</tr>
 <?php
 }
 } else {
@@ -165,8 +166,9 @@ while ($cur_rank = $db->fetch_assoc($result)) {
 }
 
 ?>
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
 				</fieldset>
 			</div>
 		</div>

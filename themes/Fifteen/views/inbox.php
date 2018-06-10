@@ -52,17 +52,18 @@ if (!defined('FORUM'))
 						}
 						?>
 						<input type="hidden" name="box" value="0" />
-						<table class="table table-striped table-hover">
-							<thead>
-								<tr>
-									<th style="width: 18px;"><input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></th>
-									<th><?php _e('Messages', 'luna') ?></th>
-									<th><?php _e('Sender', 'luna') ?></th>
-									<th><?php _e('Receiver(s)', 'luna') ?></th>
-									<th><?php _e('Last comment', 'luna') ?></th>
-								</tr>
-							</thead>
-							<tbody>
+            			<div class="table-responsive">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th style="width: 18px;"><input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></th>
+										<th><?php _e('Messages', 'luna') ?></th>
+										<th><?php _e('Sender', 'luna') ?></th>
+										<th><?php _e('Receiver(s)', 'luna') ?></th>
+										<th><?php _e('Last comment', 'luna') ?></th>
+									</tr>
+								</thead>
+								<tbody>
 			<?php
 			// Fetch messages
 			$result = $db->query('SELECT * FROM '.$db->prefix.'messages WHERE show_message=1 AND owner='.$id.' ORDER BY last_comment DESC LIMIT '.$limit) or error("Unable to find the list of the Inbox messages.", __FILE__, __LINE__, $db->error());
@@ -85,23 +86,23 @@ if (!defined('FORUM'))
 			
 					$last_comment = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_comment_id'].'#p'.$cur_mess['last_comment_id'].'">'.format_time($cur_mess['last_comment']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_commenter']).'</span>';
 			?>
-								<tr class="<?php echo $item_status ?>">
-									<td>
-										<input type="checkbox" name="selected_messages[]" value="<?php echo $cur_mess['shared_id'] ?>" />
-									</td>
-									<td>
-										<div class="<?php echo $icon_type ?>"></div>
-										<div><?php echo $subject ?></div>
-									</td>
-									<td>
+									<tr class="<?php echo $item_status ?>">
+										<td>
+											<input type="checkbox" name="selected_messages[]" value="<?php echo $cur_mess['shared_id'] ?>" />
+										</td>
+										<td>
+											<div class="<?php echo $icon_type ?>"></div>
+											<div><?php echo $subject ?></div>
+										</td>
+										<td>
 					<?php
 					if ($luna_user['g_view_users'] == '1')
 						echo '<a href="profile.php?id='.$cur_mess['sender_id'].'">'.luna_htmlspecialchars($cur_mess['sender']).'</a>';
 					else
 						echo luna_htmlspecialchars($cur_mess['sender']);
 					?>
-									</td>
-									<td>
+										</td>
+										<td>
 					<?php
 						if ($luna_user['g_view_users'] == '1') {
 							$ids_list = explode(', ', $cur_mess['receiver_id']);
@@ -117,16 +118,17 @@ if (!defined('FORUM'))
 						} else
 							echo luna_htmlspecialchars($cur_mess['receiver']);
 					?>
-									</td>
-									<td><?php echo $last_comment ?></td>
-								</tr>
+										</td>
+										<td><?php echo $last_comment ?></td>
+									</tr>
 			<?php
 				}
 			} else
 				echo "\t".'<tr><td colspan="45">'.__('No messages', 'luna').'</td></tr>'."\n";
 			?>
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</fieldset>
 			</form>

@@ -128,40 +128,42 @@ if (isset($_GET['saved'])) {
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('Luna version information', 'luna')?></h3>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="col-md-6"></th>
-                        <th class="col-md-6"><?php _e('Version', 'luna')?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?php _e('Software version', 'luna')?></td>
-                        <td><?php echo $luna_config['o_cur_version']; ?></td>
-                    </tr>
-                    <tr>
-                        <td><?php _e('Core version', 'luna')?></td>
-                        <td><?php echo $luna_config['o_core_version']; ?></td>
-                    </tr>
-                    <tr>
-                        <td><?php _e('Database version', 'luna')?></td>
-                        <td><?php echo $luna_config['o_database_revision']; ?></td>
-                    </tr>
-                    <tr>
-                        <td><?php _e('Bootstrap version', 'luna')?></td>
-                        <td>3.3.7</td>
-                    </tr>
-                    <tr>
-                        <td><?php _e('Font Awesome version', 'luna')?></td>
-                        <td>5.0.13</td>
-                    </tr>
-                    <tr>
-                        <td><?php _e('jQuery version', 'luna')?></td>
-                        <td>2.2.4</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="col-md-6"></th>
+							<th class="col-md-6"><?php _e('Version', 'luna')?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php _e('Software version', 'luna')?></td>
+							<td><?php echo $luna_config['o_cur_version']; ?></td>
+						</tr>
+						<tr>
+							<td><?php _e('Core version', 'luna')?></td>
+							<td><?php echo $luna_config['o_core_version']; ?></td>
+						</tr>
+						<tr>
+							<td><?php _e('Database version', 'luna')?></td>
+							<td><?php echo $luna_config['o_database_revision']; ?></td>
+						</tr>
+						<tr>
+							<td><?php _e('Bootstrap version', 'luna')?></td>
+							<td>3.3.7</td>
+						</tr>
+						<tr>
+							<td><?php _e('Font Awesome version', 'luna')?></td>
+							<td>5.0.13</td>
+						</tr>
+						<tr>
+							<td><?php _e('jQuery version', 'luna')?></td>
+							<td>2.2.4</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
         </div>
 	</div>
 	<div class="col-sm-8">
@@ -191,36 +193,38 @@ if (isset($_GET['saved'])) {
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('Server statistics', 'luna')?></h3>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="col-md-4"><?php _e('Server load', 'luna')?></th>
-                        <?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
-                        <th class="col-md-4"><?php _e('Environment', 'luna')?></th>
-                        <th class="col-md-4"><?php _e('Database', 'luna')?></th>
-                        <?php endif;?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?php printf(__('%s - %s user(s) online', 'luna') . "\n", $server_load, $num_online)?></td>
-                        <?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
-                        <td>
-                            <?php printf(__('Operating system: %s', 'luna'), PHP_OS)?><br />
-                            <?php printf(__('PHP: %s - %s', 'luna'), phpversion(), '<a href="system.php?action=phpinfo">' . __('Show info', 'luna') . '</a>')?><br />
-                            <?php printf(__('Accelerator: %s', 'luna') . "\n", $php_accelerator)?>
-                        </td>
-                        <td>
-                            <?php echo implode(' ', $db->get_version()) . "\n" ?>
-                            <?php if (isset($total_records) && isset($total_size)): ?>
-                            <br /><?php printf(__('Rows: %s', 'luna') . "\n", forum_number_format($total_records))?>
-                            <br /><?php printf(__('Size: %s', 'luna') . "\n", $total_size)?>
-                            <?php endif;?>
-                        </td>
-                        <?php endif;?>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="col-md-4"><?php _e('Server load', 'luna')?></th>
+							<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
+							<th class="col-md-4"><?php _e('Environment', 'luna')?></th>
+							<th class="col-md-4"><?php _e('Database', 'luna')?></th>
+							<?php endif;?>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php printf(__('%s - %s user(s) online', 'luna') . "\n", $server_load, $num_online)?></td>
+							<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
+							<td>
+								<?php printf(__('Operating system: %s', 'luna'), PHP_OS)?><br />
+								<?php printf(__('PHP: %s - %s', 'luna'), phpversion(), '<a href="system.php?action=phpinfo">' . __('Show info', 'luna') . '</a>')?><br />
+								<?php printf(__('Accelerator: %s', 'luna') . "\n", $php_accelerator)?>
+							</td>
+							<td>
+								<?php echo implode(' ', $db->get_version()) . "\n" ?>
+								<?php if (isset($total_records) && isset($total_size)): ?>
+								<br /><?php printf(__('Rows: %s', 'luna') . "\n", forum_number_format($total_records))?>
+								<br /><?php printf(__('Size: %s', 'luna') . "\n", $total_size)?>
+								<?php endif;?>
+							</td>
+							<?php endif;?>
+						</tr>
+					</tbody>
+				</table>
+			</div>
         </div>
 	</div>
 </div>
