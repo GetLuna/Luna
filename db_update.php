@@ -348,8 +348,7 @@ switch ($stage) {
         build_config(1, 'o_board_statistics', '1');
         build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
         build_config(1, 'o_copyright_type', '0');
-        build_config(1, 'o_custom_copyright');
-        build_config(1, 'o_emoji', '1');
+        build_config(1, 'o_custom_copyright');;
         build_config(1, 'o_emoji_size', '16');
         build_config(1, 'o_first_run_backstage', '0');
         build_config(0, 'o_forum_new_style');
@@ -730,7 +729,10 @@ switch ($stage) {
         $db->add_field('comments', 'admin_note', 'MEDIUMTEXT', true) or error('Unable to admin note field to comments', __FILE__, __LINE__, $db->error());
 
         $db->query('UPDATE ' . $db->prefix . 'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
-        $db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
+		$db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
+		
+		// Luna 2.1 upgrade support
+        build_config(0, 'o_emoji')
 
         break;
 

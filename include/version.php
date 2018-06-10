@@ -9,14 +9,14 @@ class Version
 {
     const LUNA_VERSION = '2.1-alpha.2';
     const LUNA_BRANCH = '2.1';
-    const LUNA_CORE_VERSION = '2.1.5850';
+    const LUNA_CORE_VERSION = '2.1.5854';
     const LUNA_CODE_NAME = 'Fallow';
 
     // The database version number, every change in the database requires this number to go one up
-    const LUNA_DB_VERSION = '91.26';
+    const LUNA_DB_VERSION = '92.00';
 
     // The parser version number, every change to the parser requires this number to go one up
-    const LUNA_PARSER_VERSION = '11.4.2';
+    const LUNA_PARSER_VERSION = '11.5.0';
 
     // The search index version number, every change to the search index requires this number to go one up
     const LUNA_SI_VERSION = '2.0';
