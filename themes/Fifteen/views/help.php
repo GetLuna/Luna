@@ -27,7 +27,7 @@ if (!defined('FORUM'))
 					<li role="presentation"><a href="#quote" aria-controls="quote" role="tab" data-toggle="tab"><i class="fas fa-fw fa-quote-right"></i> <?php _e('Quotes', 'luna') ?></a></li>
 					<li role="presentation"><a href="#code" aria-controls="code" role="tab" data-toggle="tab"><i class="fas fa-fw fa-code"></i> <?php _e('Code', 'luna') ?></a></li>
 					<li role="presentation"><a href="#list" aria-controls="list" role="tab" data-toggle="tab"><i class="fas fa-fw fa-list-ol"></i> <?php _e('Lists', 'luna') ?></a></li>
-					<li role="presentation"><a href="#emoji" aria-controls="emoji" role="tab" data-toggle="tab"><i class="fas fa-fw fa-smile-o"></i> <?php _e('Emoji', 'luna') ?></a></li>
+					<li role="presentation"><a href="#emoji" aria-controls="emoji" role="tab" data-toggle="tab"><i class="fas fa-fw fa-smile"></i> <?php _e('Emoji', 'luna') ?></a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
