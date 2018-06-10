@@ -36,6 +36,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Improved Backstage design with faster navigation', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Improvements to the Luna coding conventions', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('It is no longer possible to enable smilies', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('Support for update rings has been removed', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
