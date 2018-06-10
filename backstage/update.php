@@ -159,7 +159,7 @@ if (isset($_GET['saved'])) {
 						</tr>
 						<tr>
 							<td><?php _e('jQuery version', 'luna')?></td>
-							<td>2.2.4</td>
+							<td>3.3.1</td>
 						</tr>
 					</tbody>
 				</table>

@@ -32,7 +32,11 @@ require 'header.php';
 					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Fallow Preview 2 <small>2.1-alpha.2</small></span></h2>
 						<ul class="changes">
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Luna now uses your native system font instead of Segoe UI and Open Sans', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved navbar for small devices', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Tables will now work better on small devices', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Font Awesome has been updated to version 5.0.13', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('jQuery has been updated to version 3.3.1', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Improved Backstage design with faster navigation', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Improvements to the Luna coding conventions', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('It is no longer possible to enable smilies', 'luna') ?></li>
