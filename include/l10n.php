@@ -1,16 +1,17 @@
 <?php
 
-function get_locale() {
+function get_locale()
+{
 
-	global $luna_user;
+    global $luna_user;
 
-	if (isset($luna_user['language'])) {
-		$luna_locale = $luna_user['language'];
-	} else {
-		$luna_locale = 'English';
-	}
+    if (isset($luna_user['language'])) {
+        $luna_locale = $luna_user['language'];
+    } else {
+        $luna_locale = 'English';
+    }
 
-	return $luna_locale;
+    return $luna_locale;
 }
 
 /**
@@ -29,65 +30,72 @@ function get_locale() {
  *
  * @return   boolean    True on success, false on failure.
  */
-function load_textdomain($domain, $mofile) {
+function load_textdomain($domain, $mofile)
+{
 
-	global $l10n;
+    global $l10n;
 
-	if (!is_readable($mofile)) {
-		return false;
-	}
+    if (!is_readable($mofile)) {
+        return false;
+    }
 
-	$mo = new MO();
-	if (!$mo->import_from_file($mofile)) {
-		return false;
-	}
+    $mo = new MO();
+    if (!$mo->import_from_file($mofile)) {
+        return false;
+    }
 
-	if (isset($l10n[$domain])) {
-		$mo->merge_with($l10n[$domain]);
-	}
+    if (isset($l10n[$domain])) {
+        $mo->merge_with($l10n[$domain]);
+    }
 
-	$l10n[$domain] = &$mo;
+    $l10n[$domain] = &$mo;
 
-	return true;
+    return true;
 }
 
-function __($text, $domain = 'default') {
+function __($text, $domain = 'default')
+{
 
-	return luna_translate($text, $domain);
+    return luna_translate($text, $domain);
 }
 
-function _e($text, $domain = 'default') {
+function _e($text, $domain = 'default')
+{
 
-	echo luna_translate($text, $domain);
+    echo luna_translate($text, $domain);
 }
 
-function _n($single, $plural, $number, $domain = 'default') {
+function _n($single, $plural, $number, $domain = 'default')
+{
 
-	$translations = load_translations($domain);
-    
-    if ($number == 1)
-        $translation = __( $single, $domain );
-    else
-        $translation = __( $plural, $domain );
+    $translations = load_translations($domain);
 
-	return $translation;
+    if ($number == 1) {
+        $translation = __($single, $domain);
+    } else {
+        $translation = __($plural, $domain);
+    }
+
+    return $translation;
 }
 
-function luna_translate($text, $domain = 'default') {
+function luna_translate($text, $domain = 'default')
+{
 
-	$translations = load_translations($domain);
-	$translations = $translations->translate($text);
+    $translations = load_translations($domain);
+    $translations = $translations->translate($text);
 
-	return $translations;
+    return $translations;
 }
 
-function load_translations($domain) {
+function load_translations($domain)
+{
 
-	global $l10n;
+    global $l10n;
 
-	if (!isset($l10n[$domain])) {
-		$l10n[$domain] = new NOOPTranslations;
-	}
+    if (!isset($l10n[$domain])) {
+        $l10n[$domain] = new NOOPTranslations;
+    }
 
-	return $l10n[$domain];
+    return $l10n[$domain];
 }

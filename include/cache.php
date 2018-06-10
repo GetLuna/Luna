@@ -8,229 +8,246 @@
  */
 
 // Make sure no one attempts to run this script "directly"
-if (!defined('FORUM'))
-	exit;
+if (!defined('FORUM')) {
+    exit;
+}
 
 //
 // Generate the config cache PHP script
 //
-function generate_config_cache() {
-	global $db;
+function generate_config_cache()
+{
+    global $db;
 
-	// Get the forum config from the DB
-	$result = $db->query('SELECT * FROM '.$db->prefix.'config', true) or error('Unable to fetch forum config', __FILE__, __LINE__, $db->error());
+    // Get the forum config from the DB
+    $result = $db->query('SELECT * FROM ' . $db->prefix . 'config', true) or error('Unable to fetch forum config', __FILE__, __LINE__, $db->error());
 
-	$output = array();
-	while ($cur_config_item = $db->fetch_row($result))
-		$output[$cur_config_item[0]] = $cur_config_item[1];
+    $output = array();
+    while ($cur_config_item = $db->fetch_row($result)) {
+        $output[$cur_config_item[0]] = $cur_config_item[1];
+    }
 
-	// Output config as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_CONFIG_LOADED\', 1);'."\n\n".'$luna_config = '.var_export($output, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_config.php', $content);
+    // Output config as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_CONFIG_LOADED\', 1);' . "\n\n" . '$luna_config = ' . var_export($output, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_config.php', $content);
 }
 
 //
 // Generate the update cache
 //
-function generate_update_cache() {
-	global $luna_config;
+function generate_update_cache()
+{
+    global $luna_config;
 
-	// Get the version number from GitHub
-	if ($luna_config['o_update_ring'] == 0)
-		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/version.txt'));
-	elseif ($luna_config['o_update_ring'] == 1)
-		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/master/version.txt'));
-	elseif ($luna_config['o_update_ring'] == 2)
-		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
-	elseif ($luna_config['o_update_ring'] == 3)
-		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/nightly/version.txt'));
+    // Get the version number from GitHub
+    if ($luna_config['o_update_ring'] == 0) {
+        $output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/' . $luna_config['o_code_name'] . '/version.txt'));
+    } elseif ($luna_config['o_update_ring'] == 1) {
+        $output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/master/version.txt'));
+    } elseif ($luna_config['o_update_ring'] == 2) {
+        $output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
+    } elseif ($luna_config['o_update_ring'] == 3) {
+        $output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/nightly/version.txt'));
+    }
 
-	if (file_exists('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/drop.md'))
-		$support = 'none';
-	else
-		$support = 'available';
+    if (file_exists('https://raw.githubusercontent.com/GetLuna/Luna/' . $luna_config['o_code_name'] . '/drop.md')) {
+        $support = 'none';
+    } else {
+        $support = 'available';
+    }
 
-	// Output version as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_UPDATE_LOADED\', 1);'."\n\n".'$update_cache = '.var_export($output, true).';'."\n".'$supported = \''.$support.'\';'."\n".'$last_check_time = '.time().';'."\n\n".'?>';
-	luna_write_cache_file('cache_update.php', $content);
+    // Output version as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_UPDATE_LOADED\', 1);' . "\n\n" . '$update_cache = ' . var_export($output, true) . ';' . "\n" . '$supported = \'' . $support . '\';' . "\n" . '$last_check_time = ' . time() . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_update.php', $content);
 }
-
 
 //
 // Generate the bans cache PHP script
 //
-function generate_bans_cache() {
-	global $db;
+function generate_bans_cache()
+{
+    global $db;
 
-	// Get the ban list from the DB
-	$result = $db->query('SELECT * FROM '.$db->prefix.'bans', true) or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
+    // Get the ban list from the DB
+    $result = $db->query('SELECT * FROM ' . $db->prefix . 'bans', true) or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
 
-	$output = array();
-	while ($cur_ban = $db->fetch_assoc($result))
-		$output[] = $cur_ban;
+    $output = array();
+    while ($cur_ban = $db->fetch_assoc($result)) {
+        $output[] = $cur_ban;
+    }
 
-	// Output ban list as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_BANS_LOADED\', 1);'."\n\n".'$luna_bans = '.var_export($output, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_bans.php', $content);
+    // Output ban list as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_BANS_LOADED\', 1);' . "\n\n" . '$luna_bans = ' . var_export($output, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_bans.php', $content);
 }
-
 
 //
 // Generate the ranks cache PHP script
 //
-function generate_ranks_cache() {
-	global $db;
+function generate_ranks_cache()
+{
+    global $db;
 
-	// Get the rank list from the DB
-	$result = $db->query('SELECT * FROM '.$db->prefix.'ranks ORDER BY min_comments', true) or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
+    // Get the rank list from the DB
+    $result = $db->query('SELECT * FROM ' . $db->prefix . 'ranks ORDER BY min_comments', true) or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
 
-	$output = array();
-	while ($cur_rank = $db->fetch_assoc($result))
-		$output[] = $cur_rank;
+    $output = array();
+    while ($cur_rank = $db->fetch_assoc($result)) {
+        $output[] = $cur_rank;
+    }
 
-	// Output ranks list as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_RANKS_LOADED\', 1);'."\n\n".'$luna_ranks = '.var_export($output, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_ranks.php', $content);
+    // Output ranks list as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_RANKS_LOADED\', 1);' . "\n\n" . '$luna_ranks = ' . var_export($output, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_ranks.php', $content);
 }
-
 
 //
 // Generate the ranks cache PHP script
 //
-function generate_forum_cache() {
-	global $db;
+function generate_forum_cache()
+{
+    global $db;
 
-	// Get the forum list from the DB
-	$result = $db->query('SELECT id, forum_name, color, icon FROM '.$db->prefix.'forums ORDER BY id', true) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+    // Get the forum list from the DB
+    $result = $db->query('SELECT id, forum_name, color, icon FROM ' . $db->prefix . 'forums ORDER BY id', true) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
-	$output = array();
-	while ($cur_forum = $db->fetch_assoc($result))
-		$output[] = $cur_forum;
+    $output = array();
+    while ($cur_forum = $db->fetch_assoc($result)) {
+        $output[] = $cur_forum;
+    }
 
-	// Output ranks list as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_LIST_LOADED\', 1);'."\n\n".'$luna_forums = '.var_export($output, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_forums.php', $content);
+    // Output ranks list as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_LIST_LOADED\', 1);' . "\n\n" . '$luna_forums = ' . var_export($output, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_forums.php', $content);
 }
-
 
 //
 // Generate the censoring cache PHP script
 //
-function generate_censoring_cache() {
-	global $db;
+function generate_censoring_cache()
+{
+    global $db;
 
-	$result = $db->query('SELECT search_for, replace_with FROM '.$db->prefix.'censoring') or error('Unable to fetch censoring list', __FILE__, __LINE__, $db->error());
-	$num_words = $db->num_rows($result);
+    $result = $db->query('SELECT search_for, replace_with FROM ' . $db->prefix . 'censoring') or error('Unable to fetch censoring list', __FILE__, __LINE__, $db->error());
+    $num_words = $db->num_rows($result);
 
-	$search_for = $replace_with = array();
-	for ($i = 0; $i < $num_words; $i++) {
-		list($search_for[$i], $replace_with[$i]) = $db->fetch_row($result);
-		$search_for[$i] = '%(?<=[^\p{L}\p{N}])('.str_replace('\*', '[\p{L}\p{N}]*?', preg_quote($search_for[$i], '%')).')(?=[^\p{L}\p{N}])%iu';
-	}
+    $search_for = $replace_with = array();
+    for ($i = 0; $i < $num_words; $i++) {
+        list($search_for[$i], $replace_with[$i]) = $db->fetch_row($result);
+        $search_for[$i] = '%(?<=[^\p{L}\p{N}])(' . str_replace('\*', '[\p{L}\p{N}]*?', preg_quote($search_for[$i], '%')) . ')(?=[^\p{L}\p{N}])%iu';
+    }
 
-	// Output censored words as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_CENSOR_LOADED\', 1);'."\n\n".'$search_for = '.var_export($search_for, true).';'."\n\n".'$replace_with = '.var_export($replace_with, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_censoring.php', $content);
+    // Output censored words as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_CENSOR_LOADED\', 1);' . "\n\n" . '$search_for = ' . var_export($search_for, true) . ';' . "\n\n" . '$replace_with = ' . var_export($replace_with, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_censoring.php', $content);
 }
-
 
 //
 // Generate the stopwords cache PHP script
 //
-function generate_stopwords_cache() {
-	$stopwords = array();
+function generate_stopwords_cache()
+{
+    $stopwords = array();
 
-	$d = dir(LUNA_ROOT.'lang');
-	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
-			continue;
+    $d = dir(LUNA_ROOT . 'lang');
+    while (($entry = $d->read()) !== false) {
+        if ($entry{0} == '.') {
+            continue;
+        }
 
-		if (is_dir(LUNA_ROOT.'lang/'.$entry) && file_exists(LUNA_ROOT.'lang/'.$entry.'/stopwords.txt'))
-			$stopwords = array_merge($stopwords, file(LUNA_ROOT.'lang/'.$entry.'/stopwords.txt'));
-	}
-	$d->close();
+        if (is_dir(LUNA_ROOT . 'lang/' . $entry) && file_exists(LUNA_ROOT . 'lang/' . $entry . '/stopwords.txt')) {
+            $stopwords = array_merge($stopwords, file(LUNA_ROOT . 'lang/' . $entry . '/stopwords.txt'));
+        }
 
-	// Tidy up and filter the stopwords
-	$stopwords = array_map('luna_trim', $stopwords);
-	$stopwords = array_filter($stopwords);
+    }
+    $d->close();
 
-	// Output stopwords as PHP code
-	$content = '<?php'."\n\n".'$cache_id = \''.generate_stopwords_cache_id().'\';'."\n".'if ($cache_id != generate_stopwords_cache_id()) return;'."\n\n".'define(\'LUNA_STOPWORDS_LOADED\', 1);'."\n\n".'$stopwords = '.var_export($stopwords, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_stopwords.php', $content);
+    // Tidy up and filter the stopwords
+    $stopwords = array_map('luna_trim', $stopwords);
+    $stopwords = array_filter($stopwords);
+
+    // Output stopwords as PHP code
+    $content = '<?php' . "\n\n" . '$cache_id = \'' . generate_stopwords_cache_id() . '\';' . "\n" . 'if ($cache_id != generate_stopwords_cache_id()) return;' . "\n\n" . 'define(\'LUNA_STOPWORDS_LOADED\', 1);' . "\n\n" . '$stopwords = ' . var_export($stopwords, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_stopwords.php', $content);
 }
-
 
 //
 // Load some information about the latest registered users
 //
-function generate_users_info_cache() {
-	global $db;
+function generate_users_info_cache()
+{
+    global $db;
 
-	$stats = array();
+    $stats = array();
 
-	$result = $db->query('SELECT COUNT(id)-1 FROM '.$db->prefix.'users WHERE group_id!='.LUNA_UNVERIFIED) or error('Unable to fetch total user count', __FILE__, __LINE__, $db->error());
-	$stats['total_users'] = $db->result($result);
+    $result = $db->query('SELECT COUNT(id)-1 FROM ' . $db->prefix . 'users WHERE group_id!=' . LUNA_UNVERIFIED) or error('Unable to fetch total user count', __FILE__, __LINE__, $db->error());
+    $stats['total_users'] = $db->result($result);
 
-	$result = $db->query('SELECT id, username FROM '.$db->prefix.'users WHERE group_id!='.LUNA_UNVERIFIED.' ORDER BY registered DESC LIMIT 1') or error('Unable to fetch newest registered user', __FILE__, __LINE__, $db->error());
-	$stats['last_user'] = $db->fetch_assoc($result);
+    $result = $db->query('SELECT id, username FROM ' . $db->prefix . 'users WHERE group_id!=' . LUNA_UNVERIFIED . ' ORDER BY registered DESC LIMIT 1') or error('Unable to fetch newest registered user', __FILE__, __LINE__, $db->error());
+    $stats['last_user'] = $db->fetch_assoc($result);
 
-	// Output users info as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_USERS_INFO_LOADED\', 1);'."\n\n".'$stats = '.var_export($stats, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_users_info.php', $content);
+    // Output users info as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_USERS_INFO_LOADED\', 1);' . "\n\n" . '$stats = ' . var_export($stats, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_users_info.php', $content);
 }
-
 
 //
 // Generate the admins cache PHP script
 //
-function generate_admins_cache() {
-	global $db;
+function generate_admins_cache()
+{
+    global $db;
 
-	// Get admins from the DB
-	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.LUNA_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());
+    // Get admins from the DB
+    $result = $db->query('SELECT id FROM ' . $db->prefix . 'users WHERE group_id=' . LUNA_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());
 
-	$output = array();
-	while ($row = $db->fetch_row($result))
-		$output[] = $row[0];
+    $output = array();
+    while ($row = $db->fetch_row($result)) {
+        $output[] = $row[0];
+    }
 
-	// Output admin list as PHP code
-	$content = '<?php'."\n\n".'define(\'LUNA_ADMINS_LOADED\', 1);'."\n\n".'$luna_admins = '.var_export($output, true).';'."\n\n".'?>';
-	luna_write_cache_file('cache_admins.php', $content);
+    // Output admin list as PHP code
+    $content = '<?php' . "\n\n" . 'define(\'LUNA_ADMINS_LOADED\', 1);' . "\n\n" . '$luna_admins = ' . var_export($output, true) . ';' . "\n\n" . '?>';
+    luna_write_cache_file('cache_admins.php', $content);
 }
-
 
 //
 // Safely write out a cache file.
 //
-function luna_write_cache_file($file, $content) {
-	$fh = @fopen(LUNA_CACHE_DIR.$file, 'wb');
-	if (!$fh)
-		error('Unable to write cache file '.luna_htmlspecialchars($file).' to cache directory. Please make sure PHP has write access to the directory \''.luna_htmlspecialchars(LUNA_CACHE_DIR).'\'', __FILE__, __LINE__);
+function luna_write_cache_file($file, $content)
+{
+    $fh = @fopen(LUNA_CACHE_DIR . $file, 'wb');
+    if (!$fh) {
+        error('Unable to write cache file ' . luna_htmlspecialchars($file) . ' to cache directory. Please make sure PHP has write access to the directory \'' . luna_htmlspecialchars(LUNA_CACHE_DIR) . '\'', __FILE__, __LINE__);
+    }
 
-	flock($fh, LOCK_EX);
-	ftruncate($fh, 0);
+    flock($fh, LOCK_EX);
+    ftruncate($fh, 0);
 
-	fwrite($fh, $content);
+    fwrite($fh, $content);
 
-	flock($fh, LOCK_UN);
-	fclose($fh);
+    flock($fh, LOCK_UN);
+    fclose($fh);
 
-	if (function_exists('apc_delete_file'))
-		@apc_delete_file(LUNA_CACHE_DIR.$file);
+    if (function_exists('apc_delete_file')) {
+        @apc_delete_file(LUNA_CACHE_DIR . $file);
+    }
+
 }
-
 
 //
 // Delete all feed caches
 //
-function clear_feed_cache() {
-	$d = dir(LUNA_CACHE_DIR);
-	while (($entry = $d->read()) !== false) {
-		if (substr($entry, 0, 10) == 'cache_feed' && substr($entry, -4) == '.php')
-			@unlink(LUNA_CACHE_DIR.$entry);
-	}
-	$d->close();
-}
+function clear_feed_cache()
+{
+    $d = dir(LUNA_CACHE_DIR);
+    while (($entry = $d->read()) !== false) {
+        if (substr($entry, 0, 10) == 'cache_feed' && substr($entry, -4) == '.php') {
+            @unlink(LUNA_CACHE_DIR . $entry);
+        }
 
+    }
+    $d->close();
+}
 
 define('LUNA_CACHE_FUNCTIONS_LOADED', true);
