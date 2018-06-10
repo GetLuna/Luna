@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="title-block title-block-primary">
-				<h2><i class="fa fa-fw fa-search"></i> <?php _e('Search results', 'luna') ?></h2>
+				<h2><i class="fas fa-fw fa-search"></i> <?php _e('Search results', 'luna') ?></h2>
 			</div>
             <?php echo $paging_links ?>
             <div class="list-group list-group-thread">

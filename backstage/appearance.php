@@ -160,7 +160,7 @@ require 'header.php';
 	<div class="col-sm-12">
 <?php
 if (isset($_GET['saved'])) {
-    echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
+    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
 }
 
 ?>
@@ -168,7 +168,7 @@ if (isset($_GET['saved'])) {
             <input type="hidden" name="form_sent" value="1" />
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Theme', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Theme', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -261,7 +261,7 @@ foreach ($accents as $temp) {
                             <label class="col-sm-3 control-label">
                                 <?php _e('Header background', 'luna')?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna')?></span>
                                 <?php if (file_exists(LUNA_ROOT . '/img/header.png') || file_exists(LUNA_ROOT . '/img/header.jpg')) {?>
-                                    <a class="btn btn-danger" href="?remove-header"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete header', 'luna')?></a>
+                                    <a class="btn btn-danger" href="?remove-header"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete header', 'luna')?></a>
                                 <?php }?>
                             </label>
                             <div class="col-sm-9">
@@ -277,7 +277,7 @@ foreach ($accents as $temp) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Display', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Display', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -336,7 +336,7 @@ foreach ($accents as $temp) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Header', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Header', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -374,7 +374,7 @@ foreach ($accents as $temp) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Footer', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Footer', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>

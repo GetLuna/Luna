@@ -52,14 +52,14 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
         <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo __('Group settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_edit_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php echo __('Group settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_edit_group"><span class="fas fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="mode" value="<?php echo $mode ?>" />
                 <?php if ($mode == 'edit'): ?>					<input type="hidden" name="group_id" value="<?php echo $group_id ?>" />
                 <?php endif;?><?php if ($mode == 'add'): ?>					<input type="hidden" name="base_group" value="<?php echo $base_group ?>" />
                 <?php endif;?>					<fieldset>
-                        <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php echo __('These default permissions apply if no forum specific permissions are in effect. Users must be assigned to moderate one or more forums in their profile for these settings to take effect.', 'luna') ?></div>
+                        <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php echo __('These default permissions apply if no forum specific permissions are in effect. Users must be assigned to moderate one or more forums in their profile for these settings to take effect.', 'luna') ?></div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo __('Group title', 'luna') ?></label>
                             <div class="col-sm-9">
@@ -526,7 +526,7 @@ elseif (isset($_GET['del_group'])) {
 			<p><?php echo __('<b>Warning:</b> After you deleted a group you cannot restore it.', 'luna') ?></p>
 		</div>
 		<div class="panel-footer">
-			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
+			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
 		</div>
 	</div>
 </form>
@@ -566,7 +566,7 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
 				</label>
 			</fieldset>
 			<p class="control-group">
-				<button class="btn btn-danger" type="submit" name="del_group"><span class="fa fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
+				<button class="btn btn-danger" type="submit" name="del_group"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
 			</p>
 		</form>
 	</div>
@@ -582,7 +582,7 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
 		<div class="panel panel-default">
 			<form id="groups" method="post" action="groups.php">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo __('New group base', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo __('Add', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php echo __('New group base', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fas fa-fw fa-plus"></span> <?php echo __('Add', 'luna') ?></button></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
@@ -608,7 +608,7 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo __('Default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
+				<h3 class="panel-title"><?php echo __('Default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fas fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<form id="groups" method="post" action="groups.php">
@@ -651,12 +651,12 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
         ?>
 					<tr>
 						<td>
-						<a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo __('Edit', 'luna') ?></a>
+						<a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-pencil-alt-square-o"></span> <?php echo __('Edit', 'luna') ?></a>
 						</td>
 						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
 						<td>
 							<?php if ($cur_group['g_id'] > LUNA_MEMBER) {?>
-								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></a>
+								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></a>
 							<?php }?>
 						</td>
 					</tr>

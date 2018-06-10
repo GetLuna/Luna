@@ -26,7 +26,7 @@ if (!defined('FORUM'))
 		</div>
 		<div class="col-xs-12 col-sm-9">
             <div class="title-block title-block-primary">
-                <h2><i class="fa fa-fw fa-user"></i> <?php echo luna_htmlspecialchars($user['username']) ?></h2>
+                <h2><i class="fas fa-fw fa-user"></i> <?php echo luna_htmlspecialchars($user['username']) ?></h2>
             </div>
             <div class="tab-content tab-about">
                 <div class="row">
@@ -68,7 +68,7 @@ if (!defined('FORUM'))
             </div>
             <?php if (!empty($user_messaging) || (($user['email_setting'] != '0' && ($luna_user['g_send_email'] == '1')))): ?>
                 <div class="title-block title-block-primary">
-                    <h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Contact', 'luna') ?><?php if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { echo '<span class="pull-right"><a class="btn btn-default" href="misc.php?email='.$id.'"><span class="fa fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a></span>'; } ?></h2>
+                    <h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Contact', 'luna') ?><?php if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { echo '<span class="pull-right"><a class="btn btn-default" href="misc.php?email='.$id.'"><span class="fas fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a></span>'; } ?></h2>
                 </div>
                 <?php if (!empty($user_messaging)): ?>
                     <div class="tab-content tab-contact">
@@ -81,7 +81,7 @@ if (!defined('FORUM'))
             if ($luna_config['o_signatures'] == '1' && isset($parsed_signature)) {
             ?>
                 <div class="title-block title-block-primary">
-                    <h2><i class="fa fa-fw fa-map-signs"></i> <?php _e('Signature', 'luna') ?></h2>
+                    <h2><i class="fas fa-fw fa-map-signs"></i> <?php _e('Signature', 'luna') ?></h2>
                 </div>
                 <div class="tab-content">
                     <?php echo $user_signature ?>

@@ -63,7 +63,7 @@
 					</fieldset>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-default" name="upload"><span class="fa fa-fw fa-upload"></span> <?php _e('Upload', 'luna') ?></button>
+					<button type="submit" class="btn btn-default" name="upload"><span class="fas fa-fw fa-upload"></span> <?php _e('Upload', 'luna') ?></button>
 				</div>
 			</form>
 		</div>

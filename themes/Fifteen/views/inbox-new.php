@@ -30,7 +30,7 @@ if (!defined('FORUM'))
 if (!empty($errors)) {
 ?>
             <div class="title-block title-block-danger">
-                <h2><i class="fa fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
+                <h2><i class="fas fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
             </div>
             <div class="tab-content tab-content-danger">
 			<?php

@@ -12,10 +12,10 @@ if (!defined('FORUM'))
 			<div class="col-xs-12">
 				<div class="title-block title-block-primary">
 					<h2>
-						<i class="fa fa-fw fa-search"></i> <?php _e('Search', 'luna') ?>
+						<i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?>
 						<?php if ($luna_config['o_enable_advanced_search'] == '1') { ?>
 						<span class="pull-right">
-							<button class="btn btn-default" type="submit" name="search"><i class="fa fa-fw fa-search"></i> <?php _e('Search', 'luna') ?></button>
+							<button class="btn btn-default" type="submit" name="search"><i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?></button>
 						</span>
 						<?php } ?>
 					</h2>

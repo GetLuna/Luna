@@ -868,7 +868,7 @@ switch ($stage) {
 
         // Give a "Success" notifcation
         if ($luna_config['o_cur_version'] != Version::LUNA_VERSION) {
-            new_notification('2', 'backstage/about.php', sprintf(__('Luna has been updated to %s', 'luna'), Version::LUNA_VERSION), 'fa-cloud-upload');
+            new_notification('2', 'backstage/about.php', sprintf(__('Luna has been updated to %s', 'luna'), Version::LUNA_VERSION), 'fa-upload');
         }
 
         // We update the version numbers

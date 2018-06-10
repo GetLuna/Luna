@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="title-block title-block-primary">
-				<h2><i class="fa fa-fw fa-users"></i> <?php _e('Users', 'luna') ?></h2>
+				<h2><i class="fas fa-fw fa-users"></i> <?php _e('Users', 'luna') ?></h2>
 			</div>
 			<div class="tab-content tab-content-fix">
 				<?php if ($luna_user['g_search_users'] == '1') { ?>
@@ -29,7 +29,7 @@ if (!defined('FORUM'))
 									<div class="input-group">
 										<input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php _e('Search', 'luna') ?>" maxlength="25" />
 										<span class="input-group-btn">
-											<button class="btn btn-primary" type="submit" name="search" accesskey="s"><span class="fa fa-fw fa-search"></span></button>
+											<button class="btn btn-primary" type="submit" name="search" accesskey="s"><span class="fas fa-fw fa-search"></span></button>
 										</span>
 									</div>
 								</div>

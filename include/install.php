@@ -1637,7 +1637,7 @@ class Installer
         or error('Unable to insert into table ' . $db->prefix . 'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
         require LUNA_ROOT . 'include/general_functions.php';
-        new_notification('2', 'backstage/about.php', __('Welcome to Luna, discover the possibilities!', 'luna'), 'fa-moon-o');
+        new_notification('2', 'backstage/about.php', __('Welcome to Luna, discover the possibilities!', 'luna'), 'fa-moon');
 
         $db->end_transaction();
     }

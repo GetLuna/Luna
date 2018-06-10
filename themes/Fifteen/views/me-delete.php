@@ -11,10 +11,10 @@ if (!defined('FORUM'))
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="title-block title-block-danger">
-					<h2><i class="fa fa-fw fa-user"></i> <?php _e('Confirm deletion', 'luna') ?> &middot; <?php echo luna_htmlspecialchars($username) ?><span class="pull-right"><button type="submit" class="btn btn-default" name="delete_user_comply" accesskey="s"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button></span></h2>
+					<h2><i class="fas fa-fw fa-user"></i> <?php _e('Confirm deletion', 'luna') ?> &middot; <?php echo luna_htmlspecialchars($username) ?><span class="pull-right"><button type="submit" class="btn btn-default" name="delete_user_comply" accesskey="s"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button></span></h2>
 				</div>
 				<div class="tab-content tab-content-danger">
-                    <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation"></i> <?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></div>
+                    <div class="alert alert-warning"><i class="fas fa-fw fa-exclamation"></i> <?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php _e('User content', 'luna') ?></label>
                         <div class="col-sm-9">
