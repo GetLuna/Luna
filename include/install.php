@@ -1540,7 +1540,6 @@ class Installer
             'o_header_search' => 1,
             'o_board_statistics' => 1,
             'o_notification_flyout' => 1,
-            'o_update_ring' => 1,
             'o_message_img_tag' => 1,
             'o_message_all_caps' => 1,
             'o_subject_all_caps' => 1,

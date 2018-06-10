@@ -369,7 +369,6 @@ switch ($stage) {
         build_config(0, 'o_show_userlist');
         build_config(0, 'o_show_version');
         build_config(0, 'o_smilies');
-        build_config(1, 'o_update_ring', '1');
         build_config(0, 'o_user_menu_sidebar');
         build_config(0, 'p_message_bbcode');
 
@@ -732,7 +731,8 @@ switch ($stage) {
 		$db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
 		
 		// Luna 2.1 upgrade support
-        build_config(0, 'o_emoji')
+        build_config(0, 'o_emoji');
+        build_config(0, 'o_update_ring');
 
         break;
 
