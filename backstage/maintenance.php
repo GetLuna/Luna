@@ -65,7 +65,8 @@ if ($action == 'rebuild') {
 		<title><?php echo generate_page_title($page_title) ?></title>
 		<style type="text/css">
 			body {
-				font: 12px "Segoe UI Light", "Segoe UI", Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 				color: #333333;
 				background-color: #FFFFFF
 			}

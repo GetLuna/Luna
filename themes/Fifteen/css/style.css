@@ -3,8 +3,6 @@
  * Licensed under MIT
  */
 
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
-
 /* General fixes and Bootstrap style reset */
 body {
 	background-color: #e8e8e8;
@@ -180,7 +178,7 @@ body.rtl {
 
 /* Fonts */
 body {
-	font-family: "Segoe UI","Open Sans",Helvetica,Arial,sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 h1,
