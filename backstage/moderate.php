@@ -198,12 +198,12 @@ if (isset($_GET['tid'])) {
 			 elseif (luna_strlen($new_subject) > 70)
 				message_backstage(__('Subjects cannot be longer than 70 characters.', 'luna'));
 
-			// Get data from the new first commint
+			// Get data from the new first comment
 			$result = $db->query('SELECT p.id, p.commenter, p.commented FROM '.$db->prefix.'comments AS p WHERE id IN('.$comments.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first comment', __FILE__, __LINE__, $db->error());
 			$first_comment_data = $db->fetch_assoc($result);
 
 			// Create the new thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id) VALUES (\''.$db->escape($first_comment_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_comment_data['commented'].', '.$first_comment_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id, solved) VALUES (\''.$db->escape($first_comment_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_comment_data['commented'].', '.$first_comment_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
