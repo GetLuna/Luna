@@ -59,7 +59,7 @@ function draw_editor($height, $meta_enabled = null) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_thread" value="1" tabindex="-1"'.$pin_status.' /><span class="fas fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_thread" value="1" tabindex="-1"'.$pin_status.' /><span class="fas fa-fw fa-thumbtack"></span></label></div>';
 
 	if (LUNA_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -250,7 +250,7 @@ function draw_threads_list() {
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i class="fas fa-fw fa-thumb-tack status-pinned"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
 			}
 
 			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
@@ -545,7 +545,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i class="fas fa-fw fa-thumb-tack status-pinned"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
 			}
 
 			if (isset($cur_thread['answer'])) {
@@ -998,7 +998,7 @@ function draw_search_results() {
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i class="fas fa-fw fa-thumb-tack status-pinned"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
 			}
 
 			if (isset($cur_search['solved'])) {

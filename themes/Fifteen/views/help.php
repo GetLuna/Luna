@@ -166,7 +166,7 @@ if ($db->num_rows($result) > 0)
 								<td><?php _e('Threads marked with a check are solved according to the author.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="fas fa-fw fa-thumb-tack status-pinned"></span></td>
+								<td><span class="fas fa-fw fa-thumbtack status-pinned"></span></td>
 								<td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
 							</tr>
 							<tr>

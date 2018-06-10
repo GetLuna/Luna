@@ -953,7 +953,7 @@ while ($cur_thread = $db->fetch_assoc($result)) {
 
             if ($cur_thread['pinned'] == '1') {
                 $item_status .= ' pinned-item';
-                $status_text[] = '<i class="fas fa-fw fa-thumb-tack status-pinned"></i>';
+                $status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
             }
 
             if (isset($cur_thread['solved'])) {

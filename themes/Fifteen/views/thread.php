@@ -36,9 +36,9 @@ if (!defined('FORUM'))
 				<?php } ?>
 	
 				<?php if ($cur_thread['pinned'] == '1') { ?>
-					<a class="list-group-item list-group-item-success" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumb-tack"></span> <?php _e('Unpinned', 'luna') ?></a>
+					<a class="list-group-item list-group-item-success" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumbtack"></span> <?php _e('Unpinned', 'luna') ?></a>
 				<?php } else { ?>
-					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumb-tack"></span> <?php _e('Pinned', 'luna') ?></a>
+					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumbtack"></span> <?php _e('Pinned', 'luna') ?></a>
 				<?php } ?>
 	
 				<?php if ($cur_thread['important'] == '1') { ?>
@@ -61,9 +61,9 @@ if (!defined('FORUM'))
                     <?php } ?>
 
                     <?php if ($cur_thread['pinned'] == '1') { ?>
-                        <a class="list-group-item list-group-item-success col-xs-4" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumb-tack"></span> <?php _e('Unpinned', 'luna') ?></a>
+                        <a class="list-group-item list-group-item-success col-xs-4" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&unpin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumbtack"></span> <?php _e('Unpinned', 'luna') ?></a>
                     <?php } else { ?>
-                        <a class="list-group-item col-xs-4" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumb-tack"></span> <?php _e('Pinned', 'luna') ?></a>
+                        <a class="list-group-item col-xs-4" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&pin=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-thumbtack"></span> <?php _e('Pinned', 'luna') ?></a>
                     <?php } ?>
 
                     <?php if ($cur_thread['important'] == '1') { ?>
