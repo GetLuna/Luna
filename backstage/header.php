@@ -90,8 +90,12 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="../vendor/css/bootstrap.min.css">
+        <?php if ($config['o_fontawesomepro']) { ?>
+		    <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
+        <?php } else { ?>
+		    <link rel="stylesheet" href="../vendor/css/fontawesome/fontawesome-all.min.css">
+        <?php }?>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
         <?php
 if (__('Direction of language', 'luna') == 'rtl') {

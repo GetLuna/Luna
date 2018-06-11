@@ -48,6 +48,7 @@ if (isset($_POST['form_sent'])) {
         'custom_copyright' => luna_trim($_POST['form']['custom_copyright']),
         'use_custom_css' => isset($_POST['form']['use_custom_css']) ? '1' : '0',
         'custom_css' => luna_trim($_POST['form']['custom_css']),
+        'fontawesomepro' => isset($_POST['form']['fontawesomepro']) ? '1' : '0',
     );
 
     // Make sure the number of displayed threads and comments is between 3 and 75
@@ -198,19 +199,13 @@ foreach ($styles as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[allow_accent_color]" value="1" <?php if ($luna_config['o_allow_accent_color'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[allow_accent_color]" value="1" <?php if ($luna_config['o_allow_accent_color'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Allow users to set their own accent color.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[allow_night_mode]" value="1" <?php if ($luna_config['o_allow_night_mode'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[allow_night_mode]" value="1" <?php if ($luna_config['o_allow_night_mode'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Allow users to change the night mode settings.', 'luna')?>
                                     </label>
                                 </div>
@@ -241,10 +236,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[use_custom_css]" value="1" <?php if ($luna_config['o_use_custom_css'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[use_custom_css]" value="1" <?php if ($luna_config['o_use_custom_css'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Use the custom CSS as defined below.', 'luna')?>
                                     </label>
                                 </div>
@@ -272,6 +264,18 @@ foreach ($accents as $temp) {
                                 <input name="req_file" type="file" />
                             </div>
                         </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Font Awesome Pro', 'luna')?><span class="help-block"><?php printf('<a href="https://getluna.org/docs/fontawesome.php">' . __('Install Font Awesome Pro', 'luna') . '</a>')?></span></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[fontawesomepro]" value="1" <?php if ($luna_config['o_fontawesomepro'] == '1') { echo ' checked'; } ?> />
+                                        <?php _e('Enable Font Awesome Pro features within Luna, when Luna is set to use a CDN you cannot use Font Awesome Pro.', 'luna')?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
                 </div>
             </div>
@@ -286,19 +290,13 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show information about the commenter under the username in threads.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[show_comment_count]" value="1" <?php if ($luna_config['o_show_comment_count'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[show_comment_count]" value="1" <?php if ($luna_config['o_show_comment_count'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show the number of comments a user has made in threads, profile and the user list.', 'luna')?>
                                     </label>
                                 </div>
@@ -309,10 +307,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show the "Moderated by" list when moderators are set on a per-forum base (requires theme support).', 'luna')?>
                                     </label>
                                 </div>
@@ -345,10 +340,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disabling this feature might improve performance.', 'luna')?>
                                     </label>
                                 </div>
@@ -360,10 +352,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show the search bar in the heading.', 'luna')?>
                                     </label>
                                 </div>
@@ -383,10 +372,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show the board statistics.', 'luna')?>
                                     </label>
                                 </div>
@@ -397,10 +383,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show a "Back to top" link in the footer.', 'luna')?>
                                     </label>
                                 </div>
@@ -412,10 +395,7 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show the copyright notice in the footer.', 'luna')?>
                                     </label>
                                 </div>
@@ -426,19 +406,13 @@ foreach ($accents as $temp) {
                             <div class="col-sm-9">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') {
-    echo ' checked';
-}
-?> />
+                                        <input type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') { echo ' checked'; } ?> />
                                         <?php _e('Show default copyright', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show personalized copyright notices:', 'luna')?>
                                     </label><br /><br />
                                     <input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php _e('Your copyright', 'luna')?>" value="<?php echo luna_htmlspecialchars($luna_config['o_custom_copyright']) ?>" />

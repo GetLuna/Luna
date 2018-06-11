@@ -733,6 +733,7 @@ switch ($stage) {
 		// Luna 2.1 upgrade support
         build_config(0, 'o_emoji');
         build_config(0, 'o_update_ring');
+        build_config(1, 'o_fontawesomepro', 0);
 
         break;
 

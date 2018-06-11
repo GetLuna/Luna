@@ -3,7 +3,11 @@
 	<head>
 		<?php load_meta(); ?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="vendor/css/fontawesome-all.min.css">
+        <?php if ($config['o_fontawesomepro']) { ?>
+		    <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
+        <?php } else { ?>
+		    <link rel="stylesheet" href="../vendor/css/fontawesome/fontawesome-all.min.css">
+        <?php }?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/prism.css">
 		<?php load_css(); ?>
 		<script src="vendor/js/jquery.min.js"></script>
