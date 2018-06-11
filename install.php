@@ -191,9 +191,9 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<title><?php _e('Luna Installation', 'luna')?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
         <?php if ($config['o_fontawesomepro']) { ?>
-		    <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
+		    <link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
         <?php } else { ?>
-		    <link rel="stylesheet" href="../vendor/fontawesome/css/fontawesome-all.min.css">
+		    <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome-all.min.css">
         <?php }?>
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/accents/2.css" />
@@ -510,9 +510,9 @@ if (__('Direction of language', 'luna') == 'rtl') {
 		<title><?php _e('Luna Installation', 'luna')?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
         <?php if ($config['o_fontawesomepro']) { ?>
-		    <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
+		    <link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
         <?php } else { ?>
-		    <link rel="stylesheet" href="../vendor/css/fontawesome/fontawesome-all.min.css">
+		    <link rel="stylesheet" href="vendor/css/fontawesome/fontawesome-all.min.css">
         <?php }?>
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/accents/2.css" />
