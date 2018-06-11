@@ -7,8 +7,6 @@
  * License: http://opensource.org/licenses/MIT MIT
  */
 
-include LUNA_ROOT.'include/srand.php';
-
 //
 // Return current timestamp (with microseconds) as a float
 //
@@ -460,7 +458,7 @@ function check_username($username, $exclude_id = null) {
 	// Check that the username (or a too similar username) is not already registered
 	$query = (!is_null($exclude_id)) ? ' AND id!='.$exclude_id : '';
 
-	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE (UPPER(username)=UPPER(\''.$db->escape($username).'\') OR UPPER(username)=UPPER(\''.$db->escape(ucp_preg_replace('%[^\p{L}\p{N}]%u', '', $username)).'\')) AND id>1'.$query) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE (UPPER(username)=UPPER(\''.$db->escape($username).'\') OR UPPER(username)=UPPER(\''.$db->escape(preg_replace('%[^\p{L}\p{N}]%u', '', $username)).'\')) AND id>1'.$query) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
 	if ($db->num_rows($result)) {
 		$busy = $db->result($result);
@@ -841,7 +839,7 @@ function censor_words($text) {
 	}
 
 	if (!empty($search_for))
-		$text = substr(ucp_preg_replace($search_for, $replace_with, ' '.$text.' '), 1, -1);
+		$text = substr(preg_replace($search_for, $replace_with, ' '.$text.' '), 1, -1);
 
 	return $text;
 }
@@ -1184,7 +1182,22 @@ function forum_number_format($number, $decimals = 0) {
 // Generate a random key of length $len
 //
 function random_key($len, $readable = false, $hash = false) {
-	$key = secure_random_bytes($len);
+	$key = ''; 
+	if (function_exists('random_bytes')) { 
+		$key .= (string) random_bytes($len); 
+	} 
+	if (strlen($key) < $len && function_exists('mcrypt_create_iv')) { 
+		$key .= (string) mcrypt_create_iv($len, MCRYPT_DEV_URANDOM); 
+	} 
+	if (strlen($key) < $len && function_exists('openssl_random_pseudo_bytes')) { 
+		$tmp = (string) openssl_random_pseudo_bytes($len, $strong); 
+		if ($strong) { 
+			$key .= $tmp; 
+		} 
+	} 
+	if (strlen($key) < $len) { 
+		exit('Could not gather sufficient random data'); 
+	} 
 
 	if ($hash)
 		return substr(bin2hex($key), 0, $len);
@@ -1970,40 +1983,6 @@ function url_valid($url) {
 	$m['url'] = $url;
 	for ($i = 0; isset($m[$i]); ++$i) unset($m[$i]);
 	return $m; // return TRUE == array of useful named $matches plus the valid $url
-}
-
-//
-// Replace string matching regular expression
-//
-// This function takes care of possibly disabled unicode properties in PCRE builds
-//
-function ucp_preg_replace($pattern, $replace, $subject, $callback = false) {
-	if($callback)
-		$replaced = preg_replace_callback($pattern, function ($matches) {
-			return strtoupper($replace);
-		}, $subject);
-	else
-		$replaced = preg_replace($pattern, $replace, $subject);
-
-	// If preg_replace() returns false, this probably means unicode support is not built-in, so we need to modify the pattern a little
-	if ($replaced === false) {
-		if (is_array($pattern)) {
-			foreach ($pattern as $cur_key => $cur_pattern)
-				$pattern[$cur_key] = str_replace('\p{L}\p{N}', '\w', $cur_pattern);
-
-			$replaced = preg_replace($pattern, $replace, $subject);
-		} else
-			$replaced = preg_replace(str_replace('\p{L}\p{N}', '\w', $pattern), $replace, $subject);
-	}
-
-	return $replaced;
-}
-
-//
-// A wrapper for ucp_preg_replace
-//
-function ucp_preg_replace_callback($pattern, $replace, $subject) {
-	return ucp_preg_replace($pattern, $replace, $subject, true);
 }
 
 //
