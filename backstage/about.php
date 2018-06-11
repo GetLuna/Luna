@@ -30,7 +30,7 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<h2 class="clearfix"><span class="version-name">Fallow Preview 2 <small>2.1-alpha.2</small></span></h2>
+						<h2 class="clearfix"><span class="version-name">Fallow Preview 1 <small>2.1-alpha.1</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Luna now uses your native system font instead of Segoe UI and Open Sans', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved navbar for small devices', 'luna') ?></li>

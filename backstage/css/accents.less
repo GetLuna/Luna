@@ -60,6 +60,13 @@
             }
         }
 
+        .container.main .tab-content {
+            border-color: @value;
+        }
+
+        .title {
+            background-color: @value;
+        }
 
         .jumboheader {    
             &.primary {
@@ -112,7 +119,7 @@
             }
 
             .input-group-addon {
-                background-color: @value;
+                background-color: lighten(@value, 5%);
             }
 
             .nav-tabs {

@@ -52,7 +52,7 @@ require 'header.php';
 	<div class="col-sm-12">
         <div class="title title-md title-primary title-nav title-non">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="nav-item active"><a class="nav-link" href="#new" aria-controls="new" role="tab" data-toggle="tab"><i class="fas fa-fw fa-flag-o"></i> <?php _e('New reports', 'luna')?></a></li>
+                <li role="presentation" class="nav-item active"><a class="nav-link" href="#new" aria-controls="new" role="tab" data-toggle="tab"><i class="far fa-fw fa-flag"></i> <?php _e('New reports', 'luna')?></a></li>
                 <li role="presentation" class="nav-item"><a class="nav-link" href="#old" aria-controls="old" role="tab" data-toggle="tab"><i class="fas fa-fw fa-flag"></i> <?php _e('Old reports', 'luna')?></a></li>
             </ul>
         </div>
