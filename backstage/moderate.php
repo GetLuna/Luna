@@ -203,7 +203,7 @@ if (isset($_GET['tid'])) {
 			$first_comment_data = $db->fetch_assoc($result);
 
 			// Create the new thread
-			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id, solved) VALUES (\''.$db->escape($first_comment_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_comment_data['commented'].', '.$first_comment_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'threads (commenter, subject, commented, first_comment_id, forum_id, solved) VALUES (\''.$db->escape($first_comment_data['commenter']).'\', \''.$db->escape($new_subject).'\', '.$first_comment_data['commented'].', '.$first_comment_data['id'].', '.$move_to_forum.', 0)') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			// Move the comments to the new thread
