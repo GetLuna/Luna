@@ -7,8 +7,6 @@
  * License: http://opensource.org/licenses/MIT MIT
  */
 
-include LUNA_ROOT . 'include/srand.php';
-
 //
 // Return current timestamp (with microseconds) as a float
 //
@@ -463,54 +461,50 @@ function check_bans()
 //
 // Check username
 //
-function check_username($username, $exclude_id = null)
-{
-    global $db, $luna_config, $errors, $luna_bans;
+function check_username($username, $exclude_id = null) {
+	global $db, $luna_config, $errors, $luna_bans;
 
-    // Include UTF-8 function
-    require_once LUNA_ROOT . 'include/utf8/strcasecmp.php';
+	// Include UTF-8 function
+	require_once LUNA_ROOT.'include/utf8/strcasecmp.php';
 
-    // Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
-    $username = preg_replace('%\s+%s', ' ', $username);
+	// Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
+	$username = preg_replace('%\s+%s', ' ', $username);
 
-    // Validate username
-    if (luna_strlen($username) < 2) {
-        $errors[] = __('Usernames must be at least 2 characters long. Please choose another (longer) username.', 'luna');
-    } elseif (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
-    {
-        $errors[] = __('Usernames must not be more than 25 characters long. Please choose another (shorter) username.', 'luna');
-    } elseif (!strcasecmp($username, 'Guest') || !utf8_strcasecmp($username, __('Guest', 'luna'))) {
-        $errors[] = __('The username guest is reserved. Please choose another username.', 'luna');
-    } elseif (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username)) {
-        $errors[] = __('Usernames may not be in the form of an IP address. Please choose another username.', 'luna');
-    } elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false) {
-        $errors[] = __('Usernames may not contain all the characters \', " and [ or ] at once. Please choose another username.', 'luna');
-    } elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|thread|comment|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username)) {
-        $errors[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username.', 'luna');
-    }
+	// Validate username
+	if (luna_strlen($username) < 2)
+		$errors[] = __('Usernames must be at least 2 characters long. Please choose another (longer) username.', 'luna');
+	elseif (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
+		$errors[] = __('Usernames must not be more than 25 characters long. Please choose another (shorter) username.', 'luna');
+	elseif (!strcasecmp($username, 'Guest') || !utf8_strcasecmp($username, __('Guest', 'luna')))
+		$errors[] = __('The username guest is reserved. Please choose another username.', 'luna');
+	elseif (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
+		$errors[] = __('Usernames may not be in the form of an IP address. Please choose another username.', 'luna');
+	elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
+		$errors[] = __('Usernames may not contain all the characters \', " and [ or ] at once. Please choose another username.', 'luna');
+	elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|thread|comment|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
+		$errors[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username.', 'luna');
 
-    // Check username for any censored words
-    if ($luna_config['o_censoring'] == '1' && censor_words($username) != $username) {
-        $errors[] = __('The username you entered contains one or more censored words. Please choose a different username.', 'luna');
-    }
+	// Check username for any censored words
+	if ($luna_config['o_censoring'] == '1' && censor_words($username) != $username)
+		$errors[] = __('The username you entered contains one or more censored words. Please choose a different username.', 'luna');
 
-    // Check that the username (or a too similar username) is not already registered
-    $query = (!is_null($exclude_id)) ? ' AND id!=' . $exclude_id : '';
+	// Check that the username (or a too similar username) is not already registered
+	$query = (!is_null($exclude_id)) ? ' AND id!='.$exclude_id : '';
 
-    $result = $db->query('SELECT username FROM ' . $db->prefix . 'users WHERE (UPPER(username)=UPPER(\'' . $db->escape($username) . '\') OR UPPER(username)=UPPER(\'' . $db->escape(ucp_preg_replace('%[^\p{L}\p{N}]%u', '', $username)) . '\')) AND id>1' . $query) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE (UPPER(username)=UPPER(\''.$db->escape($username).'\') OR UPPER(username)=UPPER(\''.$db->escape(preg_replace('%[^\p{L}\p{N}]%u', '', $username)).'\')) AND id>1'.$query) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
-    if ($db->num_rows($result)) {
-        $busy = $db->result($result);
-        $errors[] = __('Someone is already registered with the username', 'luna') . ' ' . luna_htmlspecialchars($busy) . '. ' . __('The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username.', 'luna');
-    }
+	if ($db->num_rows($result)) {
+		$busy = $db->result($result);
+		$errors[] = __('Someone is already registered with the username', 'luna').' '.luna_htmlspecialchars($busy).'. '.__('The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username.', 'luna');
+	}
 
-    // Check username for any banned usernames
-    foreach ($luna_bans as $cur_ban) {
-        if ($cur_ban['username'] != '' && utf8_strtolower($username) == utf8_strtolower($cur_ban['username'])) {
-            $errors[] = __('The username you entered is banned in this forum. Please choose another username.', 'luna');
-            break;
-        }
-    }
+	// Check username for any banned usernames
+	foreach ($luna_bans as $cur_ban) {
+		if ($cur_ban['username'] != '' && utf8_strtolower($username) == utf8_strtolower($cur_ban['username'])) {
+			$errors[] = __('The username you entered is banned in this forum. Please choose another username.', 'luna');
+			break;
+		}
+	}
 }
 
 //
@@ -914,9 +908,8 @@ function censor_words($text)
         }
     }
 
-    if (!empty($search_for)) {
-        $text = substr(ucp_preg_replace($search_for, $replace_with, ' ' . $text . ' '), 1, -1);
-    }
+	if (!empty($search_for))
+		$text = substr(preg_replace($search_for, $replace_with, ' '.$text.' '), 1, -1);
 
     return $text;
 }
@@ -1297,9 +1290,23 @@ function forum_number_format($number, $decimals = 0)
 //
 // Generate a random key of length $len
 //
-function random_key($len, $readable = false, $hash = false)
-{
-    $key = secure_random_bytes($len);
+function random_key($len, $readable = false, $hash = false) {
+	$key = ''; 
+	if (function_exists('random_bytes')) { 
+		$key .= (string) random_bytes($len); 
+	} 
+	if (strlen($key) < $len && function_exists('mcrypt_create_iv')) { 
+		$key .= (string) mcrypt_create_iv($len, MCRYPT_DEV_URANDOM); 
+	} 
+	if (strlen($key) < $len && function_exists('openssl_random_pseudo_bytes')) { 
+		$tmp = (string) openssl_random_pseudo_bytes($len, $strong); 
+		if ($strong) { 
+			$key .= $tmp; 
+		} 
+	} 
+	if (strlen($key) < $len) { 
+		exit('Could not gather sufficient random data'); 
+	} 
 
     if ($hash) {
         return substr(bin2hex($key), 0, $len);
@@ -2157,46 +2164,6 @@ function url_valid($url)
     }
 
     return $m; // return TRUE == array of useful named $matches plus the valid $url
-}
-
-//
-// Replace string matching regular expression
-//
-// This function takes care of possibly disabled unicode properties in PCRE builds
-//
-function ucp_preg_replace($pattern, $replace, $subject, $callback = false)
-{
-    if ($callback) {
-        $replaced = preg_replace_callback($pattern, function ($matches) {
-            return strtoupper($replace);
-        }, $subject);
-    } else {
-        $replaced = preg_replace($pattern, $replace, $subject);
-    }
-
-    // If preg_replace() returns false, this probably means unicode support is not built-in, so we need to modify the pattern a little
-    if ($replaced === false) {
-        if (is_array($pattern)) {
-            foreach ($pattern as $cur_key => $cur_pattern) {
-                $pattern[$cur_key] = str_replace('\p{L}\p{N}', '\w', $cur_pattern);
-            }
-
-            $replaced = preg_replace($pattern, $replace, $subject);
-        } else {
-            $replaced = preg_replace(str_replace('\p{L}\p{N}', '\w', $pattern), $replace, $subject);
-        }
-
-    }
-
-    return $replaced;
-}
-
-//
-// A wrapper for ucp_preg_replace
-//
-function ucp_preg_replace_callback($pattern, $replace, $subject)
-{
-    return ucp_preg_replace($pattern, $replace, $subject, true);
 }
 
 //
