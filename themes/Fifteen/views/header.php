@@ -6,7 +6,7 @@
         <?php if ($config['o_fontawesomepro']) { ?>
 		    <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
         <?php } else { ?>
-		    <link rel="stylesheet" href="../vendor/css/fontawesome/fontawesome-all.min.css">
+		    <link rel="stylesheet" href="../vendor/fontawesome/css/fontawesome-all.min.css">
         <?php }?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/prism.css">
 		<?php load_css(); ?>
