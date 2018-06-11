@@ -65,6 +65,7 @@ if (isset($_POST['form_sent'])) {
         'gzip' => isset($_POST['form']['gzip']) ? '1' : '0',
         'allow_banned_email' => isset($_POST['form']['allow_banned_email']) ? '1' : '0',
         'allow_dupe_email' => isset($_POST['form']['allow_dupe_email']) ? '1' : '0',
+        'use_cdn' => isset($_POST['form']['use_cdn']) ? '1' : '0'
     );
 
     if ($form['board_title'] == '') {
@@ -340,10 +341,7 @@ foreach ($languages as $temp) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Enable this to display the below message in the board.', 'luna')?>
                                     </label>
                                 </div>
@@ -541,24 +539,15 @@ foreach ($times as $time) {
                             <label class="col-sm-3 control-label"><?php _e('Reporting method', 'luna')?><span class="help-block"><?php _e('How should we handle reports?', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') {
-    echo ' checked';
-}
-?> />
+                                    <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') { echo ' checked'; } ?> />
                                     <?php _e('Internal', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') {
-    echo ' checked';
-}
-?> />
+                                    <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') { echo ' checked'; } ?> />
                                     <?php _e('Email', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') {
-    echo ' checked';
-}
-?> />
+                                    <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') { echo ' checked'; } ?> />
                                     <?php _e('Both', 'luna')?>
                                 </label>
                             </div>
@@ -585,19 +574,13 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Allow new users to be made by people.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Notify people on the mailing list when new user registers.  ', 'luna')?>
                                     </label>
                                 </div>
@@ -608,10 +591,7 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Send a random password to users to verify their email address.  ', 'luna')?>
                                     </label>
                                 </div>
@@ -622,19 +602,13 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['o_allow_banned_email'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['o_allow_banned_email'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Allow users to use a banned email address, mailing list will be warned when this happens.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['o_allow_dupe_email'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['o_allow_dupe_email'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Allow users to use an email address that is already used, mailing list will be warned when this happens.', 'luna')?>
                                     </label>
                                 </div>
@@ -646,10 +620,7 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Require users to agree with the rules. This will enable a "Rules" panel in Help.', 'luna')?>
                                     </label>
                                 </div>
@@ -667,28 +638,19 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') {
-    echo ' checked';
-}
-?> />
+                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') { echo ' checked'; } ?> />
                                         <?php _e('Display email address to other users.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Hide email address but allow form e-mail.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') {
-    echo ' checked';
-}
-?> />
+                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') { echo ' checked'; } ?> />
                                         <?php _e('Hide email address and disallow form email.', 'luna')?>
                                     </label>
                                 </div>
@@ -708,10 +670,7 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Show a bar with information about cookies at the bottom of the page.', 'luna')?>
                                     </label>
                                 </div>
@@ -770,10 +729,7 @@ foreach ($times as $time) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Encrypts the connection to the SMTP server using SSL, only when required and supported.', 'luna')?>
                                     </label>
                                 </div>
@@ -797,14 +753,23 @@ foreach ($times as $time) {
                         </div>
                         <hr />
                         <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('CDN', 'luna')?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[use_cdn]" value="1" <?php if ($luna_config['o_use_cdn'] == '1') { echo ' checked'; } ?> />
+                                        <?php _e('Use a CDN to load Bootstrap and jQuery. This will reduce load times and bandwith usage but it also makes Luna rely on third party services.', 'luna')?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Advanced', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') {
-    echo ' checked';
-}
-?> />
+                                        <input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature.', 'luna')?>
                                     </label>
                                 </div>

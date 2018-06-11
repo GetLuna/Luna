@@ -271,7 +271,7 @@ foreach ($accents as $temp) {
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="form[fontawesomepro]" value="1" <?php if ($luna_config['o_fontawesomepro'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Enable Font Awesome Pro features within Luna, when Luna is set to use a CDN you cannot use Font Awesome Pro.', 'luna')?>
+                                        <?php _e('Enable Font Awesome Pro features within Luna.', 'luna')?>
                                     </label>
                                 </div>
                             </div>
