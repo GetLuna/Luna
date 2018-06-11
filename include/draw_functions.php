@@ -1189,6 +1189,7 @@ function draw_mark_read($class, $page) {
 }
 
 function draw_wall_error($description, $action = NULL, $title = NULL) {
+	global $config;
 ?>
 <!DOCTYPE html>
 <html>
