@@ -246,7 +246,7 @@ if (isset($_GET['saved']))
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Slogan', 'luna') ?></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_slogan]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
+                                <input type="text" class="form-control" name="form[board_slogan]" maxlength="300" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
