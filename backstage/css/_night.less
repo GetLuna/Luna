@@ -18,6 +18,11 @@
     .panel {
         background: #272727;
         color: #fff;
+
+        .panel-footer {
+            background: #1d1d1d;
+            border-color: #181818;
+        }
     }
     
     hr {
@@ -32,35 +37,43 @@
     
     .jumboheader {
         &.secondary {
-            background-color: #111;
+            background-color: #333;
         
             .nav-tabs {
                 li > a {
                     color: #fff;
-
-                    &:hover {
-                        background: rgba(255,255,255,.05);
+                    
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background: rgba(255,255,255,.05) !important;
                     }
                 }
 
-                li.active > a,
-                li.active > a:hover,
-                li.active > a:focus {
-                    background: #272727;
+                li.active > a {
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background: #272727 !important;
+                    }
                 }
             }
         }
     
         .nav-tabs {
-            li.active > a,
-            li.active > a:hover,
-            li.active > a:focus {
-                color: #fff;
-                background: #111;
+            li.active > a {
+                &:hover,
+                &:active,
+                &:focus {
+                    color: #fff;
+                    background: #333 !important;;
+                }
             }
         
             li > a {
-                &:hover {
+                &:hover,
+                &:active,
+                &:focus {
                     background: rgba(0,0,0,.2);
                 }
             }

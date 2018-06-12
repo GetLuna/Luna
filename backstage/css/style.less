@@ -7,25 +7,25 @@
 
 @accent: #1a79bc;
 @accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21, #ff7521, #ff4444, #c71f1f, #c78d68, #ccc, #999, #444;
-@font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+@font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 // Bootstrap components
-@import 'grid.less';
-@import 'navbar.less';
-@import 'buttons.less';
-@import 'panels.less';
-@import 'forms.less';
+@import '_grid';
+@import '_navbar';
+@import '_buttons';
+@import '_panels';
+@import '_forms';
 
 // Rubine components
-@import 'jumboheader.less';
-@import 'release.less';
-@import 'custom.less';
-@import 'title.less';
-@import 'colorpicker.less';
+@import '_jumboheader';
+@import '_release';
+@import '_custom';
+@import '_title';
+@import '_colorpicker';
 
 // Luna components
-@import 'accents.less';
-@import 'night.less';
+@import '_accents';
+@import '_night';
 
 // Luna CSS
 * {
@@ -55,7 +55,7 @@ body {
 
 .brand {
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 hr {
@@ -113,6 +113,11 @@ footer {
     h3 {
         margin: 0;
     }
+}
+
+// Tools
+.no-margin {
+    margin: 0 !important;
 }
 
 // Installer

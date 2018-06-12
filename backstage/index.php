@@ -199,9 +199,9 @@ if ($install_file_exists): ?>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments']))?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
-                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads']))?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
-                    <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_users']))?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4 no-margin"><b><?php printf(forum_number_format($stats['total_comments']))?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4 no-margin"><b><?php printf(forum_number_format($stats['total_threads']))?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
+                    <h4 class="text-center col-xs-4 no-margin"><b><?php printf(forum_number_format($stats['total_users']))?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
                 </div>
             </div>
         </div>

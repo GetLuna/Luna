@@ -126,7 +126,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.php"><img src="../img/logo.png" /> <span class="brand">Luna</span> Backstage</a>
+                        <a class="navbar-brand" href="index.php"><img src="../img/logo.png" /> <span class="brand">Luna</span>Backstage</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
