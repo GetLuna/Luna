@@ -6,7 +6,7 @@ $xmlstr = <<<XML
 <!--
 
 /*
- * Copyright (C) 2014-2016 Studio 384
+ * Copyright (C) 2014-2019 Studio 384
  * Licensed under MIT
  */
 -->
@@ -15,10 +15,10 @@ $xmlstr = <<<XML
 	<id>sunrise</id>
 	<name>Sunrise</name>
 	<developer>Studio 384</developer>
-	<date>18 October 2016</date>
-	<version>3.0.6</version>
+	<date>12 June 2018</date>
+	<version>3.0.9</version>
 	<minversion>2.0.0</minversion>
-	<maxversion>2.0.6</maxversion>
+	<maxversion>2.0.9</maxversion>
     <parent_theme>Fifteen</parent_theme>
 </style>
 XML;
