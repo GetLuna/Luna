@@ -1845,6 +1845,9 @@ input[type="checkbox"] {
   color: #dcedf8;
   background-color: #1a79bc;
 }
+.night .release-notes h2 {
+  border-bottom: 1px solid #393939;
+}
 * {
   border-radius: 0 !important;
   box-shadow: none !important;

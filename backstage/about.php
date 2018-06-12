@@ -69,8 +69,10 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes an issue where SMTP data could not be set due to a character limit', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Calculations now work properly in debug mode regardless of localization', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('There is no longer a hardcoded "said" string', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('The forum title will no longer appear to far to the left when active', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('A space has been added to quote titles before "wrote"', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('"spoiler" is now properly quoted in the parser', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Night mode now correctly colors the border in the release notes', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
