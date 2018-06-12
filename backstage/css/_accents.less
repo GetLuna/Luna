@@ -38,17 +38,22 @@
             &.navbar-inverse {
                 background-color: @value;
 
-                .open > a,
-                .open > a:hover,
-                .open > a:focus {
-                    background-color: darken(@value, 5%);
+                .open > a {
+                    &,
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: darken(@value, 5%);
+                    }
                 }
 
                 .dropdown-menu {
                     background-color: darken(@value, 5%);
 
                     a {
-                        &:hover {
+                        &:hover,
+                        &:active,
+                        &:focus {
                             background-color: darken(@value, 10%);
                         }
                     }
@@ -71,22 +76,6 @@
         .jumboheader {    
             &.primary {
                 background: @value;
-            }
-
-            &.secondary {
-                .nav-tabs {
-                    li > a {
-                        color: @value;
-                    }
-                }
-            }
-
-            .nav-tabs {        
-                li.active > a,
-                li.active > a:hover,
-                li.active > a:focus {
-                    color: @value;
-                }
             }
         }
 
@@ -123,10 +112,13 @@
             }
 
             .nav-tabs {
-                li.active > a,
-                li.active > a:hover,
-                li.active > a:focus {
-                    color: @value;
+                li.active > a {
+                    &,
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: @value;
+                    }
                 }
             }
         }
@@ -135,10 +127,13 @@
             .jumboheader {
                 &.secondary {
                     .nav-tabs {
-                        li.active > a,
-                        li.active > a:hover,
-                        li.active > a:focus {
-                            color: @value;
+                        li.active > a {
+                            &,
+                            &:hover,
+                            &:active,
+                            &:focus {
+                                color: @value;
+                            }
                         }
                     }
                 }
