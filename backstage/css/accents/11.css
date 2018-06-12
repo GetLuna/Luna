@@ -1,0 +1,87 @@
+/* Accent 11 - Dark Red */
+.navbar-default,
+.title-sm.title-primary,
+.panel-default .panel-heading,
+.panel-primary.panel-colored .panel-body,
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.active.btn-primary,
+.open .btn-primary.dropdown-toggle {
+	background-color: #c71f1f;
+}
+
+footer,
+.jumboheader {
+	background-color: #b41515;
+}
+
+.title-primary,
+.title-sm.title-primary .input-group-addon,
+.panel-primary > .panel-heading,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:hover:active,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+	background-color: #9b0505;
+}
+
+@media all and (min-width:768px) {
+	.dropdown-menu {
+		background-color: #9b0505;
+	}
+}
+
+.panel-default,
+.panel-default .panel-heading {
+	border-color: #c71f1f;
+}
+
+.btn-primary {
+	border-color: #b41515;
+}
+
+.tab-content,
+.panel-primary > .panel-heading,
+.btn-primary:hover,
+.btn-primary:hover:active,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	border-color: #9b0505;
+}
+
+a.list-group-item:hover,
+a:focus,
+.editor .btn,
+a {
+	color: #b41515;
+}
+
+a:hover,
+a:active,
+.title-nav .nav-tabs > .active > a,
+.title-nav .nav-tabs > .active > a:focus,
+.title-nav .nav-tabs > .active > a:hover {
+	color: #9b0505;
+}
+
+.night .comment-default a,
+.night .list-group-thread a,
+.night .list-group-thread a:focus,
+.night .table a,
+.night .user-entry a {
+    color: #f58c8c;
+}

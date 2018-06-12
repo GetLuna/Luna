@@ -1,0 +1,87 @@
+/* Accent 14 - Grey */
+.navbar-default,
+.title-sm.title-primary,
+.panel-default .panel-heading,
+.panel-primary.panel-colored .panel-body,
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.active.btn-primary,
+.open .btn-primary.dropdown-toggle {
+	background-color: #afafaf;
+}
+
+footer,
+.jumboheader {
+	background-color: #9e9e9e;
+}
+
+.title-primary,
+.title-sm.title-primary .input-group-addon,
+.panel-primary > .panel-heading,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:hover:active,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+	background-color: #8e8e8e;
+}
+
+@media all and (min-width:768px) {
+	.dropdown-menu {
+		background-color: #8e8e8e;
+	}
+}
+
+.panel-default,
+.panel-default .panel-heading {
+	border-color: #afafaf;
+}
+
+.btn-primary {
+	border-color: #9e9e9e;
+}
+
+.tab-content,
+.panel-primary > .panel-heading,
+.btn-primary:hover,
+.btn-primary:hover:active,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	border-color: #8e8e8e;
+}
+
+a.list-group-item:hover,
+a:focus,
+.editor .btn,
+a {
+	color: #9e9e9e;
+}
+
+a:hover,
+a:active,
+.title-nav .nav-tabs > .active > a,
+.title-nav .nav-tabs > .active > a:focus,
+.title-nav .nav-tabs > .active > a:hover {
+	color: #8e8e8e;
+}
+
+.night .comment-default a,
+.night .list-group-thread a,
+.night .list-group-thread a:focus,
+.night .table a,
+.night .user-entry a {
+    color: #ccc;
+}
