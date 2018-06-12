@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Luna
+ * Copyright (C) 2013-2018 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://opensource.org/licenses/MIT MIT
@@ -701,7 +701,7 @@ function do_bbcode($text, $is_signature = false)
 
     if (strpos($text, '[quote') !== false) {
         $text = preg_replace('%\[quote\]\s*%', '</p><blockquote><p>', $text);
-        $text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', function($matches) { return '</p><blockquote><footer><cite>'.str_replace(array('[', '\\"'), array('&#91;', '"'), $matches[2]).__('wrote', 'luna') ."</cite></footer><p>"; }, $text);
+        $text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)([^\r\n]*?)\\1\]%s', function($matches) { return '</p><blockquote><footer><cite>'.str_replace(array('[', '\\"'), array('&#91;', '"'), $matches[2])." ".__('wrote', 'luna') ."</cite></footer><p>"; }, $text);
         $text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
     }
 

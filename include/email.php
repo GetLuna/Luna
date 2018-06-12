@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Luna
+ * Copyright (C) 2013-2018 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://opensource.org/licenses/MIT MIT
@@ -139,105 +139,94 @@ function bbcode2email($text, $wrap_length = 72)
 		\[/\1\]
 	%ix';
 
-    $url_index = 1;
-    $url_stack = array();
-    while (preg_match($match_quote_regex, $text, $matches)) {
-        // Quotes
-        if ($matches[1] == 'quote') {
-            // Put '>' or '> ' at the start of a line
-            $replacement = preg_replace(
-                array('%^(?=\>)%m', '%^(?!\>)%m'),
-                array('>', '> '),
-                $matches[2] . ":\n" . $matches[3]);
-        }
+	$url_index = 1;
+	$url_stack = array();
+	while (preg_match($match_quote_regex, $text, $matches)) {
+		// Quotes
+		if ($matches[1] == 'quote') {
+			// Put '>' or '> ' at the start of a line
+			$replacement = preg_replace(
+				array('%^(?=\>)%m', '%^(?!\>)%m'),
+				array('>', '> '),
+				$matches[2].":\n".$matches[3]);
+		}
 
-        // List items
-        elseif ($matches[1] == '*') {
-            $replacement = ' * ' . $matches[3];
-        }
+		// List items
+		elseif ($matches[1] == '*') {
+			$replacement = ' * '.$matches[3];
+		}
 
-        // URLs and emails
-        elseif (in_array($matches[1], array('url', 'email'))) {
-            if (!empty($matches[2])) {
-                $replacement = '[' . $matches[3] . '][' . $url_index . ']';
-                $url_stack[$url_index] = $matches[2];
-                $url_index++;
-            } else {
-                $replacement = '[' . $matches[3] . ']';
-            }
+		// URLs and emails
+		elseif (in_array($matches[1], array('url', 'email'))) {
+			if (!empty($matches[2])) {
+				$replacement = '['.$matches[3].']['.$url_index.']';
+				$url_stack[$url_index] = $matches[2];
+				$url_index++;
+			} else
+				$replacement = '['.$matches[3].']';
+		}
 
-        }
+		// Images
+		elseif ($matches[1] == 'img') {
+			if (!empty($matches[2]))
+				$replacement = '['.$matches[2].']['.$url_index.']';
+			else
+				$replacement = '['.basename($matches[3]).']['.$url_index.']';
 
-        // Images
-        elseif ($matches[1] == 'img') {
-            if (!empty($matches[2])) {
-                $replacement = '[' . $matches[2] . '][' . $url_index . ']';
-            } else {
-                $replacement = '[' . basename($matches[3]) . '][' . $url_index . ']';
-            }
+			$url_stack[$url_index] = $matches[3];
+			$url_index++;
+		}
 
-            $url_stack[$url_index] = $matches[3];
-            $url_index++;
-        }
+		// Thread, comment, forum and user URLs
+		elseif (in_array($matches[1], array('thread', 'comment', 'forum', 'user'))) {
+			$url = isset($shortcut_urls[$matches[1]]) ? $base_url.$shortcut_urls[$matches[1]] : '';
 
-        // Thread, comment, forum and user URLs
-        elseif (in_array($matches[1], array('thread', 'comment', 'forum', 'user'))) {
-            $url = isset($shortcut_urls[$matches[1]]) ? $base_url . $shortcut_urls[$matches[1]] : '';
+			if (!empty($matches[2])) {
+				$replacement = '['.$matches[3].']['.$url_index.']';
+				$url_stack[$url_index] = str_replace('$1', $matches[2], $url);
+				$url_index++;
+			} else
+				$replacement = '['.str_replace('$1', $matches[3], $url).']';
+		}
 
-            if (!empty($matches[2])) {
-                $replacement = '[' . $matches[3] . '][' . $url_index . ']';
-                $url_stack[$url_index] = str_replace('$1', $matches[2], $url);
-                $url_index++;
-            } else {
-                $replacement = '[' . str_replace('$1', $matches[3], $url) . ']';
-            }
+		// Update the main text if there is a replacement
+		if (!is_null($replacement)) {
+			$text = str_replace($matches[0], $replacement, $text);
+			$replacement = null;
+		}
+	}
 
-        }
+	// Put code blocks and text together
+	if (isset($code)) {
+		$parts = explode("\1", $text);
+		$text = '';
+		foreach ($parts as $i => $part) {
+			$text .= $part;
+			if (isset($code[$i]))
+				$text .= trim($code[$i], "\n\r");
+		}
+	}
 
-        // Update the main text if there is a replacement
-        if (!is_null($replacement)) {
-            $text = str_replace($matches[0], $replacement, $text);
-            $replacement = null;
-        }
-    }
+	// Put URLs at the bottom
+	if ($url_stack) {
+		$text .= "\n\n";
+		foreach ($url_stack as $i => $url)
+			$text .= "\n".' ['.$i.']: '.$url;
+	}
 
-    // Put code blocks and text together
-    if (isset($code)) {
-        $parts = explode("\1", $text);
-        $text = '';
-        foreach ($parts as $i => $part) {
-            $text .= $part;
-            if (isset($code[$i])) {
-                $text .= trim($code[$i], "\n\r");
-            }
+	// Wrap lines if $wrap_length is higher than -1
+	if ($wrap_length > -1) {
+		// Split all lines and wrap them individually
+		$parts = explode("\n", $text);
+		foreach ($parts as $k => $part) {
+			preg_match('%^(>+ )?(.*)%', $part, $matches);
+			$parts[$k] = wordwrap($matches[1].$matches[2], $wrap_length -
+				strlen($matches[1]), "\n".$matches[1]);
+		}
 
-        }
-    }
-
-    // Put URLs at the bottom
-    if ($url_stack) {
-        $text .= "\n\n";
-        foreach ($url_stack as $i => $url) {
-            $text .= "\n" . ' [' . $i . ']: ' . $url;
-        }
-
-    }
-
-    // Wrap lines if $wrap_length is higher than -1
-    if ($wrap_length > -1) {
-        // Split all lines and wrap them individually
-        $parts = explode("\n", $text);
-        foreach ($parts as $k => $part) {
-            preg_match('%^(>+ )?(.*)%', $part, $matches);
-            $parts[$k] = wordwrap($matches[1] . $matches[2], $wrap_length -
-                strlen($matches[1]), "\n" . $matches[1]);
-        }
-
-        return implode("\n", $parts);
-    } else {
-        return $text;
-    }
-
+		return implode("\n", $parts);
+	} else
+		return $text;
 }
 
 //

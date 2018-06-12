@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Luna
+ * Copyright (C) 2013-2018 Luna
  * License: http://opensource.org/licenses/MIT MIT
  */
 
@@ -366,7 +366,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 
 			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
-				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
+				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-left: 6px solid '.$cur_forum['color'].';"';
 			} else {
 				$item_style = '';
 				$item_style = ' style="border-left: 6px solid '.$cur_forum['color'].';"';

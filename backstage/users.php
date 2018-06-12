@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Luna
+ * Copyright (C) 2013-2018 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -625,69 +625,67 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
     require 'footer.php';
 } elseif (isset($_GET['find_user'])) {
-    $form = isset($_GET['form']) ? $_GET['form'] : array();
+	$form = isset($_GET['form']) ? $_GET['form'] : array();
 
-    // trim() all elements in $form
-    $form = array_map('luna_trim', $form);
-    $conditions = $query_str = array();
+	// trim() all elements in $form
+	$form = array_map('luna_trim', $form);
+	$conditions = $query_str = array();
 
-    $comments_greater = isset($_GET['comments_greater']) ? luna_trim($_GET['comments_greater']) : '';
-    $comments_less = isset($_GET['comments_less']) ? luna_trim($_GET['comments_less']) : '';
-    $order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_comment', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
-    $direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
-    $user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
+	$comments_greater = isset($_GET['comments_greater']) ? luna_trim($_GET['comments_greater']) : '';
+	$comments_less = isset($_GET['comments_less']) ? luna_trim($_GET['comments_less']) : '';
+	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_comments', 'last_comment', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
+	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
+	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
 
-    $query_str[] = 'order_by=' . $order_by;
-    $query_str[] = 'direction=' . $direction;
-    $query_str[] = 'user_group=' . $user_group;
+	$query_str[] = 'order_by='.$order_by;
+	$query_str[] = 'direction='.$direction;
+	$query_str[] = 'user_group='.$user_group;
 
-    if (preg_match('%[^0-9]%', $comments_greater . $comments_less)) {
-        message_backstage(__('You entered a non-numeric value into a numeric only column.', 'luna'));
-    }
+	if (preg_match('%[^0-9]%', $comments_greater.$comments_less))
+		message_backstage(__('You entered a non-numeric value into a numeric only column.', 'luna'));
 
-    $like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
-    foreach ($form as $key => $input) {
-        if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'admin_note'))) {
-            $conditions[] = 'u.' . $db->escape($key) . ' ' . $like_command . ' \'' . $db->escape(str_replace(array('*', '_'), array('%', '\\_'), $input)) . '\'';
-            $query_str[] = 'form%5B' . $key . '%5D=' . urlencode($input);
-        }
-    }
+	$like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
+	foreach ($form as $key => $input) {
+		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'admin_note'))) {
+			$conditions[] = 'u.'.$db->escape($key).' '.$like_command.' \''.$db->escape(str_replace(array('*', '_'), array('%', '\\_'), $input)).'\'';
+			$query_str[] = 'form%5B'.$key.'%5D='.urlencode($input);
+		}
+	}
 
-    if ($comments_greater != '') {
-        $query_str[] = 'comments_greater=' . $comments_greater;
-        $conditions[] = 'u.num_comments>' . $comments_greater;
-    }
-    if ($comments_less != '') {
-        $query_str[] = 'comments_less=' . $comments_less;
-        $conditions[] = 'u.num_comments<' . $comments_less;
-    }
+	if ($comments_greater != '') {
+		$query_str[] = 'comments_greater='.$comments_greater;
+		$conditions[] = 'u.num_comments>'.$comments_greater;
+	}
+	if ($comments_less != '') {
+		$query_str[] = 'comments_less='.$comments_less;
+		$conditions[] = 'u.num_comments<'.$comments_less;
+	}
 
-    if ($user_group > -1) {
-        $conditions[] = 'u.group_id=' . $user_group;
-    }
+	if ($user_group > -1)
+		$conditions[] = 'u.group_id='.$user_group;
 
-    // Fetch user count
-    $result = $db->query('SELECT COUNT(id) FROM ' . $db->prefix . 'users AS u LEFT JOIN ' . $db->prefix . 'groups AS g ON g.g_id=u.group_id WHERE u.id>1' . (!empty($conditions) ? ' AND ' . implode(' AND ', $conditions) : '')) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-    $num_users = $db->result($result);
+	// Fetch user count
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '')) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$num_users = $db->result($result);
 
-    // Determine the user offset (based on $_GET['p'])
-    $num_pages = ceil($num_users / 50);
+	// Determine the user offset (based on $_GET['p'])
+	$num_pages = ceil($num_users / 50);
 
-    $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-    $start_from = 50 * ($p - 1);
+	$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
+	$start_from = 50 * ($p - 1);
 
-    // Generate paging links
-    $paging_links = paginate($num_pages, $p, 'users.php?find_user=&amp;' . implode('&amp;', $query_str));
+	// Generate paging links
+	$paging_links = paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
-    // Some helper variables for permissions
-    $can_delete = $can_move = $luna_user['g_id'] == LUNA_ADMIN;
-    $can_ban = $luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
-    $can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
+	// Some helper variables for permissions
+	$can_delete = $can_move = $luna_user['g_id'] == LUNA_ADMIN;
+	$can_ban = $luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
+	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
-    $page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
-    require 'header.php';
+	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
+	require 'header.php';
 
-    ?>
+?>
 <div class="row">
 	<div class="col-sm-12">
         <div class="panel panel-default">

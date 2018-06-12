@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Luna
+ * Copyright (C) 2013-2018 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -274,7 +274,7 @@ if (isset($_GET['saved'])) {
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Slogan', 'luna')?></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_slogan]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
+                                <input type="text" class="form-control" name="form[board_slogan]" maxlength="300" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -716,7 +716,7 @@ foreach ($times as $time) {
         <?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : '';?>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="form[smtp_pass1]"  value="<?php echo $smtp_pass ?>" />
+                                        <input class="form-control" type="password" name="form[smtp_pass1]" value="<?php echo $smtp_pass ?>" />
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="form-control" type="password" name="form[smtp_pass2]" value="<?php echo $smtp_pass ?>" />
