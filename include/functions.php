@@ -1885,7 +1885,7 @@ function forum_list_styles()
 //
 // Fetch a list of available frontend styles
 //
-function forum_list_accents($stage)
+function forum_list_accents()
 {
     global $luna_config;
 
@@ -1899,14 +1899,7 @@ function forum_list_accents($stage)
     }
 
     $accents = array();
-
-    if ($stage == 'main' && is_dir(LUNA_ROOT . 'themes/' . $cur_theme . '/css/accents/')) {
-        $d = dir(LUNA_ROOT . 'themes/' . $cur_theme . '/css/accents/');
-    }
-
-    if ($stage == 'back') {
-        $d = dir(LUNA_ROOT . 'backstage/css/accents/');
-    }
+	$d = dir(LUNA_ROOT . 'themes/' . $cur_theme . '/css/accents/');
 
     while (($entry = $d->read()) !== false) {
         if ($entry{0} == '.') {

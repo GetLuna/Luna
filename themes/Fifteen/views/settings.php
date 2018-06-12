@@ -130,13 +130,10 @@ else
 								<div class="col-sm-9">
 									<div class="btn-group accent-group" data-toggle="buttons">
 		<?php
-				$accents = forum_list_accents('main');
+				$accents = forum_list_accents();
 		
 				foreach ($accents as $temp) {
-					if ($user['color_scheme'] == $temp)
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-					else
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
+					echo '<label class="btn btn-primary color-accent accent-'.$temp.(($luna_user['color_scheme'] == $temp) ? ' active' : '').'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
 				}
 		?>
 									</div>
@@ -178,13 +175,8 @@ else
 								<div class="col-sm-9">
 									<div class="btn-group accent-group" data-toggle="buttons">
 		<?php
-				$accents = forum_list_accents('back');
-		
-				foreach ($accents as $temp) {
-					if ($luna_user['accent'] == $temp)
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-					else
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'"></label>';
+				for ($i = 1; $i <= 15; $i++) {
+					echo '<label class="btn btn-primary color-accent accent-'.$i.(($luna_user['accent'] == $i) ? ' active' : '').'"> <input type="radio" name="form[accent]" id="'.$i.'" value="'.$i.'"></label>';
 				}
 		?>
 									</div>
