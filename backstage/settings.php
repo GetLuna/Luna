@@ -168,21 +168,21 @@ if (isset($_POST['form_sent'])) {
             switch ($uploaded_file['error']) {
                 case 1: // UPLOAD_ERR_INI_SIZE
                 case 2: // UPLOAD_ERR_FORM_SIZE
-                    message(__('The selected file was too large to upload. The server didn\'t allow the upload.', 'luna'));
+                    message_backstage(__('The selected file was too large to upload. The server didn\'t allow the upload.', 'luna'));
                     break;
 
                 case 3: // UPLOAD_ERR_PARTIAL, skip 4, we already did that
-                    message(__('The selected file was only partially uploaded. Please try again.', 'luna'));
+                    message_backstage(__('The selected file was only partially uploaded. Please try again.', 'luna'));
                     break;
 
                 case 6: // UPLOAD_ERR_NO_TMP_DIR
-                    message(__('PHP was unable to save the uploaded file to a temporary location.', 'luna'));
+                    message_backstage(__('PHP was unable to save the uploaded file to a temporary location.', 'luna'));
                     break;
 
                 default:
                     // No error occured, but was something actually uploaded?
                     if ($uploaded_file['size'] == 0)
-                        message(__('You did not select a file for upload.', 'luna'));
+                        message_backstage(__('You did not select a file for upload.', 'luna'));
                     break;
             }
         }
@@ -191,11 +191,11 @@ if (isset($_POST['form_sent'])) {
             // Preliminary file check, adequate in most cases
             $allowed_types = array('image/png', 'image/x-png');
             if (!in_array($uploaded_file['type'], $allowed_types))
-                message(__('The file you tried to upload is not of an allowed type. Only png is allowed.', 'luna'));
+                message_backstage(__('The file you tried to upload is not of an allowed type. Only png is allowed.', 'luna'));
 
             // Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
             if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT.'/favicon.tmp'))
-                message(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+                message_backstage(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 
             list($width, $height, $type,) = @getimagesize(LUNA_ROOT.'/favicon.tmp');
     
@@ -206,7 +206,7 @@ if (isset($_POST['form_sent'])) {
             @rename(LUNA_ROOT.'/favicon.tmp', LUNA_ROOT.'/favicon.png');
             @chmod(LUNA_ROOT.'/favicon.png', 0644);
         } else
-            message(__('An unknown error occurred. Please try again.', 'luna'));
+            message_backstage(__('An unknown error occurred. Please try again.', 'luna'));
     }
 
 	// Regenerate the config cache
@@ -293,7 +293,7 @@ if (isset($_GET['saved']))
                                 <?php } else { ?>
                                     <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'img/favicon.png' ?>" alt="<?php _e('Default favicon', 'luna') ?>" />
                                 <?php } ?>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="51200" />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="102400" />
                                 <input name="req_file" type="file" />
                             </div>
                         </div>
