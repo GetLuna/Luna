@@ -684,7 +684,7 @@ $forum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_sty
 						<div class="panel-heading" style="background: <?php echo $cur_forum['color'] ?>; border-color: <?php echo $cur_forum['color'] ?>;">
 							<h3 class="panel-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $cur_forum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_forum['id'] ?>">
-                                    <?php echo get_icon($cur_forum['icon'], $cur_forum['icon_style']) . luna_htmlspecialchars($cur_forum['forum_name']) ?>
+                                    <?php echo get_icon($cur_forum['icon'], $cur_forum['icon_style']) .' '. luna_htmlspecialchars($cur_forum['forum_name']) ?>
                                 </a>
                                 <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php _e('Edit', 'luna')?></a></span>
                             </h3>
@@ -741,7 +741,7 @@ $subforum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_
 						<div class="panel-heading" style="background: <?php echo $cur_subforum['color'] ?>; border-color: <?php echo $cur_subforum['color'] ?>;">
 							<h3 class="panel-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $cur_subforum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_subforum['id'] ?>">
-								<?php echo get_icon($cur_subforum['icon'], $cur_subforum['icon_style']) . luna_htmlspecialchars($cur_subforum['forum_name']) ?>
+								<?php echo get_icon($cur_subforum['icon'], $cur_subforum['icon_style']) .' '. luna_htmlspecialchars($cur_subforum['forum_name']) ?>
                                 </a>
                                 <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php _e('Edit', 'luna')?></a></span>
                             </h3>

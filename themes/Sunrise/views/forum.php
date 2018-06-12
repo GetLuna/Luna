@@ -47,7 +47,7 @@ if (!defined('FORUM'))
 		</div>
 		<div class="col-sm-9">
 			<div class="title-block title-block-primary title-block-forum" style="background-color: <?php echo $cur_forum['color']; ?>;">
-				<h2 class="forum-title"><?php echo $faicon.luna_htmlspecialchars($cur_forum['forum_name']) ?><span class="pull-right"><?php echo $comment_link ?></span></h2>
+				<h2 class="forum-title"><?php echo $faicon.' '.luna_htmlspecialchars($cur_forum['forum_name']) ?><span class="pull-right"><?php echo $comment_link ?></span></h2>
 				<div class="forum-desc"><?php echo $cur_forum['forum_desc'] ?></div>
 			</div>
             <div class="list-group list-group-thread subforum-list">

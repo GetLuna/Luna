@@ -1,6 +1,6 @@
 <div class="list-group-item clearfix <?php echo $item_status ?>"<?php echo $item_style ?>>
 	<div class="col-md-6 col-sm-6 col-xs-6">
-		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" style="color: <?php echo $cur_forum['color'] ?>" class="forum-title"><?php echo $faicon.luna_htmlspecialchars($cur_forum['forum_name']) ?></a><br />
+		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" style="color: <?php echo $cur_forum['color'] ?>" class="forum-title"><?php echo $faicon.' '.luna_htmlspecialchars($cur_forum['forum_name']) ?></a><br />
 		<?php echo $forum_desc ?>
 	</div>
 	<div class="col-md-1 col-sm-2 hidden-xs">
