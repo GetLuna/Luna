@@ -54,7 +54,7 @@ if (!$luna_user['is_guest']) {
 
 // Fetch some info about the forum
 if (!$luna_user['is_guest']) {
-    $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, s.user_id AS is_subscribed FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id=' . $luna_user['id'] . ') LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id=' . $id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.icon_style, f.color, f.solved, fp.create_threads, s.user_id AS is_subscribed FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id=' . $luna_user['id'] . ') LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id=' . $id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 } else {
     $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, 0 AS is_subscribed FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id=' . $id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 }
@@ -103,11 +103,7 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $luna_user['disp_threads'] * ($p - 1);
 
 // Get the icon
-if ($cur_forum['icon'] != null) {
-    $faicon = '<span class="fas fa-fw fa-' . $cur_forum['icon'] . '"></span> ';
-} else {
-    $faicon = '';
-}
+$faicon = get_icon($cur_forum['icon'], $cur_forum['icon_style']);
 
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'viewforum.php?id=' . $id);

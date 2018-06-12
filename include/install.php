@@ -459,6 +459,11 @@ class Installer
                     'allow_null' => true,
                     'default' => null,
                 ),
+                'icon_style' => array(
+                    'datatype' => 'INT(10)',
+                    'allow_null' => true,
+                    'default' => 0,
+                ),
             ),
             'PRIMARY KEY' => array('id'),
         );

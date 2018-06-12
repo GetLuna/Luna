@@ -138,6 +138,7 @@ elseif (isset($_POST['update_board'])) {
         $cur_forum['name'] = luna_trim($cur_forum['name']);
         $cur_forum['position'] = luna_trim($cur_forum['position']);
         $cur_forum['icon'] = luna_trim($cur_forum['icon']);
+        $cur_forum['icon_style'] = intval($cur_forum['icon_style']);
         $cur_forum['color'] = luna_trim($cur_forum['color']);
 
         if ($cur_forum['name'] == '') {
@@ -148,7 +149,7 @@ elseif (isset($_POST['update_board'])) {
             message_backstage(__('Position must be a positive integer value.', 'luna'));
         }
 
-        $db->query('UPDATE ' . $db->prefix . 'forums SET forum_name=\'' . $db->escape($cur_forum['name']) . '\', disp_position=\'' . $cur_forum['position'] . '\', icon=\'' . $db->escape($cur_forum['icon']) . '\', color=\'' . $db->escape($cur_forum['color']) . '\' WHERE id=' . intval($forum_id)) or error('Unable to update forums', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE ' . $db->prefix . 'forums SET forum_name=\'' . $db->escape($cur_forum['name']) . '\', disp_position=\'' . $cur_forum['position'] . '\', icon=\'' . $db->escape($cur_forum['icon']) . '\', icon_style=' . $cur_forum['icon_style'] . ', color=\'' . $db->escape($cur_forum['color']) . '\' WHERE id=' . intval($forum_id)) or error('Unable to update forums', __FILE__, __LINE__, $db->error());
     }
 
     // Regenerate the forum cache
@@ -175,6 +176,7 @@ elseif (isset($_POST['update_board'])) {
         $parent_id = intval($_POST['parent_id']);
         $cat_id = intval($_POST['cat_id']);
         $sort_by = intval($_POST['sort_by']);
+        $icon_style = intval($_POST['icon_style']);
         $icon = luna_trim($_POST['icon']);
         $color = luna_trim($_POST['color']);
         $solved = isset($_POST['solved']) ? '1' : '0';
@@ -189,7 +191,7 @@ elseif (isset($_POST['update_board'])) {
 
         $forum_desc = ($forum_desc != '') ? '\'' . $db->escape($forum_desc) . '\'' : 'NULL';
 
-        $db->query('UPDATE ' . $db->prefix . 'forums SET forum_name=\'' . $db->escape($forum_name) . '\', forum_desc=' . $forum_desc . ', parent_id=' . $parent_id . ', sort_by=' . $sort_by . ', cat_id=' . $cat_id . ', icon=\'' . $db->escape($icon) . '\', color=\'' . $db->escape($color) . '\', solved=' . $solved . ' WHERE id=' . $forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE ' . $db->prefix . 'forums SET forum_name=\'' . $db->escape($forum_name) . '\', forum_desc=' . $forum_desc . ', parent_id=' . $parent_id . ', sort_by=' . $sort_by . ', cat_id=' . $cat_id . ', icon=\'' . $db->escape($icon) . '\', icon_style=' . $icon_style . ', color=\'' . $db->escape($color) . '\', solved=' . $solved . ' WHERE id=' . $forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 
         // Now let's deal with the permissions
         if (isset($_POST['read_forum_old'])) {
@@ -240,7 +242,7 @@ elseif (isset($_POST['update_board'])) {
     }
 
     // Fetch forum info
-    $result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_threads, sort_by, cat_id, icon, color, solved FROM ' . $db->prefix . 'forums WHERE id=' . $forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_threads, sort_by, cat_id, icon, icon_style, color, solved FROM ' . $db->prefix . 'forums WHERE id=' . $forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result)) {
         message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -335,18 +337,9 @@ elseif (isset($_POST['update_board'])) {
                             <label class="col-sm-3 control-label"><?php _e('Sort threads by', 'luna')?></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="sort_by" tabindex="4">
-                                    <option value="0"<?php if ($cur_forum['sort_by'] == '0') {
-        echo ' selected';
-    }
-    ?>><?php _e('Last comment', 'luna')?></option>
-                                    <option value="1"<?php if ($cur_forum['sort_by'] == '1') {
-        echo ' selected';
-    }
-    ?>><?php _e('Thread start', 'luna')?></option>
-                                    <option value="2"<?php if ($cur_forum['sort_by'] == '2') {
-        echo ' selected';
-    }
-    ?>><?php _e('Subject', 'luna')?></option>
+                                    <option value="0"<?php if ($cur_forum['sort_by'] == '0') { echo ' selected'; } ?>><?php _e('Last comment', 'luna')?></option>
+                                    <option value="1"<?php if ($cur_forum['sort_by'] == '1') { echo ' selected'; } ?>><?php _e('Thread start', 'luna')?></option>
+                                    <option value="2"<?php if ($cur_forum['sort_by'] == '2') { echo ' selected'; } ?>><?php _e('Subject', 'luna')?></option>
                                 </select>
                             </div>
                         </div>
@@ -354,8 +347,16 @@ elseif (isset($_POST['update_board'])) {
                             <label class="col-sm-3 control-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="https://fontawesome.com/icons">' . __('Font Awesome icon guide', 'luna') . '</a>')?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <span class="input-group-addon">fas fa-fw fa-</span>
-                                    <input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="1" />
+									<select class="form-control" name="icon_style" tabindex="5">
+										<option value="0"<?php if ($cur_forum['icon_style'] == '0') { echo ' selected'; } ?>>fas (Solid)</option>
+										<option value="1"<?php if ($cur_forum['icon_style'] == '1') { echo ' selected'; } ?>>far (Regular)</option>
+										<?php if ($luna_config['o_fontawesomepro'] == 1) { ?>
+											<option value="2"<?php if ($cur_forum['icon_style'] == '2') { echo ' selected'; } ?>>fal (Light)</option>
+										<?php } ?>
+										<option value="3"<?php if ($cur_forum['icon_style'] == '3') { echo ' selected'; } ?>>fab (Brand)</option>
+									</select>
+                                    <span class="input-group-addon">fa-fw fa-</span>
+                                    <input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="6" />
                                 </div>
                             </div>
                         </div>
@@ -370,10 +371,7 @@ elseif (isset($_POST['update_board'])) {
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') {
-        echo ' checked';
-    }
-    ?> />
+                                        <input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') { echo ' checked'; } ?> />
                                         <?php _e('Threads in this forum can be marked as solved.', 'luna')?>
                                     </label>
                                 </div>
@@ -678,52 +676,52 @@ foreach ($cat_list as $cur_cat) {
 						</div>
 					</div>
 <?php
-$forum = $db->query('SELECT id, forum_name, disp_position, color, icon FROM ' . $db->prefix . 'forums WHERE cat_id = ' . $cur_category['id'] . ' AND parent_id = \'\' ORDER BY disp_position, id') or error('Unable to fetch forums', __FILE__, __LINE__, $db->error());
+$forum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_style FROM ' . $db->prefix . 'forums WHERE cat_id = ' . $cur_category['id'] . ' AND parent_id = \'\' ORDER BY disp_position, id') or error('Unable to fetch forums', __FILE__, __LINE__, $db->error());
 
                 while ($cur_forum = $db->fetch_assoc($forum)) {
-                    if ($cur_forum['icon'] != '') {
-                        $icon = '<i class="fas fa-fw fa-' . $cur_forum['icon'] . '"></i> ';
-                    } else {
-                        $icon = '';
-                    }
-
                     ?>
 					<div class="panel" style="border-color: <?php echo $cur_forum['color'] ?>">
 						<div class="panel-heading" style="background: <?php echo $cur_forum['color'] ?>; border-color: <?php echo $cur_forum['color'] ?>;">
 							<h3 class="panel-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $cur_forum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_forum['id'] ?>">
-                                    <?php echo $icon . luna_htmlspecialchars($cur_forum['forum_name']) ?>
+                                    <?php echo get_icon($cur_forum['icon'], $cur_forum['icon_style']) . luna_htmlspecialchars($cur_forum['forum_name']) ?>
                                 </a>
-                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-pencil-alt-square-o"></span> <?php _e('Edit', 'luna')?></a></span>
+                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php _e('Edit', 'luna')?></a></span>
                             </h3>
 						</div>
 						<div class="collapse" id="collapse<?php echo $cur_forum['id'] ?>">
 							<div class="panel-body">
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Name', 'luna')?></label>
+									<label class="col-sm-3 control-label"><?php _e('Name', 'luna')?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna')?>" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Position', 'luna')?></label>
+									<label class="col-sm-3 control-label"><?php _e('Position', 'luna')?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna')?>" value="<?php echo $cur_forum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">' . __('Font Awesome icon guide', 'luna') . '</a>' ?></span></label>
+                            		<label class="col-sm-3 control-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">' . __('Font Awesome icon guide', 'luna') . '</a>' ?></span></label>
 									<div class="col-sm-9">
                                         <div class="input-group">
-                                            <div class="input-group-addon">
-                                                fas fa-fw fa-
-                                            </div>
+											<select class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][icon_style]" tabindex="4">
+												<option value="0"<?php if ($cur_forum['icon_style'] == '0') { echo ' selected'; } ?>>fas (Solid)</option>
+												<option value="1"<?php if ($cur_forum['icon_style'] == '1') { echo ' selected'; } ?>>far (Regular)</option>
+												<?php if ($luna_config['o_fontawesomepro'] == 1) { ?>
+													<option value="2"<?php if ($cur_forum['icon_style'] == '2') { echo ' selected'; } ?>>fal (Light)</option>
+												<?php } ?>
+												<option value="3"<?php if ($cur_forum['icon_style'] == '3') { echo ' selected'; } ?>>fab (Brand)</option>
+											</select>
+											<span class="input-group-addon">fa-fw fa-</span>
                                             <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][icon]" placeholder="<?php _e('Icon', 'luna')?>" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" maxlength="50" />
                                         </div>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Forum color', 'luna')?></label>
+									<label class="col-sm-3 control-label"><?php _e('Forum color', 'luna')?></label>
 									<div class="col-sm-9">
 										<input class="color" name="forum[<?php echo $cur_forum['id'] ?>][color]" value="<?php echo $cur_forum['color'] ?>" />
 									</div>
@@ -735,52 +733,52 @@ $forum = $db->query('SELECT id, forum_name, disp_position, color, icon FROM ' . 
 						</div>
 					</div>
 <?php
-$subforum = $db->query('SELECT id, forum_name, disp_position, color, icon, parent_id FROM ' . $db->prefix . 'forums WHERE cat_id = ' . $cur_category['id'] . ' AND parent_id = ' . $cur_forum['id'] . ' ORDER BY disp_position, id') or error('Unable to fetch forums', __FILE__, __LINE__, $db->error());
+$subforum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_style, parent_id FROM ' . $db->prefix . 'forums WHERE cat_id = ' . $cur_category['id'] . ' AND parent_id = ' . $cur_forum['id'] . ' ORDER BY disp_position, id') or error('Unable to fetch forums', __FILE__, __LINE__, $db->error());
 
                     while ($cur_subforum = $db->fetch_assoc($subforum)) {
-                        if ($cur_subforum['icon'] != '') {
-                            $icon = '<i class="fas fa-fw fa-' . $cur_subforum['icon'] . '"></i> ';
-                        } else {
-                            $icon = '';
-                        }
-
                         ?>
 					<div class="panel panel-sub" style="border-color: <?php echo $cur_subforum['color'] ?>">
 						<div class="panel-heading" style="background: <?php echo $cur_subforum['color'] ?>; border-color: <?php echo $cur_subforum['color'] ?>;">
 							<h3 class="panel-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $cur_subforum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_subforum['id'] ?>">
-								<?php echo $icon . luna_htmlspecialchars($cur_subforum['forum_name']) ?>
+								<?php echo get_icon($cur_subforum['icon'], $cur_subforum['icon_style']) . luna_htmlspecialchars($cur_subforum['forum_name']) ?>
                                 </a>
-                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-pencil-alt-square-o"></span> <?php _e('Edit', 'luna')?></a></span>
+                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php _e('Edit', 'luna')?></a></span>
                             </h3>
 						</div>
 						<div class="collapse" id="collapse<?php echo $cur_subforum['id'] ?>">
 							<div class="panel-body">
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Name', 'luna')?></label>
+									<label class="col-sm-3 control-label"><?php _e('Name', 'luna')?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna')?>" value="<?php echo luna_htmlspecialchars($cur_subforum['forum_name']) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Position', 'luna')?></label>
+									<label class="col-sm-3 control-label"><?php _e('Position', 'luna')?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna')?>" value="<?php echo $cur_subforum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">' . __('Font Awesome icon guide', 'luna') . '</a>' ?></span></label>
+									<label class="col-sm-3 control-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">' . __('Font Awesome icon guide', 'luna') . '</a>' ?></span></label>
 									<div class="col-sm-9">
                                         <div class="input-group">
-                                            <div class="input-group-addon">
-                                                fas fa-fw fa-
-                                            </div>
+											<select class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][icon_style]" tabindex="4">
+												<option value="0"<?php if ($cur_subforum['icon_style'] == '0') { echo ' selected'; } ?>>fas (Solid)</option>
+												<option value="1"<?php if ($cur_subforum['icon_style'] == '1') { echo ' selected'; } ?>>far (Regular)</option>
+												<?php if ($luna_config['o_fontawesomepro'] == 1) { ?>
+													<option value="2"<?php if ($cur_subforum['icon_style'] == '2') { echo ' selected'; } ?>>fal (Light)</option>
+												<?php } ?>
+												<option value="3"<?php if ($cur_subforum['icon_style'] == '3') { echo ' selected'; } ?>>fab (Brand)</option>
+											</select>
+											<span class="input-group-addon">fa-fw fa-</span>
                                             <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][icon]" placeholder="<?php _e('Icon', 'luna')?>" value="<?php echo luna_htmlspecialchars($cur_subforum['icon']) ?>" maxlength="50" />
                                         </div>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e('Forum color', 'luna')?></label>
+									<label class="col-sm-3 control-label"><?php _e('Forum color', 'luna')?></label>
 									<div class="col-sm-9">
 										<input class="color" name="forum[<?php echo $cur_subforum['id'] ?>][color]" value="<?php echo $cur_subforum['color'] ?>" />
 									</div>

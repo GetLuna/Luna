@@ -1235,6 +1235,36 @@ function is_subforum($id, $self_subforum = '0')
 }
 
 //
+// Get the icon
+//
+function get_icon($icon, $style = null) {
+	global $luna_config;
+
+	if ($icon == null) {
+		return '';
+	}
+
+	if ($style == null) {
+		$style = $luna_config['icon_style'];
+	}
+
+	switch ($style) {
+		case 0:
+			return '<i class="fas fa-fw fa-'.$icon.'"></i>';
+			break;
+		case 1:
+			return '<i class="far fa-fw fa-'.$icon.'"></i>';
+			break;
+		case 2:
+			return '<i class="fal fa-fw fa-'.$icon.'"></i>';
+			break;
+		case 3:
+			return '<i class="fab fa-fw fa-'.$icon.'"></i>';
+			break;
+	}
+}
+
+//
 // Format a time string according to $time_format and time zones
 //
 function format_time($timestamp, $date_only = false, $date_format = null, $time_format = null, $time_only = false, $no_text = false, $user = null) {

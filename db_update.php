@@ -734,7 +734,9 @@ switch ($stage) {
         build_config(0, 'o_emoji');
         build_config(0, 'o_update_ring');
         build_config(1, 'o_use_cdn', 1);
-        build_config(1, 'o_fontawesomepro', 0);
+		build_config(1, 'o_fontawesomepro', 0);
+		
+        $db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 
         break;
 

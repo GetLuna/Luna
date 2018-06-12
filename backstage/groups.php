@@ -652,7 +652,7 @@ $result = $db->query('SELECT g_id, g_title FROM ' . $db->prefix . 'groups WHERE 
         ?>
                         <tr>
                             <td>
-                            <a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-pencil-alt-square-o"></span> <?php echo __('Edit', 'luna') ?></a>
+                            <a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php echo __('Edit', 'luna') ?></a>
                             </td>
                             <td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
                             <td>

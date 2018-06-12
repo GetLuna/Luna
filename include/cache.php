@@ -95,7 +95,7 @@ function generate_forum_cache()
     global $db;
 
     // Get the forum list from the DB
-    $result = $db->query('SELECT id, forum_name, color, icon FROM ' . $db->prefix . 'forums ORDER BY id', true) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id, forum_name, color, icon, icon_style FROM ' . $db->prefix . 'forums ORDER BY id', true) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
     $output = array();
     while ($cur_forum = $db->fetch_assoc($result)) {
