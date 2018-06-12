@@ -57,7 +57,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			message(__('You have to enter at least one keyword and/or an author to search for.', 'luna'));
 
 		if ($author)
-			$author = str_replace('*', '%', $author);
+			$author = str_replace(array('*', '_'), array('%', '\\_'), $author);
 
 		$show_as = (isset($_GET['show_as']) && $_GET['show_as'] == 'threads') ? 'threads' : 'comments';
 		$sort_by = (isset($_GET['sort_by'])) ? intval($_GET['sort_by']) : 0;

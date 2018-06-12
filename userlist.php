@@ -38,7 +38,7 @@ $where_sql = array();
 $like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
 
 if ($username != '')
-	$where_sql[] = 'u.username '.$like_command.' \''.$db->escape(str_replace('*', '%', $username)).'\'';
+	$where_sql[] = 'u.username '.$like_command.' \''.$db->escape(str_replace(array('*', '_',), array('%', '\\_'), $username)) . '\'';
 
 // Fetch user count
 $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.LUNA_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '')) or error('Unable to fetch user list count', __FILE__, __LINE__, $db->error());
