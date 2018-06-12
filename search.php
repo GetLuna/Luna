@@ -60,7 +60,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
         }
 
         if (!$keywords && !$author) {
-            message(__('You have to enter at least one keyword and/or an author to search for.', 'luna'));
+            message(__('You have to enter at least one keyword and/or an author to search for. Search terms need to be at least three characters long.', 'luna'));
         }
 
         if ($author) {
