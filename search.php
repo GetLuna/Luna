@@ -425,7 +425,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		// throw away the first $start_from of $search_ids, only keep the top $per_page of $search_ids
 		$search_ids = array_slice($search_ids, $start_from, $per_page);
         
-        if (!$luna_user['g_soft_delete_view'])
+        if (!$luna_user['g_soft_delete_view']) {
             $sql_soft = 't.soft = 0 AND ';
         } else {
             $sql_soft = '';
@@ -507,7 +507,6 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
     } else {
         message(__('Your search returned no hits.', 'luna'));
     }
-
 } else {
     $search_id = '';
 }
