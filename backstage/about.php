@@ -32,7 +32,8 @@ require 'header.php';
 					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Fallow Preview 2 <small>2.1-alpha.2</small></span></h2>
 						<ul class="changes">
-                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved dDatabase management', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Spoilers now use the Bootstrap\'s collapse plugin', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved database management', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved night mode with better contrast and darker design', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('ALPHA - Backstage accent settings no longer trigger a warning', 'luna') ?></li>
 						</ul>

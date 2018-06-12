@@ -1670,6 +1670,11 @@ blockquote footer {
     border: none;
 }
 
+.panel.panel-spoiler .panel-heading a {
+	color: #fff;
+	text-decoration: none;
+}
+
 .panel.panel-spoiler .panel-heading {
     color: #fff;
     border: none;
