@@ -1686,7 +1686,7 @@ blockquote footer {
 
 /* Night mode */
 .night body {
-    background: #292929;
+    background: #111;
     color: #fff;
 }
 
@@ -1695,40 +1695,40 @@ blockquote footer {
 }
 
 .night .container.main {
-    background: #404040;
+    background: #292929;
 }
 
 .night hr {
-    border-color: #333;
+    border-color: #3a3a3a;
 }
 
 .night .list-group.list-group-thread .list-group-item {
-    background-color: #4a4a4a;
-    border-left: 6px solid #454545;
+    background-color: #333;
+    border-left: 6px solid #414141;
 }
 
 .night .list-group.list-group-thread .list-group-item:hover {
-    background: #5a5a5a;
+    background: #444;
 }
 
 .night .list-group.list-group-thread .list-group-item.new-item {
-    background: #505050;
+    background: #404040;
 }
 
 .night .list-group-thread .list-group-item .label {
-    background: #404040;
+    background: #282828;
 }
 
 .night .list-group-thread .list-group-item:hover .label {
-    background: #464646;
+    background: #383838;
 }
 
 .night .list-group-item {
-    background: #404040;
+    background: #333;
 }
 
 .night .list-group.list-group-luna :not(.active).list-group-item:hover {
-    background: #333;
+    background: #222;
 }
 
 .night .list-group-item {
@@ -1738,7 +1738,7 @@ blockquote footer {
 .night .nav-tabs li.active a,
 .night .nav-tabs li.active a:hover,
 .night .nav-tabs li.active a:focus {
-    background: #404040;
+    background: #292929;
     color: #fff;
 }
 
@@ -1747,46 +1747,46 @@ blockquote footer {
 }
 
 .night .form-control {
-    background: #404040;
+    background: #292929;
     color: #fff;
-    border-color: #333;
+    border-color: #181818;
 }
 
 .night .well {
-    background: #494949;
-    border-color: #404040;
+    background: #353535;
+    border-color: #181818;
 }
 
 .night .accent-group .btn {
-    border-color: #444 !important;
+    border-color: #292929 !important;
 }
 
 .night .accent-group .btn.active,
 .night .accent-group .btn:hover {
-    border-color: #555 !important;
+    border-color: #313131 !important;
 }
 
 .night .comment-default {
-    background-color: #4f4f4f;
+    background-color: #222;
 }
 
 .night .comment-default .comment-heading,
 .night .user-entry {
-    background-color: #4a4a4a;
+    background-color: #191919;
 }
 
 .night #comment input[type='text'],
 .night #edit input[type='text'] {
-    background-color: #545454;
+    background-color: #444;
 }
 
 .night .table-striped > tbody > tr:nth-of-type(2n+1) {
-    background: #4f4f4f;
+    background: #3f3f3f;
 }
 
 .night .panel-body,
 .night .panel {
-    background: #404040;
+    background: #303030;
 }
 
 .night .table > thead > tr > th,
@@ -1795,7 +1795,7 @@ blockquote footer {
 .night .table > thead > tr > td,
 .night .table > tbody > tr > td,
 .night .table > tfoot > tr > td {
-    border-color: #595959;
+    border-color: #494949;
 }
 
 .night .table-hover > tbody > tr:hover,
@@ -1811,18 +1811,18 @@ blockquote footer {
 .night .table > thead > tr.active > th,
 .night .table > tbody > tr.active > th,
 .night .table > tfoot > tr.active > th {
-    background: #505050;
+    background: #404040;
 }
 
 .night code {
     color: #f57998;
-    background: #413d3f;
+    background: #353134;
 }
 
 .night pre {
     color: #eee;
-    border: #333;
-    background: #333;
+    border: #222;
+    background: #222;
 }
 
 .night pre code {
@@ -1855,17 +1855,17 @@ blockquote footer {
 }
 
 .night .profile .profile-btn-nav .btn.btn-primary:not(.active) {
-    background: #505050;
+    background: #404040;
     color: #ddd;
 }
 
 .night .search-form {
-    border-color: #555;
+    border-color: #444;
 }
 
 .night .search-form input[type='text'],
 .night .search-form .btn {
-    background: #555;
+    background: #444;
 }
 
 .night .search-form .btn {
@@ -1877,11 +1877,11 @@ blockquote footer {
 }
 
 .night .btn-pagination .btn.disabled {
-    background: #434343;
+    background: #333;
 }
 
 .night .btn-pagination .btn.btn-default {
-    background: #4f4f4f;
+    background: #3f3f3f;
 }
 
 .night :not(.title-block) .btn-pagination .btn.btn-default {
@@ -1889,7 +1889,7 @@ blockquote footer {
 }
 
 .night .btn-pagination .btn.btn-default:hover {
-    background: #5d5d5d;
+    background: #4d4d4d;
 }
 
 .night .notification-row .btn {
@@ -1897,11 +1897,11 @@ blockquote footer {
 }
 
 .night .notification-row .btn-default {
-    background: #4f4f4f;
+    background: #3f3f3f;
 }
 
 .night .notification-row .btn-default:hover {
-    background: #5a5a5a;
+    background: #4a4a4a;
 }
 
 .night .alert-info {
@@ -1930,5 +1930,5 @@ blockquote footer {
 }
 
 .night .panel.panel-spoiler .panel-body {
-    background-color: #444 !important;
+    background-color: #333 !important;
 }
