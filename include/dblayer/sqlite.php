@@ -63,8 +63,6 @@ class DBLayer
 
         if (!$this->link_id) {
             error('Unable to open database \'' . $db_name . '\'. SQLite reported: ' . $sqlite_error, __FILE__, __LINE__);
-        } else {
-            return $this->link_id;
         }
 
     }

@@ -52,8 +52,6 @@ class DBLayer
         if (!defined('LUNA_NO_SET_NAMES')) {
             $this->set_names('utf8');
         }
-
-        return $this->link_id;
     }
 
     public function start_transaction()
@@ -199,7 +197,7 @@ class DBLayer
 
     public function set_names($names)
     {
-        return $this->query('SET NAMES \'' . $this->escape($names) . '\'');
+        return @mysql_set_charset($names, $this->link_id); 
     }
 
     public function get_version()

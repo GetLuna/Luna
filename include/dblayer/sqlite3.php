@@ -133,21 +133,16 @@ class DBLayer
                 $result_rows[] = $cur_result_row;
             }
 
-            if (!empty($result_rows[$row])) {
+            if (!empty($result_rows) && array_key_exists($row, $result_rows)) {
                 $cur_row = $result_rows[$row];
-                if (!empty($result_rows) && array_key_exists($row, $result_rows)) {
-                    $cur_row = $result_rows[$row];
-                }
-
-                return $cur_row[$col];
-
-                if (isset($cur_row)) {
-                    return $cur_row[$col];
-                } else {
-                    return false;
-                }
-
             }
+
+            if (isset($cur_row)) {
+                return $cur_row[$col];
+            } else {
+                return false;
+            }
+
         } else {
             return false;
         }
@@ -490,8 +485,8 @@ class DBLayer
             $query .= ' NOT NULL';
         }
 
-        if ($default_value === '') {
-            $default_value = '\'\'';
+        if (is_string($default_value)) {
+            $default_value = '\'' . $this->escape($default_value) . '\'';
         }
 
         if (!is_null($default_value)) {

@@ -75,8 +75,6 @@ class DBLayer
         if (!defined('LUNA_NO_SET_NAMES')) {
             $this->set_names('utf8');
         }
-
-        return $this->link_id;
     }
 
     public function start_transaction()
