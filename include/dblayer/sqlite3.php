@@ -60,10 +60,7 @@ class DBLayer
 
         if (!$this->link_id) {
             error('Unable to open database \'' . $db_name . '\'.', __FILE__, __LINE__);
-        } else {
-            return $this->link_id;
         }
-
     }
 
     public function start_transaction()
