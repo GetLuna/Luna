@@ -190,7 +190,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna')?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
-        <?php if ($config['o_fontawesomepro'] == 0) { ?>
+        <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
 		    <link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
         <?php } else { ?>
 		    <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome-all.min.css">
@@ -509,7 +509,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna')?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
-        <?php if ($config['o_fontawesomepro']) { ?>
+        <?php if ($luna_config['o_fontawesomepro']) { ?>
 		    <link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
         <?php } else { ?>
 		    <link rel="stylesheet" href="vendor/css/fontawesome/fontawesome-all.min.css">

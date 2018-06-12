@@ -3,7 +3,7 @@
 	<head>
 		<?php load_meta(); ?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
-        <?php if ($config['o_fontawesomepro'] == 0) { ?>
+        <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
 		    <link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
         <?php } else { ?>
 		    <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome-all.min.css">
