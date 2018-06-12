@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.0\n"
-"POT-Creation-Date: 2018-06-12 09:40+0200\n"
-"PO-Revision-Date: 2018-06-12 09:40+0200\n"
+"POT-Creation-Date: 2018-06-12 15:19+0200\n"
+"PO-Revision-Date: 2018-06-12 15:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna Group\n"
 "Language: en\n"
@@ -1717,8 +1717,8 @@ msgstr ""
 msgid "Manage groups"
 msgstr ""
 
-#: backstage/header.php:26 backstage/header.php:92 include/functions.php:2184
-#: include/functions.php:2242 install.php:186
+#: backstage/header.php:26 backstage/header.php:92 include/functions.php:2189
+#: include/functions.php:2247 install.php:186
 msgid "Direction of language"
 msgstr "ltr"
 
@@ -1754,7 +1754,7 @@ msgstr ""
 
 #: backstage/header.php:121 backstage/header.php:190
 #: backstage/maintenance.php:181 backstage/maintenance.php:187
-#: db_update.php:183 include/functions.php:1421
+#: db_update.php:183 include/functions.php:1426
 msgid "Maintenance"
 msgstr ""
 
@@ -3906,23 +3906,23 @@ msgstr ""
 msgid "Luna failed to perform your request"
 msgstr ""
 
-#: include/functions.php:1158
+#: include/functions.php:1163
 msgid "Today"
 msgstr ""
 
-#: include/functions.php:1160
+#: include/functions.php:1165
 msgid "Yesterday"
 msgstr ""
 
-#: include/functions.php:1177
+#: include/functions.php:1182
 msgid "."
 msgstr ""
 
-#: include/functions.php:1177
+#: include/functions.php:1182
 msgid ","
 msgstr ""
 
-#: include/functions.php:1229 include/functions.php:1249
+#: include/functions.php:1234 include/functions.php:1254
 msgid ""
 "Bad HTTP_REFERER. You were referred to this page from an unauthorized "
 "source. If the problem persists please make sure that \"Base URL\" is "
@@ -3931,29 +3931,29 @@ msgid ""
 "found in the Luna documentation."
 msgstr ""
 
-#: include/functions.php:1292
+#: include/functions.php:1297
 msgid ""
 "Bad CSRF hash. You were referred to this page from an unauthorized source."
 msgstr ""
 
-#: include/functions.php:1680
+#: include/functions.php:1685
 #, php-format
 msgid "%s "
 msgstr ""
 
-#: include/functions.php:2054
+#: include/functions.php:2059
 msgid "Debug information"
 msgstr ""
 
-#: include/functions.php:2059
+#: include/functions.php:2064
 msgid "Time (s)"
 msgstr ""
 
-#: include/functions.php:2060
+#: include/functions.php:2065
 msgid "Query"
 msgstr ""
 
-#: include/functions.php:2081
+#: include/functions.php:2086
 #, php-format
 msgid "Total query time: %s"
 msgstr ""
@@ -4673,7 +4673,9 @@ msgid "You do not have permission to use the search feature."
 msgstr ""
 
 #: search.php:57
-msgid "You have to enter at least one keyword and/or an author to search for."
+msgid ""
+"You have to enter at least one keyword and/or an author to search for. "
+"Search terms need to be at least three characters long."
 msgstr ""
 
 #: search.php:107
