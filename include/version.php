@@ -6,9 +6,9 @@
  */
 
 class Version {
-	const LUNA_VERSION = '2.0.9-alpha.1';
+	const LUNA_VERSION = '2.0.9-alpha.2';
     const LUNA_BRANCH = '2.0';
-	const LUNA_CORE_VERSION = '2.0.5787';
+	const LUNA_CORE_VERSION = '2.0.5791';
 	const LUNA_CODE_NAME = 'Emerald';
 
 	// The database version number, every change in the database requires this number to go one up
