@@ -634,13 +634,13 @@ foreach ($timezones as $timezone) {
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('SMTP server address', 'luna') ?><span class="help-block"><?php _e('The address of an external SMTP server to send emails with', 'luna') ?></span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
+                                <input type="text" class="form-control" name="form[smtp_host]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('SMTP username', 'luna') ?><span class="help-block"><?php _e('Username for SMTP server, only if required', 'luna') ?></span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
+                                <input type="text" class="form-control" name="form[smtp_user]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -655,10 +655,10 @@ foreach ($timezones as $timezone) {
         <?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : ''; ?>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="form[smtp_pass1]" maxlength="50" value="<?php echo $smtp_pass ?>" />
+                                        <input class="form-control" type="password" name="form[smtp_pass1]" value="<?php echo $smtp_pass ?>" />
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="form[smtp_pass2]" maxlength="50" value="<?php echo $smtp_pass ?>" />
+                                        <input class="form-control" type="password" name="form[smtp_pass2]" value="<?php echo $smtp_pass ?>" />
                                     </div>
                                 </div>
                             </div>
