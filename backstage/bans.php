@@ -361,7 +361,7 @@ elseif (isset($_GET['find_ban'])) {
     $like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
     foreach ($form as $key => $input) {
         if ($input != '' && in_array($key, array('username', 'ip', 'email', 'message'))) {
-            $conditions[] = 'b.' . $db->escape($key) . ' ' . $like_command . ' \'' . $db->escape(str_replace('*', '%', $input)) . '\'';
+            $conditions[] = 'b.' . $db->escape($key) . ' ' . $like_command . ' \'' . $db->escape(str_replace(array('*', '_'), array('%', '\\_'), $input)) . '\'';
             $query_str[] = 'form%5B' . $key . '%5D=' . urlencode($input);
         }
     }
