@@ -174,16 +174,12 @@ lang/luna.mo
 ## Luna files
 #############
 
-backstage/.updatelog
 cache/
 config.php
-edge/
 img/avatars/
-install/
-temp/
 img/header.png
 img/header.jpg
 img/avatars/cplaceholder.png
-lang/Persian/
 .vscode/
 vendor/fontawesome/
+themes/typography/
