@@ -566,7 +566,7 @@ switch ($stage) {
 		build_config(1, 'o_announcement_title', '');
 		build_config(1, 'o_announcement_type', 'info');
 		build_config(1, 'o_board_tags', '');
-		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies.php');
+		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies');
 		build_config(1, 'o_default_accent', '2');
 
 		// Luna 1.2 upgrade support
