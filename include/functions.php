@@ -1135,24 +1135,19 @@ function is_subforum($id, $self_subforum = '0') {
 //
 // Format a time string according to $time_format and time zones
 //
-function format_time($timestamp, $date_only = false, $date_format = null, $time_format = null, $time_only = false, $no_text = false, $user = null) {
+function format_time($timestamp, $date_only = false, $date_format = null, $time_format = null, $time_only = false, $no_text = false) {
 	global $luna_config, $luna_user, $forum_date_formats, $forum_time_formats;
 
 	if ($timestamp == '')
 		return __('Never', 'luna');
 
-	if (is_null($user))
-		$user = $pun_user;
-		
-	$diff = ($user['timezone'] + $user['dst']) * 3600; 
-
 	$now = time();
 
 	if(is_null($date_format))
-		$date_format = $forum_date_formats[$user['date_format']];
+		$date_format = $forum_date_formats[$luna_user['date_format']];
 
 	if(is_null($time_format))
-		$time_format = $forum_time_formats[$user['time_format']];
+		$time_format = $forum_time_formats[$luna_user['time_format']];
 
 	$date = date($date_format, $timestamp);
 	$today = date($date_format, $now);

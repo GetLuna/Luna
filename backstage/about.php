@@ -32,7 +32,6 @@ require 'header.php';
 					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 9 <small>2.0.9</small></span></h2>
 						<ul class="changes">
-                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Profiles now show time in function of the profile\'s user', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Further improvements for PHP 7.2 support', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Updates some string to reflect current situations', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Site descriptions can now be up to 300 characters long instead of 255', 'luna') ?></li>
