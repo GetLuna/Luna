@@ -32,8 +32,9 @@ Luna supports updating from all versions of FluxBB since 1.4.0, all versions of 
     - **Luna 2**: all versions supported
 
 ## Links
- - Homepage: http://getluna.org/
- - Forums: http://forum.getluna.org/
- - Chat: https://gitter.im/GetLuna/Luna
- - Documentation: http://getluna.org/docs/
- - Development: http://github.com/getluna/luna/
+ - Homepage: http://getluna.org
+ - Forums: http://forum.getluna.org
+ - Blog: http://blog.getluna.org
+ - Chat: https://gitter.im/GetLuna/Lun
+ - Documentation: http://getluna.org/docs
+ - Development: http://github.com/getluna/luna

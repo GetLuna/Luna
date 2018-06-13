@@ -160,7 +160,7 @@ foreach ($plugins as $plugin_name => $plugin_entry) {
 $logout_url = '../login.php?action=out&amp;id=' . $luna_user['id'] . '&amp;csrf_token=' . luna_csrf_token();
 ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="http://getluna.org/docs/index.php" target="_blank"><i class="fas fa-fw fa-book"></i> <?php _e('Docs', 'luna')?></a></li>
+                            <li><a href="http://getluna.org/docs" target="_blank"><i class="fas fa-fw fa-book"></i> <?php _e('Docs', 'luna')?></a></li>
                             <li><a href="http://forum.getluna.org" target="_blank"><i class="fas fa-fw fa-life-ring"></i> <?php _e('Support', 'luna')?></a></li>
                             <?php echo $notification_menu_item ?>
                             <li class="dropdown usermenu">

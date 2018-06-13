@@ -666,7 +666,7 @@ foreach ($times as $time) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Cookie bar', 'luna')?><span class="help-block"><a href="http://getluna.org/docs/cookies.php"><?php _e('More info', 'luna')?></a></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Cookie bar', 'luna') ?><span class="help-block"><a href="http://getluna.org/docs/cookies"><?php _e('More info', 'luna') ?></a></span></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>

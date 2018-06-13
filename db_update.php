@@ -204,507 +204,502 @@ if (empty($stage)) {
 }
 
 switch ($stage) {
-    // Start by updating the database structure
-    case 'start':
-        $query_str = '?stage=preparse_comments';
+	// Start by updating the database structure
+	case 'start':
+		$query_str = '?stage=preparse_comments';
 
-        // If we don't need to update the database, skip this stage
-        if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::LUNA_DB_VERSION) {
-            break;
-        }
+		// If we don't need to update the database, skip this stage
+		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::LUNA_DB_VERSION)
+			break;
 
-        // Change the default style if the old doesn't exist anymore
-        if (!file_exists(LUNA_ROOT . 'themes/' . $luna_config['o_default_style'] . '/css/style.css')) {
-            $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . $db->escape($default_style) . '\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
-        }
+		// Change the default style if the old doesn't exist anymore
+		if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/css/style.css'))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
-        // Legacy support: FluxBB 1.4
+		// Legacy support: FluxBB 1.4
 
-        // Insert new config option o_feed_ttl
-        if (!array_key_exists('o_feed_ttl', $luna_config)) {
-            $db->query('INSERT INTO ' . $db->prefix . 'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
-        }
+		// Insert new config option o_feed_ttl
+		if (!array_key_exists('o_feed_ttl', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 
-        // Add the last_report_sent column to the users table and the g_report_flood column to the groups table
-        $db->add_field('users', 'last_report_sent', 'INT(10) UNSIGNED', true, null, 'last_email_sent') or error('Unable to add last_report_sent field', __FILE__, __LINE__, $db->error());
-        $db->add_field('groups', 'g_report_flood', 'SMALLINT(6)', false, 60, 'g_email_flood') or error('Unable to add g_report_flood field', __FILE__, __LINE__, $db->error());
+		// Add the last_report_sent column to the users table and the g_report_flood column to the groups table
+		$db->add_field('users', 'last_report_sent', 'INT(10) UNSIGNED', true, null, 'last_email_sent') or error('Unable to add last_report_sent field', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_report_flood', 'SMALLINT(6)', false, 60, 'g_email_flood') or error('Unable to add g_report_flood field', __FILE__, __LINE__, $db->error());
 
-        // Set non-default g_send_email, g_flood_email and g_flood_report values properly
-        $db->query('UPDATE ' . $db->prefix . 'groups SET g_send_email = 0 WHERE g_id = 3') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
-        $db->query('UPDATE ' . $db->prefix . 'groups SET g_email_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
-        $db->query('UPDATE ' . $db->prefix . 'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
+		// Set non-default g_send_email, g_flood_email and g_flood_report values properly
+		$db->query('UPDATE '.$db->prefix.'groups SET g_send_email = 0 WHERE g_id = 3') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
 
-        // if we don't have the forum_subscriptions table, create it
-        if (!$db->table_exists('forum_subscriptions')) {
-            $schema = array(
-                'FIELDS' => array(
-                    'user_id' => array(
-                        'datatype' => 'INT(10) UNSIGNED',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'forum_id' => array(
-                        'datatype' => 'INT(10) UNSIGNED',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                ),
-                'PRIMARY KEY' => array('user_id', 'forum_id'),
-            );
+		// if we don't have the forum_subscriptions table, create it
+		if (!$db->table_exists('forum_subscriptions'))
+		{
+			$schema = array(
+				'FIELDS'		=> array(
+					'user_id'		=> array(
+						'datatype'		=> 'INT(10) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'forum_id'		=> array(
+						'datatype'		=> 'INT(10) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('user_id', 'forum_id')
+			);
 
-            $db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
-        }
+			$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
+		}
 
-        // Insert new config option o_forum_subscriptions
-        if (!array_key_exists('o_forum_subscriptions', $luna_config)) {
-            $db->query('INSERT INTO ' . $db->prefix . 'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
-        }
+		// Insert new config option o_forum_subscriptions
+		if (!array_key_exists('o_forum_subscriptions', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
 
-        // For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
-        if ($db_type == 'mysql' || $db_type == 'mysqli') {
-            $db->query('ALTER TABLE ' . $db->prefix . 'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
-        }
+		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
+		if ($db_type == 'mysql' || $db_type == 'mysqli')
+			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
-        // Legacy support: FluxBB 1.5
-        $db->drop_field($db->prefix . 'groups', 'g_promote_min_posts', 'INT(10) UNSIGNED', false, 0, 'g_user_title') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_threads') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'groups', 'g_mod_promote_users', 'TINYINT(1)', false, 0, 'g_mod_ban_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
-        if (!$db->table_exists('ranks')) {
-            $schema = array(
-                'FIELDS' => array(
-                    'id' => array(
-                        'datatype' => 'SERIAL',
-                        'allow_null' => false,
-                    ),
-                    'rank' => array(
-                        'datatype' => 'VARCHAR(50)',
-                        'allow_null' => false,
-                        'default' => '\'\'',
-                    ),
-                    'min_comments' => array(
-                        'datatype' => 'MEDIUMINT(8) UNSIGNED',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                ),
-                'PRIMARY KEY' => array('id'),
-            );
+		// Legacy support: FluxBB 1.5
+		$db->drop_field($db->prefix.'groups', 'g_promote_min_posts', 'INT(10) UNSIGNED', false, 0, 'g_user_title') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_threads') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_mod_promote_users', 'TINYINT(1)', false, 0, 'g_mod_ban_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
+		if (!$db->table_exists('ranks')) {
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'rank'			=> array(
+						'datatype'		=> 'VARCHAR(50)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'min_comments'	=> array(
+						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
 
-            $db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
-        }
-        build_config(1, 'o_ranks', '1');
+			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
+		}
+		build_config(1, 'o_ranks', '1');
 
-        // ModernBB 2.0 upgrade support
-        build_config(0, 'o_quickjump');
-        build_config(0, 'o_show_dot');
+		// ModernBB 2.0 upgrade support
+		build_config(0, 'o_quickjump');
+		build_config(0, 'o_show_dot');
 
-        // ModernBB 3.2 upgrade support
-        $db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
-        build_config(1, 'o_first_run_guests', '1');
-        build_config(1, 'o_first_run_message');
-        build_config(0, 'o_redirect_delay');
-        build_config(1, 'o_show_first_run', '1');
+		// ModernBB 3.2 upgrade support
+		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_first_run_guests', '1');
+		build_config(1, 'o_first_run_message');
+		build_config(0, 'o_redirect_delay');
+		build_config(1, 'o_show_first_run', '1');
 
-        // ModernBB 3.3 upgrade support
-        $db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
-        build_config(1, 'o_enable_advanced_search', '1');
+		// ModernBB 3.3 upgrade support
+		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_enable_advanced_search', '1');
 
-        // ModernBB 3.4 upgrade support
-        build_config(1, 'o_cookie_bar', '0');
-        build_config(1, 'o_moderated_by', '1');
+		// ModernBB 3.4 upgrade support
+		build_config(1, 'o_cookie_bar', '0');
+		build_config(1, 'o_moderated_by', '1');
 
-        // ModernBB 3.4 Update 1 upgrade support
-        $db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
-        $db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
-        $db->drop_field('users', 'icq') or error('Unable to drop icq field from user table', __FILE__, __LINE__, $db->error());
-        $db->drop_field('users', 'jabber') or error('Unable to drop jabber field', __FILE__, __LINE__, $db->error());
-        $db->drop_field('users', 'yahoo') or error('Unable to drop yahoo field from user table', __FILE__, __LINE__, $db->error());
+		// ModernBB 3.4 Update 1 upgrade support
+		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'icq') or error('Unable to drop icq field from user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'jabber') or error('Unable to drop jabber field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'yahoo') or error('Unable to drop yahoo field from user table', __FILE__, __LINE__, $db->error());
 
-        // ModernBB 3.5 upgrade support
-        $db->add_field('forums', 'parent_id', 'INT', true, 0) or error('Unable to add parent_id field', __FILE__, __LINE__, $db->error());
-        build_config(0, 'o_antispam_api');
-        build_config(1, 'o_core_version', Version::LUNA_CORE_VERSION);
-        build_config(0, 'o_index_update_check');
+		// ModernBB 3.5 upgrade support
+		$db->add_field('forums', 'parent_id', 'INT', true, 0) or error('Unable to add parent_id field', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_antispam_api');
+		build_config(1, 'o_core_version', Version::LUNA_CORE_VERSION);
+		build_config(0, 'o_index_update_check');
 
-        // Luna 1.0 upgrade support
-        $db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
-        $db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'color_scheme', 'INT(25)', false, rand(1, 15)) or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
-        $db->drop_field($db->prefix . 'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
+		// Luna 1.0 upgrade support
+		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'color_scheme', 'INT(25)', false, rand(1, 15)) or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
-        build_config(0, 'o_additional_navlinks');
-        build_config(1, 'o_admin_note');
-        build_config(0, 'o_admin_notes');
-        build_config(1, 'o_back_to_top', '1');
-        build_config(0, 'o_backstage_dark');
-        build_config(1, 'o_board_statistics', '1');
-        build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
-        build_config(1, 'o_copyright_type', '0');
-        build_config(1, 'o_custom_copyright');;
-        build_config(1, 'o_emoji_size', '16');
-        build_config(1, 'o_first_run_backstage', '0');
-        build_config(0, 'o_forum_new_style');
-        build_config(0, 'o_header_desc');
-        build_config(1, 'o_header_search', '1');
-        build_config(0, 'o_header_title');
-        build_config(0, 'o_menu_title');
-        build_config(0, 'o_notifications');
-        build_config(1, 'o_notification_flyout', '1');
-        build_config(0, 'o_post_responsive');
-        build_config(0, 'o_private_message');
-        build_config(0, 'o_quickpost');
-        build_config(0, 'o_reading_list');
-        build_config(1, 'o_show_copyright', '1');
-        build_config(0, 'o_show_index');
-        build_config(0, 'o_show_rules');
-        build_config(0, 'o_show_search');
-        build_config(0, 'o_show_userlist');
-        build_config(0, 'o_show_version');
-        build_config(0, 'o_smilies');
-        build_config(0, 'o_user_menu_sidebar');
-        build_config(0, 'p_message_bbcode');
+		build_config(0, 'o_additional_navlinks');
+		build_config(1, 'o_admin_note');
+		build_config(0, 'o_admin_notes');
+		build_config(1, 'o_back_to_top', '1');
+		build_config(0, 'o_backstage_dark');
+		build_config(1, 'o_board_statistics', '1');
+		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
+		build_config(1, 'o_copyright_type', '0');
+		build_config(1, 'o_custom_copyright');
+		build_config(1, 'o_emoji', '1');
+		build_config(1, 'o_emoji_size', '16');
+		build_config(1, 'o_first_run_backstage', '0');
+		build_config(0, 'o_forum_new_style');
+		build_config(0, 'o_header_desc');
+		build_config(1, 'o_header_search', '1');
+		build_config(0, 'o_header_title');
+		build_config(0, 'o_menu_title');
+		build_config(0, 'o_notifications');
+		build_config(1, 'o_notification_flyout', '1');
+		build_config(0, 'o_post_responsive');
+		build_config(0, 'o_private_message');
+		build_config(0, 'o_quickpost');
+		build_config(0, 'o_reading_list');
+		build_config(1, 'o_show_copyright', '1');
+		build_config(0, 'o_show_index');
+		build_config(0, 'o_show_rules');
+		build_config(0, 'o_show_search');
+		build_config(0, 'o_show_userlist');
+		build_config(0, 'o_show_version');
+		build_config(0, 'o_smilies');
+		build_config(1, 'o_update_ring', '1');
+		build_config(0, 'o_user_menu_sidebar');
+		build_config(0, 'p_message_bbcode');
 
-        // Add the menu table
-        if (!$db->table_exists('menu')) {
-            $schema = array(
-                'FIELDS' => array(
-                    'id' => array(
-                        'datatype' => 'SERIAL',
-                        'allow_null' => false,
-                    ),
-                    'url' => array(
-                        'datatype' => 'VARCHAR(200)',
-                        'allow_null' => false,
-                        'default' => '\'\'',
-                    ),
-                    'name' => array(
-                        'datatype' => 'VARCHAR(200)',
-                        'allow_null' => false,
-                        'default' => '\'\'',
-                    ),
-                    'disp_position' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'visible' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => '1',
-                    ),
-                    'sys_entry' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => 0,
-                    ),
-                ),
-                'PRIMARY KEY' => array('id'),
-            );
+		// Add the menu table
+		if (!$db->table_exists('menu')) {
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'url'			=> array(
+						'datatype'		=> 'VARCHAR(200)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'name'			=> array(
+						'datatype'		=> 'VARCHAR(200)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'disp_position'	=> array(
+						'datatype'		=> 'INT(10)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'visible'			=> array(
+						'datatype'		=> 'INT(10)',
+						'allow_null'	=> false,
+						'default'		=> '1'
+					),
+					'sys_entry'		=> array(
+						'datatype'		=> 'INT(10)',
+						'allow_null'	=> false,
+						'default'		=> 0
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
 
-            $db->create_table('menu', $schema) or error('Unable to create menu table', __FILE__, __LINE__, $db->error());
+			$db->create_table('menu', $schema) or error('Unable to create menu table', __FILE__, __LINE__, $db->error());
 
-            $db->query('INSERT INTO ' . $db_prefix . 'menu (url, name, disp_position, visible, sys_entry) VALUES(\'index.php\', \'Index\', 1, \'1\', 1)')
-            or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'index.php\', \'Index\', 1, \'1\', 1)')
+				or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-            $db->query('INSERT INTO ' . $db_prefix . 'menu (url, name, disp_position, visible, sys_entry) VALUES(\'userlist.php\', \'Users\', 2, \'1\', 1)')
-            or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'userlist.php\', \'Users\', 2, \'1\', 1)')
+				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-            $db->query('INSERT INTO ' . $db_prefix . 'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
-            or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-        }
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
+				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+		}
 
-        // Add the messages table
-        if (!$db->table_exists('messages')) {
-            $schema = array(
-                'FIELDS' => array(
-                    'id' => array(
-                        'datatype' => 'SERIAL',
-                        'allow_null' => false,
-                    ),
-                    'shared_id' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'last_shared_id' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'last_comment' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => true,
-                        'default' => '0',
-                    ),
-                    'last_comment_id' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => true,
-                        'default' => '0',
-                    ),
-                    'last_commenter' => array(
-                        'datatype' => 'VARCHAR(255)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'owner' => array(
-                        'datatype' => 'INTEGER',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'subject' => array(
-                        'datatype' => 'VARCHAR(255)',
-                        'allow_null' => false,
-                    ),
-                    'message' => array(
-                        'datatype' => 'MEDIUMTEXT',
-                        'allow_null' => false,
-                    ),
-                    'hide_smilies' => array(
-                        'datatype' => 'TINYINT(1)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'show_message' => array(
-                        'datatype' => 'TINYINT(1)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'sender' => array(
-                        'datatype' => 'VARCHAR(200)',
-                        'allow_null' => false,
-                    ),
-                    'receiver' => array(
-                        'datatype' => 'VARCHAR(200)',
-                        'allow_null' => true,
-                    ),
-                    'sender_id' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'receiver_id' => array(
-                        'datatype' => 'VARCHAR(255)',
-                        'allow_null' => true,
-                        'default' => '0',
-                    ),
-                    'sender_ip' => array(
-                        'datatype' => 'VARCHAR(39)',
-                        'allow_null' => true,
-                    ),
-                    'commented' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                    ),
-                    'showed' => array(
-                        'datatype' => 'TINYINT(1)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                ),
-                'PRIMARY KEY' => array('id'),
-            );
+		// Add the messages table
+		if (!$db->table_exists('messages')) {
+			$schema = array(
+				'FIELDS'			=> array(
+					'id'				=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'shared_id'		=> array(
+						'datatype'		=> 'INT(10)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'last_shared_id'	=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'last_comment'			=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> true,
+						'default'			=> '0'
+					),
+					'last_comment_id'		=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> true,
+						'default'			=> '0'
+					),
+					'last_commenter'		=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'owner'				=> array(
+						'datatype'			=> 'INTEGER',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'subject'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false
+					),
+					'message'			=> array(
+						'datatype'			=> 'MEDIUMTEXT',
+						'allow_null'		=> false
+					),
+					'hide_smilies'	=> array(
+						'datatype'		=> 'TINYINT(1)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'show_message'	=> array(
+						'datatype'		=> 'TINYINT(1)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'sender'	=> array(
+						'datatype'		=> 'VARCHAR(200)',
+						'allow_null'	=> false
+					),
+					'receiver'	=> array(
+						'datatype'		=> 'VARCHAR(200)',
+						'allow_null'	=> true
+					),
+					'sender_id'	=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'receiver_id'	=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> true,
+						'default'			=> '0'
+					),
+					'sender_ip'	=> array(
+						'datatype'			=> 'VARCHAR(39)',
+						'allow_null'		=> true
+					),
+					'commented'	=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+					),
+					'showed'	=> array(
+						'datatype'			=> 'TINYINT(1)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					)
+				),
+				'PRIMARY KEY'		=> array('id'),
+			);
 
-            $db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
-        }
+			$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
+		}
 
-        // Add the messages table
-        if (!$db->table_exists('notifications')) {
-            $schema = array(
-                'FIELDS' => array(
-                    'id' => array(
-                        'datatype' => 'SERIAL',
-                        'allow_null' => false,
-                    ),
-                    'user_id' => array(
-                        'datatype' => 'INT(10)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'message' => array(
-                        'datatype' => 'VARCHAR(255)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'icon' => array(
-                        'datatype' => 'VARCHAR(255)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'link' => array(
-                        'datatype' => 'VARCHAR(255)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'time' => array(
-                        'datatype' => 'INT(11)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                    'viewed' => array(
-                        'datatype' => 'TINYINT(1)',
-                        'allow_null' => false,
-                        'default' => '0',
-                    ),
-                ),
-                'PRIMARY KEY' => array('id'),
-            );
+		// Add the messages table
+		if (!$db->table_exists('notifications')) {
+			$schema = array(
+				'FIELDS'			=> array(
+					'id'				=> array(
+						'datatype'			=> 'SERIAL',
+						'allow_null'		=> false
+					),
+					'user_id'			=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'message'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'icon'				=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'link'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'time'				=> array(
+						'datatype'			=> 'INT(11)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'viewed'			=> array(
+						'datatype'		=> 'TINYINT(1)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+				),
+				'PRIMARY KEY'		=> array('id'),
+			);
 
-            $db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
-        }
+			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
+		}
 
-        // Remove reading_list table
-        if ($db->table_exists('reading_list')) {
-            $db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
-        }
+		// Remove reading_list table
+		if ($db->table_exists('reading_list'))
+			$db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
 
-        // Remove sending_lists table
-        if ($db->table_exists('sending_lists')) {
-            $db->drop_table('sending_lists') or error('Unable to drop sending_lists table', __FILE__, __LINE__, $db->error());
-        }
+		// Remove sending_lists table
+		if ($db->table_exists('sending_lists'))
+			$db->drop_table('sending_lists') or error('Unable to drop sending_lists table', __FILE__, __LINE__, $db->error());
 
-        // Remove contacts table
-        if ($db->table_exists('contacts')) {
-            $db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
-        }
+		// Remove contacts table
+		if ($db->table_exists('contacts'))
+			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
-        // Luna 1.1 upgrade support
-        $db->add_field('users', 'accent', 'INT(10)', false, rand(1, 15)) or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
+		// Luna 1.1 upgrade support
+		$db->add_field('users', 'accent', 'INT(10)', false, rand(1, 15)) or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
 
-        build_config(1, 'o_allow_accent_color', '1');
-        build_config(1, 'o_allow_night_mode', '1');
-        build_config(1, 'o_announcement_title', '');
-        build_config(1, 'o_announcement_type', 'info');
-        build_config(1, 'o_board_tags', '');
-        build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies.php');
-        build_config(1, 'o_default_accent', '2');
+		build_config(1, 'o_allow_accent_color', '1');
+		build_config(1, 'o_allow_night_mode', '1');
+		build_config(1, 'o_announcement_title', '');
+		build_config(1, 'o_announcement_type', 'info');
+		build_config(1, 'o_board_tags', '');
+		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies');
+		build_config(1, 'o_default_accent', '2');
 
-        // Luna 1.2 upgrade support
-        $db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
-        $db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-        $db->add_field('forums', 'icon', 'VARCHAR(50)', true, null) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
+		// Luna 1.2 upgrade support
+		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
 
-        // Luna 1.3 upgrade support
-        $db->rename_table('subscriptions', 'thread_subscriptions');
-        $db->rename_table('topic_subscriptions', 'thread_subscriptions');
-        $db->rename_table('topics', 'threads');
-        $db->rename_table('posts', 'comments');
-        $db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
-        $db->rename_field('comments', 'topic_id', 'thread_id', 'INT(10)');
-        $db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
-        $db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
-        $db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_post_replies', 'g_comment', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_post_flood', 'g_comment_flood', 'SMALLINT(6)');
-        $db->rename_field('groups', 'g_pm', 'g_inbox', 'TINYINT(1)');
-        $db->rename_field('groups', 'g_pm_limit', 'g_inbox_limit', 'INT');
-        $db->rename_field('forum_perms', 'post_topics', 'create_threads', 'TINYINT(1)');
-        $db->rename_field('forum_perms', 'post_replies', 'comment', 'TINYINT(1)');
-        $db->rename_field('forums', 'num_posts', 'num_comments', 'MEDIUMINT(8)');
-        $db->rename_field('forums', 'num_topics', 'num_threads', 'MEDIUMINT(8)');
-        $db->rename_field('users', 'num_posts', 'num_comments', 'INT(10)');
-        $db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
-        $db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
-        $db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
-        $db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
-        $db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
-        $db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
-        $db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
-        $db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
-        $db->rename_field('threads', 'last_post_id', 'last_comment_id', 'INT(10)');
-        $db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
-        $db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
-        $db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
-        $db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
-        $db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
-        $db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
-        $db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
-        $db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
-        $db->rename_field('comments', 'poster_ip', 'commenter_ip', 'VARCHAR(39)');
-        $db->rename_field('comments', 'poster_email', 'commenter_email', 'VARCHAR(80)');
-        $db->rename_field('threads', 'poster', 'commenter', 'VARCHAR(200)');
-        $db->rename_field('comments', 'posted', 'commented', 'INT(10)');
-        $db->rename_field('threads', 'posted', 'commented', 'INT(10)');
-        $db->rename_field('messages', 'posted', 'commented', 'INT(10)');
-        $db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
-        $db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
-        $db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
-        $db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
-        $db->rename_field('users', 'use_pm', 'use_inbox', 'TINYINT(1)');
-        $db->rename_field('users', 'notify_pm', 'notify_inbox', 'TINYINT(1)');
-        $db->rename_field('users', 'notify_pm_full', 'notify_inbox_full', 'TINYINT(1)');
-        $db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
+		// Luna 1.3 upgrade support
+		$db->rename_table('subscriptions', 'thread_subscriptions');
+		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
+		$db->rename_table('topics', 'threads');
+		$db->rename_table('posts', 'comments');
+		$db->rename_field('threads', 'sticky', 'pinned', 'TINYINT(1)');
+		$db->rename_field('comments', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('reports', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('thread_subscriptions', 'topic_id', 'thread_id', 'INT(10)');
+		$db->rename_field('groups', 'g_delete_topics', 'g_delete_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_soft_delete_topics', 'g_soft_delete_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_topics', 'g_create_threads', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_edit_posts', 'g_edit_comments', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_delete_posts', 'g_delete_comments', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_soft_delete_posts', 'g_soft_delete_comments', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_replies', 'g_comment', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_post_flood', 'g_comment_flood', 'SMALLINT(6)');
+		$db->rename_field('groups', 'g_pm', 'g_inbox', 'TINYINT(1)');
+		$db->rename_field('groups', 'g_pm_limit', 'g_inbox_limit', 'INT');
+		$db->rename_field('forum_perms', 'post_topics', 'create_threads', 'TINYINT(1)');
+		$db->rename_field('forum_perms', 'post_replies', 'comment', 'TINYINT(1)');
+		$db->rename_field('forums', 'num_posts', 'num_comments', 'MEDIUMINT(8)');
+		$db->rename_field('forums', 'num_topics', 'num_threads', 'MEDIUMINT(8)');
+		$db->rename_field('users', 'num_posts', 'num_comments', 'INT(10)');
+		$db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
+		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
+		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
+		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('forums', 'last_poster_id', 'last_commenter_id', 'INT(10)');
+		$db->rename_field('online', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('threads', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('threads', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('threads', 'last_poster', 'last_commenter', 'VARCHAR(200)');
+		$db->rename_field('threads', 'last_poster_id', 'last_commenter_id', 'INT(10)');
+		$db->rename_field('users', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('messages', 'last_post', 'last_comment', 'INT(10)');
+		$db->rename_field('messages', 'last_post_id', 'last_comment_id', 'INT(10)');
+		$db->rename_field('messages', 'last_poster', 'last_commenter', 'VARCHAR(255)');
+		$db->rename_field('comments', 'poster', 'commenter', 'VARCHAR(200)');
+		$db->rename_field('comments', 'poster_id', 'commenter_id', 'INT(10)');
+		$db->rename_field('comments', 'poster_ip', 'commenter_ip', 'VARCHAR(39)');
+		$db->rename_field('comments', 'poster_email', 'commenter_email', 'VARCHAR(80)');
+		$db->rename_field('threads', 'poster', 'commenter', 'VARCHAR(200)');
+		$db->rename_field('comments', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('threads', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('messages', 'posted', 'commented', 'INT(10)');
+		$db->rename_field('threads', 'first_post_id', 'first_comment_id', 'INT(10)');
+		$db->rename_field('reports', 'post_id', 'comment_id', 'INT(10)');
+		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
+		$db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
+		$db->rename_field('users', 'use_pm', 'use_inbox', 'TINYINT(1)');
+		$db->rename_field('users', 'notify_pm', 'notify_inbox', 'TINYINT(1)');
+		$db->rename_field('users', 'notify_pm_full', 'notify_inbox_full', 'TINYINT(1)');
+		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 
-        build_config(0, 'o_topic_review');
-        build_config(0, 'o_video_height');
-        build_config(0, 'o_video_width');
-        build_config(1, 'o_allow_center', 0);
-        build_config(1, 'o_allow_size', 0);
-        build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
-        build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
-        build_config(2, 'o_disp_threads', 'o_disp_topics_default');
-        build_config(2, 'o_disp_comments', 'o_disp_posts_default');
-        build_config(2, 'o_thread_views', 'o_topic_views');
-        build_config(2, 'o_show_comment_count', 'o_show_post_count');
-        build_config(1, 'o_has_commented', (isset($luna_config['o_has_posted']) ? $luna_config['o_has_posted'] : '1'));
-        build_config(2, 'o_enable_inbox', 'o_pms_enabled');
-        build_config(2, 'o_max_receivers', 'o_pms_max_receiver');
-        build_config(2, 'o_message_per_page', 'o_pms_mess_per_page');
-        build_config(2, 'o_inbox_notification', 'o_pms_notification');
-        build_config(0, 'o_has_posted');
+		build_config(0, 'o_topic_review');
+		build_config(0, 'o_video_height');
+		build_config(0, 'o_video_width');
+		build_config(1, 'o_allow_center', 0);
+		build_config(1, 'o_allow_size', 0);
+		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
+		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
+		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
+		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
+		build_config(2, 'o_thread_views', 'o_topic_views');
+		build_config(2, 'o_show_comment_count', 'o_show_post_count');
+		build_config(1, 'o_has_commented', (isset($luna_config['o_has_posted']) ? $luna_config['o_has_posted'] : '1'));
+		build_config(2, 'o_enable_inbox', 'o_pms_enabled');
+		build_config(2, 'o_max_receivers', 'o_pms_max_receiver');
+		build_config(2, 'o_message_per_page', 'o_pms_mess_per_page');
+		build_config(2, 'o_inbox_notification', 'o_pms_notification');
+		build_config(0, 'o_has_posted');
 
-        $db->query('ALTER TABLE ' . $db->prefix . 'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
-        $db->query('UPDATE ' . $db->prefix . 'users SET num_comments=0 WHERE num_comments=null') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
+		$db->query('ALTER TABLE '.$db->prefix.'users CHANGE num_comments num_comments INT(10) NOT NULL DEFAULT \'0\'') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET num_comments=0 WHERE num_comments=null') or error('Unable to alter num_comments field', __FILE__, __LINE__, $db->error());
 
-        $db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
+		$db->add_field('threads', 'important', 'TINYINT(1)', true) or error('Unable to add important field', __FILE__, __LINE__, $db->error());
 
-        // FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
-        $db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
+			// FluxBB 1.4 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->alter_field('comments', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
-        // ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
-        $db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+			// ModernBB 2.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('comments', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-        // Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
-        build_config(1, 'o_enable_inbox', '1');
-        build_config(1, 'o_max_receivers', '5');
-        build_config(1, 'o_message_per_page', '10');
-        build_config(1, 'o_inbox_notification', '1');
+			// Luna 1.0 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			build_config(1, 'o_enable_inbox', '1');
+			build_config(1, 'o_max_receivers', '5');
+			build_config(1, 'o_message_per_page', '10');
+			build_config(1, 'o_inbox_notification', '1');
 
-        $db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
-        $db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
-        $db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'use_inbox', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'notify_inbox', 'TINYINT(1)', false, '1', 'use_inbox') or error('Unable to add column "notify_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'notify_inbox_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "notify_inbox_full" to table "users"', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'num_inbox', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_inbox" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('groups', 'g_inbox', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_inbox" to table "groups"', __FILE__, __LINE__, $db->error());
+			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
+			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'use_inbox', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_inbox" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'notify_inbox', 'TINYINT(1)', false, '1', 'use_inbox') or error('Unable to add column "notify_inbox" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'notify_inbox_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "notify_inbox_full" to table "users"', __FILE__, __LINE__, $db->error());
+			$db->add_field('users', 'num_inbox', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_inbox" to table "users"', __FILE__, __LINE__, $db->error());
 
-        // Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
-        $db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
-        $db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
+			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('groups', 'g_soft_delete_comments', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_comments field', __FILE__, __LINE__, $db->error());
+			$db->add_field('groups', 'g_soft_delete_threads', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_threads field', __FILE__, __LINE__, $db->error());
 
-        // Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
-        $db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-        $db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+			// Luna 1.2 upgrade support items that have to be executed after the Luna 1.3 upgrade
+			$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+			$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 
-        $db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
-        $db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
-        $db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, '\'UTC\'') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
-        build_config(0, 'o_default_timezone');
-        build_config(1, 'o_timezone', 'UTC');
-
+		$db->drop_field('users', 'timezone') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'dst') or error('Unable to drop timezone field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'php_timezone', 'VARCHAR(100)', false, '\'UTC\'') or error('Unable to add php_timezone field', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_default_timezone');
+		build_config(1, 'o_timezone', 'UTC');
+        
         // Luna 2.0 upgrade support
         build_config(1, 'o_use_custom_css', '0');
         build_config(1, 'o_custom_css', 'NULL');

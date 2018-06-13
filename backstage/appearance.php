@@ -262,7 +262,7 @@ foreach ($accents as $temp) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Font Awesome Pro', 'luna')?><span class="help-block"><?php printf('<a href="https://getluna.org/docs/fontawesome.php">' . __('Install Font Awesome Pro', 'luna') . '</a>')?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Font Awesome Pro', 'luna')?><span class="help-block"><?php printf('<a href="https://getluna.org/docs/fontawesome">' . __('Install Font Awesome Pro', 'luna') . '</a>')?></span></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
