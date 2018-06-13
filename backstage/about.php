@@ -38,6 +38,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Further refinements to the new Backstage design', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved night mode with better contrast and darker design', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('ALPHA - Backstage accent settings no longer trigger a warning', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('ALPHA - $luna_config is now used instead of $config for some settings, as it should be', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
