@@ -1,0 +1,52 @@
+.list-group-item {
+    &.clearfix {
+        padding: 5px 5px 7px;
+        
+        h5 {
+            margin: 2px 0 0 0;
+            font-size: 20px;
+        }
+        
+        h6 {
+            margin: 4px 0 0 0;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .forum-title,
+        .thread-title,
+        .thread-date {
+            font-size: 17px;
+        }
+        
+        .thread-title {
+            white-space: nowrap;
+        }
+        
+        .forum-description,
+        .thread-desc,
+        .thread-meta {
+            font-size: 13px;
+        }
+        
+        .bytime {
+            margin-top: 3px;
+        }
+    }
+}
+
+.title-block + .list-group-item.clearfix{
+    margin-top: 1px;
+}
+
+.title-block + .list-group-thread + .btn-pagination {
+    margin-bottom: 0;
+}
+
+.subforumview .title-block + .list-group-thread.subforum-list {
+    display: none;
+}
+
+.list-group-thread.subforum-list + .btn-pagination {
+    margin-top: 1px;
+}
