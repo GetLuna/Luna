@@ -34,6 +34,8 @@ require 'header.php';
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Further improvements for PHP 7.2 support', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Updates some string to reflect current situations', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('"Check for updates" has been updated to match the new site and repo structure', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Updates references to GetLuna.org to match new site', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Site descriptions can now be up to 300 characters long instead of 255', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved errors for search queries', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Underscores are now properly escaped in LIKE-queries', 'luna') ?></li>
