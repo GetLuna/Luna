@@ -37,13 +37,13 @@ function generate_update_cache() {
 
 	// Get the version number from GitHub
 	if ($luna_config['o_update_ring'] == 0)
-		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/version.txt'));
+		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/master/version.txt'));
 	elseif ($luna_config['o_update_ring'] == 1)
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/master/version.txt'));
 	elseif ($luna_config['o_update_ring'] == 2)
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
 	elseif ($luna_config['o_update_ring'] == 3)
-		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/nightly/version.txt'));
+		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
 
 	if (file_exists('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/drop.md'))
 		$support = 'none';
