@@ -169,7 +169,7 @@ if (isset($_GET['saved'])) {
 	<div class="col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Luna software updates', 'luna')?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fas fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna')?></a></span></h3>
+				<h3 class="panel-title"><?php _e('Luna software updates', 'luna')?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fas fa-fw fa-sync"></span> <?php _e('Check for updates', 'luna')?></a></span></h3>
 			</div>
 			<div class="panel-body">
 <?php if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) { ?>
