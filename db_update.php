@@ -366,7 +366,6 @@ switch ($stage) {
 		build_config(0, 'o_show_userlist');
 		build_config(0, 'o_show_version');
 		build_config(0, 'o_smilies');
-		build_config(1, 'o_update_ring', '1');
 		build_config(0, 'o_user_menu_sidebar');
 		build_config(0, 'p_message_bbcode');
 
