@@ -15,7 +15,7 @@ $xmlstr = <<<XML
 	<id>sunrise</id>
 	<name>Sunrise</name>
 	<developer>Studio 384</developer>
-	<date>12 June 2018</date>
+	<date>14 June 2018</date>
 	<version>3.0.9</version>
 	<minversion>2.0.0</minversion>
 	<maxversion>2.0.9</maxversion>
