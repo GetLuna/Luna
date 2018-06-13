@@ -38,6 +38,8 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Updates references to GetLuna.org to match new site', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Site descriptions can now be up to 300 characters long instead of 255', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved errors for search queries', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Adds a number of files to Git that GitHub likes you to have', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Generated downloads no longer contain files you don\'t need', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Underscores are now properly escaped in LIKE-queries', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes an issue where SMTP data could not be set due to a character limit', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Calculations now work properly in debug mode regardless of localization', 'luna') ?></li>
