@@ -1459,6 +1459,11 @@ hr {
     padding-right: 15px;
 }
 
+.list-group-luna-row {
+    display: table;
+    width: 100%;
+}
+
 .list-group {
     margin-bottom: 10px;
 }
