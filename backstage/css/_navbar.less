@@ -55,22 +55,32 @@
                 }
             }
         }
+
+        @media all and (max-width:767px) {
+            .avatar {
+                display: inline !important;
+            }
+
+            .avatar + span {
+                display: inline !important;
+            }
+        }
         
         .open > a,
         .open > a:hover,
         .open > a:focus {
-            background-color: darken(@accent, 5%);
+            background-color: darken(@accent, 5%) !important;
         }
         
         .dropdown-menu {
             padding: 0;
-            background-color: darken(@accent, 5%);
+            background-color: darken(@accent, 5%) !important;
             border: none;
             
             a {
-                color: #fff;
-                padding-top: 10px;
-                padding-bottom: 10px;
+                color: #fff !important;
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
                 
                 &:hover {
                     background-color: darken(@accent, 10%);
