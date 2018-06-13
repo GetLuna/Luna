@@ -1270,9 +1270,8 @@ function get_icon($icon, $style = null) {
 function format_time($timestamp, $date_only = false, $date_format = null, $time_format = null, $time_only = false, $no_text = false) {
 	global $luna_config, $luna_user, $forum_date_formats, $forum_time_formats;
 
-    if ($timestamp == '') {
-        return __('Never', 'luna');
-    }
+	if ($timestamp == '')
+		return __('Never', 'luna');
 
 	$now = time();
 
@@ -1281,10 +1280,6 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 
 	if(is_null($time_format))
 		$time_format = $forum_time_formats[$luna_user['time_format']];
-
-    if (is_null($time_format)) {
-        $time_format = $forum_time_formats[$luna_user['time_format']];
-    }
 
     $date = date($date_format, $timestamp);
     $today = date($date_format, $now);

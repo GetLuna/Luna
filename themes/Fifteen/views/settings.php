@@ -423,7 +423,7 @@ else
 								echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
 								if ($user['time_format'] == $key)
 									echo ' selected';
-								echo '>'. format_time(time(), false, null, $time_format, true, true, $user);
+								echo '>'. format_time(time(), false, null, $time_format, true, true);
 								if ($key == 0)
 									echo ' ('.__('Default', 'luna').')';
 								echo "</option>\n";
@@ -441,7 +441,7 @@ else
 								echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
 								if ($user['date_format'] == $key)
 									echo ' selected';
-								echo '>'. format_time(time(), true, $date_format, null, false, true, $user);
+								echo '>'. format_time(time(), true, $date_format, null, false, true);
 								if ($key == 0)
 									echo ' ('.__('Default', 'luna').')';
 								echo "</option>\n";
