@@ -1,9 +1,10 @@
-    {
-        "id": "fifteen",
-        "name": "Fifteen",
-        "developer": "Studio 384",
-        "date": "14 June 2018",
-        "version": "2.1-alpha.2",
-        "minversion": "2.0.0",
-        "maxversion": "2.1-alpha.2"
-    }
+{
+    "id": "fifteen",
+    "name": "Fifteen",
+    "developer": "Studio 384",
+    "description": "A beautiful, modern design for your board. This was the default theme for Luna until version 2.0.",
+    "date": "14 June 2018",
+    "version": "2.1-alpha.2",
+    "minversion": "2.0.0",
+    "maxversion": "2.1-alpha.2"
+}
