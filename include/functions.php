@@ -1821,8 +1821,8 @@ function forum_list_accents() {
     $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/theme.json');
     $theme = json_decode($theme_json);
 
-    if (isset($theme['parent'])) {
-        $cur_theme = $theme['parent'];
+    if (isset($theme->parent)) {
+        $cur_theme = $theme->parent;
     } else {
         $cur_theme = $luna_config['o_default_style'];
     }
@@ -2262,10 +2262,10 @@ function get_view_path($object) {
     $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/theme.json');
     $theme = json_decode($theme_json);
 
-    if (($theme['parent'] == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/objects/'.$object))) {
+    if (($theme->parent == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/objects/'.$object))) {
         return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/objects/'.$object;
     } else {
-        return LUNA_ROOT.'themes/'.$theme['parent'].'/objects/'.$object;
+        return LUNA_ROOT.'themes/'.$theme->parent.'/objects/'.$object;
     }
 
 }
@@ -2279,10 +2279,10 @@ function load_page($page) {
     $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/theme.json');
     $theme = json_decode($theme_json);
 
-    if (($theme['parent'] == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/views/'.$page))) {
+    if (($theme->parent == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/views/'.$page))) {
         return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/views/'.$page;
     } else {
-        return LUNA_ROOT.'themes/'.$theme['parent'].'/views/'.$page;
+        return LUNA_ROOT.'themes/'.$theme->parent.'/views/'.$page;
     }
 
 }
@@ -2297,15 +2297,15 @@ function load_css() {
     $theme = json_decode($theme_json);
 
     // If there is a parent theme, we need to load its CSS too
-    if ($theme['parent'] != '') {
-        echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme['parent'].'/css/style.css" />';
+    if ($theme->parent != '') {
+        echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme->parent.'/css/style.css" />';
 
         // Also load a color scheme
-        if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme['parent'].'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme['parent'].'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
+        if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme->parent.'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme->parent.'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
             if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0') {
-                echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme['parent'].'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
+                echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme->parent.'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
             } else {
-                echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme['parent'].'/css/accents/'.$luna_user['color_scheme'].'.css" />';
+                echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme->parent.'/css/accents/'.$luna_user['color_scheme'].'.css" />';
             }
 
         }
