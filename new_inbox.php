@@ -338,7 +338,7 @@ You can read this private message at this address: <inbox_url>
                     $db->query('UPDATE ' . $db->prefix . 'messages SET last_comment_id=' . $new_mp . ', last_comment=' . $now . ', last_commenter=\'' . $db->escape($luna_user['username']) . '\' WHERE shared_id=' . $shared_id . ' AND show_message=1 AND owner=' . $dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
                     $db->query('UPDATE ' . $db->prefix . 'users SET num_inbox=num_inbox+1 WHERE id=' . $dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-                    // E-mail notification
+                    // Email notification
                     if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
                         $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $shared_id . '&mid=' . $new_mp . '&box=inbox', $mail_message);
                         $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $shared_id . '&mid=' . $new_mp . '&box=inbox', $mail_message_full);
@@ -375,7 +375,7 @@ You can read this private message at this address: <inbox_url>
                         $db->query('UPDATE ' . $db->prefix . 'messages SET showed = 0 WHERE shared_id=' . $r . ' AND show_message=1 AND owner=' . $dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
                     }
 
-                    // E-mail notification
+                    // Email notification
                     if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
                         $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $r . '&mid=' . $new_mp . '&box=inbox', $mail_message);
                         $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $r . '&mid=' . $new_mp . '&box=inbox', $mail_message_full);

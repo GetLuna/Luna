@@ -315,7 +315,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php if ($group['g_id'] != LUNA_GUEST): ?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Send e-mails', 'luna') ?></label>
+                            <label class="col-sm-3 control-label"><?php echo __('Send emails', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -323,7 +323,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
         echo ' checked';
     }
     ?> tabindex="37" />
-                                        <?php echo __('Allow users to send e-mails to other users.', 'luna') ?>
+                                        <?php echo __('Allow users to send emails to other users.', 'luna') ?>
                                     </label>
                                 </div>
                             </div>

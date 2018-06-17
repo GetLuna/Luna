@@ -494,7 +494,7 @@ foreach ($times as $time) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('E-mail', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Email', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -529,7 +529,7 @@ foreach ($times as $time) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Mailing list', 'luna')?><span class="help-block"><?php _e('A comma separated list of subscribers who get e-mails when new reports are made', 'luna')?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Mailing list', 'luna')?><span class="help-block"><?php _e('A comma separated list of subscribers who get emails when new reports are made', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
                             </div>
@@ -620,7 +620,7 @@ foreach ($times as $time) {
                                 <div class="radio">
                                     <label>
                                         <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Hide email address but allow form e-mail.', 'luna')?>
+                                        <?php _e('Hide email address but allow form email.', 'luna')?>
                                     </label>
                                 </div>
                                 <div class="radio">
