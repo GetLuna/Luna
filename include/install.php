@@ -1545,8 +1545,6 @@ class Installer
 			'o_message_per_page'		=> 10,
 			'o_max_receivers'			=> 5,
 			'o_inbox_notification'		=> 1,
-			'o_emoji'					=> 1,
-			'o_emoji_size'				=> 16,
 			'o_back_to_top'				=> 1,
 			'o_show_copyright'			=> 1,
 			'o_copyright_type'			=> 0,

@@ -345,8 +345,6 @@ switch ($stage) {
 		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
 		build_config(1, 'o_copyright_type', '0');
 		build_config(1, 'o_custom_copyright');
-		build_config(1, 'o_emoji', '1');
-		build_config(1, 'o_emoji_size', '16');
 		build_config(1, 'o_first_run_backstage', '0');
 		build_config(0, 'o_forum_new_style');
 		build_config(0, 'o_header_desc');
@@ -729,6 +727,7 @@ switch ($stage) {
         build_config(0, 'o_update_ring');
         build_config(1, 'o_use_cdn', 1);
 		build_config(1, 'o_fontawesomepro', 0);
+		build_config(0, 'o_emoji_size');
 		
         $db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 
