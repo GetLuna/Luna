@@ -11,7 +11,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'settings');
 define('LUNA_PAGE', 'settings');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -21,7 +21,7 @@ if (!$luna_user['is_admmod']) {
 if (isset($_GET['remove-favicon'])) {
     confirm_referrer('backstage/settings.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
-    @unlink(LUNA_ROOT . '/favicon.png');
+    @unlink(LUNA_ROOT.'/favicon.png');
 
     redirect('backstage/settings.php?saved=true');
 }
@@ -100,7 +100,7 @@ if (isset($_POST['form_sent'])) {
         $form['date_format'] = 'Y-m-d';
     }
 
-    require LUNA_ROOT . 'include/email.php';
+    require LUNA_ROOT.'include/email.php';
 
     if ($form['mailing_list'] != '') {
         $form['mailing_list'] = strtolower(preg_replace('%\s%S', '', $form['mailing_list']));
@@ -168,14 +168,14 @@ if (isset($_POST['form_sent'])) {
 
     foreach ($form as $key => $input) {
         // Only update values that have changed
-        if (array_key_exists('o_' . $key, $luna_config) && $luna_config['o_' . $key] != $input) {
+        if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
             if ($input != '' || is_int($input)) {
-                $value = '\'' . $db->escape($input) . '\'';
+                $value = '\''.$db->escape($input).'\'';
             } else {
                 $value = 'NULL';
             }
 
-            $db->query('UPDATE ' . $db->prefix . 'config SET conf_value=' . $value . ' WHERE conf_name=\'o_' . $db->escape($key) . '\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+            $db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
         }
     }
 
@@ -216,18 +216,18 @@ if (isset($_POST['form_sent'])) {
             }
 
             // Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
-            if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT . '/favicon.tmp')) {
-                message_backstage(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna') . ' <a href="mailto:' . luna_htmlspecialchars($luna_config['o_admin_email']) . '">' . luna_htmlspecialchars($luna_config['o_admin_email']) . '</a>.');
+            if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT.'/favicon.tmp')) {
+                message_backstage(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
             }
 
-            list($width, $height, $type) = @getimagesize(LUNA_ROOT . '/favicon.tmp');
+            list($width, $height, $type) = @getimagesize(LUNA_ROOT.'/favicon.tmp');
 
             // Clean up existing headers
-            @unlink(LUNA_ROOT . '/favicon.png');
+            @unlink(LUNA_ROOT.'/favicon.png');
 
             // Do the final rename
-            @rename(LUNA_ROOT . '/favicon.tmp', LUNA_ROOT . '/favicon.png');
-            @chmod(LUNA_ROOT . '/favicon.png', 0644);
+            @rename(LUNA_ROOT.'/favicon.tmp', LUNA_ROOT.'/favicon.png');
+            @chmod(LUNA_ROOT.'/favicon.png', 0644);
         } else {
             message_backstage(__('An unknown error occurred. Please try again.', 'luna'));
         }
@@ -236,7 +236,7 @@ if (isset($_POST['form_sent'])) {
 
     // Regenerate the config cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_config_cache();
@@ -247,13 +247,15 @@ if (isset($_POST['form_sent'])) {
 
 $timestamp = time();
 
+$theme = forum_current_theme();
+
 require 'header.php';
 ?>
 <div class="row">
 	<div class="col-sm-12">
 <?php
 if (isset($_GET['saved'])) {
-    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
+    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 }
 
 ?>
@@ -293,9 +295,9 @@ $languages = forum_list_langs();
 
 foreach ($languages as $temp) {
     if ($luna_config['o_default_lang'] == $temp) {
-        echo "\t\t\t\t\t\t\t\t\t\t\t" . '<option value="' . $temp . '" selected>' . $temp . '</option>' . "\n";
+        echo '<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
     } else {
-        echo "\t\t\t\t\t\t\t\t\t\t\t" . '<option value="' . $temp . '">' . $temp . '</option>' . "\n";
+        echo '<option value="'.$temp.'">'.$temp.'</option>'."\n";
     }
 
 }
@@ -313,15 +315,15 @@ foreach ($languages as $temp) {
                         <div class="form-group">
                             <label class="col-sm-3 control-label">
                                 <?php _e('Favicon', 'luna')?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna')?></span>
-                                <?php if (file_exists(LUNA_ROOT . '/favicon.png')) {?>
+                                <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
                                     <a class="btn btn-danger" href="?remove-favicon"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna')?></a>
                                 <?php }?>
                             </label>
                             <div class="col-sm-9">
-                                <?php if (file_exists(LUNA_ROOT . '/favicon.png')) {?>
-                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT . 'favicon.png' ?>" alt="<?php _e('Favicon', 'luna')?>" />
+                                <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
+                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Favicon', 'luna')?>" />
                                 <?php } else {?>
-                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT . 'img/favicon.png' ?>" alt="<?php _e('Default favicon', 'luna')?>" />
+                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'img/favicon.png' ?>" alt="<?php _e('Default favicon', 'luna')?>" />
                                 <?php }?>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="51200" />
                                 <input name="req_file" type="file" />
@@ -355,41 +357,26 @@ foreach ($languages as $temp) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Type', 'luna')?></label>
+                                <label class="col-sm-3 control-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block theme-error"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="default"<?php if ($luna_config['o_announcement_type'] == 'default') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[announcement_type]" value="default"<?php if ($luna_config['o_announcement_type'] == 'default') { echo ' checked'; } ?>>
                                     <?php _e('Default', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="info"<?php if ($luna_config['o_announcement_type'] == 'info') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[announcement_type]" value="info"<?php if ($luna_config['o_announcement_type'] == 'info') { echo ' checked'; } ?>>
                                     <?php _e('Info', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="success"<?php if ($luna_config['o_announcement_type'] == 'success') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[announcement_type]" value="success"<?php if ($luna_config['o_announcement_type'] == 'success') { echo ' checked'; } ?>>
                                     <?php _e('Success', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="warning"<?php if ($luna_config['o_announcement_type'] == 'warning') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[announcement_type]" value="warning"<?php if ($luna_config['o_announcement_type'] == 'warning') { echo ' checked'; } ?>>
                                     <?php _e('Warning', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="danger"<?php if ($luna_config['o_announcement_type'] == 'danger') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[announcement_type]" value="danger"<?php if ($luna_config['o_announcement_type'] == 'danger') { echo ' checked'; } ?>>
                                     <?php _e('Danger', 'luna')?>
                                 </label>
                             </div>
@@ -410,13 +397,13 @@ foreach ($languages as $temp) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Time format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">' . __('PHP manual', 'luna') . '</a>')?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Time format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Date format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">' . __('PHP manual', 'luna') . '</a>')?></span></label>
+                            <label class="col-sm-3 control-label"><?php _e('Date format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
                             </div>
@@ -472,24 +459,15 @@ foreach ($timezones as $timezone) {
                             <label class="col-sm-3 control-label"><?php _e('Default feed type', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') { echo ' checked'; } ?>>
                                     <?php _e('None', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[feed_type]" value="1"<?php if ($luna_config['o_feed_type'] == '1') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[feed_type]" value="1"<?php if ($luna_config['o_feed_type'] == '1') { echo ' checked'; } ?>>
                                     <?php _e('RSS', 'luna')?>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') {
-    echo ' checked';
-}
-?>>
+                                    <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') { echo ' checked'; } ?>>
                                     <?php _e('Atom', 'luna')?>
                                 </label>
                             </div>
@@ -498,16 +476,13 @@ foreach ($timezones as $timezone) {
                             <label class="col-sm-3 control-label"><?php _e('Duration to cache feeds', 'luna')?><span class="help-block"><?php _e('Reduce sources by caching feeds', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="form[feed_ttl]">
-                                    <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') {
-    echo ' selected';
-}
-?>><?php _e('Don\'t cache', 'luna')?></option>
+                                    <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') { echo ' selected'; } ?>><?php _e('Don\'t cache', 'luna')?></option>
 <?php
 
 $times = array(5, 15, 30, 60);
 
 foreach ($times as $time) {
-    echo "\t\t\t\t\t\t\t\t\t\t\t" . '<option value="' . $time . '"' . ($luna_config['o_feed_ttl'] == $time ? ' selected' : '') . '>' . sprintf(__('%d minutes', 'luna'), $time) . '</option>' . "\n";
+    echo '<option value="'.$time.'"'.($luna_config['o_feed_ttl'] == $time ? ' selected' : '').'>'.sprintf(__('%d minutes', 'luna'), $time).'</option>';
 }
 
 ?>

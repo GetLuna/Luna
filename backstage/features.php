@@ -152,6 +152,8 @@ if (isset($_POST['form_sent'])) {
     redirect('backstage/features.php?saved=true');
 }
 
+$theme = forum_current_theme();
+
 require 'header.php';
 ?>
 <div class="row">
@@ -293,7 +295,7 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('General settings', 'luna')?></label>
+                            <label class="col-sm-3 control-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block theme-error"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>

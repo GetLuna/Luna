@@ -1800,16 +1800,28 @@ function forum_list_themes() {
 
         if (is_dir(LUNA_ROOT.'themes/'.$entry) && file_exists(LUNA_ROOT.'themes/'.$entry.'/theme.json')) {
 
-            $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/theme.json');
+            $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$entry.'/theme.json');
             $themes[] = json_decode($theme_json);
         }
 
     }
     $d->close();
 
-    natcasesort($themes);
-
     return $themes;
+}
+
+//
+// Fetch a list of available frontend styles
+//
+function forum_current_theme() {
+    global $luna_config;
+
+    $theme = null;
+
+    $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/theme.json');
+    $theme = json_decode($theme_json);
+
+    return $theme;
 }
 
 //
