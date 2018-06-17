@@ -743,7 +743,7 @@ To change your email address, please visit the following page:
 
 		// Make sure we got a valid style string
 		if (isset($_POST['form']['style'])) {
-			$styles = forum_list_styles();
+			$styles = forum_list_themes();
 			$form['style'] = luna_trim($_POST['form']['style']);
 			if (!in_array($form['style'], $styles))
 				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');

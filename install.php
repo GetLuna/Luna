@@ -443,7 +443,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 									<select id="req_default_style" class="form-control" name="req_default_style">
 <?php
 
-    $styles = forum_list_styles();
+    $styles = forum_list_themes();
     foreach ($styles as $temp) {
         if ($temp == $default_style) {
             echo "\t\t\t\t\t\t\t\t\t" . '<option value="' . $temp . '" selected>' . str_replace('_', ' ', $temp) . '</option>' . "\n";

@@ -178,15 +178,15 @@ if (isset($_GET['saved'])) {
                             <div class="col-sm-9">
                                 <select class="form-control" name="form[default_style]">
 <?php
-$styles = forum_list_styles();
 
-foreach ($styles as $temp) {
-    if ($luna_config['o_default_style'] == $temp) {
-        echo "\t\t\t\t\t\t\t\t\t\t\t" . '<option value="' . $temp . '" selected="selected">' . str_replace('_', ' ', $temp) . '</option>' . "\n";
+$styles = forum_list_themes();
+
+foreach ($styles as &$style) {
+    if ($luna_config['o_default_style'] == $style['id']) {
+        echo '<option value="'.$style['id'].'" selected="selected">'.str_replace('_', ' ', $style['name']).' v'.$style['version'].'</option>';
     } else {
-        echo "\t\t\t\t\t\t\t\t\t\t\t" . '<option value="' . $temp . '">' . str_replace('_', ' ', $temp) . '</option>' . "\n";
+        echo '<option value="'.$temp.'">'.str_replace('_', ' ', $style['name']).' v'.$style['version'].'</option>';
     }
-
 }
 
 ?>

@@ -1,0 +1,9 @@
+    {
+        "id": "fifteen",
+        "name": "Fifteen",
+        "developer": "Studio 384",
+        "date": "14 June 2018",
+        "version": "2.1-alpha.2",
+        "minversion": "2.0.0",
+        "maxversion": "2.1-alpha.2"
+    }
