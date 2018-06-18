@@ -40,6 +40,18 @@ if (!defined('FORUM')) {
 %iex' */
 $re_list = '%\[list(?:=([1*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1*])?+\]|\[/list\])\[[^\[]*+)*+|(?R))*)\[/list\]%i';
 
+if (!isset($emoji)) {
+	if (file_exists(LUNA_CACHE_DIR.'cache_emoji.php')) {
+    	include LUNA_CACHE_DIR.'cache_emoji.php';
+    } else {
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+            require LUNA_ROOT.'include/cache.php';
+            
+		generate_emoji_cache();
+        require LUNA_CACHE_DIR.'cache_emoji.php';
+    }
+}
+
 //
 // Make sure all BBCodes are lower case and do a little cleanup
 //
@@ -821,57 +833,21 @@ function luna_array_key($arr, $key)
 	return isset($arr[$key]) ? $arr[$key] : '';
 }
 
-function get_smilies()
-{
-    global $luna_config;
-
-    $smilies = array(
-        ':)' => '&#x1f601;',
-        ':|' => '&#x1f611;',
-        ':(' => '&#x1f629;',
-        ':d' => '&#x1f604;',
-        ':D' => '&#x1f604;',
-        ':o' => '&#x1f62f;',
-        ':O' => '&#x1f62f;',
-        ';)' => '&#x1f609;',
-        ':/' => '&#x1f612;',
-        ':P' => '&#x1f60b;',
-        ':p' => '&#x1f60b;',
-        ':lol:' => '&#x1f601;',
-        ':-))' => '&#x1f601;',
-        ':@' => '&#x1f620;',
-        '%)' => '&#x1f606;',
-        'b:' => '&#x1f60e;',
-        'B:' => '&#x1f60e;',
-        ':hc:' => '&#x1f605;',
-        '(A)' => '&#x1f607;',
-        '(a)' => '&#x1f607;',
-        '^-^' => '&#x1f60f;',
-        '^.^' => '&#x1f60f;',
-    );
-
-    return $smilies;
-}
-
 //
 // Convert a series of smilies to images
 //
 function do_smilies($text)
 {
-    global $luna_config;
+	global $emoji;
 
-    $smilies = get_smilies();
+	$text = ' '.$text.' ';
 
-    $text = ' ' . $text . ' ';
+	foreach ($emoji as $code => $unicode) {
+		if (strpos($text, $code) !== false)
+			$text = preg_replace('%(?<=[>\s])'.preg_quote($code, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">' . $unicode . '</span>', $text);
+	}
 
-    foreach ($smilies as $smiley_text => $smiley_img) {
-        if (strpos($text, $smiley_text) !== false) {
-            $text = preg_replace('%(?<=[>\s])' . preg_quote($smiley_text, '%') . '(?=[^\p{L}\p{N}])%um', '<span class="emoji">' . $smiley_img . '</span>', $text);
-        }
-
-    }
-
-    return substr($text, 1, -1);
+	return substr($text, 1, -1);
 }
 
 //

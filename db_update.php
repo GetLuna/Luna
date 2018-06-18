@@ -729,7 +729,60 @@ switch ($stage) {
 		build_config(1, 'o_fontawesomepro', 0);
 		build_config(0, 'o_emoji_size');
 		
-        $db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
+		
+		// Add the emoji table
+		if (!$db->table_exists('emoji')) {
+			$schema = array(
+				'FIELDS' => array(
+					'id' => array(
+						'datatype' => 'SERIAL',
+						'allow_null' => false
+					),
+					'unicode' => array(
+						'datatype' => 'VARCHAR(40)',
+						'allow_null' => false,
+						'default' => '\'\''
+					),
+					'text' => array(
+						'datatype' => 'VARCHAR(20)',
+						'allow_null' => false,
+						'default' => '\'\''
+					)
+				),
+				'PRIMARY KEY' => array('id')
+			);
+			$db->create_table('emoji', $schema) or error('Unable to create emoji table', __FILE__, __LINE__, $db->error());
+
+			$emoji = array(
+				':)' => '&#x1f601;',
+				':|' => '&#x1f611;',
+				':(' => '&#x1f629;',
+				':d' => '&#x1f604;',
+				':D' => '&#x1f604;',
+				':o' => '&#x1f62f;',
+				':O' => '&#x1f62f;',
+				';)' => '&#x1f609;',
+				':/' => '&#x1f612;',
+				':P' => '&#x1f60b;',
+				':p' => '&#x1f60b;',
+				':lol:' => '&#x1f601;',
+				':-))' => '&#x1f601;',
+				':@' => '&#x1f620;',
+				'%)' => '&#x1f606;',
+				'b:' => '&#x1f60e;',
+				'B:' => '&#x1f60e;',
+				':hc:' => '&#x1f605;',
+				'(A)' => '&#x1f607;',
+				'(a)' => '&#x1f607;',
+				'^-^' => '&#x1f60f;',
+				'^.^' => '&#x1f60f;',
+			);
+
+			foreach ($emoji as $text => $unicode) {
+				$db->query('INSERT INTO '.$db->prefix.'emoji (unicode, text) VALUES(\''.$unicode.'\', \''.$db->escape($text).'\')') or error('Unable to add emoji', __FILE__, __LINE__, $db->error());
+			}
+		}
 
         break;
 

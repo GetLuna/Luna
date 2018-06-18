@@ -119,23 +119,17 @@ if ($db->num_rows($result) > 0)
 				<div role="tabpanel" class="tab-pane" id="emoji">
 					<p><a id="emoticons"></a><?php _e('If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:', 'luna') ?></p>
 					<div class="clearfix">
-		<?php
-		
-		// Display the smiley set
-		require LUNA_ROOT.'include/parser.php';
-		
-		$smilies = get_smilies();
-		
-		$smiley_groups = array();
-		
-		foreach ($smilies as $smiley_text => $smiley_img)
-			$smiley_groups[$smiley_img][] = $smiley_text;
-		
-		foreach ($smiley_groups as $smiley_img => $smiley_texts) {
-			echo '<div class="col-sm-3"><p><code>'.implode('</code> '.__('and', 'luna').' <code>', $smiley_texts).'</code> <span>'.__('produces', 'luna').'</span> <span class="emoji">'.$smiley_img.'</span></p></div>';
-		}
-		
-		?>
+						<?php
+						require LUNA_ROOT.'include/parser.php';
+
+						$emoji_set = array();
+
+						foreach ($emoji as $code => $unicode)
+							$emoji_set[$unicode][] = $code;
+
+						foreach ($emoji_set as $unicode => $codes)
+							echo '<div class="col-sm-3"><p><code>'.implode('</code> '.__('and', 'luna').' <code>', $codes).'</code> <span>'.__('produces', 'luna').'</span> <span class="emoji">'.$unicode.'</span></p></div>';
+						?>
 					</div>
 				</div>
 			</div>

@@ -108,6 +108,26 @@ function generate_forum_cache()
 }
 
 //
+// Generate emoji cache PHP array
+//
+
+function generate_emoji_cache()
+{
+    global $db;
+
+    $content = '<?php'."\n".'$emoji = array('."\n";
+
+    $result = $db->query('SELECT unicode, text FROM '.$db->prefix.'emoji ORDER BY unicode') or error('Unable to fetch emoji list', __FILE__, __LINE__, $db->error());
+    while ($emoji = $db->fetch_assoc($result)) {
+    	$content .= "'".addslashes(luna_htmlspecialchars($emoji['text']))."' => '".$emoji['unicode']."',"."\n";
+    }
+
+    $content .= ');'."\n".'?>';
+
+    luna_write_cache_file('cache_emoji.php', $content);
+}
+
+//
 // Generate the censoring cache PHP script
 //
 function generate_censoring_cache()
