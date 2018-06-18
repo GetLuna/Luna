@@ -32,11 +32,12 @@ require 'header.php';
 					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Fallow Preview 3 <small>2.1-alpha.3</small></span></h2>
 						<ul class="changes">
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Custom emoji can now be added under Settings > Emoji', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Themes can now declare which features they support', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Features that are not supported by the current theme show a warning', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Themes now use theme.json to define their details', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved consistency in the use of "email"', 'luna') ?></li>
-                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('You can no longer change the size of emojis', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('You can no longer change the size of emoji', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>

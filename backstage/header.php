@@ -223,6 +223,7 @@ $logout_url = '../login.php?action=out&amp;id=' . $luna_user['id'] . '&amp;csrf_
                                 <li<?php if (LUNA_PAGE == 'settings') { echo ' class="active"'; } ?>><a href="settings.php"><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna')?></a></li>
                                 <li<?php if (LUNA_PAGE == 'features') { echo ' class="active"'; } ?>><a href="features.php"><i class="fas fa-fw fa-chalkboard"></i> <?php _e('Features', 'luna')?></a></li>
                                 <li<?php if (LUNA_PAGE == 'appearance') { echo ' class="active"'; } ?>><a href="appearance.php"><i class="fas fa-fw fa-paint-brush"></i> <?php _e('Theme', 'luna')?></a></li>
+                                <li<?php if (LUNA_PAGE == 'emoji') { echo ' class="active"'; } ?>><a href="emoji.php"><i class="fas fa-fw fa-smile"></i> <?php _e('Emoji', 'luna')?></a></li>
                                 <li<?php if (LUNA_PAGE == 'menu') { echo ' class="active"'; } ?>><a href="menu.php"><i class="fas fa-fw fa-bars"></i> <?php _e('Menu', 'luna')?></a></li>
                             </ul>
                         </div>

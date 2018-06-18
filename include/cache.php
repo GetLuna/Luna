@@ -119,7 +119,7 @@ function generate_emoji_cache()
 
     $result = $db->query('SELECT unicode, text FROM '.$db->prefix.'emoji ORDER BY unicode') or error('Unable to fetch emoji list', __FILE__, __LINE__, $db->error());
     while ($emoji = $db->fetch_assoc($result)) {
-    	$content .= "'".addslashes(luna_htmlspecialchars($emoji['text']))."' => '".$emoji['unicode']."',"."\n";
+    	$content .= "'".addslashes(luna_htmlspecialchars($emoji['text']))."' => '&#x".$emoji['unicode'].";',"."\n";
     }
 
     $content .= ');'."\n".'?>';
