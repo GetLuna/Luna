@@ -30,7 +30,6 @@ if (isset($_POST['form_sent'])) {
     confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
     $form = array(
-        'default_style' => luna_trim($_POST['form']['default_style']),
         'default_accent' => intval($_POST['form']['default_accent']),
         'allow_accent_color' => isset($_POST['form']['allow_accent_color']) ? '1' : '0',
         'allow_night_mode' => isset($_POST['form']['allow_night_mode']) ? '1' : '0',
@@ -155,7 +154,7 @@ if (isset($_POST['form_sent'])) {
     redirect('backstage/appearance.php?saved=true');
 }
 
-$theme = forum_current_theme();
+$theme = forum_get_theme();
 
 require 'header.php';
 ?>
@@ -171,31 +170,10 @@ if (isset($_GET['saved'])) {
             <input type="hidden" name="form_sent" value="1" />
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Theme', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('General', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Theme', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="form[default_style]">
-<?php
-
-$styles = forum_list_themes();
-
-foreach ($styles as &$style) {
-    if ($luna_config['o_default_style'] == $style->id) {
-        echo '<option value="'.$style->id.'" selected="selected">'.str_replace('_', ' ', $style->name).' v'.$style->version.'</option>';
-    } else {
-        echo '<option value="'.$temp.'">'.str_replace('_', ' ', $style->name).' v'.$style->version.'</option>';
-    }
-}
-
-?>
-								</select>
-                            </div>
-                        </div>
-                        <hr />
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Accents', 'luna')?><?php if ($theme->features->accent_colors <= 1) { ?><span class="help-block theme-error"><?php _e('Your theme does not support accent colors', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
@@ -209,9 +187,8 @@ foreach ($styles as &$style) {
 <?php
 $accents = forum_list_accents();
 
-foreach ($accents as $temp) {
-    echo '<label class="btn btn-primary color-accent accent-'.$temp.(($luna_user['o_default_accent'] == $temp) ? ' active' : '').'"> <input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'"></label>';
-
+foreach ($accents as $accent) {
+    echo '<label class="btn btn-primary color-accent accent-'.$accent.(($luna_user['o_default_accent'] == $accent) ? ' active' : '').'"> <input type="radio" name="form[default_accent]" id="'.$accent.'" value="'.$accent.'"></label>';
 }
 ?>
                                 </div>

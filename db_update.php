@@ -784,6 +784,40 @@ switch ($stage) {
 			}
 		}
 
+		// Add the theme table
+		if (!$db->table_exists('themes')) {
+			$schema = array(
+				'FIELDS' => array(
+					'id' => array(
+						'datatype' => 'SERIAL',
+						'allow_null' => false
+					),
+					'name' => array(
+						'datatype' => 'VARCHAR(40)',
+						'allow_null' => false,
+						'default' => '\'\''
+					),
+					'version' => array(
+						'datatype' => 'VARCHAR(20)',
+						'allow_null' => false,
+						'default' => '\'\''
+					)
+				),
+				'PRIMARY KEY' => array('id')
+			);
+
+			$db->create_table('themes', $schema) or error('Unable to create themes table', __FILE__, __LINE__, $db->error());
+
+			$themes = array(
+				'fifteen' => Version::LUNA_VERSION,
+				'sunrise' => Version::LUNA_VERSION
+			);
+	
+			foreach ($themes as $name => $version) {
+				$db->query('INSERT INTO '.$db->prefix.'themes (version, name) VALUES(\''.$version.'\', \''.$db->escape($name).'\')') or error('Unable to add theme', __FILE__, __LINE__, $db->error());
+			}
+		}
+
         break;
 
     // Preparse comments

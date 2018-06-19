@@ -681,6 +681,37 @@ input[type="checkbox"] {
   border-color: #ccc;
   opacity: .65;
 }
+.row-extension {
+  background-color: #fff;
+  padding: 7px;
+  margin: 0;
+}
+.row-extension:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+.row-extension .name {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+.row-extension .version {
+  margin: 0;
+}
+.row-extension .actions {
+  margin: 7px 0 0 0;
+}
+.row-extension .actions .active {
+  font-weight: 700;
+}
+.row-extension .description {
+  margin: 0;
+  padding-bottom: 10px;
+}
+.row-extension .meta {
+  color: #777;
+  margin: 0;
+}
 /*
  * Copyright studio384 and Luna Group
  * Based on Rubine 1.0

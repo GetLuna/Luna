@@ -2,6 +2,7 @@
     "id": "fifteen",
     "name": "Fifteen",
     "developer": "Studio 384",
+    "url": "https://getluna.org",
     "description": "A beautiful, modern design for your board. This was the default theme for Luna until version 2.0.",
     "date": "14 June 2018",
     "version": "2.1-alpha.3",

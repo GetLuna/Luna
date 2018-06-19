@@ -1479,6 +1479,28 @@ class Installer
 		);
 
 		$db->create_table('emoji', $schema) or error('Unable to create emoji table', __FILE__, __LINE__, $db->error());
+		
+		$schema = array(
+			'FIELDS' => array(
+				'id' => array(
+					'datatype' => 'SERIAL',
+					'allow_null' => false
+				),
+				'name' => array(
+					'datatype' => 'VARCHAR(40)',
+					'allow_null' => false,
+					'default' => '\'\''
+				),
+				'version' => array(
+					'datatype' => 'VARCHAR(20)',
+					'allow_null' => false,
+					'default' => '\'\''
+				)
+			),
+			'PRIMARY KEY' => array('id')
+		);
+
+		$db->create_table('themes', $schema) or error('Unable to create themes table', __FILE__, __LINE__, $db->error());
 
 		// Insert config data
 		$luna_config = array(
@@ -1621,6 +1643,14 @@ class Installer
 			$db->query('INSERT INTO '.$db->prefix.'emoji (unicode, text) VALUES(\''.$unicode.'\', \''.$db->escape($text).'\')') or error('Unable to add emoji', __FILE__, __LINE__, $db->error());
 		}
 
+		$themes = array(
+			'fifteen' => Version::LUNA_VERSION,
+			'sunrise' => Version::LUNA_VERSION
+		);
+
+		foreach ($themes as $name => $version) {
+			$db->query('INSERT INTO '.$db->prefix.'themes (version, name) VALUES(\''.$version.'\', \''.$db->escape($name).'\')') or error('Unable to add theme', __FILE__, __LINE__, $db->error());
+		}
 
 		$db->end_transaction();
 

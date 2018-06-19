@@ -247,7 +247,7 @@ if (isset($_POST['form_sent'])) {
 
 $timestamp = time();
 
-$theme = forum_current_theme();
+$theme = forum_get_theme();
 
 require 'header.php';
 ?>

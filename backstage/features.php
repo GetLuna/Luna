@@ -152,7 +152,7 @@ if (isset($_POST['form_sent'])) {
     redirect('backstage/features.php?saved=true');
 }
 
-$theme = forum_current_theme();
+$theme = forum_get_theme();
 
 require 'header.php';
 ?>
