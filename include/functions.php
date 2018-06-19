@@ -1834,30 +1834,7 @@ function forum_list_accents() {
     $theme_json = file_get_contents(LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/theme.json');
     $theme = json_decode($theme_json);
 
-    if (isset($theme->parent)) {
-        $cur_theme = $theme->parent;
-    } else {
-        $cur_theme = $luna_config['o_default_style'];
-    }
-
-    $accents = array();
-	$d = dir(LUNA_ROOT.'themes/'.$cur_theme.'/css/accents/');
-
-    while (($entry = $d->read()) !== false) {
-        if ($entry{0} == '.') {
-            continue;
-        }
-
-        if (substr($entry, -4) == '.css') {
-            $accents[] = substr($entry, 0, -4);
-        }
-
-    }
-    $d->close();
-
-    natcasesort($accents);
-
-    return $accents;
+    return $theme->features->accents;
 }
 
 //

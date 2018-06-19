@@ -733,51 +733,6 @@ input[type="checkbox"] {
   margin-left: 1px;
   margin-right: 1px;
 }
-.accent-group .btn.color-accent.btn-primary.accent-1 {
-  background-color: #14a3ff !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-2 {
-  background-color: #2788cb !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-3 {
-  background-color: #0d4382 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-4 {
-  background-color: #c58be2 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-5 {
-  background-color: #ea69ae !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-6 {
-  background-color: #8bb805 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-7 {
-  background-color: #047a36 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-8 {
-  background-color: #ffcd21 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-9 {
-  background-color: #ff7521 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-10 {
-  background-color: #ff4444 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-11 {
-  background-color: #c71f1f !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-12 {
-  background-color: #c78d68 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-13 {
-  background-color: #cccccc !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-14 {
-  background-color: #999999 !important;
-}
-.accent-group .btn.color-accent.btn-primary.accent-15 {
-  background-color: #444444 !important;
-}
 .accent-1 .navbar.navbar-inverse {
   background-color: #14a3ff;
 }

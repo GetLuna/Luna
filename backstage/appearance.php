@@ -175,7 +175,7 @@ if (isset($_GET['saved'])) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Accents', 'luna')?><?php if ($theme->features->accent_colors <= 1) { ?><span class="help-block theme-error"><?php _e('Your theme does not support accent colors', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 control-label"><?php _e('Accents', 'luna')?><?php if (count($theme->features->accents) <= 1) { ?><span class="help-block theme-error"><?php _e('Your theme does not support accent colors', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -185,10 +185,8 @@ if (isset($_GET['saved'])) {
                                 </div>
                                 <div class="btn-group accent-group" data-toggle="buttons">
 <?php
-$accents = forum_list_accents();
-
-foreach ($accents as $accent) {
-    echo '<label class="btn btn-primary color-accent accent-'.$accent.(($luna_user['o_default_accent'] == $accent) ? ' active' : '').'"> <input type="radio" name="form[default_accent]" id="'.$accent.'" value="'.$accent.'"></label>';
+foreach ($theme->features->accents as $accent) {
+    echo '<label class="btn btn-primary color-accent'.(($luna_config['o_default_accent'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"> <input type="radio" name="form[default_accent]" id="'.$accent->id.'" value="'.$accent->id.'"></label>';
 }
 ?>
                                 </div>

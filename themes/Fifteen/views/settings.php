@@ -132,8 +132,8 @@ else
 		<?php
 				$accents = forum_list_accents();
 		
-				foreach ($accents as $temp) {
-					echo '<label class="btn btn-primary color-accent accent-'.$temp.(($luna_user['color_scheme'] == $temp) ? ' active' : '').'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
+				foreach ($accents as $accent) {
+					echo '<label class="btn btn-primary color-accent'.(($luna_user['color_scheme'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"> <input type="radio" name="form[default_accent]" id="'.$accent->id.'" value="'.$accent->id.'"></label>';
 				}
 		?>
 									</div>
