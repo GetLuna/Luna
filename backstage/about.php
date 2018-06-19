@@ -33,10 +33,15 @@ require 'header.php';
 						<h2 class="clearfix"><span class="version-name">Fallow Preview 3 <small>2.1-alpha.3</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Custom emoji can now be added under Settings > Emoji', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Themes now have to be installed through Settings > Theme', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('You can now remove a theme from the Backstage', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Themes can now declare which features they support', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Features that are not supported by the current theme show a warning', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Themes now use theme.json to define their details', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved consistency in the use of "email"', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Backstage now uses the page name in the page title', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('"Theme" has been renamed "Appearance"', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Theme selection has been moved from Appearance to Theme', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('You can no longer change the size of emoji', 'luna') ?></li>
 						</ul>
 					</div>
