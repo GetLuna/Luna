@@ -8,7 +8,7 @@
 // Navbar
 .navbar {
     &.navbar-inverse {
-        background-color: @accent;
+        background-color: $accent;
         border: none;
         margin-bottom: 0;
     
@@ -69,12 +69,12 @@
         .open > a,
         .open > a:hover,
         .open > a:focus {
-            background-color: darken(@accent, 5%) !important;
+            background-color: darken($accent, 5%) !important;
         }
         
         .dropdown-menu {
             padding: 0;
-            background-color: darken(@accent, 5%) !important;
+            background-color: darken($accent, 5%) !important;
             border: none;
             
             a {
@@ -83,13 +83,13 @@
                 padding-bottom: 10px !important;
                 
                 &:hover {
-                    background-color: darken(@accent, 10%);
+                    background-color: darken($accent, 10%);
                 }
             }
             
             .divider {
                 margin: 0;
-                background-color: darken(@accent, 10%);
+                background-color: darken($accent, 10%);
             }
         }
         
@@ -124,6 +124,7 @@
             color: #fff;
             font-size: 23px;
             padding: 10px 10px 5px 10px;
+            background: inherit;
         }
 
         li {

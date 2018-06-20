@@ -21,7 +21,7 @@
     }
     
     &.title-primary {
-        background-color: @accent;
+        background-color: $accent;
         
         &.title-md .form-control {
             color: #fff;
@@ -34,7 +34,7 @@
 
         
         & + .title-primary {
-            background-color: lighten(@accent, 5%);
+            background-color: lighten($accent, 5%);
             
             .form-control {
                 background: #eee;
@@ -45,7 +45,7 @@
     
     .input-group-addon {
         border: none;
-        background-color: @accent;
+        background-color: $accent;
         color: #fff;
     }
     
@@ -70,7 +70,7 @@
         li.active > a,
         li.active > a:hover,
         li.active > a:focus {
-            color: @accent;
+            color: $accent;
             background: #fff;
         }
         

@@ -5,9 +5,9 @@
  * Since Luna 2.1-beta.1
  */
 
-@accent: #1a79bc;
-@accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21, #ff7521, #ff4444, #c71f1f, #c78d68, #ccc, #999, #444;
-@font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$accent: #1a79bc;
+$accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21, #ff7521, #ff4444, #c71f1f, #c78d68, #ccc, #999, #444;
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 // Bootstrap components
 @import '_grid';
@@ -35,7 +35,7 @@
 }
 
 body {
-	font-family: @font-stack !important;
+	font-family: $font-stack !important;
     background-color: #f4f4f4;
 }
 
@@ -46,7 +46,7 @@ body {
 }
 
 .studio384 {
-    font-family: "Century Gothic", @font-stack !important;
+    font-family: "Century Gothic", $font-stack !important;
 }
 
 .container.main {
@@ -65,7 +65,7 @@ hr {
 }
 
 footer {
-    background-color: @accent;
+    background-color: $accent;
     padding: 10px;
     color: #fff;
     
@@ -103,7 +103,7 @@ footer {
 .container.main .tab-content {
     border-width: 1px;
     border-style: solid;
-    border-color: @accent;
+    border-color: $accent;
     border-top: none;
     margin-bottom: 10px;
     
@@ -146,25 +146,30 @@ footer {
     }
 }
 
-// Functions
-.for(@list, @code) {
-    & {
-        .loop(@i:1) when (@i =< length(@list)) {
-            @value: extract(@list, @i);
-
-            @code();
-
-            .loop(@i + 1);
-        }
-
-        .loop();
-    }
-}
-
 // Emoji
 .emoji {
     &.emoji-table {
         font-size: 22px;
         text-align: center;
+    }
+}
+
+// Color choise
+.accent-group {
+    .btn {
+        border: 3px solid #fff !important;
+    
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            border: 3px solid #bbb !important;
+        }
+
+        &.color-accent.btn-primary {
+            padding: 21px;
+            margin-left: 1px;
+            margin-right: 1px;
+        }
     }
 }

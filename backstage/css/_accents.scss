@@ -5,107 +5,88 @@
  * Since Luna 2.1-beta.1
  */
 
-/* Color choise */
-.accent-group {
-    .btn {
-        border: 3px solid #fff !important;
-    
-        &:hover,
-        &:focus,
-        &:active,
-        &.active {
-            border: 3px solid #bbb !important;
-        }
-
-        &.color-accent.btn-primary {
-            padding: 21px;
-            margin-left: 1px;
-            margin-right: 1px;
-        }
-    }
-}
-
 // Luna accents
-.for(@accents, {
-    &.accent-@{i} {
+@each $accent in $accents {
+    $i: index($accents, $accent);
+    .accent-#{$i} {
         .navbar {
             &.navbar-inverse {
-                background-color: @value;
+                background-color: $accent;
 
                 .open > a {
-                    background-color: darken(@value, 5%) !important;
+                    background-color: darken($accent, 5%) !important;
 
                     &:hover,
                     &:active,
                     &:focus {
-                        background-color: darken(@value, 5%);
+                        background-color: darken($accent, 5%);
                     }
                 }
 
                 .dropdown-menu {
-                    background-color: darken(@value, 5%) !important;
+                    background-color: darken($accent, 5%) !important;
 
                     a {
-                        background-color: darken(@value, 5%);
+                        background-color: darken($accent, 5%);
 
                         &:hover,
                         &:active,
                         &:focus {
-                            background-color: darken(@value, 10%);
+                            background-color: darken($accent, 10%);
                         }
                     }
 
                     .divider {
-                        background-color: darken(@value, 10%);
+                        background-color: darken($accent, 10%);
                     }
                 }
             }
         }
 
         .container.main .tab-content {
-            border-color: @value;
+            border-color: $accent;
         }
 
         .title {
-            background-color: @value;
+            background-color: $accent;
         }
 
         .jumboheader {    
             &.primary {
-                background: @value;
+                background: $accent;
             }
         }
 
         .panel {
             &.panel-default {
-                border-color: @value;
+                border-color: $accent;
             }
     
             &.panel-primary {
-                border-color: @value;
+                border-color: $accent;
 
                 &.panel-colored {
-                    background-color: lighten(@value, 5%);
+                    background-color: lighten($accent, 5%);
                 }
             }
 
             .panel-heading {
-                background-color: @value;
-                border-color: @value;
+                background-color: $accent;
+                border-color: $accent;
             }
         }
         
         .title {
             &.title-primary {
-                background-color: @value;
+                background-color: $accent;
                 
                 & + .title-primary {
-                    background-color: lighten(@value, 5%);
+                    background-color: lighten($accent, 5%);
                 }
             }
 
             .input-group-addon {
-                background-color: lighten(@value, 5%);
+                background-color: lighten($accent, 5%);
             }
 
             .nav-tabs {
@@ -114,7 +95,7 @@
                     &:hover,
                     &:active,
                     &:focus {
-                        color: @value;
+                        color: $accent;
                     }
                 }
             }
@@ -129,7 +110,7 @@
                             &:hover,
                             &:active,
                             &:focus {
-                                color: @value;
+                                color: $accent;
                             }
                         }
                     }
@@ -138,7 +119,7 @@
         }
 
         footer {
-            background-color: @value;
+            background-color: $accent;
         }
     }
-});
+}

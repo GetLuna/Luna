@@ -10,14 +10,14 @@
     margin-bottom: 10px;
     
     &.panel-default {
-        border-color: @accent;
+        border-color: $accent;
     }
     
     &.panel-primary {
-        border-color: @accent;
+        border-color: $accent;
         
         &.panel-colored {
-            background-color: lighten(@accent, 5%);
+            background-color: lighten($accent, 5%);
             color: #fff;
         }
     }
@@ -25,9 +25,9 @@
     .panel-heading {
         height: 38px;
         padding: 10px;
-        background-color: @accent;
+        background-color: $accent;
         color: #fff;
-        border-color: @accent;
+        border-color: $accent;
 
         .btn {
             padding: 9px 12px 10px;

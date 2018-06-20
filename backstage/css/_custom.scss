@@ -52,7 +52,7 @@
                     &:hover,
                     &:active,
                     &:focus {
-                        color: @accent;
+                        color: $accent;
                         background: #fff !important;
                     }
                 }
