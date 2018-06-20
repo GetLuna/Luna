@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.1\n"
 "POT-Creation-Date: 2018-06-20 13:05+0200\n"
-"PO-Revision-Date: 2018-06-20 13:11+0200\n"
+"PO-Revision-Date: 2018-06-20 13:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna\n"
 "Language: nl\n"
@@ -598,7 +598,7 @@ msgid ""
 "You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 "Je kan nu zien wat een sub forum is en meer instellingen wijzigen in forum "
-"beheer."
+"beheer"
 
 #: backstage/about.php:230
 msgid "Users can now disable or enable First Run from their profile"
@@ -832,7 +832,7 @@ msgid ""
 "You can upload a custom header here to show in the Mainstage and Backstage"
 msgstr ""
 "Je kan een afbeelding uploaden om als achtergrond te gebruiken in de "
-"Mainstage en Backstage."
+"Mainstage en Backstage"
 
 #: backstage/appearance.php:227
 msgid "Your theme does not support header background"
@@ -979,7 +979,7 @@ msgstr "Dit thema heeft geen ondersteuning voor terug omhoog"
 
 #: backstage/appearance.php:360
 msgid "Show a \"Back to top\" link in the footer."
-msgstr "Toon een \"Terug omhoog\" link in de voet"
+msgstr "Toon een \"Terug omhoog\" link in de voet."
 
 #: backstage/appearance.php:367 themes/Fifteen/views/footer.php:92
 msgid "Copyright"
@@ -1003,11 +1003,11 @@ msgstr "Dit thema heeft geen ondersteuning voor aangepaste copyright"
 
 #: backstage/appearance.php:383
 msgid "Show default copyright"
-msgstr "Toon de standaard copyright info."
+msgstr "Toon de standaard copyright info"
 
 #: backstage/appearance.php:389
 msgid "Show personalized copyright notices:"
-msgstr "Toon gepersonaliseerde copyright info."
+msgstr "Toon gepersonaliseerde copyright info:"
 
 #: backstage/appearance.php:391
 msgid "Your copyright"
@@ -1125,7 +1125,7 @@ msgstr ""
 #: backstage/bans.php:129
 #, php-format
 msgid "Click %s to see IP statistics for this user."
-msgstr "Klik %s om IP statistieken te zien voor deze gebruiker"
+msgstr "Klik %s om IP statistieken te zien voor deze gebruiker."
 
 #: backstage/bans.php:129
 msgid "here"
@@ -1397,8 +1397,7 @@ msgstr "Icoon"
 msgid ""
 "The Font Awesome icon you want to show next to the title, for a full "
 "overview, see the %s"
-msgstr ""
-"Het Font Awesome icoon dat je wilt gebruiken voor dit forum. Zie de %s."
+msgstr "Het Font Awesome icoon dat je wilt gebruiken voor dit forum. Zie de %s"
 
 #: backstage/board.php:347 backstage/board.php:707 backstage/board.php:764
 msgid "Font Awesome icon guide"
@@ -1550,7 +1549,7 @@ msgstr "Update"
 
 #: backstage/censoring.php:159
 msgid "No censor words in list."
-msgstr "Er wordt geen woord gecensureerd"
+msgstr "Er wordt geen woord gecensureerd."
 
 #: backstage/emoji.php:29 backstage/emoji.php:58
 msgid "You must enter a BBCode that will be replaced with the emoji."
@@ -1593,10 +1592,8 @@ msgid "Unicode"
 msgstr "Inline code"
 
 #: backstage/emoji.php:167
-#, fuzzy
-#| msgid "Not available"
 msgid "No emoji available."
-msgstr "Niet beschikbaar"
+msgstr "Niet beschikbaar."
 
 #: backstage/features.php:122 backstage/settings.php:215
 msgid ""
@@ -1732,7 +1729,7 @@ msgstr "Laat het gebruik van de [img]-tag toe."
 
 #: backstage/features.php:364
 msgid "Allow the use of the [spoiler]-tag."
-msgstr "Sta het gebruik van de [spoiler]-tag toe"
+msgstr "Sta het gebruik van de [spoiler]-tag toe."
 
 #: backstage/features.php:370 backstage/features.php:513
 #: backstage/features.php:518 themes/Fifteen/views/settings.php:359
@@ -1793,7 +1790,7 @@ msgstr "Gebruik avatars"
 
 #: backstage/features.php:452
 msgid "Enable so users can upload avatars."
-msgstr "Sta gebruikers toe om avatars te uploaden"
+msgstr "Sta gebruikers toe om avatars te uploaden."
 
 #: backstage/features.php:458
 msgid "Upload directory"
@@ -2308,9 +2305,9 @@ msgid ""
 "We're ready to go now, but there might be a couple of settings you might "
 "want to change. So let us help you with that first!"
 msgstr ""
-"Welkom in de Backstage. Hier can je je forum beheren. We hebben alles al "
-"klaar gezet, maar er zijn mogelijk een paar instellingen die je wilt wijzgen "
-"of pagina's die je wilt bezoeken."
+"Welkom in de Backstage. Hier kan je je forum beheren. We hebben alles al "
+"klaar gezet, maar er zijn mogelijk een paar instellingen die je wilt "
+"wijzigen of pagina's die je wilt bezoeken!"
 
 #: backstage/index.php:107
 msgid "What's new"
@@ -2462,7 +2459,7 @@ msgstr "Reacties per cyclus moet een positief natuurlijk getal zijn."
 
 #: backstage/maintenance.php:58
 msgid "Rebuilding search index"
-msgstr "Hergenereren zoek index."
+msgstr "Hergenereren zoek index"
 
 #: backstage/maintenance.php:81
 msgid "Rebuilding index. This might be a good time to put on some coffee :-)"
@@ -2471,7 +2468,7 @@ msgstr "Hergenereren index. Dit is een goed moment om wat koffie te pakken."
 #: backstage/maintenance.php:94
 #, php-format
 msgid "Processing comment <strong>%s</strong> …"
-msgstr "Reactie <strong>%s</strong> verwerken..."
+msgstr "Reactie <strong>%s</strong> verwerken…"
 
 #: backstage/maintenance.php:141 db_update.php:194 include/install.php:1581
 msgid ""
@@ -2495,7 +2492,7 @@ msgid ""
 "admins. Do not log out when this feature is active!"
 msgstr ""
 "Schakel onderhoudsmodus in, het forum zal alleen beschikbaar zijn voor "
-"admins. Log niet uit als deze functie aan staat."
+"admins. Log niet uit als deze functie aan staat!"
 
 #: backstage/maintenance.php:219 backstage/maintenance.php:223
 msgid "Cache"
@@ -2726,7 +2723,7 @@ msgstr "Conversaties verwijderen"
 
 #: backstage/moderate.php:745
 msgid "Are you sure you want to delete the selected threads?"
-msgstr "Ben je zeker dat je de geselecteerde conversaties wilt verwijderen."
+msgstr "Ben je zeker dat je de geselecteerde conversaties wilt verwijderen?"
 
 #: backstage/moderate.php:897
 #, php-format
@@ -2834,7 +2831,7 @@ msgstr "Dagen oud"
 
 #: backstage/prune.php:245
 msgid "The number of days old a notification must be to be pruned"
-msgstr "Hoe oud een notificatie moet zijn voordat deze wordt opgeruimd."
+msgstr "Hoe oud een notificatie moet zijn voordat deze wordt opgeruimd"
 
 #: backstage/prune.php:251 backstage/settings.php:360 install.php:210
 #: install.php:305
@@ -3228,7 +3225,8 @@ msgstr "Sta toe dat mensen zich registreren op dit forum."
 #: backstage/settings.php:559
 msgid "Notify people on the mailing list when new user registers.  "
 msgstr ""
-"Geef een waarschuwing aan gebruikers op de maillijst bij nieuwe registraties."
+"Geef een waarschuwing aan gebruikers op de maillijst bij nieuwe "
+"registraties.  "
 
 #: backstage/settings.php:565
 msgid "Verify"
@@ -3238,7 +3236,7 @@ msgstr "Verifieer"
 msgid "Send a random password to users to verify their email address.  "
 msgstr ""
 "Stuur een email met een willekeurig wachtwoord naar gebruikers om hun email "
-"adres te verifiëren."
+"adres te verifiëren.  "
 
 #: backstage/settings.php:581
 msgid ""
@@ -4164,7 +4162,7 @@ msgstr ""
 
 #: db_update.php:170
 msgid "Your forum is already as up-to-date as this script can make it"
-msgstr "Je forum is al zo up-to-date als dit script het kan maken."
+msgstr "Je forum is al zo up-to-date als dit script het kan maken"
 
 #: db_update.php:170 install.php:96
 msgid "Continue"
@@ -4189,7 +4187,7 @@ msgstr "Update Luna"
 #: db_update.php:840 db_update.php:875
 #, php-format
 msgid "Preparsing %1$s %2$s …"
-msgstr "Parsen van %1$s %2$s ..."
+msgstr "Parsen van %1$s %2$s …"
 
 #: db_update.php:875
 msgid "signature"
@@ -4232,7 +4230,7 @@ msgstr "De meest recente reactie in %s."
 
 #: extern.php:318
 msgid "Re: "
-msgstr "Re:"
+msgstr "Re: "
 
 #: extern.php:379
 msgid "en"
@@ -4385,7 +4383,7 @@ msgstr "Lijst  punt"
 
 #: include/draw_functions.php:127
 msgid "Start typing..."
-msgstr "Start met typen"
+msgstr "Start met typen…"
 
 #: include/draw_functions.php:145
 msgid "Preview"
@@ -4598,7 +4596,7 @@ msgstr ""
 
 #: include/functions.php:430
 msgid "Please direct any inquiries to the forum administrator at"
-msgstr "Voor vragen richt je je tot de forum administrator."
+msgstr "Voor vragen richt je je tot de forum administrator op"
 
 #: include/functions.php:457
 msgid ""
@@ -4655,7 +4653,7 @@ msgstr ""
 
 #: include/functions.php:480
 msgid "Someone is already registered with the username"
-msgstr "Iemand anders gebruikt deze naam al."
+msgstr "Iemand anders gebruikt deze naam al"
 
 #: include/functions.php:480
 msgid ""
@@ -4688,7 +4686,7 @@ msgstr "Gebruiker"
 #: include/functions.php:984 include/functions.php:1003
 #: include/functions.php:1039 include/functions.php:1058
 msgid "…"
-msgstr "..."
+msgstr "…"
 
 #: include/functions.php:1161
 msgid "Luna failed to perform your request"
@@ -4733,7 +4731,7 @@ msgstr ""
 #: include/functions.php:1777
 #, php-format
 msgid "%s "
-msgstr "%s"
+msgstr "%s "
 
 #: include/functions.php:2169
 msgid "Debug information"
@@ -4820,7 +4818,7 @@ msgid ""
 "not have InnoDB support, or enable InnoDB on your MySQL server"
 msgstr ""
 "InnoDB lijkt niet beschikbaar te zijn. Kies een database layer dat geen "
-"InnoDB gebruik, of schakel InnoDB in op je MySQL server."
+"InnoDB gebruik, of schakel InnoDB in op je MySQL server"
 
 #: include/install.php:222
 #, php-format
@@ -4833,7 +4831,7 @@ msgstr ""
 "De tabel prefix '%s' bevat verboden tekens of is te lang. De prefix mag "
 "bestaan uit de letters a tot z, elk nummer en een underscore. Het mag niet "
 "starten met een cijfer en mag maximum 40 tekens lang zijn. Kies een andere "
-"prefix."
+"prefix"
 
 #: include/install.php:237
 #, php-format
@@ -4848,7 +4846,7 @@ msgstr ""
 "mogelijk wijzen op een al bestaande Luna installatie of dat een ander "
 "programma is geïnstalleerd dat een of meer tabelnamen gebruikt die Luna ook "
 "gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
-"bewaren kan je een andere prefix instellen."
+"bewaren kan je een andere prefix instellen"
 
 #: include/install.php:1518
 msgid "H:i"
@@ -4920,12 +4918,12 @@ msgstr "De lijst was the lang om te verwerken, maak hem korter!"
 #: include/parser.php:351
 #, php-format
 msgid "[%s] tag had an empty attribute section"
-msgstr "[%s]-tag heeft geen attribute gegeven."
+msgstr "[%s]-tag heeft geen attribute gegeven"
 
 #: include/parser.php:406 include/parser.php:515
 #, php-format
 msgid "[%1$s] was opened within [%2$s], this is not allowed"
-msgstr "[%1$s] was geopend binnen een [%2$s], dit is niet toegestaan."
+msgstr "[%1$s] was geopend binnen een [%2$s], dit is niet toegestaan"
 
 #: include/parser.php:415 include/parser.php:476
 #, php-format
@@ -4940,7 +4938,7 @@ msgstr "[%1$s] was gevonden zonder overeenkomstige [/%1$s]"
 #: include/parser.php:530
 #, php-format
 msgid "[%s] was opened within itself, this is not allowed"
-msgstr "[%s] was geopend binnen zichzelf, dit is niet toegestaan."
+msgstr "[%s] was geopend binnen zichzelf, dit is niet toegestaan"
 
 #: include/parser.php:670
 msgid "image"
@@ -5011,7 +5009,7 @@ msgid ""
 "installed. Non is available, though"
 msgstr ""
 "PHP moet ondersteuning bieden voor MySQL of SQLite om Luna te installeren. "
-"Geen van beide is beschikbaar."
+"Geen van beide is beschikbaar"
 
 #: install.php:191 install.php:510 install.php:533
 msgid "Luna Installation"
@@ -5364,7 +5362,7 @@ msgstr "Lan bericht niet opslaan, je Inbox is vol."
 
 #: new_inbox.php:182
 msgid "You must give at least one receiver"
-msgstr "Je moet minstens één ontvanger opgeven."
+msgstr "Je moet minstens één ontvanger opgeven"
 
 #: new_inbox.php:184
 #, php-format
@@ -5869,7 +5867,7 @@ msgstr ""
 
 #: settings.php:508
 msgid "The file you tried to upload is larger than the maximum allowed"
-msgstr "Het bestand dat je hebt geüpload is te groot."
+msgstr "Het bestand dat je hebt geüpload is te groot"
 
 #: settings.php:532
 msgid ""
@@ -6046,7 +6044,7 @@ msgstr "Lijsten"
 
 #: themes/Fifteen/views/help.php:35
 msgid "The following tags change the appearance of text:"
-msgstr "De volgende tags veranderen het voorkomen van tekst"
+msgstr "De volgende tags veranderen het voorkomen van tekst:"
 
 #: themes/Fifteen/views/help.php:36
 msgid "Bold text"
@@ -6151,7 +6149,7 @@ msgstr "Als je iemand wilt citeren, gebruik je de quote-tag."
 
 #: themes/Fifteen/views/help.php:65 themes/Fifteen/views/help.php:67
 msgid "This is the text I want to quote."
-msgstr "Dit is de tekst die ik wil citeren"
+msgstr "Dit is de tekst die ik wil citeren."
 
 #: themes/Fifteen/views/help.php:66
 msgid "produces a quote box like this:"
@@ -6631,7 +6629,7 @@ msgstr "Bevestig nieuw wachtwoord"
 #: themes/Fifteen/views/me-modals.php:39 themes/Fifteen/views/register.php:27
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
-"Wachtwoorden moeten minsten 6 tekens lang zijn en zijn hoofdletter gevoelig."
+"Wachtwoorden moeten minsten 6 tekens lang zijn en zijn hoofdletter gevoelig"
 
 #: themes/Fifteen/views/me-modals.php:62
 #, php-format
@@ -6743,7 +6741,7 @@ msgstr "Kleur"
 
 #: themes/Fifteen/views/settings.php:143
 msgid "Enforce the accent on the board."
-msgstr "Forceer de accentkleur op het forum"
+msgstr "Forceer de accentkleur op het forum."
 
 #: themes/Fifteen/views/settings.php:155
 msgid "Never use night mode."
