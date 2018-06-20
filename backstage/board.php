@@ -394,13 +394,11 @@ elseif (isset($_POST['update_board'])) {
                 <h5 class="card-header">
                     <?php _e('Group permissions', 'luna')?>
                     <span class="float-right">
+                        <button class="btn btn-link btn-link-danger" type="submit" name="revert_perms" tabindex="<?php echo $cur_index++ ?>"><i class="fas fa-fw fa-undo"></i> <?php _e('Revert to default', 'luna')?></button>
                         <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
                     </span>
                 </h5>
-                <div class="card-body">
-                    <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php printf(__('Permission settings that differ from the default permissions for the group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">'.__('User groups', 'luna').'</a>')?></div>
-                    <button class="btn btn-warning pull-right" type="submit" name="revert_perms" tabindex="<?php echo $cur_index++ ?>"><i class="fas fa-fw fa-undo"></i> <?php _e('Revert to default', 'luna')?></button>
-                </div>
+                <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('Permission settings that differ from the default permissions for the group are marked red. Some permissions are disabled under some conditions.', 'luna' ) ?></div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>

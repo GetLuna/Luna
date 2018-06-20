@@ -1,0 +1,10 @@
+.alert {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+
+    &.alert-info {
+        color: darken( $accent, 10% );
+        background-color: lighten( $accent, 50% );
+    }
+}
