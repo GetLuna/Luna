@@ -102,7 +102,7 @@ require 'header.php';
 		<form id="emoji" method="post" action="emoji.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add emoji', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_emoji" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add emoji', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_emoji" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
 				</div>
 				<fieldset>
 					<div class="panel-body">

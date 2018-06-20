@@ -247,7 +247,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 			<form  class="form-horizontal" id="install" method="post" action="install.php">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Install language', 'luna')?><span class="pull-right"><button type="submit" class="btn btn-primary" name="start"><i class="fas fa-fw fa-language"></i> <?php _e('Change language', 'luna')?></button></span></h3>
+						<h3 class="panel-title"><?php _e('Install language', 'luna')?><span class="float-right"><button type="submit" class="btn btn-primary" name="start"><i class="fas fa-fw fa-language"></i> <?php _e('Change language', 'luna')?></button></span></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>

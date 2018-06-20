@@ -89,7 +89,7 @@ require 'header.php';
 			<fieldset>
 				<div class="panel panel-default panel-end-checkbox">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('New item', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
+						<h3 class="panel-title"><?php _e('New item', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
 					</div>
 					<div class="panel-body">
                         <input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna')?>" />
@@ -113,7 +113,7 @@ require 'header.php';
 		<form method="post" action="menu.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Menu', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Menu', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
 				</div>
 				<div class="table-responsive">
 					<table class="table">

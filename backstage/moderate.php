@@ -154,7 +154,7 @@ if (isset($_GET['tid'])) {
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Delete comments', 'luna')?><span class="pull-right"><input class="btn btn-danger" type="submit" name="delete_comments_comply" value="<?php _e('Delete', 'luna')?>" /></span></h3>
+					<h3 class="panel-title"><?php _e('Delete comments', 'luna')?><span class="float-right"><input class="btn btn-danger" type="submit" name="delete_comments_comply" value="<?php _e('Delete', 'luna')?>" /></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
@@ -252,7 +252,7 @@ if (isset($_GET['tid'])) {
 		<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Split comments', 'luna')?><span class="pull-right"><button input type="submit" class="btn btn-primary" name="split_comments_comply"><i class="fas fa-fw fa-code-fork"></i> <?php _e('Split', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Split comments', 'luna')?><span class="float-right"><button input type="submit" class="btn btn-primary" name="split_comments_comply"><i class="fas fa-fw fa-code-fork"></i> <?php _e('Split', 'luna')?></button></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
@@ -339,7 +339,7 @@ if (isset($_GET['tid'])) {
                         <a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
                     <a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna')?></a>
                 </div>
-                <span class="pull-right"><?php echo $paging_links ?></span>
+                <span class="float-right"><?php echo $paging_links ?></span>
 
                 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
@@ -398,7 +398,7 @@ if (isset($_GET['tid'])) {
         ?><?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'] . '#p' . $cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>
+                                <h3 class="panel-title"><?php echo $commenter ?> <span class="small"><?php echo $user_title ?></span><span class="float-right">#<?php echo ($start_from + $comment_count) ?> &middot; <a href="../thread.php?pid=<?php echo $cur_comment['id'] . '#p' . $cur_comment['id'] ?>"><?php echo format_time($cur_comment['commented']) ?></a></span></h3>
                             </div>
                             <div class="panel-body">
                                 <?php echo $cur_comment['message'] . "\n" ?>
@@ -424,7 +424,7 @@ if (isset($_GET['tid'])) {
                         <a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
                         <a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna')?></a>
                     </div>
-                    <span class="pull-right"><?php echo $paging_links ?></span>
+                    <span class="float-right"><?php echo $paging_links ?></span>
                     <div class="btn-group pull-right">
                         <button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><i class="fas fa-fw fa-code-fork"></i> <?php _e('Split', 'luna')?></button>
                         <button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fas fa-fw fa-trash"></i> <?php _e('Delete', 'luna')?></button>
@@ -520,7 +520,7 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
     <div class="row">
 	   <form class="form-horizontal panel panel-default" method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo ($action == 'single') ? __('Move thread', 'luna') : __('Move threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-primary" name="move_threads_to"><i class="fas fa-fw fa-arrows-alt"></i> <?php _e('Move', 'luna')?></button></span></h3>
+				<h3 class="panel-title"><?php echo ($action == 'single') ? __('Move thread', 'luna') : __('Move threads', 'luna') ?><span class="float-right"><button type="submit" class="btn btn-primary" name="move_threads_to"><i class="fas fa-fw fa-arrows-alt"></i> <?php _e('Move', 'luna')?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="threads" value="<?php echo $threads ?>" />
@@ -649,7 +649,7 @@ elseif (isset($_POST['merge_threads']) || isset($_POST['merge_threads_comply']))
     <div class="col-xs-12">
 		<form class="panel panel-default" method="post" action="moderate.php?fid=<?php echo $fid ?>">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Merge threads', 'luna')?><span class="pull-right"><button type="submit" class="btn btn-primary" name="merge_threads_comply"><i class="fas fa-fw fa-compress"></i> <?php _e('Merge', 'luna')?></button></span></h3>
+                <h3 class="panel-title"><?php _e('Merge threads', 'luna')?><span class="float-right"><button type="submit" class="btn btn-primary" name="merge_threads_comply"><i class="fas fa-fw fa-compress"></i> <?php _e('Merge', 'luna')?></button></span></h3>
             </div>
             <div class="panel-body">
                 <input type="hidden" name="threads" value="<?php echo implode(',', array_map('intval', array_keys($threads))) ?>" />
@@ -737,7 +737,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
     <div class="col-xs-12">
         <form method="post" class="panel panel-danger" action="moderate.php?fid=<?php echo $fid ?>">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Delete threads', 'luna')?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_threads_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna')?></button></span></h3>
+				<h3 class="panel-title"><?php _e('Delete threads', 'luna')?><span class="float-right"><button type="submit" class="btn btn-danger" name="delete_threads_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna')?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="threads" value="<?php echo implode(',', array_map('intval', array_keys($threads))) ?>" />

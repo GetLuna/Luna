@@ -1,0 +1,16 @@
+footer {
+    color: #ffffff;
+    padding: 1rem;
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        color: #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

@@ -115,51 +115,44 @@ if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 2
 require 'header.php';
 ?>
 <div class="row">
-    <div class="col-sm-12">
-<?php
-if (isset($_GET['saved'])) {
-    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
-}
-
-?>
-    </div>
+	<div class="col-12">
+		<h1><?php _e('Updates') ?></h1>
+	</div>
 	<div class="col-sm-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Luna version information', 'luna')?></h3>
-            </div>
+        <div class="card">
+            <h5 class="card-header">
+                <?php _e('Luna version information', 'luna')?>
+            </h5>
             <div class="table-responsive">
 				<table class="table">
-					<thead>
-						<tr>
-							<th class="col-md-6"></th>
-							<th class="col-md-6"><?php _e('Version', 'luna')?></th>
-						</tr>
-					</thead>
 					<tbody>
 						<tr>
 							<td><?php _e('Software version', 'luna')?></td>
-							<td><?php echo $luna_config['o_cur_version']; ?></td>
+							<td>v<?php echo $luna_config['o_cur_version']; ?></td>
 						</tr>
 						<tr>
 							<td><?php _e('Core version', 'luna')?></td>
-							<td><?php echo $luna_config['o_core_version']; ?></td>
+							<td>v<?php echo $luna_config['o_core_version']; ?></td>
 						</tr>
 						<tr>
 							<td><?php _e('Database version', 'luna')?></td>
-							<td><?php echo $luna_config['o_database_revision']; ?></td>
+							<td>v<?php echo $luna_config['o_database_revision']; ?></td>
 						</tr>
 						<tr>
 							<td><?php _e('Bootstrap version', 'luna')?></td>
-							<td>3.3.7</td>
+							<td>v3.3.7</td>
 						</tr>
 						<tr>
 							<td><?php _e('Font Awesome version', 'luna')?></td>
-							<td>5.0.13</td>
+							<td>v5.0.13</td>
 						</tr>
 						<tr>
 							<td><?php _e('jQuery version', 'luna')?></td>
-							<td>3.3.1</td>
+							<td>v3.3.1</td>
+						</tr>
+						<tr>
+							<td><?php _e('Prism version', 'luna')?></td>
+							<td>v14.0</td>
 						</tr>
 					</tbody>
 				</table>
@@ -167,11 +160,14 @@ if (isset($_GET['saved'])) {
         </div>
 	</div>
 	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Luna software updates', 'luna')?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fas fa-fw fa-sync"></span> <?php _e('Check for updates', 'luna')?></a></span></h3>
-			</div>
-			<div class="panel-body">
+		<div class="card">
+			<h5 class="card-header">
+				<?php _e('Luna software updates', 'luna')?>
+				<span class="float-right">
+					<a href="update.php?action=check_update" class="btn btn-link"><span class="fas fa-fw fa-sync"></span> <?php _e('Check for updates', 'luna')?></a>
+				</span>
+			</h5>
+			<div class="card-body">
 <?php
 if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>
@@ -197,18 +193,18 @@ if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 			</div>
 		</div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Server statistics', 'luna')?></h3>
-            </div>
+		<div class="card">
+			<h5 class="card-header">
+				<?php _e('Server statistics', 'luna')?>
+			</h5>
             <div class="table-responsive">
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="col-md-4"><?php _e('Server load', 'luna')?></th>
+							<th><?php _e('Server load', 'luna')?></th>
 							<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
-							<th class="col-md-4"><?php _e('Environment', 'luna')?></th>
-							<th class="col-md-4"><?php _e('Database', 'luna')?></th>
+							<th><?php _e('Environment', 'luna')?></th>
+							<th><?php _e('Database', 'luna')?></th>
 							<?php endif;?>
 						</tr>
 					</thead>

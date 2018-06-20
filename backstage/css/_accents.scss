@@ -2,4 +2,115 @@
     &.bg-primary {
         background-color: $accent !important;
     }
+
+    .navbar-collapse {
+        .navbar-nav {
+            .nav-item {
+                &.dropdown {
+                    &.show {
+                        background-color: darken($accent, 5%);
+
+                        .dropdown-menu {
+                            background-color: darken($accent, 5%);
+
+                            .dropdown-item {
+                                &:hover,
+                                &:active,
+                                &:focus {
+                                    background-color: darken($accent, 10%);
+                                }
+                            }
+
+                            .dropdown-divider {
+                                border-top-color: darken($accent, 14%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btn {
+    &.btn-primary {
+        background-color: $accent;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.active:focus,
+        &:focus:active {
+            background-color: darken( $accent, 5% );
+        }
+    }
+}
+
+.card {
+    .card-header {
+        .float-right {
+            .btn {
+                color: $accent;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: $accent;
+                }
+            }
+        }
+    }
+
+    &.bg-primary {
+        background-color: $accent !important;
+
+        .card-header {
+            background-color: darken( $accent, 5% );
+        }
+    }
+}
+
+.jumbotron {
+    &.navigon {
+        &.primary {
+            background-color: $accent;
+        }
+
+        &.secondary {
+            .nav {
+                .nav-item {
+                    &.active {
+                        border-bottom-color: $accent;
+                    }
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-bottom-color: $accent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+a {
+    color: $accent;
+
+    &:active,
+    &:hover,
+    &:focus {
+        color: darken( $accent, 5% );
+    }
+}
+
+footer {
+    background: $accent;
+    border-bottom: 15px solid darken( $accent, 5% );
+
+    a {
+        &:hover {
+            color: lighten( $accent, 20% );
+        }
+    }
 }

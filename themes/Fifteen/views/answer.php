@@ -10,7 +10,7 @@ if (!defined('FORUM'))
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="title-block title-block-success">
-					<h2><i class="fas fa-fw fa-check"></i> <?php _e('Answer', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-default" name="submit" accesskey="s"><span class="fas fa-fw fa-check"></span> <?php _e('Yes', 'luna') ?></button></span></h2>
+					<h2><i class="fas fa-fw fa-check"></i> <?php _e('Answer', 'luna') ?><span class="float-right"><button type="submit" class="btn btn-default" name="submit" accesskey="s"><span class="fas fa-fw fa-check"></span> <?php _e('Yes', 'luna') ?></button></span></h2>
 				</div>
 				<div class="tab-content tab-content-success">
 					<input type="hidden" name="form_sent" value="1" />

@@ -190,7 +190,7 @@ if (isset($_GET['cache_cleared'])) {
         <form class="form-horizontal" method="post" action="maintenance.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title" id="maintenance"><?php _e('Maintenance', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title" id="maintenance"><?php _e('Maintenance', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -230,7 +230,7 @@ if (isset($_GET['cache_cleared'])) {
         <form class="form-horizontal" method="get" action="maintenance.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Rebuild search index', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fas fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Rebuild search index', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fas fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="action" value="rebuild" />

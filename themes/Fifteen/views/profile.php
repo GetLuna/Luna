@@ -68,7 +68,7 @@ if (!defined('FORUM'))
             </div>
             <?php if (!empty($user_messaging) || (($user['email_setting'] != '0' && ($luna_user['g_send_email'] == '1')))): ?>
                 <div class="title-block title-block-primary">
-                    <h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Contact', 'luna') ?><?php if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { echo '<span class="pull-right"><a class="btn btn-default" href="misc.php?email='.$id.'"><span class="fas fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a></span>'; } ?></h2>
+                    <h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Contact', 'luna') ?><?php if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { echo '<span class="float-right"><a class="btn btn-default" href="misc.php?email='.$id.'"><span class="fas fa-fw fa-send-o"></span> '.__('Send email', 'luna').'</a></span>'; } ?></h2>
                 </div>
                 <?php if (!empty($user_messaging)): ?>
                     <div class="tab-content tab-contact">

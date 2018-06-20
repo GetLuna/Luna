@@ -33,7 +33,7 @@ else
 		<div class="col-xs-12 col-sm-9">
 			<form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
 				<div class="title-block title-block-primary title-block-nav">
-					<h2><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="pull-right"><button class="btn btn-default" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
+					<h2><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="float-right"><button class="btn btn-default" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-fw fa-user"></i><span class="hidden-sm hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fas fa-fw fa-paint-brush"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>

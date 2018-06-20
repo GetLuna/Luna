@@ -250,11 +250,10 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
                 </div>
             </div>
         </header>
-        <div class="content">
-            <div class="container main">
-                <?php if ($luna_config['o_maintenance'] == '1') {?>
-                    <div class="row"><div class="col-xs-12"><div class="alert alert-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Luna is currently set in Maintenance Mode. Do not log off.', 'luna' )?></div></div></div>
-                <?php }?>
+        <div class="container main">
+            <?php if ($luna_config['o_maintenance'] == '1') {?>
+                <div class="row"><div class="col-xs-12"><div class="alert alert-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Luna is currently set in Maintenance Mode. Do not log off.', 'luna' )?></div></div></div>
+            <?php } ?>
 <?php
 if (isset($required_fields)) {
     // Output JavaScript to validate form (make sure required fields are filled out)

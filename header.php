@@ -144,7 +144,7 @@ if (!$luna_user['is_guest']) {
                             <li class="divider"></li>
                             ' . $notifications . '
                             <li class="divider"></li>
-                            <li class="dropdown-footer hidden-xs"><a class="pull-right" href="notifications.php">' . __('More', 'luna') . ' <i class="fas fa-fw fa-arrow-right"></i></a></li>
+                            <li class="dropdown-footer hidden-xs"><a class="float-right" href="notifications.php">' . __('More', 'luna') . ' <i class="fas fa-fw fa-arrow-right"></i></a></li>
                             <li class="dropdown-footer hidden-lg hidden-md hidden-sm"><a href="notifications.php">' . __('More', 'luna') . ' <i class="fas fa-fw fa-arrow-right"></i></a></li>
                         </ul>
                     </li>';

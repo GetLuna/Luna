@@ -14,7 +14,7 @@ if (!defined('FORUM'))
 					<h2>
 						<i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?>
 						<?php if ($luna_config['o_enable_advanced_search'] == '1') { ?>
-						<span class="pull-right">
+						<span class="float-right">
 							<button class="btn btn-default" type="submit" name="search"><i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?></button>
 						</span>
 						<?php } ?>

@@ -48,7 +48,7 @@ if (!defined('FORUM'))
 		</div>
 		<div class="col-sm-9">
 			<div class="title-block title-block-primary">
-				<span class="pull-right"><?php echo $paging_links ?></span>
+				<span class="float-right"><?php echo $paging_links ?></span>
 				<h2><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></h2>
 			</div>
 			<?php draw_comment_list(); ?>

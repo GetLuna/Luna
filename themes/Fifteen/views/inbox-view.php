@@ -25,7 +25,7 @@ if (!defined('FORUM'))
 		</div>
 		<div class="col-xs-12 col-sm-9">
 			<div class="title-block title-block-primary">
-				<h2><i class="fa fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?><span class="pull-right"><a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fas fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a></span></h2>
+				<h2><i class="fa fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?><span class="float-right"><a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fas fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a></span></h2>
 			</div>
 <?php
 echo $paging_links;

@@ -112,7 +112,7 @@ require 'header.php';
 		<div class="col-sm-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add rank', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_rank" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add rank', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_rank" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
 				</div>
                 <div class="panel-body">
                     <input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna')?>" maxlength="50" tabindex="1" />
@@ -126,7 +126,7 @@ require 'header.php';
 		<div class="col-sm-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Manage ranks', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Manage ranks', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
 				</div>
 				<fieldset>
 <?php

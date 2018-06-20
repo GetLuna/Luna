@@ -2,6 +2,11 @@
     padding: 0;
     max-width: 1500px;
 
+    &.main {
+        background-color: #fff;
+        padding: .75rem .25rem;
+    }
+
     @media (max-width: 576px) {
         max-width: 100%;
     }

@@ -1,0 +1,67 @@
+.card {
+    border-radius: 0;
+    margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.bg-primary {
+        border: none;
+
+        .card-header {
+            border: none;
+            
+            .float-right {
+                .btn {
+                    color: #fff;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+    }
+
+    &.debug {
+        margin-top: 1rem;
+    }
+
+    .card-header {
+        font-weight: 600;
+        font-size: 1.25rem;
+        padding: .75rem;
+        line-height: 1;
+            
+        .float-right {
+            .btn {
+                margin: -1rem -.5rem -.6rem 0;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .card-body {
+        padding: .75rem;
+
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    :last-child {
+        margin-bottom: 0;
+    }
+}

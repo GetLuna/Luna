@@ -2164,16 +2164,16 @@ function display_saved_queries() {
     $saved_queries = $db->get_saved_queries();
 
     ?>
-<div class="debug panel panel-warning">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Debug information', 'luna')?></h3>
-	</div>
+<div class="card card-warning debug">
+	<h5 class="card-header">
+		<?php _e('Debug information', 'luna')?>
+	</h5>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th class="col-xs-1"><?php _e('Time (s)', 'luna')?></th>
-					<th class="col-xs-11"><?php _e('Query', 'luna')?></th>
+					<th><?php _e('Time (s)', 'luna')?></th>
+					<th><?php _e('Query', 'luna')?></th>
 				</tr>
 			</thead>
 			<tbody>

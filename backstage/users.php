@@ -582,7 +582,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
         <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Ban users', 'luna')?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Ban users', 'luna')?><span class="float-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
@@ -799,7 +799,7 @@ if (isset($_GET['saved'])) {
         <form id="find_user" method="get" action="users.php" class="form-horizontal">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('User search', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fas fa-fw fa-search"></span> <?php _e('Search', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('User search', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fas fa-fw fa-search"></span> <?php _e('Search', 'luna')?></button></span></h3>
                 </div>
                 <fieldset>
                     <div class="panel-body">
@@ -893,7 +893,7 @@ if (isset($_GET['saved'])) {
         </form>
         <form method="get" action="users.php" class="form-horizontal panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('IP search', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit"><span class="fas fa-fw fa-search"></span> <?php _e('Find IP address', 'luna')?></button></span></h3>
+                <h3 class="panel-title"><?php _e('IP search', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit"><span class="fas fa-fw fa-search"></span> <?php _e('Find IP address', 'luna')?></button></span></h3>
             </div>
             <div class="panel-body">
                 <div class="form-group">

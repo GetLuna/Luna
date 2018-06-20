@@ -1,3 +1,19 @@
 .brand {
     font-weight: 700;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 600;
+
+    small {
+        color: #888;
+        font-weight: 600;
+    }
+}
+
+p {
+    &.lead {
+        font-weight: 500;
+    }
 }

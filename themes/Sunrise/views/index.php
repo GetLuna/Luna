@@ -57,7 +57,7 @@ if ($luna_user['first_run'] == '0') {
 									<input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php _e('Password', 'luna') ?>" />
 								</div>
 								<label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked /> <?php _e('Remember me', 'luna') ?></label>
-								<span class="pull-right">
+								<span class="float-right">
 									<input class="btn btn-primary btn-login" type="submit" name="login" value="<?php _e('Login', 'luna') ?>" tabindex="4" />
 								</span>
 							</fieldset>

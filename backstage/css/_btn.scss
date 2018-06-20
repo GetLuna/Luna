@@ -1,0 +1,14 @@
+.btn {
+    border-radius: 0;
+    border: transparent;
+
+    &.btn-primary {
+        &:hover,
+        &:active,
+        &:focus,
+        &.active:focus,
+        &:focus:active {
+            box-shadow: none;
+        }
+    }
+}

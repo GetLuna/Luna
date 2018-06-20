@@ -37,24 +37,15 @@
                     }
 
                     &.show {
-                        background-color: darken($accent, 5%);
-
                         .dropdown-menu {
                             border: none;
                             border-radius: 0;
                             margin: 0;
                             padding: 0;
-                            background-color: darken($accent, 5%);
 
                             .dropdown-item {
                                 padding: .6rem .8rem;
                                 color: #fff;
-
-                                &:hover,
-                                &:active,
-                                &:focus {
-                                    background-color: darken($accent, 10%);
-                                }
 
                                 &.float-right {
                                     text-align: right;
@@ -74,7 +65,6 @@
 
                             .dropdown-divider {
                                 margin: 0;
-                                border-top-color: darken($accent, 14%);
                             }
                         }
                     }

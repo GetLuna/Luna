@@ -262,7 +262,7 @@ if (isset($_GET['saved'])) {
         <form class="form-horizontal" method="post" enctype="multipart/form-data" action="settings.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Branding', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Branding', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -334,7 +334,7 @@ foreach ($languages as $temp) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Announcement', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Announcement', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -392,7 +392,7 @@ foreach ($languages as $temp) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Time and timeouts', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Time and timeouts', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -451,7 +451,7 @@ foreach ($timezones as $timezone) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Syndication', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Syndication', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -494,7 +494,7 @@ foreach ($times as $time) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Email', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Email', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -539,7 +539,7 @@ foreach ($times as $time) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Registration', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Registration', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -636,7 +636,7 @@ foreach ($times as $time) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Cookie bar', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Cookie bar', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -662,7 +662,7 @@ foreach ($times as $time) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('SMTP settings', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('SMTP settings', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -715,7 +715,7 @@ foreach ($times as $time) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('System', 'luna')?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('System', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
