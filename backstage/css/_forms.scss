@@ -1,9 +1,12 @@
 .form-group {
     .col-form-label {
-        text-align: right;
         font-size: 1.2rem;
         line-height: 1.2;
         font-weight: 600;
+
+        @media (min-width: 768px) {
+            text-align: right;
+        }
 
         .help-block {
             display: block;
@@ -11,6 +14,37 @@
             color: #888;
             font-weight: 500;
         }
+    }
+
+    @media (min-width: 768px) {
+        .col-md-9 {
+            .custom-control {
+                &:first-child {
+                    margin-top: .5rem;
+                }
+            }
+        }
+    }
+}
+
+.custom-checkbox {
+    .custom-control-label {
+        &::before {
+            border-radius: 0;
+        }
+    }
+
+    :checked {
+        &.custom-control-input ~ .custom-control-label::before {
+            background: $accent;
+            border-radius: 0;
+        }
+    }
+}
+
+td {
+    .custom-control {
+        margin-top: -1.15rem;
     }
 }
 

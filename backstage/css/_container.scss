@@ -7,19 +7,19 @@
         padding: .75rem .25rem 0;
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 576px) { //SM
         max-width: 100%;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 768px) { //MD
         max-width: 100%;
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 992px) { //LG
         max-width: 100%;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1200px) { //XL
         max-width: 100%;
     }
 }

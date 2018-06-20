@@ -279,20 +279,20 @@ elseif (isset($_POST['update_board'])) {
                 <div class="card-body">
                     <fieldset>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Forum name', 'luna')?></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Forum name', 'luna')?></label>
+                            <div class="col-md-9">
                                 <input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Description', 'luna')?></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Description', 'luna')?></label>
+                            <div class="col-md-9">
                                 <textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Parent section', 'luna')?></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Parent section', 'luna')?></label>
+                            <div class="col-md-9">
                                 <select name="parent_id" class="form-control">
                                     <option value="0"><?php _e('No parent forum selected', 'luna')?></option>
 <?php
@@ -326,8 +326,8 @@ elseif (isset($_POST['update_board'])) {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Category', 'luna')?></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Category', 'luna')?></label>
+                            <div class="col-md-9">
                                 <select class="form-control" name="cat_id" tabindex="3">
 <?php
 
@@ -342,8 +342,8 @@ elseif (isset($_POST['update_board'])) {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Sort threads by', 'luna')?></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Sort threads by', 'luna')?></label>
+                            <div class="col-md-9">
                                 <select class="form-control" name="sort_by" tabindex="4">
                                     <option value="0"<?php if ($cur_forum['sort_by'] == '0') { echo ' selected'; } ?>><?php _e('Last comment', 'luna')?></option>
                                     <option value="1"<?php if ($cur_forum['sort_by'] == '1') { echo ' selected'; } ?>><?php _e('Thread start', 'luna')?></option>
@@ -352,8 +352,8 @@ elseif (isset($_POST['update_board'])) {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="https://fontawesome.com/icons">'.__('Font Awesome icon guide', 'luna').'</a>')?></span></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="https://fontawesome.com/icons">'.__('Font Awesome icon guide', 'luna').'</a>')?></span></label>
+                            <div class="col-md-9">
                                 <div class="input-group">
 									<select class="form-control" name="icon_style" tabindex="5">
 										<option value="0"<?php if ($cur_forum['icon_style'] == '0') { echo ' selected'; } ?>>fas (Solid)</option>
@@ -371,19 +371,17 @@ elseif (isset($_POST['update_board'])) {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Forum color', 'luna')?></label>
-                            <div class="col-sm-9">
+                            <label class="col-md-3 col-form-label"><?php _e('Forum color', 'luna')?></label>
+                            <div class="col-md-9">
                                 <input class="color" name="color" value="<?php echo $cur_forum['color'] ?>" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label"><?php _e('Solved', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Threads in this forum can be marked as solved.', 'luna')?>
-                                    </label>
+                            <label class="col-md-3 col-form-label"><?php _e('Solved', 'luna')?></label>
+                            <div class="col-md-9">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="solved" id="solved" value="1" <?php if ($cur_forum['solved'] == '1') { echo ' checked'; } ?>>
+                                    <label class="custom-control-label" for="solved"><?php _e('Threads in this forum can be marked as solved.', 'luna')?></label>
                                 </div>
                             </div>
                         </div>
@@ -429,15 +427,24 @@ elseif (isset($_POST['update_board'])) {
                                 <th class="atcl"><?php echo luna_htmlspecialchars($cur_perm['g_title']) ?></th>
                                 <td<?php if (!$read_forum_def) { echo ' class="table-danger"'; } ?>>
                                     <input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
-                                    <input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" id="read_forum_new[<?php echo $cur_perm['g_id'] ?>]"  value="1"<?php echo ($read_forum) ? ' checked' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>">
+                                        <label class="custom-control-label" for="read_forum_new[<?php echo $cur_perm['g_id'] ?>]"></label>
+                                    </div>
                                 </td>
                                 <td<?php if (!$comment_def) { echo ' class="table-danger"'; } ?>>
                                     <input type="hidden" name="comment_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($comment) ? '1' : '0'; ?>" />
-                                    <input type="checkbox" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="comment_new[<?php echo $cur_perm['g_id'] ?>]" id="comment_new[<?php echo $cur_perm['g_id'] ?>]"  value="1"<?php echo ($comment) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>">
+                                        <label class="custom-control-label" for="comment_new[<?php echo $cur_perm['g_id'] ?>]"></label>
+                                    </div>
                                 </td>
                                 <td<?php if (!$create_threads_def) { echo ' class="table-danger"'; } ?>>
                                     <input type="hidden" name="create_threads_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($create_threads) ? '1' : '0'; ?>" />
-                                    <input type="checkbox" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="create_threads_new[<?php echo $cur_perm['g_id'] ?>]" id="create_threads_new[<?php echo $cur_perm['g_id'] ?>]"  value="1"<?php echo ($create_threads) ? ' checked' : ''; ?> tabindex="<?php echo $cur_index++ ?>">
+                                        <label class="custom-control-label" for="create_threads_new[<?php echo $cur_perm['g_id'] ?>]"></label>
+                                    </div>
                                 </td>
                             </tr>
 <?php } ?>
@@ -708,20 +715,20 @@ $forum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_sty
 						<div class="collapse" id="collapse<?php echo $cur_forum['id'] ?>">
 							<div class="card-body">
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Name', 'luna')?></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Name', 'luna')?></label>
+									<div class="col-md-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna')?>" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Position', 'luna')?></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Position', 'luna')?></label>
+									<div class="col-md-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna')?>" value="<?php echo $cur_forum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row row">
-                            		<label class="col-sm-3 col-form-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">'.__('Font Awesome icon guide', 'luna').'</a>' ?></span></label>
-									<div class="col-sm-9">
+                            		<label class="col-md-3 col-form-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">'.__('Font Awesome icon guide', 'luna').'</a>' ?></span></label>
+									<div class="col-md-9">
                                         <div class="input-group">
 											<select class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][icon_style]" tabindex="4">
 												<option value="0"<?php if ($cur_forum['icon_style'] == '0') { echo ' selected'; } ?>>fas (Solid)</option>
@@ -739,8 +746,8 @@ $forum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_sty
 									</div>
 								</div>
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Forum color', 'luna')?></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Forum color', 'luna')?></label>
+									<div class="col-md-9">
 										<input class="color" name="forum[<?php echo $cur_forum['id'] ?>][color]" value="<?php echo $cur_forum['color'] ?>" />
 									</div>
 								</div>
@@ -767,20 +774,20 @@ $subforum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_
                             <div class="collapse" id="collapse<?php echo $cur_subforum['id'] ?>">
                                 <div class="card-body">
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Name', 'luna')?></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Name', 'luna')?></label>
+									<div class="col-md-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna')?>" value="<?php echo luna_htmlspecialchars($cur_subforum['forum_name']) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Position', 'luna')?></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Position', 'luna')?></label>
+									<div class="col-md-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna')?>" value="<?php echo $cur_subforum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">'.__('Font Awesome icon guide', 'luna').'</a>' ?></span></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Icon', 'luna')?><span class="help-block"><?php echo '<a href="https://fontawesome.com/icons">'.__('Font Awesome icon guide', 'luna').'</a>' ?></span></label>
+									<div class="col-md-9">
                                         <div class="input-group">
 											<select class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][icon_style]" tabindex="4">
 												<option value="0"<?php if ($cur_subforum['icon_style'] == '0') { echo ' selected'; } ?>>fas (Solid)</option>
@@ -798,8 +805,8 @@ $subforum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_
 									</div>
 								</div>
 								<div class="form-group row row">
-									<label class="col-sm-3 col-form-label"><?php _e('Forum color', 'luna')?></label>
-									<div class="col-sm-9">
+									<label class="col-md-3 col-form-label"><?php _e('Forum color', 'luna')?></label>
+									<div class="col-md-9">
 										<input class="color" name="forum[<?php echo $cur_subforum['id'] ?>][color]" value="<?php echo $cur_subforum['color'] ?>" />
 									</div>
 								</div>
