@@ -33,7 +33,8 @@
                 background-color: @value;
 
                 .open > a {
-                    &,
+                    background-color: darken(@value, 5%) !important;
+
                     &:hover,
                     &:active,
                     &:focus {
@@ -42,9 +43,11 @@
                 }
 
                 .dropdown-menu {
-                    background-color: darken(@value, 5%);
+                    background-color: darken(@value, 5%) !important;
 
                     a {
+                        background-color: darken(@value, 5%);
+
                         &:hover,
                         &:active,
                         &:focus {

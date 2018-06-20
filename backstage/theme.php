@@ -206,7 +206,7 @@ if ( count( $themes ) > 0 ) {
 } else {
 ?>
             <div class="panel-body">
-                <h3 class="text-center"><?php _e( 'There are uninstalled themes.', 'luna' )?></h3>
+                <h3 class="text-center"><?php _e( 'There are no themes available', 'luna' )?></h3>
             </div>
 <?php } ?>
         </div>
