@@ -48,41 +48,43 @@ $num_notifications = $db->result($noticount);
 if ($luna_config['o_notification_flyout'] == 1) {
     if ($num_notifications == '0') {
         $notificon = '<span class="far fa-fw fa-circle"></span>';
-        $ind_notification[] = '<li><a href="../notifications.php">'.__('No new notifications', 'luna').'</a></li>';
+        $ind_notification[] = '<a class="dropdown-item" href="../notifications.php">'.__('No new notifications', 'luna').'</a>';
     } else {
         $notificon = $num_notifications.' <span class="fas fa-fw fa-circle"></span>';
 
         $notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
         while ($cur_notifi = $db->fetch_assoc($notification_result)) {
             $notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
-            $ind_notification[] = '<li class="overflow"><a href="../notifications.php?notification='.$cur_notifi['id'].'"><span class="timestamp">'.$notifitime.'</span> <span class="fas fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].'</a></li>';
+            $ind_notification[] = '<a class="dropdown-item" href="../notifications.php?notification='.$cur_notifi['id'].'"><span class="timestamp">'.$notifitime.'</span> <span class="fas fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].'</a>';
         }
     }
 
-    $notifications = implode('<li class="divider"></li>', $ind_notification);
+    $notifications = implode('', $ind_notification);
     $notification_menu_item = '
-					<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="'.(($num_notifications != 0) ? ' flash' : '').'">'.$notificon.'<span class="visible-xs-inline"> '.__('Notifications', 'luna').'</span></span></a>
-					<ul class="dropdown-menu notification-menu">
-						<li role="presentation" class="dropdown-header">'.__('Notifications', 'luna').'</li>
-						<li class="divider"></li>
-						'.$notifications.'
-						<li class="divider"></li>
-                        <li class="dropdown-footer hidden-xs"><a class="pull-right" href="../notifications.php">'.__('More', 'luna').' <i class="fas fa-fw fa-arrow-right"></i></a></li>
-                        <li class="dropdown-footer hidden-lg hidden-md hidden-sm"><a href="../notifications.php">'.__('More', 'luna').' <i class="fas fa-fw fa-arrow-right"></i></a></li>
-					</ul>
-				</li>';
+        <li class="nav-item dropdown dropdown-notifications">
+            <a class="nav-link dropdown-toggle" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="'.(($num_notifications != 0) ? 'flash' : '').'">'.$notificon.'</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationMenu">
+                <h6 class="dropdown-header">'.__('Notifications', 'luna').'</h6>
+                <div class="dropdown-divider"></div>
+                '.$notifications.'
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item float-right" href="../notifications.php">'.__('More', 'luna').' <i class="fas fa-fw fa-arrow-right"></i></a>
+            </div>
+        </li>';
 } else {
     if ($num_notifications == '0') {
         $notificon = '<span class="far fa-fw fa-circle"></span>';
     } else {
         $notificon = $num_notifications.' <span class="fas fa-fw fa-circle"></span>';
     }
-
-    $notification_menu_item = '<li><a href="../notifications.php" class="'.(($num_notifications != 0) ? ' flash' : '').'">'.$notificon.'<span class="visible-xs-inline"> '.__('Notifications', 'luna').'</span></a></li>';
+    
+    $notification_menu_item ='
+        <li class="nav-item active">
+            <a class="nav-link'.(($num_notifications != 0) ? ' flash' : '').'" href="https://getluna.org/docs" class="'.$notificon.'"><span class="visible-xs-inline"> '.__('Notifications', 'luna').'</span></a>
+        </li>';
 }
-
-
 
 if (LUNA_PAGE == 'index') { $page_title = __('Backstage', 'luna'); }
 if (LUNA_PAGE == 'update') { $page_title = __('Update', 'luna'); }
@@ -103,6 +105,7 @@ if (LUNA_PAGE == 'menu') { $page_title = __('Menu', 'luna'); }
 if (LUNA_PAGE == 'maintenance') { $page_title = __('Maintenance', 'luna'); }
 if (LUNA_PAGE == 'prune') { $page_title = __('Prune', 'luna'); }
 
+$logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token(); 
 $page_title = $page_title.' &middot '.__('Backstage', 'luna');
 
 ?>
@@ -114,13 +117,14 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <?php if ($config['o_use_cdn']) { ?>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <?php } else { ?>
-            <link rel="stylesheet" type="text/css" href="../vendor/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="../vendor/css/bootstrap4.min.css">
             <script src="../vendor/js/jquery.min.js"></script>
-            <script src="../vendor/js/bootstrap.min.js"></script>
+            <script src="../vendor/js/bootstrap4.min.js"></script>
         <?php } ?>
         <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
 		    <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
@@ -139,55 +143,35 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
 	</head>
 	<body>
         <header>
-            <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <nav class="navbar navbar-expand navbar-dark bg-primary">
                 <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.php"><img src="../img/logo.png" /> <span class="brand">Luna</span>Backstage</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-<?php
-// See if there are any plugins
-$plugins = forum_list_plugins($is_admin);
+                    <a class="navbar-brand" href="index.php">
+                        <img src="../img/logo.png" /> <span class="brand">Luna</span>Backstage
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-// Did we find any plugins?
-if (!empty($plugins)) {
-?>
-                            <li class="dropdown<?php if (SECTION == ' extensions') { echo 'active'; } ?>">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fas fa-fw fa-cogs"></i> <?php _e('Extensions', 'luna') ?> <i class="fas fa-fw fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-<?php
-foreach ($plugins as $plugin_name => $plugin_entry) {
-    echo '<li><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin_entry).'</a></li>';
-}
-?>
-                                </ul>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav my-2 my-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://getluna.org/docs"><i class="fas fa-fw fa-book"></i><span class="d-none d-sm-inline"> <?php _e('Docs', 'luna') ?></span></a>
                             </li>
-<?php } ?>
-                        </ul>
-            <?php $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token(); ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="http://getluna.org/docs" target="_blank"><i class="fas fa-fw fa-book"></i> <?php _e('Docs', 'luna') ?></a></li>
-                            <li><a href="http://forum.getluna.org" target="_blank"><i class="fas fa-fw fa-life-ring"></i> <?php _e('Support', 'luna') ?></a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://forum.getluna.org"><i class="fas fa-fw fa-life-ring"></i><span class="d-none d-sm-inline"> <?php _e('Support', 'luna') ?></span></a>
+                            </li>
                             <?php echo $notification_menu_item ?>
-                            <li class="dropdown usermenu">
-                                <a href="../profile.php?id=<?php echo $luna_user['id'] ?>" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
-                                    <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?><span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span>
+                            <li class="nav-item dropdown dropdown-user">
+                                <a class="nav-link dropdown-toggle" href="../profile.php?id=<?php echo $luna_user['id'] ?>" id="profileMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><i class="fas fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a></li>
-                                    <li><a href="../inbox.php"><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?></a></li>
-                                    <li><a href="../settings.php?id=<?php echo $luna_user['id'] ?>"><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a></li>
-                                    <li><a href="<?php echo $logout_url; ?>"><i class="fas fa-fw fa-sign-out-alt"></i> <?php _e('Logout', 'luna') ?></a></li>
-                                </ul>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileMenu">
+                                    <a class="dropdown-item" href="../profile.php?id=<?php echo $luna_user['id'] ?>"><i class="fas fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a>
+                                    <a class="dropdown-item" href="../inbox.php"><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?></a>
+                                    <a class="dropdown-item" href="../settings.php?id=<?php echo $luna_user['id'] ?>"><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a>
+                                    <a class="dropdown-item" "<?php echo $logout_url; ?>"><i class="fas fa-fw fa-sign-out-alt"></i> <?php _e('Logout', 'luna') ?></a>
+                                </div>
                             </li>
                         </ul>
                     </div>

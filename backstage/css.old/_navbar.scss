@@ -1,0 +1,174 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+// Navbar
+.navbar {
+    &.navbar-inverse {
+        background-color: $accent;
+        border: none;
+        margin-bottom: 0;
+    
+        .navbar-brand {
+            color: #fff;
+            font-weight: 300;
+            text-transform: uppercase;
+            
+            img {
+                max-height: 24px;
+                margin-top: -5px;
+                width: auto;
+                display: inline;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .navbar-brand {
+                padding: 22px 15px;
+                height: 50px;
+            }
+        }
+
+        .navbar-nav > li > a {
+            color: #fff;
+        }
+        
+        .navbar-collapse {
+            border: none;
+            
+            @media screen and (max-width: 767px) {
+                background-color: rgba(0,0,0,.1) !important;
+            }
+        }
+        
+        @media all and (min-width:768px) {
+            a {
+                padding-top: 23px;
+                padding-bottom: 23px;
+        
+                &.dropdown-user {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+
+        @media all and (max-width:767px) {
+            .avatar {
+                display: inline !important;
+            }
+
+            .avatar + span {
+                display: inline !important;
+            }
+        }
+        
+        .open > a,
+        .open > a:hover,
+        .open > a:focus {
+            background-color: darken($accent, 5%) !important;
+        }
+        
+        .dropdown-menu {
+            padding: 0;
+            background-color: darken($accent, 5%) !important;
+            border: none;
+            
+            a {
+                color: #fff !important;
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+                
+                &:hover {
+                    background-color: darken($accent, 10%);
+                }
+            }
+            
+            .divider {
+                margin: 0;
+                background-color: darken($accent, 10%);
+            }
+        }
+        
+        .avatar {
+            height: 45px;
+            width: auto;
+            border-radius: 100% !important;
+        }
+    }
+    
+    .navbar-toggle {
+        margin: 0;
+        padding: 18px 16px;
+        border: 0;
+        background-color: rgba(0,0,0,.1) !important;
+    }
+    
+    .navbar-toggle, .navbar-toggle:hover, .navbar-toggle:focus {
+        border-color: rgba(0,0,0,0);
+    }
+
+    .notification-menu {
+        width: 400px;
+
+        @media screen and (min-width: 768px) {
+            .timestamp {
+                color: rgba(255,255,255,.5);
+            }
+        }
+
+        .dropdown-header {
+            color: #fff;
+            font-size: 23px;
+            padding: 10px 10px 5px 10px;
+            background: inherit;
+        }
+
+        li {
+            position: relative;
+        }
+
+        li:hover .notification-link {
+            text-overflow: ellipsis;
+            opacity: .8;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .notification-link .timestamp {
+            color: rgba(255,255,255,.6);
+        }
+
+        li:hover .notification-link .timestamp {
+            display: none;
+        }
+    }
+
+    .notification-row {
+        &:not(:first-child) {
+            margin-top: 1px;
+        }
+
+        .col-xs-10,
+        .col-xs-2 {
+            padding: 0;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            white-space: normal;
+        }
+
+        .btn-default {
+            background: #eee;
+            text-align: left;
+        }
+
+        .btn-default:hover {
+            background: #ddd;
+        }
+    }
+}
