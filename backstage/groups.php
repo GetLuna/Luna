@@ -61,7 +61,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                 <?php endif;?>					<fieldset>
                         <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php echo __('These default permissions apply if no forum specific permissions are in effect. Users must be assigned to moderate one or more forums in their profile for these settings to take effect.', 'luna') ?></div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Group title', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Group title', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="req_title" maxlength="50" value="<?php if ($mode == 'edit') {
         echo luna_htmlspecialchars($group['g_title']);
@@ -70,7 +70,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('User title', 'luna') ?><span class="help-block"><?php echo __('The title will override the user rank', 'luna') ?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('User title', 'luna') ?><span class="help-block"><?php echo __('The title will override the user rank', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo luna_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
                             </div>
@@ -78,7 +78,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
 		                        <hr />
 		                        <div class="form-group">
-		                            <label class="col-sm-3 control-label"> <?php echo __('Moderator privileges', 'luna') ?></label>
+		                            <label class="col-sm-3 col-form-label"> <?php echo __('Moderator privileges', 'luna') ?></label>
 		                            <div class="col-sm-9">
 		                                <div class="checkbox">
 		                                    <label>
@@ -131,7 +131,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 	                        <hr />
 	                        <div class="form-group">
-	                            <label class="col-sm-3 control-label"><?php echo __('Inbox', 'luna') ?></label>
+	                            <label class="col-sm-3 col-form-label"><?php echo __('Inbox', 'luna') ?></label>
 	                            <div class="col-sm-9">
 	                                <div class="checkbox">
 	                                    <label>
@@ -145,7 +145,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	                            </div>
 	                        </div>
 	                        <div class="form-group">
-	                            <label class="col-sm-3 control-label"><?php echo __('Receivers', 'luna') ?></label>
+	                            <label class="col-sm-3 col-form-label"><?php echo __('Receivers', 'luna') ?></label>
 	                            <div class="col-sm-9">
 	                                <input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_inbox_limit'] ?>" />
 	                                <p class="help-block"><?php echo __('The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.', 'luna') ?></p>
@@ -154,7 +154,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	            <?php endif;endif;?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Read', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Read', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -177,7 +177,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Create', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Create', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -202,7 +202,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php if ($group['g_id'] != LUNA_GUEST): ?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Edit', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Edit', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -216,7 +216,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Delete', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Delete', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -239,7 +239,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Hide', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Hide', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -274,7 +274,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php if ($group['g_id'] != LUNA_GUEST): ?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Set own user title', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Set own user title', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -290,7 +290,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php endif;?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Search', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Search', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -315,7 +315,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php if ($group['g_id'] != LUNA_GUEST): ?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Send emails', 'luna') ?></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Send emails', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -331,7 +331,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
             <?php endif;?>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Comment flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between comments', 'luna') ?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Comment flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between comments', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="comment_flood" maxlength="4" value="<?php echo $group['g_comment_flood'] ?>" tabindex="35" />
@@ -340,7 +340,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Search flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between searches', 'luna') ?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Search flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between searches', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search_flood" maxlength="4" value="<?php echo $group['g_search_flood'] ?>" tabindex="36" />
@@ -350,7 +350,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                         </div>
             <?php if ($group['g_id'] != LUNA_GUEST): ?>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Email flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between emails', 'luna') ?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Email flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between emails', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="email_flood" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
@@ -359,7 +359,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo __('Report flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between reports', 'luna') ?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php echo __('Report flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between reports', 'luna') ?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="report_flood" maxlength="4" value="<?php echo $group['g_report_flood'] ?>" tabindex="38" />

@@ -110,7 +110,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
                     <?php if ($mode == 'edit'): ?><input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" /><?php endif;?>
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Username', 'luna')?><span class="help-block"><?php _e('The username to ban', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?><span class="help-block"><?php _e('The username to ban', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="ban_user" maxlength="25" value="<?php if (isset($ban_user)) {
         echo luna_htmlspecialchars($ban_user);
@@ -119,7 +119,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna')?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('IP address/IP-ranges', 'luna')?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="ban_ip" maxlength="255" value="<?php if (isset($ban_ip)) {
         echo luna_htmlspecialchars($ban_ip);
@@ -132,7 +132,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Email', 'luna')?><span class="help-block"><?php _e('The email or email domain you wish to ban', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Email', 'luna')?><span class="help-block"><?php _e('The email or email domain you wish to ban', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) {
         echo luna_htmlspecialchars($ban_email);
@@ -150,7 +150,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Ban message', 'luna')?><span class="help-block"><?php _e('A message for banned users', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Ban message', 'luna')?><span class="help-block"><?php _e('A message for banned users', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="ban_message" maxlength="255" value="<?php if (isset($ban_message)) {
         echo luna_htmlspecialchars($ban_message);
@@ -159,7 +159,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Expire date', 'luna')?><span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Expire date', 'luna')?><span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="date" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php _e('(yyyy-mm-dd)', 'luna')?>" value="<?php if (isset($ban_expire)) {
         echo $ban_expire;
@@ -457,7 +457,7 @@ elseif (isset($_GET['find_ban'])) {
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Username', 'luna')?><span class="help-block"><?php _e('If you want to ban a specific IP/IP-range or email, leave it blank', 'luna')?></span></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?><span class="help-block"><?php _e('If you want to ban a specific IP/IP-range or email, leave it blank', 'luna')?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="new_ban_user" maxlength="25" tabindex="1" />
                     </div>
@@ -471,43 +471,43 @@ elseif (isset($_GET['find_ban'])) {
             <div class="panel-body">
                 <p class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('Enter user data to filter by. Use the wildcard character * for partial matches.', 'luna')?></p>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Username', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="4" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('IP address/IP-ranges', 'luna')?></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[ip]" maxlength="255" tabindex="5" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Email', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Email', 'luna')?></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="6" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Message', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Message', 'luna')?></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[message]" maxlength="255" tabindex="7" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Expire after', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Expire after', 'luna')?></label>
                     <div class="col-sm-9">
                         <input type="date" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna')?>" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Expire before', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Expire before', 'luna')?></label>
                     <div class="col-sm-9">
                         <input type="date" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna')?>" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Order by', 'luna')?></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Order by', 'luna')?></label>
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm-6">

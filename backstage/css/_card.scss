@@ -1,9 +1,17 @@
 .card {
     border-radius: 0;
-    margin-bottom: 1rem;
+    margin-bottom: .75rem;
 
-    &:last-child {
-        margin-bottom: 0;
+    &.card-board {
+        &.card-sub {
+            margin-left: 1.5rem;
+        }
+
+        .card-header {
+            a {
+                color: #fff;
+            }
+        }
     }
 
     &.bg-primary {
@@ -28,10 +36,6 @@
         .card-body {
             padding: 1rem;
         }
-    }
-
-    &.debug {
-        margin-top: 1rem;
     }
 
     .card-header {
@@ -59,6 +63,10 @@
         :last-child {
             margin-bottom: 0;
         }
+    }
+
+    .card-footer {
+        padding: .75rem;
     }
 
     :last-child {

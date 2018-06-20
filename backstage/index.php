@@ -84,11 +84,11 @@ require 'header.php';
 <div class="row">
 <?php
 if (isset($_GET['saved'])) {
-    echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
+    echo '<div class="col-12"><div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
 }
 
 ?>
-	<div class="col-sm-8">
+	<div class="col-md-8">
 <?php if ($luna_config['o_first_run_backstage'] == 0) {?>
         <div class="card text-white bg-primary">
             <h5 class="card-header">
@@ -180,7 +180,7 @@ if ($db->num_rows($result)) {
             </div>
         </form>
     </div>
-	<div class="col-sm-4">
+	<div class="col-md-4">
 <?php
 //Update checking
 if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
@@ -207,9 +207,9 @@ if ($install_file_exists): ?>
                 <?php _e('Statistics', 'luna')?>
             </h5>
             <div class="row">
-                <h4 class="text-center col mt-2 mb-2"><b><?php printf(forum_number_format($stats['total_comments']))?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
-                <h4 class="text-center col mt-2 mb-2"><b><?php printf(forum_number_format($stats['total_threads']))?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
-                <h4 class="text-center col mt-2 mb-2"><b><?php printf(forum_number_format($stats['total_users']))?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
+                <h4 class="text-center col-4 col-md-12 col-lg-4 mt-2 mb-2"><b><?php printf(forum_number_format($stats['total_comments']))?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
+                <h4 class="text-center col-4 col-md-12 col-lg-4 mt-2 mb-2"><b><?php printf(forum_number_format($stats['total_threads']))?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>
+                <h4 class="text-center col-4 col-md-12 col-lg-4 mt-2 mb-2"><b><?php printf(forum_number_format($stats['total_users']))?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4>
             </div>
         </div>
 	</div>

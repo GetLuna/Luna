@@ -1086,7 +1086,7 @@ function draw_report_form($comment_id) {
 			<fieldset>
 				<input type="hidden" name="form_sent" value="1" />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Tell us why you are reporting this', 'luna') ?></label>
+					<label class="col-sm-3 col-form-label"><?php _e('Tell us why you are reporting this', 'luna') ?></label>
 					<div class="col-sm-9">
 						<textarea class="form-control" name="req_reason" rows="5"></textarea>
 					</div>

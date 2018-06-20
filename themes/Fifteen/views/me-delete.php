@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 				<div class="tab-content tab-content-danger">
                     <div class="alert alert-warning"><i class="fas fa-fw fa-exclamation"></i> <?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php _e('User content', 'luna') ?></label>
+                        <label class="col-sm-3 col-form-label"><?php _e('User content', 'luna') ?></label>
                         <div class="col-sm-9">
                             <div class="checkbox">
                                 <label>

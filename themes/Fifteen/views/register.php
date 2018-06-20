@@ -17,14 +17,14 @@ if (!defined('FORUM'))
 					<input type="hidden" name="form_sent" value="1" />
 					<label class="required hidden"><?php _e('If you are human please leave this field blank!', 'luna') ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Enter a username between 2 and 25 characters long', 'luna') ?></span></label>
+						<label class="col-sm-3 col-form-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Enter a username between 2 and 25 characters long', 'luna') ?></span></label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
 						</div>
 					</div>
 	<?php if ($luna_config['o_regs_verify'] == '0'): ?>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?><span class="help-block"><?php _e('Passwords must be at least 6 characters long and are case sensitive', 'luna') ?></span></label>
+						<label class="col-sm-3 col-form-label"><?php _e('Password', 'luna') ?><span class="help-block"><?php _e('Passwords must be at least 6 characters long and are case sensitive', 'luna') ?></span></label>
 						<div class="col-sm-9">
 							<div class="row">
 								<div class="col-sm-6">
@@ -38,7 +38,7 @@ if (!defined('FORUM'))
 					</div>
 	<?php endif; ?>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php _e('Your password will be sent to this address, make sure it\'s valid', 'luna') ?></span><?php endif; ?></label>
+						<label class="col-sm-3 col-form-label"><?php _e('Email', 'luna') ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php _e('Your password will be sent to this address, make sure it\'s valid', 'luna') ?></span><?php endif; ?></label>
 						<div class="col-sm-9">
 							<?php if ($luna_config['o_regs_verify'] == '1'): ?>
 							<div class="row">

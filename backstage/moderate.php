@@ -526,7 +526,7 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 				<input type="hidden" name="threads" value="<?php echo $threads ?>" />
 				<fieldset>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Move to', 'luna')?></label>
+						<label class="col-sm-3 col-form-label"><?php _e('Move to', 'luna')?></label>
 						<div class="col-sm-9">
 							<select class="form-control" name="move_to_forum">
 	<?php

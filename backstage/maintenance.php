@@ -196,7 +196,7 @@ if (isset($_GET['cache_cleared'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Maintenance', 'luna')?><span class="help-block"><?php _e('The message to tell users about the maintenance', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Maintenance', 'luna')?><span class="help-block"><?php _e('The message to tell users about the maintenance', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -220,7 +220,7 @@ if (isset($_GET['cache_cleared'])) {
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('Cache', 'luna')?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna')?></span></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('Cache', 'luna')?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna')?></span></label>
                     <div class="col-sm-9">
                         <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna')?></a>
                     </div>
@@ -237,19 +237,19 @@ if (isset($_GET['cache_cleared'])) {
                     <fieldset>
                         <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('If you changes something about threads and comments in the database you should rebuild the search index. This process can take a while and increase the server load during. Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna')?></div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Comments per cycle', 'luna')?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Comments per cycle', 'luna')?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Starting comment ID', 'luna')?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Starting comment ID', 'luna')?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Empty index', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Empty index', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>

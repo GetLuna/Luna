@@ -173,7 +173,7 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Threads and comments', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Threads and comments', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -196,7 +196,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('User features', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('User features', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -213,7 +213,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Search', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Search', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -240,7 +240,7 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Inbox', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Inbox', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -252,7 +252,7 @@ if (isset($_GET['saved'])) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Receivers', 'luna')?><span class="help-block"><?php _e('The number of receivers an Inbox message can have', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Receivers', 'luna')?><span class="help-block"><?php _e('The number of receivers an Inbox message can have', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[max_receivers]" maxlength="5" value="<?php echo $luna_config['o_max_receivers'] ?>" />
                             </div>
@@ -268,7 +268,7 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Subscriptions', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Subscriptions', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -295,7 +295,7 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block theme-error"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block theme-error"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -312,7 +312,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Welcome text', 'luna')?><span class="help-block"><?php _e('The introduction to the forum displayed in the middle of the first run panel', 'luna')?></span>  </label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Welcome text', 'luna')?><span class="help-block"><?php _e('The introduction to the forum displayed in the middle of the first run panel', 'luna')?></span>  </label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
                             </div>
@@ -327,7 +327,7 @@ if (isset($_GET['saved'])) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Universal', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Universal', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -350,7 +350,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Threads and comments', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Threads and comments', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -367,7 +367,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Signatures', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Signatures', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -385,13 +385,13 @@ if (isset($_GET['saved'])) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Indent size', 'luna')?><span class="help-block"><?php _e('Amount of spaces that represent a tab', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Indent size', 'luna')?><span class="help-block"><?php _e('Amount of spaces that represent a tab', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Maximum [quote] depth', 'luna')?><span class="help-block"><?php _e('Maximum [quote] can be used in [quote]', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Maximum [quote] depth', 'luna')?><span class="help-block"><?php _e('Maximum [quote] can be used in [quote]', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
                             </div>
@@ -407,7 +407,7 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('All caps', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('All caps', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -424,7 +424,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Guests', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Guests', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -444,7 +444,7 @@ if (isset($_GET['saved'])) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Use avatars', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Use avatars', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -455,13 +455,13 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Upload directory', 'luna')?><span class="help-block"><?php _e('Where avatars will be stored relative to Lunas root, write permission required', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Upload directory', 'luna')?><span class="help-block"><?php _e('Where avatars will be stored relative to Lunas root, write permission required', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_avatars_dir']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Max width', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Max width', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
@@ -470,7 +470,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Max height', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Max height', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
@@ -479,7 +479,7 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Max size', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Max size', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
@@ -489,7 +489,7 @@ if (isset($_GET['saved'])) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">
+                            <label class="col-sm-3 col-form-label">
                                 <?php _e('Default avatar', 'luna')?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna')?></span>
                                 <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
                                     <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna')?></a>
@@ -515,7 +515,7 @@ if (isset($_GET['saved'])) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Signatures', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Signatures', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -527,7 +527,7 @@ if (isset($_GET['saved'])) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('All caps', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('All caps', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -538,13 +538,13 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Maximum signature length', 'luna')?><span class="help-block"><?php _e('Maximum amount of characters a signature can have', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Maximum signature length', 'luna')?><span class="help-block"><?php _e('Maximum amount of characters a signature can have', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['o_sig_length'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Maximum signature lines', 'luna')?><span class="help-block"><?php _e('Maximum amount of lines a signature can have', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Maximum signature lines', 'luna')?><span class="help-block"><?php _e('Maximum amount of lines a signature can have', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['o_sig_lines'] ?>" />
                             </div>

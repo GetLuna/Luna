@@ -1,0 +1,38 @@
+.title {
+    margin-bottom: .75rem;
+
+    .form-control {
+        background: inherit;
+        border: none;
+        color: #fff;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .input-group-text {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        color: #fff;
+        background: lighten( $accent, 10% );
+    }
+
+    .title-lg {
+        background-color: $accent;
+
+        .form-control {
+            font-size: 2rem;
+        }
+    }
+
+    .title-md {
+        background-color: lighten( $accent, 5% );
+        padding: .5rem;
+
+        .form-control {
+            font-size: 1rem;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.form-group {
+    .col-form-label {
+        text-align: right;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        font-weight: 600;
+
+        .help-block {
+            display: block;
+            font-size: .8rem;
+            color: #888;
+            font-weight: 500;
+        }
+    }
+}
+
+.form-control {
+    border-radius: 0;
+}

@@ -252,7 +252,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Language', 'luna')?><span class="help-block"><?php _e('The language used for the installer, the default language for the board can be set below', 'luna')?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Language', 'luna')?><span class="help-block"><?php _e('The language used for the installer, the default language for the board can be set below', 'luna')?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="install_lang">
 <?php
@@ -302,7 +302,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Type', 'luna')?><span class="help-block"><?php _e('We\'ve listed everything this server knows', 'luna')?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Type', 'luna')?><span class="help-block"><?php _e('We\'ve listed everything this server knows', 'luna')?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="req_db_type">
 <?php
@@ -321,31 +321,31 @@ if (__('Direction of language', 'luna') == 'rtl') {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Server hostname', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Server hostname', 'luna')?></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Name', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Name', 'luna')?></label>
 								<div class="col-sm-9">
 									<input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Username', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Password', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Password', 'luna')?></label>
 								<div class="col-sm-9">
 									<input type="password" class="form-control" name="db_password" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Table prefix', 'luna')?><span class="help-block"><?php _e('Set for more Luna installation in this database', 'luna')?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Table prefix', 'luna')?><span class="help-block"><?php _e('Set for more Luna installation in this database', 'luna')?></span></label>
 								<div class="col-sm-9">
 									<input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix) ?>" maxlength="30" />
 								</div>
@@ -360,13 +360,13 @@ if (__('Direction of language', 'luna') == 'rtl') {
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Username', 'luna')?><span class="help-block"><?php _e('2 to 25 characters long', 'luna')?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?><span class="help-block"><?php _e('2 to 25 characters long', 'luna')?></span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="req_username" value="<?php echo luna_htmlspecialchars($username) ?>" maxlength="25" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Password', 'luna')?><span class="help-block"><?php _e('At least 6 characters long', 'luna')?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Password', 'luna')?><span class="help-block"><?php _e('At least 6 characters long', 'luna')?></span></label>
 								<div class="col-sm-9">
 									<div class="row">
 										<div class="col-sm-6">
@@ -379,7 +379,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Email', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Email', 'luna')?></label>
 								<div class="col-sm-9">
 									<input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo luna_htmlspecialchars($email) ?>" maxlength="80" />
 								</div>
@@ -394,31 +394,31 @@ if (__('Direction of language', 'luna') == 'rtl') {
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Title', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Title', 'luna')?></label>
 								<div class="col-sm-9">
 									<input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Slogan', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Slogan', 'luna')?></label>
 								<div class="col-sm-9">
 									<input id="slogan" type="text" class="form-control" name="slogan" value="<?php echo luna_htmlspecialchars($slogan) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Description', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Description', 'luna')?></label>
 								<div class="col-sm-9">
 									<input id="description" type="text" class="form-control" name="description" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
-                                <label class="col-sm-3 control-label"><?php _e('Board URL', 'luna')?><span class="help-block"><?php _e('No trailing slash', 'luna')?></span></label>
+                                <label class="col-sm-3 col-form-label"><?php _e('Board URL', 'luna')?><span class="help-block"><?php _e('No trailing slash', 'luna')?></span></label>
 								<div class="col-sm-9">
 									<input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Default language', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Default language', 'luna')?></label>
 								<div class="col-sm-9">
 									<select id="req_default_lang" class="form-control" name="req_default_lang">
 <?php
@@ -438,7 +438,7 @@ if (__('Direction of language', 'luna') == 'rtl') {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Default theme', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Default theme', 'luna')?></label>
 								<div class="col-sm-9">
 									<select id="req_default_style" class="form-control" name="req_default_style">
 <?php

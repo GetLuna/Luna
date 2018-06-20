@@ -268,25 +268,25 @@ if (isset($_GET['saved'])) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Title', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Title', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Slogan', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Slogan', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[board_slogan]" maxlength="300" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Description', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Description', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[board_description]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_description']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Default language', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Default language', 'luna')?></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="form[default_lang]">
 <?php
@@ -307,13 +307,13 @@ foreach ($languages as $temp) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Tags', 'luna')?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Tags', 'luna')?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">
+                            <label class="col-sm-3 col-form-label">
                                 <?php _e('Favicon', 'luna')?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna')?></span>
                                 <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
                                     <a class="btn btn-danger" href="?remove-favicon"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna')?></a>
@@ -339,7 +339,7 @@ foreach ($languages as $temp) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Announcement', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Announcement', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -351,13 +351,13 @@ foreach ($languages as $temp) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Title', 'luna')?><span class="help-block"><?php _e('You can leave this empty if there is no title', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Title', 'luna')?><span class="help-block"><?php _e('You can leave this empty if there is no title', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[announcement_title]" value="<?php echo $luna_config['o_announcement_title'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block theme-error"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
+                                <label class="col-sm-3 col-form-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block theme-error"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="form[announcement_type]" value="default"<?php if ($luna_config['o_announcement_type'] == 'default') { echo ' checked'; } ?>>
@@ -382,7 +382,7 @@ foreach ($languages as $temp) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Message', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Message', 'luna')?></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
                             </div>
@@ -397,19 +397,19 @@ foreach ($languages as $temp) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Time format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Time format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Date format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Date format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Default time zone', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Default time zone', 'luna')?></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="form[timezone]">
 <?php
@@ -428,7 +428,7 @@ foreach ($timezones as $timezone) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Visit timeout', 'luna')?><span class="help-block"><?php _e('Time before a visit ends', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Visit timeout', 'luna')?><span class="help-block"><?php _e('Time before a visit ends', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="number" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
@@ -437,7 +437,7 @@ foreach ($timezones as $timezone) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Online timeout', 'luna')?><span class="help-block"><?php _e('Time before someone isn\'t online anymore', 'luna')?></span>
+                            <label class="col-sm-3 col-form-label"><?php _e('Online timeout', 'luna')?><span class="help-block"><?php _e('Time before someone isn\'t online anymore', 'luna')?></span>
         </label>
                             <div class="col-sm-9">
                                 <div class="input-group">
@@ -456,7 +456,7 @@ foreach ($timezones as $timezone) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Default feed type', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Default feed type', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') { echo ' checked'; } ?>>
@@ -473,7 +473,7 @@ foreach ($timezones as $timezone) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Duration to cache feeds', 'luna')?><span class="help-block"><?php _e('Reduce sources by caching feeds', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Duration to cache feeds', 'luna')?><span class="help-block"><?php _e('Reduce sources by caching feeds', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="form[feed_ttl]">
                                     <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') { echo ' selected'; } ?>><?php _e('Don\'t cache', 'luna')?></option>
@@ -499,19 +499,19 @@ foreach ($times as $time) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Admin email', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Admin email', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Webmaster email', 'luna')?><span class="help-block"><?php _e('The email where the boards mails will be addressed from', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Webmaster email', 'luna')?><span class="help-block"><?php _e('The email where the boards mails will be addressed from', 'luna')?></span></label>
                                 <div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_webmaster_email']) ?>" />
                             </div>
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Reporting method', 'luna')?><span class="help-block"><?php _e('How should we handle reports?', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Reporting method', 'luna')?><span class="help-block"><?php _e('How should we handle reports?', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') { echo ' checked'; } ?> />
@@ -529,7 +529,7 @@ foreach ($times as $time) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Mailing list', 'luna')?><span class="help-block"><?php _e('A comma separated list of subscribers who get emails when new reports are made', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Mailing list', 'luna')?><span class="help-block"><?php _e('A comma separated list of subscribers who get emails when new reports are made', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
                             </div>
@@ -545,7 +545,7 @@ foreach ($times as $time) {
                     <fieldset>
                     <input type="hidden" name="form_sent" value="1" />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('New registrations', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('New registrations', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -562,7 +562,7 @@ foreach ($times as $time) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Verify', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Verify', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -573,7 +573,7 @@ foreach ($times as $time) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Registration', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Registration', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -591,7 +591,7 @@ foreach ($times as $time) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Rules', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Rules', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -602,14 +602,14 @@ foreach ($times as $time) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Message', 'luna')?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled, in HTML', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Message', 'luna')?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled, in HTML', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
                             </div>
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Default email setting', 'luna')?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Default email setting', 'luna')?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <div class="radio">
                                     <label>
@@ -641,7 +641,7 @@ foreach ($times as $time) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Cookie bar', 'luna') ?><span class="help-block"><a href="http://getluna.org/docs/cookies"><?php _e('More info', 'luna') ?></a></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Cookie bar', 'luna') ?><span class="help-block"><a href="http://getluna.org/docs/cookies"><?php _e('More info', 'luna') ?></a></span></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -652,7 +652,7 @@ foreach ($times as $time) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Cookie info URL', 'luna')?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Cookie info URL', 'luna')?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
                             </div>
@@ -668,19 +668,19 @@ foreach ($times as $time) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('SMTP server address', 'luna')?><span class="help-block"><?php _e('The address of an external SMTP server to send emails with', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('SMTP server address', 'luna')?><span class="help-block"><?php _e('The address of an external SMTP server to send emails with', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[smtp_host]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('SMTP username', 'luna')?><span class="help-block"><?php _e('Username for SMTP server, only if required', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('SMTP username', 'luna')?><span class="help-block"><?php _e('Username for SMTP server, only if required', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[smtp_user]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('SMTP password', 'luna')?><span class="help-block"><?php _e('Password and confirmation for SMTP server, only when required', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('SMTP password', 'luna')?><span class="help-block"><?php _e('Password and confirmation for SMTP server, only when required', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -700,7 +700,7 @@ foreach ($times as $time) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('SMTP encryption', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('SMTP encryption', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -721,14 +721,14 @@ foreach ($times as $time) {
                     <input type="hidden" name="form_sent" value="1" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Root URL', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Root URL', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
                             </div>
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('CDN', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('CDN', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -740,7 +740,7 @@ foreach ($times as $time) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Advanced', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Advanced', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>

@@ -115,10 +115,7 @@ if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 2
 require 'header.php';
 ?>
 <div class="row">
-	<div class="col-12">
-		<h1><?php _e('Updates') ?></h1>
-	</div>
-	<div class="col-sm-4">
+	<div class="col-lg-4">
         <div class="card">
             <h5 class="card-header">
                 <?php _e('Luna version information', 'luna')?>
@@ -159,7 +156,7 @@ require 'header.php';
 			</div>
         </div>
 	</div>
-	<div class="col-sm-8">
+	<div class="col-lg-8">
 		<div class="card">
 			<h5 class="card-header">
 				<?php _e('Luna software updates', 'luna')?>
@@ -185,7 +182,7 @@ if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 <?php
 } else {
 ?>
-				<h3><?php _e('You\'re using a preview version of Luna. Be sure to stay up-to-date.', 'luna') ?></h3>
+				<h3><?php _e('You\'re using Luna Preview. Be sure to stay up-to-date.', 'luna') ?></h3>
 				<p><?php _e('We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href="http://getluna.org/releases">our website</a>. New builds can contain new features, improved features, and/or bugfixes.', 'luna') ?></p>
 				<p><?php _e('At this point, we can only tell you that you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
 <?php

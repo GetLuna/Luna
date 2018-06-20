@@ -242,13 +242,13 @@ require 'header.php';
                     <input type="hidden" name="action" value="notiprune" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Days old', 'luna')?><span class="help-block"><?php _e('The number of days old a notification must be to be pruned', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Days old', 'luna')?><span class="help-block"><?php _e('The number of days old a notification must be to be pruned', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="prune_days" maxlength="3" tabindex="5" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Type', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Type', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="prune_type" value="0" tabindex="6" />
@@ -277,13 +277,13 @@ require 'header.php';
                     <input type="hidden" name="action" value="prune" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Days old', 'luna')?><span class="help-block"><?php _e('The number of days old a thread must be to be pruned', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Days old', 'luna')?><span class="help-block"><?php _e('The number of days old a thread must be to be pruned', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Prune pinned threads', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Prune pinned threads', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="prune_pinned" value="1" tabindex="6" checked />
@@ -296,7 +296,7 @@ require 'header.php';
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Prune from', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Prune from', 'luna')?></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="prune_from" tabindex="7">
                                     <option value="all"><?php _e('All forums', 'luna')?></option>
@@ -335,13 +335,13 @@ echo ' </optgroup>'
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Minimum days', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Minimum days', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="days" value="28" tabindex="1" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Since', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Since', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="prune_by" value="1" checked />
@@ -354,13 +354,13 @@ echo ' </optgroup>'
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna')?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Maximum number of comments', 'luna')?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="comments" value="1"  tabindex="1" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Delete management', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Delete management', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="admods_delete" value="1" />
@@ -372,7 +372,7 @@ echo ' </optgroup>'
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('User status', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('User status', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="verified" value="1" />

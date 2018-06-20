@@ -4,6 +4,15 @@
  */
 
 $accent: #1a79bc;
+$pink: #e52262;
+$red: #e74018;
+$orange: #fb8009;
+$yellow: #ffc000;
+$lime: #c0d700;
+$green: #97c800;
+$fluo: #46c429;
+$teal: #10b08f;
+$blue: #0098df;
 
 // General
 @import 'fonts';
@@ -14,8 +23,10 @@ $accent: #1a79bc;
 @import 'container';
 @import 'jumbotron';
 @import 'navbar';
+@import 'forms';
 
 // Custom files
+@import 'title';
 @import 'footer';
 @import 'accents';
 
@@ -61,31 +72,31 @@ body {
 
     .fa {
         &.fa-plus {
-            color: #5ca815;
+            color: $green;
         }
     
         &.fa-wrench {
-            color: #826eb4;
+            color: $teal;
         }
     
         &.fa-server {
-            color: #ffa200;
+            color: $yellow;
         }
     
         &.fa-exchange-alt {
-            color: #f56e28;
+            color: $orange;
         }
     
         &.fa-trash-alt {
-            color: #dc3232;
+            color: $red;
         }
     
         &.fa-bug {
-            color: #2788cb;
+            color: $blue;
         }
 
         &.fa-exclamation-triangle {
-            color: #df007a;
+            color: $pink;
         }
     }
 }

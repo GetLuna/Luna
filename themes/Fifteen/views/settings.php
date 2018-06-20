@@ -50,21 +50,21 @@ else
 						<fieldset class="form-horizontal form-setting">
 							<input type="hidden" name="form_sent" value="1" />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Username', 'luna')?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?></label>
 								<div class="col-sm-9">
 									<?php echo $username_field ?>
 								</div>
 							</div>
 							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($user['salt']) != NULL)): ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Password', 'luna') ?></label>
 								<div class="col-sm-9">
 									<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newpass"><?php _e('Change password', 'luna') ?></a>
 								</div>
 							</div>
 							<?php endif; ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Email', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
 										<?php echo $email_field ?>
@@ -75,21 +75,21 @@ else
 							<hr />
 							<input type="hidden" name="form_sent" value="1" />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Real name', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Real name', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="form[realname]" value="<?php echo luna_htmlspecialchars($user['realname']) ?>" maxlength="40" />
 								</div>
 							</div>
 							<?php if (isset($title_field)): ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Title', 'luna') ?><span class="help-block"><?php _e('Leave blank to use default', 'luna') ?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Title', 'luna') ?><span class="help-block"><?php _e('Leave blank to use default', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<?php echo $title_field ?>
 								</div>
 							</div>
 							<?php endif; ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Location', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Location', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
 								</div>
@@ -98,7 +98,7 @@ else
 							<hr />
 							<?php } if ($luna_config['o_avatars'] == '1') { ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Avatar', 'luna') ?><span class="help-block"><?php _e('Upload an image to represent you', 'luna') ?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Avatar', 'luna') ?><span class="help-block"><?php _e('Upload an image to represent you', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<?php echo $avatar_user ?>
 									<?php echo $avatar_field ?>
@@ -106,14 +106,14 @@ else
 							</div>
 							<?php } if ($luna_config['o_signatures'] == '1') { ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
 									<span class="help-block"><?php printf(__('Max length: %s characters / Max lines: %s', 'luna'), forum_number_format($luna_config['o_sig_length']), $luna_config['o_sig_lines']) ?></span>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Signature preview', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Signature preview', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="well">
 										<?php echo $signature_preview ?>
@@ -126,7 +126,7 @@ else
 					<div role="tabpanel" class="tab-pane" id="appearance">
 						<fieldset class="form-horizontal form-setting">
 							<div class="form-group<?php if ($luna_config['o_allow_accent_color'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
-								<label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Color', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="btn-group accent-group" data-toggle="buttons">
 		<?php
@@ -147,7 +147,7 @@ else
 								<hr />
 							</div>
 							<div class="form-group<?php if ($luna_config['o_allow_night_mode'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
-								<label class="col-sm-3 control-label"><?php _e('Night mode', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Night mode', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="radio">
 										<label>
@@ -171,7 +171,7 @@ else
 							</div>
 							<hr />
 							<div class="form-group <?php if (!$luna_user['is_admmod']) { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
-								<label class="col-sm-3 control-label"><?php _e('Backstage accent', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Backstage accent', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="btn-group accent-group" data-toggle="buttons">
 		<?php
@@ -191,7 +191,7 @@ else
 		?>
 				            <hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Language', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Language', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="form[language]">
 		<?php
@@ -208,7 +208,7 @@ else
 		<?php } if ($luna_config['o_show_first_run']) { ?>
 				            <hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('First Run', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('First Run', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="checkbox">
 										<label>
@@ -225,7 +225,7 @@ else
 						<fieldset class="form-horizontal form-setting">
 							<?php if ($luna_config['o_enable_inbox'] == 1) { ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Inbox', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Inbox', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="checkbox">
 										<label>
@@ -238,7 +238,7 @@ else
 							<hr />
 							<?php } ?>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Email settings', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Email settings', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="radio">
 										<label>
@@ -263,7 +263,7 @@ else
 							<?php if ($luna_config['o_forum_subscriptions'] == '1' || $luna_config['o_thread_subscriptions'] == '1') { ?>
 							<hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Subscriptions', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Subscriptions', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="checkbox">
 										<label>
@@ -284,7 +284,7 @@ else
 							<?php } ?>
 							<hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Website', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group input">
 										<span class="input-group-addon" id="website-addon"><span class="fas fa-fw fa-link"></span></span>
@@ -294,7 +294,7 @@ else
 							</div>
 							<hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Microsoft Account', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Microsoft Account', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group input">
 										<span class="input-group-addon" id="microsoft-addon"><span class="fab fa-fw fa-microsoft"></span></span>
@@ -303,7 +303,7 @@ else
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Facebook', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Facebook', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
 										<span class="input-group-addon" id="facebook-addon"><span class="fab fa-fw fa-facebook-square"></span></span>
@@ -312,7 +312,7 @@ else
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Twitter', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Twitter', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
 										<span class="input-group-addon" id="twitter-addon"><span class="fab fa-fw fa-twitter"></span></span>
@@ -321,7 +321,7 @@ else
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Google+', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Google+', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
 										<span class="input-group-addon" id="google-addon"><span class="fab fa-fw fa-google-plus-g"></span></span>
@@ -335,7 +335,7 @@ else
 						<fieldset class="form-horizontal form-setting">
 							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_message_img_tag'] == '1'): ?>
 								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
+									<label class="col-sm-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
 									<div class="col-sm-9">
 										<?php if ($luna_config['o_avatars'] == '1'): ?>
 											<div class="checkbox">
@@ -356,7 +356,7 @@ else
 								</div>
 							<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
 								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Signatures', 'luna') ?></label>
+									<label class="col-sm-3 col-form-label"><?php _e('Signatures', 'luna') ?></label>
 									<div class="col-sm-9">
 											<div class="checkbox">
 												<label>
@@ -384,13 +384,13 @@ else
 							<?php endif; ?>
 							<hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Threads per page', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="number" class="form-control" name="form[disp_threads]" value="<?php echo $user['disp_threads'] ?>" maxlength="3" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Comments per page', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="number" class="form-control" name="form[disp_comments]" value="<?php echo $user['disp_comments'] ?>" maxlength="3" />
 								</div>
@@ -400,7 +400,7 @@ else
 					<div role="tabpanel" class="tab-pane" id="time">
 						<fieldset class="form-horizontal form-setting">
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Time zone', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Time zone', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="form[php_timezone]">
 		<?php
@@ -415,7 +415,7 @@ else
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Time format', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Time format', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="form[time_format]">
 		<?php
@@ -433,7 +433,7 @@ else
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Date format', 'luna') ?></label>
+								<label class="col-sm-3 col-form-label"><?php _e('Date format', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="form[date_format]">
 		<?php
@@ -457,7 +457,7 @@ else
 						<fieldset class="form-horizontal form-setting">
 							<?php if (($luna_user['g_moderator'] == '1')  && $luna_user['id'] != $id) { ?>
 								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Choose user group', 'luna') ?></label>
+									<label class="col-sm-3 col-form-label"><?php _e('Choose user group', 'luna') ?></label>
 									<div class="col-sm-9">
 										<div class="input-group">
 											<select id="group_id" class="form-control" name="group_id">
@@ -483,7 +483,7 @@ else
 								<hr />
 							<?php } else if ($user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
 								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
+									<label class="col-sm-3 col-form-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-sm-9">
                                         <button class="btn btn-danger" type="submit" name="ban"><i class="fas fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
                                         <?php if ($user['g_id'] == LUNA_ADMIN) { ?>
@@ -493,7 +493,7 @@ else
 								</div>
 								<hr />
 								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fas fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
+									<label class="col-sm-3 col-form-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fas fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
 									<div class="col-sm-9">
 										<p><?php _e('Choose which forums this user should be allowed to moderate. Note: This only applies to moderators. Administrators always have full permissions in all forums.', 'luna') ?></p>
 		<?php
@@ -520,14 +520,14 @@ else
 								<?php } ?>
                                 <?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
+                                        <label class="col-sm-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" name="num_comments" value="<?php echo $user['num_comments'] ?>" maxlength="8" />
                                         </div>
                                     </div>
                                 <?php endif; if ($luna_user['is_admmod']): ?>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label"><?php _e('Admin note', 'luna') ?></label>
+                                        <label class="col-sm-3 col-form-label"><?php _e('Admin note', 'luna') ?></label>
                                         <div class="col-sm-9">
                                             <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
                                         </div>

@@ -311,7 +311,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
                     <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('New group', 'luna')?><span class="help-block"><?php _e('Select a new user group', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('New group', 'luna')?><span class="help-block"><?php _e('Select a new user group', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <select class="form-control" name="new_group" tabindex="1">
@@ -588,21 +588,21 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
                     <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Ban message', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Ban message', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="ban_message" maxlength="255" tabindex="1" />
                                 <span class="help-block"><?php _e('A message for banned users', 'luna')?></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Expire date', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Expire date', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="ban_expire" maxlength="10" tabindex="2" />
                                 <span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna')?></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Ban IP addresses', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Ban IP addresses', 'luna')?></label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
                                     <input type="radio" name="ban_the_ip" tabindex="3" value="1" checked />
@@ -805,31 +805,31 @@ if (isset($_GET['saved'])) {
                     <div class="panel-body">
                         <p class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna')?></p>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Username', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Username', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="2" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Email address', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Email address', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="3" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Title', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Title', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[title]" maxlength="50" tabindex="4" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Real name', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Real name', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('User group', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('User group', 'luna')?></label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="user_group" tabindex="23">
                                     <option value="-1" selected><?php _e('All groups', 'luna')?></option>
@@ -847,25 +847,25 @@ if (isset($_GET['saved'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Admin note', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Admin note', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Less comments than', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Less comments than', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="comments_less" maxlength="8" tabindex="14" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('More comments than', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('More comments than', 'luna')?></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="comments_greater" maxlength="8" tabindex="15" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Order by', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Order by', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -897,7 +897,7 @@ if (isset($_GET['saved'])) {
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php _e('IP search', 'luna')?><span class="help-block"><?php _e('The IP address to search for in the comment database', 'luna')?></span></label>
+                    <label class="col-sm-3 col-form-label"><?php _e('IP search', 'luna')?><span class="help-block"><?php _e('The IP address to search for in the comment database', 'luna')?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
                     </div>

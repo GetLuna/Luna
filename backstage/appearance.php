@@ -175,7 +175,7 @@ if (isset($_GET['saved'])) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Accents', 'luna')?><?php if (count($theme->features->accents) <= 1) { ?><span class="help-block theme-error"><?php _e('Your theme does not support accent colors', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Accents', 'luna')?><?php if (count($theme->features->accents) <= 1) { ?><span class="help-block theme-error"><?php _e('Your theme does not support accent colors', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -193,7 +193,7 @@ foreach ($theme->features->accents as $accent) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Night mode', 'luna')?><?php if (!$theme->features->night_mode) { ?><span class="help-block theme-error"><?php _e('Your theme does not support night mode', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Night mode', 'luna')?><?php if (!$theme->features->night_mode) { ?><span class="help-block theme-error"><?php _e('Your theme does not support night mode', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -205,7 +205,7 @@ foreach ($theme->features->accents as $accent) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Custom CSS', 'luna')?><?php if (!$theme->features->custom_css) { ?><span class="help-block theme-error"><?php _e('Your theme does not support custom CSS', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Custom CSS', 'luna')?><?php if (!$theme->features->custom_css) { ?><span class="help-block theme-error"><?php _e('Your theme does not support custom CSS', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -216,14 +216,14 @@ foreach ($theme->features->accents as $accent) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('CSS code', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('CSS code', 'luna')?></label>
                             <div class="col-sm-9">
                                 <textarea class="form-control form-control-mono" name="form[custom_css]" placeholder="/* <?php _e('Custom CSS')?> */" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_custom_css']) ?></textarea>
                             </div>
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">
+                            <label class="col-sm-3 col-form-label">
                                 <?php _e('Header background', 'luna')?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna')?></span><?php if (!$theme->features->custom_css) { ?><span class="help-block theme-error"><?php _e('Your theme does not support header background', 'luna')?></span><?php } ?>
                                 <?php if (file_exists(LUNA_ROOT . '/img/header.png') || file_exists(LUNA_ROOT . '/img/header.jpg')) {?>
                                     <a class="btn btn-danger" href="?remove-header"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete header', 'luna')?></a>
@@ -239,7 +239,7 @@ foreach ($theme->features->accents as $accent) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Font Awesome Pro', 'luna')?><span class="help-block"><?php printf('<a href="https://getluna.org/docs/fontawesome">' . __('Install Font Awesome Pro', 'luna') . '</a>')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Font Awesome Pro', 'luna')?><span class="help-block"><?php printf('<a href="https://getluna.org/docs/fontawesome">' . __('Install Font Awesome Pro', 'luna') . '</a>')?></span></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -259,7 +259,7 @@ foreach ($theme->features->accents as $accent) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('User profile', 'luna')?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('User profile', 'luna')?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -276,7 +276,7 @@ foreach ($theme->features->accents as $accent) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Index settings', 'luna')?><?php if (!$theme->features->moderated_by_list) { ?><span class="help-block theme-error"><?php _e('Your theme does not support moderated by list', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Index settings', 'luna')?><?php if (!$theme->features->moderated_by_list) { ?><span class="help-block theme-error"><?php _e('Your theme does not support moderated by list', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -288,13 +288,13 @@ foreach ($theme->features->accents as $accent) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna')?><span class="help-block"><?php _e('Default amount of threads per page', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Threads per page', 'luna')?><span class="help-block"><?php _e('Default amount of threads per page', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[disp_threads]" maxlength="2" value="<?php echo $luna_config['o_disp_threads'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna')?><span class="help-block"><?php _e('Default amount of comments per page', 'luna')?></span></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Comments per page', 'luna')?><span class="help-block"><?php _e('Default amount of comments per page', 'luna')?></span></label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control" name="form[disp_comments]" maxlength="3" value="<?php echo $luna_config['o_disp_comments'] ?>" />
                             </div>
@@ -309,7 +309,7 @@ foreach ($theme->features->accents as $accent) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Notifications', 'luna')?><?php if (!$theme->features->notification_flyout) { ?><span class="help-block theme-error"><?php _e('Your theme does not support the notification flyout', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Notifications', 'luna')?><?php if (!$theme->features->notification_flyout) { ?><span class="help-block theme-error"><?php _e('Your theme does not support the notification flyout', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -321,7 +321,7 @@ foreach ($theme->features->accents as $accent) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Search', 'luna')?><?php if (!$theme->features->header_search) { ?><span class="help-block theme-error"><?php _e('Your theme does not support header search', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Search', 'luna')?><?php if (!$theme->features->header_search) { ?><span class="help-block theme-error"><?php _e('Your theme does not support header search', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -341,7 +341,7 @@ foreach ($theme->features->accents as $accent) {
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Statistics', 'luna')?><?php if (!$theme->features->statistics) { ?><span class="help-block theme-error"><?php _e('Your theme does not support statistics', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Statistics', 'luna')?><?php if (!$theme->features->statistics) { ?><span class="help-block theme-error"><?php _e('Your theme does not support statistics', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -352,7 +352,7 @@ foreach ($theme->features->accents as $accent) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Back to top', 'luna')?><?php if (!$theme->features->back_to_top) { ?><span class="help-block theme-error"><?php _e('Your theme does not support back to top', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Back to top', 'luna')?><?php if (!$theme->features->back_to_top) { ?><span class="help-block theme-error"><?php _e('Your theme does not support back to top', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -364,7 +364,7 @@ foreach ($theme->features->accents as $accent) {
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Copyright', 'luna')?><?php if (!$theme->features->copyright) { ?><span class="help-block theme-error"><?php _e('Your theme does not support copyright visibility', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Copyright', 'luna')?><?php if (!$theme->features->copyright) { ?><span class="help-block theme-error"><?php _e('Your theme does not support copyright visibility', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
@@ -375,7 +375,7 @@ foreach ($theme->features->accents as $accent) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php _e('Copyright content', 'luna')?><?php if (!$theme->features->custom_copyright) { ?><span class="help-block theme-error"><?php _e('Your theme does not support custom copyright', 'luna')?></span><?php } ?></label>
+                            <label class="col-sm-3 col-form-label"><?php _e('Copyright content', 'luna')?><?php if (!$theme->features->custom_copyright) { ?><span class="help-block theme-error"><?php _e('Your theme does not support custom copyright', 'luna')?></span><?php } ?></label>
                             <div class="col-sm-9">
                                 <div class="radio">
                                     <label>
