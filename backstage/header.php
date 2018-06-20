@@ -177,63 +177,75 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
                     </div>
                 </div>
             </nav>
-            <div class="jumbotron jumboheader primary">
+            <div class="jumbotron navigon primary">
                 <div class="container">
-                    <ul class="nav nav-tabs nav-main" role="tablist">
-                        <li><a href="../index.php"><i class="fas fa-fw fa-arrow-left"></i></a></li>
-                        <li role="presentation" class="<?php if (LUNA_SECTION == 'backstage') { echo 'active'; } ?>"><a href="#index" aria-controls="index" role="tab" data-toggle="tab"><i class="fas fa-fw fa-tachometer-alt"></i><span class="hidden-xs"> <?php _e('Backstage', 'luna') ?></span></a></li>
-                        <li role="presentation" class="<?php if (LUNA_SECTION == 'content') { echo 'active'; } ?>"><a href="#content" aria-controls="content" role="tab" data-toggle="tab"><i class="fas fa-fw fa-file"></i><span class="hidden-xs"> <?php _e('Content', 'luna') ?></span></a></li>
-                        <li role="presentation" class="<?php if (LUNA_SECTION == 'users') { echo 'active'; } ?>"><a href="#users" aria-controls="users" role="tab" data-toggle="tab"><i class="fas fa-fw fa-users"></i><span class="hidden-xs"> <?php _e('Users', 'luna') ?></span></a></li>
-                        <?php if ($is_admin) {?>
-                        <li role="presentation" class="<?php if (LUNA_SECTION == 'settings') { echo 'active'; } ?>"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fas fa-fw fa-cogs"></i><span class="hidden-xs"> <?php _e('Settings', 'luna') ?></span></a></li>
-                        <li role="presentation" class="<?php if (LUNA_SECTION == 'maintenance') { echo 'active'; }?>"><a href="#maintenance" aria-controls="maintenance" role="tab" data-toggle="tab"><i class="fas fa-fw fa-coffee"></i><span class="hidden-xs"> <?php _e('Maintenance', 'luna') ?></span></a></li>
-                        <?php }?>
-                    </ul>
+                    <nav class="nav nav-tabs">
+                        <a class="nav-item nav-link" href="../index.php">
+                            <i class="fas fa-fw fa-arrow-left"></i>
+                        </a>
+                        <a class="nav-item nav-link <?php echo (LUNA_SECTION == 'backstage') ? 'active' : '' ?>" href="#backstage" aria-controls="backstage" role="tab" data-toggle="tab">
+                            <i class="fas fa-fw fa-tachometer-alt"></i><span class="d-none d-md-inline"> <?php _e('Backstage', 'luna') ?></span>
+                        </a>
+                        <a class="nav-item nav-link <?php echo (LUNA_SECTION == 'content') ? 'active' : '' ?>" href="#content" aria-controls="content" role="tab" data-toggle="tab">
+                            <i class="fas fa-fw fa-file"></i><span class="d-none d-md-inline"> <?php _e('Content', 'luna') ?></span>
+                        </a>
+                        <a class="nav-item nav-link <?php echo (LUNA_SECTION == 'users') ? 'active' : '' ?>" href="#users" aria-controls="users" role="tab" data-toggle="tab">
+                            <i class="fas fa-fw fa-users"></i><span class="d-none d-md-inline"> <?php _e('Users', 'luna') ?></span>
+                        </a>
+                        <?php if ( $is_admin ) { ?>
+                            <a class="nav-item nav-link <?php echo (LUNA_SECTION == 'settings') ? 'active' : '' ?>" href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                <i class="fas fa-fw fa-cogs"></i><span class="d-none d-md-inline"> <?php _e('Settings', 'luna') ?></span>
+                            </a>
+                            <a class="nav-item nav-link <?php echo (LUNA_SECTION == 'maintenance') ? 'active' : '' ?>" href="#maintenance" aria-controls="maintenance" role="tab" data-toggle="tab">
+                                <i class="fas fa-fw fa-coffee"></i><span class="d-none d-md-inline"> <?php _e('Maintenance', 'luna') ?></span>
+                            </a>
+                        <?php } ?>
+                    </nav>
                 </div>
             </div>
-            <div class="jumbotron jumboheader secondary">
+            <div class="jumbotron navigon secondary">
                 <div class="container">
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane <?php if (LUNA_SECTION == 'backstage') { echo 'active'; } ?>" id="index">
-                            <ul class="nav nav-tabs nav-main" role="tablist">
-                                <li<?php if (LUNA_PAGE == 'index') { echo ' class="active"'; } ?>><a href="index.php"><i class="fas fa-fw fa-tachometer-alt"></i> <?php _e('Backstage', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'update') { echo ' class="active"'; } ?>><a href="update.php"><i class="fas fa-fw fa-upload"></i> <?php _e('Update', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'about') { echo ' class="active"'; } ?>><a href="about.php"><i class="fas fa-fw fa-moon"></i> <?php _e('About', 'luna') ?></a></li>
-                            </ul>
+                        <div role="tabpanel" class="tab-pane <?php echo ( LUNA_SECTION == 'backstage' ) ? 'active' : '' ?>" id="backstage">
+                            <nav class="nav nav-tabs">
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'index' ) ? 'active' : '' ?>" href="index.php"><i class="fas fa-fw fa-tachometer-alt"></i> <?php _e( 'Backstage', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'update' ) ? 'active' : '' ?>" href="update.php"><i class="fas fa-fw fa-upload"></i> <?php _e( 'Update', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'about' ) ? 'active' : '' ?>" href="about.php"><i class="fas fa-fw fa-moon"></i> <?php _e( 'About', 'luna' ) ?></a>
+                            </nav>
                         </div>
-                        <div role="tabpanel" class="tab-pane <?php if (LUNA_SECTION == 'content') { echo 'active'; } ?>" id="content">
-                            <ul class="nav nav-tabs nav-main" role="tablist">
-                                <li<?php if (LUNA_PAGE == 'board') { echo ' class="active"'; } ?>><a href="board.php"><i class="fas fa-fw fa-list"></i> <?php _e('Board', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'reports') { echo ' class="active"'; } ?>><a href="reports.php"><i class="fas fa-fw fa-flag"></i> <?php _e('Reports', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'censoring') { echo ' class="active"'; } ?>><a href="censoring.php"><i class="fas fa-fw fa-eye-slash"></i> <?php _e('Censoring', 'luna' )?></a></li>
-                            </ul>
+                        <div role="tabpanel" class="tab-pane <?php echo ( LUNA_SECTION == 'content' ) ? 'active' : '' ?>" id="content">
+                            <nav class="nav nav-tabs">
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'board' ) ? 'active' : '' ?>" href="board.php"><i class="fas fa-fw fa-list"></i> <?php _e( 'Board', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'reports' ) ? 'active' : '' ?>" href="reports.php"><i class="fas fa-fw fa-flag"></i> <?php _e( 'Reports', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'censoring' ) ? 'active' : '' ?>" href="censoring.php"><i class="fas fa-fw fa-eye-slash"></i> <?php _e( 'Censoring', 'luna' )?></a>
+                            </nav>
                         </div>
-                        <div role="tabpanel" class="tab-pane <?php if (LUNA_SECTION == 'users') { echo 'active'; } ?>" id="users">
-                            <ul class="nav nav-tabs nav-main" role="tablist">
-                                <li<?php if (LUNA_PAGE == 'users') { echo ' class="active"'; } ?>><a href="users.php"><i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'ranks') { echo ' class="active"'; } ?>><a href="ranks.php"><i class="fas fa-fw fa-trophy"></i> <?php _e('Ranks', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'groups') { echo ' class="active"'; } ?>><a href="groups.php"><i class="fas fa-fw fa-users"></i> <?php _e('Groups', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'bans') { echo ' class="active"'; } ?>><a href="bans.php"><i class="fas fa-fw fa-ban"></i> <?php _e('Bans', 'luna') ?></a></li>
-                            </ul>
+                        <div role="tabpanel" class="tab-pane <?php echo ( LUNA_SECTION == 'users' ) ? 'active' : '' ?>" id="users">
+                            <nav class="nav nav-tabs">
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'users' ) ? 'active' : '' ?>" href="users.php"><i class="fas fa-fw fa-search"></i> <?php _e( 'Search', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'ranks' ) ? 'active' : '' ?>" href="ranks.php"><i class="fas fa-fw fa-trophy"></i> <?php _e( 'Ranks', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'groups' ) ? 'active' : '' ?>" href="groups.php"><i class="fas fa-fw fa-users"></i> <?php _e( 'Groups', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'bans' ) ? 'active' : '' ?>" href="bans.php"><i class="fas fa-fw fa-ban"></i> <?php _e( 'Bans', 'luna' ) ?></a>
+                            </nav>
                         </div>
-                        <?php if ($is_admin) {?>
-                        <div role="tabpanel" class="tab-pane <?php if (LUNA_SECTION == 'settings') { echo 'active'; }     ?>" id="settings">
-                            <ul class="nav nav-tabs nav-main" role="tablist">
-                                <li<?php if (LUNA_PAGE == 'settings') { echo ' class="active"'; } ?>><a href="settings.php"><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'features') { echo ' class="active"'; } ?>><a href="features.php"><i class="fas fa-fw fa-chalkboard"></i> <?php _e('Features', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'appearance') { echo ' class="active"'; } ?>><a href="appearance.php"><i class="fas fa-fw fa-paint-brush"></i> <?php _e('Appearance', 'luna' )?></a></li>
-                                <li<?php if (LUNA_PAGE == 'theme') { echo ' class="active"'; } ?>><a href="theme.php"><i class="fas fa-fw fa-pencil-alt"></i> <?php _e('Theme', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'emoji') { echo ' class="active"'; } ?>><a href="emoji.php"><i class="fas fa-fw fa-smile"></i> <?php _e('Emoji', 'luna') ?></a></li>
-                                <li<?php if (LUNA_PAGE == 'menu') { echo ' class="active"'; } ?>><a href="menu.php"><i class="fas fa-fw fa-bars"></i> <?php _e('Menu', 'luna') ?></a></li>
-                            </ul>
+                        <?php if ( $is_admin ) { ?>
+                        <div role="tabpanel" class="tab-pane <?php echo ( LUNA_SECTION == 'settings' ) ? 'active' : ''     ?>" id="settings">
+                            <nav class="nav nav-tabs">
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'settings' ) ? 'active' : '' ?>" href="settings.php"><i class="fas fa-fw fa-cogs"></i> <?php _e( 'Settings', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'features' ) ? 'active' : '' ?>" href="features.php"><i class="fas fa-fw fa-chalkboard"></i> <?php _e( 'Features', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'appearance' ) ? 'active' : '' ?>" href="appearance.php"><i class="fas fa-fw fa-paint-brush"></i> <?php _e( 'Appearance', 'luna' )?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'theme' ) ? 'active' : '' ?>" href="theme.php"><i class="fas fa-fw fa-pencil-alt"></i> <?php _e( 'Theme', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'emoji' ) ? 'active' : '' ?>" href="emoji.php"><i class="fas fa-fw fa-smile"></i> <?php _e( 'Emoji', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'menu' ) ? 'active' : '' ?>" href="menu.php"><i class="fas fa-fw fa-bars"></i> <?php _e( 'Menu', 'luna' ) ?></a>
+                            </nav>
                         </div>
-                        <div role="tabpanel" class="tab-pane <?php if (LUNA_SECTION == 'maintenance') { echo 'active'; } ?>" id="maintenance">
-                            <ul class="nav nav-tabs nav-main" role="tablist">
-                                <li<?php if (LUNA_PAGE == 'maintenance') { echo ' class="active"'; } ?>><a href="maintenance.php"><i class="fas fa-fw fa-coffee"></i> <?php _e('Maintenance', 'luna' )?></a></li>
-                                <li<?php if (LUNA_PAGE == 'prune') { echo ' class="active"'; } ?>><a href="prune.php"><i class="fas fa-fw fa-recycle"></i> <?php _e('Prune', 'luna') ?></a></li>
-                            </ul>
+                        <div role="tabpanel" class="tab-pane <?php echo ( LUNA_SECTION == 'maintenance' ) ? 'active' : '' ?>" id="maintenance">
+                            <nav class="nav nav-tabs">
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'maintenance' ) ? 'active' : '' ?>" href="maintenance.php"><i class="fas fa-fw fa-coffee"></i> <?php _e( 'Maintenance', 'luna' )?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'prune' ) ? 'active' : '' ?>" href="prune.php"><i class="fas fa-fw fa-recycle"></i> <?php _e( 'Prune', 'luna' ) ?></a>
+                            </nav>
                         </div>
-                        <?php }?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

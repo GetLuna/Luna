@@ -1,0 +1,71 @@
+.jumbotron {
+    &.navigon {
+        padding: 0;
+        border-radius: 0;
+
+        &.primary {
+            background-color: $accent;
+            margin: 0;
+
+            .nav {
+                .nav-item {
+                    color: #fff;
+                    border: none;
+
+                    &.active {
+                        color: #444;
+                        background-color: #eee;
+                    }
+
+                    &:hover:not(.active),
+                    &:focus:not(.active),
+                    &:active:not(.active) {
+                        background-color: rgba(255,255,255,.2);
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        &.secondary {
+            background-color: #eee;
+            margin: 0 0 1rem;
+
+            .nav {
+                .nav-item {
+                    color: #444;
+                    border: none;
+                    border-bottom: .25rem solid transparent;
+                    padding: .8rem 0 .55rem;
+                    margin: 0 .7rem;
+                    
+                    @media ( min-width: 1525px ) {
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+
+                    &.active {
+                        border-bottom-color: $accent;
+                        background-color: inherit;
+                    }
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-bottom-color: $accent;
+                    }
+                }
+            }
+        }
+
+        .nav {
+            border: none;
+
+            .nav-item {
+                border-radius: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
