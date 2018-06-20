@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="<?php echo check_style_mode() ?>">
+<html class="<?php echo get_theme_mode() ?>">
 	<head>
 		<?php load_meta(); ?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
@@ -43,3 +43,7 @@
                 </div>
             </div>
         </div>
+
+
+
+        

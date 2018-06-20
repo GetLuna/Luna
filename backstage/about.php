@@ -44,6 +44,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('"Theme" has been renamed "Appearance"', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Theme selection has been moved from Appearance to Theme', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-removed"><?php _e('Removed', 'luna') ?></em></div><?php _e('You can no longer change the size of emoji', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('ALPHA - Accents in Fifteen and Sunrise now work again', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>

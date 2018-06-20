@@ -3,8 +3,11 @@
  * Licensed under MIT
  */
 
- $fonts_system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
- $fonts_emoji: "Segoe UI Emoji","Segoe UI Symbol","Apple Color Emoji","Android Emoji","NotoColorEmoji","EmojiSymbols";
+$fonts_system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$fonts_emoji: "Segoe UI Emoji","Segoe UI Symbol","Apple Color Emoji","Android Emoji","NotoColorEmoji","EmojiSymbols";
+$accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21, #ff7521, #ff4444, #c71f1f, #c78d68, #ccc, #999, #444;
+
+@import 'accents';
 
 /* General fixes and Bootstrap style reset */
 body {
@@ -439,6 +442,10 @@ h6 {
 /* Buttons */
 .btn {
     border-color: transparent !important;
+
+    .btn-primary {
+        color: #fff !important;
+    }
 
     &:active {
         box-shadow: none !important;
@@ -909,7 +916,7 @@ hr {
 }
 
 .jumbotron {
-    .first-run {
+    &.first-run {
         color: #fff;
         background-color: transparent;
         background-size: cover;

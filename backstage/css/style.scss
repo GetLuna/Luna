@@ -10,23 +10,23 @@ $accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21
 $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 // Bootstrap components
-@import '_grid';
-@import '_navbar';
-@import '_buttons';
-@import '_panels';
-@import '_forms';
+@import 'grid';
+@import 'navbar';
+@import 'buttons';
+@import 'panels';
+@import 'forms';
 
 // Rubine components
-@import '_jumboheader';
-@import '_release';
-@import '_custom';
-@import '_title';
-@import '_colorpicker';
-@import '_extension';
+@import 'jumboheader';
+@import 'release';
+@import 'custom';
+@import 'title';
+@import 'colorpicker';
+@import 'extension';
 
 // Luna components
-@import '_accents';
-@import '_night';
+@import 'accents';
+@import 'night';
 
 // Luna CSS
 * {

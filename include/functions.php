@@ -125,7 +125,6 @@ function check_cookie(&$luna_user) {
     } else {
         set_default_user();
     }
-
 }
 
 //
@@ -154,7 +153,6 @@ function authenticate_user($user, $password, $password_is_hash = false) {
     } else {
         $luna_user['is_guest'] = false;
     }
-
 }
 
 //
@@ -732,7 +730,6 @@ function update_forum($forum_id) {
     {
         $db->query('UPDATE '.$db->prefix.'forums SET num_threads='.$num_threads.', num_comments='.$num_comments.', last_comment=NULL, last_comment_id=NULL, last_commenter_id=NULL WHERE id='.$forum_id) or error('Unable to update last_comment/last_comment_id', __FILE__, __LINE__, $db->error());
     }
-
 }
 
 //
@@ -838,7 +835,6 @@ function delete_comment($comment_id, $thread_id, $commenter_id) {
     {
         $db->query('UPDATE '.$db->prefix.'threads SET num_replies='.$num_replies.' WHERE id='.$thread_id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
     }
-
 }
 
 //
@@ -1195,7 +1191,6 @@ function is_subforum($id, $self_subforum = '0') {
     } else {
         return true;
     }
-
 }
 
 //
@@ -1263,7 +1258,6 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
     } else {
         return $date.' '.date($time_format, $timestamp);
     }
-
 }
 
 //
@@ -1347,7 +1341,6 @@ function confirm_referrer($scripts, $error_msg = false) {
     if ($referrer['host'] != $valid_host || !in_array($referrer['path'], $valid_paths)) {
         message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Backstage > Settings and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
     }
-
 }
 
 //
@@ -1382,7 +1375,6 @@ function luna_csrf_token() {
     if (!isset($token)) {
         return luna_hash($luna_user['id'].$luna_user['password'].luna_hash(get_remote_address()));
     }
-
 }
 
 //
@@ -1392,7 +1384,6 @@ function check_csrf($token) {
     if (!isset($token) || $token != luna_csrf_token()) {
         message(__('Bad CSRF hash. You were referred to this page from an unauthorized source.', 'luna'), false, '404 Not Found');
     }
-
 }
 
 //
@@ -2257,7 +2248,6 @@ function get_view_path($object) {
     } else {
         return LUNA_ROOT.'themes/'.$theme->parent.'/objects/'.$object;
     }
-
 }
 
 //
@@ -2274,7 +2264,6 @@ function load_page($page) {
     } else {
         return LUNA_ROOT.'themes/'.$theme->parent.'/views/'.$page;
     }
-
 }
 
 //
@@ -2289,35 +2278,14 @@ function load_css() {
     // If there is a parent theme, we need to load its CSS too
     if ($theme->parent != '') {
         echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme->parent.'/css/style.css" />';
-
-        // Also load a color scheme
-        if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme->parent.'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme->parent.'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
-            if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0') {
-                echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme->parent.'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
-            } else {
-                echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme->parent.'/css/accents/'.$luna_user['color_scheme'].'.css" />';
-            }
-
-        }
     }
 
     // Load the themes actual CSS
     echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/style.css" />'."\n";
 
-    // And load its color scheme
-    if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css'))) {
-        if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0') {
-            echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_config['o_default_accent'].'.css" />';
-        } else {
-            echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/css/accents/'.$luna_user['color_scheme'].'.css" />';
-        }
-
-    }
-
     if (__('Direction of language', 'luna') == 'rtl') {
         echo '<link rel="stylesheet" type="text/css" href="vendor/css/bidirect.css" />';
     }
-
 }
 
 //
@@ -2368,7 +2336,7 @@ function load_meta() {
 //
 // Check wheter or not to enable night mode
 //
-function check_style_mode() {
+function get_theme_mode() {
     global $luna_user, $body_classes, $luna_config;
 
     $body_classes = "";
@@ -2405,6 +2373,12 @@ function check_style_mode() {
         $body_classes .= ' logged-guest';
     } else {
         $body_classes .= ' logged-user';
+    }
+
+    if ( $luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0' ) {
+        $body_classes .= ' accent-'.$luna_config['o_default_accent'];
+    } else {
+        $body_classes .= ' accent-'.$luna_user['color_scheme'];
     }
 
     return $body_classes;
@@ -2472,7 +2446,6 @@ function validate_redirect($redirect_url, $fallback_url) {
     } else {
         return $fallback_url;
     }
-
 }
 
 // Fetch online users
@@ -2506,7 +2479,6 @@ function get_forum_id($comment_id) {
     } else {
         return false;
     }
-
 }
 
 // Decrease user comment counts (used before deleting comments)
@@ -2529,7 +2501,6 @@ function decrease_comment_counts($comment_ids) {
     foreach ($user_comments as $user_id => $subtract) {
         $db->query('UPDATE '.$db->prefix.'users SET num_comments = CASE WHEN num_comments>='.$subtract.' THEN num_comments-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user comment count', __FILE__, __LINE__, $db->error());
     }
-
 }
 
 // Create or delete configuration items
