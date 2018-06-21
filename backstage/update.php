@@ -136,8 +136,12 @@ require 'header.php';
 							<td>v<?php echo $luna_config['o_database_revision']; ?></td>
 						</tr>
 						<tr>
-							<td><?php _e('Bootstrap version', 'luna')?></td>
+							<td><?php _e('Bootstrap 3 version', 'luna')?></td>
 							<td>v3.3.7</td>
+						</tr>
+						<tr>
+							<td><?php _e('Bootstrap 4 version', 'luna')?></td>
+							<td>v4.1.1</td>
 						</tr>
 						<tr>
 							<td><?php _e('Font Awesome version', 'luna')?></td>

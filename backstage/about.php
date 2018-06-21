@@ -36,11 +36,11 @@ require 'header.php';
                     <p><?php _e('The Backstage now uses Bootstrap 4.1', 'luna') ?></p>
                     <h4><i class="fa fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 3.3.7 to 4.1.1', 'luna') ?></p>
+                    <h4><i class="fa fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
+                    <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                     <h4><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
                     <p><?php _e('Accents aren\'t saved unless explicit interaction with the setting is done prior to saving', 'luna') ?></p>
-                    <h4><i class="fa fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
-                    <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Fallow Preview 3 <small>2.1-alpha.3</small></span></h2>
