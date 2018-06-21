@@ -163,7 +163,6 @@ if (isset($_POST['form_sent'])) {
         } else {
             message_backstage(__('You need to enter the SMTP password twice exactly the same to change it.', 'luna'));
         }
-
     }
 
     foreach ($form as $key => $input) {
@@ -231,7 +230,6 @@ if (isset($_POST['form_sent'])) {
         } else {
             message_backstage(__('An unknown error occurred. Please try again.', 'luna'));
         }
-
     }
 
     // Regenerate the config cache
@@ -252,7 +250,7 @@ $theme = forum_get_theme();
 require 'header.php';
 ?>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-12">
 <?php
 if (isset($_GET['saved'])) {
     echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
@@ -260,37 +258,38 @@ if (isset($_GET['saved'])) {
 
 ?>
         <form class="form-horizontal" method="post" enctype="multipart/form-data" action="settings.php">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Branding', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Branding', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Title', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Title', 'luna')?></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Slogan', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_slogan]" maxlength="300" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Slogan', 'luna')?></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[board_slogan]" maxlength="300" value="<?php echo luna_htmlspecialchars($luna_config['o_board_slogan']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Description', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_description]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_description']) ?>" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Description', 'luna')?></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[board_description]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_description']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Default language', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="form[default_lang]">
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Default language', 'luna')?></label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="form[default_lang]">
 <?php
-
 $languages = forum_list_langs();
 
 foreach ($languages as $temp) {
@@ -301,456 +300,479 @@ foreach ($languages as $temp) {
     }
 
 }
-
 ?>
-                                </select>
-                            </div>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Tags', 'luna')?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Tags', 'luna')?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label">
-                                <?php _e('Favicon', 'luna')?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna')?></span>
-                                <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
-                                    <a class="btn btn-danger" href="?remove-favicon"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna')?></a>
-                                <?php }?>
-                            </label>
-                            <div class="col-sm-9">
-                                <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
-                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Favicon', 'luna')?>" />
-                                <?php } else {?>
-                                    <img class="img-responsive img-bs-favicon" src="<?php echo LUNA_ROOT.'img/favicon.png' ?>" alt="<?php _e('Default favicon', 'luna')?>" />
-                                <?php }?>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="51200" />
-                                <input name="req_file" type="file" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">
+                            <?php _e('Favicon', 'luna')?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna')?></span>
+                            <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
+                                <a class="btn btn-danger" href="?remove-favicon"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna')?></a>
+                            <?php }?>
+                        </label>
+                        <div class="col-md-9">
+                            <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
+                                <img class="img-fluid img-favicon" src="<?php echo LUNA_ROOT.'favicon.png' ?>" alt="<?php _e('Favicon', 'luna')?>" />
+                            <?php } else {?>
+                                <img class="img-fluid img-favicon" src="<?php echo LUNA_ROOT.'img/favicon.png' ?>" alt="<?php _e('Default favicon', 'luna')?>" />
+                            <?php }?>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="51200" />
+                            <input name="req_file" type="file" />
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Announcement', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Announcement', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Announcement', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Enable this to display the below message in the board.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Title', 'luna')?><span class="help-block"><?php _e('You can leave this empty if there is no title', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[announcement_title]" value="<?php echo $luna_config['o_announcement_title'] ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                <label class="col-sm-3 col-form-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block theme-error"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="default"<?php if ($luna_config['o_announcement_type'] == 'default') { echo ' checked'; } ?>>
-                                    <?php _e('Default', 'luna')?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="info"<?php if ($luna_config['o_announcement_type'] == 'info') { echo ' checked'; } ?>>
-                                    <?php _e('Info', 'luna')?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="success"<?php if ($luna_config['o_announcement_type'] == 'success') { echo ' checked'; } ?>>
-                                    <?php _e('Success', 'luna')?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="warning"<?php if ($luna_config['o_announcement_type'] == 'warning') { echo ' checked'; } ?>>
-                                    <?php _e('Warning', 'luna')?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[announcement_type]" value="danger"<?php if ($luna_config['o_announcement_type'] == 'danger') { echo ' checked'; } ?>>
-                                    <?php _e('Danger', 'luna')?>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Announcement', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[announcement]" name="form[announcement]" value="1"<?php echo ( $luna_config['o_announcement'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[announcement]">
+                                    <?php _e('Enable this to display the below message in the board.', 'luna')?>
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Message', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Title', 'luna')?><span class="help-block"><?php _e('You can leave this empty if there is no title', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[announcement_title]" value="<?php echo $luna_config['o_announcement_title'] ?>" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block theme-error"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[announcement_type1]" name="form[announcement_type]" class="custom-control-input" value="default" <?php if ($luna_config['o_announcement_type'] == 'default') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[announcement_type1]">
+                                    <?php _e('Default', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[announcement_type2]" name="form[announcement_type]" class="custom-control-input" value="info" <?php if ($luna_config['o_announcement_type'] == 'info') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[announcement_type2]">
+                                    <?php _e('Info', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[announcement_type3]" name="form[announcement_type]" class="custom-control-input" value="success" <?php if ($luna_config['o_announcement_type'] == 'success') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[announcement_type3]">
+                                    <?php _e('Success', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[announcement_type4]" name="form[announcement_type]" class="custom-control-input" value="warning" <?php if ($luna_config['o_announcement_type'] == 'warning') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[announcement_type4]">
+                                    <?php _e('Warning', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[announcement_type5]" name="form[announcement_type]" class="custom-control-input" value="danger" <?php if ($luna_config['o_announcement_type'] == 'danger') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[announcement_type5]">
+                                    <?php _e('Danger', 'luna') ?>
+                                </label>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Message', 'luna')?></label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Time and timeouts', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Time and timeouts', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Time format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
-                            </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Time format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Date format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Date format', 'luna')?><span class="help-block"><?php printf(__('Now: %s. See %s for more info', 'luna'), date($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.__('PHP manual', 'luna').'</a>')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Default time zone', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="form[timezone]">
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Default time zone', 'luna')?></label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="form[timezone]">
 <?php
 $timezones = DateTimeZone::listIdentifiers();
 foreach ($timezones as $timezone) {
-    ?>
-							     	<option value="<?php echo $timezone ?>"<?php if ($luna_config['o_timezone'] == $timezone) {
-        echo ' selected';
-    }
-    ?>><?php echo $timezone ?></option>
+?>
+                                <option value="<?php echo $timezone ?>"<?php if ($luna_config['o_timezone'] == $timezone) { echo ' selected'; } ?>><?php echo $timezone ?></option>
 <?php
 }
 ?>
-                                </select>
-                            </div>
+                            </select>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Visit timeout', 'luna')?><span class="help-block"><?php _e('Time before a visit ends', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
-                                    <span class="input-group-addon"><?php _e('seconds', 'luna')?></span>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Visit timeout', 'luna')?><span class="help-block"><?php _e('Time before a visit ends', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?php _e('seconds', 'luna')?></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Online timeout', 'luna')?><span class="help-block"><?php _e('Time before someone isn\'t online anymore', 'luna')?></span>
-        </label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
-                                    <span class="input-group-addon"><?php _e('seconds', 'luna')?></span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Online timeout', 'luna')?><span class="help-block"><?php _e('Time before someone isn\'t online anymore', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?php _e('seconds', 'luna')?></span>
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Syndication', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Syndication', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Default feed type', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') { echo ' checked'; } ?>>
-                                    <?php _e('None', 'luna')?>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Default feed type', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[feed_type1]" name="form[feed_type]" class="custom-control-input" value="0" <?php if ($luna_config['o_feed_type'] == '0') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[feed_type1]">
+                                    <?php _e('None', 'luna') ?>
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[feed_type]" value="1"<?php if ($luna_config['o_feed_type'] == '1') { echo ' checked'; } ?>>
-                                    <?php _e('RSS', 'luna')?>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[feed_type2]" name="form[feed_type]" class="custom-control-input" value="1" <?php if ($luna_config['o_feed_type'] == '1') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[feed_type2]">
+                                    <?php _e('RSS', 'luna') ?>
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') { echo ' checked'; } ?>>
-                                    <?php _e('Atom', 'luna')?>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[feed_type3]" name="form[feed_type]" class="custom-control-input" value="2" <?php if ($luna_config['o_feed_type'] == '2') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[feed_type3]">
+                                    <?php _e('Atom', 'luna') ?>
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Duration to cache feeds', 'luna')?><span class="help-block"><?php _e('Reduce sources by caching feeds', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="form[feed_ttl]">
-                                    <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') { echo ' selected'; } ?>><?php _e('Don\'t cache', 'luna')?></option>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Duration to cache feeds', 'luna')?><span class="help-block"><?php _e('Reduce sources by caching feeds', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="form[feed_ttl]">
+                                <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') { echo ' selected'; } ?>><?php _e('Don\'t cache', 'luna')?></option>
 <?php
-
 $times = array(5, 15, 30, 60);
 
 foreach ($times as $time) {
     echo '<option value="'.$time.'"'.($luna_config['o_feed_ttl'] == $time ? ' selected' : '').'>'.sprintf(__('%d minutes', 'luna'), $time).'</option>';
 }
-
 ?>
-                                </select>
-                            </div>
+                            </select>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Email', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Email', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Admin email', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
-                            </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Admin email', 'luna')?></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Webmaster email', 'luna')?><span class="help-block"><?php _e('The email where the boards mails will be addressed from', 'luna')?></span></label>
-                                <div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_webmaster_email']) ?>" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Webmaster email', 'luna')?><span class="help-block"><?php _e('The email where the boards mails will be addressed from', 'luna')?></span></label>
+                            <div class="col-md-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_webmaster_email']) ?>" />
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Reporting method', 'luna')?><span class="help-block"><?php _e('How should we handle reports?', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') { echo ' checked'; } ?> />
-                                    <?php _e('Internal', 'luna')?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') { echo ' checked'; } ?> />
-                                    <?php _e('Email', 'luna')?>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') { echo ' checked'; } ?> />
-                                    <?php _e('Both', 'luna')?>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Reporting method', 'luna')?><span class="help-block"><?php _e('How should we handle reports?', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[report_method1]" name="form[report_method]" class="custom-control-input" value="0" <?php if ($luna_config['o_report_method'] == '0') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[report_method1]">
+                                    <?php _e('Internal', 'luna') ?>
                                 </label>
                             </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Mailing list', 'luna')?><span class="help-block"><?php _e('A comma separated list of subscribers who get emails when new reports are made', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[report_method2]" name="form[report_method]" class="custom-control-input" value="1" <?php if ($luna_config['o_report_method'] == '1') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[report_method2]">
+                                    <?php _e('Email', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="form[report_method3]" name="form[report_method]" class="custom-control-input" value="2" <?php if ($luna_config['o_report_method'] == '2') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[report_method3]">
+                                    <?php _e('Both', 'luna') ?>
+                                </label>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Mailing list', 'luna')?><span class="help-block"><?php _e('A comma separated list of subscribers who get emails when new reports are made', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Registration', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Registration', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                    <input type="hidden" name="form_sent" value="1" />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('New registrations', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow new users to be made by people.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Notify people on the mailing list when new user registers.  ', 'luna')?>
-                                    </label>
-                                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('New registrations', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[regs_allow]" name="form[regs_allow]" value="1"<?php echo ( $luna_config['o_regs_allow'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[regs_allow]">
+                                    <?php _e('Allow new users to be made by people.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[regs_report]" name="form[regs_report]" value="1"<?php echo ( $luna_config['o_regs_report'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[regs_report]">
+                                    <?php _e('Notify people on the mailing list when new user registers.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Verify', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Send a random password to users to verify their email address.  ', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Verify', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[regs_verify]" name="form[regs_verify]" value="1"<?php echo ( $luna_config['o_regs_verify'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[regs_verify]">
+                                    <?php _e('Send a random password to users to verify their email address.', 'luna') ?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Registration', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['o_allow_banned_email'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow users to use a banned email address, mailing list will be warned when this happens.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['o_allow_dupe_email'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow users to use an email address that is already used, mailing list will be warned when this happens.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Registration', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[allow_banned_email]" name="form[allow_banned_email]" value="1"<?php echo ( $luna_config['o_allow_banned_email'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[allow_banned_email]">
+                                    <?php _e('Allow users to use a banned email address, mailing list will be warned when this happens.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[allow_dupe_email]" name="form[allow_dupe_email]" value="1"<?php echo ( $luna_config['o_allow_dupe_email'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[allow_dupe_email]">
+                                    <?php _e('Allow users to use an email address that is already used, mailing list will be warned when this happens.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Rules', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Require users to agree with the rules. This will enable a "Rules" panel in Help.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Rules', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[rules]" name="form[rules]" value="1"<?php echo ( $luna_config['o_rules'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[rules]">
+                                    <?php _e('Require users to agree with the rules. This will enable a "Rules" panel in Help.', 'luna') ?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Message', 'luna')?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled, in HTML', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Message', 'luna')?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled, in HTML', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Default email setting', 'luna')?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="form[default_email_setting1]" name="form[default_email_setting]" class="custom-control-input" value="0" <?php if ($luna_config['o_default_email_setting'] == '0') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[default_email_setting1]">
+                                    <?php _e('Display email address to other users.', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="form[default_email_setting2]" name="form[default_email_setting]" class="custom-control-input" value="1" <?php if ($luna_config['o_default_email_setting'] == '1') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[default_email_setting2]">
+                                    <?php _e('Hide email address but allow form email.', 'luna') ?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="form[default_email_setting3]" name="form[default_email_setting]" class="custom-control-input" value="2" <?php if ($luna_config['o_default_email_setting'] == '2') { echo ' checked'; } ?>>
+                                <label class="custom-control-label" for="form[default_email_setting3]">
+                                    <?php _e('Hide email address and disallow form email.', 'luna') ?>
+                                </label>
                             </div>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Default email setting', 'luna')?><span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') { echo ' checked'; } ?> />
-                                        <?php _e('Display email address to other users.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Hide email address but allow form email.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') { echo ' checked'; } ?> />
-                                        <?php _e('Hide email address and disallow form email.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Cookie bar', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Cookie bar', 'luna') ?><span class="help-block"><a href="http://getluna.org/docs/cookies"><?php _e('More info', 'luna') ?></a></span></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Show a bar with information about cookies at the bottom of the page.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Cookie info URL', 'luna')?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('SMTP settings', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('Cookie bar', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('SMTP server address', 'luna')?><span class="help-block"><?php _e('The address of an external SMTP server to send emails with', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[smtp_host]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Cookie bar', 'luna') ?><span class="help-block"><a href="http://getluna.org/docs/cookies"><?php _e('More info', 'luna') ?></a></span></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[cookie_bar]" name="form[cookie_bar]" value="1"<?php echo ( $luna_config['o_cookie_bar'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[cookie_bar]">
+                                    <?php _e('Show a bar with information about cookies at the bottom of the page.', 'luna') ?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('SMTP username', 'luna')?><span class="help-block"><?php _e('Username for SMTP server, only if required', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[smtp_user]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Cookie info URL', 'luna')?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('SMTP password', 'luna')?><span class="help-block"><?php _e('Password and confirmation for SMTP server, only when required', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />
-                                        <?php _e('Check this if you want to change or delete the currently stored password.', 'luna')?>
-                                    </label>
-                                </div>
-        <?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : '';?>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="form[smtp_pass1]" value="<?php echo $smtp_pass ?>" />
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="form[smtp_pass2]" value="<?php echo $smtp_pass ?>" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('SMTP encryption', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Encrypts the connection to the SMTP server using SSL, only when required and supported.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('System', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('SMTP settings', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
                 </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Root URL', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
-                            </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('SMTP server address', 'luna')?><span class="help-block"><?php _e('The address of an external SMTP server to send emails with', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[smtp_host]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('CDN', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[use_cdn]" value="1" <?php if ($luna_config['o_use_cdn'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Use a CDN to load Bootstrap and jQuery. This will reduce load times and bandwith usage but it also makes Luna rely on third party services.', 'luna')?>
-                                    </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('SMTP username', 'luna')?><span class="help-block"><?php _e('Username for SMTP server, only if required', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[smtp_user]" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('SMTP password', 'luna')?><span class="help-block"><?php _e('Password and confirmation for SMTP server, only when required', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[smtp_change_pass]" name="form[smtp_change_pass]" value="1">
+                                <label class="custom-control-label" for="form[smtp_change_pass]">
+                                    <?php _e('Check this if you want to change or delete the currently stored password.', 'luna') ?>
+                                </label>
+                            </div>
+    <?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : '';?>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="form-control" type="password" name="form[smtp_pass1]" value="<?php echo $smtp_pass ?>" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="password" name="form[smtp_pass2]" value="<?php echo $smtp_pass ?>" />
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Advanced', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('SMTP encryption', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[smtp_ssl]" name="form[smtp_ssl]" value="1"<?php echo ( $luna_config['o_smtp_ssl'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[smtp_ssl]">
+                                    <?php _e('Encrypts the connection to the SMTP server using SSL, only when required and supported.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <?php _e('System', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Root URL', 'luna')?></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('CDN', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[use_cdn]" name="form[use_cdn]" value="1"<?php echo ( $luna_config['o_use_cdn'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[use_cdn]">
+                                    <?php _e('Use a CDN to load Bootstrap and jQuery. This will reduce load times and bandwith usage but it also makes Luna rely on third party services.', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Advanced', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[gzip]" name="form[gzip]" value="1"<?php echo ( $luna_config['o_gzip'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[gzip]">
+                                    <?php _e('Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature.', 'luna') ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
