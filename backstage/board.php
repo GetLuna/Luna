@@ -268,7 +268,7 @@ elseif (isset($_POST['update_board'])) {
     ?>
 <div class="row">
     <div class="col">
-        <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
+        <form id="edit_forum" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
             <div class="card">
                 <h5 class="card-header">
                     <?php _e('Forum details', 'luna')?>

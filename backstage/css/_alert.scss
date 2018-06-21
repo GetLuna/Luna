@@ -7,4 +7,9 @@
         color: darken( $accent, 10% );
         background-color: lighten( $accent, 50% );
     }
+
+    &.alert-danger {
+        color: darken( $red, 10% );
+        background-color: lighten( $red, 42% );
+    }
 }
