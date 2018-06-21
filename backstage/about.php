@@ -32,10 +32,12 @@ require 'header.php';
                     <h2><span class="version-name">Fallow Preview 4 <small>2.1-alpha.4</small></span></h2>
                     <h4><i class="fa fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('Known issues are now listed in the Backstage under "About"', 'luna') ?></p>
+                    <p><?php _e('Syntax highlighting now supports JSON and TypeScript and extended support for PHP', 'luna') ?></p>
                     <h4><i class="fa fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
                     <p><?php _e('The Backstage now uses Bootstrap 4.1', 'luna') ?></p>
                     <h4><i class="fa fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 3.3.7 to 4.1.1', 'luna') ?></p>
+                    <p><?php _e('Prism has been updated from version 14.0 to 15.0', 'luna') ?></p>
                     <h4><i class="fa fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                     <h4><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
