@@ -145,7 +145,7 @@ require 'header.php';
 						</tr>
 						<tr>
 							<td><?php _e('Font Awesome version', 'luna')?></td>
-							<td>v5.0.13</td>
+							<td>v5.1.0</td>
 						</tr>
 						<tr>
 							<td><?php _e('jQuery version', 'luna')?></td>
@@ -153,7 +153,7 @@ require 'header.php';
 						</tr>
 						<tr>
 							<td><?php _e('Prism version', 'luna')?></td>
-							<td>v14.0</td>
+							<td>v15.0</td>
 						</tr>
 					</tbody>
 				</table>
