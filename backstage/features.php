@@ -138,7 +138,6 @@ if (isset($_POST['form_sent'])) {
         } else {
             message_backstage(__('An unknown error occurred. Please try again.', 'luna'));
         }
-
     }
 
     // Regenerate the config cache
@@ -157,399 +156,408 @@ $theme = forum_get_theme();
 require 'header.php';
 ?>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-12">
 <?php
 if (isset($_GET['saved'])) {
     echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
 }
-
 ?>
-        <form class="form-horizontal" method="post" action="features.php">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('General', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
+        <form method="post" action="features.php">
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('General', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
                     <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Threads and comments', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[censoring]" value="1" <?php if ($luna_config['o_censoring'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Censor words in comments.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[thread_views]" value="1" <?php if ($luna_config['o_thread_views'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Show the number of views for each thread.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[has_commented]" value="1" <?php if ($luna_config['o_has_commented'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Show a label in front of the thread where users have commented.', 'luna')?>
-                                    </label>
-                                </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Threads and comments', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[censoring]" name="form[censoring]" value="1"<?php echo ( $luna_config['o_censoring'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[censoring]">
+                                    <?php _e('Censor words in comments.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[thread_views]" name="form[thread_views]" value="1"<?php echo ( $luna_config['o_thread_views'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[thread_views]">
+                                    <?php _e('Show the number of views for each thread.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[has_commented]" name="form[has_commented]" value="1"<?php echo ( $luna_config['o_has_commented'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[has_commented]">
+                                    <?php _e('Show a label in front of the thread where users have commented.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('User features', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[users_online]" value="1" <?php if ($luna_config['o_users_online'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Display info on the index page about users currently browsing the board.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[ranks]" value="1" <?php if ($luna_config['o_ranks'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Use user ranks.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('User features', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[users_online]" name="form[users_online]" value="1"<?php echo ( $luna_config['o_users_online'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[users_online]">
+                                    <?php _e('Display info on the index page about users currently browsing the board.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[ranks]" name="form[ranks]" value="1"<?php echo ( $luna_config['o_ranks'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[ranks]">
+                                    <?php _e('Use user ranks.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Search', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[enable_advanced_search]" value="1" <?php if ($luna_config['o_enable_advanced_search'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow users to use the advanced search options.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow search only in 1 forum at a time.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Search', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[enable_advanced_search]" name="form[enable_advanced_search]" value="1"<?php echo ( $luna_config['o_enable_advanced_search'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[enable_advanced_search]">
+                                    <?php _e('Allow users to use the advanced search options.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[search_all_forums]" name="form[search_all_forums]" value="1"<?php echo ( $luna_config['o_search_all_forums'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[search_all_forums]">
+                                    <?php _e('Allow search only in 1 forum at a time.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Inbox', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Inbox', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[enable_inbox]" value="1" <?php if ($luna_config['o_enable_inbox'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow users to use Inbox.', 'luna')?>
-                                    </label>
-                                </div>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('Inbox', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Inbox', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[enable_inbox]" name="form[enable_inbox]" value="1"<?php echo ( $luna_config['o_enable_inbox'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[enable_inbox]">
+                                    <?php _e('Allow users to use Inbox.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Receivers', 'luna')?><span class="help-block"><?php _e('The number of receivers an Inbox message can have', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[max_receivers]" maxlength="5" value="<?php echo $luna_config['o_max_receivers'] ?>" />
-                            </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Receivers', 'luna')?><span class="help-block"><?php _e('The number of receivers an Inbox message can have', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="form[max_receivers]" maxlength="5" value="<?php echo $luna_config['o_max_receivers'] ?>" />
                         </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Subscriptions', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Subscriptions', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($luna_config['o_forum_subscriptions'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Enable users to subscribe to forums.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[thread_subscriptions]" value="1" <?php if ($luna_config['o_thread_subscriptions'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Enable users to subscribe to threads.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('First run', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block theme-error"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[show_first_run]" value="1" <?php if ($luna_config['o_show_first_run'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Show the first run panel when an user logs in for the first time.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[first_run_guests]" value="1" <?php if ($luna_config['o_first_run_guests'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Show the first run panel to guests with login field and registration button.', 'luna')?>
-                                    </label>
-                                </div>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('Subscriptions', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Subscriptions', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[forum_subscriptions]" name="form[forum_subscriptions]" value="1"<?php echo ( $luna_config['o_forum_subscriptions'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[forum_subscriptions]">
+                                    <?php _e('Enable users to subscribe to forums.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[thread_subscriptions]" name="form[thread_subscriptions]" value="1"<?php echo ( $luna_config['o_thread_subscriptions'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[thread_subscriptions]">
+                                    <?php _e('Enable users to subscribe to threads.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Welcome text', 'luna')?><span class="help-block"><?php _e('The introduction to the forum displayed in the middle of the first run panel', 'luna')?></span>  </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('BBCode', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Universal', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_center]" value="1" <?php if ($luna_config['o_allow_center'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow the use of the [center]-tag.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_size]" value="1" <?php if ($luna_config['o_allow_size'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow the use of the [size]-tag.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[make_links]" value="1" <?php if ($luna_config['o_make_links'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Convert URLs automatically to clickable hyperlinks.', 'luna')?>
-                                    </label>
-                                </div>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('First run', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block theme-error"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[show_first_run]" name="form[show_first_run]" value="1"<?php echo ( $luna_config['o_show_first_run'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[show_first_run]">
+                                    <?php _e('Show the first run panel when an user logs in for the first time.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[first_run_guests]" name="form[first_run_guests]" value="1"<?php echo ( $luna_config['o_first_run_guests'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[first_run_guests]">
+                                    <?php _e('Show the first run panel to guests with login field and registration button.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Threads and comments', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['o_message_img_tag'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow the use of the [img]-tag.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[allow_spoiler]" value="1" <?php if ($luna_config['o_allow_spoiler'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow the use of the [spoiler]-tag.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Welcome text', 'luna')?><span class="help-block"><?php _e('The introduction to the forum displayed in the middle of the first run panel', 'luna')?></span>  </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Signatures', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Convert smilies to small graphic icons in user signatures.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['o_sig_img_tag'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow the use of the [img]-tag.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Indent size', 'luna')?><span class="help-block"><?php _e('Amount of spaces that represent a tab', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Maximum [quote] depth', 'luna')?><span class="help-block"><?php _e('Maximum [quote] can be used in [quote]', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Commenting', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('All caps', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['o_message_all_caps'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow a comment to contain only capital letters.', 'luna')?>
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($luna_config['o_subject_all_caps'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow a subject to contain only capital letters.', 'luna')?>
-                                    </label>
-                                </div>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('BBCode', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Universal', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[allow_center]" name="form[allow_center]" value="1"<?php echo ( $luna_config['o_allow_center'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[allow_center]">
+                                    <?php _e('Allow the use of the [center]-tag.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[allow_size]" name="form[allow_size]" value="1"<?php echo ( $luna_config['o_allow_size'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[allow_size]">
+                                    <?php _e('Allow the use of the [size]-tag.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[make_links]" name="form[make_links]" value="1"<?php echo ( $luna_config['o_make_links'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[make_links]">
+                                    <?php _e('Convert URLs automatically to clickable hyperlinks.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Guests', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['o_force_guest_email'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Require guests to supply an email address when commenting.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Threads and comments', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[message_img_tag]" name="form[message_img_tag]" value="1"<?php echo ( $luna_config['o_message_img_tag'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[message_img_tag]">
+                                    <?php _e('Allow the use of the [img]-tag.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[allow_spoiler]" name="form[allow_spoiler]" value="1"<?php echo ( $luna_config['o_allow_spoiler'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[allow_spoiler]">
+                                    <?php _e('Allow the use of the [spoiler]-tag.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Avatars', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Use avatars', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[avatars]" value="1" <?php if ($luna_config['o_avatars'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Enable so users can upload avatars.', 'luna')?>
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Signatures', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[smilies_sig]" name="form[smilies_sig]" value="1"<?php echo ( $luna_config['o_smilies_sig'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[smilies_sig]">
+                                    <?php _e('Convert smilies to small graphic icons in user signatures.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[sig_img_tag]" name="form[sig_img_tag]" value="1"<?php echo ( $luna_config['o_sig_img_tag'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[sig_img_tag]">
+                                    <?php _e('Allow the use of the [img]-tag.', 'luna')?>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Upload directory', 'luna')?><span class="help-block"><?php _e('Where avatars will be stored relative to Lunas root, write permission required', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_avatars_dir']) ?>" />
-                            </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Indent size', 'luna')?><span class="help-block"><?php _e('Amount of spaces that represent a tab', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Max width', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
-                                    <span class="input-group-addon"><?php _e('pixels', 'luna')?></span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Maximum [quote] depth', 'luna')?><span class="help-block"><?php _e('Maximum [quote] can be used in [quote]', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Max height', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
-                                    <span class="input-group-addon"><?php _e('pixels', 'luna')?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Max size', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
-                                    <span class="input-group-addon"><?php _e('bytes', 'luna')?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label">
-                                <?php _e('Default avatar', 'luna')?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna')?></span>
-                                <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
-                                    <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna')?></a>
-                                <?php }?>
-                            </label>
-                            <div class="col-sm-9">
-                                <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
-                                    <img class="img-responsive img-bs-avatar" src="<?php echo LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
-                                <?php } else {?>
-                                    <img class="img-responsive img-bs-avatar" src="<?php echo LUNA_ROOT . 'img/avatars/placeholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
-                                <?php }?>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="512000" />
-                                <input name="req_file" type="file" />
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Signatures', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('Commenting', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('All caps', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[message_all_caps]" name="form[message_all_caps]" value="1"<?php echo ( $luna_config['o_message_all_caps'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[message_all_caps]">
+                                    <?php _e('Allow a comment to contain only capital letters.', 'luna')?>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[subject_all_caps]" name="form[subject_all_caps]" value="1"<?php echo ( $luna_config['o_subject_all_caps'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[subject_all_caps]">
+                                    <?php _e('Allow a subject to contain only capital letters.', 'luna')?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Guests', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[force_guest_email]" name="form[force_guest_email]" value="1"<?php echo ( $luna_config['o_force_guest_email'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[force_guest_email]">
+                                    <?php _e('Require guests to supply an email address when commenting.', 'luna')?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Signatures', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[signatures]" value="1" <?php if ($luna_config['o_signatures'] == '1') { echo ' checked'; } ?> />
-                                        <?php printf(__('Allow users to attach a signature to their comments.', 'luna'), '<a href="permissions.php">' . __('Permissions', 'luna') . '</a>')?>
-                                    </label>
+            </div>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('Avatars', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Use avatars', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[avatars]" name="form[avatars]" value="1"<?php echo ( $luna_config['o_avatars'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[avatars]">
+                                    <?php _e('Enable so users can upload avatars.', 'luna')?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Upload directory', 'luna')?><span class="help-block"><?php _e('Where avatars will be stored relative to Lunas root, write permission required', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_avatars_dir']) ?>" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Max width', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?php _e('pixels', 'luna')?></span>
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('All caps', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($luna_config['o_sig_all_caps'] == '1') { echo ' checked'; } ?> />
-                                        <?php _e('Allow a signature to contain only capital letters.', 'luna')?>
-                                    </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Max height', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?php _e('pixels', 'luna')?></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Maximum signature length', 'luna')?><span class="help-block"><?php _e('Maximum amount of characters a signature can have', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['o_sig_length'] ?>" />
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Max size', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?php _e('bytes', 'luna')?></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Maximum signature lines', 'luna')?><span class="help-block"><?php _e('Maximum amount of lines a signature can have', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['o_sig_lines'] ?>" />
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">
+                            <?php _e('Default avatar', 'luna')?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna')?></span>
+                            <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
+                                <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna')?></a>
+                            <?php }?>
+                        </label>
+                        <div class="col-md-9">
+                            <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
+                                <img class="img-fluid img-avatar" src="<?php echo LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
+                            <?php } else {?>
+                                <img class="img-fluid img-avatar" src="<?php echo LUNA_ROOT . 'img/avatars/placeholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
+                            <?php }?>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="512000" />
+                            <input name="req_file" type="file" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header">
+                    <?php _e('Signatures', 'luna')?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Signatures', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[signatures]" name="form[signatures]" value="1"<?php echo ( $luna_config['o_signatures'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[signatures]">
+                                    <?php printf(__('Allow users to attach a signature to their comments.', 'luna'), '<a href="permissions.php">' . __('Permissions', 'luna') . '</a>')?>
+                                </label>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('All caps', 'luna')?></label>
+                        <div class="col-md-9">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="form[sig_all_caps]" name="form[sig_all_caps]" value="1"<?php echo ( $luna_config['o_sig_all_caps'] == '1' ) ? ' checked' : '' ?>>
+                                <label class="custom-control-label" for="form[sig_all_caps]">
+                                    <?php _e('Allow a signature to contain only capital letters.', 'luna')?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Maximum length', 'luna')?><span class="help-block"><?php _e('Maximum amount of characters a signature can have', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['o_sig_length'] ?>" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label"><?php _e('Maximum lines', 'luna')?><span class="help-block"><?php _e('Maximum amount of lines a signature can have', 'luna')?></span></label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['o_sig_lines'] ?>" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

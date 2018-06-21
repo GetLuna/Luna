@@ -104,8 +104,16 @@ body {
 
 .img-favicon {
     display: block;
-    width: 48px;
-    height: 48px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: .75rem;
+    margin-bottom: .5rem;
+}
+
+.img-avatar {
+    display: block;
+    width: 9rem;
+    height: 9rem;
     margin-top: .75rem;
     margin-bottom: .5rem;
 }
