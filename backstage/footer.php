@@ -24,11 +24,12 @@ $db->end_transaction();
 ?>
 				</div>
 			</div>
-			<footer>
-            	<p class="text-center">
-					<?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/"><span class="brand">Luna</span> '.$luna_config['o_cur_version'].'</a>')?> '<i><?php echo Version::LUNA_CODE_NAME ?></i>' &middot;
-					<?php echo Version::LUNA_CORE_VERSION ?>
-				</p>
+			<div class="container">
+				<footer>
+					<p class="text-center">
+						<?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/"><span class="brand">Luna</span> '.$luna_config['o_cur_version'].'</a>')?> '<i><?php echo Version::LUNA_CODE_NAME ?></i>' &middot;
+						<?php echo Version::LUNA_CORE_VERSION ?>
+					</p>
 <?php
 // Display debug info (if enabled/defined)
 if (defined('LUNA_DEBUG')) {
@@ -48,7 +49,8 @@ if (defined('LUNA_DEBUG')) {
 	echo '</p>';
 }
 ?>
-            </footer>
+            	</footer>
+			</div>
         </div>
         <script src="<?php echo $mainpad ?>/js/prism.js"></script>
 		<script src="../vendor/js/colours.min.js"></script>

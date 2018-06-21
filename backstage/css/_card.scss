@@ -40,10 +40,34 @@
 
     .card-header {
         font-weight: 600;
-        font-size: 1.25rem;
         padding: .75rem;
         line-height: 1;
         border: none;
+
+        &h5 {
+            font-size: 1.25rem;
+        }
+
+        &.card-nav {
+            padding-bottom: 0;
+
+            .card-header-tabs {
+                margin-left: 0;
+                margin-right: 0;
+
+                .nav-link {
+                    border-radius: 0;
+                    border: none;
+                    padding: .75rem;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        border: none;
+                    }
+                }
+            }
+        }
             
         .float-right {
             .btn {
