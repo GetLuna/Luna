@@ -101,78 +101,75 @@ $focus_element = array('ranks', 'new_rank');
 require 'header.php';
 ?>
 <div class="row">
-	<form id="ranks" method="post" action="ranks.php">
-        <div class="col-sm-12">
-            <?php if ($luna_config['o_ranks'] == 0) {?>
-            <div class="alert alert-danger">
-                <i class="fas fa-fw fa-exclamation"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">' . __('Features', 'luna') . '</a>') ?>
-            </div>
-            <?php }?>
+    <?php if ($luna_config['o_ranks'] == 0) { ?>
+    <div class="col-12">
+        <div class="alert alert-danger">
+            <i class="fas fa-fw fa-exclamation-triangle"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">' . __('Features', 'luna') . '</a>') ?>
         </div>
-		<div class="col-sm-4">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add rank', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_rank" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
-				</div>
-                <div class="panel-body">
-                    <input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna')?>" maxlength="50" tabindex="1" />
-                    <hr />
-                    <input type="number" class="form-control" name="new_min_comments" placeholder="<?php _e('Minimum comments', 'luna')?>" maxlength="7" tabindex="2" />
-                </div>
-			</div>
-		</div>
-	</form>
-	<form id="ranks" method="post" action="ranks.php">
-		<div class="col-sm-8">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Manage ranks', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-				</div>
-				<fieldset>
+    </div>
+    <?php } ?>
+    <div class="col-md-4">
+	    <form id="ranks" class="card" method="post" action="ranks.php">
+            <h5 class="card-header">
+                <?php _e('Add rank', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="add_rank" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="card-body">
+                <input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna')?>" maxlength="50" tabindex="1" />
+                <hr />
+                <input type="number" class="form-control" name="new_min_comments" placeholder="<?php _e('Minimum comments', 'luna')?>" maxlength="7" tabindex="2" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <form id="ranks" class="card" method="post" action="ranks.php">
+            <h5 class="card-header">
+                <?php _e('Manage ranks', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                </span>
+            </h5>
 <?php
-
 $result = $db->query('SELECT id, rank, min_comments FROM ' . $db->prefix . 'ranks ORDER BY min_comments') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
-
-    ?>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th><?php _e('Rank title', 'luna')?></th>
-									<th class="col-lg-2"><?php _e('Minimum comments', 'luna')?></th>
-									<th><?php _e('Actions', 'luna')?></th>
-								</tr>
-							</thead>
-							<tbody>
+?>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><?php _e('Rank title', 'luna')?></th>
+                            <th><?php _e('Minimum comments', 'luna')?></th>
+                            <th><?php _e('Actions', 'luna')?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
-while ($cur_rank = $db->fetch_assoc($result)) {
-        ?>
-								<tr>
-									<td>
-										<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][rank]" value="<?php echo luna_htmlspecialchars($cur_rank['rank']) ?>" maxlength="50" />
-									</td>
-									<td>
-										<input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_comments]" value="<?php echo $cur_rank['min_comments'] ?>" maxlength="7" />
-									</td>
-									<td>
-										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
-									</td>
-								</tr>
+    while ($cur_rank = $db->fetch_assoc($result)) {
+?>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][rank]" value="<?php echo luna_htmlspecialchars($cur_rank['rank']) ?>" maxlength="50" />
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_comments]" value="<?php echo $cur_rank['min_comments'] ?>" maxlength="7" />
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+                            </td>
+                        </tr>
 <?php
-}
+    }
 } else {
     echo '<tr><td colspan="3">' . __('No ranks in list', 'luna') . '</td></tr>';
 }
-
 ?>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
-			</div>
-		</div>
-	</form>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
 </div>
 <?php
 
