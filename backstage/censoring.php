@@ -11,7 +11,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'content');
 define('LUNA_PAGE', 'censoring');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -29,11 +29,11 @@ if (isset($_POST['add_word'])) {
         message_backstage(__('You must enter a word to censor.', 'luna'));
     }
 
-    $db->query('INSERT INTO ' . $db->prefix . 'censoring (search_for, replace_with) VALUES (\'' . $db->escape($search_for) . '\', \'' . $db->escape($replace_with) . '\')') or error('Unable to add censor word', __FILE__, __LINE__, $db->error());
+    $db->query('INSERT INTO '.$db->prefix.'censoring (search_for, replace_with) VALUES (\''.$db->escape($search_for).'\', \''.$db->escape($replace_with).'\')') or error('Unable to add censor word', __FILE__, __LINE__, $db->error());
 
     // Regenerate the censoring cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_censoring_cache();
@@ -54,11 +54,11 @@ elseif (isset($_POST['update'])) {
         message_backstage(__('You must enter a word to censor.', 'luna'));
     }
 
-    $db->query('UPDATE ' . $db->prefix . 'censoring SET search_for=\'' . $db->escape($search_for) . '\', replace_with=\'' . $db->escape($replace_with) . '\' WHERE id=' . $id) or error('Unable to update censor word', __FILE__, __LINE__, $db->error());
+    $db->query('UPDATE '.$db->prefix.'censoring SET search_for=\''.$db->escape($search_for).'\', replace_with=\''.$db->escape($replace_with).'\' WHERE id='.$id) or error('Unable to update censor word', __FILE__, __LINE__, $db->error());
 
     // Regenerate the censoring cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_censoring_cache();
@@ -72,11 +72,11 @@ elseif (isset($_POST['remove'])) {
 
     $id = intval(key($_POST['remove']));
 
-    $db->query('DELETE FROM ' . $db->prefix . 'censoring WHERE id=' . $id) or error('Unable to delete censor word', __FILE__, __LINE__, $db->error());
+    $db->query('DELETE FROM '.$db->prefix.'censoring WHERE id='.$id) or error('Unable to delete censor word', __FILE__, __LINE__, $db->error());
 
     // Regenerate the censoring cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_censoring_cache();
@@ -90,80 +90,77 @@ require 'header.php';
 
 ?>
 <div class="row">
-    <div class="col-sm-12">
-        <?php if ($luna_config['o_censoring'] == 0) {?>
+    <div class="col-12">
+        <?php if ($luna_config['o_censoring'] == 0) { ?>
         <div class="alert alert-danger">
-            <i class="fas fa-fw fa-exclamation"></i> <?php echo sprintf(__('Censoring is disabled in %s.', 'luna'), '<a href="features.php">' . __('Features', 'luna') . '</a>') ?>
+            <i class="fas fa-fw fa-exclamation"></i> <?php echo sprintf(__('Censoring is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
         </div>
-        <?php }?>
+        <?php } ?>
     </div>
-	<div class="col-sm-4">
+	<div class="col-md-4">
 		<form id="censoring" method="post" action="censoring.php">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add word', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
-				</div>
-				<fieldset>
-					<div class="panel-body">
-						<p><?php _e('Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted.', 'luna')?></p>
-                        <hr />
-                        <input type="text" class="form-control" placeholder="<?php _e('Censored word', 'luna')?>" name="new_search_for" maxlength="60" tabindex="1" />
-                        <hr />
-                        <input type="text" class="form-control" placeholder="<?php _e('Replacement word', 'luna')?>" name="new_replace_with" maxlength="60" tabindex="2" />
-                    </div>
-				</fieldset>
+			<div class="card">
+				<h5 class="card-header">
+                    <?php _e('Add word', 'luna') ?>
+                    <span class="float-right">
+                        <button class="btn btn-link" type="submit" name="add_word" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button>
+                    </span>
+                </h5>
+                <div class="card-body">
+                    <p><?php _e('Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted.', 'luna' )?></p>
+                    <hr />
+                    <input type="text" class="form-control" placeholder="<?php _e('Censored word', 'luna') ?>" name="new_search_for" maxlength="60" tabindex="1" />
+                    <hr />
+                    <input type="text" class="form-control" placeholder="<?php _e('Replacement word', 'luna') ?>" name="new_replace_with" maxlength="60" tabindex="2" />
+                </div>
 			</div>
 		</form>
 	</div>
-	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Manage words', 'luna')?></h3>
-			</div>
+	<div class="col-md-8">
+		<div class="card">
+			<h5 class="card-header">
+                <?php _e('Manage words', 'luna') ?>
+            </h5>
 			<form id="censoring" method="post" action="censoring.php">
-				<fieldset>
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th class="col-xs-4"><?php _e('Censored word', 'luna')?></th>
-									<th class="col-xs-4"><?php _e('Replacement word', 'luna')?></th>
-									<th class="col-xs-4"><?php _e('Action', 'luna')?></th>
-								</tr>
-							</thead>
-							<tbody>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><?php _e('Censored word', 'luna') ?></th>
+                                <th><?php _e('Replacement word', 'luna') ?></th>
+                                <th><?php _e('Action', 'luna') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 <?php
-
-$result = $db->query('SELECT id, search_for, replace_with FROM ' . $db->prefix . 'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id, search_for, replace_with FROM '.$db->prefix.'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
 
     while ($cur_word = $db->fetch_assoc($result)) {
-        ?>
-								<tr>
-									<td>
-										<input type="text" class="form-control" name="search_for[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['search_for']) ?>" maxlength="60" />
-									</td>
-									<td>
-										<input type="text" class="form-control" name="replace_with[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['replace_with']) ?>" maxlength="60" />
-									</td>
-									<td>
-										<div class="btn-group">
-											<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna')?></button>
-											<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
-										</div>
-									</td>
-									</tr>
+ ?>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" name="search_for[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['search_for']) ?>" maxlength="60" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="replace_with[<?php echo $cur_word['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_word['replace_with']) ?>" maxlength="60" />
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna') ?></button>
+                                        <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
+                                    </div>
+                                </td>
+                                </tr>
 <?php
-}
+    }
 } else {
-    echo "\t\t\t\t\t\t\t" . '<tr><td colspan="3">' . __('No censor words in list.', 'luna') . '</td></tr>' . "\n";
+    echo '<tr><td colspan="3">'.__('No censor words in list.', 'luna').'</td></tr>';
 }
-
-?>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
+ ?>
+                        </tbody>
+                    </table>
+                </div>
 			</form>
 		</div>
 	</div>
