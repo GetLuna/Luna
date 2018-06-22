@@ -356,7 +356,7 @@ foreach ($languages as $temp) {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block theme-error"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
+                        <label class="col-md-3 col-form-label"><?php _e('Type', 'luna')?><?php if (!$theme->features->announcement_types) { ?><span class="help-block text-danger"><?php _e('Your theme does not support different announcement types', 'luna')?></span><?php } ?></label>
                         <div class="col-md-9">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="form[announcement_type1]" name="form[announcement_type]" class="custom-control-input" value="default" <?php if ($luna_config['o_announcement_type'] == 'default') { echo ' checked'; } ?>>

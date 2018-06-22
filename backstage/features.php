@@ -295,7 +295,7 @@ if (isset($_GET['saved'])) {
                 </h5>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block theme-error"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
+                        <label class="col-md-3 col-form-label"><?php _e('General settings', 'luna')?><?php if (!$theme->features->first_run) { ?><span class="help-block text-danger"><?php _e('Your theme does not support first run', 'luna')?></span><?php } ?></label>
                         <div class="col-md-9">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="form[show_first_run]" name="form[show_first_run]" value="1"<?php echo ( $luna_config['o_show_first_run'] == '1' ) ? ' checked' : '' ?>>

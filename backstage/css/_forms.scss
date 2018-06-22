@@ -42,6 +42,14 @@
     }
 }
 
+.custom-radio {
+    :checked {
+        &.custom-control-input ~ .custom-control-label::before {
+            background: $accent;
+        }
+    }
+}
+
 td {
     .custom-control {
         margin-top: -1.15rem;
