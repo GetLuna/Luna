@@ -16,19 +16,15 @@
         border: none;
         border-radius: 0;
         color: #fff;
-        background: lighten( $accent, 10% );
     }
 
     .title-lg {
-        background-color: $accent;
-
         .form-control {
             font-size: 2rem;
         }
     }
 
     .title-md {
-        background-color: lighten( $accent, 5% );
         padding: .5rem;
 
         .form-control {

@@ -13,14 +13,6 @@
     }
 
     &.btn-link {
-        color: $accent;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: darken( $accent, 5% );
-        }
-
         &.btn-link-danger {
             color: $red;
 

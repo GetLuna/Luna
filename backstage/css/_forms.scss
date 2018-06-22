@@ -58,16 +58,7 @@
 
     :checked {
         &.custom-control-input ~ .custom-control-label::before {
-            background: $accent;
             border-radius: 0;
-        }
-    }
-}
-
-.custom-radio {
-    :checked {
-        &.custom-control-input ~ .custom-control-label::before {
-            background: $accent;
         }
     }
 }
