@@ -193,7 +193,7 @@ if (isset($_GET['cache_cleared'])) {
                     <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
                 </span>
             </h5>
-            <div class="panel-body">
+            <div class="card-body">
                 <input type="hidden" name="form_sent" value="1" />
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label"><?php _e('Maintenance', 'luna')?><span class="help-block"><?php _e('The message to tell users about the maintenance', 'luna')?></span></label>

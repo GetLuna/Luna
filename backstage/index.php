@@ -90,14 +90,12 @@ if (isset($_GET['saved'])) {
 ?>
 	<div class="col-md-8">
 <?php if ($luna_config['o_first_run_backstage'] == 0) {?>
-        <div class="card text-white bg-primary">
+        <form method="post" class="card text-white bg-primary" action="index.php">
+            <input type="hidden" name="first_run_disable" value="1" />
             <h5 class="card-header">
                 <?php _e('Welcome to Luna', 'luna')?>
                 <span class="float-right">
-                    <form class="form-horizontal" method="post" action="index.php">
-                        <input type="hidden" name="first_run_disable" value="1" />
-                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Got it', 'luna')?></button>
-                    </form>
+                    <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Got it', 'luna')?></button>
                 </span>
             </h5>
             <div class="card-body">
@@ -109,7 +107,7 @@ if (isset($_GET['saved'])) {
                     <a href="settings.php" class="btn btn-light col"><?php _e('Change settings', 'luna')?></a>
                 </div>
             </div>
-        </div>
+        </form>
 <?php }?>
         <div class="card">
             <h5 class="card-header">
@@ -165,18 +163,16 @@ if ($db->num_rows($result)) {
                 </table>
             </div>
         </div>
-        <form class="form-horizontal" method="post" action="index.php">
+        <form method="post" class="card" action="index.php">
             <input type="hidden" name="form_sent" value="1" />
-            <div class="card">
-                <h5 class="card-header">
-                    <?php _e('Admin notes', 'luna')?>
-                    <span class="float-right">
-                        <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
-                    </span>
-                </h5>
-                <div class="card-body">
-                    <textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna')?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
-                </div>
+            <h5 class="card-header">
+                <?php _e('Admin notes', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="card-body">
+                <textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna')?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
             </div>
         </form>
     </div>

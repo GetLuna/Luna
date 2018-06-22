@@ -257,7 +257,7 @@ if (isset($_GET['saved'])) {
 }
 
 ?>
-        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="settings.php">
+        <form method="post" enctype="multipart/form-data" action="settings.php">
             <div class="card">
                 <div class="card-header">
                     <?php _e('Branding', 'luna')?>
