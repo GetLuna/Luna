@@ -8,7 +8,7 @@
  */
 
 define('LUNA_ROOT', '../');
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -28,13 +28,13 @@ if ($luna_user['g_moderator'] == '1' && $prefix == 'AP') {
 }
 
 // Make sure the file actually exists
-if (!file_exists(LUNA_ROOT . 'plugins/' . $plugin)) {
+if (!file_exists(LUNA_ROOT.'plugins/'.$plugin)) {
     message_backstage(sprintf(__('There is no plugin called %s in the plugin directory.', 'luna'), $plugin));
 }
 
 // Construct REQUEST_URI if it isn't set
 if (!isset($_SERVER['REQUEST_URI'])) {
-    $_SERVER['REQUEST_URI'] = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '') . '?' . (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
+    $_SERVER['REQUEST_URI'] = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').'?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
 }
 
 define('LUNA_ACTIVE_PAGE', 'admin');
@@ -43,7 +43,7 @@ require 'header.php';
 // Attempt to load the plugin. We don't use @ here to suppress error messages,
 // because if we did and a parse error occurred in the plugin, we would only
 // get the "blank page of death"
-include LUNA_ROOT . 'plugins/' . $plugin;
+include LUNA_ROOT.'plugins/'.$plugin;
 
 if (!defined('LUNA_PLUGIN_LOADED')) {
     message_backstage(sprintf(__('Loading of the plugin - <strong>%s</strong> - failed.', 'luna'), $plugin));

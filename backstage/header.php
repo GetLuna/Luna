@@ -92,6 +92,7 @@ if (LUNA_PAGE == 'about') { $page_title = __('About', 'luna'); }
 if (LUNA_PAGE == 'board') { $page_title = __('Board', 'luna'); }
 if (LUNA_PAGE == 'reports') { $page_title = __('Reports', 'luna'); }
 if (LUNA_PAGE == 'censoring') { $page_title = __('Censoring', 'luna'); }
+if (LUNA_PAGE == 'moderate') { $page_title = __('Moderate', 'luna'); }
 if (LUNA_PAGE == 'users') { $page_title = __('Search', 'luna'); }
 if (LUNA_PAGE == 'ranks') { $page_title = __('Ranks', 'luna'); }
 if (LUNA_PAGE == 'groups') { $page_title = __('Groups', 'luna'); }
@@ -265,15 +266,8 @@ function process_form(the_form) {
 	var required_fields = {
 <?php
 // Output a JavaScript object with localised field names
-    $tpl_temp = count($required_fields);
     foreach ($required_fields as $elem_orig => $elem_trans) {
-        echo "\t\t\"".$elem_orig.'": "'.addslashes(str_replace('&#160;', ' ', $elem_trans));
-        if (--$tpl_temp) {
-            echo "\",\n";
-        } else {
-            echo "\"\n\t};\n";
-        }
-
+        echo $elem_orig.': '.addslashes(str_replace('&#160;', ' ', $elem_trans));
     }
     ?>
 	if (document.all || document.getElementById) {
@@ -295,5 +289,5 @@ function process_form(the_form) {
 }
 
 if (isset($page_head)) {
-    echo implode("\n", $page_head);
+    echo implode('', $page_head);
 }

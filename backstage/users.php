@@ -187,7 +187,7 @@ if (isset($_GET['ip_stats'])) {
             }
         }
     } else {
-        echo "\t\t\t\t".'<tr><td colspan="6">'.__('The supplied IP address could not be found in the database.', 'luna').'</td></tr>'."\n";
+        echo '<tr><td colspan="6">'.__('The supplied IP address could not be found in the database.', 'luna').'</td></tr>';
     }
 
     ?>
@@ -732,7 +732,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
         }
     } else {
-        echo "\t\t\t\t".'<tr><td colspan="6">'.__('No match', 'luna').'</td></tr>'."\n";
+        echo '<tr><td colspan="6">'.__('No match', 'luna').'</td></tr>';
     }
 
     ?>

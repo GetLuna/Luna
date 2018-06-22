@@ -11,7 +11,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'users');
 define('LUNA_PAGE', 'ranks');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -32,16 +32,16 @@ if (isset($_POST['add_rank'])) {
     }
 
     // Make sure there isn't already a rank with the same min_comments value
-    $result = $db->query('SELECT 1 FROM ' . $db->prefix . 'ranks WHERE min_comments=' . $min_comments) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE min_comments='.$min_comments) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
     if ($db->num_rows($result)) {
         message_backstage(sprintf(__('There is already a rank with a minimum amount of %s comments.', 'luna'), $min_comments));
     }
 
-    $db->query('INSERT INTO ' . $db->prefix . 'ranks (rank, min_comments) VALUES(\'' . $db->escape($rank) . '\', ' . $min_comments . ')') or error('Unable to add rank', __FILE__, __LINE__, $db->error());
+    $db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_comments) VALUES(\''.$db->escape($rank).'\', '.$min_comments.')') or error('Unable to add rank', __FILE__, __LINE__, $db->error());
 
     // Regenerate the ranks cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_ranks_cache();
@@ -67,14 +67,14 @@ elseif (isset($_POST['update'])) {
         } elseif ($cur_rank['min_comments'] == '' || preg_match('%[^0-9]%', $cur_rank['min_comments'])) {
             message_backstage(__('Minimum comments must be a positive integer value.', 'luna'));
         } else {
-            $rank_check = $db->query('SELECT 1 FROM ' . $db->prefix . 'ranks WHERE id!=' . intval($item_id) . ' AND min_comments=' . $cur_rank['min_comments']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
+            $rank_check = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.intval($item_id).' AND min_comments='.$cur_rank['min_comments']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
             if ($db->num_rows($rank_check) != 0) {
                 message_backstage(sprintf(__('There is already a rank with a minimum amount of %s comments.', 'luna'), $cur_rank['min_comments']));
             }
 
         }
 
-        $db->query('UPDATE ' . $db->prefix . 'ranks SET rank=\'' . $db->escape($cur_rank['rank']) . '\', min_comments=\'' . $cur_rank['min_comments'] . '\' WHERE id=' . intval($item_id)) or error('Unable to update ranks', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($cur_rank['rank']).'\', min_comments=\''.$cur_rank['min_comments'].'\' WHERE id='.intval($item_id)) or error('Unable to update ranks', __FILE__, __LINE__, $db->error());
     }
 
     redirect('backstage/ranks.php');
@@ -84,11 +84,11 @@ elseif (isset($_POST['update'])) {
 elseif (isset($_POST['remove'])) {
     $id = intval(key($_POST['remove']));
 
-    $db->query('DELETE FROM ' . $db->prefix . 'ranks WHERE id=' . $id) or error('Unable to delete rank', __FILE__, __LINE__, $db->error());
+    $db->query('DELETE FROM '.$db->prefix.'ranks WHERE id='.$id) or error('Unable to delete rank', __FILE__, __LINE__, $db->error());
 
     // Regenerate the ranks cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_ranks_cache();
@@ -104,7 +104,7 @@ require 'header.php';
     <?php if ($luna_config['o_ranks'] == 0) { ?>
     <div class="col-12">
         <div class="alert alert-danger">
-            <i class="fas fa-fw fa-exclamation-triangle"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">' . __('Features', 'luna') . '</a>') ?>
+            <i class="fas fa-fw fa-exclamation-triangle"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
         </div>
     </div>
     <?php } ?>
@@ -132,7 +132,7 @@ require 'header.php';
                 </span>
             </h5>
 <?php
-$result = $db->query('SELECT id, rank, min_comments FROM ' . $db->prefix . 'ranks ORDER BY min_comments') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id, rank, min_comments FROM '.$db->prefix.'ranks ORDER BY min_comments') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
 ?>
             <div class="table-responsive">
@@ -162,7 +162,7 @@ if ($db->num_rows($result)) {
 <?php
     }
 } else {
-    echo '<tr><td colspan="3">' . __('No ranks in list', 'luna') . '</td></tr>';
+    echo '<tr><td colspan="3">'.__('No ranks in list', 'luna').'</td></tr>';
 }
 ?>
                     </tbody>

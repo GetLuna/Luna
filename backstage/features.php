@@ -11,7 +11,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'settings');
 define('LUNA_PAGE', 'features');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -21,7 +21,7 @@ if (!$luna_user['is_admmod']) {
 if (isset($_GET['remove-avatar'])) {
     confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
-    @unlink(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png');
+    @unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
 
     redirect('backstage/features.php?saved=true');
 }
@@ -75,14 +75,14 @@ if (isset($_POST['form_sent'])) {
 
     foreach ($form as $key => $input) {
         // Only update values that have changed
-        if (array_key_exists('o_' . $key, $luna_config) && $luna_config['o_' . $key] != $input) {
+        if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
             if ($input != '' || is_int($input)) {
-                $value = '\'' . $db->escape($input) . '\'';
+                $value = '\''.$db->escape($input).'\'';
             } else {
                 $value = 'NULL';
             }
 
-            $db->query('UPDATE ' . $db->prefix . 'config SET conf_value=' . $value . ' WHERE conf_name=\'o_' . $db->escape($key) . '\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+            $db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
         }
     }
 
@@ -123,18 +123,18 @@ if (isset($_POST['form_sent'])) {
             }
 
             // Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
-            if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.tmp')) {
-                message_backstage(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna') . ' <a href="mailto:' . luna_htmlspecialchars($luna_config['o_admin_email']) . '">' . luna_htmlspecialchars($luna_config['o_admin_email']) . '</a>.');
+            if (!@move_uploaded_file($uploaded_file['tmp_name'], LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.tmp')) {
+                message_backstage(__('The server was unable to save the uploaded file. Please contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
             }
 
-            list($width, $height, $type) = @getimagesize(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.tmp');
+            list($width, $height, $type) = @getimagesize(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.tmp');
 
             // Clean up existing headers
-            @unlink(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png');
+            @unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
 
             // Do the final rename
-            @rename(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.tmp', LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png');
-            @chmod(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png', 0644);
+            @rename(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.tmp', LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png');
+            @chmod(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png', 0644);
         } else {
             message_backstage(__('An unknown error occurred. Please try again.', 'luna'));
         }
@@ -142,7 +142,7 @@ if (isset($_POST['form_sent'])) {
 
     // Regenerate the config cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_config_cache();
@@ -159,7 +159,7 @@ require 'header.php';
 	<div class="col-12">
 <?php
 if (isset($_GET['saved'])) {
-    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
+    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 }
 ?>
         <form method="post" action="features.php">
@@ -499,15 +499,15 @@ if (isset($_GET['saved'])) {
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">
                             <?php _e('Default avatar', 'luna')?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna')?></span>
-                            <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
+                            <?php if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {?>
                                 <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna')?></a>
                             <?php }?>
                         </label>
                         <div class="col-md-9">
-                            <?php if (file_exists(LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png')) {?>
-                                <img class="img-fluid img-avatar" src="<?php echo LUNA_ROOT . $luna_config['o_avatars_dir'] . '/cplaceholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
+                            <?php if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {?>
+                                <img class="img-fluid img-avatar" src="<?php echo LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
                             <?php } else {?>
-                                <img class="img-fluid img-avatar" src="<?php echo LUNA_ROOT . 'img/avatars/placeholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
+                                <img class="img-fluid img-avatar" src="<?php echo LUNA_ROOT.'img/avatars/placeholder.png' ?>" alt="<?php _e('Default placeholder avatar', 'luna')?>" />
                             <?php }?>
                             <input type="hidden" name="MAX_FILE_SIZE" value="512000" />
                             <input name="req_file" type="file" />
@@ -529,7 +529,7 @@ if (isset($_GET['saved'])) {
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="form[signatures]" name="form[signatures]" value="1"<?php echo ( $luna_config['o_signatures'] == '1' ) ? ' checked' : '' ?>>
                                 <label class="custom-control-label" for="form[signatures]">
-                                    <?php printf(__('Allow users to attach a signature to their comments.', 'luna'), '<a href="permissions.php">' . __('Permissions', 'luna') . '</a>')?>
+                                    <?php printf(__('Allow users to attach a signature to their comments.', 'luna'), '<a href="permissions.php">'.__('Permissions', 'luna').'</a>')?>
                                 </label>
                             </div>
                         </div>

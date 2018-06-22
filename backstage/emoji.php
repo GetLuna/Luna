@@ -107,7 +107,7 @@ require 'header.php';
                 </span>
             </h5>
             <div class="card-body">
-                <p><?php echo sprintf(__('Enter the BBCode that should replace the emoji and the unicode that represents the emoji. See a %s of supported emoji', 'luna'), '<a href="http://unicode.org/emoji/charts/full-emoji-list.html">' . __('full list', 'luna') . '</a>') ?></p>
+                <p><?php echo sprintf(__('Enter the BBCode that should replace the emoji and the unicode that represents the emoji. See a %s of supported emoji', 'luna'), '<a href="http://unicode.org/emoji/charts/full-emoji-list.html">'.__('full list', 'luna').'</a>') ?></p>
                 <hr />
                 <input type="text" class="form-control" placeholder="<?php _e('BBCode', 'luna')?>" name="new_text" maxlength="60" tabindex="1" />
                 <hr />

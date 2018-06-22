@@ -304,17 +304,17 @@ elseif (isset($_POST['update_board'])) {
         while ($forum_list = $db->fetch_assoc($result)) {
             if ($forum_list['cid'] != $cur_category) { // A new category since last iteration?
                 if ($cur_category) {
-                    echo "\t\t\t\t\t\t".'</optgroup>'."\n";
+                    echo '</optgroup>';
                 }
 
-                echo "\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($forum_list['cat_name']).'">'."\n";
+                echo '<optgroup label="'.luna_htmlspecialchars($forum_list['cat_name']).'">';
                 $cur_category = $forum_list['cid'];
             }
 
             $selected = ($forum_list['id'] == $cur_forum['parent_id']) ? ' selected' : '';
 
             if (!$forum_list['parent_id'] && $forum_list['id'] != $cur_forum['id']) {
-                echo "\t\t\t\t\t\t\t".'<option value="'.$forum_list['id'].'"'.$selected.'>'.luna_htmlspecialchars($forum_list['forum_name']).'</option>'."\n";
+                echo '<option value="'.$forum_list['id'].'"'.$selected.'>'.luna_htmlspecialchars($forum_list['forum_name']).'</option>';
             }
 
         }

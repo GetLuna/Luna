@@ -294,9 +294,9 @@ $languages = forum_list_langs();
 
 foreach ($languages as $temp) {
     if ($luna_config['o_default_lang'] == $temp) {
-        echo '<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
+        echo '<option value="'.$temp.'" selected>'.$temp.'</option>';
     } else {
-        echo '<option value="'.$temp.'">'.$temp.'</option>'."\n";
+        echo '<option value="'.$temp.'">'.$temp.'</option>';
     }
 
 }

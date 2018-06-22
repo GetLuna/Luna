@@ -11,7 +11,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'backstage');
 define('LUNA_PAGE', 'update');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -46,21 +46,21 @@ if (@file_exists('/proc/loadavg') && is_readable('/proc/loadavg')) {
     }
 
     $load_averages = @explode(' ', $load_averages);
-    $server_load = isset($load_averages[2]) ? $load_averages[0] . ' ' . $load_averages[1] . ' ' . $load_averages[2] : __('Not available', 'luna');
+    $server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : __('Not available', 'luna');
 } elseif (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages)) {
-    $server_load = $load_averages[1] . ' ' . $load_averages[2] . ' ' . $load_averages[3];
+    $server_load = $load_averages[1].' '.$load_averages[2].' '.$load_averages[3];
 } else {
     $server_load = __('Not available', 'luna');
 }
 
 // Get number of current visitors
-$result = $db->query('SELECT COUNT(user_id) FROM ' . $db->prefix . 'online WHERE idle=0') or error('Unable to fetch online count', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT COUNT(user_id) FROM '.$db->prefix.'online WHERE idle=0') or error('Unable to fetch online count', __FILE__, __LINE__, $db->error());
 $num_online = $db->result($result);
 
 // Collect some additional info about MySQL
 if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb') {
     // Calculate total db size/row count
-    $result = $db->query('SHOW TABLE STATUS LIKE \'' . $db->prefix . '%\'') or error('Unable to fetch table status', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SHOW TABLE STATUS LIKE \''.$db->prefix.'%\'') or error('Unable to fetch table status', __FILE__, __LINE__, $db->error());
 
     $total_records = $total_size = 0;
     while ($status = $db->fetch_assoc($result)) {
@@ -73,24 +73,24 @@ if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' ||
 
 // Check for the existence of various PHP opcode caches/optimizers
 if (function_exists('mmcache')) {
-    $php_accelerator = '<a href="http://turck-mmcache.sourceforge.net/">' . __('Turck MMCache', 'luna') . '</a>';
+    $php_accelerator = '<a href="http://turck-mmcache.sourceforge.net/">'.__('Turck MMCache', 'luna').'</a>';
 } elseif (isset($_PHPA)) {
-    $php_accelerator = '<a href="http://www.php-accelerator.co.uk/">' . __('ionCube PHP Accelerator', 'luna') . '</a>';
+    $php_accelerator = '<a href="http://www.php-accelerator.co.uk/">'.__('ionCube PHP Accelerator', 'luna').'</a>';
 } elseif (ini_get('apc.enabled')) {
-    $php_accelerator = '<a href="http://www.php.net/apc/">' . __('Alternative PHP Cache (APC)', 'luna') . '</a>';
+    $php_accelerator = '<a href="http://www.php.net/apc/">'.__('Alternative PHP Cache (APC)', 'luna').'</a>';
 } elseif (ini_get('zend_optimizer.optimization_level')) {
-    $php_accelerator = '<a href="http://www.zend.com/products/guard/zend-optimizer/">' . __('Zend Optimizer', 'luna') . '</a>';
+    $php_accelerator = '<a href="http://www.zend.com/products/guard/zend-optimizer/">'.__('Zend Optimizer', 'luna').'</a>';
 } elseif (ini_get('eaccelerator.enable')) {
-    $php_accelerator = '<a href="http://www.eaccelerator.net/">' . __('eAccelerator', 'luna') . '</a>';
+    $php_accelerator = '<a href="http://www.eaccelerator.net/">'.__('eAccelerator', 'luna').'</a>';
 } elseif (ini_get('xcache.cacher')) {
-    $php_accelerator = '<a href="http://xcache.lighttpd.net/">' . __('XCache', 'luna') . '</a>';
+    $php_accelerator = '<a href="http://xcache.lighttpd.net/">'.__('XCache', 'luna').'</a>';
 } else {
     $php_accelerator = __('Non available', 'luna');
 }
 
 if ($action == 'check_update') {
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     // Regenerate the update cache
@@ -99,17 +99,17 @@ if ($action == 'check_update') {
     exit;
 }
 
-if (file_exists(LUNA_CACHE_DIR . 'cache_update.php')) {
-    include LUNA_CACHE_DIR . 'cache_update.php';
+if (file_exists(LUNA_CACHE_DIR.'cache_update.php')) {
+    include LUNA_CACHE_DIR.'cache_update.php';
 }
 
 if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_update_cache();
-    require LUNA_CACHE_DIR . 'cache_update.php';
+    require LUNA_CACHE_DIR.'cache_update.php';
 }
 
 require 'header.php';
@@ -211,18 +211,18 @@ if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php printf(__('%s - %s user(s) online', 'luna') . "\n", $server_load, $num_online)?></td>
+							<td><?php printf(__('%s - %s user(s) online', 'luna').'<br />', $server_load, $num_online)?></td>
 							<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
 							<td>
 								<?php printf(__('Operating system: %s', 'luna'), PHP_OS)?><br />
-								<?php printf(__('PHP: %s - %s', 'luna'), phpversion(), '<a href="system.php?action=phpinfo">' . __('Show info', 'luna') . '</a>')?><br />
-								<?php printf(__('Accelerator: %s', 'luna') . "\n", $php_accelerator)?>
+								<?php printf(__('PHP: %s - %s', 'luna'), phpversion(), '<a href="system.php?action=phpinfo">'.__('Show info', 'luna').'</a>')?><br />
+								<?php printf(__('Accelerator: %s', 'luna').'<br />', $php_accelerator)?>
 							</td>
 							<td>
-								<?php echo implode(' ', $db->get_version()) . "\n" ?>
+								<?php echo implode(' ', $db->get_version()) ?>
 								<?php if (isset($total_records) && isset($total_size)): ?>
-								<br /><?php printf(__('Rows: %s', 'luna') . "\n", forum_number_format($total_records))?>
-								<br /><?php printf(__('Size: %s', 'luna') . "\n", $total_size)?>
+								<br /><?php printf(__('Rows: %s', 'luna'), forum_number_format($total_records))?>
+								<br /><?php printf(__('Size: %s', 'luna'), $total_size)?>
 								<?php endif;?>
 							</td>
 							<?php endif;?>

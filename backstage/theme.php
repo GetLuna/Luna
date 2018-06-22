@@ -16,7 +16,7 @@ $themes = forum_list_themes();
 $installed_themes = array();
 $i = 0;
 
-$installed = $db->query( 'SELECT * FROM ' . $db->prefix . 'themes' ) or error( 'Unable to fetch themes', __FILE__, __LINE__, $db->error() );
+$installed = $db->query( 'SELECT * FROM '.$db->prefix.'themes' ) or error( 'Unable to fetch themes', __FILE__, __LINE__, $db->error() );
 
 while ( $cur_theme = $db->fetch_assoc( $installed ) ) {
     $installed_themes[] = $cur_theme['name'];

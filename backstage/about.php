@@ -11,7 +11,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'backstage');
 define('LUNA_PAGE', 'about');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
