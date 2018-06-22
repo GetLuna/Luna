@@ -116,22 +116,22 @@ if ( isset( $_GET['delete'] ) ) {
 require 'header.php';
 ?>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 <?php
 if ( isset( $_GET['saved'] ) ) {
     echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__( 'Your settings have been saved.', 'luna' ).'</div>';
 }
 ?>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e( 'Installed themes', 'luna' )?></h3>
-            </div>
+        <div class="card">
+            <h5 class="card-header">
+                <?php _e( 'Installed themes', 'luna' )?>
+            </h5>
 <?php
 foreach ( $themes as $theme ) {
     if ( in_array( $theme->id, $installed_themes ) ) {
 ?>
             <div class="row row-extension">
-                <div class="col-sm-3 col-xs-12">
+                <div class="col-md-3 col-12">
                     <p class="name"><?php echo $theme->name ?></p>
                     <p class="version"><?php echo $theme->version ?></p>
                     <p class="actions">
@@ -142,7 +142,7 @@ foreach ( $themes as $theme ) {
                         <?php } ?>
                     </p>
                 </div>
-                <div class="col-sm-9 col-xs-12">
+                <div class="col-md-9 col-12">
                     <p class="description"><?php echo $theme->description ?></p>
                     <?php if ( Version::LUNA_VERSION < $theme->minversion ) { ?>
                         <p class="alert alert-danger">
@@ -167,15 +167,15 @@ foreach ( $themes as $theme ) {
 }
 ?>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php _e( 'Available themes', 'luna' )?></h3>
-            </div>
+        <div class="card">
+            <h5 class="card-header">
+                <?php _e( 'Available themes', 'luna' )?>
+            </h5>
 <?php 
 if ( count( $themes ) > 0 ) {
     foreach ( $themes as $theme ) { ?>
             <div class="row row-extension">
-                <div class="col-sm-3 col-xs-12">
+                <div class="col-md-3 col-12">
                     <p class="name"><?php echo $theme->name ?></p>
                     <p class="version"><?php echo $theme->version ?></p>
                     <p class="actions">
@@ -187,7 +187,7 @@ if ( count( $themes ) > 0 ) {
                         <?php } ?>
                     </p>
                 </div>
-                <div class="col-sm-9 col-xs-12">
+                <div class="col-md-9 col-12">
                     <p class="description"><?php echo $theme->description ?></p>
                     <?php if ( Version::LUNA_VERSION < $theme->minversion ) { ?>
                         <p class="alert alert-danger">
@@ -205,7 +205,7 @@ if ( count( $themes ) > 0 ) {
     }
 } else {
 ?>
-            <div class="panel-body">
+            <div class="card-body">
                 <h3 class="text-center"><?php _e( 'There are no themes available', 'luna' )?></h3>
             </div>
 <?php } ?>
