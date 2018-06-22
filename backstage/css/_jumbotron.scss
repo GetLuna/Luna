@@ -53,4 +53,24 @@
             }
         }
     }
+
+    &.jumbotron-brand {
+        background-color: $accent;
+        color: #fff;
+        margin-bottom: 0;
+
+        h1 {
+            font-weight: 300 !important;
+            text-transform: uppercase;
+            font-size: 5rem;
+            margin: 0;
+        }
+
+        h2 {
+            font-weight: 500 !important;
+            text-transform: lowercase;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+    }
 }

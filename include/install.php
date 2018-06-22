@@ -123,8 +123,12 @@ class Installer
             $alerts[] = __('The default language chosen doesn\'t seem to exist.', 'luna');
         }
 
-        $styles = forum_list_themes();
-        if (!in_array($default_style, $styles)) {
+        $themes = forum_list_themes();
+		foreach ( $themes as $theme ) {
+			$installed_themes[] = $theme->name;
+		}
+
+        if (!in_array($default_style, $installed_themes)) {
             $alerts[] = __('The default style chosen doesn\'t seem to exist.', 'luna');
         }
 
