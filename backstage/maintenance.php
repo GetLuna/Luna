@@ -13,7 +13,7 @@ define('LUNA_ROOT', '../');
 define('LUNA_SECTION', 'maintenance');
 define('LUNA_PAGE', 'maintenance');
 
-require LUNA_ROOT . 'include/common.php';
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: login.php");
@@ -47,11 +47,11 @@ if ($action == 'rebuild') {
             case 'mysqli':
             case 'mysql_innodb':
             case 'mysqli_innodb':
-                $result = $db->query('ALTER TABLE ' . $db->prefix . 'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
+                $result = $db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
                 break;
 
             case 'pgsql';
-                $result = $db->query('SELECT setval(\'' . $db->prefix . 'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
+                $result = $db->query('SELECT setval(\''.$db->prefix.'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
         }
     }
 
@@ -84,14 +84,14 @@ if ($action == 'rebuild') {
 
     $query_str = '';
 
-    require LUNA_ROOT . 'include/search_idx.php';
+    require LUNA_ROOT.'include/search_idx.php';
 
     // Fetch comments to process this cycle
-    $result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM ' . $db->prefix . 'comments AS p INNER JOIN ' . $db->prefix . 'threads AS t ON t.id=p.thread_id WHERE p.id >= ' . $start_at . ' ORDER BY p.id ASC LIMIT ' . $per_page) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
     $end_at = 0;
     while ($cur_item = $db->fetch_assoc($result)) {
-        echo '<p><span>' . sprintf(__('Processing comment <strong>%s</strong> …', 'luna'), $cur_item['id']) . '</span></p>' . "\n";
+        echo '<p>'.sprintf(__('Processing comment <strong>%s</strong> …', 'luna'), $cur_item['id']).'</p>';
 
         if ($cur_item['id'] == $cur_item['first_comment_id']) {
             update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
@@ -104,10 +104,10 @@ if ($action == 'rebuild') {
 
     // Check if there is more work to do
     if ($end_at > 0) {
-        $result = $db->query('SELECT id FROM ' . $db->prefix . 'comments WHERE id > ' . $end_at . ' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
         if ($db->num_rows($result) > 0) {
-            $query_str = '?action=rebuild&i_per_page=' . $per_page . '&i_start_at=' . $db->result($result);
+            $query_str = '?action=rebuild&i_per_page='.$per_page.'&i_start_at='.$db->result($result);
         }
 
     }
@@ -117,12 +117,12 @@ if ($action == 'rebuild') {
 
     ob_end_clean();
     ob_start();
-    header('Location: maintenance.php' . $query_str);
+    header('Location: maintenance.php'.$query_str);
     exit;
 }
 
 // Get the first comment ID from the db
-$result = $db->query('SELECT id FROM ' . $db->prefix . 'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id FROM '.$db->prefix.'comments ORDER BY id ASC LIMIT 1') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
     $first_id = $db->result($result);
 }
@@ -144,27 +144,27 @@ if (isset($_POST['form_sent'])) {
 
     foreach ($form as $key => $input) {
         // Only update values that have changed
-        if (array_key_exists('o_' . $key, $luna_config) && $luna_config['o_' . $key] != $input) {
+        if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
             if ($input != '' || is_int($input)) {
-                $value = '\'' . $db->escape($input) . '\'';
+                $value = '\''.$db->escape($input).'\'';
             } else {
                 $value = 'NULL';
             }
 
-            $db->query('UPDATE ' . $db->prefix . 'config SET conf_value=' . $value . ' WHERE conf_name=\'o_' . $db->escape($key) . '\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+            $db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
         }
     }
 
     if ($action == 'clear_cache') {
         confirm_referrer('backstage/maintenance.php');
 
-        delete_all(LUNA_ROOT . 'cache');
+        delete_all(LUNA_ROOT.'cache');
         redirect('backstage/maitenance.php?cache_cleared=true');
     }
 
     // Regenerate the config cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
-        require LUNA_ROOT . 'include/cache.php';
+        require LUNA_ROOT.'include/cache.php';
     }
 
     generate_config_cache();
@@ -179,11 +179,11 @@ require 'header.php';
 	<div class="col-12">
 <?php
 if (isset($_GET['saved'])) {
-    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
+    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 }
 
 if (isset($_GET['cache_cleared'])) {
-    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('The cache files have been removed.', 'luna') . '</div>';
+    echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('The cache files have been removed.', 'luna').'</div>';
 }
 ?>
         <form class="card" method="post" action="maintenance.php">
