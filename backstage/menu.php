@@ -34,7 +34,7 @@ if (isset($_POST['add_item'])) {
         message_backstage(__('The location must be a positive integer value.', 'luna'));
     }
 
-    $db->query('INSERT INTO ' . $db->prefix . 'menu (url, name, disp_position, visible, sys_entry) VALUES(\'' . $db->escape($item_url) . '\', \'' . $db->escape($item_name) . '\', ' . $item_position . ', ' . $item_visible . ', 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
+    $db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$db->escape($item_url).'\', \''.$db->escape($item_name).'\', '.$item_position.', '.$item_visible.', 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
     redirect('backstage/menu.php');
 } elseif (isset($_GET['del_item'])) {
@@ -45,7 +45,7 @@ if (isset($_POST['add_item'])) {
         message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     }
 
-    $db->query('DELETE FROM ' . $db->prefix . 'menu WHERE id=' . $item_id) or error('Unable to delete menu item', __FILE__, __LINE__, $db->error());
+    $db->query('DELETE FROM '.$db->prefix.'menu WHERE id='.$item_id) or error('Unable to delete menu item', __FILE__, __LINE__, $db->error());
 
     redirect('backstage/menu.php');
 } elseif (isset($_POST['update'])) {
@@ -71,96 +71,93 @@ if (isset($_POST['add_item'])) {
         } elseif ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order'])) {
             message_backstage(__('Position must be a positive integer value.', 'luna'));
         } else {
-            $db->query('UPDATE ' . $db->prefix . 'menu SET url=\'' . $db->escape($cur_item['url']) . '\', name=\'' . $db->escape($cur_item['name']) . '\', disp_position=' . $cur_item['order'] . ', visible=\'' . $cur_item['visible'] . '\' WHERE id=' . intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
+            $db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$db->escape($cur_item['name']).'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
         }
-
     }
 
     redirect('backstage/menu.php');
 }
 
-$menus = $db->query('SELECT * FROM ' . $db->prefix . 'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
+$menus = $db->query('SELECT * FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 require 'header.php';
 ?>
 <div class="row">
-	<div class="col-sm-4">
-		<form method="post" action="menu.php?action=add_item">
-			<fieldset>
-				<div class="panel panel-default panel-end-checkbox">
-					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('New item', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
-					</div>
-					<div class="panel-body">
-                        <input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna')?>" />
-                        <hr />
-                        <input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna')?>" />
-                        <hr />
-                        <input type="number" class="form-control" name="position" placeholder="<?php _e('Position', 'luna')?>" />
-                        <hr />
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="visible" value="1" checked="checked" />
-                                <?php _e('Make this item visible in the menu.', 'luna')?>
-                            </label>
-                        </div>
-					</div>
-				</div>
-			</fieldset>
+	<div class="col-md-4">
+		<form method="post" class="card" action="menu.php?action=add_item">
+            <h5 class="card-header">
+                <?php _e('New item', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="add_item"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="card-body">
+                <input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna')?>" />
+                <hr />
+                <input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna')?>" />
+                <hr />
+                <input type="number" class="form-control" name="position" placeholder="<?php _e('Position', 'luna')?>" />
+                <hr />
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="visible" name="visible" value="1" checked>
+                    <label class="custom-control-label" for="visible">
+                        <?php _e('Make this item visible in the menu.', 'luna')?>
+                    </label>
+                </div>
+            </div>
 		</form>
 	</div>
-	<div class="col-sm-8">
-		<form method="post" action="menu.php">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Menu', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-				</div>
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th><?php _e('Name', 'luna')?></th>
-								<th><?php _e('URL', 'luna')?></th>
-								<th class="col-xs-1"><?php _e('Position', 'luna')?></th>
-								<th class="col-xs-1"><?php _e('Show', 'luna')?></th>
-								<th class="col-xs-1"><?php _e('Delete', 'luna')?></th>
-							</tr>
-						</thead>
-						<tbody>
+	<div class="col-md-8">
+		<form method="post" class="card" action="menu.php">
+			<h5 class="card-header">
+                <?php _e('Menu', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><?php _e('Name', 'luna')?></th>
+                            <th><?php _e('URL', 'luna')?></th>
+                            <th><?php _e('Position', 'luna')?></th>
+                            <th><?php _e('Show', 'luna')?></th>
+                            <th><?php _e('Delete', 'luna')?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
 while ($cur_item = $db->fetch_assoc($menus)) {
     ?>
-							<tr>
-								<td>
-									<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][name]" value="<?php echo $cur_item['name'] ?>" />
-								</td>
-								<td>
-									<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][url]" value="<?php echo $cur_item['url'] ?>" <?php if ($cur_item['sys_entry'] == 1) { echo ' readonly'; } ?> />
-								</td>
-								<td>
-									<input type="number" class="form-control" name="item[<?php echo $cur_item['id'] ?>][order]" value="<?php echo $cur_item['disp_position'] ?>" />
-								</td>
-								<td>
-									<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][visible]" <?php if ($cur_item['visible'] == 1) { echo ' checked'; } ?> />
-								</td>
-								<td>
-<?php
-if ($cur_item['sys_entry'] == 0) {
-        echo '<a href="menu.php?del_item=' . $cur_item['id'] . '" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> ' . __('Delete', 'luna') . '</a>';
-    } else {
-        echo '<a class="btn btn-danger" disabled="disabled"><span class="fas fa-fw fa-trash"></span> ' . __('Delete', 'luna') . '</a>';
-    }
-
-    ?>
-								</td>
-							</tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][name]" value="<?php echo $cur_item['name'] ?>" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][url]" value="<?php echo $cur_item['url'] ?>" <?php if ($cur_item['sys_entry'] == 1) { echo ' readonly'; } ?> />
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" name="item[<?php echo $cur_item['id'] ?>][order]" value="<?php echo $cur_item['disp_position'] ?>" />
+                            </td>
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="item[<?php echo $cur_item['id'] ?>][visible]" id="item[<?php echo $cur_item['id'] ?>][visible]" value="1"<?php if ($cur_item['visible'] == 1) { echo ' checked'; } ?>>
+                                    <label class="custom-control-label" for="item[<?php echo $cur_item['id'] ?>][visible]"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <?php if ( $cur_item['sys_entry'] == 0 ) { ?>
+                                <a href="menu.php?del_item=<?php echo $cur_item['id'] ?>" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
+                                <?php } ?>
+                            </td>
+                        </tr>
 <?php
 }
 ?>
-						</tbody>
-					</table>
-				</div>
-			</div>
+                    </tbody>
+                </table>
+            </div>
 		</form>
 	</div>
 </div>
