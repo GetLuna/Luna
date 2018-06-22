@@ -98,82 +98,77 @@ require 'header.php';
 
 ?>
 <div class="row">
-	<div class="col-sm-4">
-		<form id="emoji" method="post" action="emoji.php">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add emoji', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="add_emoji" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button></span></h3>
-				</div>
-				<fieldset>
-					<div class="panel-body">
-						<p><?php echo sprintf(__('Enter the BBCode that should replace the emoji and the unicode that represents the emoji. See a %s of supported emoji', 'luna'), '<a href="http://unicode.org/emoji/charts/full-emoji-list.html">' . __('full list', 'luna') . '</a>') ?></p>
-                        <hr />
-                        <input type="text" class="form-control" placeholder="<?php _e('BBCode', 'luna')?>" name="new_text" maxlength="60" tabindex="1" />
-                        <hr />
-                        <div class="input-group">
-                            <span class="input-group-addon">U+</span>
-                            <input type="text" class="form-control" placeholder="<?php _e('Unicode', 'luna')?>" name="new_unicode" maxlength="60" tabindex="2" />
-                        </div>
+	<div class="col-md-4">
+		<form id="emoji" class="card" method="post" action="emoji.php">
+			<h5 class="card-header">
+                <?php _e('Add emoji', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="add_emoji" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="card-body">
+                <p><?php echo sprintf(__('Enter the BBCode that should replace the emoji and the unicode that represents the emoji. See a %s of supported emoji', 'luna'), '<a href="http://unicode.org/emoji/charts/full-emoji-list.html">' . __('full list', 'luna') . '</a>') ?></p>
+                <hr />
+                <input type="text" class="form-control" placeholder="<?php _e('BBCode', 'luna')?>" name="new_text" maxlength="60" tabindex="1" />
+                <hr />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">U+</span>
                     </div>
-				</fieldset>
-			</div>
+                    <input type="text" class="form-control" placeholder="<?php _e('Unicode', 'luna')?>" name="new_unicode" maxlength="60" tabindex="2" />
+                </div>
+            </div>
 		</form>
 	</div>
-	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Manage words', 'luna')?></h3>
-			</div>
-			<form id="emoji" method="post" action="emoji.php">
-				<fieldset>
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-                                    <th class="col-xs-1"></th>
-									<th class="col-xs-3"><?php _e('BBCode', 'luna')?></th>
-									<th class="col-xs-3"><?php _e('Unicode', 'luna')?></th>
-									<th class="col-xs-5"><?php _e('Action', 'luna')?></th>
-								</tr>
-							</thead>
-							<tbody>
+	<div class="col-md-8">
+        <form id="emoji" class="card" method="post" action="emoji.php">
+			<h5 class="card-header"><?php _e('Manage words', 'luna')?></h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><?php _e('BBCode', 'luna')?></th>
+                            <th><?php _e('Unicode', 'luna')?></th>
+                            <th><?php _e('Action', 'luna')?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
-
 $result = $db->query('SELECT id, text, unicode FROM '.$db->prefix.'emoji ORDER BY unicode') or error('Unable to fetch emoji', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
     while ($cur_emoji = $db->fetch_assoc($result)) {
-        ?>
-								<tr>
-                                    <td><span class="emoji emoji-table">&#x<?php echo $cur_emoji['unicode'] ?>;</span></span>
-									<td>
-										<input type="text" class="form-control" name="text[<?php echo $cur_emoji['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_emoji['text']) ?>" maxlength="60" />
-									</td>
-									<td>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">U+</span>
-										    <input type="text" class="form-control" name="unicode[<?php echo $cur_emoji['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_emoji['unicode']) ?>" maxlength="60" />
-                                        </div>
-									</td>
-									<td>
-										<div class="btn-group">
-											<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_emoji['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna')?></button>
-											<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_emoji['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
-										</div>
-									</td>
-									</tr>
+?>
+                        <tr>
+                            <td><span class="emoji emoji-table">&#x<?php echo $cur_emoji['unicode'] ?>;</span></span>
+                            <td>
+                                <input type="text" class="form-control" name="text[<?php echo $cur_emoji['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_emoji['text']) ?>" maxlength="60" />
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">U+</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="unicode[<?php echo $cur_emoji['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_emoji['unicode']) ?>" maxlength="60" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-primary" type="submit" name="update[<?php echo $cur_emoji['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna')?></button>
+                                    <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_emoji['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+                                </div>
+                            </td>
+                            </tr>
 <?php
     }
 } else {
     echo '<tr><td colspan="4">'.__('No emoji available.', 'luna').'</td></tr>';
 }
-
 ?>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+                    </tbody>
+                </table>
+            </div>
+        </form>
 	</div>
 </div>
 <?php
