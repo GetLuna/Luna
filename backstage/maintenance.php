@@ -67,8 +67,8 @@ if ($action == 'rebuild') {
 			body {
 				font-size: 12px;
 				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-				color: #333333;
-				background-color: #FFFFFF
+				color: #333;
+				background-color: #fff;
 			}
 
 			h1 {
@@ -176,7 +176,7 @@ if (isset($_POST['form_sent'])) {
 require 'header.php';
 ?>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-12">
 <?php
 if (isset($_GET['saved'])) {
     echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('Your settings have been saved.', 'luna') . '</div>';
@@ -185,81 +185,73 @@ if (isset($_GET['saved'])) {
 if (isset($_GET['cache_cleared'])) {
     echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> ' . __('The cache files have been removed.', 'luna') . '</div>';
 }
-
 ?>
-        <form class="form-horizontal" method="post" action="maintenance.php">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title" id="maintenance"><?php _e('Maintenance', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button></span></h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="form_sent" value="1" />
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Maintenance', 'luna')?><span class="help-block"><?php _e('The message to tell users about the maintenance', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($luna_config['o_maintenance'] == '1') {
-    echo ' checked';
-}
-?> />
-                                        <?php _e('Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!', 'luna')?>
-                                    </label>
-                                </div>
-                                <textarea class="form-control" name="form[maintenance_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
-                            </div>
+        <form class="card" method="post" action="maintenance.php">
+            <h5 class="card-header" id="maintenance">
+                <?php _e('Maintenance', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="panel-body">
+                <input type="hidden" name="form_sent" value="1" />
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label"><?php _e('Maintenance', 'luna')?><span class="help-block"><?php _e('The message to tell users about the maintenance', 'luna')?></span></label>
+                    <div class="col-md-9">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="form[maintenance]" name="form[maintenance]" value="1"<?php echo ( $luna_config['o_maintenance'] == '1' ) ? ' checked' : '' ?>>
+                            <label class="custom-control-label" for="form[maintenance]">
+                                <?php _e('Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!', 'luna')?>
+                            </label>
                         </div>
-                    </fieldset>
+                        <textarea class="form-control" name="form[maintenance_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
+                    </div>
                 </div>
             </div>
         </form>
-        <div class="panel panel-default form-horizontal">
-            <div class="panel-heading">
-                <h3 class="panel-title" id="cache"><?php _e('Cache', 'luna')?></h3>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="col-sm-3 col-form-label"><?php _e('Cache', 'luna')?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna')?></span></label>
-                    <div class="col-sm-9">
+        <div class="card">
+            <h5 class="card-header" id="cache"><?php _e('Cache', 'luna')?></h5>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label"><?php _e('Cache', 'luna')?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna')?></span></label>
+                    <div class="col-md-9">
                         <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna')?></a>
                     </div>
                 </div>
             </div>
         </div>
-        <form class="form-horizontal" method="get" action="maintenance.php">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Rebuild search index', 'luna')?><span class="float-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fas fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna')?></button></span></h3>
+        <form class="card" method="get" action="maintenance.php">
+            <h5 class="card-header">
+                <?php _e('Rebuild search index', 'luna')?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="rebuild_index"?><span class="fas fa-fw fa-redo-alt"></span> <?php _e('Rebuild index', 'luna')?></button>
+                </span>
+            </h5>
+            <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('If you changes something about threads and comments in the database you should rebuild the search index. This process can take a while and increase the server load during. Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna')?></div>
+            <div class="card-body">
+                <input type="hidden" name="action" value="rebuild" />
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label"><?php _e('Comments per cycle', 'luna')?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna')?></span></label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <input type="hidden" name="action" value="rebuild" />
-                    <fieldset>
-                        <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('If you changes something about threads and comments in the database you should rebuild the search index. This process can take a while and increase the server load during. Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna')?></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Comments per cycle', 'luna')?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
-                            </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label"><?php _e('Starting comment ID', 'luna')?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna')?></span></label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label"><?php _e('Empty index', 'luna')?></label>
+                    <div class="col-md-9">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="i_empty_index" name="i_empty_index" value="1" checked>
+                            <label class="custom-control-label" for="i_empty_index">
+                                <?php _e('Select this if you want the search index to be emptied before rebuilding.', 'luna')?>
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Starting comment ID', 'luna')?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna')?></span></label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"><?php _e('Empty index', 'luna')?></label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked />
-                                        <?php _e('Select this if you want the search index to be emptied before rebuilding.', 'luna')?>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
         </form>

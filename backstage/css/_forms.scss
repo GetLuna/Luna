@@ -72,6 +72,12 @@
     }
 }
 
+.custom-control {
+    & + .form-control {
+        margin-top: .5rem;
+    }
+}
+
 td {
     .custom-control {
         margin-top: -1.15rem;
