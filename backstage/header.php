@@ -171,7 +171,7 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
                                     <a class="dropdown-item" href="../profile.php?id=<?php echo $luna_user['id'] ?>"><i class="fas fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a>
                                     <a class="dropdown-item" href="../inbox.php"><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?></a>
                                     <a class="dropdown-item" href="../settings.php?id=<?php echo $luna_user['id'] ?>"><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?></a>
-                                    <a class="dropdown-item" "<?php echo $logout_url; ?>"><i class="fas fa-fw fa-sign-out-alt"></i> <?php _e('Logout', 'luna') ?></a>
+                                    <a class="dropdown-item" href="<?php echo $logout_url; ?>"><i class="fas fa-fw fa-sign-out-alt"></i> <?php _e('Logout', 'luna') ?></a>
                                 </div>
                             </li>
                         </ul>
