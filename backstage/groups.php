@@ -529,12 +529,12 @@ while ($cur_group = $db->fetch_assoc($result)) {
 				</div>
 			</form>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo __('Default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
-			</div>
-			<div class="panel-body">
-				<form id="groups" method="post" action="groups.php">
+        <form id="groups" method="post" action="groups.php">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo __('Default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
+                </div>
+                <div class="panel-body">
 					<fieldset>
 						<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
@@ -551,9 +551,9 @@ while ($cur_group = $db->fetch_assoc($result)) {
 ?>
 						</select>
 					</fieldset>
-				</form>
-			</div>
-		</div>
+                </div>
+            </div>
+        </form>
 	</div>
 	<div class="col-sm-8">
 		<div class="panel panel-default">
