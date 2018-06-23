@@ -1,0 +1,88 @@
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .navbar-brand {
+        margin: 0;
+
+        img {
+            max-height: 2rem;
+            margin-top: -5px;
+            display: inline;
+        }
+    }
+
+    .navbar-collapse {
+        .navbar-nav {
+            &.my-2 {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+            }
+
+            .nav-item {
+                &.dropdown {
+                    &.dropdown-user {
+                        .nav-link {
+                            padding-top: .75rem;
+                            padding-bottom: .75rem;
+                        }
+                    }
+
+                    &.dropdown-notifications {
+                        .dropdown-menu {
+                            min-width: 400px;
+                        }
+                    }
+
+                    &.show {
+                        .dropdown-menu {
+                            border: none;
+                            border-radius: 0;
+                            margin: 0;
+                            padding: 0;
+
+                            .dropdown-item {
+                                padding: .6rem .8rem;
+                                color: #fff;
+
+                                &.float-right {
+                                    text-align: right;
+                                }
+
+                                .fa-fw {
+                                    margin-right: 4px;
+                                }
+                            }
+
+                            .dropdown-header {
+                                font-size: 1.75rem;
+                                font-weight: 600;
+                                color: #fff;
+                                padding: .6rem .8rem;
+                            }
+
+                            .dropdown-divider {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .avatar {
+                        height: 3rem;
+                        width: auto;
+                        border-radius: 100%;
+                    }
+
+                    .dropdown-toggle::after {
+                        display:none;
+                    }
+                }
+
+                .nav-link {
+                    padding: 1.5rem .75rem;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
