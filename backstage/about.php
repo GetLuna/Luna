@@ -107,6 +107,12 @@ require 'header.php';
                     <p><?php _e('Support for update rings has been removed', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
+                    <h2><span class="version-name">Emerald Update 10 <small>2.0.10</small></span></h2>
+                    <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
+                    <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
+                    <p><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></p>
+                </section>
+                <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 9 <small>2.0.9</small></span></h2>
                     <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
                     <p><?php _e('Site descriptions can now be up to 300 characters long instead of 255', 'luna') ?></p>

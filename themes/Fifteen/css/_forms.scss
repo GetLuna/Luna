@@ -1,0 +1,80 @@
+.form-group {
+    .col-form-label {
+        font-size: 1.2rem;
+        line-height: 1.2;
+        font-weight: 600;
+
+        @media (min-width: 768px) {
+            text-align: right;
+        }
+
+        .help-block {
+            display: block;
+            font-size: .8rem;
+            color: #888;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .col-md-9 {
+            .custom-control {
+                &:first-child {
+                    margin-top: .5rem;
+                }
+            }
+        }
+    }
+}
+
+.input-group {
+    .input-group-prepend {
+        border-right: none;
+
+        & + .form-control {
+            border-left: none;
+        }
+    }
+
+    .input-group-append {
+        border-left: none;
+    }
+
+    .input-group-text {
+        border-radius: 0;
+    }
+
+    .form-control:first-child {
+        border-right: none;
+    }
+}
+
+.custom-checkbox {
+    .custom-control-label {
+        &::before {
+            border-radius: 0;
+        }
+    }
+
+    :checked {
+        &.custom-control-input ~ .custom-control-label::before {
+            border-radius: 0;
+        }
+    }
+}
+
+.custom-control {
+    & + .form-control {
+        margin-top: .5rem;
+    }
+}
+
+td {
+    .custom-control {
+        margin-top: -1.15rem;
+    }
+}
+
+.form-control {
+    border-radius: 0;
+}

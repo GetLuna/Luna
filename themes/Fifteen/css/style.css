@@ -1,3 +1,22 @@
+.container {
+  padding: 0;
+  max-width: 1500px; }
+  .container.main {
+    background-color: #fff;
+    padding: .75rem .25rem 0; }
+  @media (max-width: 576px) {
+    .container {
+      max-width: 100%; } }
+  @media (max-width: 768px) {
+    .container {
+      max-width: 100%; } }
+  @media (max-width: 992px) {
+    .container {
+      max-width: 100%; } }
+  @media (max-width: 1200px) {
+    .container {
+      max-width: 100%; } }
+
 .navbar {
   padding-top: 0;
   padding-bottom: 0; }
@@ -44,6 +63,108 @@
     padding: 1.5rem .75rem;
     color: #fff; }
 
+.jumbotron {
+  border-radius: 0; }
+  .jumbotron.first-run {
+    color: #fff;
+    background-color: #237ab6;
+    padding: 1rem; }
+    .jumbotron.first-run .avatar {
+      height: 8rem;
+      width: auto;
+      display: block;
+      margin: 0 auto; }
+    .jumbotron.first-run p {
+      margin-bottom: 0; }
+    .jumbotron.first-run .form-control {
+      border-radius: 0;
+      background: none;
+      border: none;
+      border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5);
+      padding: .5rem 0;
+      color: #fff; }
+      .jumbotron.first-run .form-control:focus {
+        border-bottom: .1rem solid #fff; }
+      .jumbotron.first-run .form-control::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.4); }
+      .jumbotron.first-run .form-control::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.4); }
+      .jumbotron.first-run .form-control:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.4); }
+      .jumbotron.first-run .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.4); }
+    .jumbotron.first-run .custom-checkbox {
+      margin-top: .75rem; }
+      .jumbotron.first-run .custom-checkbox :checked.custom-control-input ~ .custom-control-label::before {
+        background: #1b5d8b; }
+    .jumbotron.first-run .btn-login {
+      margin-top: -3.4rem;
+      background-color: rgba(255, 255, 255, 0.2); }
+      .jumbotron.first-run .btn-login:active, .jumbotron.first-run .btn-login:focus, .jumbotron.first-run .btn-login:hover {
+        background-color: rgba(255, 255, 255, 0.5); }
+
+.list-group.list-group-transparent .list-group-item {
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: .55rem 1rem;
+  border: none;
+  margin-bottom: .1rem; }
+  .list-group.list-group-transparent .list-group-item:last-child {
+    margin-bottom: 0; }
+  .list-group.list-group-transparent .list-group-item:hover, .list-group.list-group-transparent .list-group-item:active, .list-group.list-group-transparent .list-group-item:focus {
+    background-color: rgba(255, 255, 255, 0.25); }
+  .list-group.list-group-transparent .list-group-item.active {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3); }
+    .list-group.list-group-transparent .list-group-item.active:hover, .list-group.list-group-transparent .list-group-item.active:active, .list-group.list-group-transparent .list-group-item.active:focus {
+      background-color: rgba(255, 255, 255, 0.45); }
+
+.form-group .col-form-label {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 600; }
+  @media (min-width: 768px) {
+    .form-group .col-form-label {
+      text-align: right; } }
+  .form-group .col-form-label .help-block {
+    display: block;
+    font-size: .8rem;
+    color: #888;
+    font-weight: 500; }
+@media (min-width: 768px) {
+  .form-group .col-md-9 .custom-control:first-child {
+    margin-top: .5rem; } }
+
+.input-group .input-group-prepend {
+  border-right: none; }
+  .input-group .input-group-prepend + .form-control {
+    border-left: none; }
+.input-group .input-group-append {
+  border-left: none; }
+.input-group .input-group-text {
+  border-radius: 0; }
+.input-group .form-control:first-child {
+  border-right: none; }
+
+.custom-checkbox .custom-control-label::before {
+  border-radius: 0; }
+.custom-checkbox :checked.custom-control-input ~ .custom-control-label::before {
+  border-radius: 0; }
+
+.custom-control + .form-control {
+  margin-top: .5rem; }
+
+td .custom-control {
+  margin-top: -1.15rem; }
+
+.form-control {
+  border-radius: 0; }
+
+.btn {
+  border: transparent;
+  border-radius: 0; }
+
 .navbar.bg-primary {
   background-color: #2788cb !important; }
 .navbar .navbar-collapse .navbar-nav .nav-item.dropdown.show {
@@ -54,3 +175,9 @@
       background-color: #1f6ba0; }
     .navbar .navbar-collapse .navbar-nav .nav-item.dropdown.show .dropdown-menu .dropdown-divider {
       border-top-color: #1b608f; }
+
+.custom-checkbox :checked.custom-control-input ~ .custom-control-label::before {
+  background: #2788cb; }
+
+.custom-radio :checked.custom-control-input ~ .custom-control-label::before {
+  background: #2788cb; }

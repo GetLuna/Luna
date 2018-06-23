@@ -29,7 +29,7 @@
 	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
         <div id="header">   
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary">
                 <div class="container">
                     <a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
                         <ul class="navbar-nav mr-auto">
                             <?php echo implode('', $links); ?>
                         </ul>
-                        <ul class="navbar-nav my-2 my-lg-0">
+                        <ul class="navbar-nav my-2 my-md-0">
                             <?php echo $usermenu; ?>
                         </ul>
                     </div>

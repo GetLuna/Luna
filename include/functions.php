@@ -542,6 +542,30 @@ function generate_avatar_markup($user_id) {
 }
 
 // New version of the above
+function get_user_avatar($user_id) {
+    global $luna_config;
+
+    $filetypes = array('jpg', 'gif', 'png');
+    $avatar = '';
+
+    foreach ($filetypes as $cur_type) {
+        $path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
+
+        if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
+            $avatar = luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path));
+            break;
+        } else if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {
+            $avatar = luna_htmlspecialchars(get_base_url(true)).'/img/avatars/cplaceholder.png';
+        } else {
+            $avatar = luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png';
+        }
+    }
+
+    return $avatar;
+}
+
+// DEPRECATED
+// New version of the above
 function draw_user_avatar($user_id, $responsive = true, $class = '') {
     global $luna_config;
 

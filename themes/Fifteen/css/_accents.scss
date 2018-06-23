@@ -31,3 +31,19 @@
         }
     }
 }
+
+.custom-checkbox {
+    :checked {
+        &.custom-control-input ~ .custom-control-label::before {
+            background: $accent;
+        }
+    }
+}
+
+.custom-radio {
+    :checked {
+        &.custom-control-input ~ .custom-control-label::before {
+            background: $accent;
+        }
+    }
+}

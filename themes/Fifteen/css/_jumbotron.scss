@@ -1,0 +1,69 @@
+.jumbotron {
+    border-radius: 0;
+
+    &.first-run {
+        color: #fff;
+        background-color: darken( $accent, 5% );
+        padding: 1rem;
+
+        .avatar {
+            height: 8rem;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .form-control {
+            border-radius: 0;
+            background: none;
+            border: none;
+            border-bottom: .1rem solid rgba(255,255,255,.5);
+            padding: .5rem 0;
+            color: #fff;
+
+            &:focus {
+                border-bottom: .1rem solid #fff;
+            }
+
+            &::-webkit-input-placeholder {
+                color: rgba(255,255,255,.4);
+            }
+
+            &::-moz-placeholder {
+                color: rgba(255,255,255,.4);
+            }
+
+            &:-ms-input-placeholder {
+                color: rgba(255,255,255,.4);
+            }
+
+            &::placeholder {
+                color: rgba(255,255,255,.4);
+            }
+        }
+
+        .custom-checkbox {
+            margin-top: .75rem;
+            :checked {
+                &.custom-control-input ~ .custom-control-label::before {
+                    background: darken($accent, 15%);
+                }
+            }
+        }
+
+        .btn-login {
+            margin-top: -3.4rem;
+            background-color: rgba(255,255,255,.2);
+
+            &:active,
+            &:focus,
+            &:hover {
+                background-color: rgba(255,255,255,.5);
+            }
+        }
+    }
+}
