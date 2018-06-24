@@ -88,7 +88,7 @@ if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_se
     $user_messaging[] = '
     <div class="input-group">
         <div class="input-group-prepend">
-            <a href="mailto:'.luna_htmlspecialchars($user['email']).'" class="input-group-text" id="mail-addon"><i class="fas fa-fw fa-envelope-o"></i></a>
+            <a href="mailto:'.luna_htmlspecialchars($user['email']).'" class="input-group-text" id="mail-addon"><i class="fas fa-fw fa-envelope"></i></a>
         </div>
         <input type="text" class="form-control" value="'.luna_htmlspecialchars($user['email']).'" aria-describedby="mail-addon" readonly="readonly" />
     </div>';
@@ -138,7 +138,7 @@ if ($user['google'] != '') {
     $user_messaging[] = '
     <div class="input-group">
         <div class="input-group-prepend">
-            <a href="http://plus.google.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" class="input-group-addon" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></a>
+            <a href="http://plus.google.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" class="input-group-text" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></a>
         </div>
         <input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" aria-describedby="google-addon" readonly="readonly" />
     </div>';

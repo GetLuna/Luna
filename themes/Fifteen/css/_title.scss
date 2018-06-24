@@ -9,8 +9,8 @@
 
     &.title-block-nav {
         padding-bottom: 0;
-        margin-bottom: .75rem;
         border-radius: 0;
+        margin-bottom: 0;
 
         .nav {
             border: none;
@@ -37,19 +37,27 @@
 }
 
 .tab-set {
+    &:not(:last-child) {
+        margin-bottom: .75rem;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
     .title-block {
         &:not(:last-child) {
             margin-bottom: 0;
         }
     }
-}
 
 .tab-content {
     border: .1rem solid $accent;
     padding: .75rem;
 
-    &:last-child {
-        margin-bottom: .75rem;
+    &:not(:first-child) {
+        border-top: none;
     }
 
     p:last-child {

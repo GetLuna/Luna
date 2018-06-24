@@ -29,7 +29,7 @@ else
 			<?php load_me_nav('settings'); ?>
 		</div>
 		<div class="col-12 col-lg-9">
-			<form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
+			<form id="profile-settings tab-set" method="post" action="settings.php?id=<?php echo $id ?>">
 				<div class="title-block title-block-primary title-block-nav">
 					<h2><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="float-right"><button class="btn btn-default" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
 					<nav class="nav nav-tabs">
@@ -299,8 +299,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Website', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="input-group input">
-										<div class="input-group-prepend" id="website-addon">
-											<span class="input-group-text"><i class="fas fa-fw fa-link"></i></span>
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="website-addon"><i class="fas fa-fw fa-link"></i></span>
 										</div>
 										<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
 									</div>
@@ -311,8 +311,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Microsoft Account', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="input-group">
-										<div class="input-group-prepend" id="microsoft-addon">
-											<span class="input-group-text"><i class="fab fa-fw fa-microsoft"></i></span>
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="microsoft-addon"><i class="fab fa-fw fa-microsoft"></i></span>
 										</div>
 										<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
 									</div>
@@ -322,8 +322,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Facebook', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="input-group">
-										<div class="input-group-prepend" id="facebook-addon">
-											<span class="input-group-text"><i class="fab fa-fw fa-facebook"></i></span>
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="facebook-addon"><i class="fab fa-fw fa-facebook"></i></span>
 										</div>
 										<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
 									</div>
@@ -333,8 +333,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Twitter', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="input-group">
-										<div class="input-group-prepend" id="twitter-addon">
-											<span class="input-group-text"><i class="fab fa-fw fa-twitter"></i></span>
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="twitter-addon"><i class="fab fa-fw fa-twitter"></i></span>
 										</div>
 										<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
 									</div>
@@ -344,8 +344,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Google+', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="input-group">
-										<div class="input-group-prepend" id="google-addon">
-											<span class="input-group-text"><i class="fab fa-fw fa-google-plus-g"></i></span>
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></span>
 										</div>
 										<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
 									</div>

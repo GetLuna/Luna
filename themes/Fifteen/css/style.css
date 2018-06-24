@@ -311,8 +311,8 @@ footer {
     color: #fff; }
   .title-block.title-block-nav {
     padding-bottom: 0;
-    margin-bottom: .75rem;
-    border-radius: 0; }
+    border-radius: 0;
+    margin-bottom: 0; }
     .title-block.title-block-nav .nav {
       border: none; }
       .title-block.title-block-nav .nav .nav-item {
@@ -328,14 +328,19 @@ footer {
         border-radius: 0;
         margin-bottom: 0; }
 
-.tab-set .title-block:not(:last-child) {
+.tab-set:not(:last-child) {
+  margin-bottom: .75rem; }
+.tab-set:last-child {
+  margin-bottom: 0; }
+
+.title-block:not(:last-child) {
   margin-bottom: 0; }
 
 .tab-content {
   border: 0.1rem solid #2788cb;
   padding: .75rem; }
-  .tab-content:last-child {
-    margin-bottom: .75rem; }
+  .tab-content:not(:first-child) {
+    border-top: none; }
   .tab-content p:last-child {
     margin-bottom: 0; }
 
@@ -404,3 +409,40 @@ hr {
 
 .status-closed {
   color: #dc3232; }
+
+#mail-addon,
+#website-addon,
+#microsoft-addon,
+#facebook-addon,
+#twitter-addon,
+#google-addon {
+  color: #fff; }
+
+#mail-addon {
+  background-color: #fdcd00;
+  border-color: #fdcd00; }
+
+#website-addon {
+  background-color: #00c48a;
+  border-color: #00c48a; }
+
+#microsoft-addon {
+  background-color: #21c9ff;
+  border-color: #21c9ff; }
+
+#facebook-addon {
+  background-color: #4862a3;
+  border-color: #4862a3; }
+
+#twitter-addon {
+  background-color: #00acee;
+  border-color: #00acee; }
+
+#google-addon {
+  background-color: #da4836;
+  border-color: #da4836; }
+
+.tab-contact .input-group {
+  margin-bottom: .75rem; }
+  .tab-contact .input-group:last-child {
+    margin-bottom: 0; }
