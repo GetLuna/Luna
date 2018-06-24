@@ -30,9 +30,6 @@ if (!$luna_config['o_enable_inbox'] == '1' || $luna_user['g_inbox'] == '0') {
 
 $id = $luna_user['id'];
 
-// User block
-$avatar_user_card = draw_user_avatar($luna_user['id']);
-
 // Get the message's and thread's id
 $mid = isset($_REQUEST['mid']) ? intval($_REQUEST['mid']) : '0';
 $tid = isset($_REQUEST['tid']) ? intval($_REQUEST['tid']) : '0';

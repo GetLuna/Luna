@@ -33,7 +33,7 @@ if (!empty($errors)) {
             <div class="tab-content tab-content-danger">
 			<?php
 				foreach ($errors as $cur_error)
-					echo "\t\t\t\t".$cur_error."\n";
+					echo $cur_error;
 			?>
 			</div>
 <?php
@@ -47,7 +47,7 @@ if (!empty($errors)) {
                 <h2><i class="fa fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
             </div>
             <div class="tab-content">
-                <p><?php echo $preview_message."\n" ?></p>
+                <p><?php echo $preview_message ?></p>
             </div>
 <?php
 

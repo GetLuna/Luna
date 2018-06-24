@@ -6,4 +6,32 @@
         background-color: $accent;
         color: #fff;
     }
+
+    &.title-block-nav {
+        padding-bottom: 0;
+        margin-bottom: .75rem;
+        border-radius: 0;
+
+        .nav {
+            border: none;
+
+            .nav-item {
+                color: #fff;
+                border: none;
+                border-bottom: .25rem solid transparent;
+                padding: .7rem 0 .45rem;
+                margin: 0 .75rem;
+
+                &.active {
+                    background-color: inherit;
+                    border-bottom-color: #fff;
+                }
+            }
+
+            .nav-item {
+                border-radius: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
 }

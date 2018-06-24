@@ -46,3 +46,11 @@ hr {
         margin: -2.5rem auto .75rem;
     }
 }
+
+// Avatar
+.img-fluid {
+    &.avatar {
+        height: 8rem;
+        width: auto;
+    }
+}

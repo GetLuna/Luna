@@ -70,7 +70,7 @@ if (!defined('FORUM'))
                 </div>
                 <?php if (!empty($user_messaging)): ?>
                     <div class="tab-content tab-contact">
-                        <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+                        <?php echo implode('', $user_messaging) ?>
                     </div>
                 <?php endif; ?>
             <?php

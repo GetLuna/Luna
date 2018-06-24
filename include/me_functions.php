@@ -14,7 +14,7 @@ function load_me_nav($page = '', $class = '')
     $can_inbox = ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $luna_user['use_inbox'] == '1');
 
     ?>
-<div class="d-none d-md-block">
+<div class="d-none d-lg-block">
     <div class="list-group list-group-none <?php if (isset($class)) {echo $class;}?>">
         <a class="<?php if ($page == 'profile') { echo 'active'; } ?> list-group-item" href="profile.php?id=<?php echo $id ?>"><i class="fas fa-fw fa-user"></i> <?php _e('Profile', 'luna')?></a>
         <?php if ($can_edit): ?>
@@ -26,7 +26,7 @@ function load_me_nav($page = '', $class = '')
         <?php endif;?>
     </div>
 </div>
-<div class="d-block d-md-none">
+<div class="d-block d-lg-none">
     <div class="row">
         <a class="btn btn-primary col <?php if ($page == 'profile') { echo 'active'; } ?>" href="profile.php?id=<?php echo $id ?>"><h4><i class="fas fa-fw fa-user"></i></h4><?php _e('Profile', 'luna')?></a>
         <?php if ($can_edit): ?>

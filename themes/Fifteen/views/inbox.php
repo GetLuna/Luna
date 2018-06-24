@@ -122,7 +122,7 @@ if (!defined('FORUM'))
 			<?php
 				}
 			} else
-				echo "\t".'<tr><td colspan="45">'.__('No messages', 'luna').'</td></tr>'."\n";
+				echo '<tr><td colspan="45">'.__('No messages', 'luna').'</td></tr>';
 			?>
 								</tbody>
 							</table>

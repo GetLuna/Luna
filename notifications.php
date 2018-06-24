@@ -150,7 +150,6 @@ $user = $db->fetch_assoc($result);
 $user_username = luna_htmlspecialchars($user['username']);
 $user_usertitle = get_title($user);
 $avatar_field = generate_avatar_markup($id);
-$avatar_user_card = draw_user_avatar($id);
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']) . ' / ' . __('Profile', 'luna'));
 define('LUNA_ACTIVE_PAGE', 'me');

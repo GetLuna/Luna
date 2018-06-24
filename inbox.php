@@ -34,9 +34,6 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 $id = $luna_user['id'];
 
-// User block
-$avatar_user_card = draw_user_avatar($id);
-
 // Mark as read multiple comments
 if (isset($_REQUEST['markread'])) {
     confirm_referrer('inbox.php');

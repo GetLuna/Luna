@@ -35,7 +35,7 @@ elseif ($luna_config['o_feed_type'] == 2)
 	$feed_type = 'atom';
 
 if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (isset($footer_style)))
-	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
+	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>';
 
 $num_users = num_users_online();
 $num_guests = num_guests_online();
