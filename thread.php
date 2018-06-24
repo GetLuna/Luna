@@ -7,8 +7,8 @@
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
-define('LUNA_ROOT', dirname(__FILE__) . '/');
-require LUNA_ROOT . 'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 define('LUNA_CANONICAL_TAG_TOPIC', 1);
 
 if ($luna_user['g_read_board'] == '0') {
@@ -24,7 +24,7 @@ if ($id < 1 && $pid < 1) {
 
 // If a comment ID is specified we determine thread ID and page number so we can redirect to the correct message
 if ($pid) {
-    $result = $db->query('SELECT thread_id, commented FROM ' . $db->prefix . 'comments WHERE id=' . $pid) or error('Unable to fetch thread ID', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT thread_id, commented FROM '.$db->prefix.'comments WHERE id='.$pid) or error('Unable to fetch thread ID', __FILE__, __LINE__, $db->error());
     if (!$db->num_rows($result)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     }
@@ -32,7 +32,7 @@ if ($pid) {
     list($id, $commented) = $db->fetch_row($result);
 
     // Determine on which page the comment is located (depending on $forum_user['disp_comments'])
-    $result = $db->query('SELECT COUNT(id) FROM ' . $db->prefix . 'comments WHERE thread_id=' . $id . ' AND commented<' . $commented) or error('Unable to count previous comments', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND commented<'.$commented) or error('Unable to count previous comments', __FILE__, __LINE__, $db->error());
     $num_comments = $db->result($result) + 1;
 
     $_GET['p'] = ceil($num_comments / $luna_user['disp_comments']);
@@ -44,11 +44,11 @@ if ($pid) {
             $tracked_threads = get_tracked_threads();
             $last_viewed = isset($tracked_threads['threads'][$id]) ? $tracked_threads['threads'][$id] : $luna_user['last_visit'];
 
-            $result = $db->query('SELECT MIN(id) FROM ' . $db->prefix . 'comments WHERE thread_id=' . $id . ' AND commented>' . $last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
+            $result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND commented>'.$last_viewed) or error('Unable to fetch first new comment info', __FILE__, __LINE__, $db->error());
             $first_new_comment_id = $db->result($result);
 
             if ($first_new_comment_id) {
-                header('Location: thread.php?pid=' . $first_new_comment_id . '#p' . $first_new_comment_id);
+                header('Location: thread.php?pid='.$first_new_comment_id.'#p'.$first_new_comment_id);
                 exit;
             }
         }
@@ -59,11 +59,11 @@ if ($pid) {
 
     // If action=last, we redirect to the last comment
     if ($action == 'last') {
-        $result = $db->query('SELECT MAX(id) FROM ' . $db->prefix . 'comments WHERE thread_id=' . $id) or error('Unable to fetch last comment info', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT MAX(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id) or error('Unable to fetch last comment info', __FILE__, __LINE__, $db->error());
         $last_comment_id = $db->result($result);
 
         if ($last_comment_id) {
-            header('Location: thread.php?pid=' . $last_comment_id . '#p' . $last_comment_id);
+            header('Location: thread.php?pid='.$last_comment_id.'#p'.$last_comment_id);
             exit;
         }
     }
@@ -71,9 +71,9 @@ if ($pid) {
 
 // Fetch some info about the thread
 if ($luna_user['is_guest']) {
-    $result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.important, t.solved AS answer, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment FROM ' . $db->prefix . 'threads AS t INNER JOIN ' . $db->prefix . 'forums AS f ON f.id=t.forum_id LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id=' . $id . ' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.important, t.solved AS answer, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 } else {
-    $result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.important, t.solved AS answer, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment, s.user_id AS is_subscribed FROM ' . $db->prefix . 'threads AS t INNER JOIN ' . $db->prefix . 'forums AS f ON f.id=t.forum_id LEFT JOIN ' . $db->prefix . 'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id=' . $luna_user['id'] . ') LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id=' . $id . ' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT t.subject, t.commenter, t.closed, t.num_replies, t.pinned, t.important, t.solved AS answer, t.first_comment_id, f.id AS forum_id, f.forum_name, f.moderators, fp.comment, s.user_id AS is_subscribed FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.thread_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch thread info', __FILE__, __LINE__, $db->error());
 }
 
 if (!$db->num_rows($result)) {
@@ -92,7 +92,7 @@ if ($is_admmod) {
 
 if ($cur_thread['closed'] == '0') {
     if (($cur_thread['comment'] == '' && $luna_user['g_comment'] == '1') || $cur_thread['comment'] == '1' || $is_admmod) {
-        $comment_link = "\t\t\t" . '<a class="btn btn-primary btn-comment" href="comment.php?tid=' . $id . '">' . __('Comment', 'luna') . '</a>' . "\n";
+        $comment_link = "\t\t\t".'<a class="btn btn-light btn-comment" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>'."\n";
     } else {
         $comment_link = '';
     }
@@ -101,10 +101,10 @@ if ($cur_thread['closed'] == '0') {
     $comment_link = '<a class="btn disabled btn-danger btn-comment"><span class="fas fa-fw fa-lock"></span></a>';
 
     if ($is_admmod) {
-        $comment_link .= '<a class="btn btn-primary btn-comment" href="comment.php?tid=' . $id . '">' . __('Comment', 'luna') . '</a>';
+        $comment_link .= '<a class="btn btn-light btn-comment" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
     }
 
-    $comment_link = $comment_link . "\n";
+    $comment_link = $comment_link."\n";
 }
 
 // Add/update this thread in our list of tracked threads
@@ -121,7 +121,7 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $luna_user['disp_comments'] * ($p - 1);
 
 // Generate paging links
-$paging_links = paginate($num_pages, $p, 'thread.php?id=' . $id);
+$paging_links = paginate($num_pages, $p, 'thread.php?id='.$id);
 
 $comment_field = false;
 if (($cur_thread['comment'] == '1' || ($cur_thread['comment'] == '' && $luna_user['g_comment'] == '1')) && ($cur_thread['closed'] == '0' || $is_admmod)) {
@@ -142,25 +142,25 @@ if ($luna_config['o_censoring'] == '1') {
 }
 
 if ($luna_config['o_feed_type'] == '1') {
-    $page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid=' . $id . '&amp;type=rss" title="' . __('RSS thread feed', 'luna') . '" />');
+    $page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.__('RSS thread feed', 'luna').'" />');
 } elseif ($luna_config['o_feed_type'] == '2') {
-    $page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid=' . $id . '&amp;type=atom" title="' . __('Atom thread feed', 'luna') . '" />');
+    $page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.__('Atom thread feed', 'luna').'" />');
 }
 
 $thread_actions = array();
 
 if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') {
-    $token_url = '&amp;csrf_token=' . luna_csrf_token();
+    $token_url = '&amp;csrf_token='.luna_csrf_token();
 
     if ($cur_thread['is_subscribed']) {
-        $thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid=' . $id . $token_url . '">' . __('Unsubscribe', 'luna') . '</a>';
+        $thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
     } else {
-        $thread_actions[] = '<a href="misc.php?action=subscribe&amp;tid=' . $id . $token_url . '">' . __('Subscribe', 'luna') . '</a>';
+        $thread_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
     }
 
 }
 
-$result = $db->query('SELECT f.solved FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'threads AS t ON (f.id = t.forum_id) WHERE t.id=' . $id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'threads AS t ON (f.id = t.forum_id) WHERE t.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 $cur_forum = $db->fetch_assoc($result);
 
@@ -170,18 +170,18 @@ if (!$pid) {
 }
 
 define('LUNA_ACTIVE_PAGE', 'thread');
-include LUNA_ROOT . 'header.php';
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
-require LUNA_ROOT . 'include/parser.php';
+require LUNA_ROOT.'include/parser.php';
 
 $comment_count = 0; // Keep track of comment numbers
 
 // Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 if (!$luna_user['is_admmod']) {
-    $result = $db->query('SELECT id FROM ' . $db->prefix . 'comments WHERE soft = 0 AND thread_id=' . $id . ' ORDER BY id LIMIT ' . $start_from . ',' . $luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 } else {
-    $result = $db->query('SELECT id FROM ' . $db->prefix . 'comments WHERE thread_id=' . $id . ' ORDER BY id LIMIT ' . $start_from . ',' . $luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 }
 
 $comment_ids = array();
@@ -189,7 +189,7 @@ for ($i = 0; $cur_comment_id = $db->result($result, $i); $i++) {
     $comment_ids[] = $cur_comment_id;
 }
 
-$token_url = '&amp;csrf_token=' . luna_csrf_token();
+$token_url = '&amp;csrf_token='.luna_csrf_token();
 
 if (empty($comment_ids)) {
     error('The comment table and thread table seem to be out of sync!', __FILE__, __LINE__);
@@ -201,7 +201,7 @@ require load_page('thread.php');
 
 // Increment "num_views" for thread
 if ($luna_config['o_thread_views'] == '1') {
-    $db->query('UPDATE ' . $db->prefix . 'threads SET num_views=num_views+1 WHERE id=' . $id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
+    $db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update thread', __FILE__, __LINE__, $db->error());
 }
 
 $forum_id = $cur_thread['forum_id'];

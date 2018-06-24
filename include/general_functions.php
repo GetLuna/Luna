@@ -34,11 +34,11 @@ function required_fields()
 // Output a JavaScript object with localised field names
         $tpl_temp = count($required_fields);
         foreach ($required_fields as $elem_orig => $elem_trans) {
-            echo "\t\t\"" . $elem_orig . '": "' . addslashes(str_replace('&#160;', ' ', $elem_trans));
+            echo $elem_orig . '": "' . addslashes(str_replace('&#160;', ' ', $elem_trans));
             if (--$tpl_temp) {
-                echo "\",\n";
+                echo "\",";
             } else {
-                echo "\"\n\t};\n";
+                echo "\"};";
             }
 
         }

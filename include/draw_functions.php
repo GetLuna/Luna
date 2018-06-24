@@ -1113,51 +1113,51 @@ function draw_search_forum_list() {
 
 	// We either show a list of forums of which multiple can be selected
 	if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod']) {
-		echo "\t\t\t\t\t\t".'<div class="conl multiselect"><h3>'.__('Forums to search in', 'luna').'</h3>'."\n";
-		echo "\t\t\t\t\t\t".'<div>'."\n";
+		echo '<div class="conl multiselect"><h3>'.__('Forums to search in', 'luna').'</h3>';
+		echo '<div>';
 
 		$cur_category = 0;
 		while ($cur_forum = $db->fetch_assoc($result)) {
 			if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 				if ($cur_category) {
-					echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
-					echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
+					echo '</div>';
+					echo '</fieldset>';
 				}
-				echo "\t\t\t\t\t\t\t".'<fieldset><h4><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h4>'."\n";
-				echo "\t\t\t\t\t\t\t\t".'<div>';
+				echo '<fieldset><h4><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h4>';
+				echo '<div>';
 				$cur_category = $cur_forum['cid'];
 			}
-			echo "\t\t\t\t\t\t\t\t".'<label><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'</label><br />'."\n";
+			echo '<label><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'</label><br />';
 		}
 
 		if ($cur_category) {
-			echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
-			echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
+			echo '</div>';
+			echo '</fieldset>';
 		}
 
-		echo "\t\t\t\t\t\t".'</div>'."\n";
-		echo "\t\t\t\t\t\t".'</div>'."\n";
+		echo '</div>';
+		echo '</div>';
 	}
 	// ... or a simple select list for one forum only
 	else {
-		echo "\t\t\t\t\t\t".'<h3>'.__('Forum to search in', 'luna').'</h3>'."\n";
-		echo "\t\t\t\t\t\t".'<select id="forum" name="forum" class="form-control">'."\n";
+		echo '<h3>'.__('Forum to search in', 'luna').'</h3>';
+		echo '<select id="forum" name="forum" class="form-control">';
 
 		$cur_category = 0;
 		while ($cur_forum = $db->fetch_assoc($result)) {
 			if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 				if ($cur_category)
-					echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
+					echo '</optgroup>';
 
-				echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
+				echo '<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">';
 				$cur_category = $cur_forum['cid'];
 			}
 
-			echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+			echo '<option value="'.$cur_forum['fid'].'">'.($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').luna_htmlspecialchars($cur_forum['forum_name']).'</option>';
 		}
 
-		echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-		echo "\t\t\t\t\t\t".'</select>'."\n";
+		echo '</optgroup>';
+		echo '</select>';
 	}
 }
 

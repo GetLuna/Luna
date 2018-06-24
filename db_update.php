@@ -837,7 +837,7 @@ switch ($stage) {
         $temp = array();
         $end_at = 0;
         while ($cur_item = $db->fetch_assoc($result)) {
-            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']) . '<br />' . "\n";
+            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']) . '<br />';
             $db->query('UPDATE ' . $db->prefix . 'comments SET message = \'' . $db->escape(preparse_bbcode($cur_item['message'], $temp)) . '\' WHERE id = ' . $cur_item['id']) or error('Unable to update comment', __FILE__, __LINE__, $db->error());
 
             $end_at = $cur_item['id'];
@@ -872,7 +872,7 @@ switch ($stage) {
         $temp = array();
         $end_at = 0;
         while ($cur_item = $db->fetch_assoc($result)) {
-            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('signature', 'luna'), $cur_item['id']) . '<br />' . "\n";
+            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('signature', 'luna'), $cur_item['id']) . '<br />';
             $db->query('UPDATE ' . $db->prefix . 'users SET signature = \'' . $db->escape(preparse_bbcode($cur_item['signature'], $temp, true)) . '\' WHERE id = ' . $cur_item['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
             $end_at = $cur_item['id'];
@@ -926,7 +926,7 @@ switch ($stage) {
 
         $end_at = 0;
         while ($cur_item = $db->fetch_assoc($result)) {
-            echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']) . '<br />' . "\n";
+            echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']) . '<br />';
 
             if ($cur_item['id'] == $cur_item['first_comment_id']) {
                 update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);

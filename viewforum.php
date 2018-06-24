@@ -7,8 +7,8 @@
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
-define('LUNA_ROOT', dirname(__FILE__) . '/');
-require LUNA_ROOT . 'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 define('LUNA_CANONICAL_TAG_FORUM', 1);
 
 if ($luna_user['g_read_board'] == '0') {
@@ -22,7 +22,7 @@ if ($id < 1) {
 
 // Get list of forums and threads with new comments since last visit
 if (!$luna_user['is_guest']) {
-    $result = $db->query('SELECT f.id, f.last_comment FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.last_comment>' . $luna_user['last_visit']) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT f.id, f.last_comment FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.last_comment>'.$luna_user['last_visit']) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
     if ($db->num_rows($result)) {
         $forums = $new_threads = array();
@@ -39,7 +39,7 @@ if (!$luna_user['is_guest']) {
             if (empty($tracked_threads['threads'])) {
                 $new_threads = $forums;
             } else {
-                $result = $db->query('SELECT forum_id, id, last_comment FROM ' . $db->prefix . 'threads WHERE forum_id IN(' . implode(',', array_keys($forums)) . ') AND last_comment>' . $luna_user['last_visit'] . ' AND moved_to IS NULL') or error('Unable to fetch new threads', __FILE__, __LINE__, $db->error());
+                $result = $db->query('SELECT forum_id, id, last_comment FROM '.$db->prefix.'threads WHERE forum_id IN('.implode(',', array_keys($forums)).') AND last_comment>'.$luna_user['last_visit'].' AND moved_to IS NULL') or error('Unable to fetch new threads', __FILE__, __LINE__, $db->error());
 
                 while ($cur_thread = $db->fetch_assoc($result)) {
                     if (!isset($new_threads[$cur_thread['forum_id']]) && (!isset($tracked_threads['forums'][$cur_thread['forum_id']]) || $tracked_threads['forums'][$cur_thread['forum_id']] < $forums[$cur_thread['forum_id']]) && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment'])) {
@@ -54,9 +54,9 @@ if (!$luna_user['is_guest']) {
 
 // Fetch some info about the forum
 if (!$luna_user['is_guest']) {
-    $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.icon_style, f.color, f.solved, fp.create_threads, s.user_id AS is_subscribed FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id=' . $luna_user['id'] . ') LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id=' . $id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.icon_style, f.color, f.solved, fp.create_threads, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 } else {
-    $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, 0 AS is_subscribed FROM ' . $db->prefix . 'forums AS f LEFT JOIN ' . $db->prefix . 'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=' . $luna_user['g_id'] . ') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id=' . $id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT f.forum_name, f.forum_desc, f.moderators, f.num_threads, f.sort_by, f.icon, f.color, f.solved, fp.create_threads, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 }
 
 if (!$db->num_rows($result)) {
@@ -86,7 +86,7 @@ switch ($cur_forum['sort_by']) {
 
 // Can we or can we not comment new threads?
 if (($cur_forum['create_threads'] == '' && $luna_user['g_create_threads'] == '1') || $cur_forum['create_threads'] == '1' || $is_admmod) {
-    $comment_link = "\t\t\t" . '<a class="btn btn-default btn-comment" style="color: ' . $cur_forum['color'] . '" href="comment.php?fid=' . $id . '"><span class="fas fa-fw fa-plus"></span> ' . __('Create thread', 'luna') . '</a>' . "\n";
+    $comment_link = '<a class="btn btn-light btn-comment" style="color: '.$cur_forum['color'].'" href="comment.php?fid='.$id.'"><span class="fas fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>';
 } else {
     $comment_link = '';
 }
@@ -106,24 +106,24 @@ $start_from = $luna_user['disp_threads'] * ($p - 1);
 $faicon = get_icon($cur_forum['icon'], $cur_forum['icon_style']);
 
 // Generate paging links
-$paging_links = paginate($num_pages, $p, 'viewforum.php?id=' . $id);
+$paging_links = paginate($num_pages, $p, 'viewforum.php?id='.$id);
 
 if ($luna_config['o_feed_type'] == '1') {
-    $page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;fid=' . $id . '&amp;type=rss" title="' . __('RSS forum feed', 'luna') . '" />');
+    $page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=rss" title="'.__('RSS forum feed', 'luna').'" />');
 } elseif ($luna_config['o_feed_type'] == '2') {
-    $page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;fid=' . $id . '&amp;type=atom" title="' . __('Atom forum feed', 'luna') . '" />');
+    $page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=atom" title="'.__('Atom forum feed', 'luna').'" />');
 }
 
 $forum_actions = array();
 
 // Subscribe
 if (!$luna_user['is_guest'] && $luna_config['o_forum_subscriptions'] == '1') {
-    $token_url = '&amp;csrf_token=' . luna_csrf_token();
+    $token_url = '&amp;csrf_token='.luna_csrf_token();
 
     if ($cur_forum['is_subscribed']) {
-        $thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid=' . $id . $token_url . '">' . __('Unsubscribe', 'luna') . '</a>';
+        $thread_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
     } else {
-        $thread_actions[] = '<a href="misc.php?action=subscribe&amp;fid=' . $id . $token_url . '">' . __('Subscribe', 'luna') . '</a>';
+        $thread_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
     }
 
 }
@@ -135,7 +135,7 @@ $meta_description = $cur_forum['forum_desc'];
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
 define('LUNA_ALLOW_INDEX', 1);
 define('LUNA_ACTIVE_PAGE', 'viewforum');
-include LUNA_ROOT . 'header.php';
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('forum.php');
