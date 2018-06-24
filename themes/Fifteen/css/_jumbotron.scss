@@ -2,7 +2,6 @@
     border-radius: 0;
 
     &.profile {
-        color: #fff;
         background-color: darken( $accent, 3% );
         padding: 0;
         margin: 0;
@@ -22,6 +21,7 @@
     }
 
     &.first-run {
+        color: #fff;
         background-color: darken( $accent, 3% );
         padding: 1rem;
         margin: 0;

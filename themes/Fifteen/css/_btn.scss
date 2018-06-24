@@ -1,4 +1,26 @@
 .btn {
     border: transparent;
     border-radius: 0;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &.active:focus,
+    &:focus:active {
+        box-shadow: none;
+    }
+
+    &.btn-primary {
+        background-color: $accent;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken( $accent, 6% );
+        }
+
+        &.active {
+            background-color: darken( $accent, 12% ) !important;
+        }
+    }
 }

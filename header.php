@@ -178,8 +178,8 @@ if ($luna_user['is_guest']) {
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileMenu">
                 <a class="dropdown-item" href="profile.php?id='.$luna_user['id'].'"><i class="fas fa-fw fa-user"></i>'.__('Profile', 'luna').'</a>
-                <a class="dropdown-item" href="inbox.php"><i class="fas fa-fw fa-paper-plane"></i>'.__('Inbox', 'luna').'</a>
                 <a class="dropdown-item" href="settings.php?id='.$luna_user['id'].'"><i class="fas fa-fw fa-cogs"></i>'.__('Settings', 'luna').'</a>
+                <a class="dropdown-item" href="help.php"><i class="fas fa-fw fa-info-circle"></i>'.__('Help', 'luna').'</a>
                 <a class="dropdown-item" href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token().'"><i class="fas fa-fw fa-sign-out-alt"></i>'.__('Logout', 'luna').'</a>
             </div>
         </li>

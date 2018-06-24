@@ -996,7 +996,7 @@ while ($cur_thread = $db->fetch_assoc($result)) {
             }
             ?>">
                     <input type="checkbox" name="threads[<?php echo $cur_thread['id'] ?>]" value="1" />
-                    <span class="hidden-xs hidden-sm hidden-md hidden-lg">
+                    <span class="d-none">
                         <?php echo forum_number_format($thread_count + $start_from) ?>
                     </span>
                     <?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $by ?> <?php echo $subject_multipage ?>

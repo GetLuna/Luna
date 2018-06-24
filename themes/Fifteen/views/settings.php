@@ -123,7 +123,7 @@ else
 					</div>
 					<div role="tabpanel" class="tab-pane" id="appearance">
 						<fieldset class="form-horizontal form-setting">
-							<div class="form-group<?php if ($luna_config['o_allow_accent_color'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
+							<div class="form-group<?php if ($luna_config['o_allow_accent_color'] == '0') { echo ' d-none'; } ?>">
 								<label class="col-sm-3 col-form-label"><?php _e('Color', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="btn-group accent-group" data-toggle="buttons">
@@ -144,7 +144,7 @@ else
 								</div>
 								<hr />
 							</div>
-							<div class="form-group<?php if ($luna_config['o_allow_night_mode'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
+							<div class="form-group<?php if ($luna_config['o_allow_night_mode'] == '0') { echo ' d-none'; } ?>">
 								<label class="col-sm-3 col-form-label"><?php _e('Night mode', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="radio">
@@ -168,7 +168,7 @@ else
 								</div>
 							</div>
 							<hr />
-							<div class="form-group <?php if (!$luna_user['is_admmod']) { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
+							<div class="form-group <?php if (!$luna_user['is_admmod']) { echo ' d-none'; } ?>">
 								<label class="col-sm-3 col-form-label"><?php _e('Backstage accent', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="btn-group accent-group" data-toggle="buttons">

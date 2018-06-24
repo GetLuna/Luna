@@ -1,0 +1,9 @@
+a {
+    color: $accent;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: darken( $accent, 10% );
+    }
+}

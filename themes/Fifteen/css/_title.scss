@@ -1,0 +1,9 @@
+.title-block {
+    padding: 1.5rem .75rem .25rem;
+    margin-bottom: .1rem;
+
+    &.title-block-primary {
+        background-color: $accent;
+        color: #fff;
+    }
+}
