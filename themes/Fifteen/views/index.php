@@ -100,24 +100,26 @@ if ($luna_user['first_run'] == '0') {
 			<form id="search" class="input-group search-form" method="get" action="search.php?section=simple">
 				<input type="hidden" name="action" value="search" />
                 <input type="hidden" name="sort_dir" value="DESC" />
-				<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in comments', 'luna') ?>" maxlength="100" />
-				<span class="input-group-btn">
-					<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s"><i class="fas fa-fw fa-search"></i></button>
-				</span>
+				<div class="input-group">
+					<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in comments', 'luna') ?>" maxlength="100" />
+					<div class="input-group-append">
+						<button class="btn btn-light" type="submit" name="search" accesskey="s"><i class="fas fa-fw fa-search"></i></button>
+					</div>
+				</div>
 			</form>
 			<hr />
 			<?php endif; ?>
-			<div class="list-group list-group-luna">
+			<div class="list-group list-group-nav">
 				<?php draw_forum_list('forum.php', 1, 'category.php', ''); ?>
 			</div>
 			<?php if ($luna_user['g_search'] == '1') { ?>
 			<hr />
-			<div class="list-group list-group-luna">
+			<div class="list-group list-group-none">
 				<?php echo implode('', $page_threadsearches) ?>
 			</div>
 			<?php } ?>
 			<hr />
-			<div class="list-group list-group-luna">
+			<div class="list-group list-group-none">
 				<?php draw_mark_read('list-group-item', 'index'); ?>
 			</div>
 		</div>

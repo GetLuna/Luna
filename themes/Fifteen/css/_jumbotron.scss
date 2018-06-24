@@ -3,8 +3,9 @@
 
     &.first-run {
         color: #fff;
-        background-color: darken( $accent, 5% );
+        background-color: darken( $accent, 3% );
         padding: 1rem;
+        margin: 0;
 
         .avatar {
             height: 8rem;

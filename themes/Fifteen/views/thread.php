@@ -8,11 +8,11 @@ if (!defined('FORUM'))
 <div class="main container">
 	<div class="row thread">
 		<div class="col-sm-3">
-			<div class="list-group list-group-luna">
+			<div class="list-group list-group-nav">
 				<a class="list-group-item" href="viewforum.php?id=<?php echo $cur_thread['forum_id'] ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_thread['forum_name']) ?></a>
 			</div>
 			<hr />
-			<div class="list-group list-group-luna list-group-luna-row">
+			<div class="list-group list-group-nav list-group-nav-row">
 				<?php if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') { ?>
 					<?php if ($cur_thread['is_subscribed']) { ?>
 						<a class="list-group-item col-xs-4 col-sm-12 list-group-item-success" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>

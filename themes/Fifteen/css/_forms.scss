@@ -28,6 +28,31 @@
 }
 
 .input-group {
+    &.search-form {
+        .form-control {
+            border: transparent;
+            background: #eee;
+            padding: .7rem;
+
+            &:active,
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .btn-light {
+            border: transparent;
+            background: #eee;
+            padding: .7rem .8rem;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background: #ddd;
+            }
+        }
+    }
+
     .input-group-prepend {
         border-right: none;
 

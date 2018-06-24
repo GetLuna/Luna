@@ -67,8 +67,9 @@
   border-radius: 0; }
   .jumbotron.first-run {
     color: #fff;
-    background-color: #237ab6;
-    padding: 1rem; }
+    background-color: #257fbe;
+    padding: 1rem;
+    margin: 0; }
     .jumbotron.first-run .avatar {
       height: 8rem;
       width: auto;
@@ -119,6 +120,35 @@
     background-color: rgba(255, 255, 255, 0.3); }
     .list-group.list-group-transparent .list-group-item.active:hover, .list-group.list-group-transparent .list-group-item.active:active, .list-group.list-group-transparent .list-group-item.active:focus {
       background-color: rgba(255, 255, 255, 0.45); }
+.list-group.list-group-nav h5 {
+  background-color: #2788cb;
+  color: #fff;
+  margin-bottom: .1rem;
+  padding: 1.3rem .7rem .5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.1rem; }
+.list-group.list-group-nav .list-group-item {
+  border: none;
+  margin-bottom: .1rem;
+  border-radius: 0;
+  color: #444;
+  padding: .7rem 1rem; }
+  .list-group.list-group-nav .list-group-item:hover, .list-group.list-group-nav .list-group-item:active, .list-group.list-group-nav .list-group-item:focus {
+    background: #f8f8f8;
+    color: #333; }
+  .list-group.list-group-nav .list-group-item.active {
+    color: #fff; }
+.list-group.list-group-none .list-group-item {
+  border: none;
+  background: transparent;
+  margin-bottom: .1rem;
+  border-radius: 0;
+  color: #444;
+  padding: .7rem 1rem; }
+  .list-group.list-group-none .list-group-item:hover, .list-group.list-group-none .list-group-item:active, .list-group.list-group-none .list-group-item:focus {
+    background: #f8f8f8;
+    color: #333; }
 
 .form-group .col-form-label {
   font-size: 1.2rem;
@@ -136,6 +166,18 @@
   .form-group .col-md-9 .custom-control:first-child {
     margin-top: .5rem; } }
 
+.input-group.search-form .form-control {
+  border: transparent;
+  background: #eee;
+  padding: .7rem; }
+  .input-group.search-form .form-control:active, .input-group.search-form .form-control:focus {
+    box-shadow: none; }
+.input-group.search-form .btn-light {
+  border: transparent;
+  background: #eee;
+  padding: .7rem .8rem; }
+  .input-group.search-form .btn-light:hover, .input-group.search-form .btn-light:active, .input-group.search-form .btn-light:focus {
+    background: #ddd; }
 .input-group .input-group-prepend {
   border-right: none; }
   .input-group .input-group-prepend + .form-control {
@@ -181,3 +223,18 @@ td .custom-control {
 
 .custom-radio :checked.custom-control-input ~ .custom-control-label::before {
   background: #2788cb; }
+
+body {
+  background-color: #f8f8f8; }
+
+.row {
+  margin-right: 0;
+  margin-left: 0; }
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+  padding-left: .5rem;
+  padding-right: .5rem; }
+
+hr {
+  margin-top: .75rem;
+  margin-bottom: .75rem; }
