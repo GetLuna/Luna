@@ -1,12 +1,10 @@
 <div id="p<?php echo $cur_comment['id'] ?>" class="comment comment-default <?php echo ($comment_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if (!isset($inbox)) { if ($cur_comment['id'] == $cur_thread['first_comment_id']) echo ' firstcomment'; if ($comment_count == 1) echo ' only-comment'; if ($cur_comment['marked'] == true) echo ' marked'; if ($cur_comment['soft'] == true) echo ' soft'; } ?><?php if (!isset($inbox) && $cur_comment['id'] == $cur_thread['answer'] && $cur_forum['solved'] == 1) echo ' answer'; ?>">
-	<div class="comment-heading">
+	<div class="comment-header">
 		<div class="media">
-			<div class="media-left">
-				<img class="media-object comment-avatar" src="<?php echo get_avatar( (!isset($inbox))? $cur_comment['commenter_id'] : $cur_comment['sender_id'] ) ?>" alt="Avatar">
-			</div>
+			<img src="<?php echo get_avatar( (!isset($inbox))? $cur_comment['commenter_id'] : $cur_comment['sender_id'] ) ?>" alt="Avatar">
 			<div class="media-body">
-				<h4 class="media-heading"><?php printf(__('By %s', 'luna'), $username) ?><small> <?php __('on', 'luna') ?> <a class="commenttime" href="<?php if (!isset($inbox)) { echo 'thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id']; } else { echo 'viewinbox.php?tid='.$cur_comment['shared_id'].'&mid='.$cur_comment['mid']; } ?>"><?php echo format_time($cur_comment['commented']) ?></a></small></h4>
-				<?php echo get_title( $cur_comment ) ?><?php if ($cur_comment['commenter_id'] != 1) { ?> &middot; <?php echo forum_number_format($cur_comment['num_comments']) ?> <?php _e( 'comments', 'luna' ) ?><?php } ?>
+				<h4><?php printf(__('By %s', 'luna'), $username) ?><small> <?php __('on', 'luna') ?> <a class="commenttime" href="<?php if (!isset($inbox)) { echo 'thread.php?pid='.$cur_comment['id'].'#p'.$cur_comment['id']; } else { echo 'viewinbox.php?tid='.$cur_comment['shared_id'].'&mid='.$cur_comment['mid']; } ?>"><?php echo format_time($cur_comment['commented']) ?></a></small></h4>
+				<h6><?php echo get_title( $cur_comment ) ?><?php if ($cur_comment['commenter_id'] != 1) { ?> &middot; <?php echo forum_number_format($cur_comment['num_comments']) ?> <?php _e( 'comments', 'luna' ) ?><?php } ?></h6>
 			</div>
 		</div>
 	</div>

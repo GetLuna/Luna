@@ -244,6 +244,26 @@ td .custom-control {
       background-color: #2277b1; }
     .btn.btn-primary.active {
       background-color: #1d6698 !important; }
+  .btn.btn-danger {
+    background-color: #e74018; }
+    .btn.btn-danger:hover, .btn.btn-danger:active, .btn.btn-danger:focus {
+      background-color: #cb3815; }
+    .btn.btn-danger.active {
+      background-color: #b03112 !important; }
+  .btn.btn-success {
+    background-color: #46c429; }
+    .btn.btn-success:hover, .btn.btn-success:active, .btn.btn-success:focus {
+      background-color: #3dab24; }
+    .btn.btn-success.active {
+      background-color: #34911e !important; }
+  .btn.btn-link {
+    color: #2788cb; }
+    .btn.btn-link:hover, .btn.btn-link:focus, .btn.btn-link:active {
+      color: #237ab6; }
+    .btn.btn-link.btn-link-danger {
+      color: #e74018; }
+      .btn.btn-link.btn-link-danger:hover, .btn.btn-link.btn-link-danger:focus, .btn.btn-link.btn-link-danger:active {
+        color: #d03a16; }
 
 .badge {
   border-radius: 0;
@@ -270,6 +290,41 @@ td .custom-control {
   .alert.alert-warning {
     color: #cc9a00;
     background-color: #fff5d6; }
+
+.comment {
+  margin-top: .1rem; }
+  .comment.answer .comment-header .media-body {
+    background: #97c800; }
+  .comment.soft .comment-header .media-body {
+    background: #ffc000; }
+  .comment.marked .comment-header .media-body {
+    background: #e74018; }
+  .comment.answer .comment-header .media-body, .comment.soft .comment-header .media-body, .comment.marked .comment-header .media-body {
+    color: #fff; }
+    .comment.answer .comment-header .media-body a, .comment.soft .comment-header .media-body a, .comment.marked .comment-header .media-body a {
+      color: #fff; }
+      .comment.answer .comment-header .media-body a:hover, .comment.answer .comment-header .media-body a:active, .comment.answer .comment-header .media-body a:focus, .comment.soft .comment-header .media-body a:hover, .comment.soft .comment-header .media-body a:active, .comment.soft .comment-header .media-body a:focus, .comment.marked .comment-header .media-body a:hover, .comment.marked .comment-header .media-body a:active, .comment.marked .comment-header .media-body a:focus {
+        color: #fff; }
+  .comment .comment-header img {
+    height: 3.78rem;
+    width: auto; }
+  .comment .comment-header .media-body {
+    background: #f3f3f3;
+    padding: .1rem .75rem; }
+    .comment .comment-header .media-body h4 {
+      font-size: 1.5rem;
+      margin-top: .2rem;
+      margin-bottom: 0;
+      font-weight: 600; }
+      .comment .comment-header .media-body h4 small {
+        font-size: .9rem; }
+    .comment .comment-header .media-body h6 {
+      font-size: .9rem; }
+  .comment .comment-body {
+    background: #f8f8f8;
+    padding: .75rem; }
+    .comment .comment-body :last-child {
+      margin-bottom: 0; }
 
 a {
   color: #2788cb; }
