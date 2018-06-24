@@ -29,7 +29,7 @@ require 'header.php';
             </h5>
             <div class="card-body">
                 <section class="release-notes">
-                    <h2><span class="version-name">Fallow Preview 4 <small>2.1-alpha.4</small></span></h2>
+                    <h2><span class="version-name">Fluorescent Blue Preview 4 <small>2.1-alpha.4</small></span></h2>
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('Known issues are now listed in the Backstage under "About"', 'luna') ?></p>
                     <p><?php _e('Syntax highlighting now supports JSON and TypeScript and extended support for PHP', 'luna') ?></p>
@@ -49,7 +49,7 @@ require 'header.php';
                     <p><?php _e('Accents aren\'t saved unless explicit interaction with the setting is done prior to saving', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
-                    <h2><span class="version-name">Fallow Preview 3 <small>2.1-alpha.3</small></span></h2>
+                    <h2><span class="version-name">Fluorescent Blue Preview 3 <small>2.1-alpha.3</small></span></h2>
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('Custom emoji can now be added under Settings > Emoji', 'luna') ?></p>
                     <p><?php _e('Themes now have to be installed through Settings > Theme', 'luna') ?></p>
@@ -71,7 +71,7 @@ require 'header.php';
                     <p><?php _e('ALPHA - Accents in Fifteen and Sunrise now work again', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
-                    <h2><span class="version-name">Fallow Preview 2 <small>2.1-alpha.2</small></span></h2>
+                    <h2><span class="version-name">Fluorescent Blue Preview 2 <small>2.1-alpha.2</small></span></h2>
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('You can now pick a Font Awesome style for forum icons', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
@@ -87,7 +87,7 @@ require 'header.php';
                     <p><?php _e('ALPHA - $luna_config is now used instead of $config for some settings, as it should be', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
-                    <h2><span class="version-name">Fallow Preview 1 <small>2.1-alpha.1</small></span></h2>
+                    <h2><span class="version-name">Fluorescent Blue Preview 1 <small>2.1-alpha.1</small></span></h2>
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('Luna will now get Bootstrap and jQuery from a CDN by default', 'luna') ?></p>
                     <p><?php _e('Font Awesome Pro 5 is now supported', 'luna') ?></p>
