@@ -7,7 +7,7 @@
 	<?php if ($cur_thread['moved_to'] == 0) { ?>
 		<span class="text-muted"> &middot;
 			<?php echo $last_commenter ?>
-			&middot; <?php if (isset($forum_name)) { echo $forum_name.' &middot; '; } ?><?php if ($cur_thread['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_search['num_replies']) ?></span><?php } ?>
+			&middot; <?php if (isset($forum_name)) { echo $forum_name.' &middot; '; } ?><?php if ($cur_thread['moved_to'] == 0) { ?><span class="badge badge-light"><?php echo forum_number_format($cur_search['num_replies']) ?></span><?php } ?>
 		</span>
 	<?php } ?>
 </div>

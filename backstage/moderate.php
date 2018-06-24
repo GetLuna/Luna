@@ -1003,7 +1003,7 @@ while ($cur_thread = $db->fetch_assoc($result)) {
                     <?php if ($cur_thread['moved_to'] == 0) {?>
                         <span class="text-muted"> &middot;
                             <span class="text-muted"><?php echo $last_comment_date ?></span> &middot;
-                            <?php if ($cur_thread['moved_to'] == 0) {?><span class="label label-default"><?php echo forum_number_format($cur_thread['num_replies']) ?></span><?php }?>
+                            <?php if ($cur_thread['moved_to'] == 0) {?><span class="badge badge-light"><?php echo forum_number_format($cur_thread['num_replies']) ?></span><?php }?>
                         </span>
                     <?php }?>
                 </div>

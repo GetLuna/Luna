@@ -1,0 +1,38 @@
+footer {
+    color: #fff;
+
+    a {
+        color: #fff;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    .stats {
+        background-color: $accent;
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+
+        .text-center {
+            text-transform: lowercase;
+
+            h4 {
+                font-weight: 600;
+                margin: 0;
+                text-transform: initial;
+            }
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+    }
+
+    .footer {
+        background-color: darken( $accent, 5% );
+        padding: .75rem;
+    }
+}
