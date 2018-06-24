@@ -1,0 +1,29 @@
+.alert {
+    border: none;
+    border-radius: 0;
+    margin-bottom: .75rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.alert-info {
+        color: darken( $blue, 10% );
+        background-color: lighten( $blue, 50% );
+    }
+
+    &.alert-danger {
+        color: darken( $red, 10% );
+        background-color: lighten( $red, 42% );
+    }
+
+    &.alert-success {
+        color: darken( $fluo, 10% );
+        background-color: lighten( $fluo, 47% );
+    }
+
+    &.alert-warning {
+        color: darken( $yellow, 10% );
+        background-color: lighten( $yellow, 42% );
+    }
+}

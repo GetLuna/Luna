@@ -1,5 +1,15 @@
 $accent: #2788cb;
 
+$pink: #e52262;
+$red: #e74018;
+$orange: #fb8009;
+$yellow: #ffc000;
+$lime: #c0d700;
+$green: #97c800;
+$fluo: #46c429;
+$teal: #10b08f;
+$blue: #0098df;
+
 $accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21, #ff7521, #ff4444, #c71f1f, #c78d68, #ccc, #999, #444;
 
 // General
@@ -9,9 +19,10 @@ $accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21
 @import 'navbar';
 @import 'jumbotron';
 @import 'listgroup';
-@import 'forms';
+@import 'form';
 @import 'btn';
 @import 'badge';
+@import 'alert';
 
 // Custom files
 @import 'fonts';
@@ -60,27 +71,27 @@ hr {
 
 // Statusses
 .status-solved {
-    color: #64b450;
+    color: $green;
 }
 
 .status-pinned {
-    color: #ffb900;
+    color: $yellow;
 }
 
 .status-new {
-    color: #b8b8b8;
+    color: $pink;
 }
 
 .status-important {
-    color: #826eb4;
+    color: $blue;
 }
 
 .status-moved {
-    color: #2788cb;
+    color: $orange;
 }
 
 .status-closed {
-    color: #dc3232;
+    color: $red;
 }
 
 // Addons

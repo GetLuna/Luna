@@ -252,6 +252,25 @@ td .custom-control {
     background: #ccc;
     color: #fff; }
 
+.alert {
+  border: none;
+  border-radius: 0;
+  margin-bottom: .75rem; }
+  .alert:last-child {
+    margin-bottom: 0; }
+  .alert.alert-info {
+    color: #0075ac;
+    background-color: #dff5ff; }
+  .alert.alert-danger {
+    color: #b93313;
+    background-color: #fbe0da; }
+  .alert.alert-success {
+    color: #379a20;
+    background-color: #e8f9e3; }
+  .alert.alert-warning {
+    color: #cc9a00;
+    background-color: #fff5d6; }
+
 a {
   color: #2788cb; }
   a:hover, a:active, a:focus {
@@ -390,22 +409,22 @@ hr {
   width: auto; }
 
 .status-solved {
-  color: #64b450; }
+  color: #97c800; }
 
 .status-pinned {
-  color: #ffb900; }
+  color: #ffc000; }
 
 .status-new {
-  color: #b8b8b8; }
+  color: #e52262; }
 
 .status-important {
-  color: #826eb4; }
+  color: #0098df; }
 
 .status-moved {
-  color: #2788cb; }
+  color: #fb8009; }
 
 .status-closed {
-  color: #dc3232; }
+  color: #e74018; }
 
 #mail-addon,
 #website-addon,
