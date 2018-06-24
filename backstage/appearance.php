@@ -244,7 +244,7 @@ foreach ($theme->features->accents as $accent) {
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="form[fontawesomepro]" name="form[fontawesomepro]" value="1"<?php echo ( $luna_config['o_fontawesomepro'] == '1' ) ? ' checked' : '' ?>>
                                 <label class="custom-control-label" for="form[fontawesomepro]">
-                                    <?php _e('Enable Font Awesome Pro features within Luna.', 'luna')?>
+                                    <?php _e('Enable Font Awesome Pro features within Luna. Note that even if CDN loading is enabled, Luna will load Font Awesome Pro from the filesystem.', 'luna')?>
                                 </label>
                             </div>
                         </div>

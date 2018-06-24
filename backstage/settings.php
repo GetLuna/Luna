@@ -756,7 +756,7 @@ foreach ($times as $time) {
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="form[use_cdn]" name="form[use_cdn]" value="1"<?php echo ( $luna_config['o_use_cdn'] == '1' ) ? ' checked' : '' ?>>
                                 <label class="custom-control-label" for="form[use_cdn]">
-                                    <?php _e('Use a CDN to load Bootstrap and jQuery. This will reduce load times and bandwith usage but it also makes Luna rely on third party services.', 'luna') ?>
+                                    <?php _e('Use a CDN to load Bootstrap, jQuery and Font Awesome. This will reduce load times and bandwith usage but it also makes Luna rely on third party services. If Font Awesome Pro is enabled, it will be loaded from the filesystem.', 'luna') ?>
                                 </label>
                             </div>
                         </div>
