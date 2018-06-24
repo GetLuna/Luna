@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="vendor/css/prism.css">
 		<?php load_css(); ?>
 		<script src="vendor/js/jquery.min.js"></script>
-		<script src="vendor/js/bootstrap4.min.js"></script>
+		<script src="vendor/js/bootstrap.bundle.min.js"></script>
 		<script src="vendor/js/prism.js"></script>
         <?php
         if ($luna_config['o_use_custom_css']) {
@@ -24,7 +24,6 @@
             echo '</style>';
         }
         ?>
-		</style>
 	</head>
 	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>

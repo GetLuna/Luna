@@ -1,0 +1,55 @@
+.editor {
+    padding-top: .75rem;
+
+    .form-control {
+        border: .1rem solid #eee;
+    }
+
+    .btn-toolbar {
+        &.btn-toolbar-top {
+            .btn-group {
+                border-top: .1rem solid #eee;
+            }
+        }
+    
+        &.btn-toolbar-bottom {
+            .btn-group {
+                border-bottom: .1rem solid #eee;
+            }
+        }
+    
+        .btn-group {
+            border-right: .1rem solid #eee;
+            margin-left: 0;
+    
+            &:first-child {
+                border-left: .1rem solid #eee;
+            }
+    
+            .btn {
+                padding: .6rem .85rem;
+    
+                &.btn-light {
+                    background-color: #fff;
+    
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: #eee;
+                    }
+                }
+            }
+
+            .dropdown-menu {
+                margin-top: 0;
+                border: .1rem solid #eee;
+                padding: 0;
+                border-radius: 0;
+
+                .dropdown-item {
+                    padding: .5rem .75rem;
+                }
+            }
+        }
+    }
+}

@@ -14,7 +14,7 @@ function new_notification($user, $link, $message, $icon)
 
     $now = time();
 
-    $db->query('INSERT INTO ' . $db->prefix . 'notifications (user_id, message, icon, link, time) VALUES(' . $user . ', \'' . $message . '\', \'' . $icon . '\', \'' . $link . '\', ' . $now . ')') or error('Unable to add new notification', __FILE__, __LINE__, $db->error());
+    $db->query('INSERT INTO '.$db->prefix.'notifications (user_id, message, icon, link, time) VALUES('.$user.', \''.$message.'\', \''.$icon.'\', \''.$link.'\', '.$now.')') or error('Unable to add new notification', __FILE__, __LINE__, $db->error());
 
 }
 
@@ -34,7 +34,7 @@ function required_fields()
 // Output a JavaScript object with localised field names
         $tpl_temp = count($required_fields);
         foreach ($required_fields as $elem_orig => $elem_trans) {
-            echo $elem_orig . '": "' . addslashes(str_replace('&#160;', ' ', $elem_trans));
+            echo $elem_orig.': "'.addslashes(str_replace('&#160;', ' ', $elem_trans));
             if (--$tpl_temp) {
                 echo "\",";
             } else {
@@ -64,7 +64,7 @@ function required_fields()
 
 function check_url()
 {
-    $redirect_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $redirect_url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
     return $redirect_url;
 }

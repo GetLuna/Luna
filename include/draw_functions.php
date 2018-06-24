@@ -84,44 +84,46 @@ function draw_editor($height, $meta_enabled = null) {
 		<?php echo $pin_btn ?>
 		<?php echo $silence_btn ?>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-bold"></span></a>
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-underline"></span></a>
-			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-italic"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-strikethrough"></span></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-bold"></i></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-underline"></i></a>
+			<a class="btn btn-light d-none d-lg-block" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-italic"></i></a>
+			<a class="btn btn-light d-none d-xl-block" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-strikethrough"></i></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-heading"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-subscript"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-superscript"></span></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-heading"></i></a>
+			<a class="btn btn-light d-none d-xl-block" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-subscript"></i></a>
+			<a class="btn btn-light d-none d-xl-block" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-superscript"></i></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-quote-left"></span></a>
-			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-code"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-file-code"></span></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-quote-left"></i></a>
+			<a class="btn btn-light d-none d-lg-block" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-code"></i></a>
+			<a class="btn btn-light d-none d-xl-block" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-file-code"></i></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-link"></span></a>
-			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-image"></span></a>
-			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-play"></span></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-link"></i></a>
+			<a class="btn btn-light d-none d-md-block" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-image"></i></a>
+			<a class="btn btn-light d-none d-md-block" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-play"></i></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-list-ul"></span></a>
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-asterisk"></span></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-list-ul"></i></a>
+			<a class="btn btn-light" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-asterisk"></i></a>
 		</div>
-		<div class="btn-group pull-right hidden-lg">
-			<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				<span class="fas fa-fw fa-ellipsis-h"></span>
-			</a>
-			<ul class="dropdown-menu" role="menu">
-				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-italic"></span> <?php _e('Italic', 'luna'); ?></a></li>
-				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-code"></span> <?php _e('Code', 'luna'); ?></a></li>
-				<li class="hidden-lg"><a href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-file-code"></span> <?php _e('Inline code', 'luna'); ?></a></li>
-				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-image"></span> <?php _e('Image', 'luna'); ?></a></li>
-				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-play"></span> <?php _e('Video', 'luna'); ?></a></li>
-				<li><a href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-strikethrough"></span> <?php _e('Strike', 'luna'); ?></a></li>
-				<li><a href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-subscript"></span> <?php _e('Subscript', 'luna'); ?></a></li>
-				<li><a href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-superscript"></span> <?php _e('Superscript', 'luna'); ?></a></li>
-			</ul>
+		<div class="btn-group d-block d-xl-none">
+			<div class="dropdown">
+				<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-fw fa-ellipsis-h"></i>
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item d-block d-lg-none" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-italic"></i> <?php _e('Italic', 'luna'); ?></a>
+					<a class="dropdown-item d-block d-lg-none" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-code"></i> <?php _e('Code', 'luna'); ?></a>
+					<a class="dropdown-item d-block d-xl-none" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-file-code"></i> <?php _e('Inline code', 'luna'); ?></a>
+					<a class="dropdown-item d-block d-md-none" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-image"></i> <?php _e('Image', 'luna'); ?></a>
+					<a class="dropdown-item d-block d-md-none" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-play"></i> <?php _e('Video', 'luna'); ?></a>
+					<a class="dropdown-item" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-strikethrough"></i> <?php _e('Strike', 'luna'); ?></a>
+					<a class="dropdown-item" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-subscript"></i> <?php _e('Subscript', 'luna'); ?></a>
+					<a class="dropdown-item" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-superscript"></i> <?php _e('Superscript', 'luna'); ?></a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="comment_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
@@ -142,10 +144,10 @@ function draw_editor($height, $meta_enabled = null) {
 	?>
 	<div class="btn-toolbar btn-toolbar-bottom">
 		<div class="btn-group">
-			<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fas fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
+			<button class="btn btn-light" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><i class="fas fa-fw fa-plus"></i> <?php _e('Submit', 'luna') ?></button>
 		</div>
-		<div class="btn-group pull-right">
-			<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fas fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
+		<div class="btn-group">
+			<button class="btn btn-light" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><i class="fas fa-fw fa-eye"></i> <?php _e('Preview', 'luna') ?></button>
 		</div>
 	</div>
 </div>

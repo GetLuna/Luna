@@ -291,6 +291,33 @@ td .custom-control {
     color: #cc9a00;
     background-color: #fff5d6; }
 
+.editor {
+  padding-top: .75rem; }
+  .editor .form-control {
+    border: .1rem solid #eee; }
+  .editor .btn-toolbar.btn-toolbar-top .btn-group {
+    border-top: .1rem solid #eee; }
+  .editor .btn-toolbar.btn-toolbar-bottom .btn-group {
+    border-bottom: .1rem solid #eee; }
+  .editor .btn-toolbar .btn-group {
+    border-right: .1rem solid #eee;
+    margin-left: 0; }
+    .editor .btn-toolbar .btn-group:first-child {
+      border-left: .1rem solid #eee; }
+    .editor .btn-toolbar .btn-group .btn {
+      padding: .6rem .85rem; }
+      .editor .btn-toolbar .btn-group .btn.btn-light {
+        background-color: #fff; }
+        .editor .btn-toolbar .btn-group .btn.btn-light:hover, .editor .btn-toolbar .btn-group .btn.btn-light:active, .editor .btn-toolbar .btn-group .btn.btn-light:focus {
+          background-color: #eee; }
+    .editor .btn-toolbar .btn-group .dropdown-menu {
+      margin-top: 0;
+      border: .1rem solid #eee;
+      padding: 0;
+      border-radius: 0; }
+      .editor .btn-toolbar .btn-group .dropdown-menu .dropdown-item {
+        padding: .5rem .75rem; }
+
 .comment {
   margin-top: .1rem; }
   .comment.answer .comment-header .media-body {
@@ -380,6 +407,8 @@ footer {
   .title-block.title-block-primary {
     background-color: #2788cb;
     color: #fff; }
+  .title-block.title-block-forum {
+    margin-bottom: .1rem !important; }
   .title-block.title-block-nav {
     padding-bottom: 0;
     border-radius: 0;
