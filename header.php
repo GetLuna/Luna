@@ -134,7 +134,7 @@ if (!$luna_user['is_guest']) {
         $notification_menu_item = '
             <li class="nav-item dropdown dropdown-notifications">
                 <a class="nav-link dropdown-toggle" href="#" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="'.(($num_notifications != 0) ? 'flash' : '').'">'.$notificon.'</span>
+                    <span class="'.(($num_notifications != 0) ? 'flash' : '').'">'.$notificon.'<span class="d-inline d-md-none"> '.__('Notifications', 'luna').'</span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationMenu">
                     <h6 class="dropdown-header">'.__('Notifications', 'luna').'</h6>

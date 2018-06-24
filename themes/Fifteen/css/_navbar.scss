@@ -1,6 +1,8 @@
 .navbar {
-    padding-top: 0;
-    padding-bottom: 0;
+    @media (min-width: 769px) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
     .navbar-brand {
         margin: 0;
@@ -12,6 +14,10 @@
         }
     }
 
+    .navbar-toggler {
+        border: transparent;
+    }
+
     .navbar-collapse {
         .navbar-nav {
             &.my-2 {
@@ -21,10 +27,12 @@
 
             .nav-item {
                 &.dropdown {
-                    &.dropdown-user {
-                        .nav-link {
-                            padding-top: .75rem;
-                            padding-bottom: .75rem;
+                    @media (min-width: 769px) {
+                        &.dropdown-user {
+                            .nav-link {
+                                padding-top: .75rem;
+                                padding-bottom: .75rem;
+                            }
                         }
                     }
 
@@ -79,8 +87,11 @@
                 }
 
                 .nav-link {
-                    padding: 1.5rem .75rem;
                     color: #fff;
+                    
+                    @media (min-width: 769px) {
+                        padding: 1.5rem .75rem;
+                    }
                 }
             }
         }

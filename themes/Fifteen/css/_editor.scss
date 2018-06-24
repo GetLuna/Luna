@@ -1,29 +1,25 @@
 .editor {
-    padding-top: .75rem;
+    margin-top: .75rem;
+    border: .1rem solid $accent;
 
     .form-control {
         border: .1rem solid #eee;
+        border-left: none;
+        border-right: none;
+
+        &:focus {
+            box-shadow: none;
+            border-color: $accent;
+        }
     }
 
     .btn-toolbar {
-        &.btn-toolbar-top {
-            .btn-group {
-                border-top: .1rem solid #eee;
-            }
-        }
-    
-        &.btn-toolbar-bottom {
-            .btn-group {
-                border-bottom: .1rem solid #eee;
-            }
-        }
-    
         .btn-group {
             border-right: .1rem solid #eee;
             margin-left: 0;
     
             &:first-child {
-                border-left: .1rem solid #eee;
+                border-left: none;
             }
     
             .btn {
@@ -35,7 +31,7 @@
                     &:hover,
                     &:active,
                     &:focus {
-                        background-color: #eee;
+                        background-color: #eee !important;
                     }
                 }
             }
