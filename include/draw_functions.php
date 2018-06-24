@@ -113,7 +113,7 @@ function draw_editor($height, $meta_enabled = null) {
 				<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-fw fa-ellipsis-h"></i>
 				</button>
-				<div class="dropdown-menu">
+				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item d-block d-lg-none" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-italic"></i> <?php _e('Italic', 'luna'); ?></a>
 					<a class="dropdown-item d-block d-lg-none" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-code"></i> <?php _e('Code', 'luna'); ?></a>
 					<a class="dropdown-item d-block d-xl-none" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><i class="fas fa-fw fa-file-code"></i> <?php _e('Inline code', 'luna'); ?></a>

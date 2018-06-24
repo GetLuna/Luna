@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <div class="container main">
 	<div class="row forumview">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="list-group list-group-nav">
 				<a class="list-group-item" href="index.php"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Back to index', 'luna') ?></a>
 			</div>
@@ -29,7 +29,7 @@ if (!defined('FORUM'))
 				</div>
 				<hr />
 			<?php endif; ?>
-			<div class="forum-list d-none d-sm-block">
+			<div class="forum-list d-none d-md-block">
 				<div class="list-group list-group-nav">
 					<?php draw_forum_list('forum.php', 1, 'category.php', '') ?>
 				</div>
@@ -41,9 +41,9 @@ if (!defined('FORUM'))
 					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fas fa-fw fa-eye"></span> <?php _e('Moderate forum', 'luna') ?></a>
 				<?php } ?>
 			</div>
-			<div class="d-block d-sm-none"><hr /></div>
+			<div class="d-block d-md-none"><hr /></div>
 		</div>
-		<div class="col-sm-9">
+		<div class="col-md-9">
 			<div class="title-block title-block-primary title-block-forum" style="background-color: <?php echo $cur_forum['color']; ?>;">
 				<h2 class="forum-title"><?php echo $faicon.' '.luna_htmlspecialchars($cur_forum['forum_name']) ?><span class="float-right"><?php echo $comment_link ?></span></h2>
 				<div class="forum-desc"><?php echo $cur_forum['forum_desc'] ?></div>
