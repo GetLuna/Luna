@@ -62,7 +62,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
     $notifications = implode('', $ind_notification);
     $notification_menu_item = '
         <li class="nav-item dropdown dropdown-notifications">
-            <a class="nav-link dropdown-toggle" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="'.(($num_notifications != 0) ? 'flash' : '').'">'.$notificon.'</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationMenu">

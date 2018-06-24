@@ -133,7 +133,7 @@ if (!$luna_user['is_guest']) {
         $notifications = implode('', $ind_notification);
         $notification_menu_item = '
             <li class="nav-item dropdown dropdown-notifications">
-                <a class="nav-link dropdown-toggle" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="'.(($num_notifications != 0) ? 'flash' : '').'">'.$notificon.'</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationMenu">
@@ -153,7 +153,7 @@ if (!$luna_user['is_guest']) {
     
         $notification_menu_item ='
             <li class="nav-item active">
-                <a class="nav-link'.(($num_notifications != 0) ? ' flash' : '').'" href="https://getluna.org/docs" class="'.$notificon.'"><span class="visible-xs-inline"> '.__('Notifications', 'luna').'</span></a>
+                <a class="nav-link'.(($num_notifications != 0) ? ' flash' : '').'" href="https://getluna.org/docs" class="'.$notificon.'"><span class="d-inline d-sm-none"> '.__('Notifications', 'luna').'</span></a>
             </li>';
     }
 }
