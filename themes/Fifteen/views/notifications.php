@@ -24,10 +24,14 @@ if (!defined('FORUM'))
 		<div class="col-xs-12 col-sm-9">
 			<div class="title-block title-block-primary title-block-nav">
 				<h2><i class="far fa-fw fa-circle"></i> <?php _e('Notifications', 'luna') ?></h2>
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#new" aria-controls="new" role="tab" data-toggle="tab"><i class="fas fa-fw fa-circle"></i><span class="hidden-sm hidden-xs"> <?php _e('New', 'luna') ?></span></a></li>
-					<li role="presentation"><a href="#seen" aria-controls="seen" role="tab" data-toggle="tab"><i class="far fa-fw fa-circle"></i><span class="hidden-sm hidden-xs"> <?php _e('Seen', 'luna') ?></span></a></li>
-				</ul>
+				<nav class="nav nav-tabs">
+					<a class="nav-item nav-link active" href="#new" aria-controls="new" role="tab" data-toggle="tab">
+						<i class="fas fa-fw fa-circle"></i><span class="d-none d-lg-inline"> <?php _e('New', 'luna') ?></span>
+					</a>
+					<a class="nav-item nav-link" href="#seen" aria-controls="seen" role="tab" data-toggle="tab">
+						<i class="far fa-fw fa-circle"></i><span class="d-none d-lg-inline"> <?php _e('Seen', 'luna') ?></span>
+					</a>
+				</nav>
 			</div>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="new">

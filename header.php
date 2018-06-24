@@ -119,14 +119,14 @@ if (!$luna_user['is_guest']) {
     if ($luna_config['o_notification_flyout'] == 1) {
         if ($num_notifications == '0') {
             $notificon = '<span class="far fa-fw fa-circle"></span>';
-            $ind_notification[] = '<a class="dropdown-item" href="../notifications.php">'.__('No new notifications', 'luna').'</a>';
+            $ind_notification[] = '<a class="dropdown-item" href="notifications.php">'.__('No new notifications', 'luna').'</a>';
         } else {
             $notificon = $num_notifications.' <span class="fas fa-fw fa-circle"></span>';
 
             $notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
             while ($cur_notifi = $db->fetch_assoc($notification_result)) {
                 $notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
-                $ind_notification[] = '<a class="dropdown-item" href="../notifications.php?notification='.$cur_notifi['id'].'"><span class="timestamp">'.$notifitime.'</span> <span class="fas fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].'</a>';
+                $ind_notification[] = '<a class="dropdown-item" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="timestamp">'.$notifitime.'</span> <span class="fas fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].'</a>';
             }
         }
 
@@ -141,7 +141,7 @@ if (!$luna_user['is_guest']) {
                     <div class="dropdown-divider"></div>
                     '.$notifications.'
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item float-right" href="../notifications.php">'.__('More', 'luna').' <i class="fas fa-fw fa-arrow-right"></i></a>
+                    <a class="dropdown-item float-right" href="notifications.php">'.__('More', 'luna').' <i class="fas fa-fw fa-arrow-right"></i></a>
                 </div>
             </li>';
     } else {

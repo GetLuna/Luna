@@ -166,18 +166,6 @@
   .list-group.list-group-thread .list-group-item.new-item {
     border-left-color: #2788cb;
     background-color: #e8e8e8; }
-  .list-group.list-group-thread .list-group-item .status-solved {
-    color: #64b450; }
-  .list-group.list-group-thread .list-group-item .status-pinned {
-    color: #ffb900; }
-  .list-group.list-group-thread .list-group-item .status-new {
-    color: #b8b8b8; }
-  .list-group.list-group-thread .list-group-item .status-important {
-    color: #826eb4; }
-  .list-group.list-group-thread .list-group-item .status-moved {
-    color: #2788cb; }
-  .list-group.list-group-thread .list-group-item .status-closed {
-    color: #dc3232; }
 .list-group.list-group-none .list-group-item {
   border: none;
   background-color: transparent;
@@ -302,6 +290,15 @@ footer {
   footer .footer {
     background-color: #237ab6;
     padding: .75rem; }
+
+.notification-row .col-10,
+.notification-row .col-2 {
+  margin-top: .1rem;
+  padding: 0; }
+.notification-row .col-10 .btn {
+  text-align: left; }
+  .notification-row .col-10 .btn .timestamp {
+    color: #777; }
 
 .title-block {
   padding: 1.5rem .75rem .25rem;
