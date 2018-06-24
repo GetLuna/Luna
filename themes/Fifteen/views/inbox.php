@@ -5,22 +5,20 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<div class="profile-header container-fluid">
-	<div class="jumbotron profile">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h2 class="username"><?php echo $user['username'] ?></h2>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="jumbotron profile">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+                <h4><?php echo $user['username'] ?></h4>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="main profile container">
 	<div class="row">
-		<div class="col-xs-12 col-sm-3 sidebar">
-			<div class="container-avatar">
-				<img src="<?php echo get_avatar( $user['id'] ) ?>" alt="Avatar" class="img-avatar img-center">
+		<div class="col-md-3 col-12 sidebar">
+			<div class="container-avatar d-none d-md-block">
+				<img src="<?php echo get_avatar( $user['id'] ) ?>" alt="Avatar" class="avatar">
 			</div>
 			<?php load_me_nav('inbox'); ?>
 		</div>

@@ -65,8 +65,21 @@
 
 .jumbotron {
   border-radius: 0; }
-  .jumbotron.first-run {
+  .jumbotron.profile {
     color: #fff;
+    background-color: #257fbe;
+    padding: 0;
+    margin: 0; }
+    .jumbotron.profile .container {
+      padding: 0 1.5rem; }
+    .jumbotron.profile h4 {
+      font-size: 5rem;
+      color: #1b5d8b;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: -.4rem; }
+  .jumbotron.first-run {
     background-color: #257fbe;
     padding: 1rem;
     margin: 0; }
@@ -238,3 +251,9 @@ body {
 hr {
   margin-top: .75rem;
   margin-bottom: .75rem; }
+
+.container-avatar .avatar {
+  height: 8rem;
+  width: auto;
+  display: block;
+  margin: -2.5rem auto .75rem; }

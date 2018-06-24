@@ -34,3 +34,13 @@ hr {
     margin-top: .75rem;
     margin-bottom: .75rem;
 }
+
+// Index and profile avatar
+.container-avatar {
+    .avatar {
+        height: 8rem;
+        width: auto;
+        display: block;
+        margin: -2.5rem auto .75rem;
+    }
+}

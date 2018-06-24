@@ -77,13 +77,11 @@ if ($luna_user['first_run'] == '0') {
     </div>
 </div>
 <?php } else { ?>
-<div class="index profile-header container-fluid">
-	<div class="jumbotron profile">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h2 class="username"><?php _e( 'Welcome back', 'luna' ) ?></h2>
-				</div>
+<div class="jumbotron profile">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h4><?php _e( 'Welcome back', 'luna' ) ?></h4>
 			</div>
 		</div>
 	</div>
@@ -93,8 +91,8 @@ if ($luna_user['first_run'] == '0') {
 	<div class="row">
 		<div class="col-md-3 col-12 sidebar">
 			<?php if (!$luna_user['is_guest'] && $luna_user['first_run'] == '1') { ?>
-			<div class="container-avatar hidden-xs">
-				<img src="<?php echo get_avatar( $luna_user['id'] ) ?>" alt="Avatar" class="img-avatar img-center">
+			<div class="container-avatar d-none d-md-block">
+				<img src="<?php echo get_avatar( $luna_user['id'] ) ?>" alt="Avatar" class="avatar">
 			</div>
 			<?php } if ($luna_config['o_header_search'] && $luna_user['g_search'] == '1'): ?>
 			<form id="search" class="input-group search-form" method="get" action="search.php?section=simple">
