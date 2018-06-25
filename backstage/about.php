@@ -22,7 +22,7 @@ require 'header.php';
 
 ?>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-12">
         <div class="card">
             <h5 class="card-header">
                 <?php printf(__('About Luna %s %s', 'luna'), Version::LUNA_VERSION, Version::LUNA_CODE_NAME) ?>
@@ -37,6 +37,7 @@ require 'header.php';
                     <p><?php _e('Font Awesome 5 will now also be loaded from a CDN when CDN load is enabled', 'luna') ?></p>
                     <p><?php _e('The Backstage and installer now use Bootstrap 4.1', 'luna') ?></p>
                     <p><?php _e('Fifteen and Sunrise now use Bootstrap 4.1', 'luna') ?></p>
+                    <p><?php _e('Upgrading will update the cookie bar url if the old default value is still used', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 3.3.7 to 4.1.1', 'luna') ?></p>
                     <p><?php _e('Prism has been updated from version 14.0 to 15.0', 'luna') ?></p>
@@ -46,8 +47,9 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                     <p><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></p>
-                    <p><?php _e('ALPHA - Bootstrap\'s JavaScript is now loaded correctly', 'luna') ?></p>
-                    <p><?php _e('ALPHA - Enabling CDN loading does no longer break the Backstage', 'luna') ?></p>
+                    <p><?php _e('Updating to Luna 2.0 no longer causes \'o_custom_css\' to start with "NULL" as value', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Bootstrap\'s JavaScript is now loaded correctly', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Enabling CDN loading does no longer break the Backstage', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
                     <p><?php _e('Accents aren\'t saved unless explicit interaction with the setting is done prior to saving', 'luna') ?></p>
@@ -72,7 +74,7 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Removed', 'luna') ?></h4>
                     <p><?php _e('You can no longer change the size of emoji', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
-                    <p><?php _e('ALPHA - Accents in Fifteen and Sunrise now work again', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Accents in Fifteen and Sunrise now work again', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 2 <small>2.1-alpha.2</small></span></h2>
@@ -87,8 +89,8 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Fifteen and Sunrise are now written in SCSS', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
-                    <p><?php _e('ALPHA - Backstage accent settings no longer trigger a warning', 'luna') ?></p>
-                    <p><?php _e('ALPHA - $luna_config is now used instead of $config for some settings, as it should be', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Backstage accent settings no longer trigger a warning', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> $luna_config is now used instead of $config for some settings, as it should be', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 1 <small>2.1-alpha.1</small></span></h2>
@@ -112,9 +114,12 @@ require 'header.php';
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 10 <small>2.0.10</small></span></h2>
+                    <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
+                    <p><?php _e('Upgrading will update the cookie bar url if the old default value is still used', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                     <p><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></p>
+                    <p><?php _e('Updating to Luna 2.0 no longer causes \'o_custom_css\' to start with "NULL" as value', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 9 <small>2.0.9</small></span></h2>

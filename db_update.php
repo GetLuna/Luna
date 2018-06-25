@@ -576,7 +576,7 @@ switch ($stage) {
 		build_config(1, 'o_announcement_title', '');
 		build_config(1, 'o_announcement_type', 'info');
 		build_config(1, 'o_board_tags', '');
-		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies');
+		build_config(1, 'o_cookie_bar_url', 'https://getluna.org/docs/cookies');
 		build_config(1, 'o_default_accent', '2');
 
 		// Luna 1.2 upgrade support
@@ -698,8 +698,8 @@ switch ($stage) {
 		build_config(1, 'o_timezone', 'UTC');
         
         // Luna 2.0 upgrade support
-        build_config(1, 'o_use_custom_css', '0');
-        build_config(1, 'o_custom_css', 'NULL');
+        build_config(1, 'o_use_custom_css', 0);
+        build_config(1, 'o_custom_css', NULL);
         build_config(1, 'o_allow_spoiler', 0);
         build_config(2, 'o_message_img_tag', 'p_message_img_tag');
         build_config(2, 'o_message_all_caps', 'p_message_all_caps');
@@ -721,6 +721,11 @@ switch ($stage) {
 
         $db->query('UPDATE ' . $db->prefix . 'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
 		$db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
+		
+		// Luna 2.0.10 upgrade support
+		if ( $luna_config['o_cookie_bar_url'] == 'http://getluna.org/docs/cookies' || $luna_config['o_cookie_bar_url'] == 'http://getluna.org/docs/cookies.php' ) {
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value=\'https://getluna.org/docs/cookies\' WHERE conf_name=\'o_cookie_bar_url\'') or error('Unable to update cookie bar URL config', __FILE__, __LINE__, $db->error());
+		}
 		
 		// Luna 2.1 upgrade support
         build_config(0, 'o_emoji');

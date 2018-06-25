@@ -566,8 +566,7 @@ $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id
         }
 
     }
-
-    ?>
+?>
                 </select>
 			</div>
         </form>
