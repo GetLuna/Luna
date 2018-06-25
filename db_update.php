@@ -566,7 +566,7 @@ switch ($stage) {
 		build_config(1, 'o_announcement_title', '');
 		build_config(1, 'o_announcement_type', 'info');
 		build_config(1, 'o_board_tags', '');
-		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies');
+		build_config(1, 'o_cookie_bar_url', 'https://getluna.org/docs/cookies');
 		build_config(1, 'o_default_accent', '2');
 
 		// Luna 1.2 upgrade support
@@ -710,7 +710,12 @@ switch ($stage) {
         $db->add_field('comments', 'admin_note', 'MEDIUMTEXT', true) or error('Unable to admin note field to comments', __FILE__, __LINE__, $db->error());
         
         $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
-        $db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
+		$db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
+		
+		// Luna 2.0.10 upgrade support
+		if ( $luna_config['o_cookie_bar_url'] == 'http://getluna.org/docs/cookies' || $luna_config['o_cookie_bar_url'] == 'http://getluna.org/docs/cookies.php' ) {
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value=\'https://getluna.org/docs/cookies\' WHERE conf_name=\'o_cookie_bar_url\'') or error('Unable to update cookie bar URL config', __FILE__, __LINE__, $db->error());
+		}
 
 		break;
 
