@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <div class="main container">
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<div class="title-block title-block-primary">
 				<h2>
 					<i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?>
@@ -20,11 +20,14 @@ if (!defined('FORUM'))
 			</div>
 			<div class="tab-content">
 				<form id="search" method="get" action="search.php?section=simple">
-					<fieldset>
 						<input type="hidden" name="action" value="search" />
 						<input type="hidden" name="sort_dir" value="DESC" />
-						<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s"><span class="fas fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></div>
-					</fieldset>
+						<div class="input-group">
+							<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" />
+							<span class="input-group-append">
+								<button class="btn btn-primary" type="submit" name="search" accesskey="s"><span class="fas fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button>
+							</span>
+						</div>
 				</form>
 			</div>
 		</div>
