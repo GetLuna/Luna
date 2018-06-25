@@ -760,7 +760,7 @@ switch ($stage) {
 			$db->create_table('emoji', $schema) or error('Unable to create emoji table', __FILE__, __LINE__, $db->error());
 
 			$emoji = array(
-				':)' => '1f601',
+				':)' => '1f642',
 				':|' => '1f611',
 				':(' => '1f629',
 				':d' => '1f604',
@@ -771,8 +771,8 @@ switch ($stage) {
 				':/' => '1f612',
 				':P' => '1f60b',
 				':p' => '1f60b',
-				':lol:' => '1f601',
-				':-))' => '1f601',
+				':lol:' => '1f642',
+				':-))' => '1f642',
 				':@' => '1f620',
 				'%)' => '1f606',
 				'b:' => '1f60e',
