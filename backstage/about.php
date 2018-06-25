@@ -32,8 +32,10 @@ require 'header.php';
 					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 10 <small>2.0.10</small></span></h2>
 						<ul class="changes">
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Upgrading will update the cookie bar url if the old default value is still used', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('The default user group can now be changed again', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Updating to Luna 2.0 no longer causes \'o_custom_css\' to start with "NULL" as value', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
