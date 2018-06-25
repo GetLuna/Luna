@@ -7,6 +7,16 @@
         color: #fff;
     }
 
+    &.title-block-danger {
+        background-color: $red;
+        color: #fff;
+    }
+
+    &.title-block-success {
+        background-color: $green;
+        color: #fff;
+    }
+
     &.title-block-forum {
         margin-bottom: .1rem !important;
     }
@@ -59,6 +69,14 @@
 .tab-content {
     border: .1rem solid $accent;
     padding: .75rem;
+
+    &.tab-content-danger {
+        border-color: $red;
+    }
+
+    &.tab-content-success {
+        border-color: $green;
+    }
 
     &:not(:first-child) {
         border-top: none;

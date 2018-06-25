@@ -43,6 +43,7 @@ require 'header.php';
                     <p><?php _e('Prism has been updated from version 14.0 to 15.0', 'luna') ?></p>
                     <p><?php _e('Font Awesome has been updated from version 5.0.13 to 5.1.0', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
+                    <p><?php _e('Some emoji have been remapped to better represent their text-version', 'luna') ?></p>
                     <p><?php _e('When pruning threads, pruning pinned threads is no longer enabled by default', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('The default user group can now be changed again', 'luna') ?></p>

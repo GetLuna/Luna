@@ -38,6 +38,38 @@
         }
     }
 
+    &.btn-light {
+        &.btn-light-primary {
+            color: $accent;
+    
+            &:hover,
+            &:active,
+            &:focus {
+                color: darken( $accent, 15% );
+            }
+        }
+
+        &.btn-light-danger {
+            color: $red;
+    
+            &:hover,
+            &:active,
+            &:focus {
+                color: darken( $red, 15% );
+            }
+        }
+
+        &.btn-light-success {
+            color: $green;
+    
+            &:hover,
+            &:active,
+            &:focus {
+                color: darken( $green, 15% );
+            }
+        }
+    }
+
     &.btn-success {
         background-color: $fluo;
 

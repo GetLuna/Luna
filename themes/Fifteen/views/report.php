@@ -6,10 +6,15 @@ if (!defined('FORUM'))
 ?>
 <div class="main container">
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<form class="form-horizontal" id="report" method="post" action="misc.php?report=<?php echo $comment_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 				<div class="title-block title-block-primary">
-					<h2><i class="fas fa-fw fa-flag"></i> <?php _e( 'Report', 'luna' ) ?><span class="float-right"><button type="submit" class="btn btn-default" name="submit" accesskey="s"><span class="fas fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button></span></h2>
+					<h2>
+						<i class="fas fa-fw fa-flag"></i> <?php _e( 'Report', 'luna' ) ?>
+						<span class="float-right">
+							<button type="submit" class="btn btn-light btn-light-primary" name="submit" accesskey="s"><span class="fas fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button>
+						</span>
+					</h2>
 				</div>
 				<div class="tab-content">
 					<input type="hidden" name="form_sent" value="1" />
