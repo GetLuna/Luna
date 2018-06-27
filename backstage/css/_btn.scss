@@ -23,6 +23,18 @@
             }
         }
     }
+
+    &.btn-danger {
+        color: #fff;
+        background-color: $red;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: #fff;
+            background-color: darken( $red, 5% );
+        }
+    }
 }
 
 .btn-toolbar {
