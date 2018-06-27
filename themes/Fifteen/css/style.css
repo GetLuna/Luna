@@ -127,6 +127,21 @@
       background-color: rgba(255, 255, 255, 0.2); }
       .jumbotron.first-run .btn-login:active, .jumbotron.first-run .btn-login:focus, .jumbotron.first-run .btn-login:hover {
         background-color: rgba(255, 255, 255, 0.5); }
+  .jumbotron.titletron {
+    color: #fff;
+    padding: 1.2rem .75rem;
+    margin-bottom: 0; }
+    .jumbotron.titletron h2 {
+      margin-bottom: 0;
+      font-weight: 600; }
+      .jumbotron.titletron h2 small {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        margin-bottom: -.4rem;
+        font-weight: 700; }
+      .jumbotron.titletron h2 .btn {
+        margin-top: -1.4rem; }
 
 .list-group.list-group-transparent .list-group-item {
   border-radius: 0;
@@ -335,6 +350,11 @@ td .custom-control {
         background-color: #fff; }
         .editor .btn-toolbar .btn-group .btn.btn-light:hover, .editor .btn-toolbar .btn-group .btn.btn-light:active, .editor .btn-toolbar .btn-group .btn.btn-light:focus {
           background-color: #eee !important; }
+        .editor .btn-toolbar .btn-group .btn.btn-light.active {
+          color: #fff;
+          background-color: #2788cb; }
+          .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
+            background-color: #1f6ba0 !important; }
     .editor .btn-toolbar .btn-group .dropdown-menu {
       margin-top: 0;
       border: .1rem solid #eee;
@@ -342,6 +362,17 @@ td .custom-control {
       border-radius: 0; }
       .editor .btn-toolbar .btn-group .dropdown-menu .dropdown-item {
         padding: .5rem .75rem; }
+
+.admin-note {
+  margin-top: .75rem; }
+  .admin-note .form-control {
+    border: none;
+    margin-top: .75rem;
+    padding: 0;
+    background: transparent;
+    color: #b93313; }
+    .admin-note .form-control:focus {
+      box-shadow: none; }
 
 .comment {
   margin-top: .1rem; }

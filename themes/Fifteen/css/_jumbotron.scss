@@ -92,4 +92,27 @@
             }
         }
     }
+
+    &.titletron {
+        color: #fff;
+        padding: 1.2rem .75rem;
+        margin-bottom: 0;
+
+        h2 {
+            margin-bottom: 0;
+            font-weight: 600;
+
+            small {
+                display: block;
+                text-transform: uppercase;
+                font-size: 1rem;
+                margin-bottom: -.4rem;
+                font-weight: 700;
+            }
+
+            .btn {
+                margin-top: -1.4rem;
+            }
+        }
+    }
 }

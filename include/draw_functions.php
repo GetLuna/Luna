@@ -59,16 +59,31 @@ function draw_editor($height, $meta_enabled = null) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_thread" value="1" tabindex="-1"'.$pin_status.' /><span class="fas fa-fw fa-thumbtack"></span></label></div>';
+		$pin_btn = '
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			<label class="btn btn-light'.$pin_active.'">
+				<input type="checkbox"'.$pin_status.' autocomplete="off">
+				<i class="fas fa-fw fa-thumbtack"></i>
+			</label>
+		</div>';
 
 	if (LUNA_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
 			$silence_status = ' checked';
 			$silence_active = ' active';
+		} else {
+			$silence_status = '';
+			$silence_active = '';
 		}
 
 		if ($is_admmod)
-			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Mute edit', 'luna').'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fas fa-fw fa-microphone-slash"></span></label></div>';
+			$silence_btn = '
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				<label class="btn btn-light'.$silence_active.'">
+					<input type="checkbox"'.$silence_status.' autocomplete="off">
+					<i class="fas fa-fw fa-microphone-slash"></i>
+				</label>
+			</div>';
 	}
 
 ?>
@@ -186,9 +201,9 @@ function draw_admin_note() {
     
 if ($luna_user['g_edit_comments'] == '1' && $luna_user['g_id'] == LUNA_ADMIN) {
 ?>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger admin-note">
         <h4><?php _e('Manage admin note', 'luna') ?></h4>
-        <textarea class="form-control admin-note-edit"  placeholder="<?php _e('Add a note to this comment...', 'luna') ?>" name="admin_note" id="note_field" rows="3" tabindex="<?php echo $cur_index++ ?>"><?php echo $cur_comment['admin_note'] ?></textarea>
+        <textarea class="form-control"  placeholder="<?php _e('Add a note to this comment...', 'luna') ?>" name="admin_note" id="note_field" rows="3" tabindex="<?php echo $cur_index++ ?>"><?php echo $cur_comment['admin_note'] ?></textarea>
     </div>
 <?php
                  }

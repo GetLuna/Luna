@@ -33,6 +33,17 @@
                     &:focus {
                         background-color: #eee !important;
                     }
+
+                    &.active {
+                        color: #fff;
+                        background-color: $accent;
+    
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            background-color: darken( $accent, 10% ) !important;
+                        }
+                    }
                 }
             }
 
@@ -46,6 +57,22 @@
                     padding: .5rem .75rem;
                 }
             }
+        }
+    }
+}
+
+.admin-note {
+    margin-top: .75rem;
+
+    .form-control {
+        border: none;
+        margin-top: .75rem;
+        padding: 0;
+        background: transparent;
+        color: darken( $red, 10% );
+
+        &:focus {
+            box-shadow: none;
         }
     }
 }

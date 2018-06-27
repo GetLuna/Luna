@@ -8,14 +8,24 @@ $jumbo_style = ' style="background:'.$cur_comment['color'].';"';
 $btn_style = ' style="color:'.$cur_comment['color'].';"';
 
 ?>
-<div class="jumbotron edit-title"<?php echo $jumbo_style ?>>
+<div class="jumbotron titletron"<?php echo $jumbo_style ?>>
 	<div class="container">
-		<h2 class="forum-title"><?php printf(__('Edit %s', 'luna'), luna_htmlspecialchars($cur_comment['subject'])) ?><span class="pull-right naviton"><a class="btn btn-default"<?php echo $btn_style ?> href="thread.php?id=<?php echo $cur_comment['tid'] ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
+		<h2 class="forum-title">
+            <small>
+                <?php _e('New thread', 'luna') ?>
+            </small>
+            <?php echo luna_htmlspecialchars($cur_comment['subject']) ?>
+            <span class="float-right naviton">
+                <a class="btn btn-light"<?php echo $btn_style ?> href="thread.php?id=<?php echo $cur_comment['tid'] ?>">
+                    <i class="fas fa-fw fa-chevron-left"></i> <?php _e('Cancel', 'luna') ?>
+                </a>
+            </span>
+        </h2>
 	</div>
 </div>
 <div class="main container editor-only">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
 <?php
 if (isset($errors))
 	draw_error_panel($errors);
