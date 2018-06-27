@@ -374,6 +374,9 @@ td .custom-control {
     .admin-note .form-control:focus {
       box-shadow: none; }
 
+.new-inbox .editor {
+  margin-top: 0; }
+
 .comment {
   margin-top: .1rem; }
   .comment.answer .comment-header .media-body {
@@ -491,9 +494,16 @@ footer {
         margin-bottom: 0; }
 
 .tab-set:not(:last-child) {
-  margin-bottom: .75rem; }
+  margin-bottom: .75rem;
+  border-bottom: none !important; }
 .tab-set:last-child {
   margin-bottom: 0; }
+.tab-set .table {
+  margin: 0; }
+  .tab-set .table:last-child {
+    border-width: 0 1px 1px 1px;
+    border-color: #2788cb;
+    border-style: solid; }
 
 .title-block:not(:last-child) {
   margin-bottom: 0; }
@@ -507,6 +517,8 @@ footer {
     border-color: #97c800; }
   .tab-content:not(:first-child) {
     border-top: none; }
+  .tab-content:not(:last-child) {
+    border-bottom: none; }
   .tab-content p:last-child {
     margin-bottom: 0; }
 

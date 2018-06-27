@@ -53,18 +53,29 @@
 .tab-set {
     &:not(:last-child) {
         margin-bottom: .75rem;
+        border-bottom: none !important;
     }
 
     &:last-child {
         margin-bottom: 0;
     }
-}
 
-    .title-block {
-        &:not(:last-child) {
-            margin-bottom: 0;
+    .table {
+        margin: 0;
+
+        &:last-child {
+            border-width: 0 1px 1px 1px;
+            border-color: $accent;
+            border-style: solid;
         }
     }
+}
+
+.title-block {
+    &:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
 
 .tab-content {
     border: .1rem solid $accent;
@@ -80,6 +91,10 @@
 
     &:not(:first-child) {
         border-top: none;
+    }
+    
+    &:not(:last-child) {
+        border-bottom: none;
     }
 
     p:last-child {

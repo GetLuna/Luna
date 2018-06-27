@@ -6,10 +6,10 @@
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
-define('LUNA_ROOT', dirname(__FILE__) . '/');
-require LUNA_ROOT . 'include/common.php';
-require LUNA_ROOT . 'include/email.php';
-require LUNA_ROOT . 'include/me_functions.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/email.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest']) {
@@ -46,7 +46,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
     // Make sure they got here from the site
     confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 
-    $result = $db->query('SELECT DISTINCT owner, receiver FROM ' . $db->prefix . 'messages WHERE shared_id=' . $r) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT DISTINCT owner, receiver FROM '.$db->prefix.'messages WHERE shared_id='.$r) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -69,7 +69,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
     $p_ids = implode(', ', $p_ids);
 
-    $result_subject = $db->query('SELECT subject FROM ' . $db->prefix . 'messages WHERE shared_id=' . $r . ' AND show_message=1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
+    $result_subject = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result_subject)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -77,7 +77,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
     $p_subject = $db->result($result_subject);
 
-    $result_username = $db->query('SELECT username FROM ' . $db->prefix . 'users WHERE id IN (' . $p_ids . ')') or error('Unable to find the owners of the message', __FILE__, __LINE__, $db->error());
+    $result_username = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id IN ('.$p_ids.')') or error('Unable to find the owners of the message', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result_username)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -93,7 +93,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
     if (!empty($q) && $q > '0') { // It's a reply with a quote
         // Get message info
-        $result = $db->query('SELECT sender, message FROM ' . $db->prefix . 'messages WHERE id=' . $q . ' AND owner=' . $luna_user['id']) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT sender, message FROM '.$db->prefix.'messages WHERE id='.$q.' AND owner='.$luna_user['id']) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
 
         if (!$db->num_rows($result)) {
             message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -102,7 +102,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
         $re_message = $db->fetch_assoc($result);
 
         // Quote the message
-        $p_message = '[quote=' . $re_message['sender'] . ']' . $re_message['message'] . '[/quote]';
+        $p_message = '[quote='.$re_message['sender'].']'.$re_message['message'].'[/quote]';
     }
 } else if (!empty($edit) && !isset($_POST['form_sent'])) { // It's an edit
     // Make sure they got here from the site
@@ -113,7 +113,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
     }
 
-    $result = $db->query('SELECT sender_id, message, receiver FROM ' . $db->prefix . 'messages WHERE id=' . $edit) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT sender_id, message, receiver FROM '.$db->prefix.'messages WHERE id='.$edit) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -190,7 +190,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
     $list_usernames = array();
     foreach ($dest_list as $destinataire) {
         // Get receiver infos
-        $result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_inbox, u.notify_inbox_full, u.use_inbox, u.num_inbox, g.g_id, g.g_inbox_limit, g.g_inbox FROM " . $db->prefix . "users AS u INNER JOIN " . $db->prefix . "groups AS g ON (u.group_id=g.g_id) LEFT JOIN " . $db->prefix . "messages AS ib ON (ib.owner=u.id) WHERE u.id!=1 AND u.username='" . $db->escape($destinataire) . "' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
+        $result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_inbox, u.notify_inbox_full, u.use_inbox, u.num_inbox, g.g_id, g.g_inbox_limit, g.g_inbox FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS ib ON (ib.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
 
         // List users infos
         if ($destinataires[$i] = $db->fetch_assoc($result_username)) {
@@ -198,7 +198,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
             $list_ids[] = $destinataires[$i]['id'];
             // Did the user left?
             if (!empty($r)) {
-                $result = $db->query('SELECT 1 FROM ' . $db->prefix . 'messages WHERE shared_id=' . $r . ' AND show_message=1 AND owner=' . $destinataires[$i]['id']) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
+                $result = $db->query('SELECT 1 FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1 AND owner='.$destinataires[$i]['id']) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
                 if (!$db->num_rows($result)) {
                     $errors[] = sprintf(__('%s has left the conversation.', 'luna'), luna_htmlspecialchars($destinataire));
                 }
@@ -254,7 +254,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
     }
 
     // Validate BBCode syntax
-    require LUNA_ROOT . 'include/parser.php';
+    require LUNA_ROOT.'include/parser.php';
     $p_message = preparse_bbcode($p_message, $errors);
 
     if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)
@@ -265,7 +265,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
             $_SESSION['last_session_request'] = $now = time();
 
             if ($luna_config['o_inbox_notification'] == '1') {
-                require_once LUNA_ROOT . 'include/email.php';
+                require_once LUNA_ROOT.'include/email.php';
 
                 // Load the new_inbox templates
                 $mail_tpl = trim(__('Subject: You received a new private message on <board_title>
@@ -315,7 +315,7 @@ You can read this private message at this address: <inbox_url>
                 $mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
                 $mail_message_full = str_replace('<board_mailer>', sprintf(__('%s Mailer', 'luna'), $luna_config['o_board_title']), $mail_message_full);
             }if (empty($r) && empty($edit)) { // It's a new message
-                $result_shared = $db->query('SELECT last_shared_id FROM ' . $db->prefix . 'messages ORDER BY last_shared_id DESC LIMIT 1') or error('Unable to fetch last_shared_id', __FILE__, __LINE__, $db->error());
+                $result_shared = $db->query('SELECT last_shared_id FROM '.$db->prefix.'messages ORDER BY last_shared_id DESC LIMIT 1') or error('Unable to fetch last_shared_id', __FILE__, __LINE__, $db->error());
 
                 if (!$db->num_rows($result_shared)) {
                     $shared_id = '1';
@@ -333,15 +333,15 @@ You can read this private message at this address: <inbox_url>
                         $val_showed = '0';
                     }
 
-                    $db->query('INSERT INTO ' . $db->prefix . 'messages (shared_id, last_shared_id, owner, subject, message, sender, receiver, sender_id, receiver_id, sender_ip, hide_smilies, commented, show_message, showed) VALUES(\'' . $shared_id . '\', \'' . $shared_id . '\', \'' . $dest['id'] . '\', \'' . $db->escape($p_subject) . '\', \'' . $db->escape($p_message) . '\', \'' . $db->escape($luna_user['username']) . '\', \'' . $db->escape($usernames_list) . '\', \'' . $luna_user['id'] . '\', \'' . $db->escape($ids_list) . '\', \'' . get_remote_address() . '\', \'' . $hide_smilies . '\',  \'' . $now . '\', \'1\', \'' . $val_showed . '\')') or error('Unable to send the message.', __FILE__, __LINE__, $db->error());
+                    $db->query('INSERT INTO '.$db->prefix.'messages (shared_id, last_shared_id, owner, subject, message, sender, receiver, sender_id, receiver_id, sender_ip, hide_smilies, commented, show_message, showed) VALUES(\''.$shared_id.'\', \''.$shared_id.'\', \''.$dest['id'].'\', \''.$db->escape($p_subject).'\', \''.$db->escape($p_message).'\', \''.$db->escape($luna_user['username']).'\', \''.$db->escape($usernames_list).'\', \''.$luna_user['id'].'\', \''.$db->escape($ids_list).'\', \''.get_remote_address().'\', \''.$hide_smilies.'\',  \''.$now.'\', \'1\', \''.$val_showed.'\')') or error('Unable to send the message.', __FILE__, __LINE__, $db->error());
                     $new_mp = $db->insert_id();
-                    $db->query('UPDATE ' . $db->prefix . 'messages SET last_comment_id=' . $new_mp . ', last_comment=' . $now . ', last_commenter=\'' . $db->escape($luna_user['username']) . '\' WHERE shared_id=' . $shared_id . ' AND show_message=1 AND owner=' . $dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
-                    $db->query('UPDATE ' . $db->prefix . 'users SET num_inbox=num_inbox+1 WHERE id=' . $dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+                    $db->query('UPDATE '.$db->prefix.'messages SET last_comment_id='.$new_mp.', last_comment='.$now.', last_commenter=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$shared_id.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
+                    $db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox+1 WHERE id='.$dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
                     // Email notification
                     if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
-                        $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $shared_id . '&mid=' . $new_mp . '&box=inbox', $mail_message);
-                        $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $shared_id . '&mid=' . $new_mp . '&box=inbox', $mail_message_full);
+                        $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
+                        $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 
                         if ($dest['notify_inbox_full'] == '1') {
                             luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
@@ -351,7 +351,7 @@ You can read this private message at this address: <inbox_url>
 
                     }
                 }
-                $db->query('UPDATE ' . $db->prefix . 'users SET last_comment=' . $now . ' WHERE id=' . $luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+                $db->query('UPDATE '.$db->prefix.'users SET last_comment='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
             }if (!empty($r)) { // It's a reply or a reply with a quote
                 // Check that $edit looks good
                 if ($r <= '0') {
@@ -368,17 +368,17 @@ You can read this private message at this address: <inbox_url>
                         $val_showed = '0';
                     }
 
-                    $db->query('INSERT INTO ' . $db->prefix . 'messages (shared_id, owner, subject, message, sender, receiver, sender_id, receiver_id, sender_ip, hide_smilies, commented, show_message, showed) VALUES(\'' . $r . '\', \'' . $dest['id'] . '\', \'' . $db->escape($p_subject) . '\', \'' . $db->escape($p_message) . '\', \'' . $db->escape($luna_user['username']) . '\', \'' . $db->escape($usernames_list) . '\', \'' . $luna_user['id'] . '\', \'' . $db->escape($ids_list) . '\', \'' . get_remote_address() . '\', \'' . $hide_smilies . '\', \'' . $now . '\', \'0\', \'' . $val_showed . '\')') or error('Unable to send the message.', __FILE__, __LINE__, $db->error());
+                    $db->query('INSERT INTO '.$db->prefix.'messages (shared_id, owner, subject, message, sender, receiver, sender_id, receiver_id, sender_ip, hide_smilies, commented, show_message, showed) VALUES(\''.$r.'\', \''.$dest['id'].'\', \''.$db->escape($p_subject).'\', \''.$db->escape($p_message).'\', \''.$db->escape($luna_user['username']).'\', \''.$db->escape($usernames_list).'\', \''.$luna_user['id'].'\', \''.$db->escape($ids_list).'\', \''.get_remote_address().'\', \''.$hide_smilies.'\', \''.$now.'\', \'0\', \''.$val_showed.'\')') or error('Unable to send the message.', __FILE__, __LINE__, $db->error());
                     $new_mp = $db->insert_id();
-                    $db->query('UPDATE ' . $db->prefix . 'messages SET last_comment_id=' . $new_mp . ', last_comment=' . $now . ', last_commenter=\'' . $db->escape($luna_user['username']) . '\' WHERE shared_id=' . $r . ' AND show_message=1 AND owner=' . $dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
+                    $db->query('UPDATE '.$db->prefix.'messages SET last_comment_id='.$new_mp.', last_comment='.$now.', last_commenter=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$r.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
                     if ($dest['id'] != $luna_user['id']) {
-                        $db->query('UPDATE ' . $db->prefix . 'messages SET showed = 0 WHERE shared_id=' . $r . ' AND show_message=1 AND owner=' . $dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
+                        $db->query('UPDATE '.$db->prefix.'messages SET showed = 0 WHERE shared_id='.$r.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
                     }
 
                     // Email notification
                     if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
-                        $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $r . '&mid=' . $new_mp . '&box=inbox', $mail_message);
-                        $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'] . '/viewinbox.php?tid=' . $r . '&mid=' . $new_mp . '&box=inbox', $mail_message_full);
+                        $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
+                        $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 
                         if ($dest['notify_inbox_full'] == '1') {
                             luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
@@ -388,7 +388,7 @@ You can read this private message at this address: <inbox_url>
 
                     }
                 }
-                $db->query('UPDATE ' . $db->prefix . 'users SET last_comment=' . $now . ' WHERE id=' . $luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+                $db->query('UPDATE '.$db->prefix.'users SET last_comment='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
             }
             redirect('inbox.php');
         }
@@ -406,7 +406,7 @@ You can read this private message at this address: <inbox_url>
 
         $arry_dests = array();
         foreach ($users_id as $user_id) {
-            $result = $db->query('SELECT username FROM ' . $db->prefix . 'users WHERE id=' . $user_id) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
+            $result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$user_id) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
 
             if (!$db->num_rows($result)) {
                 message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -420,7 +420,7 @@ You can read this private message at this address: <inbox_url>
         $id = intval($_GET['lid']);
 
         $arry_dests = array();
-        $result = $db->query('SELECT receivers FROM ' . $db->prefix . 'sending_lists WHERE user_id=' . $luna_user['id'] . ' AND id=' . $id) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT receivers FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' AND id='.$id) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
 
         if (!$db->num_rows($result)) {
             message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -444,8 +444,18 @@ if ($r == '0' && $q == '0' && $edit == '0') {
     $focus_element[] = 'req_message';
 }
 
+$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM ' . $db->prefix . 'users AS u LEFT JOIN ' . $db->prefix . 'groups AS g ON g.g_id=u.group_id WHERE u.id=' . $id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+if (!$db->num_rows($result)) {
+    message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+}
+
+$user = $db->fetch_assoc($result);
+
+$user_username = luna_htmlspecialchars($user['username']);
+$user_usertitle = get_title($user);
+
 define('LUNA_ACTIVE_PAGE', 'new-inbox');
-include LUNA_ROOT . 'header.php';
+include LUNA_ROOT.'header.php';
 require load_page('header.php');
 
 require load_page('inbox-new.php');

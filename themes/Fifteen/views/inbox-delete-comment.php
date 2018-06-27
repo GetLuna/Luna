@@ -14,8 +14,8 @@ if (!defined('FORUM'))
 			</div>
 			<div class="modal-body clearfix">
 				<p><?php _e('Are you sure that you want to delete the message(s) from your inbox?', 'luna') ?></p>
-				<button type="submit" name="delete_multiple" class="btn btn-danger btn-block"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
-				<a class="btn btn-default btn-block" data-dismiss="modal" href="#"><?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" name="delete_multiple" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+				<a class="btn btn-light" data-dismiss="modal" href="#"><?php _e('Cancel', 'luna') ?></a>
 			</div>
 		</div>
 	</div>
