@@ -49,7 +49,8 @@ require 'header.php';
                     <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                     <p><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></p>
                     <p><?php _e('Updating to Luna 2.0 no longer causes \'o_custom_css\' to start with "NULL" as value', 'luna') ?></p>
-                    <p><?php _e('Luna now correctly spaces the Inbox icon on Inbox\'s pages', 'luna') ?></p>
+                    <p><?php _e('Fixes a PHP error with receivers in Inbox not being countable', 'luna') ?></p>
+                    <p><?php _e('The paper plane icons in Inbox are now properly alligned', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Bootstrap\'s JavaScript is now loaded correctly', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Enabling CDN loading does no longer break the Backstage', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
@@ -121,6 +122,8 @@ require 'header.php';
                     <p><?php _e('The default user group can now be changed again', 'luna') ?></p>
                     <p><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></p>
                     <p><?php _e('Updating to Luna 2.0 no longer causes \'o_custom_css\' to start with "NULL" as value', 'luna') ?></p>
+                    <p><?php _e('Fixes a PHP error with receivers in Inbox not being countable', 'luna') ?></p>
+                    <p><?php _e('The paper plane icons in Inbox are now properly alligned', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 9 <small>2.0.9</small></span></h2>
