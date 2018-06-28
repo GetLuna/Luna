@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <div class="main container">
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<div class="title-block title-block-primary">
 				<h2><i class="fas fa-fw fa-envelope"></i> <?php _e('Send an email', 'luna') ?></h2>
 			</div>
