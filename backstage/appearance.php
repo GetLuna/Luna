@@ -183,10 +183,10 @@ if (isset($_GET['saved'])) {
                                     <?php _e('Allow users to set their own accent color.', 'luna')?>
                                 </label>
                             </div>
-                            <div class="btn-group accent-group" data-toggle="buttons">
+								<div class="btn-group-toggle" data-toggle="buttons">
 <?php
 foreach ($theme->features->accents as $accent) {
-    echo '<label class="btn btn-primary color-accent'.(($luna_config['o_default_accent'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"> <input type="radio" name="form[default_accent]" id="'.$accent->id.'" value="'.$accent->id.'"></label>';
+    echo '<label class="btn color-accent'.(($luna_config['o_default_accent'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="form[default_accent]" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_config['o_default_accent'] == $accent->id) ? ' checked' : '').'></label>';
 }
 ?>
                             </div>

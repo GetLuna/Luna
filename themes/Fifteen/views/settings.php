@@ -147,14 +147,16 @@ else
 							<div class="form-group row<?php if ($luna_config['o_allow_accent_color'] == '0') { echo ' d-none'; } ?>">
 								<label class="col-md-3 col-form-label"><?php _e('Color', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="btn-group accent-group" data-toggle="buttons">
+									<div class="btn-group-toggle" data-toggle="buttons">
 		<?php
 				$accents = forum_list_accents();
 		
 				foreach ($accents as $accent) {
-					echo '<label class="btn btn-primary color-accent'.(($luna_user['color_scheme'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"> <input type="radio" name="form[color_scheme]" id="'.$accent->id.'" value="'.$accent->id.'"></label>';
+					echo '<label class="btn color-accent'.(($luna_user['color_scheme'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="form[color_scheme]" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_user['color_scheme'] == $accent->id) ? ' checked' : '').'></label>';
 				}
 		?>
+									</div>
+									<div class="btn-group-toggle" data-toggle="buttons">
 									</div>
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="form[enforce_accent]" name="form[enforce_accent]" value="1"<?php echo ( $user['enforce_accent'] == '1' ) ? ' checked' : '' ?>>
@@ -192,17 +194,18 @@ else
 							<div class="form-group row <?php if (!$luna_user['is_admmod']) { echo ' d-none'; } ?>">
 								<label class="col-md-3 col-form-label"><?php _e('Backstage accent', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="btn-group accent-group" data-toggle="buttons">
+									<div class="btn-group-toggle" data-toggle="buttons">
 		<?php
-				for ($i = 1; $i <= 15; $i++) {
-					echo '<label class="btn btn-primary color-accent accent-'.$i.(($luna_user['accent'] == $i) ? ' active' : '').'"> <input type="radio" name="form[accent]" id="'.$i.'" value="'.$i.'"></label>';
+				$accents = backstage_list_accents();
+		
+				foreach ($accents as $accent) {
+					echo '<label class="btn color-accent'.(($luna_user['accent'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="form[accent]" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_user['accent'] == $accent->id) ? ' checked' : '').'></label>';
 				}
 		?>
 									</div>
 								</div>
 							</div>
 		<?php
-		
 		$languages = forum_list_langs();
 		
 		// Only display the language selection box if there's more than one language available

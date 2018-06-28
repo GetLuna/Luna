@@ -276,6 +276,13 @@ td .custom-control {
       background-color: #cb3815; }
     .btn.btn-danger.active {
       background-color: #b03112 !important; }
+  .btn.color-accent {
+    padding: 1.1rem;
+    border: .2rem solid #fff;
+    margin: 0; }
+    .btn.color-accent.active, .btn.color-accent:hover, .btn.color-accent:active, .btn.color-accent:focus {
+      border-color: #ccc;
+      z-index: 1000; }
   .btn.btn-light.btn-light-primary {
     color: #2788cb; }
     .btn.btn-light.btn-light-primary:hover, .btn.btn-light.btn-light-primary:active, .btn.btn-light.btn-light-primary:focus {

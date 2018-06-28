@@ -1841,7 +1841,7 @@ function forum_get_theme( $theme = '' ) {
 }
 
 //
-// Fetch a list of available frontend styles
+// Fetch a list of available frontend accents
 //
 function forum_list_accents() {
     global $luna_config;
@@ -1850,6 +1850,18 @@ function forum_list_accents() {
     $theme = json_decode($theme_json);
 
     return $theme->features->accents;
+}
+
+//
+// Fetch a list of available backend accents
+//
+function backstage_list_accents() {
+    global $luna_config;
+
+    $backstage_json = file_get_contents(LUNA_ROOT.'/backstage/css/backstage.json');
+    $backstage = json_decode($backstage_json);
+
+    return $backstage->features->accents;
 }
 
 //
