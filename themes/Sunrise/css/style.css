@@ -1,27 +1,38 @@
-.list-group-item.clearfix {
-  padding: 5px 5px 7px; }
-  .list-group-item.clearfix h5 {
-    margin: 2px 0 0 0;
-    font-size: 20px; }
-  .list-group-item.clearfix h6 {
-    margin: 4px 0 0 0;
-    font-size: 13px;
-    text-transform: uppercase; }
-  .list-group-item.clearfix .forum-title,
-  .list-group-item.clearfix .thread-title,
-  .list-group-item.clearfix .thread-date {
-    font-size: 17px; }
-  .list-group-item.clearfix .thread-title {
-    white-space: nowrap; }
-  .list-group-item.clearfix .forum-description,
-  .list-group-item.clearfix .thread-desc,
-  .list-group-item.clearfix .thread-meta {
-    font-size: 13px; }
-  .list-group-item.clearfix .bytime {
-    margin-top: 3px; }
+.list-group-advanced .list-group-item {
+  padding: .25rem 0 !important; }
+  .list-group-advanced .list-group-item .row {
+    padding: 0; }
+    .list-group-advanced .list-group-item .row h5 {
+      margin: .15rem 0 0 0;
+      font-size: 1.3rem;
+      font-weight: 700; }
+    .list-group-advanced .list-group-item .row h6 {
+      margin: 0;
+      text-transform: uppercase; }
+      .list-group-advanced .list-group-item .row h6 small {
+        font-size: .7rem;
+        font-weight: 600; }
+    .list-group-advanced .list-group-item .row .forum-title,
+    .list-group-advanced .list-group-item .row .thread-title,
+    .list-group-advanced .list-group-item .row .thread-date {
+      font-size: 17px; }
+    .list-group-advanced .list-group-item .row .thread-title {
+      white-space: nowrap; }
+    .list-group-advanced .list-group-item .row .thread-meta {
+      display: block;
+      margin-top: .05rem; }
+    .list-group-advanced .list-group-item .row .forum-description,
+    .list-group-advanced .list-group-item .row .thread-desc,
+    .list-group-advanced .list-group-item .row .thread-meta {
+      font-size: .82rem; }
+    .list-group-advanced .list-group-item .row .byuser {
+      display: block;
+      margin-top: .1rem; }
+    .list-group-advanced .list-group-item .row .bytime {
+      margin-top: 3px; }
 
-.title-block + .list-group-item.clearfix {
-  margin-top: 1px; }
+.title-block + .list-group-item {
+  margin-top: .1rem; }
 
 .title-block + .list-group-thread + .btn-pagination {
   margin-bottom: 0; }
@@ -30,4 +41,4 @@
   display: none; }
 
 .list-group-thread.subforum-list + .btn-pagination {
-  margin-top: 1px; }
+  margin-top: .1rem; }

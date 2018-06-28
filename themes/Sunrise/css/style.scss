@@ -1,42 +1,61 @@
-.list-group-item {
-    &.clearfix {
-        padding: 5px 5px 7px;
-        
-        h5 {
-            margin: 2px 0 0 0;
-            font-size: 20px;
-        }
-        
-        h6 {
-            margin: 4px 0 0 0;
-            font-size: 13px;
-            text-transform: uppercase;
-        }
+.list-group-advanced {
+    .list-group-item {
+        padding: .25rem 0 !important;
 
-        .forum-title,
-        .thread-title,
-        .thread-date {
-            font-size: 17px;
-        }
-        
-        .thread-title {
-            white-space: nowrap;
-        }
-        
-        .forum-description,
-        .thread-desc,
-        .thread-meta {
-            font-size: 13px;
-        }
-        
-        .bytime {
-            margin-top: 3px;
+        .row {
+            padding: 0;
+            
+            h5 {
+                margin: .15rem 0 0 0;
+                font-size: 1.3rem;
+                font-weight: 700;
+            }
+            
+            h6 {
+                margin: 0;
+                text-transform: uppercase;
+
+                small {
+                    font-size: .7rem;
+                    font-weight: 600;
+                }
+            }
+
+            .forum-title,
+            .thread-title,
+            .thread-date {
+                font-size: 17px;
+            }
+            
+            .thread-title {
+                white-space: nowrap;
+            }
+
+            .thread-meta {
+                display: block;
+                margin-top: .05rem;
+            }
+            
+            .forum-description,
+            .thread-desc,
+            .thread-meta {
+                font-size: .82rem;
+            }
+            
+            .byuser {
+                display: block;
+                margin-top: .1rem;
+            }
+            
+            .bytime {
+                margin-top: 3px;
+            }
         }
     }
 }
 
-.title-block + .list-group-item.clearfix{
-    margin-top: 1px;
+.title-block + .list-group-item {
+    margin-top: .1rem;
 }
 
 .title-block + .list-group-thread + .btn-pagination {
@@ -48,5 +67,5 @@
 }
 
 .list-group-thread.subforum-list + .btn-pagination {
-    margin-top: 1px;
+    margin-top: .1rem;
 }
