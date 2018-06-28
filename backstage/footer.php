@@ -52,7 +52,7 @@ if (defined('LUNA_DEBUG')) {
             	</footer>
 			</div>
         </div>
-        <script src="<?php echo $mainpad ?>/js/prism.js"></script>
+        <script src="../vendor/js/prism.js"></script>
 		<script src="../vendor/js/colours.min.js"></script>
 		<script language="javascript">
 			var flat_palette = [

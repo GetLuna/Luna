@@ -100,14 +100,14 @@ if ($db->num_rows($result)) {
                                 </div>
                             </div>
 <?php
-}
+    }
 } else {
     ?>
                         </form>
                         <h3 class="text-center"><?php _e('There are no new reports.', 'luna')?></h3>
-<?php }?>
+<?php } ?>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="old">
+                    <div role="tabpanel" class="tab-pane fade in" id="old">
 <?php
 $result = $db->query('SELECT r.id, r.thread_id, r.forum_id, r.reported_by, r.message, r.zapped, r.zapped_by AS zapped_by_id, p.id AS pid, p.message AS comment, t.subject, f.forum_name, u.username AS reporter, u2.username AS zapped_by FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'comments AS p ON r.comment_id=p.id LEFT JOIN '.$db->prefix.'threads AS t ON r.thread_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id LEFT JOIN '.$db->prefix.'users AS u2 ON r.zapped_by=u2.id WHERE r.zapped IS NOT NULL ORDER BY zapped DESC LIMIT 10') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
 
@@ -142,7 +142,6 @@ if ($db->num_rows($result)) {
                                     <?php printf(__('Managed by %s', 'luna'), $zapped_by)?>
                                 </div>
                             </div>
-                        </div>
 <?php
     }
 } else {

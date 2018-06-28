@@ -33,6 +33,7 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('Known issues are now listed in the Backstage under "About"', 'luna') ?></p>
                     <p><?php _e('Syntax highlighting now supports JSON and TypeScript and extended support for PHP', 'luna') ?></p>
+                    <p><?php _e('Backstage now defines its accent colors in a JSON file', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
                     <p><?php _e('Font Awesome 5 will now also be loaded from a CDN when CDN load is enabled', 'luna') ?></p>
                     <p><?php _e('The Backstage and installer now use Bootstrap 4.1', 'luna') ?></p>
