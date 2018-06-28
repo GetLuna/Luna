@@ -28,7 +28,7 @@ if (!defined('FORUM'))
 			<form method="post" action="inbox.php">
 				<fieldset>
 					<div class="title-block title-block-primary">
-						<h2><i class="fa fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
+						<h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
 					</div>
 					<div class="tab-content">
 						<div class="btn-toolbar btn-toolbar-profile">

@@ -60,7 +60,7 @@ $cur_index = 1;
 ?>
 			<form class="form-horizontal" method="post" id="comment" action="new_inbox.php" onsubmit="return process_form(this)">
 				<div class="title-block title-block-primary">
-					<h2><i class="fa fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
+					<h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
 				</div>
 				<div class="tab-content new-inbox">
 					<fieldset>
