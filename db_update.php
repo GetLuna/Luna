@@ -10,10 +10,10 @@
 define('LUNA_SEARCH_MIN_WORD', 3);
 define('LUNA_SEARCH_MAX_WORD', 20);
 
-define('LUNA_ROOT', dirname(__FILE__) . '/');
+define('LUNA_ROOT', dirname(__FILE__).'/');
 
 // Load the version class
-require LUNA_ROOT . 'include/version.php';
+require LUNA_ROOT.'include/version.php';
 
 // The number of items to process per page view
 define('PER_PAGE', 300);
@@ -26,12 +26,12 @@ header('Content-type: text/html; charset=utf-8');
 
 // Make sure we are running at least Version::MIN_PHP_VERSION
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '<')) {
-    exit('You are running PHP version ' . PHP_VERSION . '. Luna ' . Version::LUNA_VERSION . ' requires at least PHP ' . Version::MIN_PHP_VERSION . ' to run properly. You must upgrade your PHP installation before you can continue.');
+    exit('You are running PHP version '.PHP_VERSION.'. Luna '.Version::LUNA_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
 }
 
 // Attempt to load the configuration file config.php
-if (file_exists(LUNA_ROOT . 'config.php')) {
-    include LUNA_ROOT . 'config.php';
+if (file_exists(LUNA_ROOT.'config.php')) {
+    include LUNA_ROOT.'config.php';
 }
 
 // This fixes incorrect defined PUN, from FluxBB 1.5 and ModernBB 1.6
@@ -51,12 +51,12 @@ if (!defined('LUNA_DEBUG')) {
 }
 
 // Load the functions script
-require LUNA_ROOT . 'include/functions.php';
-require LUNA_ROOT . 'include/draw_functions.php';
-require LUNA_ROOT . 'include/general_functions.php';
+require LUNA_ROOT.'include/functions.php';
+require LUNA_ROOT.'include/draw_functions.php';
+require LUNA_ROOT.'include/general_functions.php';
 
 // Load UTF-8 functions
-require LUNA_ROOT . 'include/utf8/utf8.php';
+require LUNA_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
@@ -95,7 +95,7 @@ if (empty($cookie_name)) {
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('LUNA_CACHE_DIR')) {
-    define('LUNA_CACHE_DIR', LUNA_ROOT . 'cache/');
+    define('LUNA_CACHE_DIR', LUNA_ROOT.'cache/');
 }
 
 // Turn off PHP time limit
@@ -109,7 +109,7 @@ define('LUNA_GUEST', 3);
 define('LUNA_MEMBER', 4);
 
 // Load DB abstraction layer and try to connect
-require LUNA_ROOT . 'include/dblayer/common_db.php';
+require LUNA_ROOT.'include/dblayer/common_db.php';
 
 // Start transaction
 $db->start_transaction();
@@ -121,22 +121,22 @@ $old_connection_charset = defined('LUNA_DEFAULT_CHARSET') ? LUNA_DEFAULT_CHARSET
 $db->set_names('utf8');
 
 // Get the forum config
-$result = $db->query('SELECT * FROM ' . $db->prefix . 'config') or error('Unable to fetch config.', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT * FROM '.$db->prefix.'config') or error('Unable to fetch config.', __FILE__, __LINE__, $db->error());
 while ($cur_config_item = $db->fetch_row($result)) {
     $luna_config[$cur_config_item[0]] = $cur_config_item[1];
 }
 
 // Load l10n
-require_once LUNA_ROOT . 'include/pomo/MO.php';
-require_once LUNA_ROOT . 'include/l10n.php';
+require_once LUNA_ROOT.'include/pomo/MO.php';
+require_once LUNA_ROOT.'include/l10n.php';
 
 // Load language file
 $default_lang = $luna_config['o_default_lang'];
-if (!file_exists(LUNA_ROOT . 'lang/' . $default_lang . '/luna.mo')) {
+if (!file_exists(LUNA_ROOT.'lang/'.$default_lang.'/luna.mo')) {
     $default_lang = 'English';
 }
 
-load_textdomain('luna', LUNA_ROOT . 'lang/' . $default_lang . '/luna.mo');
+load_textdomain('luna', LUNA_ROOT.'lang/'.$default_lang.'/luna.mo');
 
 // Do some DB type specific checks
 $mysql = false;
@@ -167,13 +167,13 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
     isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::LUNA_SI_VERSION &&
     isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::LUNA_PARSER_VERSION &&
     array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::LUNA_CORE_VERSION, '>=')) {
-    draw_wall_error(__('Your forum is already as up-to-date as this script can make it', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">' . __('Continue', 'luna') . '</a>', __('Let\'s get started', 'luna'));
+    draw_wall_error(__('Your forum is already as up-to-date as this script can make it', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">'.__('Continue', 'luna').'</a>');
     exit;
 }
 
 // Check style
 $default_style = $luna_config['o_default_style'];
-if (!file_exists(LUNA_ROOT . 'themes/' . $default_style . '/css/style.css')) {
+if (!file_exists(LUNA_ROOT.'themes/'.$default_style.'/css/style.css')) {
     $default_style = 'Fifteen';
 }
 
@@ -187,7 +187,7 @@ $query_str = '';
 
 // Show form
 if (empty($stage)) {
-    if (file_exists(LUNA_CACHE_DIR . 'db_update.lock')) {
+    if (file_exists(LUNA_CACHE_DIR.'db_update.lock')) {
         // Deal with newlines, tabs and multiple spaces
         $pattern = array("\t", '  ', '  ');
         $replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
@@ -195,7 +195,7 @@ if (empty($stage)) {
 
         draw_wall_error($message, null, __('Maintenance', 'luna'));
     } else {
-        draw_wall_error(__('There is an update ready to be installed', 'luna'), '<form id="install" method="post" action="db_update.php"><input type="hidden" name="stage" value="start" /><input class="btn btn-default btn-lg" type="submit" name="start" value="' . __('Start update', 'luna') . '" /></form>', __('Update Luna', 'luna'));
+        draw_wall_error(__('There is an update ready to be installed', 'luna'), '<form id="install" method="post" action="db_update.php"><input type="hidden" name="stage" value="start" /><button class="btn btn-light btn-lg" type="submit" name="start"><i class="fas fa-fw fa-arrow-right"></i> '. __('Start update', 'luna').'</button></form>');
     }
 
     $db->end_transaction();
@@ -719,7 +719,7 @@ switch ($stage) {
         $db->add_field('users', 'salt', 'VARCHAR(8)', true) or error('Unable to add salt field to user table', __FILE__, __LINE__, $db->error());
         $db->add_field('comments', 'admin_note', 'MEDIUMTEXT', true) or error('Unable to admin note field to comments', __FILE__, __LINE__, $db->error());
 
-        $db->query('UPDATE ' . $db->prefix . 'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
 		$db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
 		
 		// Luna 2.0.10 upgrade support
@@ -834,26 +834,26 @@ switch ($stage) {
             break;
         }
 
-        require LUNA_ROOT . 'include/parser.php';
+        require LUNA_ROOT.'include/parser.php';
 
         // Fetch comments to process this cycle
-        $result = $db->query('SELECT id, message FROM ' . $db->prefix . 'comments WHERE id > ' . $start_at . ' ORDER BY id ASC LIMIT ' . PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT id, message FROM '.$db->prefix.'comments WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
         $temp = array();
         $end_at = 0;
         while ($cur_item = $db->fetch_assoc($result)) {
-            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']) . '<br />';
-            $db->query('UPDATE ' . $db->prefix . 'comments SET message = \'' . $db->escape(preparse_bbcode($cur_item['message'], $temp)) . '\' WHERE id = ' . $cur_item['id']) or error('Unable to update comment', __FILE__, __LINE__, $db->error());
+            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />';
+            $db->query('UPDATE '.$db->prefix.'comments SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update comment', __FILE__, __LINE__, $db->error());
 
             $end_at = $cur_item['id'];
         }
 
         // Check if there is more work to do
         if ($end_at > 0) {
-            $result = $db->query('SELECT 1 FROM ' . $db->prefix . 'comments WHERE id > ' . $end_at . ' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+            $result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
             if ($db->num_rows($result) > 0) {
-                $query_str = '?stage=preparse_comments&start_at=' . $end_at;
+                $query_str = '?stage=preparse_comments&start_at='.$end_at;
             }
 
         }
@@ -869,25 +869,25 @@ switch ($stage) {
             break;
         }
 
-        require LUNA_ROOT . 'include/parser.php';
+        require LUNA_ROOT.'include/parser.php';
 
         // Fetch users to process this cycle
-        $result = $db->query('SELECT id, signature FROM ' . $db->prefix . 'users WHERE id > ' . $start_at . ' ORDER BY id ASC LIMIT ' . PER_PAGE) or error('Unable to fetch users', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT id, signature FROM '.$db->prefix.'users WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch users', __FILE__, __LINE__, $db->error());
 
         $temp = array();
         $end_at = 0;
         while ($cur_item = $db->fetch_assoc($result)) {
-            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('signature', 'luna'), $cur_item['id']) . '<br />';
-            $db->query('UPDATE ' . $db->prefix . 'users SET signature = \'' . $db->escape(preparse_bbcode($cur_item['signature'], $temp, true)) . '\' WHERE id = ' . $cur_item['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+            echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('signature', 'luna'), $cur_item['id']).'<br />';
+            $db->query('UPDATE '.$db->prefix.'users SET signature = \''.$db->escape(preparse_bbcode($cur_item['signature'], $temp, true)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
             $end_at = $cur_item['id'];
         }
 
         // Check if there is more work to do
         if ($end_at > 0) {
-            $result = $db->query('SELECT 1 FROM ' . $db->prefix . 'users WHERE id > ' . $end_at . ' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+            $result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
             if ($db->num_rows($result) > 0) {
-                $query_str = '?stage=preparse_sigs&start_at=' . $end_at;
+                $query_str = '?stage=preparse_sigs&start_at='.$end_at;
             }
 
         }
@@ -915,23 +915,23 @@ switch ($stage) {
                 case 'mysqli':
                 case 'mysql_innodb':
                 case 'mysqli_innodb':
-                    $db->query('ALTER TABLE ' . $db->prefix . 'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
+                    $db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
                     break;
 
                 case 'pgsql';
-                    $db->query('SELECT setval(\'' . $db->prefix . 'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
+                    $db->query('SELECT setval(\''.$db->prefix.'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
                     break;
             }
         }
 
-        require LUNA_ROOT . 'include/search_idx.php';
+        require LUNA_ROOT.'include/search_idx.php';
 
         // Fetch comments to process this cycle
-        $result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM ' . $db->prefix . 'comments AS p INNER JOIN ' . $db->prefix . 'threads AS t ON t.id=p.thread_id WHERE p.id > ' . $start_at . ' ORDER BY p.id ASC LIMIT ' . PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT p.id, p.message, t.subject, t.first_comment_id FROM '.$db->prefix.'comments AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.thread_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch comments', __FILE__, __LINE__, $db->error());
 
         $end_at = 0;
         while ($cur_item = $db->fetch_assoc($result)) {
-            echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']) . '<br />';
+            echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />';
 
             if ($cur_item['id'] == $cur_item['first_comment_id']) {
                 update_search_index('comment', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
@@ -944,10 +944,10 @@ switch ($stage) {
 
         // Check if there is more work to do
         if ($end_at > 0) {
-            $result = $db->query('SELECT 1 FROM ' . $db->prefix . 'comments WHERE id > ' . $end_at . ' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
+            $result = $db->query('SELECT 1 FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
             if ($db->num_rows($result) > 0) {
-                $query_str = '?stage=rebuild_idx&start_at=' . $end_at;
+                $query_str = '?stage=rebuild_idx&start_at='.$end_at;
             }
 
         }
@@ -963,31 +963,31 @@ switch ($stage) {
         }
 
         // We update the version numbers
-        $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . Version::LUNA_VERSION . '\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
-        $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . Version::LUNA_CORE_VERSION . '\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
-        $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . Version::LUNA_CODE_NAME . '\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CODE_NAME.'\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
 
         // And the database revision number
-        $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . Version::LUNA_DB_VERSION . '\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
 
         // And the search index revision number
-        $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . Version::LUNA_SI_VERSION . '\' WHERE conf_name = \'o_searchindex_revision\'') or error('Unable to update search index revision number', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_SI_VERSION.'\' WHERE conf_name = \'o_searchindex_revision\'') or error('Unable to update search index revision number', __FILE__, __LINE__, $db->error());
 
         // And the parser revision number
-        $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'' . Version::LUNA_PARSER_VERSION . '\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
+        $db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_PARSER_VERSION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
 
         // Check the default language still exists!
-        if (!file_exists(LUNA_ROOT . 'lang/' . $luna_config['o_default_lang'] . '/common.php')) {
-            $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
+        if (!file_exists(LUNA_ROOT.'lang/'.$luna_config['o_default_lang'].'/common.php')) {
+            $db->query('UPDATE '.$db->prefix.'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
         }
 
         // Check the default style still exists!
-        if (!file_exists(LUNA_ROOT . 'themes/' . $luna_config['o_default_style'] . '/css/style.css')) {
-            $db->query('UPDATE ' . $db->prefix . 'config SET conf_value = \'Fifteen\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
+        if (!file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/css/style.css')) {
+            $db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Fifteen\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
         }
 
         // This feels like a good time to synchronize the forums
-        $result = $db->query('SELECT id FROM ' . $db->prefix . 'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());
+        $result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());
 
         while ($row = $db->fetch_row($result)) {
             update_forum($row[0]);
@@ -997,7 +997,7 @@ switch ($stage) {
         forum_clear_cache();
 
         // Delete the update lock file
-        @unlink(LUNA_CACHE_DIR . 'db_update.lock');
+        @unlink(LUNA_CACHE_DIR.'db_update.lock');
 
         header('Location: index.php');
         break;
@@ -1006,5 +1006,5 @@ switch ($stage) {
 $db->end_transaction();
 $db->close();
 if ($query_str != '') {
-    exit('<meta http-equiv="refresh" content="0;url=db_update.php' . $query_str . '" /><hr /><p>' . _e('If this takes to long, the automatic redirect might have failed.', 'luna') . ' <a href="db_update.php' . $query_str . '">' . _e('Click here', 'luna') . '</a></p>');
+    exit('<meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /><hr /><p>'._e('If this takes to long, the automatic redirect might have failed.', 'luna').' <a href="db_update.php'.$query_str.'">'._e('Click here', 'luna').'</a></p>');
 }

@@ -1,16 +1,4 @@
-/*
- * Copyright Studio 384 and Luna Group
- * Bootstrap Template: 	Trent
- * Version:				1.1
- * Based on:			Trent v1.3 (http://studio384.be/trent.php)
- * Since:				1.1
- * Bootstrap:			3.3.5
- */
-
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
-
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	background-color: #136cab;
 	color: #fff;
 	text-align: center;
@@ -18,10 +6,21 @@ body {
 }
 
 h1 {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	font-weight: 100;
+	font-size: 4rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin: 0;
+	line-height: 1;
 }
 
-.btn {
-	border: none;
+.lead {
+	font-weight: 500;
+	font-size: 1.5rem;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+
+.btn.btn-light {
+	color: #136cab;
+	border-radius: 0;
 }

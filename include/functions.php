@@ -1534,7 +1534,7 @@ function maintenance_message() {
     require LUNA_ROOT.'include/draw_functions.php';
 
     // Show the page
-    draw_wall_error($luna_config['o_maintenance_message'], null, __('Maintenance', 'luna'));
+    draw_wall_error($luna_config['o_maintenance_message']);
 
     // End the transaction
     $db->end_transaction();
