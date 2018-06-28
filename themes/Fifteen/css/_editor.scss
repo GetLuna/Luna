@@ -1,6 +1,5 @@
 .editor {
     margin-top: .75rem;
-    border: .1rem solid $accent;
 
     .form-control {
         border: .1rem solid #eee;
@@ -9,7 +8,6 @@
 
         &:focus {
             box-shadow: none;
-            border-color: $accent;
         }
     }
 
@@ -36,13 +34,6 @@
 
                     &.active {
                         color: #fff;
-                        background-color: $accent;
-    
-                        &:hover,
-                        &:active,
-                        &:focus {
-                            background-color: darken( $accent, 10% ) !important;
-                        }
                     }
                 }
             }

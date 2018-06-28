@@ -53,7 +53,8 @@ require 'header.php';
                     <p><?php _e('<b>ALPHA</b> Bootstrap\'s JavaScript is now loaded correctly', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Enabling CDN loading does no longer break the Backstage', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
-                    <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
+                    <p><?php _e('Sunrise have multiple visual issues', 'luna') ?></p>
+                    <p><?php _e('Night mode is not supported', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 3 <small>2.1-alpha.3</small></span></h2>

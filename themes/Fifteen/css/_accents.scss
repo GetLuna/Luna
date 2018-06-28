@@ -1,49 +1,223 @@
-.navbar {
-    &.bg-primary {
-        background-color: $accent !important;
-    }
+@each $accent in $accents {
+    $i: index($accents, $accent);
+    
+    .accent-#{$i} {
+        .navbar {
+            &.bg-primary {
+                background-color: $accent !important;
+            }
 
-    .navbar-collapse {
-        .navbar-nav {
-            .nav-item {
-                &.dropdown {
-                    &.show {
-                        background-color: darken($accent, 5%);
+            .navbar-collapse {
+                .navbar-nav {
+                    .nav-item {
+                        &.dropdown {
+                            &.show {
+                                background-color: darken($accent, 5%);
 
-                        .dropdown-menu {
-                            background-color: darken($accent, 5%);
+                                .dropdown-menu {
+                                    background-color: darken($accent, 5%);
 
-                            .dropdown-item {
-                                &:hover,
-                                &:active,
-                                &:focus {
-                                    background-color: darken($accent, 10%);
+                                    .dropdown-item {
+                                        &:hover,
+                                        &:active,
+                                        &:focus {
+                                            background-color: darken($accent, 10%);
+                                        }
+                                    }
+
+                                    .dropdown-divider {
+                                        border-top-color: darken($accent, 14%);
+                                    }
                                 }
-                            }
-
-                            .dropdown-divider {
-                                border-top-color: darken($accent, 14%);
                             }
                         }
                     }
                 }
             }
         }
-    }
-}
 
-.custom-checkbox {
-    :checked {
-        &.custom-control-input ~ .custom-control-label::before {
-            background: $accent;
+        .custom-checkbox {
+            :checked {
+                &.custom-control-input ~ .custom-control-label::before {
+                    background: $accent;
+                }
+            }
         }
-    }
-}
 
-.custom-radio {
-    :checked {
-        &.custom-control-input ~ .custom-control-label::before {
-            background: $accent;
+        .custom-radio {
+            :checked {
+                &.custom-control-input ~ .custom-control-label::before {
+                    background: $accent;
+                }
+            }
+        }
+
+        .btn {
+            &.btn-primary {
+                background-color: $accent;
+        
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: darken( $accent, 6% );
+                }
+        
+                &.active {
+                    background-color: darken( $accent, 12% ) !important;
+                }
+            }
+        
+            &.btn-light {
+                &.btn-light-primary {
+                    color: $accent;
+            
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: darken( $accent, 15% );
+                    }
+                }
+            }
+        
+            &.btn-link {
+                color: $accent;
+        
+                &:hover,
+                &:focus,
+                &:active {
+                    color: darken( $accent, 5% );
+                }
+            }
+        }
+
+        .editor {
+            border: .1rem solid $accent;
+
+            .form-control {
+                &:focus {
+                    border-color: $accent;
+                }
+            }
+
+            .btn-toolbar {
+                .btn-group {
+                    .btn {
+                        &.btn-light {
+                            &.active {
+                                background-color: $accent;
+            
+                                &:hover,
+                                &:active,
+                                &:focus {
+                                    background-color: darken( $accent, 10% ) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        a {
+            color: $accent;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: darken( $accent, 10% );
+            }
+        }
+
+        footer {
+            .stats {
+                background-color: $accent;
+            }
+
+            .footer {
+                background-color: darken( $accent, 5% );
+            }
+        }
+
+        .jumbotron {
+            &.profile {
+                background-color: darken( $accent, 3% );
+
+                h4 {
+                    color: darken( $accent, 15% );
+                }
+            }
+
+            &.first-run {
+                background-color: darken( $accent, 3% );
+
+                .custom-checkbox {
+                    :checked {
+                        &.custom-control-input ~ .custom-control-label::before {
+                            background: darken($accent, 15%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .list-group {
+            &.list-group-nav {
+                h5 {
+                    background-color: $accent;
+                }
+            }
+
+            &.list-group-thread {
+                .list-group-item {
+                    &.new-item {
+                        border-left-color: $accent;
+                    }
+                }
+            }
+
+            &.list-group-none {
+                .list-group-item {
+                    &.active {
+                        background-color: $accent;
+                    }
+                }
+            }
+        }
+
+        .modal {
+            .modal-dialog {
+                .modal-content {
+                    .modal-header {
+                        background-color: $accent;
+                    }
+
+                    .modal-footer {
+                        background-color: $accent;
+                    }
+                }
+            }
+        }
+
+        .title-block {
+            &.title-block-primary {
+                background-color: $accent;
+            }
+        }
+
+        .tab-set {
+            .table {
+                &:last-child {
+                    border-color: $accent;
+                }
+            }
+        }
+
+        .tab-content {
+            border: .1rem solid $accent;
+        }
+
+        .tab-footer {
+            background-color: $accent;
         }
     }
 }

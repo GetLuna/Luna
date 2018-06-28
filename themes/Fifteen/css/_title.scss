@@ -3,7 +3,6 @@
     margin-bottom: .1rem;
 
     &.title-block-primary {
-        background-color: $accent;
         color: #fff;
     }
 
@@ -65,7 +64,6 @@
 
         &:last-child {
             border-width: 0 1px 1px 1px;
-            border-color: $accent;
             border-style: solid;
         }
     }
@@ -78,7 +76,6 @@
 }
 
 .tab-content {
-    border: .1rem solid $accent;
     padding: .75rem;
 
     &.tab-content-danger {
@@ -90,11 +87,11 @@
     }
 
     &:not(:first-child) {
-        border-top: none;
+        border-top: none !important;
     }
     
     &:not(:last-child) {
-        border-bottom: none;
+        border-bottom: none !important;
     }
 
     p:last-child {
@@ -103,7 +100,6 @@
 }
 
 .tab-footer {
-    background-color: $accent;
     padding: .75rem;
 
     &:last-child {

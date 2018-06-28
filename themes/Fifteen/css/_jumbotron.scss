@@ -2,7 +2,6 @@
     border-radius: 0;
 
     &.profile {
-        background-color: darken( $accent, 3% );
         padding: 0;
         margin: 0;
 
@@ -12,7 +11,6 @@
 
         h4 {
             font-size: 5rem;
-            color: darken( $accent, 15% );
             line-height: 1;
             font-weight: 700;
             text-transform: uppercase;
@@ -28,7 +26,6 @@
 
     &.first-run {
         color: #fff;
-        background-color: darken( $accent, 3% );
         padding: 1rem;
         margin: 0;
 
@@ -74,11 +71,6 @@
 
         .custom-checkbox {
             margin-top: .75rem;
-            :checked {
-                &.custom-control-input ~ .custom-control-label::before {
-                    background: darken($accent, 15%);
-                }
-            }
         }
 
         .btn-login {

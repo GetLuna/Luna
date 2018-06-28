@@ -12,7 +12,6 @@ footer {
     }
 
     .stats {
-        background-color: $accent;
         padding-top: .75rem;
         padding-bottom: .75rem;
 
@@ -32,7 +31,6 @@ footer {
     }
 
     .footer {
-        background-color: darken( $accent, 5% );
         padding: .75rem;
     }
 }

@@ -1,4 +1,3 @@
-
 @each $accent in $accents {
     $i: index($accents, $accent);
     .accent-#{$i} {

@@ -33,7 +33,6 @@
 
     &.list-group-nav {
         h5 {
-            background-color: $accent;
             color: #fff;
             margin-bottom: .1rem;
             padding: 1.3rem .7rem .5rem;
@@ -80,7 +79,6 @@
             }
 
             &.new-item {
-                border-left-color: $accent;
                 background-color: #e8e8e8;
             }
         }
@@ -103,7 +101,6 @@
             }
 
             &.active {
-                background-color: $accent;
                 color: #fff;
             }
         }

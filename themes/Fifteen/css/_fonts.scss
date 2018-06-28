@@ -1,13 +1,3 @@
-a {
-    color: $accent;
-
-    &:hover,
-    &:active,
-    &:focus {
-        color: darken( $accent, 10% );
-    }
-}
-
 .user-stat {
     font-size: 1.5rem;
     font-weight: 600;
