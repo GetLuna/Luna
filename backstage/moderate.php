@@ -506,8 +506,8 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
 
     require 'header.php';
     ?>
-<div class="col-12">
-    <div class="row">
+<div class="row">
+    <div class="col-12">
 	   <form class="card" method="post" action="moderate.php?fid=<?php echo $fid ?>">
             <h5 class="card-header">
                 <?php echo ($action == 'single') ? __('Move thread', 'luna') : __('Move threads', 'luna') ?>
@@ -517,9 +517,9 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
             </h5>
 			<div class="card-body">
 				<input type="hidden" name="threads" value="<?php echo $threads ?>" />
-                <div class="form-group">
-                    <label class="col-sm-3 col-form-label"><?php _e('Move to', 'luna')?></label>
-                    <div class="col-sm-9">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label"><?php _e('Move to', 'luna')?></label>
+                    <div class="col-md-9">
                         <select class="form-control" name="move_to_forum">
 	<?php
 
@@ -542,9 +542,9 @@ if (isset($_REQUEST['move_threads']) || isset($_POST['move_threads_to'])) {
     echo '</optgroup>';
     ?>
                         </select>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="with_redirect" value="1" />
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="with_redirect" name="with_redirect" value="1">
+                            <label class="custom-control-label" for="with_redirect">
                                 <?php _e('Leave redirect thread(s).', 'luna')?>
                             </label>
                         </div>
