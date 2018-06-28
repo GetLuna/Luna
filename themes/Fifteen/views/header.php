@@ -2,7 +2,7 @@
 <html class="<?php echo get_theme_mode() ?>">
 	<head>
 		<?php load_meta(); ?>
-		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap4.min.css">
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
         <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
             <?php if ($luna_config['o_use_cdn']) { ?>
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">

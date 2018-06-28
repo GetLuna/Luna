@@ -189,7 +189,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna')?></title>
-		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap4.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <?php
@@ -485,7 +485,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna')?></title>
-		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap4.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="vendor/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 	</head>
