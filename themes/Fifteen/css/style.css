@@ -259,7 +259,8 @@ td .custom-control {
   .btn.btn-primary {
     color: #fff; }
   .btn.btn-danger {
-    background-color: #e74018; }
+    background-color: #e74018;
+    color: #fff; }
     .btn.btn-danger:hover, .btn.btn-danger:active, .btn.btn-danger:focus {
       background-color: #cb3815; }
     .btn.btn-danger.active {
@@ -280,7 +281,8 @@ td .custom-control {
     .btn.btn-light.btn-light-success:hover, .btn.btn-light.btn-light-success:active, .btn.btn-light.btn-light-success:focus {
       color: #5d7c00; }
   .btn.btn-success {
-    background-color: #46c429; }
+    background-color: #46c429;
+    color: #fff; }
     .btn.btn-success:hover, .btn.btn-success:active, .btn.btn-success:focus {
       background-color: #3dab24; }
     .btn.btn-success.active {
@@ -436,9 +438,7 @@ td .custom-control {
 footer {
   color: #fff; }
   footer a {
-    color: #fff; }
-    footer a:hover, footer a:active, footer a:focus {
-      color: #fff; }
+    color: inherit !important; }
   footer .stats {
     padding-top: .75rem;
     padding-bottom: .75rem; }
@@ -534,6 +534,128 @@ footer {
   font-size: 1.5rem; }
 .user-entry .media h6 {
   font-size: 1.25rem; }
+
+.night body {
+  background-color: #222; }
+.night .container.main {
+  background-color: #2a2a2a; }
+.night .card {
+  background-color: #2a2a2a;
+  border-color: #141414;
+  color: #fff; }
+  .night .card .card-header {
+    background-color: #222;
+    color: #fff; }
+.night .form-control {
+  background-color: #2a2a2a;
+  color: #fff;
+  border-color: #141414; }
+.night .table td,
+.night .table th {
+  border-color: #141414; }
+.night .color-accent {
+  border-color: #2a2a2a; }
+  .night .color-accent.active, .night .color-accent:hover, .night .color-accent:active, .night .color-accent:focus {
+    border-color: #444; }
+.night .input-group-text {
+  color: #fff;
+  background-color: #242424;
+  border-color: #141414; }
+.night .alert.alert-info {
+  color: #dff5ff;
+  background-color: #0075ac; }
+.night .alert.alert-danger {
+  color: #fbe0da;
+  background-color: #b93313; }
+.night .alert.alert-success {
+  color: #e8f9e3;
+  background-color: #379a20; }
+.night .alert.alert-warning {
+  color: #fff5d6;
+  background-color: #cc9a00; }
+.night hr {
+  border-color: #141414; }
+.night .list-group-head {
+  color: #fff; }
+.night .list-group.list-group-transparent .list-group-item {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff; }
+  .night .list-group.list-group-transparent .list-group-item:hover, .night .list-group.list-group-transparent .list-group-item:active, .night .list-group.list-group-transparent .list-group-item:focus {
+    background-color: rgba(0, 0, 0, 0.25); }
+  .night .list-group.list-group-transparent .list-group-item.active {
+    background-color: rgba(0, 0, 0, 0.3); }
+    .night .list-group.list-group-transparent .list-group-item.active:hover, .night .list-group.list-group-transparent .list-group-item.active:active, .night .list-group.list-group-transparent .list-group-item.active:focus {
+      background-color: rgba(0, 0, 0, 0.45); }
+.night .list-group.list-group-nav .list-group-item {
+  color: #fff;
+  background-color: #2a2a2a; }
+  .night .list-group.list-group-nav .list-group-item:hover, .night .list-group.list-group-nav .list-group-item:active, .night .list-group.list-group-nav .list-group-item:focus {
+    background: #181818;
+    color: #fff; }
+  .night .list-group.list-group-nav .list-group-item.active {
+    color: #fff; }
+.night .list-group.list-group-thread .list-group-item {
+  border-left: .4rem solid #181818;
+  background-color: #252525;
+  color: #fff; }
+  .night .list-group.list-group-thread .list-group-item:hover, .night .list-group.list-group-thread .list-group-item:active, .night .list-group.list-group-thread .list-group-item:focus {
+    border-left-color: #141414;
+    background-color: #212121; }
+  .night .list-group.list-group-thread .list-group-item.new-item {
+    background-color: #1d1d1d; }
+.night .list-group.list-group-none .list-group-item {
+  color: #fff; }
+  .night .list-group.list-group-none .list-group-item:hover, .night .list-group.list-group-none .list-group-item:active, .night .list-group.list-group-none .list-group-item:focus {
+    background-color: #1d1d1d;
+    color: #fff; }
+  .night .list-group.list-group-none .list-group-item.active {
+    color: #fff; }
+.night .badge.badge-light {
+  background: #2f2f2f;
+  color: #fff; }
+.night .input-group.search-form .form-control {
+  background: #383838; }
+.night .input-group.search-form .btn-light {
+  background: #383838;
+  color: #fff; }
+  .night .input-group.search-form .btn-light:hover, .night .input-group.search-form .btn-light:active, .night .input-group.search-form .btn-light:focus {
+    background: #484848; }
+.night .tab-content {
+  color: #fff; }
+.night .comment .comment-header .media-body {
+  background: #1d1d1d;
+  color: #fff; }
+.night .comment .comment-body {
+  background: #222;
+  color: #fff; }
+.night .editor .form-control {
+  border-color: #181818; }
+.night .editor .btn-toolbar .btn-group {
+  border-color: #181818; }
+  .night .editor .btn-toolbar .btn-group .btn {
+    color: #fff; }
+    .night .editor .btn-toolbar .btn-group .btn.btn-light {
+      background-color: #2a2a2a; }
+      .night .editor .btn-toolbar .btn-group .btn.btn-light:hover, .night .editor .btn-toolbar .btn-group .btn.btn-light:active, .night .editor .btn-toolbar .btn-group .btn.btn-light:focus {
+        background-color: #252525 !important; }
+  .night .editor .btn-toolbar .btn-group .dropdown-menu {
+    background: #252525;
+    border-color: #181818; }
+    .night .editor .btn-toolbar .btn-group .dropdown-menu :hover,
+    .night .editor .btn-toolbar .btn-group .dropdown-menu :active,
+    .night .editor .btn-toolbar .btn-group .dropdown-menu :focus {
+      background: #202020; }
+.night .admin-note .form-control {
+  background: transparent;
+  color: #fff; }
+.night .title-block.title-block-nav .nav .nav-item.active {
+  border-bottom-color: #2a2a2a; }
+.night .notification-row .btn-light {
+  background-color: #242424; }
+  .night .notification-row .btn-light:hover, .night .notification-row .btn-light:active, .night .notification-row .btn-light:focus {
+    background-color: #1d1d1d; }
+.night .table {
+  color: #fff; }
 
 .accent-1 .navbar.bg-primary {
   background-color: #14a3ff !important; }

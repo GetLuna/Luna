@@ -2,13 +2,7 @@ footer {
     color: #fff;
 
     a {
-        color: #fff;
-
-        &:hover,
-        &:active,
-        &:focus {
-            color: #fff;
-        }
+        color: inherit !important;
     }
 
     .stats {
