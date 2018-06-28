@@ -31,7 +31,14 @@ else
 		<div class="col-12 col-lg-9">
 			<form id="profile-settings tab-set" method="post" action="settings.php?id=<?php echo $id ?>">
 				<div class="title-block title-block-primary title-block-nav">
-					<h2><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="float-right"><button class="btn btn-default" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
+					<h2>
+						<i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?>
+						<span class="float-right">
+							<button class="btn btn-light btn-light-primary" type="submit" name="update">
+								<i class="fas fa-fw fa-check"></i> <?php _e('Save', 'luna') ?>
+							</button>
+						</span>
+					</h2>
 					<nav class="nav nav-tabs">
 						<a class="nav-item nav-link active" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
 							<i class="fas fa-fw fa-user"></i><span class="d-none d-lg-inline"> <?php _e('Profile', 'luna') ?></span>
@@ -149,9 +156,9 @@ else
 				}
 		?>
 									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[enforce_accent]" value="1"<?php if ($user['enforce_accent'] == '1') echo ' checked' ?> />
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="form[enforce_accent]" name="form[enforce_accent]" value="1"<?php echo ( $user['enforce_accent'] == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="form[enforce_accent]">
 											<?php _e('Enforce the accent on the board.', 'luna') ?>
 										</label>
 									</div>
@@ -161,21 +168,21 @@ else
 							<div class="form-group row<?php if ($luna_config['o_allow_night_mode'] == '0') { echo ' d-none'; } ?>">
 								<label class="col-md-3 col-form-label"><?php _e('Night mode', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="radio">
-										<label>
-											<input type="radio" name="form[adapt_time]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
+									<div class="custom-control custom-radio">
+										<input type="radio" id="form[adapt_time1]" name="form[adapt_time]" class="custom-control-input" value="0" <?php if ($user['adapt_time'] == '0') { echo ' checked'; } ?>>
+										<label class="custom-control-label" for="form[adapt_time1]">
 											<?php _e('Never use night mode.', 'luna') ?>
 										</label>
 									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="form[adapt_time]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
+									<div class="custom-control custom-radio">
+										<input type="radio" id="form[adapt_time2]" name="form[adapt_time]" class="custom-control-input" value="1" <?php if ($user['adapt_time'] == '1') { echo ' checked'; } ?>>
+										<label class="custom-control-label" for="form[adapt_time2]">
 											<?php _e('Always use night mode.', 'luna') ?>
 										</label>
 									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
+									<div class="custom-control custom-radio">
+										<input type="radio" id="form[adapt_time3]" name="form[adapt_time]" class="custom-control-input" value="2" <?php if ($user['adapt_time'] == '2') { echo ' checked'; } ?>>
+										<label class="custom-control-label" for="form[adapt_time3]">
 											<?php _e('Enable night mode automatically.', 'luna') ?>
 										</label>
 									</div>
@@ -222,9 +229,9 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('First Run', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[first_run]" value="1"<?php if ($user['first_run'] == '0') echo ' checked' ?> />
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="form[first_run]" name="form[first_run]" value="1"<?php echo ( $user['first_run'] == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="form[first_run]">
 											<?php _e('Show the First Run window on the index.', 'luna') ?>
 										</label>
 									</div>
@@ -239,9 +246,9 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Inbox', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[use_inbox]" value="1"<?php if ($user['use_inbox'] == '1') echo ' checked' ?> />
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="form[use_inbox]" name="form[use_inbox]" value="1"<?php echo ( $user['use_inbox'] == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="form[use_inbox]">
 											<?php _e('Allow users to send messages with Inbox.', 'luna') ?>
 										</label>
 									</div>
@@ -252,21 +259,21 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Email settings', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="radio">
-										<label>
-											<input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked' ?> />
+									<div class="custom-control custom-radio">
+										<input type="radio" id="form[email_setting1]" name="form[email_setting]" class="custom-control-input" value="0" <?php if ($user['email_setting'] == '0') { echo ' checked'; } ?>>
+										<label class="custom-control-label" for="form[email_setting1]">
 											<?php _e('Display your email address.', 'luna') ?>
 										</label>
 									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked' ?> />
+									<div class="custom-control custom-radio">
+										<input type="radio" id="form[email_setting2]" name="form[email_setting]" class="custom-control-input" value="1" <?php if ($user['email_setting'] == '1') { echo ' checked'; } ?>>
+										<label class="custom-control-label" for="form[email_setting2]">
 											<?php _e('Hide your email address but allow form email.', 'luna') ?>
 										</label>
 									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked' ?> />
+									<div class="custom-control custom-radio">
+										<input type="radio" id="form[email_setting3]" name="form[email_setting]" class="custom-control-input" value="2" <?php if ($user['email_setting'] == '2') { echo ' checked'; } ?>>
+										<label class="custom-control-label" for="form[email_setting3]">
 											<?php _e('Hide your email address and disallow form email.', 'luna') ?>
 										</label>
 									</div>
@@ -277,16 +284,16 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Subscriptions', 'luna') ?></label>
 								<div class="col-md-9">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[notify_with_comment]" value="1"<?php if ($user['notify_with_comment'] == '1') echo ' checked' ?> />
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="form[notify_with_comment]" name="form[notify_with_comment]" value="1"<?php echo ( $user['notify_with_comment'] == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="form[notify_with_comment]">
 											<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 										</label>
 									</div>
 									<?php if ($luna_config['o_thread_subscriptions'] == '1') { ?>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked' ?> />
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="form[auto_notify]" name="form[auto_notify]" value="1"<?php echo ( $user['auto_notify'] == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="form[auto_notify]">
 											<?php _e('Automatically subscribe to every thread you comment in.', 'luna') ?>
 										</label>
 									</div>
@@ -360,16 +367,16 @@ else
 									<label class="col-md-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
 									<div class="col-md-9">
 										<?php if ($luna_config['o_avatars'] == '1'): ?>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked' ?> />
-													<?php _e('Show user avatars with their comments.', 'luna') ?>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="form[notify_with_comment]" name="form[notify_with_comment]" value="1"<?php echo ( $user['notify_with_comment'] == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[notify_with_comment]">
+													<?php _e('Show user avatars with their comments', 'luna') ?>
 												</label>
 											</div>
 										<?php endif; if ($luna_config['o_message_img_tag'] == '1'): ?>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked' ?> />
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="form[notify_with_comment]" name="form[notify_with_comment]" value="1"<?php echo ( $user['notify_with_comment'] == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[notify_with_comment]">
 													<?php _e('Show images in comments.', 'luna') ?>
 												</label>
 											</div>
@@ -380,23 +387,23 @@ else
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label"><?php _e('Signatures', 'luna') ?></label>
 									<div class="col-md-9">
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked' ?> />
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="form[show_sig]" name="form[show_sig]" value="1"<?php echo ( $user['show_sig'] == '1' ) ? ' checked' : '' ?>>
+											<label class="custom-control-label" for="form[show_sig]">
 													<?php _e('Show user signatures.', 'luna') ?>
-												</label>
-											</div>
+											</label>
+										</div>
 										<?php if ($luna_config['o_sig_img_tag'] == '1'): ?>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked' ?> />
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="form[show_img_sig]" name="form[show_img_sig]" value="1"<?php echo ( $user['show_img_sig'] == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[show_img_sig]">
 													<?php _e('Show images in user signatures.', 'luna') ?>
 												</label>
 											</div>
 										<?php endif; if ($luna_config['o_smilies_sig'] == '1'): ?>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="form[show_smilies]" name="form[show_smilies]" value="1"<?php echo ( $user['show_smilies'] == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[show_smilies]">
 													<?php _e('Show smilies as graphic icons.', 'luna') ?>
 												</label>
 											</div>
@@ -531,10 +538,15 @@ else
 						}
 		
 						$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-		
-						echo '<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />';
+		?>
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="form[show_smilies]" name="moderator_in[<?php echo $cur_forum['fid'] ?>]" value="1"<?php echo ( in_array( $id, $moderators ) ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[show_smilies]">
+													<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>
+												</label>
+											</div>
+		<?php
 					}
-		
 		?>
 										</div>
 									</div>

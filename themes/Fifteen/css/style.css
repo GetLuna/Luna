@@ -344,6 +344,9 @@ td .custom-control {
       margin-bottom: .75rem; }
     .modal .modal-dialog .modal-content .modal-body .input-group .form-control {
       margin-bottom: 0; }
+    .modal .modal-dialog .modal-content .modal-body .custom-checkbox {
+      margin-bottom: .5rem;
+      margin-top: -.25rem; }
   .modal .modal-dialog .modal-content .modal-footer {
     background-color: #2788cb;
     color: #fff;

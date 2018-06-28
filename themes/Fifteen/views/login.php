@@ -12,8 +12,11 @@
 					<input class="form-control" type="text" name="req_username" maxlength="25" tabindex="901" placeholder="<?php _e('Username', 'luna') ?>" />
 					<input class="form-control" type="password" name="req_password" tabindex="902" placeholder="<?php _e('Password', 'luna') ?>" />
 					<div class="control-group">
-						<div class="controls remember">
-							<label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="903" checked="checked" /> <?php _e('Remember me', 'luna') ?></label>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="save_pass" name="save_pass" value="1" checked>
+							<label class="custom-control-label" for="save_pass">
+								<?php _e('Remember me', 'luna')?>
+							</label>
 						</div>
 					</div>
 					<input class="btn btn-primary btn-block" type="submit" name="login" value="<?php _e('Login', 'luna') ?>" tabindex="904" />
