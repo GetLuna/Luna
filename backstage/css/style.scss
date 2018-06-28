@@ -35,6 +35,8 @@ $accents: #14a3ff, #2788cb, #0d4382, #c58be2, #ea69ae, #8bb805, #047a36, #ffcd21
 @import 'accents';
 @import 'extension';
 
+@import 'night';
+
 // SCSS
 body {
     background-color: #f8f8f8;
@@ -120,4 +122,9 @@ body {
     height: 9rem;
     margin-top: .75rem;
     margin-bottom: .5rem;
+}
+
+// Breadcrumb
+.breadcrumb {
+    border-radius: 0;
 }

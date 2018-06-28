@@ -1,0 +1,142 @@
+.night {
+    body {
+        background-color: #222;
+    }
+
+    .container {
+        &.main {
+            background-color: #2a2a2a;
+        }
+    }
+
+    .card {
+        background-color: #2a2a2a;
+        border-color: #141414;
+        color: #fff;
+        
+        .card-header {
+            background-color: #222;
+            color: #fff;
+        }
+    }
+
+    .form-control {
+        background-color: #2a2a2a;
+        color: #fff;
+        border-color: #141414;
+    }
+
+    .table td,
+    .table th {
+        border-color: #141414;
+    }
+
+    .jumbotron {
+        &.primary {
+            .nav {
+                .nav-item {
+                    &.active {
+                        color: #fff;
+                        background-color: #1d1d1d;
+                    }
+
+                    &:hover:not(.active),
+                    &:focus:not(.active),
+                    &:active:not(.active) {
+                        background-color: rgba(0,0,0,.2);
+                    }
+                }
+            }
+        }
+
+        &.secondary {
+            background-color: #1d1d1d;
+
+            .nav {
+                .nav-item {
+                    color: #fff;
+
+                    &.active {
+                        background-color: inherit;
+                    }
+                }
+            }
+        }
+    }
+
+    .release-notes {
+        h2 {
+            border-bottom-color: #141414;
+        }
+
+        p {
+            border-left-color: #141414;
+        }
+    }
+
+    .nav {
+        &.nav-tabs {
+            .nav-link {
+                &.active {
+                    color: #fff;
+                    background-color: #2a2a2a;
+                }
+            }
+        }
+    }
+
+    .breadcrumb {
+        background-color: #333;
+    }
+
+    .color-accent {
+        border-color: #2a2a2a;
+
+        &.active,
+        &:hover,
+        &:active,
+        &:focus {
+            border-color: #444;
+        }
+    }
+
+    .row-extension {
+        background-color: #2a2a2a;
+    
+        &:nth-child(odd) {
+            background-color: #242424;
+        }
+
+        .meta {
+            color: #777;
+        }
+    }
+
+    .input-group-text {
+        color: #fff;
+        background-color: #242424;
+        border-color: #141414;
+    }
+    
+    .alert {
+        &.alert-info {
+            color: lighten( $blue, 50% );
+            background-color: darken( $blue, 10% );
+        }
+    
+        &.alert-danger {
+            color: lighten( $red, 42% );
+            background-color: darken( $red, 10% );
+        }
+    
+        &.alert-success {
+            color: lighten( $fluo, 47% );
+            background-color: darken( $fluo, 10% );
+        }
+    
+        &.alert-warning {
+            color: lighten( $yellow, 42% );
+            background-color: darken( $yellow, 10% );
+        }
+    }
+}

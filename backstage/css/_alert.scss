@@ -22,4 +22,8 @@
         color: darken( $yellow, 10% );
         background-color: lighten( $yellow, 42% );
     }
+
+    a {
+        color: inherit !important;
+    }
 }

@@ -7,7 +7,8 @@
       font-size: 1.3rem;
       font-weight: 700; }
     .list-group-advanced .list-group-item .row h6 {
-      margin: 0;
+      margin-top: -.2rem;
+      margin-bottom: .2rem;
       text-transform: uppercase; }
       .list-group-advanced .list-group-item .row h6 small {
         font-size: .7rem;
@@ -24,10 +25,9 @@
     .list-group-advanced .list-group-item .row .forum-description,
     .list-group-advanced .list-group-item .row .thread-desc,
     .list-group-advanced .list-group-item .row .thread-meta {
-      font-size: .82rem; }
-    .list-group-advanced .list-group-item .row .byuser {
-      display: block;
-      margin-top: .1rem; }
+      font-size: .82rem;
+      margin-top: -.1rem;
+      margin-bottom: .2rem; }
     .list-group-advanced .list-group-item .row .bytime {
       margin-top: 3px; }
 
