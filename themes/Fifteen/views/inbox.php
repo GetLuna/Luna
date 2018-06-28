@@ -109,10 +109,10 @@ if (!defined('FORUM'))
 							$sender_list = str_replace('Deleted', __('Deleted', 'luna'), $sender_list);
 			
 							for($i = '0'; $i < count($ids_list); $i++){
-							echo '<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($sender_list[$i]).'</a>';
-			
-							if($ids_list[$i][count($ids_list[$i])-'1'])
-								echo'<br />';
+								echo '<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($sender_list[$i]).'</a>';
+				
+								if(count($ids_list) > $i)
+									echo '<br />';
 							}
 						} else
 							echo luna_htmlspecialchars($cur_mess['receiver']);
