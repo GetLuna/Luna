@@ -37,7 +37,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Enabling debug mode now works correctly for PostgreSQL', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Updating to Luna 2.0 no longer causes \'o_custom_css\' to start with "NULL" as value', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes a PHP error with receivers in Inbox not being countable', 'luna') ?></li>
-                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('The paper plane icons in Inbox are now properly alligned', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('The paper plane icons in Inbox are now properly aligned', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
