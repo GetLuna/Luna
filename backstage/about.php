@@ -30,6 +30,14 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 11 <small>2.0.11</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes the incorrect language file versions being included', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 10 <small>2.0.10</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Upgrading will update the cookie bar url if the old default value is still used', 'luna') ?></li>
