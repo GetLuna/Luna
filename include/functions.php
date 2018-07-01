@@ -996,16 +996,16 @@ function paginate($num_pages, $cur_page, $link) {
     } else {
         // Add a previous page link
         if ($num_pages > 1 && $cur_page > 1) {
-            $pages[] = '<a rel="prev" class="btn btn-default" href="'.$link.'&amp;p='.($cur_page - 1).'">&laquo;</a>';
+            $pages[] = '<a rel="prev" class="btn btn-light" href="'.$link.'&amp;p='.($cur_page - 1).'"><i class="fas fa-fw fa-angle-left"></i></a>';
         } else {
-            $pages[] = '<a class="btn btn-default disabled">&laquo;</a>';
+            $pages[] = '<a class="btn btn-light disabled"><i class="fas fa-fw fa-angle-left"></i></a>';
         }
 
         if ($cur_page > 3) {
-            $pages[] = '<a class="btn btn-default" href="'.$link.'&amp;p=1">1</a>';
+            $pages[] = '<a class="btn btn-light" href="'.$link.'&amp;p=1">1</a>';
 
             if ($cur_page > 5) {
-                $pages[] = '<a class="btn btn-default disabled">'.__('…', 'luna').'</a>';
+                $pages[] = '<a class="btn btn-light disabled">'.__('…', 'luna').'</a>';
             }
 
         }
@@ -1015,26 +1015,25 @@ function paginate($num_pages, $cur_page, $link) {
             if ($current < 1 || $current > $num_pages) {
                 continue;
             } elseif ($current != $cur_page || $link_to_all) {
-                $pages[] = '<a class="btn btn-default" href="'.$link.'&amp;p='.$current.'">'.forum_number_format($current).'</a>';
+                $pages[] = '<a class="btn btn-light" href="'.$link.'&amp;p='.$current.'">'.forum_number_format($current).'</a>';
             } else {
                 $pages[] = '<a class="btn btn-primary">'.forum_number_format($current).' <span class="sr-only">(current)</span></a>';
             }
-
         }
 
         if ($cur_page <= ($num_pages - 3)) {
             if ($cur_page != ($num_pages - 3) && $cur_page != ($num_pages - 4)) {
-                $pages[] = '<a class="btn btn-default disabled">'.__('…', 'luna').'</a>';
+                $pages[] = '<a class="btn btn-light disabled">'.__('…', 'luna').'</a>';
             }
 
-            $pages[] = '<a class="btn btn-default" href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a>';
+            $pages[] = '<a class="btn btn-light" href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a>';
         }
 
         // Add a next page link
         if ($num_pages > 1 && !$link_to_all && $cur_page < $num_pages) {
-            $pages[] = '<a rel="next" class="btn btn-default" href="'.$link.'&amp;p='.($cur_page + 1).'">&raquo;</a>';
+            $pages[] = '<a rel="next" class="btn btn-light" href="'.$link.'&amp;p='.($cur_page + 1).'"><i class="fas fa-fw fa-angle-right"></i></a>';
         } else {
-            $pages[] = '<a class="btn btn-default disabled">&raquo;</a>';
+            $pages[] = '<a class="btn btn-light disabled"><i class="fas fa-fw fa-angle-right"></i></a>';
         }
 
         return '<div class="btn-group btn-pagination">'.implode(' ', $pages).'</div>';
