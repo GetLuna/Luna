@@ -103,6 +103,8 @@
                 .btn-group {
                     .btn {
                         &.btn-light {
+                            color: $accent;
+                            
                             &.active {
                                 background-color: $accent;
             
