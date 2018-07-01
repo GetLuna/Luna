@@ -371,15 +371,15 @@ else
 									<div class="col-md-9">
 										<?php if ($luna_config['o_avatars'] == '1'): ?>
 											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[notify_with_comment]" name="form[notify_with_comment]" value="1"<?php echo ( $user['notify_with_comment'] == '1' ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[notify_with_comment]">
+												<input type="checkbox" class="custom-control-input" id="form[show_avatars]" name="form[show_avatars]" value="1"<?php echo ( $user['show_avatars'] == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[show_avatars]">
 													<?php _e('Show user avatars with their comments', 'luna') ?>
 												</label>
 											</div>
 										<?php endif; if ($luna_config['o_message_img_tag'] == '1'): ?>
 											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[notify_with_comment]" name="form[notify_with_comment]" value="1"<?php echo ( $user['notify_with_comment'] == '1' ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[notify_with_comment]">
+												<input type="checkbox" class="custom-control-input" id="form[show_img]" name="form[show_img]" value="1"<?php echo ( $user['show_img'] == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="form[show_img]">
 													<?php _e('Show images in comments.', 'luna') ?>
 												</label>
 											</div>
@@ -543,8 +543,8 @@ else
 						$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 		?>
 											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[show_smilies]" name="moderator_in[<?php echo $cur_forum['fid'] ?>]" value="1"<?php echo ( in_array( $id, $moderators ) ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[show_smilies]">
+												<input type="checkbox" class="custom-control-input" id="moderator_in[<?php echo $cur_forum['fid'] ?>]" name="moderator_in[<?php echo $cur_forum['fid'] ?>]" value="1"<?php echo ( in_array( $id, $moderators ) ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="moderator_in[<?php echo $cur_forum['fid'] ?>]">
 													<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>
 												</label>
 											</div>

@@ -12,7 +12,7 @@ $btn_style = ' style="color:'.$cur_comment['color'].';"';
 	<div class="container">
 		<h2 class="forum-title">
             <small>
-                <?php _e('New thread', 'luna') ?>
+                <?php _e('Edit comment', 'luna') ?>
             </small>
             <?php echo luna_htmlspecialchars($cur_comment['subject']) ?>
             <span class="float-right naviton">
