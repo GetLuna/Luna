@@ -92,7 +92,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
     if (is_null($temp)) {
         $errors[] = __('Your list was too long to parse, please make it smaller!', 'luna');
     } else {
-        $text = str_replace('*' . "\0" . ']', '*]', $temp);
+        $text = str_replace('*'."\0".']', '*]', $temp);
     }
 
     if ($luna_config['o_make_links'] == '1') {
@@ -117,7 +117,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
         for ($i = 0; $i < $num_tokens; ++$i) {
             $text .= $outside[$i];
             if (isset($inside[$i])) {
-                $text .= '[code]' . $inside[$i] . '[/code]';
+                $text .= '[code]'.$inside[$i].'[/code]';
             }
 
         }
@@ -169,7 +169,7 @@ function strip_empty_bbcode($text)
         foreach ($parts as $i => $part) {
             $text .= $part;
             if (isset($inside[$i])) {
-                $text .= '[code]' . $inside[$i] . '[/code]';
+                $text .= '[code]'.$inside[$i].'[/code]';
             }
 
         }
@@ -280,22 +280,22 @@ function preparse_tags($text, &$errors, $is_signature = false)
                         if (in_array($temp_tag, $tags_inline)) {
                             array_push($temp_opened, $temp_tag);
                             array_push($temp_opened_arg, $temp_arg);
-                            $temp .= '[/' . $temp_tag . ']';
+                            $temp .= '[/'.$temp_tag.']';
                         } else {
                             array_push($open_tags, $temp_tag);
                             array_push($open_args, $temp_arg);
                             break;
                         }
                     }
-                    $current .= $temp . $split_current[$i];
+                    $current .= $temp.$split_current[$i];
                     $temp = '';
                     while (!empty($temp_opened)) {
                         $temp_tag = array_pop($temp_opened);
                         $temp_arg = array_pop($temp_opened_arg);
                         if (empty($temp_arg)) {
-                            $temp .= '[' . $temp_tag . ']';
+                            $temp .= '['.$temp_tag.']';
                         } else {
-                            $temp .= '[' . $temp_tag . '=' . $temp_arg . ']';
+                            $temp .= '['.$temp_tag.'='.$temp_arg.']';
                         }
 
                         array_push($open_tags, $temp_tag);
@@ -351,7 +351,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
                 $errors[] = sprintf(__('[%s] tag had an empty attribute section', 'luna'), $current_tag);
                 return false;
             }
-            $current = strtolower(substr($current, 0, $equalpos)) . substr($current, $equalpos);
+            $current = strtolower(substr($current, 0, $equalpos)).substr($current, $equalpos);
         } else {
             $current = strtolower($current);
         }
@@ -361,18 +361,18 @@ function preparse_tags($text, &$errors, $is_signature = false)
         // only balanced sets of tags can be nested
         if ($current_ignore) {
             // Increase the current ignored tags counter
-            if ('[' . $current_ignore . ']' == $current) {
+            if ('['.$current_ignore.']' == $current) {
                 $count_ignored[$current_tag]++;
             }
 
             // Decrease the current ignored tags counter
-            if ('[/' . $current_ignore . ']' == $current) {
+            if ('[/'.$current_ignore.']' == $current) {
                 $count_ignored[$current_tag]--;
             }
 
-            if ('[/' . $current_ignore . ']' == $current && $count_ignored[$current_tag] == 0) {
+            if ('[/'.$current_ignore.']' == $current && $count_ignored[$current_tag] == 0) {
                 // We've finished the ignored section
-                $current = '[/' . $current_tag . ']';
+                $current = '[/'.$current_tag.']';
                 $current_ignore = '';
                 $count_ignored = array();
             }
@@ -447,11 +447,11 @@ function preparse_tags($text, &$errors, $is_signature = false)
                                 if ($temp_tag == $current_tag) {
                                     break;
                                 } else {
-                                    $temp .= '[/' . $temp_tag . ']';
+                                    $temp .= '[/'.$temp_tag.']';
                                 }
 
                             }
-                            $current = $temp . $current;
+                            $current = $temp.$current;
                             $temp = '';
                             array_pop($temp_opened);
                             array_pop($temp_opened_arg);
@@ -460,9 +460,9 @@ function preparse_tags($text, &$errors, $is_signature = false)
                                 $temp_tag = array_pop($temp_opened);
                                 $temp_arg = array_pop($temp_opened_arg);
                                 if (empty($temp_arg)) {
-                                    $temp .= '[' . $temp_tag . ']';
+                                    $temp .= '['.$temp_tag.']';
                                 } else {
-                                    $temp .= '[' . $temp_tag . '=' . $temp_arg . ']';
+                                    $temp .= '['.$temp_tag.'='.$temp_arg.']';
                                 }
 
                                 array_push($open_tags, $temp_tag);
@@ -547,7 +547,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 
             // Remove quotes from arguments for certain tags
             if (strpos($current, '=') !== false && in_array($current_tag, $tags_quotes)) {
-                $current = preg_replace('%\[' . $current_tag . '=("|\'|)(.*?)\\1\]\s*%i', '[' . $current_tag . '=$2]', $current);
+                $current = preg_replace('%\['.$current_tag.'=("|\'|)(.*?)\\1\]\s*%i', '['.$current_tag.'=$2]', $current);
             }
 
             if (in_array($current_tag, array_keys($tags_limit_bbcode))) {
@@ -600,12 +600,12 @@ function preparse_list_tag($content, $type = '*')
     $content = '';
     foreach ($items as $item) {
         if (luna_trim($item) != '') {
-            $content .= '[*' . "\0" . ']' . str_replace('[/*]', '', luna_trim($item)) . '[/*' . "\0" . ']' . "\n";
+            $content .= '[*'."\0".']'.str_replace('[/*]', '', luna_trim($item)).'[/*'."\0".']'."\n";
         }
 
     }
 
-    return '[list=' . $type . ']' . "\n" . $content . '[/list]';
+    return '[list='.$type.']'."\n".$content.'[/list]';
 }
 
 //
@@ -623,36 +623,36 @@ function handle_url_tag($url, $link = '', $bbcode = false)
     $full_url = str_replace(array(' ', '\'', '`', '"'), array('%20', '', '', ''), $url);
     if (strpos($url, 'www.') === 0) // If it starts with www, we add http://
     {
-        $full_url = 'http://' . $full_url;
+        $full_url = 'http://'.$full_url;
     } elseif (strpos($url, 'ftp.') === 0) // elseif it starts with ftp, we add ftp://
     {
-        $full_url = 'ftp://' . $full_url;
+        $full_url = 'ftp://'.$full_url;
     } elseif (strpos($url, '/') === 0) // Allow for relative URLs that start with a slash
     {
-        $full_url = get_base_url(true) . $full_url;
+        $full_url = get_base_url(true).$full_url;
     } elseif (!preg_match('#^([a-z0-9]{3,6})://#', $url)) // elseif it doesn't start with abcdef://, we add http://
     {
-        $full_url = 'http://' . $full_url;
+        $full_url = 'http://'.$full_url;
     }
 
     // Ok, not very pretty :-)
     if ($bbcode) {
         if ($full_url == $link) {
-            return '[url]' . $link . '[/url]';
+            return '[url]'.$link.'[/url]';
         } else {
-            return '[url=' . $full_url . ']' . $link . '[/url]';
+            return '[url='.$full_url.']'.$link.'[/url]';
         }
 
     } else {
         if ($link == '' || $link == $url) {
             $url = luna_htmlspecialchars_decode($url);
-            $link = utf8_strlen($url) > 55 ? utf8_substr($url, 0, 39) . ' … ' . utf8_substr($url, -10) : $url;
+            $link = utf8_strlen($url) > 55 ? utf8_substr($url, 0, 39).' … '.utf8_substr($url, -10) : $url;
             $link = luna_htmlspecialchars($link);
         } else {
             $link = stripslashes($link);
         }
 
-        return '<a href="' . $full_url . '" target="_blank" rel="nofollow">' . $link . '</a>';
+        return '<a href="'.$full_url.'" target="_blank" rel="nofollow">'.$link.'</a>';
     }
 }
 
@@ -667,12 +667,12 @@ function handle_img_tag($url, $is_signature = false, $alt = null)
         $alt = basename($url);
     }
 
-    $img_tag = '<a href="' . $url . '" rel="nofollow">&lt;' . __('image', 'luna') . ' - ' . $alt . '&gt;</a>';
+    $img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.__('image', 'luna').' - '.$alt.'&gt;</a>';
 
     if ($is_signature && $luna_user['show_img_sig'] != '0') {
-        $img_tag = '<img class="sigimage img-responsive" src="' . $url . '" alt="' . $alt . '" />';
+        $img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
     } elseif (!$is_signature && $luna_user['show_img'] != '0') {
-        $img_tag = '<span class="commentimg"><img class="img-responsive" src="' . $url . '" alt="' . $alt . '" /></span>';
+        $img_tag = '<span class="commentimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
     }
 
     return $img_tag;
@@ -696,9 +696,9 @@ function handle_list_tag($content, $type = '*')
     $content = preg_replace('#\s*\[\*\](.*?)\[/\*\]\s*#s', '<li>$1</li>', luna_trim($content));
 
     if ($type == '*') {
-        $content = '<ul>' . $content . '</ul>';
+        $content = '<ul>'.$content.'</ul>';
     } else {
-        $content = '<ol class="decimal">' . $content . '</ol>';
+        $content = '<ol class="decimal">'.$content.'</ol>';
     }
 
     return $content;
@@ -818,7 +818,7 @@ function do_bbcode($text, $is_signature = false)
 //
 function do_clickable($text)
 {
-    $text = ' ' . $text;
+    $text = ' '.$text;
     $text = preg_replace_callback('%(?<=[\s\]\)])(<)?(\[)?(\()?([\'"]?)(https?|ftp|news){1}://([\p{L}\p{N}\-]+\.([\p{L}\p{N}\-]+\.)*[\p{L}\p{N}]+(:[0-9]+)?(/(?:[^\s\[]*[^\s.,?!\[;:-])?)?)\4(?(3)(\)))(?(2)(\]))(?(1)(>))(?![^\s]*\[/(?:url|img|imgr|imgl)\])%ui', function ($matches) { return stripslashes($matches[1].$matches[2].$matches[3].$matches[4]).handle_url_tag($matches[5]."://".$matches[6], $matches[5]."://".$matches[6], true).stripslashes($matches[4].luna_array_key($matches, 10).luna_array_key($matches, 11).luna_array_key($matches, 12)); }, $text);
     $text = preg_replace_callback('%(?<=[\s\]\)])(<)?(\[)?(\()?([\'"]?)(www|ftp)\.(([\p{L}\p{N}\-]+\.)+[\p{L}\p{N}]+(:[0-9]+)?(/(?:[^\s\[]*[^\s.,?!\[;:-])?)?)\4(?(3)(\)))(?(2)(\]))(?(1)(>))(?![^\s]*\[/(?:url|img|imgr|imgl)\])%ui', function ($matches) { return stripslashes($matches[1].$matches[2].$matches[3].$matches[4]).handle_url_tag($matches[5].".".$matches[6], $matches[5].".".$matches[6], true).stripslashes($matches[4].luna_array_key($matches, 10).luna_array_key($matches, 11).luna_array_key($matches, 12)); }, $text);
 
@@ -844,7 +844,9 @@ function do_smilies($text)
 
 	foreach ($emoji as $code => $unicode) {
 		if (strpos($text, $code) !== false)
-			$text = preg_replace('%(?<=[>\s])'.preg_quote($code, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">' . $unicode . '</span>', $text);
+			$text = preg_replace('%(?<=[>\s])'.preg_quote($code, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$unicode.'</span>', $text);
+        if (strpos($text, strtoupper($code)) !== false)
+            $text = preg_replace('%(?<=[>\s])'.preg_quote(strtoupper($code), '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$unicode.'</span>', $text);
 	}
 
 	return substr($text, 1, -1);
@@ -923,9 +925,9 @@ function parse_message($text)
                     // Deleting the line giving the code name
                     $inside[$i] = str_replace($first_line, '', $inside[$i]);
                     // Generating the the HTML code block
-                    $text .= '</p><div class="codebox"><pre' . (($num_lines > 28) ? ' class="vscroll"' : '') . '><code' . $h_class . '>' . luna_trim($inside[$i], "\n\r") . '</code></pre></div><p>';
+                    $text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code'.$h_class.'>'.luna_trim($inside[$i], "\n\r").'</code></pre></div><p>';
                 } else {
-                    $text .= '</p><div class="codebox"><pre' . (($num_lines > 28) ? ' class="vscroll"' : '') . '><code>' . luna_trim($inside[$i], "\n\r") . '</code></pre></div><p>';
+                    $text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code>'.luna_trim($inside[$i], "\n\r").'</code></pre></div><p>';
                 }
             }
         }
@@ -941,7 +943,7 @@ function clean_paragraphs($text)
 {
     // Add paragraph tag around comment, but make sure there are no empty paragraphs
 
-    $text = '<p>' . $text . '</p>';
+    $text = '<p>'.$text.'</p>';
 
     // Replace any breaks next to paragraphs so our replace below catches them
     $text = preg_replace('%(</?p>)(?:\s*?<br />){1,2}%i', '$1', $text);
