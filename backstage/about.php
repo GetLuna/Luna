@@ -29,6 +29,15 @@ require 'header.php';
             </h5>
             <div class="card-body">
                 <section class="release-notes">
+                    <h2><span class="version-name">Fluorescent Blue Preview 5 <small>2.1-alpha.5</small></span></h2>
+                    <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
+                    <p><?php _e('More emoji have been remapped to better represent their text-version', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
+                    <p><?php _e('Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
+                    <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
+                </section>
+                <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 4 <small>2.1-alpha.4</small></span></h2>
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('Known issues are now listed in the Backstage under "About"', 'luna') ?></p>
@@ -54,8 +63,6 @@ require 'header.php';
                     <p><?php _e('The paper plane icons in Inbox are now properly alligned', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Bootstrap\'s JavaScript is now loaded correctly', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Enabling CDN loading does no longer break the Backstage', 'luna') ?></p>
-                    <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
-                    <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 3 <small>2.1-alpha.3</small></span></h2>
@@ -114,6 +121,11 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Removed', 'luna') ?></h4>
                     <p><?php _e('It is no longer possible to enable smilies', 'luna') ?></p>
                     <p><?php _e('Support for update rings has been removed', 'luna') ?></p>
+                </section>
+                <section class="release-notes">
+                    <h2><span class="version-name">Emerald Update 11 <small>2.0.11</small></span></h2>
+                    <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
+                    <p><?php _e('Fixes the incorrect language file versions being included', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 10 <small>2.0.10</small></span></h2>
