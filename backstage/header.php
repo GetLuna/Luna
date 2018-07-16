@@ -125,7 +125,7 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
         <?php } else { ?>
             <link rel="stylesheet" type="text/css" href="../vendor/css/bootstrap.min.css">
             <script src="../vendor/js/jquery.min.js"></script>
-            <script src="../vendor/js/bootstrap4.min.js"></script>
+            <script src="../vendor/js/bootstrap.bundle.min.js"></script>
         <?php } ?>
         <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
             <?php if ($luna_config['o_use_cdn']) { ?>
