@@ -33,10 +33,13 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('All censored words can now be edited and saved at once', 'luna') ?></p>
                     <p><?php _e('Emoji can now be edited and saved at once', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
+                    <p><?php _e('Bootstrap has been updated from version 4.1.1 to 4.1.2', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
                     <p><?php _e('More emoji have been remapped to better represent their text-version', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
+                    <p><?php _e('Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
                 </section>
