@@ -49,20 +49,23 @@ if (isset($_POST['add_emoji'])) {
 elseif (isset($_POST['update'])) {
     confirm_referrer('backstage/emoji.php');
 
-    $id = intval(key($_POST['update']));
-
-    $text = luna_trim($_POST['text'][$id]);
-    $unicode = luna_trim($_POST['unicode'][$id]);
-
-    if ($text == '') {
-        message_backstage(__('You must enter a BBCode that will be replaced with the emoji.', 'luna'));
+    $emoji = $_POST['item'];
+    if (empty($emoji)) {
+        message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     }
 
-    if ($unicode == '') {
-        message_backstage(__('You must enter a unicode which represents the emoji.', 'luna'));
-    }
+    foreach ($emoji as $item_id => $cur_item) {
+        $cur_item['text'] = luna_trim($cur_item['text']);
+        $cur_item['unicode'] = luna_trim($cur_item['unicode']);
 
-    $db->query('UPDATE '.$db->prefix.'emoji SET text=\''.$db->escape($text).'\', unicode=\''.$db->escape(strtolower($unicode)).'\' WHERE id='.$id) or error('Unable to update emoji', __FILE__, __LINE__, $db->error());
+        if ($cur_item['text'] == '') {
+            message_backstage(__('You must enter a BBCode that will be replaced with the emoji.', 'luna'));
+        } elseif ($cur_item['unicode'] == '') {
+            message_backstage(__('You must enter a unicode which represents the emoji.', 'luna'));
+        } else {
+            $db->query('UPDATE '.$db->prefix.'emoji SET text=\''.$db->escape($cur_item['text']).'\', unicode=\''.$db->escape($cur_item['unicode']).'\' WHERE id='.intval($item_id)) or error('Unable to update emoji', __FILE__, __LINE__, $db->error());
+        }
+    }
 
     // Regenerate the emoji cache
     if (!defined('LUNA_CACHE_FUNCTIONS_LOADED')) {
@@ -71,7 +74,7 @@ elseif (isset($_POST['update'])) {
 
     generate_emoji_cache();
 
-    redirect('backstage/emoji.php');
+    //redirect('backstage/emoji.php');
 }
 
 // Remove a emoji
@@ -122,7 +125,12 @@ require 'header.php';
 	</div>
 	<div class="col-md-8">
         <form id="emoji" class="card" method="post" action="emoji.php">
-			<h5 class="card-header"><?php _e('Manage words', 'luna')?></h5>
+			<h5 class="card-header">
+                <?php _e('Manage emoji', 'luna') ?>
+                <span class="float-right">
+                    <button class="btn btn-link" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
+                </span>
+            </h5>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -142,19 +150,18 @@ if ($db->num_rows($result)) {
                         <tr>
                             <td><span class="emoji emoji-table">&#x<?php echo $cur_emoji['unicode'] ?>;</span></span>
                             <td>
-                                <input type="text" class="form-control" name="text[<?php echo $cur_emoji['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_emoji['text']) ?>" maxlength="60" />
+                                <input type="text" class="form-control" name="item[<?php echo $cur_emoji['id'] ?>][text]" value="<?php echo luna_htmlspecialchars($cur_emoji['text']) ?>" maxlength="60" />
                             </td>
                             <td>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">U+</span>
                                     </div>
-                                    <input type="text" class="form-control" name="unicode[<?php echo $cur_emoji['id'] ?>]" value="<?php echo luna_htmlspecialchars($cur_emoji['unicode']) ?>" maxlength="60" />
+                                    <input type="text" class="form-control" name="item[<?php echo $cur_emoji['id'] ?>][unicode]" value="<?php echo luna_htmlspecialchars($cur_emoji['unicode']) ?>" maxlength="60" />
                                 </div>
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-primary" type="submit" name="update[<?php echo $cur_emoji['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna')?></button>
                                     <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_emoji['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
                                 </div>
                             </td>
