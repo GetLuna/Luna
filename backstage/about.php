@@ -30,6 +30,8 @@ require 'header.php';
             <div class="card-body">
                 <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 5 <small>2.1-alpha.5</small></span></h2>
+                    <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
+                    <p><?php _e('All censored words can now be edited and saved at once', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
                     <p><?php _e('More emoji have been remapped to better represent their text-version', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
