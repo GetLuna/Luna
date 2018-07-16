@@ -4,7 +4,7 @@
             border-radius: 0;
             background-color: rgba(255,255,255,.1);
             color: #fff;
-            padding: .5rem .9rem;
+            padding: .55rem .9rem;
             border: none;
             margin-bottom: .1rem;
 
@@ -69,7 +69,7 @@
             margin-bottom: .1rem;
             border-radius: 0;
             color: #333;
-            padding: .5rem .9rem;
+            padding: .55rem .9rem;
 
             &:hover,
             &:active,
@@ -91,7 +91,7 @@
             margin-bottom: .1rem;
             border-radius: 0;
             color: #444;
-            padding: .5rem .9rem;
+            padding: .55rem .9rem;
 
             &:hover,
             &:active,
@@ -105,4 +105,50 @@
             }
         }
     }
+
+    .list-group-item {
+        &.list-group-item-info {
+            color: darken( $blue, 10% );
+            background-color: lighten( $blue, 50% );
+
+            &:hover {
+                color: darken( $blue, 15% );
+                background-color: lighten( $blue, 45% );
+            }
+        }
+
+        &.list-group-item-danger {
+            color: darken( $red, 10% );
+            background-color: lighten( $red, 42% );
+
+            &:hover {
+                color: darken( $red, 15% );
+                background-color: lighten( $red, 37% );
+            }
+        }
+
+        &.list-group-item-success {
+            color: darken( $fluo, 10% );
+            background-color: lighten( $fluo, 47% );
+
+            &:hover {
+                color: darken( $fluo, 15% );
+                background-color: lighten( $fluo, 42% );
+            }
+        }
+
+        &.list-group-item-warning {
+            color: darken( $yellow, 10% );
+            background-color: lighten( $yellow, 42% );
+
+            &:hover {
+                color: darken( $yellow, 15% );
+                background-color: lighten( $yellow, 37% );
+            }
+        }
+    }
+}
+
+.title-block + .list-group-thread {
+    margin-top: .1rem;
 }

@@ -206,11 +206,9 @@
             }
         }
 
-        .tab-set {
-            .table {
-                &:last-child {
-                    border-color: $accent;
-                }
+        .tab-set > .table-responsive > .table {
+            &:last-child {
+                border-color: $accent;
             }
         }
 

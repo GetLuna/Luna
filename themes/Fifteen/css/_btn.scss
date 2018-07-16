@@ -16,7 +16,7 @@
 
     &.btn-danger {
         background-color: $red;
-        color: #fff;
+        color: #fff !important;
 
         &:hover,
         &:active,

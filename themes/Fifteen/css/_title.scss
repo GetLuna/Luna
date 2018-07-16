@@ -58,14 +58,14 @@
     &:last-child {
         margin-bottom: 0;
     }
+}
 
-    .table {
-        margin: 0;
+.tab-set > .table-responsive > .table {
+    margin: 0;
 
-        &:last-child {
-            border-width: 0 1px 1px 1px;
-            border-style: solid;
-        }
+    &:last-child {
+        border-width: 0 1px 1px 1px;
+        border-style: solid;
     }
 }
 
