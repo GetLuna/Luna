@@ -14,12 +14,12 @@
 
     &.btn-link {
         &.btn-link-danger {
-            color: $red;
+            color: $red !important;
 
             &:hover,
             &:focus,
             &:active {
-                color: darken( $red, 5% );
+                color: darken( $red, 5% ) !important;
             }
         }
     }

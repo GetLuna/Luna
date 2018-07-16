@@ -33,6 +33,9 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
                     <p><?php _e('All censored words can now be edited and saved at once', 'luna') ?></p>
                     <p><?php _e('Emoji can now be edited and saved at once', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
+                    <p><?php _e('Emoji shortcodes are now case insensitive', 'luna') ?></p>
+                    <p><?php _e('Luna now uses modern emoji shortcodes for new installations and adds them to old installations', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 4.1.1 to 4.1.2', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>

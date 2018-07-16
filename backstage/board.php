@@ -92,7 +92,7 @@ elseif (isset($_GET['del_forum'])) {
         ?>
 <div class="row">
     <div class="col">
-        <form class=" card" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
+        <form class="card" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
             <h5 class="card-header">
                 <?php _e('Confirm delete forum', 'luna')?>
                 <span class="float-right">

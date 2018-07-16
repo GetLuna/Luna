@@ -220,7 +220,7 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
                         </div>
                         <div role="tabpanel" class="tab-pane <?php echo ( LUNA_SECTION == 'content' ) ? 'active' : '' ?>" id="content">
                             <nav class="nav nav-tabs">
-                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'board' ) ? 'active' : '' ?>" href="board.php"><i class="fas fa-fw fa-list"></i> <?php _e( 'Board', 'luna' ) ?></a>
+                                <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'board' ) ? 'active' : '' ?>" href="board.php"><i class="fas fa-fw fa-stream"></i> <?php _e( 'Board', 'luna' ) ?></a>
                                 <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'reports' ) ? 'active' : '' ?>" href="reports.php"><i class="fas fa-fw fa-flag"></i> <?php _e( 'Reports', 'luna' ) ?></a>
                                 <a class="nav-item nav-link <?php echo ( LUNA_PAGE == 'censoring' ) ? 'active' : '' ?>" href="censoring.php"><i class="fas fa-fw fa-microphone-slash"></i> <?php _e( 'Censoring', 'luna' )?></a>
                             </nav>
