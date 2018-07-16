@@ -774,7 +774,22 @@ switch ($stage) {
 				'b:' => '1f60e',
 				':hc:' => '1f605',
 				'(a)' => '1f607',
-				'^.^' => '1f60a'
+				'^.^' => '1f60a',
+				':simple_smile:' => '1f642',
+				':expressionless:' => '1f610',
+				':frowning:' => '1f641',
+				':smile:' => '1f604',
+				':hushed:' => '1f62e',
+				':wink:' => '1f609',
+				':confused:' => '1f615',
+				':stuck_out_tongue:' => '1f60b',
+				':stuck_out_tongue_winking_eye:' => '1f61c',
+				':angry:' => '1f620',
+				':laughing:' => '1f606',
+				':sunglasses:' => '1f60e',
+				':sweat_smile:' => '1f605',
+				':innocent:' => '1f607',
+				':blush:' => '1f60a'
 			);
 
 			foreach ($emoji as $text => $unicode) {
