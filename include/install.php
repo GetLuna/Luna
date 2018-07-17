@@ -11,7 +11,7 @@ class Installer
 {
 
     const DEFAULT_LANG = 'English';
-    const DEFAULT_STYLE = 'Fifteen';
+    const DEFAULT_STYLE = 'Typography';
 
     public static function is_supported_php_version()
     {
@@ -1641,8 +1641,9 @@ class Installer
 		}
 
 		$themes = array(
-			'fifteen' => Version::LUNA_VERSION,
-			'sunrise' => Version::LUNA_VERSION
+			'fifteen' => '3.0-alpha.4',
+			'sunrise' => '4.0-alpha.4',
+			'typography' => '1.0-alpha.1'
 		);
 
 		foreach ($themes as $name => $version) {
