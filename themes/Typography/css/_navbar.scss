@@ -1,0 +1,129 @@
+.navbar {
+    @media (min-width: 769px) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .navbar-brand {
+        margin: 0;
+
+        img {
+            max-height: 2rem;
+            margin-top: -5px;
+            display: inline;
+        }
+    }
+
+    .navbar-toggler {
+        border: transparent;
+    }
+
+    &.navbar-light {
+        .navbar-brand {
+            padding: 1.45rem 1rem 1.35rem;
+            margin: 0;
+            line-height: 1;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 24px;
+            color: #444;
+
+            span {
+                padding-top: 4px;
+                display: inline-block;
+            }
+
+            &.active, &:hover, &:focus {
+                color: $accent;
+            }
+
+            .img-brand {
+                height: 34px;
+                width: auto;
+                margin-right: 7px;
+                margin-top: -5px;
+            }
+        }
+
+        .navbar-nav {
+            .nav-link {
+                padding: 1.59rem 1rem;
+                font-size: 1.2rem;
+                font-weight: 600;
+                
+                @media (max-width: 768px) {
+                    padding: 1rem;
+                }
+
+                &.active, &:hover, &:focus {
+                    color: $accent;
+                }
+            }
+
+            .nav-item {
+                &.dropdown {
+                    @media (min-width: 769px) {
+                        &.dropdown-user {
+                            .nav-link {
+                                padding-top: 1rem;
+                                padding-bottom: 1rem;
+                            }
+                        }
+                    }
+
+                    &.dropdown-notifications {
+                        .dropdown-menu {
+                            min-width: 400px;
+                        }
+                    }
+
+                    &.show {
+                        .dropdown-menu {
+                            border: none;
+                            border-radius: 0;
+                            margin: 0;
+                            padding: 0;
+
+                            .dropdown-item {
+                                padding: .6rem .8rem;
+
+                                &.float-right {
+                                    text-align: right;
+                                }
+
+                                .fa-fw {
+                                    margin-right: 4px;
+                                }
+                            }
+
+                            .dropdown-header {
+                                font-size: 1.75rem;
+                                font-weight: 600;
+                                padding: .6rem .8rem;
+                            }
+
+                            .dropdown-divider {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .avatar {
+                        height: 3rem;
+                        width: auto;
+                        border-radius: 100%;
+                    }
+
+                    .dropdown-toggle::after {
+                        display:none;
+                    }
+                }
+            }
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 15px;
+        }
+    }
+}

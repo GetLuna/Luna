@@ -1,0 +1,17 @@
+.notification-row {
+    .col-10,
+    .col-2 {
+        margin-top: .1rem;
+        padding: 0;
+    }
+
+    .col-10 {
+        .btn {
+            text-align: left;
+
+            .timestamp {
+                color: #777;
+            }
+        }
+    }
+}

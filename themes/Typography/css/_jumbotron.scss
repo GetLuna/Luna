@@ -1,0 +1,121 @@
+.jumbotron {
+    border-radius: 0;
+
+    &.jumbotron-title {
+        margin-left: -.25rem;
+        margin-right: -.25rem;
+        margin-bottom: .75rem;
+        background: $accent;
+        padding: 1.5rem .75rem;
+
+        h2 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        .description {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+        }
+    }
+
+    &.profile {
+        padding: 1.5rem .75rem;
+        margin-left: -.25rem;
+        margin-right: -.25rem;
+
+        h4 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+            font-size: 2.2rem;
+        }
+    }
+
+    &.first-run {
+        color: #fff;
+        padding: 1rem;
+        margin: 0;
+
+        .avatar {
+            height: 8rem;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .form-control {
+            border-radius: 0;
+            background: none;
+            border: none;
+            border-bottom: .1rem solid rgba(255,255,255,.5);
+            padding: .5rem 0;
+            color: #fff;
+
+            &:focus {
+                border-bottom: .1rem solid #fff;
+            }
+
+            &::-webkit-input-placeholder {
+                color: rgba(255,255,255,.4);
+            }
+
+            &::-moz-placeholder {
+                color: rgba(255,255,255,.4);
+            }
+
+            &:-ms-input-placeholder {
+                color: rgba(255,255,255,.4);
+            }
+
+            &::placeholder {
+                color: rgba(255,255,255,.4);
+            }
+        }
+
+        .custom-checkbox {
+            margin-top: .75rem;
+        }
+
+        .btn-login {
+            margin-top: -3.4rem;
+            background-color: rgba(255,255,255,.2);
+
+            &:active,
+            &:focus,
+            &:hover {
+                background-color: rgba(255,255,255,.5);
+            }
+        }
+    }
+
+    &.titletron {
+        color: #fff;
+        padding: 1.2rem .75rem;
+        margin-bottom: 0;
+
+        h2 {
+            margin-bottom: 0;
+            font-weight: 600;
+
+            small {
+                display: block;
+                text-transform: uppercase;
+                font-size: 1rem;
+                margin-bottom: -.4rem;
+                font-weight: 700;
+            }
+
+            .btn {
+                margin-top: -1.4rem;
+            }
+        }
+    }
+}

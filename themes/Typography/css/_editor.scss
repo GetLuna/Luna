@@ -1,0 +1,75 @@
+.editor {
+    margin-top: .75rem;
+
+    .form-control {
+        border: .1rem solid #eee;
+        border-left: none;
+        border-right: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .btn-toolbar {
+        .btn-group {
+            border-right: .1rem solid #eee;
+            margin-left: 0;
+    
+            &:first-child {
+                border-left: none;
+            }
+    
+            .btn {
+                padding: .6rem .85rem;
+    
+                &.btn-light {
+                    background-color: #fff;
+    
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: #eee !important;
+                    }
+
+                    &.active {
+                        color: #fff;
+                    }
+                }
+            }
+
+            .dropdown-menu {
+                margin-top: 0;
+                border: .1rem solid #eee;
+                padding: 0;
+                border-radius: 0;
+
+                .dropdown-item {
+                    padding: .5rem .75rem;
+                }
+            }
+        }
+    }
+}
+
+.admin-note {
+    margin-top: .75rem;
+
+    .form-control {
+        border: none;
+        margin-top: .75rem;
+        padding: 0;
+        background: transparent;
+        color: darken( $red, 10% );
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.new-inbox {
+    .editor {
+        margin-top: 0;
+    }
+}

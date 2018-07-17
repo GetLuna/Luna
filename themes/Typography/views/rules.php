@@ -1,0 +1,26 @@
+<?php
+
+// Make sure no one attempts to run this view directly.
+if (!defined('FORUM'))
+	exit;
+
+?>
+<div class="main container">
+	<div class="row">
+		<div class="col-12">
+			<form method="get" action="register.php">
+				<div class="title-block title-block-primary">
+					<h2>
+						<i class="fas fa-fw fa-exclamation-circle"></i> <?php _e('Rules', 'luna') ?>
+						<span class="float-right">
+							<button type="submit" class="btn btn-light btn-light-primary" name="agree"><span class="fas fa-fw fa-check"></span> <?php _e('Agree', 'luna') ?></button>
+						</span>
+					</h2>
+				</div>
+				<div class="tab-content">
+					<?php echo $luna_config['o_rules_message'] ?>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

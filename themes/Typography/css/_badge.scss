@@ -1,0 +1,9 @@
+.badge {
+    border-radius: 0;
+    padding: .2rem .5rem;
+
+    &.badge-light {
+        background: #ccc;
+        color: #fff;
+    }
+}

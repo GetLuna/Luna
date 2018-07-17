@@ -1,0 +1,148 @@
+.btn {
+    border: transparent;
+    border-radius: 0;
+
+    &.btn-light {
+        background: none;
+        color: #333;
+        
+        &.btn-light-active {
+            background-color: #f3f3f3;
+        }
+    }
+
+    &:hover,
+    &:active,
+    &:focus,
+    &.active:focus,
+    &:focus:active {
+        box-shadow: none;
+    }
+
+    &.btn-primary {
+        color: #fff !important;
+    }
+
+    &.btn-danger {
+        background-color: $red;
+        color: #fff !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken( $red, 6% );
+        }
+
+        &.active {
+            background-color: darken( $red, 12% ) !important;
+        }
+    }
+
+    &.color-accent {
+        padding: 1.1rem;
+        border: .2rem solid #fff;
+        margin: 0;
+
+        &.active,
+        &:hover,
+        &:active,
+        &:focus {
+            border-color: #ccc;
+            z-index: 1000;
+        }
+    }
+
+    &.btn-light {
+        &.btn-light-danger {
+            color: $red;
+    
+            &:hover,
+            &:active,
+            &:focus {
+                color: darken( $red, 15% );
+            }
+        }
+
+        &.btn-light-success {
+            color: $green;
+    
+            &:hover,
+            &:active,
+            &:focus {
+                color: darken( $green, 15% );
+            }
+        }
+    }
+
+    &.btn-success {
+        background-color: $fluo;
+        color: #fff;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken( $fluo, 6% );
+        }
+
+        &.active {
+            background-color: darken( $fluo, 12% ) !important;
+        }
+    }
+
+    &.btn-link {
+        &.btn-link-danger {
+            color: $red;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: darken( $red, 5% );
+            }
+        }
+    }
+}
+
+.btn-toolbar-options {
+    justify-content: center;
+    padding-bottom: .75rem;
+
+    .btn-light {
+        border-radius: 99%;
+        padding-top: .6rem;
+        padding-bottom: .6rem;
+        margin-right: .5rem;
+
+        &.btn-light-active {
+            color: #fff;
+            background-color: $accent;
+        }
+
+        &:active,
+        &:focus,
+        &:active:focus {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.btn-pagination {
+    margin-bottom: .1rem;
+
+    .btn {
+        margin-right: .1rem;
+        padding: .5rem .9rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.btn-primary {
+            color: #fff;
+        }
+    }
+}

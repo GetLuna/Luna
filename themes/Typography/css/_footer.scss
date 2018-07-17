@@ -1,0 +1,32 @@
+footer {
+    color: $accent;
+    background-color: #f3f3f3;
+    border-bottom: $accent 7px solid;
+
+    a {
+        color: inherit !important;
+    }
+
+    .stats {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+
+        .text-center {
+            text-transform: lowercase;
+
+            h4 {
+                font-weight: 600;
+                margin: 0;
+                text-transform: initial;
+            }
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+    }
+
+    .footer {
+        padding: .75rem;
+    }
+}

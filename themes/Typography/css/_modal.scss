@@ -1,0 +1,51 @@
+.modal {
+    .modal-dialog {
+        border-radius: 0;
+
+        .modal-content {
+            .modal-header {
+                color: #fff;
+                border: none;
+                font-weight: 600;
+                padding: .75rem;
+                border-radius: 0;
+            }
+
+            .modal-body {
+                padding: .75rem;
+
+                .form-control {
+                    margin-bottom: .75rem;
+                }
+
+                .input-group {
+                    .form-control {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .custom-checkbox {
+                    margin-bottom: .5rem;
+                    margin-top: -.25rem;
+                }
+            }
+
+            .modal-footer {
+                color: #fff;
+                border: none;
+                padding: .75rem;
+                border-radius: 0;
+
+                a {
+                    color: #fff;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

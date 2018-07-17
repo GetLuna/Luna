@@ -1,0 +1,25 @@
+.container {
+    padding: 0;
+    max-width: 1500px;
+
+    &.main {
+        background-color: #fff;
+        padding: 0 .25rem .75rem;
+    }
+
+    @media (max-width: 576px) { //SM
+        max-width: 100%;
+    }
+
+    @media (max-width: 768px) { //MD
+        max-width: 100%;
+    }
+
+    @media (max-width: 992px) { //LG
+        max-width: 100%;
+    }
+
+    @media (max-width: 1200px) { //XL
+        max-width: 100%;
+    }
+}

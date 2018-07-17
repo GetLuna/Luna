@@ -1,0 +1,151 @@
+.list-group {
+    &.list-group-transparent {
+        .list-group-item {
+            border-radius: 0;
+            background-color: rgba(255,255,255,.1);
+            color: #fff;
+            border: none;
+            margin-bottom: .1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: rgba(255,255,255,.25);
+            }
+
+            &.active {
+                text-align: center;
+                background-color: rgba(255,255,255,.3);
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: rgba(255,255,255,.45);
+                }
+            }
+        }
+    }
+
+    &.list-group-nav {
+        h5 {
+            color: #fff;
+            margin-bottom: .1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .list-group-item {
+            border: none;
+            margin-bottom: .1rem;
+            border-radius: 0;
+            color: #444;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background: #f8f8f8;
+                color: #333;
+            }
+
+            &.active {
+                color: #fff;
+            }
+        }
+    }
+
+    &.list-group-thread {
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid #eee;
+            border-radius: 0;
+            color: #333;
+            margin: 0;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: transparent;
+            }
+
+            &.new-item {
+                background-color: #fafafa;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    &.list-group-none {
+        .list-group-item {
+            border: none;
+            background-color: transparent;
+            margin-bottom: .1rem;
+            border-radius: 0;
+            color: #444;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            &.active {
+                color: #fff;
+            }
+        }
+    }
+
+    .list-group-item {
+        &.list-group-item-info {
+            color: darken( $blue, 10% );
+            background-color: lighten( $blue, 50% );
+
+            &:hover {
+                color: darken( $blue, 15% );
+                background-color: lighten( $blue, 45% );
+            }
+        }
+
+        &.list-group-item-danger {
+            color: darken( $red, 10% );
+            background-color: lighten( $red, 42% );
+
+            &:hover {
+                color: darken( $red, 15% );
+                background-color: lighten( $red, 37% );
+            }
+        }
+
+        &.list-group-item-success {
+            color: darken( $fluo, 10% );
+            background-color: lighten( $fluo, 47% );
+
+            &:hover {
+                color: darken( $fluo, 15% );
+                background-color: lighten( $fluo, 42% );
+            }
+        }
+
+        &.list-group-item-warning {
+            color: darken( $yellow, 10% );
+            background-color: lighten( $yellow, 42% );
+
+            &:hover {
+                color: darken( $yellow, 15% );
+                background-color: lighten( $yellow, 37% );
+            }
+        }
+    }
+}
+
+.title-block + .list-group-thread {
+    margin-top: .1rem;
+}

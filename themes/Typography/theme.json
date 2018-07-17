@@ -1,0 +1,36 @@
+{
+    "id": "typography",
+    "name": "Typography",
+    "developer": "Studio 384",
+    "url": "https://getluna.org",
+    "description": "Typography is design",
+    "date": "16 July 2018",
+    "version": "1.0-alpha.1",
+    "minversion": "2.1-alpha.5",
+    "maxversion": "2.1-alpha.5",
+    "features": {
+        "accents": [
+            { "id": 1,      "color": "#e52262" },
+            { "id": 2,      "color": "#e74018" },
+            { "id": 3,      "color": "#fb8009" },
+            { "id": 4,      "color": "#ffc000" },
+            { "id": 5,      "color": "#c0d700" },
+            { "id": 6,      "color": "#97c800" },
+            { "id": 7,      "color": "#46c429" },
+            { "id": 8,      "color": "#10b08f" },
+            { "id": 9,      "color": "#0098df" }
+        ],
+        "announcement_types": false,
+        "back_to_top": false,
+        "copyright": false,
+        "custom_copyright": false,
+        "custom_css": false,
+        "first_run": false,
+        "header_background": false,
+        "header_search": false,
+        "moderated_by_list": false,
+        "night_mode": false,
+        "notification_flyout": false,
+        "statistics": false
+    }
+}
