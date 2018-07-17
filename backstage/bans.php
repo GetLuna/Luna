@@ -362,7 +362,7 @@ elseif (isset($_GET['find_ban'])) {
         <div class="card">
             <h5 class="card-header"><?php _e('Search results', 'luna')?></h5>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
             </div>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -405,7 +405,7 @@ elseif (isset($_GET['find_ban'])) {
 				</table>
 			</div>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
             </div>
         </div>
     </div>

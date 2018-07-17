@@ -331,7 +331,7 @@ if (isset($_GET['tid'])) {
                         <a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
                     <a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna')?></a>
                 </div>
-                <span class="float-right"><?php echo $paging_links ?></span>
+                <span class="float-right"><?php echo backstage_paginate($paging_links) ?></span>
 
                 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
@@ -414,7 +414,7 @@ if (isset($_GET['tid'])) {
                         <a class="btn btn-primary" href="../thread.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></a>
                         <a class="btn btn-primary" href="#"><?php _e('Moderate', 'luna')?></a>
                     </div>
-                    <span class="float-right"><?php echo $paging_links ?></span>
+                    <span class="float-right"><?php echo backstage_paginate($paging_links) ?></span>
                     <div class="btn-group pull-right">
                         <button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><i class="fas fa-fw fa-code-fork"></i> <?php _e('Split', 'luna')?></button>
                         <button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fas fa-fw fa-trash"></i> <?php _e('Delete', 'luna')?></button>
@@ -890,7 +890,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
         <form method="post" class="card" action="moderate.php?fid=<?php echo $fid ?>">
             <h5 class="card-header"><?php printf(__('Moderating "%s"', 'luna'), luna_htmlspecialchars($cur_forum['forum_name']))?></h5>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
 <?php
 
 // Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data

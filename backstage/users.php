@@ -50,7 +50,7 @@ if (isset($_GET['ip_stats'])) {
                 <?php _e('Search results', 'luna')?>
             </h5>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
             </div>
             <div class="table-responsive">
 				<table class="table table-js table-striped table-hover">
@@ -84,7 +84,7 @@ if (isset($_GET['ip_stats'])) {
 				</table>
 			</div>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
             </div>
         </div>
     </div>
@@ -121,7 +121,7 @@ if (isset($_GET['ip_stats'])) {
                 <?php _e('Search results', 'luna')?>
             </h5>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
             </div>
             <div class="table-responsive">
 				<table class="table table-js table-striped table-hover">
@@ -195,7 +195,7 @@ if (isset($_GET['ip_stats'])) {
 				</table>
 			</div>
             <div class="card-body">
-                <?php echo $paging_links ?>
+                <?php echo backstage_paginate($paging_links) ?>
             </div>
         </div>
     </div>
@@ -676,7 +676,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
             </h5>
             <form id="search-users-form" action="users.php" method="post">
                 <div class="card-body">
-                    <?php echo $paging_links ?>
+                    <?php echo backstage_paginate($paging_links) ?>
                     <?php if ($can_action): ?>
                         <span class="btn-toolbar float-right">
                             <div class="btn-group">
@@ -740,7 +740,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 					</table>
 				</div>
                 <div class="card-body">
-                    <?php echo $paging_links ?>
+                    <?php echo backstage_paginate($paging_links) ?>
                     <?php if ($can_action): ?>
                         <span class="btn-toolbar float-right">
                             <div class="btn-group">
