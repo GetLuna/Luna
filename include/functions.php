@@ -1403,7 +1403,9 @@ function array_insert(&$input, $offset, $element, $key = null) {
 // Display a message when board is in maintenance mode
 //
 function maintenance_message() {
-	global $db, $luna_config, $luna_user;
+    global $db, $luna_config, $luna_user;
+    
+    header("HTTP/1.1 503 Service Unavailable");
 
 	// Send no-cache headers
 	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
@@ -1478,7 +1480,9 @@ function error($message, $file = null, $line = null, $db_error = false) {
 
 	// "Restart" output buffering if we are using ob_gzhandler (since the gzip header is already sent)
 	if ($luna_config['o_gzip'] && extension_loaded('zlib'))
-		ob_start('ob_gzhandler');
+        ob_start('ob_gzhandler');
+    
+    header("HTTP/1.1 503 Service Unavailable");
 
 	// Send no-cache headers
 	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
