@@ -1521,7 +1521,7 @@ function array_insert(&$input, $offset, $element, $key = null) {
 function maintenance_message() {
     global $db, $luna_config, $luna_user;
 
-    header("HTTP/1.1 503 Service Unavailable");
+    header('HTTP/1.1 503 Service Unavailable');
 
     // Send no-cache headers
     header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
@@ -1598,7 +1598,7 @@ function error($message, $file = null, $line = null, $db_error = false) {
         ob_start('ob_gzhandler');
     }
 
-    header("HTTP/1.1 503 Service Unavailable");
+    header('HTTP/1.1 500 Internal Server Error');
 
     // Send no-cache headers
     header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
