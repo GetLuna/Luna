@@ -824,19 +824,19 @@ function get_smilies()
     // Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
     if ($luna_config['o_emoji'] == 1) {
         $smilies = array(
-            ':)' => '&#x1f601;',
-            ':|' => '&#x1f611;',
-            ':(' => '&#x1f629;',
+            ':)' => '&#x1f642;',
+            ':|' => '&#x1f610;',
+            ':(' => '&#x1f641;',
             ':d' => '&#x1f604;',
             ':D' => '&#x1f604;',
-            ':o' => '&#x1f62f;',
-            ':O' => '&#x1f62f;',
+            ':o' => '&#x1f62e;',
+            ':O' => '&#x1f62e;',
             ';)' => '&#x1f609;',
-            ':/' => '&#x1f612;',
+            ':/' => '&#x1f615;',
             ':P' => '&#x1f60b;',
             ':p' => '&#x1f60b;',
-            ':lol:' => '&#x1f601;',
-            ':-))' => '&#x1f601;',
+            ':lol:' => '&#x1f642;',
+            ':-))' => '&#x1f642;',
             ':@' => '&#x1f620;',
             '%)' => '&#x1f606;',
             'b:' => '&#x1f60e;',
@@ -844,8 +844,22 @@ function get_smilies()
             ':hc:' => '&#x1f605;',
             '(A)' => '&#x1f607;',
             '(a)' => '&#x1f607;',
-            '^-^' => '&#x1f60f;',
-            '^.^' => '&#x1f60f;',
+            '^-^' => '&#x1f60a;',
+            '^.^' => '&#x1f60a;',
+            ':simple_smile:' => '&#x1f642;',
+            ':expressionless:' => '&#x1f610;',
+            ':frowning:' => '&#x1f641;',
+            ':smile:' => '&#x1f604;',
+            ':hushed:' => '&#x1f62e;',
+            ':wink:' => '&#x1f609;',
+            ':confused:' => '&#x1f615;',
+            ':stuck_out_tongue:' => '&#x1f60b;',
+            ':angry:' => '&#x1f620;',
+            ':laughing:' => '&#x1f606;',
+            ':sunglasses:' => '&#x1f60e;',
+            ':sweat_smile:' => '&#x1f605;',
+            ':innocent:' => '&#x1f607;',
+            ':blush:' => '&#x1f60a;'
         );
     } else {
         $smilies = array(
@@ -873,6 +887,20 @@ function get_smilies()
             '(A)' => 'angel.png',
             '^-^' => 'happy.png',
             '^.^' => 'happy.png',
+            ':simple_smile:' => 'smile.png',
+            ':expressionless:' => 'neutral.png',
+            ':frowning:' => 'sad.png',
+            ':smile:' => 'big_smile.png',
+            ':hushed:' => 'yikes.png',
+            ':wink:' => 'wink.png',
+            ':confused:' => 'hmm.png',
+            ':stuck_out_tongue:' => 'tongue.png',
+            ':angry:' => 'angry.png',
+            ':laughing:' => 'roll.png',
+            ':sunglasses:' => 'cool.png',
+            ':sweat_smile:' => 'happycry.png',
+            ':innocent:' => 'angel.png',
+            ':blush:' => 'happy.png'
         );
     }
 
