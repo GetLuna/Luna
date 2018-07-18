@@ -104,10 +104,12 @@ if ($luna_user['first_run'] == '1') {
 				<?php echo implode('', $page_threadsearches) ?>
 			</div>
 			<?php } ?>
+			<?php if (get_read_url('forumview')) { ?>
 			<hr />
 			<div class="list-group list-group-none">
-				<?php draw_mark_read('list-group-item', 'index'); ?>
+				<a class="list-group-item" href="<?php echo get_read_url('index') ?>"><i class="fas fa-fw fa-glasses"></i> <?php _e('Mark as read', 'luna') ?></a>
 			</div>
+			<?php } ?>
 		</div>
 		<div class="col-md-9 col-12">
 <?php

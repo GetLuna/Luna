@@ -98,7 +98,7 @@
     margin-left: -.75rem;
     margin-right: -.75rem;
     background: #e52262;
-    padding: 1.5rem .75rem; }
+    padding: 1.2rem .75rem; }
     .jumbotron.jumbotron-title h2 {
       color: #fff;
       font-weight: 700;
@@ -109,7 +109,7 @@
       font-weight: 600;
       color: #fff; }
   .jumbotron.profile {
-    padding: 1.5rem .75rem;
+    padding: 1.2rem .75rem;
     margin-left: -.75rem;
     margin-right: -.75rem; }
     .jumbotron.profile h4 {
@@ -154,8 +154,9 @@
         background-color: rgba(255, 255, 255, 0.5); }
   .jumbotron.titletron {
     color: #fff;
-    padding: 1.2rem .75rem;
-    margin-bottom: 0; }
+    margin-left: -.75rem;
+    margin-right: -.75rem;
+    padding: 1.2rem .75rem; }
     .jumbotron.titletron h2 {
       margin-bottom: 0;
       font-weight: 600; }
@@ -307,7 +308,7 @@ td .custom-control {
   border: transparent;
   border-radius: 0; }
   .btn.btn-light {
-    background: none;
+    background: #fff;
     color: #333; }
     .btn.btn-light.btn-light-active {
       background-color: #f3f3f3; }
@@ -529,7 +530,8 @@ td .custom-control {
 footer {
   color: #fff;
   background-color: #333;
-  border-bottom: #222 12px solid; }
+  padding: 1.5rem 2rem;
+  border-bottom: 15px solid #292929; }
   footer a {
     color: inherit !important; }
   footer .stats {

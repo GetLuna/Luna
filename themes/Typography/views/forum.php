@@ -13,44 +13,26 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 		<div class="description"><?php echo $cur_forum['forum_desc'] ?></div>
 	</div>
 	<div class="row forumview">
-		<div class="col-md-3">
-			<div class="list-group list-group-nav">
-				<a class="list-group-item" href="index.php"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Back to index', 'luna') ?></a>
-			</div>
-			<?php if (!$luna_user['is_guest'] && $luna_config['o_forum_subscriptions'] == '1') { ?>
-			<hr />
-			<div class="list-group list-group-nav">
+		<div class="col-12">
+			<div class="btn-toolbar btn-toolbar-options">
+				<a class="btn btn-light" href="index.php"><i class="fas fa-fw fa-chevron-left"></i> <?php _e('Back', 'luna') ?></a>
 				<?php if ($cur_forum['is_subscribed']) { ?>
-					<a class="list-group-item list-group-item-success" href="misc.php?action=unsubscribe&amp;fid=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>
+					<a class="btn btn-light btn-light-active" href="misc.php?action=unsubscribe&amp;fid=<?php echo $id ?><?php echo $token_url ?>"><i class="fas fa-fw fa-star"></i></a>
 				<?php } else { ?>
-					<a class="list-group-item" href="misc.php?action=subscribe&amp;fid=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-star"></span> <?php _e('Subscribe', 'luna') ?></a>
+					<a class="btn btn-light" href="misc.php?action=subscribe&amp;fid=<?php echo $id ?><?php echo $token_url ?>"><i class="far fa-fw fa-star"></i></a>
+				<?php } ?>
+				<?php if (get_read_url('forumview')) { ?>
+					<a class="btn btn-light" href="<?php echo get_read_url('forumview') ?>"><i class="fas fa-fw fa-glasses"></i></a>
+				<?php } ?>
+				<?php if ($id != '0' && $is_admmod) { ?>
+					<a class="btn btn-light" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><i class="fas fa-fw fa-eye"></i></a>
 				<?php } ?>
 			</div>
-			<?php } ?>
-			<hr />
 			<?php if ((is_subforum($id) && $id != '0')): ?>
-				<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
 				<div class="list-group list-group-nav">
 					<?php draw_subforum_list('forum.php') ?>
 				</div>
-				<hr />
 			<?php endif; ?>
-			<div class="forum-list d-none d-md-block">
-				<div class="list-group list-group-nav">
-					<?php draw_forum_list('forum.php', 1, 'category.php', '') ?>
-				</div>
-				<hr />
-			</div>
-			<div class="list-group list-group-none">
-				<?php draw_mark_read('list-group-item', 'forumview') ?>
-				<?php if ($id != '0' && $is_admmod) { ?>
-					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fas fa-fw fa-eye"></span> <?php _e('Moderate forum', 'luna') ?></a>
-				<?php } ?>
-			</div>
-			<div class="d-block d-md-none"><hr /></div>
-		</div>
-		<div class="col-md-9">
-			<?php typography_paginate($paging_links) ?>
 			<div class="list-group list-group-thread">
 				<?php draw_threads_list(); ?>
 			</div>

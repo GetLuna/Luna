@@ -1178,19 +1178,16 @@ function draw_search_forum_list() {
 	}
 }
 
-function draw_mark_read($class, $page) {
-	global $luna_user, $id;
+function get_read_url($page) {
+	global $id;
 
-	if (!empty($class))
-		$classes = ' class="'.$class.'"';
+	if ($luna_user['is_guest'])
+		return false;
 
 	if ($page == 'index')
-		$url = 'misc.php?action=markread&amp;csrf_token='.luna_csrf_token();
+		return 'misc.php?action=markread&amp;csrf_token='.luna_csrf_token();
 	elseif ($page == 'forumview')
-		$url = 'misc.php?action=markforumread&amp;fid='.$id.'&amp;csrf_token='.luna_csrf_token();
-
-	if (!$luna_user['is_guest'])
-		echo '<a'.$classes.' href="'.$url.'">'.__('Mark as read', 'luna').'</a>';
+		return 'misc.php?action=markforumread&amp;fid='.$id.'&amp;csrf_token='.luna_csrf_token();
 }
 
 function draw_wall_error($description, $action = NULL) {

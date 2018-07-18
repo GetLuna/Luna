@@ -6,7 +6,7 @@
         margin-left: -.75rem;
         margin-right: -.75rem;
         background: $accent;
-        padding: 1.5rem .75rem;
+        padding: 1.2rem .75rem;
 
         h2 {
             color: #fff;
@@ -23,7 +23,7 @@
     }
 
     &.profile {
-        padding: 1.5rem .75rem;
+        padding: 1.2rem .75rem;
         margin-left: -.75rem;
         margin-right: -.75rem;
 
@@ -98,8 +98,9 @@
 
     &.titletron {
         color: #fff;
+        margin-left: -.75rem;
+        margin-right: -.75rem;
         padding: 1.2rem .75rem;
-        margin-bottom: 0;
 
         h2 {
             margin-bottom: 0;
