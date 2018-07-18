@@ -75,7 +75,7 @@ if ($luna_user['first_run'] == '1') {
 	</div>
 </div>
 <?php } ?>
-<div class="main index profile container">
+<div class="main index container">
 	<div class="row">
 		<div class="col-md-3 col-12 sidebar">
 			<?php if ($luna_user['first_run'] == '0') { ?>

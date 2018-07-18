@@ -26,15 +26,9 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 			<div class="title-block title-block-primary">
 				<h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?><span class="float-right"><a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fas fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a></span></h2>
 			</div>
-			<div class="btn-toolbar btn-toolbar-options">
-            	<?php echo typography_paginate($paging_links) ?>
-			</div>
-<?php
-draw_response_list();
-?>
-			<div class="btn-toolbar btn-toolbar-options">
-				<?php echo typography_paginate($paging_links) ?>
-			</div>
+			<?php typography_paginate($paging_links) ?>
+			<?php draw_response_list() ?>
+			<?php typography_paginate($paging_links) ?>
 			<a type="button" class="btn btn-primary btn-lg btn-block btn-bottom" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fas fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a>
 		</div>
 	</div>

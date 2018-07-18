@@ -1,5 +1,6 @@
 .comment {
-    border: 1px solid #eee;
+    border: none;
+    background: #fafafa;
     padding: .75rem;
     margin-bottom: .75rem;
 
@@ -53,6 +54,8 @@
     }
 
     .comment-header {
+        padding-bottom: .75rem;
+
         img {
             height: 3.78rem;
             width: auto;

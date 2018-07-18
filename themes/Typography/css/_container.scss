@@ -4,7 +4,11 @@
 
     &.main {
         background-color: #fff;
-        padding: 0 .25rem .75rem;
+        padding: 0 .75rem .75rem;
+
+        &.index {
+            padding: .75rem;
+        }
     }
 
     @media (max-width: 576px) { //SM

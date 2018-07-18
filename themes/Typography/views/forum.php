@@ -50,15 +50,11 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 			<div class="d-block d-md-none"><hr /></div>
 		</div>
 		<div class="col-md-9">
-			<div class="btn-toolbar btn-toolbar-options">
-            	<?php echo typography_paginate($paging_links) ?>
-			</div>
+			<?php typography_paginate($paging_links) ?>
 			<div class="list-group list-group-thread">
 				<?php draw_threads_list(); ?>
 			</div>
-			<div class="btn-toolbar btn-toolbar-options">
-            	<?php echo typography_paginate($paging_links) ?>
-			</div>
+			<?php typography_paginate($paging_links) ?>
 		</div>
 	</div>
 </div>

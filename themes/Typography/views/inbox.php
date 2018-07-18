@@ -41,9 +41,7 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 							<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fas fa-fw fa-pencil-alt"></span> <?php _e('New', 'luna') ?></a>
 						</div>
 					</div>
-					<div class="btn-toolbar btn-toolbar-options">
-						<?php echo typography_paginate($paging_links) ?>
-					</div>
+					<?php typography_paginate($paging_links) ?>
 					<?php
 					if ($luna_user['g_inbox_limit'] != '0' && !$luna_user['is_admmod']) {
 						$per_cent_box = ceil($luna_user['num_inbox'] / $luna_user['g_inbox_limit'] * '100');

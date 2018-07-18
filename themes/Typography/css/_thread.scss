@@ -1,9 +1,8 @@
-.thread {
+.thread-item {
     padding: .5rem;
     transition: .3s;
 
     &:hover {
-        box-shadow: 0 0 9px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.1);
         background: #fafafa;
     }
 

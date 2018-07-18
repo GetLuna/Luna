@@ -27,39 +27,37 @@ else
 			<?php load_me_nav('settings'); ?>
 		</div>
 		<div class="col-12 col-lg-9">
-			<form id="profile-settings tab-set" method="post" action="settings.php?id=<?php echo $id ?>">
-				<div class="title-block title-block-primary title-block-nav">
-					<h2>
-						<i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?>
-						<span class="float-right">
-							<button class="btn btn-light btn-light-primary" type="submit" name="update">
-								<i class="fas fa-fw fa-check"></i> <?php _e('Save', 'luna') ?>
-							</button>
-						</span>
-					</h2>
-					<nav class="nav nav-tabs">
-						<a class="nav-item nav-link active" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
-							<i class="fas fa-fw fa-user"></i><span class="d-none d-lg-inline"> <?php _e('Profile', 'luna') ?></span>
+			<form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
+				<h2>
+					<i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?>
+					<span class="float-right">
+						<button class="btn btn-light btn-light-primary" type="submit" name="update">
+							<i class="fas fa-fw fa-check"></i> <?php _e('Save', 'luna') ?>
+						</button>
+					</span>
+				</h2>
+				<nav class="nav nav-tabs">
+					<a class="nav-item nav-link active" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+						<i class="fas fa-fw fa-user"></i><span class="d-none d-lg-inline"> <?php _e('Profile', 'luna') ?></span>
+					</a>
+					<a class="nav-item nav-link" href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab">
+						<i class="fas fa-fw fa-paint-brush"></i><span class="d-none d-lg-inline"> <?php _e('Appearance', 'luna') ?></span>
+					</a>
+					<a class="nav-item nav-link" href="#contact" aria-controls="contact" role="tab" data-toggle="tab">
+						<i class="fas fa-fw fa-share-alt"></i><span class="d-none d-lg-inline"> <?php _e('Contact', 'luna') ?></span>
+					</a>
+					<a class="nav-item nav-link" href="#thread" aria-controls="thread" role="tab" data-toggle="tab">
+						<i class="fas fa-fw fa-list"></i><span class="d-none d-lg-inline"> <?php _e('Thread', 'luna') ?></span>
+					</a>
+					<a class="nav-item nav-link" href="#time" aria-controls="time" role="tab" data-toggle="tab">
+						<i class="fas fa-fw fa-clock"></i><span class="d-none d-lg-inline"> <?php _e('Time', 'luna') ?></span>
+					</a>
+					<?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
+						<a class="nav-item nav-link" href="#admin" aria-controls="admin" role="tab" data-toggle="tab">
+							<i class="fas fa-fw fa-tachometer-alt"></i><span class="d-none d-lg-inline"> <?php _e('Admin', 'luna') ?></span>
 						</a>
-						<a class="nav-item nav-link" href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab">
-							<i class="fas fa-fw fa-paint-brush"></i><span class="d-none d-lg-inline"> <?php _e('Appearance', 'luna') ?></span>
-						</a>
-						<a class="nav-item nav-link" href="#contact" aria-controls="contact" role="tab" data-toggle="tab">
-							<i class="fas fa-fw fa-share-alt"></i><span class="d-none d-lg-inline"> <?php _e('Contact', 'luna') ?></span>
-						</a>
-						<a class="nav-item nav-link" href="#thread" aria-controls="thread" role="tab" data-toggle="tab">
-							<i class="fas fa-fw fa-list"></i><span class="d-none d-lg-inline"> <?php _e('Thread', 'luna') ?></span>
-						</a>
-						<a class="nav-item nav-link" href="#time" aria-controls="time" role="tab" data-toggle="tab">
-							<i class="fas fa-fw fa-clock"></i><span class="d-none d-lg-inline"> <?php _e('Time', 'luna') ?></span>
-						</a>
-                        <?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-                            <a class="nav-item nav-link" href="#admin" aria-controls="admin" role="tab" data-toggle="tab">
-								<i class="fas fa-fw fa-tachometer-alt"></i><span class="d-none d-lg-inline"> <?php _e('Admin', 'luna') ?></span>
-							</a>
-                        <?php endif; ?>
-					</ul>
-				</div>
+					<?php endif; ?>
+				</nav>
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="profile">
 						<fieldset class="form-setting">

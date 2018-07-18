@@ -2,6 +2,8 @@
 
 function typography_paginate($pages) {
     if (!empty($pages)) {
+        echo '<div class="btn-toolbar btn-toolbar-options">';
+        
         foreach ($pages as $page) {
             if ($page->getState() === 'disabled')
                 $class = 'btn btn-light disabled';
@@ -19,5 +21,7 @@ function typography_paginate($pages) {
 
             echo '<a href="'.$page->getUrl().'" '.(($page->getRel() !== null) ? 'rel="'.$page->getRel().'"' : '').' class="'.$class.'"><span class="fw">'.$name.'</span></a>';
         }
+
+        echo '</div>';
     }
 }

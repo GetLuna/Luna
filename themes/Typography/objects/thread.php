@@ -1,4 +1,4 @@
-<div class="thread <?php echo $item_status.(($cur_thread['soft'] == true) ? ' soft' : '') ?>">
+<div class="thread-item <?php echo $item_status.(($cur_thread['soft'] == true) ? ' soft' : '') ?>">
 	<div>
 		<span class="middot h4">&middot;</span> 
 		<a href="<?php echo $url ?>" class="h4">

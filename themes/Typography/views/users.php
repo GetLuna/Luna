@@ -34,15 +34,11 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 						</form>
 					<?php } ?>
 					<hr />
-					<div class="btn-toolbar btn-toolbar-options">
-						<?php echo typography_paginate($paging_links) ?>
-					</div>
+					<?php typography_paginate($paging_links) ?>
 					<div class="userlist row tab-row">
 						<?php draw_user_list() ?>
 					</div>
-					<div class="btn-toolbar btn-toolbar-options">
-						<?php echo typography_paginate($paging_links) ?>
-					</div>
+					<?php typography_paginate($paging_links) ?>
 				</div>
 			</div>
 		</div>

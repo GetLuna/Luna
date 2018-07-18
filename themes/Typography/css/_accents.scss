@@ -151,25 +151,5 @@
                 }
             }
         }
-
-        .title-block {
-            &.title-block-primary {
-                background-color: $accent;
-            }
-        }
-
-        .tab-set > .table-responsive > .table {
-            &:last-child {
-                border-color: $accent;
-            }
-        }
-
-        .tab-content {
-            border: .1rem solid $accent;
-        }
-
-        .tab-footer {
-            background-color: $accent;
-        }
     }
 }

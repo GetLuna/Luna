@@ -1,10 +1,10 @@
 .jumbotron {
     border-radius: 0;
+    margin-bottom: .75rem;
 
     &.jumbotron-title {
-        margin-left: -.25rem;
-        margin-right: -.25rem;
-        margin-bottom: .75rem;
+        margin-left: -.75rem;
+        margin-right: -.75rem;
         background: $accent;
         padding: 1.5rem .75rem;
 
@@ -24,8 +24,8 @@
 
     &.profile {
         padding: 1.5rem .75rem;
-        margin-left: -.25rem;
-        margin-right: -.25rem;
+        margin-left: -.75rem;
+        margin-right: -.75rem;
 
         h4 {
             color: #fff;

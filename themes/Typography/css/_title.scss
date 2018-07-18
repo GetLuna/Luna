@@ -1,71 +1,28 @@
-.title-block {
-    padding: 1.5rem .75rem .25rem;
-    margin-bottom: .1rem;
+.nav {
+    border: none;
 
-    &.title-block-primary {
-        color: #fff;
-    }
+    .nav-item {
+        color: $accent;
+        border: none;
+        border-bottom: .25rem solid transparent;
+        padding: .7rem 0 .45rem;
+        margin: 0 .75rem;
 
-    &.title-block-danger {
-        background-color: $red;
-        color: #fff;
-    }
+        &.active {
+            background-color: inherit;
+            border-bottom-color: $accent;
+            color: $accent;
+        }
 
-    &.title-block-success {
-        background-color: $green;
-        color: #fff;
-    }
-
-    &.title-block-forum {
-        margin-bottom: .1rem !important;
-    }
-
-    &.title-block-nav {
-        padding-bottom: 0;
-        border-radius: 0;
-        margin-bottom: 0;
-
-        .nav {
-            border: none;
-
-            .nav-item {
-                color: #fff;
-                border: none;
-                border-bottom: .25rem solid transparent;
-                padding: .7rem 0 .45rem;
-                margin: 0 .75rem;
-
-                &.active {
-                    background-color: inherit;
-                    border-bottom-color: #fff;
-                }
-            }
-
-            .nav-item {
-                border-radius: 0;
-                margin-bottom: 0;
-            }
+        &:hover {
+            border-bottom-color: $accent;
+            color: $accent;
         }
     }
-}
 
-.tab-set {
-    &:not(:last-child) {
-        margin-bottom: .75rem;
-        border-bottom: none !important;
-    }
-
-    &:last-child {
+    .nav-item {
+        border-radius: 0;
         margin-bottom: 0;
-    }
-}
-
-.tab-set > .table-responsive > .table {
-    margin: 0;
-
-    &:last-child {
-        border-width: 0 1px 1px 1px;
-        border-style: solid;
     }
 }
 
@@ -76,33 +33,5 @@
 }
 
 .tab-content {
-    padding: .75rem;
-
-    &.tab-content-danger {
-        border-color: $red;
-    }
-
-    &.tab-content-success {
-        border-color: $green;
-    }
-
-    &:not(:first-child) {
-        border-top: none !important;
-    }
-    
-    &:not(:last-child) {
-        border-bottom: none !important;
-    }
-
-    p:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.tab-footer {
-    padding: .75rem;
-
-    &:last-child {
-        margin-bottom: .75rem;
-    }
+    margin-top: .75rem;
 }

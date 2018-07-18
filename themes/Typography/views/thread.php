@@ -46,13 +46,9 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 				<?php } ?>
 			<?php endif; ?>
 		</div>
-		<div class="btn-toolbar btn-toolbar-options">
-			<?php echo typography_paginate($paging_links) ?>
-		</div>
-		<?php draw_comment_list(); ?>
-		<div class="btn-toolbar btn-toolbar-options">
-			<?php echo typography_paginate($paging_links) ?>
-		</div>
+		<?php typography_paginate($paging_links) ?>
+		<?php draw_comment_list() ?>
+		<?php typography_paginate($paging_links) ?>
 		<?php if ($comment_field): ?>
 			<form method="post" action="comment.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 			<?php draw_editor('10', 1); ?>
