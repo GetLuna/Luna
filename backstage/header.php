@@ -129,7 +129,7 @@ $page_title = $page_title.' &middot '.__('Backstage', 'luna');
         <?php } ?>
         <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
             <?php if ($luna_config['o_use_cdn']) { ?>
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
             <?php } else { ?>
                 <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
             <?php } ?>
