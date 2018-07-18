@@ -30,6 +30,16 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 12 <small>2.0.12</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Support for more modern emoji shortcode like Luna 2.1', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Emoji have been remapped to better represent their text-version and match Luna 2.1', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 11 <small>2.0.11</small></span></h2>
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes the incorrect language file versions being included', 'luna') ?></li>
