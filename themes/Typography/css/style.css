@@ -522,9 +522,9 @@ td .custom-control {
     display: block; }
 
 footer {
-  color: #e52262;
-  background-color: #f3f3f3;
-  border-bottom: #e52262 7px solid; }
+  color: #fff;
+  background-color: #333;
+  border-bottom: #222 9px solid; }
   footer a {
     color: inherit !important; }
   footer .stats {
@@ -623,6 +623,15 @@ footer {
   font-size: 1.5rem; }
 .user-entry .media h6 {
   font-size: 1.25rem; }
+
+.thread {
+  padding: .5rem;
+  transition: .3s; }
+  .thread:hover {
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.1);
+    background: #fafafa; }
+  .thread .h4 {
+    font-weight: 600; }
 
 .night body {
   background-color: #222; }
