@@ -37,6 +37,7 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
                     <p><?php _e('Emoji shortcodes are now case insensitive', 'luna') ?></p>
                     <p><?php _e('Luna now uses modern emoji shortcodes for new installations and adds them to old installations', 'luna') ?></p>
+                    <p><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 4.1.1 to 4.1.2', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
@@ -134,6 +135,15 @@ require 'header.php';
                     <h4><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Removed', 'luna') ?></h4>
                     <p><?php _e('It is no longer possible to enable smilies', 'luna') ?></p>
                     <p><?php _e('Support for update rings has been removed', 'luna') ?></p>
+                </section>
+                <section class="release-notes">
+                    <h2><span class="version-name">Emerald Update 12 <small>2.0.12</small></span></h2>
+                    <h4><i class="fas fa-fw fa-plus"></i> <?php _e('New', 'luna') ?></h4>
+                    <p><?php _e('Support for more modern emoji shortcode like Luna 2.1', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
+                    <p><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
+                    <p><?php _e('Emoji have been remapped to better represent their text-version and match Luna 2.1', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 11 <small>2.0.11</small></span></h2>
