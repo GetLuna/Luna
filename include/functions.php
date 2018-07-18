@@ -1521,6 +1521,8 @@ function array_insert(&$input, $offset, $element, $key = null) {
 function maintenance_message() {
     global $db, $luna_config, $luna_user;
 
+    header("HTTP/1.1 503 Service Unavailable");
+
     // Send no-cache headers
     header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
     header('Last-Modified: '.date('D, d M Y H:i:s').' GMT');
@@ -1595,6 +1597,8 @@ function error($message, $file = null, $line = null, $db_error = false) {
     if ($luna_config['o_gzip'] && extension_loaded('zlib')) {
         ob_start('ob_gzhandler');
     }
+
+    header("HTTP/1.1 503 Service Unavailable");
 
     // Send no-cache headers
     header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
