@@ -31,12 +31,17 @@
     }
 
     &.list-group-nav {
-        h5 {
+        h4 {
             color: #fff;
-            margin-bottom: .1rem;
+            margin-top: 1rem;
+            margin-bottom: 0;
             font-weight: 700;
-            text-transform: uppercase;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
+            padding: .75rem .75rem .5rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
         }
 
         .list-group-item {
@@ -44,6 +49,13 @@
             margin-bottom: .1rem;
             border-radius: 0;
             color: #444;
+            padding: .75rem;
+
+            h5 {
+                .forum-title {
+                    font-weight: 600;
+                }
+            }
 
             &:hover,
             &:active,
@@ -54,6 +66,17 @@
 
             &.active {
                 color: #fff;
+            }
+
+            .text-muted {
+                font-size: .8rem;
+                margin-bottom: 0;
+            }
+
+            &.active {
+                .text-muted {
+                    color: rgba(255,255,255,.75) !important;
+                }
             }
         }
     }
@@ -104,6 +127,8 @@
     }
 
     .list-group-item {
+        transition: .3s;
+
         &.list-group-item-info {
             color: darken( $blue, 10% );
             background-color: lighten( $blue, 50% );

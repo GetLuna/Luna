@@ -5,12 +5,8 @@ if (!defined('FORUM'))
 	exit;
 ?>
 <div class="main profile container">
-	<div class="jumbotron profile">
-		<div class="row">
-			<div class="col">
-				<h4><?php echo $user['username'] ?></h4>
-			</div>
-		</div>
+	<div class="jumbotron default">
+		<h2><?php echo $user['username'] ?></h2>
 	</div>
 	<div class="row">
 		<div class="col-md-3 col-12 sidebar">

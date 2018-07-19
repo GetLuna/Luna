@@ -2,11 +2,10 @@
     border-radius: 0;
     margin-bottom: .75rem;
 
-    &.jumbotron-title {
+    &.default {
+        padding: 1.5rem 2rem;
         margin-left: -.75rem;
         margin-right: -.75rem;
-        background: $accent;
-        padding: 1.2rem .75rem;
 
         h2 {
             color: #fff;
@@ -22,22 +21,9 @@
         }
     }
 
-    &.profile {
-        padding: 1.2rem .75rem;
-        margin-left: -.75rem;
-        margin-right: -.75rem;
-
-        h4 {
-            color: #fff;
-            font-weight: 700;
-            margin: 0;
-            font-size: 2.2rem;
-        }
-    }
-
-    &.first-run {
+    &.index {
         color: #fff;
-        padding: 1rem;
+        padding: 1rem 1rem 0;
         margin: 0;
 
         .avatar {
@@ -92,6 +78,70 @@
             &:focus,
             &:hover {
                 background-color: rgba(255,255,255,.5);
+            }
+        }
+
+        .col-search {
+            margin-top: .75rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 1rem;
+            }
+
+            .form-control {
+                background: none;
+                font-size: 2rem;
+                padding: .7rem 0;
+                font-weight: 700;
+
+                &:focus {
+                    border: none;
+                }
+            }
+
+            .btn-light {
+                color: #fff;
+                background: none;
+                font-size: 2rem;
+
+                &:focus,
+                &:active,
+                &:hover {
+                    background: none;
+                }
+            }
+        }
+        
+        .nav {
+            border: none;
+            justify-content: center;
+        
+            .nav-item {
+                color: #fff;
+                border: none;
+                border-bottom: .25rem solid transparent;
+                padding: .7rem 0 .45rem;
+                margin: 0 .75rem;
+        
+                &.active {
+                    background-color: inherit;
+                    border-bottom-color: #fff;
+                    color: #fff;
+                }
+        
+                &:hover {
+                    border-bottom-color: #fff;
+                    color: #fff;
+                }
+            }
+        
+            .nav-item {
+                border-radius: 0;
+                margin-bottom: 0;
             }
         }
     }

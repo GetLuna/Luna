@@ -33,10 +33,6 @@
                 display: inline-block;
             }
 
-            &.active, &:hover, &:focus {
-                color: $accent;
-            }
-
             .img-brand {
                 height: 34px;
                 width: auto;
@@ -53,10 +49,6 @@
                 
                 @media (max-width: 768px) {
                     padding: 1rem;
-                }
-
-                &.active, &:hover, &:focus {
-                    color: $accent;
                 }
             }
 

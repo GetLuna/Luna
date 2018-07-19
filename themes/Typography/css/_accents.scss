@@ -17,6 +17,24 @@
                 }
             }
         }
+        
+        .navbar {
+            &.navbar-light {
+                .navbar-brand {
+                    &.active, &:hover, &:focus {
+                        color: $accent;
+                    }
+                }
+        
+                .navbar-nav {
+                    .nav-link {
+                        &.active, &:hover, &:focus {
+                            color: $accent;
+                        }
+                    }
+                }
+            }
+        }
 
         .btn {
             &.btn-primary {
@@ -52,6 +70,14 @@
                 &:focus,
                 &:active {
                     color: darken( $accent, 5% );
+                }
+            }
+        }
+
+        .btn-toolbar-options {
+            .btn-light {
+                &.btn-light-active {
+                    background-color: $accent;
                 }
             }
         }
@@ -97,11 +123,11 @@
         }
 
         .jumbotron {
-            &.profile {
+            &.default {
                 background-color: darken( $accent, 3% );
             }
 
-            &.first-run {
+            &.index {
                 background-color: darken( $accent, 3% );
 
                 .custom-checkbox {
@@ -116,7 +142,7 @@
 
         .list-group {
             &.list-group-nav {
-                h5 {
+                h4 {
                     color: $accent;
                 }
             }
@@ -148,6 +174,22 @@
                     .modal-footer {
                         background-color: $accent;
                     }
+                }
+            }
+        }
+        
+        .nav {
+            .nav-item {
+                color: $accent;
+        
+                &.active {
+                    border-bottom-color: $accent;
+                    color: $accent;
+                }
+        
+                &:hover {
+                    border-bottom-color: $accent;
+                    color: $accent;
                 }
             }
         }

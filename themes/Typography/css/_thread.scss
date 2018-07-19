@@ -1,9 +1,23 @@
 .thread-item {
-    padding: .5rem;
+    padding: .75rem;
     transition: .3s;
 
     &:hover {
-        background: #fafafa;
+        background: #f9f9f9;
+    }
+
+    &.new-item {
+        background: #f9f9f9;
+
+        &:hover {
+            background: #f3f3f3;
+        }
+    }
+
+    a {
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     .h4 {

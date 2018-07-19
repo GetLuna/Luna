@@ -12,12 +12,8 @@ else
 
 ?>
 <div class="main profile container">
-	<div class="jumbotron profile">
-		<div class="row">
-			<div class="col">
-				<h4><?php echo $user['username'] ?></h4>
-			</div>
-		</div>
+	<div class="jumbotron default">
+		<h2><?php echo $user['username'] ?></h2>
 	</div>
 	<div class="row">
 		<div class="col-lg-3 col-12 sidebar">
@@ -229,7 +225,7 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('First Run', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="form[first_run]" name="form[first_run]" value="1"<?php echo ( $user['first_run'] == '1' ) ? ' checked' : '' ?>>
+										<input type="checkbox" class="custom-control-input" id="form[first_run]" name="form[first_run]" value="1"<?php echo ( $user['first_run'] == '0' ) ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="form[first_run]">
 											<?php _e('Show the First Run window on the index.', 'luna') ?>
 										</label>

@@ -12,3 +12,13 @@
         display: block;
     }
 }
+
+h2 {
+    font-weight: 700;
+    margin-top: 2.25rem;
+    margin-bottom: 1.25rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}

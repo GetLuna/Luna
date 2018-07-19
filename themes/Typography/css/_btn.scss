@@ -2,15 +2,6 @@
     border: transparent;
     border-radius: 0;
 
-    &.btn-light {
-        background: #fff;
-        color: #333;
-        
-        &.btn-light-active {
-            background-color: #f3f3f3;
-        }
-    }
-
     &:hover,
     &:active,
     &:focus,
@@ -53,6 +44,13 @@
     }
 
     &.btn-light {
+        background: #fff;
+        color: #333;
+        
+        &.btn-light-active {
+            background-color: #f3f3f3;
+        }
+
         &.btn-light-danger {
             color: $red;
     
@@ -114,7 +112,6 @@
 
         &.btn-light-active {
             color: #fff;
-            background-color: $accent;
         }
 
         &:active,

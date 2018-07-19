@@ -8,7 +8,7 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 
 ?>
 <div class="main container">
-	<div class="jumbotron jumbotron-title">
+	<div class="jumbotron default">
 		<h2><?php echo luna_htmlspecialchars($cur_thread['subject']) ?></h2>
 	</div>
 	<div class="thread">

@@ -10,8 +10,7 @@ $fluo: #46c429;
 $teal: #10b08f;
 $blue: #0098df;
 
-$accents: #e52262, #e74018, #fb8009, #ffc000, #c0d700, #97c800, #46c429, #10b08f, #0098df;
-
+$accents: #e52262, #e74018, #fb8009, #ffc000, #c0d700, #97c800, #46c429, #10b08f, #0098df, #0069df, #1b47ed, #5c1be1, #bd28f4, #dd30c3, #444, #1a79bc;
 // General
 
 // Bootstrap components
@@ -24,6 +23,7 @@ $accents: #e52262, #e74018, #fb8009, #ffc000, #c0d700, #97c800, #46c429, #10b08f
 @import 'badge';
 @import 'alert';
 @import 'modal';
+@import 'nav';
 
 // Custom files
 @import 'editor';
@@ -31,7 +31,6 @@ $accents: #e52262, #e74018, #fb8009, #ffc000, #c0d700, #97c800, #46c429, #10b08f
 @import 'fonts';
 @import 'footer';
 @import 'notifications';
-@import 'title';
 @import 'user';
 @import 'thread';
 @import 'night';
