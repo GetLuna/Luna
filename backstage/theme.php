@@ -23,7 +23,7 @@ while ( $cur_theme = $db->fetch_assoc( $installed ) ) {
 }
 
 if ( isset( $_GET['set'] ) ) {
-    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database ( look for o_base_url in the config table ) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
+    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
 
     $theme = forum_get_theme( $_GET['set'] );
 
@@ -41,7 +41,7 @@ if ( isset( $_GET['set'] ) ) {
 }
 
 if ( isset( $_GET['uninstall'] ) ) {
-    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database ( look for o_base_url in the config table ) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
+    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
 
     $theme = forum_get_theme( $_GET['uninstall'] );
 
@@ -67,7 +67,7 @@ if ( isset( $_GET['uninstall'] ) ) {
 }
 
 if ( isset( $_GET['install'] ) ) {
-    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database ( look for tbase_url in the config table ) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
+    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
 
     $theme = forum_get_theme( $_GET['install'] );
 
@@ -93,7 +93,7 @@ if ( isset( $_GET['install'] ) ) {
 }
 
 if ( isset( $_GET['delete'] ) ) {
-    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database ( look for o_base_url in the config table ) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
+    confirm_referrer( 'backstage/theme.php', __( 'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna' ) );
 
     if ( $luna_config['o_default_style'] != $theme->name && !in_array( $_GET['delete'], $installed_themes ) ) {
         $dir = LUNA_ROOT.'/themes/'.$_GET['delete'];
