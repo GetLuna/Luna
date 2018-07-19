@@ -1474,7 +1474,7 @@ class Installer
 					'default' => '\'\''
 				),
 				'text' => array(
-					'datatype' => 'VARCHAR(20)',
+					'datatype' => 'VARCHAR(128)',
 					'allow_null' => false,
 					'default' => '\'\''
 				)

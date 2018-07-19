@@ -750,7 +750,7 @@ switch ($stage) {
 						'default' => '\'\''
 					),
 					'text' => array(
-						'datatype' => 'VARCHAR(20)',
+						'datatype' => 'VARCHAR(128)',
 						'allow_null' => false,
 						'default' => '\'\''
 					)
@@ -796,6 +796,8 @@ switch ($stage) {
 				$db->query('INSERT INTO '.$db->prefix.'emoji (unicode, text) VALUES(\''.$unicode.'\', \''.$db->escape($text).'\')') or error('Unable to add emoji', __FILE__, __LINE__, $db->error());
 			}
 		}
+		
+		$db->alter_field('emoji', 'text', 'VARCHAR(128)', true) or error('Unable to change text type', __FILE__, __LINE__, $db->error());
 
 		// Add the theme table
 		if (!$db->table_exists('themes')) {

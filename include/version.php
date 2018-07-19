@@ -9,11 +9,11 @@ class Version
 {
     const LUNA_VERSION = '2.1-alpha.5';
     const LUNA_BRANCH = '2.1';
-    const LUNA_CORE_VERSION = '2.1.6013';
+    const LUNA_CORE_VERSION = '2.1.6028';
     const LUNA_CODE_NAME = 'Fluorescent Blue';
 
     // The database version number, every change in the database requires this number to go one up
-    const LUNA_DB_VERSION = '92.35';
+    const LUNA_DB_VERSION = '92.40';
 
     // The parser version number, every change to the parser requires this number to go one up
     const LUNA_PARSER_VERSION = '11.5.2';
