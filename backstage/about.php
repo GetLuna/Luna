@@ -35,6 +35,7 @@ require 'header.php';
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Support for more modern emoji shortcode like Luna 2.1', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-note"><?php _e('Changed', 'luna') ?></em></div><?php _e('Emoji have been remapped to better represent their text-version and match Luna 2.1', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Luna no longer returns the password when a registration error occures', 'luna') ?></li>
 						</ul>
 					</div>
 				</section>
