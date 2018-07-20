@@ -30,7 +30,7 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 				<?php if ($cur_thread['closed'] == '1') { ?>
 					<a class="btn btn-light btn-light-active" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&open=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-lock"></span></a>
 				<?php } else { ?>
-					<a class="btn btn-light btn-light-active" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-unlock"></span></a>
+					<a class="btn btn-light" href="backstage/moderate.php?fid=<?php echo $cur_thread['forum_id'] ?>&close=<?php echo $id ?><?php echo $token_url ?>"><span class="fas fa-fw fa-unlock"></span></a>
 				<?php } ?>
 
 				<?php if ($cur_thread['pinned'] == '1') { ?>
@@ -46,7 +46,6 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 				<?php } ?>
 			<?php endif; ?>
 		</div>
-		<?php typography_paginate($paging_links) ?>
 		<?php draw_comment_list() ?>
 		<?php typography_paginate($paging_links) ?>
 		<?php if ($comment_field): ?>

@@ -112,6 +112,18 @@
             }
         }
 
+        .comment {
+            .comment-body {
+                blockquote {
+                    border-left-color: $accent;
+        
+                    footer {
+                        color: $accent;
+                    }
+                }
+            }
+        }
+
         a {
             color: $accent;
 

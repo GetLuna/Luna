@@ -10,47 +10,15 @@
     }
 
     &.answer {
-        .comment-header {
-            .media-body {
-                background: $green;
-            }
-        }
+        border-right: .5rem solid $green;
     }
 
     &.soft {
-        .comment-header {
-            .media-body {
-                background: $yellow;
-            }
-        }
+        border-right: .5rem solid $yellow;
     }
 
     &.marked {
-        .comment-header {
-            .media-body {
-                background: $red;
-            }
-        }
-    }
-
-    &.answer,
-    &.soft,
-    &.marked {
-        .comment-header {
-            .media-body {
-                color: #fff;
-    
-                a {
-                    color: #fff;
-
-                    &:hover,
-                    &:active,
-                    &:focus {
-                        color: #fff;
-                    }
-                }
-            }
-        }
+        border-right: .5rem solid $red;
     }
 
     .comment-header {
@@ -87,6 +55,27 @@
 
         :last-child {
             margin-bottom: 0;
+        }
+
+        h3 {
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left-width: .4rem;
+            border-left-style: solid;
+            margin-left: 1rem;
+            padding-left: 1rem;
+            padding-bottom: .3rem;
+
+            footer {
+                background: transparent;
+                padding: 0;
+                margin-bottom: .5rem;
+                font-size: 1.3rem;
+                border: none;
+            }
         }
     }
 }

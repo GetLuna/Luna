@@ -224,7 +224,7 @@
   color: #444;
   padding: .75rem; }
   .list-group.list-group-nav .list-group-item h5 .forum-title {
-    font-weight: 600; }
+    font-weight: 600 !important; }
   .list-group.list-group-nav .list-group-item:hover, .list-group.list-group-nav .list-group-item:active, .list-group.list-group-nav .list-group-item:focus {
     background: #f8f8f8;
     color: #333; }
@@ -537,18 +537,12 @@ td .custom-control {
   .comment:last-child {
     border: none;
     margin-bottom: 0; }
-  .comment.answer .comment-header .media-body {
-    background: #97c800; }
-  .comment.soft .comment-header .media-body {
-    background: #ffc000; }
-  .comment.marked .comment-header .media-body {
-    background: #e74018; }
-  .comment.answer .comment-header .media-body, .comment.soft .comment-header .media-body, .comment.marked .comment-header .media-body {
-    color: #fff; }
-    .comment.answer .comment-header .media-body a, .comment.soft .comment-header .media-body a, .comment.marked .comment-header .media-body a {
-      color: #fff; }
-      .comment.answer .comment-header .media-body a:hover, .comment.answer .comment-header .media-body a:active, .comment.answer .comment-header .media-body a:focus, .comment.soft .comment-header .media-body a:hover, .comment.soft .comment-header .media-body a:active, .comment.soft .comment-header .media-body a:focus, .comment.marked .comment-header .media-body a:hover, .comment.marked .comment-header .media-body a:active, .comment.marked .comment-header .media-body a:focus {
-        color: #fff; }
+  .comment.answer {
+    border-right: 0.5rem solid #97c800; }
+  .comment.soft {
+    border-right: 0.5rem solid #ffc000; }
+  .comment.marked {
+    border-right: 0.5rem solid #e74018; }
   .comment .comment-header {
     padding-bottom: .75rem; }
     .comment .comment-header img {
@@ -570,6 +564,21 @@ td .custom-control {
     padding: .25rem 0; }
     .comment .comment-body :last-child {
       margin-bottom: 0; }
+    .comment .comment-body h3 {
+      margin-bottom: 0;
+      font-weight: 600; }
+    .comment .comment-body blockquote {
+      border-left-width: .4rem;
+      border-left-style: solid;
+      margin-left: 1rem;
+      padding-left: 1rem;
+      padding-bottom: .3rem; }
+      .comment .comment-body blockquote footer {
+        background: transparent;
+        padding: 0;
+        margin-bottom: .5rem;
+        font-size: 1.3rem;
+        border: none; }
 
 .user-stat {
   font-size: 1.5rem;
@@ -799,6 +808,10 @@ footer {
       background-color: #e52262; }
       .accent-1 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-1 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-1 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #be164d !important; }
+.accent-1 .comment .comment-body blockquote {
+  border-left-color: #e52262; }
+  .accent-1 .comment .comment-body blockquote footer {
+    color: #e52262; }
 .accent-1 a {
   color: #e52262; }
   .accent-1 a:hover, .accent-1 a:active, .accent-1 a:focus {
@@ -862,6 +875,10 @@ footer {
       background-color: #e74018; }
       .accent-2 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-2 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-2 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #b93313 !important; }
+.accent-2 .comment .comment-body blockquote {
+  border-left-color: #e74018; }
+  .accent-2 .comment .comment-body blockquote footer {
+    color: #e74018; }
 .accent-2 a {
   color: #e74018; }
   .accent-2 a:hover, .accent-2 a:active, .accent-2 a:focus {
@@ -925,6 +942,10 @@ footer {
       background-color: #fb8009; }
       .accent-3 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-3 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-3 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #ce6703 !important; }
+.accent-3 .comment .comment-body blockquote {
+  border-left-color: #fb8009; }
+  .accent-3 .comment .comment-body blockquote footer {
+    color: #fb8009; }
 .accent-3 a {
   color: #fb8009; }
   .accent-3 a:hover, .accent-3 a:active, .accent-3 a:focus {
@@ -988,6 +1009,10 @@ footer {
       background-color: #ffc000; }
       .accent-4 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-4 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-4 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #cc9a00 !important; }
+.accent-4 .comment .comment-body blockquote {
+  border-left-color: #ffc000; }
+  .accent-4 .comment .comment-body blockquote footer {
+    color: #ffc000; }
 .accent-4 a {
   color: #ffc000; }
   .accent-4 a:hover, .accent-4 a:active, .accent-4 a:focus {
@@ -1051,6 +1076,10 @@ footer {
       background-color: #c0d700; }
       .accent-5 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-5 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-5 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #92a400 !important; }
+.accent-5 .comment .comment-body blockquote {
+  border-left-color: #c0d700; }
+  .accent-5 .comment .comment-body blockquote footer {
+    color: #c0d700; }
 .accent-5 a {
   color: #c0d700; }
   .accent-5 a:hover, .accent-5 a:active, .accent-5 a:focus {
@@ -1114,6 +1143,10 @@ footer {
       background-color: #97c800; }
       .accent-6 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-6 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-6 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #709500 !important; }
+.accent-6 .comment .comment-body blockquote {
+  border-left-color: #97c800; }
+  .accent-6 .comment .comment-body blockquote footer {
+    color: #97c800; }
 .accent-6 a {
   color: #97c800; }
   .accent-6 a:hover, .accent-6 a:active, .accent-6 a:focus {
@@ -1177,6 +1210,10 @@ footer {
       background-color: #46c429; }
       .accent-7 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-7 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-7 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #379a20 !important; }
+.accent-7 .comment .comment-body blockquote {
+  border-left-color: #46c429; }
+  .accent-7 .comment .comment-body blockquote footer {
+    color: #46c429; }
 .accent-7 a {
   color: #46c429; }
   .accent-7 a:hover, .accent-7 a:active, .accent-7 a:focus {
@@ -1240,6 +1277,10 @@ footer {
       background-color: #10b08f; }
       .accent-8 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-8 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-8 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #0c8169 !important; }
+.accent-8 .comment .comment-body blockquote {
+  border-left-color: #10b08f; }
+  .accent-8 .comment .comment-body blockquote footer {
+    color: #10b08f; }
 .accent-8 a {
   color: #10b08f; }
   .accent-8 a:hover, .accent-8 a:active, .accent-8 a:focus {
@@ -1303,6 +1344,10 @@ footer {
       background-color: #0098df; }
       .accent-9 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-9 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-9 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #0075ac !important; }
+.accent-9 .comment .comment-body blockquote {
+  border-left-color: #0098df; }
+  .accent-9 .comment .comment-body blockquote footer {
+    color: #0098df; }
 .accent-9 a {
   color: #0098df; }
   .accent-9 a:hover, .accent-9 a:active, .accent-9 a:focus {
@@ -1366,6 +1411,10 @@ footer {
       background-color: #0069df; }
       .accent-10 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-10 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-10 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #0051ac !important; }
+.accent-10 .comment .comment-body blockquote {
+  border-left-color: #0069df; }
+  .accent-10 .comment .comment-body blockquote footer {
+    color: #0069df; }
 .accent-10 a {
   color: #0069df; }
   .accent-10 a:hover, .accent-10 a:active, .accent-10 a:focus {
@@ -1429,6 +1478,10 @@ footer {
       background-color: #1b47ed; }
       .accent-11 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-11 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-11 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #1036c5 !important; }
+.accent-11 .comment .comment-body blockquote {
+  border-left-color: #1b47ed; }
+  .accent-11 .comment .comment-body blockquote footer {
+    color: #1b47ed; }
 .accent-11 a {
   color: #1b47ed; }
   .accent-11 a:hover, .accent-11 a:active, .accent-11 a:focus {
@@ -1492,6 +1545,10 @@ footer {
       background-color: #5c1be1; }
       .accent-12 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-12 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-12 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #4916b3 !important; }
+.accent-12 .comment .comment-body blockquote {
+  border-left-color: #5c1be1; }
+  .accent-12 .comment .comment-body blockquote footer {
+    color: #5c1be1; }
 .accent-12 a {
   color: #5c1be1; }
   .accent-12 a:hover, .accent-12 a:active, .accent-12 a:focus {
@@ -1555,6 +1612,10 @@ footer {
       background-color: #bd28f4; }
       .accent-13 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-13 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-13 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #a50bde !important; }
+.accent-13 .comment .comment-body blockquote {
+  border-left-color: #bd28f4; }
+  .accent-13 .comment .comment-body blockquote footer {
+    color: #bd28f4; }
 .accent-13 a {
   color: #bd28f4; }
   .accent-13 a:hover, .accent-13 a:active, .accent-13 a:focus {
@@ -1618,6 +1679,10 @@ footer {
       background-color: #dd30c3; }
       .accent-14 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-14 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-14 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #bb1fa4 !important; }
+.accent-14 .comment .comment-body blockquote {
+  border-left-color: #dd30c3; }
+  .accent-14 .comment .comment-body blockquote footer {
+    color: #dd30c3; }
 .accent-14 a {
   color: #dd30c3; }
   .accent-14 a:hover, .accent-14 a:active, .accent-14 a:focus {
@@ -1681,6 +1746,10 @@ footer {
       background-color: #444; }
       .accent-15 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-15 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-15 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #2b2b2b !important; }
+.accent-15 .comment .comment-body blockquote {
+  border-left-color: #444; }
+  .accent-15 .comment .comment-body blockquote footer {
+    color: #444; }
 .accent-15 a {
   color: #444; }
   .accent-15 a:hover, .accent-15 a:active, .accent-15 a:focus {
@@ -1744,6 +1813,10 @@ footer {
       background-color: #1a79bc; }
       .accent-16 .editor .btn-toolbar .btn-group .btn.btn-light.active:hover, .accent-16 .editor .btn-toolbar .btn-group .btn.btn-light.active:active, .accent-16 .editor .btn-toolbar .btn-group .btn.btn-light.active:focus {
         background-color: #145c8f !important; }
+.accent-16 .comment .comment-body blockquote {
+  border-left-color: #1a79bc; }
+  .accent-16 .comment .comment-body blockquote footer {
+    color: #1a79bc; }
 .accent-16 a {
   color: #1a79bc; }
   .accent-16 a:hover, .accent-16 a:active, .accent-16 a:focus {
