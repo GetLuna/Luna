@@ -27,17 +27,17 @@
             { "id": 15,     "color": "#444444" },
             { "id": 16,     "color": "#1a79bc" }
         ],
-        "announcement_types": false,
-        "back_to_top": false,
-        "copyright": false,
-        "custom_copyright": false,
-        "custom_css": false,
-        "first_run": false,
+        "announcement_types": true,
+        "back_to_top": true,
+        "copyright": true,
+        "custom_copyright": true,
+        "custom_css": true,
+        "first_run": true,
         "header_background": false,
-        "header_search": false,
+        "header_search": true,
         "moderated_by_list": false,
         "night_mode": false,
-        "notification_flyout": false,
-        "statistics": false
+        "notification_flyout": true,
+        "statistics": true
     }
 }

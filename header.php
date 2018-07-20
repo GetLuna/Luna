@@ -25,6 +25,8 @@ header('Content-type: text/html; charset=utf-8');
 $frame_options = defined('LUNA_FRAME_OPTIONS') ? LUNA_FRAME_OPTIONS : 'deny';
 header('X-Frame-Options: '.$frame_options);
 
+include(LUNA_ROOT.'/include/class/notification.class.php');
+
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
@@ -72,24 +74,6 @@ if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
     $page_threadsearches_inline[] = '<a href="search.php?action=show_unanswered" title="'.__('Show all unanswered threads', 'luna').'"><span class="fas fa-fw fa-question"></span> '.__('Unanswered', 'luna').'</a>';
 }
 
-// The status information
-if (is_array($page_statusinfo)) {
-    $tpl_temp .= '<ul class="conl">';
-    $tpl_temp .= implode('', $page_statusinfo);
-    $tpl_temp .= '</ul>';
-} else {
-    $tpl_temp .= $page_statusinfo;
-}
-
-// Generate quicklinks
-if (!empty($page_threadsearches)) {
-    $tpl_temp .= '<ul class="conr">';
-    $tpl_temp .= '<li>'.implode(' &middot; ', $page_threadsearches_inline).'</li>';
-    $tpl_temp .= '</ul>';
-}
-
-$tpl_temp .= '</div>';
-
 // Navbar data
 $links = array();
 $menu_title = $luna_config['o_board_title'];
@@ -103,88 +87,39 @@ if ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $lu
     $num_new_pm = $db->result($result);
 
     if ($num_new_pm > 0) {
-        $new_inbox = $num_new_pm.' ';
+        $inbox_count = $num_new_pm.' ';
     } else {
-        $new_inbox = '';
+        $inbox_count = '';
     }
-
-    $inbox_menu_item = '<li class="nav-item"><a class="nav-link" href="inbox.php"><span'.(($num_new_pm > 0) ? ' class="flash"' : '').'>'.$new_inbox.'<i class="fas fa-fw fa-paper-plane"></i><span class="d-inline d-md-none"> '.__('Inbox', 'luna').'</span></span></a></li>';
 }
 
 if (!$luna_user['is_guest']) {
+    $notifications = array();
+
     // Check for new notifications
     $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
-    $num_notifications = $db->result($result);
-
-    if ($luna_config['o_notification_flyout'] == 1) {
-        if ($num_notifications == '0') {
-            $notificon = '<span class="far fa-fw fa-circle"></span>';
-            $ind_notification[] = '<a class="dropdown-item" href="notifications.php">'.__('No new notifications', 'luna').'</a>';
-        } else {
-            $notificon = $num_notifications.' <span class="fas fa-fw fa-circle"></span>';
-
-            $notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
-            while ($cur_notifi = $db->fetch_assoc($notification_result)) {
-                $notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
-                $ind_notification[] = '<a class="dropdown-item" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="timestamp">'.$notifitime.'</span> <span class="fas fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].'</a>';
-            }
-        }
-
-        $notifications = implode('', $ind_notification);
-        $notification_menu_item = '
-            <li class="nav-item dropdown dropdown-notifications">
-                <a class="nav-link dropdown-toggle" href="#" id="notificationMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="'.(($num_notifications != 0) ? 'flash' : '').'">'.$notificon.'<span class="d-inline d-md-none"> '.__('Notifications', 'luna').'</span></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationMenu">
-                    <h6 class="dropdown-header">'.__('Notifications', 'luna').'</h6>
-                    <div class="dropdown-divider"></div>
-                    '.$notifications.'
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item float-right" href="notifications.php">'.__('More', 'luna').' <i class="fas fa-fw fa-arrow-right"></i></a>
-                </div>
-            </li>';
-    } else {
-        if ($num_notifications == '0') {
-            $notificon = '<span class="far fa-fw fa-circle"></span>';
-        } else {
-            $notificon = $num_notifications.' <span class="fas fa-fw fa-circle"></span>';
-        }
+    $notification_count = $db->result($result);
     
-        $notification_menu_item ='
-            <li class="nav-item active">
-                <a class="nav-link'.(($num_notifications != 0) ? ' flash' : '').'" href="https://getluna.org/docs" class="'.$notificon.'"><span class="d-inline d-sm-none"> '.__('Notifications', 'luna').'</span></a>
-            </li>';
+    $notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
+
+    $profile_url = 'profile.php?id='.$luna_user['id'];
+    $settings_url = 'settings.php?id='.$luna_user['id'];
+    $logout_url = 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token();
+
+    while ($cur_notifi = $db->fetch_assoc($notification_result)) {
+        $notifications[] = new Notification($cur_notifi['id'], $cur_notifi['user_id'], $cur_notifi['link'], $cur_notifi['message'], $cur_notifi['icon'], format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true), $cur_notifi['viewed']);
+    }
+
+    $notification_count = count($notifications);
+
+    if ($notification_count == '0') {
+        $notificon = '<i class="far fa-fw fa-circle"></i>';
+    } else {
+        $notificon = $notification_count.' <i class="fas fa-fw fa-circle"></i>';
     }
 }
 
-// Generate navigation items
-if (!$luna_user['is_admmod']) {
-    $backstage = '';
-} else {
-    $backstage = '<li class="nav-item"><a class="nav-link" href="backstage/"><span class="fas fa-fw fa-tachometer-alt"></span><span class="d-inline d-md-none"> '.__('Backstage', 'luna').'</span></a></li>';
-}
-
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
-
-if ($luna_user['is_guest']) {
-    $usermenu = '<li class="nav-item"><a class="nav-link" href="register.php">'.__('Register', 'luna').'</a></li>
-				 <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login-form">'.__('Login', 'luna').'</a></li>';
-} else {
-    $usermenu = $backstage.$inbox_menu_item.$notification_menu_item.'
-        <li class="nav-item dropdown dropdown-user">
-            <a class="nav-link dropdown-toggle" href="profile.php?id='.$luna_user['id'].'" id="profileMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                '.draw_user_avatar($luna_user['id'], true, 'avatar').'
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileMenu">
-                <a class="dropdown-item" href="profile.php?id='.$luna_user['id'].'"><i class="fas fa-fw fa-user"></i>'.__('Profile', 'luna').'</a>
-                <a class="dropdown-item" href="settings.php?id='.$luna_user['id'].'"><i class="fas fa-fw fa-cogs"></i>'.__('Settings', 'luna').'</a>
-                <a class="dropdown-item" href="help.php"><i class="fas fa-fw fa-info-circle"></i>'.__('Help', 'luna').'</a>
-                <a class="dropdown-item" href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token().'"><i class="fas fa-fw fa-sign-out-alt"></i>'.__('Logout', 'luna').'</a>
-            </div>
-        </li>
-	';
-}
 
 if ($db->num_rows($result) > 0) {
     while ($cur_item = $db->fetch_assoc($result)) {
