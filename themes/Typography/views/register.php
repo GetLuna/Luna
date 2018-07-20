@@ -33,10 +33,10 @@ if (!defined('FORUM'))
 						<div class="col-md-9">
 							<div class="row">
 								<div class="col-md-6">
-									<input id="password" type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
+									<input id="password" type="password" class="form-control" name="req_password1" />
 								</div>
 								<div class="col-md-6">
-									<input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
+									<input type="password" class="form-control" name="req_password2" />
 								</div>
 							</div>
 						</div>
