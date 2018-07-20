@@ -45,8 +45,9 @@ require 'header.php';
                     <p><?php _e('Typography is now the default theme for new installations', 'luna') ?></p>
                     <p><?php _e('More emoji have been remapped to better represent their text-version', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
-                    <p><?php _e('Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
-                    <p><?php _e('Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
+                    <p><?php _e('Luna no longer returns the password when a registration error occures', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
                     <p><?php _e('Fifteen and Sunrise do not properly work due to mismatching APIs', 'luna') ?></p>
@@ -145,6 +146,8 @@ require 'header.php';
                     <p><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
                     <p><?php _e('Emoji have been remapped to better represent their text-version and match Luna 2.1', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
+                    <p><?php _e('Luna no longer returns the password when a registration error occures', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 11 <small>2.0.11</small></span></h2>
