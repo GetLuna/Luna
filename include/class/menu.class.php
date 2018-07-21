@@ -14,8 +14,8 @@ class Menu {
         $result = $db->query('SELECT * FROM '.$db->prefix.'menu'.($show_invisible ? '' : ' WHERE visible = 1').' ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
         if ($db->num_rows($result) > 0) {
-            while ($cur_item = $db->fetch_assoc($result)) {
-                $this->items[] = new MenuItem($cur_item['id'], $cur_item['url'], $cur_item['name'], $cur_item['disp_position'], $cur_item['visible'], $cur_item['system']);
+            while ($row = $db->fetch_assoc($result)) {
+                $this->items[] = MenuItem::withRow($row);
             }
         }
     }
@@ -34,42 +34,72 @@ class MenuItem {
     private $visible;
     private $system;
 
-    function __construct( $id, $url, $name, $position, $visible, $system ) {
-        $this->setId( $id );
-        $this->setUrl( $url );
-        $this->setName( $name );
-        $this->setPosition( $position );
-        $this->setVisible( $visible );
-        $this->setSystem( $system );
+    public function __construct() {}
+
+    public static function withId( $id ) {
+        $menu_item = new self();
+        $menu_item->getById( $id );
+        return $menu_item;
+    }
+
+    public static function withRow( array $row ) {
+        $menu_item = new self();
+        $menu_item->fill( $row );
+        return $menu_item;
+    }
+
+    protected function getById( $id ) {
+        global $db;
+
+        $result = $db->query('SELECT * FROM '.$db->prefix.'menu WHERE id = '.$id) or error('Unable to fetch menu item', __FILE__, __LINE__, $db->error());
+        $row = $db->fetch_assoc($result);
+
+        $menu_item->fill( $row );
+    }
+
+    protected function fill( array $row ) {
+        $this->setId( $row['id'] );
+        $this->setUrl( $row['url'] );
+        $this->setName( $row['name'] );
+        $this->setPosition( $row['disp_position'] );
+        $this->setVisible( $row['visible'] );
+        $this->setSystem( $row['sys_entry'] );
     }
 
     // Setters
     public function setId( $id ) {
         $this->id = $id;
+        return $this;
     }
     
     public function setUser( $user ) {
         $this->user = $user;
+        return $this;
     }
     
     public function setUrl( $url ) {
         $this->url = $url;
+        return $this;
     }
 
     public function setName( $name ) {
         $this->name = $name;
+        return $this;
     }
 
     public function setPosition( $position ) {
         $this->position = $position;
+        return $this;
     }
 
     public function setVisible( $visible ) {
         $this->visible = $visible;
+        return $this;
     }
     
     public function setSystem( $system ) {
         $this->system = $system;
+        return $this;
     }
 
     // Getters
