@@ -106,8 +106,8 @@ if (!$luna_user['is_guest']) {
     $settings_url = 'settings.php?id='.$luna_user['id'];
     $logout_url = 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token();
 
-    while ($cur_notifi = $db->fetch_assoc($notification_result)) {
-        $notifications[] = new Notification($cur_notifi['id'], $cur_notifi['user_id'], $cur_notifi['link'], $cur_notifi['message'], $cur_notifi['icon'], format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true), $cur_notifi['viewed']);
+    while ($row = $db->fetch_assoc($notification_result)) {
+        $notifications[] = Notification::withRow($row);
     }
 
     $notification_count = count($notifications);

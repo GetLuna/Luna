@@ -18,6 +18,8 @@ class Menu {
                 $this->items[] = MenuItem::withRow($row);
             }
         }
+
+        return $this;
     }
 
     // Getters
