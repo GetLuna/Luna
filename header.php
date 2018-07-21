@@ -26,6 +26,7 @@ $frame_options = defined('LUNA_FRAME_OPTIONS') ? LUNA_FRAME_OPTIONS : 'deny';
 header('X-Frame-Options: '.$frame_options);
 
 include(LUNA_ROOT.'/include/class/notification.class.php');
+include(LUNA_ROOT.'/include/class/menu.class.php');
 
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
@@ -75,7 +76,6 @@ if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
 }
 
 // Navbar data
-$links = array();
 $menu_title = $luna_config['o_board_title'];
 
 $inbox_menu_item = '';
@@ -119,12 +119,4 @@ if (!$luna_user['is_guest']) {
     }
 }
 
-$result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
-
-if ($db->num_rows($result) > 0) {
-    while ($cur_item = $db->fetch_assoc($result)) {
-        if ($cur_item['visible'] == '1') {
-            $links[] = '<li class="nav-item"><a class="nav-link" href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
-        }
-    }
-}
+$menu = new Menu( false );

@@ -44,7 +44,9 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <?php echo implode('', $links); ?>
+                            <?php foreach( $menu->getItems() as $item ) {
+                                echo '<li class="nav-item"><a class="nav-link" href="'.$item->getUrl().'">'.$item->getName().'</a></li>';
+                            } ?>
                         </ul>
                         <ul class="navbar-nav my-2 my-md-0">
                             <?php if ($luna_user['is_guest']) { ?>
