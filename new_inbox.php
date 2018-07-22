@@ -190,7 +190,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
     $list_usernames = array();
     foreach ($dest_list as $destinataire) {
         // Get receiver infos
-        $result_username = $db->query("SELECT u.id, u.username, u.email, u.notify_inbox, u.notify_inbox_full, u.use_inbox, u.num_inbox, g.g_id, g.g_inbox_limit, g.g_inbox FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS ib ON (ib.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
+        $result_username = $db->query("SELECT u.id, u.username, u.email, u.use_inbox, u.num_inbox, g.g_id, g.g_inbox_limit, g.g_inbox FROM ".$db->prefix."users AS u INNER JOIN ".$db->prefix."groups AS g ON (u.group_id=g.g_id) LEFT JOIN ".$db->prefix."messages AS ib ON (ib.owner=u.id) WHERE u.id!=1 AND u.username='".$db->escape($destinataire)."' GROUP BY u.username, u.id, g.g_id") or error("Unable to get user ID", __FILE__, __LINE__, $db->error());
 
         // List users infos
         if ($destinataires[$i] = $db->fetch_assoc($result_username)) {
@@ -339,16 +339,11 @@ You can read this private message at this address: <inbox_url>
                     $db->query('UPDATE '.$db->prefix.'users SET num_inbox=num_inbox+1 WHERE id='.$dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
                     // Email notification
-                    if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
+                    if ($luna_config['o_inbox_notification'] == '1' && $dest['id'] != $luna_user['id']) {
                         $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
                         $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 
-                        if ($dest['notify_inbox_full'] == '1') {
-                            luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
-                        } else {
-                            luna_mail($dest['email'], $mail_subject, $mail_message);
-                        }
-
+                        luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
                     }
                 }
                 $db->query('UPDATE '.$db->prefix.'users SET last_comment='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
@@ -376,16 +371,11 @@ You can read this private message at this address: <inbox_url>
                     }
 
                     // Email notification
-                    if ($luna_config['o_inbox_notification'] == '1' && $dest['notify_inbox'] == '1' && $dest['id'] != $luna_user['id']) {
+                    if ($luna_config['o_inbox_notification'] == '1' && $dest['id'] != $luna_user['id']) {
                         $mail_message = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
                         $mail_message_full = str_replace('<inbox_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 
-                        if ($dest['notify_inbox_full'] == '1') {
-                            luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
-                        } else {
-                            luna_mail($dest['email'], $mail_subject, $mail_message);
-                        }
-
+                        luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
                     }
                 }
                 $db->query('UPDATE '.$db->prefix.'users SET last_comment='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());

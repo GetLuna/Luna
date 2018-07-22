@@ -1271,16 +1271,6 @@ class Installer
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'notify_inbox'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
-				'notify_inbox_full'=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
 				'num_inbox'	=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
 					'allow_null'	=> false,

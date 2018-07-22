@@ -613,8 +613,6 @@ switch ($stage) {
 		$db->rename_field('search_matches', 'post_id', 'comment_id', 'INT(10)');
 		$db->rename_field('users', 'notify_with_post', 'notify_with_comment', 'TINYINT(1)');
 		$db->rename_field('users', 'use_pm', 'use_inbox', 'TINYINT(1)');
-		$db->rename_field('users', 'notify_pm', 'notify_inbox', 'TINYINT(1)');
-		$db->rename_field('users', 'notify_pm_full', 'notify_inbox_full', 'TINYINT(1)');
 		$db->rename_field('users', 'num_pms', 'num_inbox', 'TINYINT(1)');
 
 		build_config(0, 'o_topic_review');
@@ -656,8 +654,6 @@ switch ($stage) {
 			$db->add_field('groups', 'g_inbox_limit', 'INT', false, '20', 'g_inbox') or error('Unable to add column "g_inbox_limit" to table "groups"', __FILE__, __LINE__, $db->error());
 			$db->add_field('comments', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 			$db->add_field('users', 'use_inbox', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-			$db->add_field('users', 'notify_inbox', 'TINYINT(1)', false, '1', 'use_inbox') or error('Unable to add column "notify_inbox" to table "users"', __FILE__, __LINE__, $db->error());
-			$db->add_field('users', 'notify_inbox_full', 'TINYINT(1)', false, '0', 'notify_with_comment') or error('Unable to add column "notify_inbox_full" to table "users"', __FILE__, __LINE__, $db->error());
 			$db->add_field('users', 'num_inbox', 'INT(10) UNSIGNED', false, '0', 'num_comments') or error('Unable to add column "num_inbox" to table "users"', __FILE__, __LINE__, $db->error());
 
 			// Luna 1.1 upgrade support items that have to be executed after the Luna 1.3 upgrade
@@ -715,9 +711,13 @@ switch ($stage) {
 		$db->drop_field('users', 'disp_posts', 'INT', true, 0) or error('Unable to drop disp_posts field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'disp_threads', 'INT', true, 0) or error('Unable to drop disp_threads field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'disp_comments', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'show_smilies', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'show_img_sig', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'show_avatars', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_smilies', 'INT', true, 0) or error('Unable to drop show_smilies field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_img_sig', 'INT', true, 0) or error('Unable to drop show_img_sig field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_avatars', 'INT', true, 0) or error('Unable to drop show_avatars field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_pm', 'INT', true, 0) or error('Unable to drop notify_pm field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_inbox', 'INT', true, 0) or error('Unable to drop notify_inbox field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_pm_full', 'INT', true, 0) or error('Unable to drop notify_pm_full field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_inbox_full', 'INT', true, 0) or error('Unable to drop notify_inbox_full field', __FILE__, __LINE__, $db->error());
 		
 		$db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 		
