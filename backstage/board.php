@@ -97,7 +97,7 @@ elseif (isset($_GET['del_forum'])) {
                 <?php _e('Confirm delete forum', 'luna')?>
                 <span class="float-right">
                     <button class="btn btn-link btn-link-danger" type="submit" name="del_forum_comply">
-                        <span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?>
+                        <span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna')?>
                     </button>
                 </span>
             </h5>
@@ -535,7 +535,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
             <h5 class="card-header">
                 <?php _e('Confirm delete category', 'luna')?>
                 <span class="float-right">
-                    <button class="btn btn-link btn-link-danger" type="submit" name="del_cat_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+                    <button class="btn btn-link btn-link-danger" type="submit" name="del_cat_comply"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna')?></button>
                 </span>
             </h5>
             <div class="card-body">
@@ -641,7 +641,7 @@ while ($cur_cat = $db->fetch_assoc($result)) {
 				<h5 class="card-header">
                     <?php _e('Delete categories', 'luna')?>
                     <span class="float-right">
-                        <button class="btn btn-link btn-link-danger" type="submit" name="del_cat" tabindex="4"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+                        <button class="btn btn-link btn-link-danger" type="submit" name="del_cat" tabindex="4"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna')?></button>
                     </span>
                 </h5>
                 <div class="card-body">
@@ -669,12 +669,12 @@ foreach ($cat_list as $cur_cat) {
 	<div class="col-lg-8">
 		<?php if ($num_cats > 0) {?>
 			<form class="card" id="edforum" method="post" action="board.php?action=edit">
-                <h3 class="card-header">
+                <h5 class="card-header">
                     <?php _e('Manage board', 'luna')?>
                     <span class="float-right">
                         <button class="btn btn-link" type="submit" name="update_board"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna')?></button>
                     </span>
-                </h3>
+                </h5>
 				<div class="card-body">
 <?php
             $cur_index = 4;
@@ -753,7 +753,7 @@ $forum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_sty
 								</div>
 							</div>
 							<div class="card-footer">
-								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></a>
+								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna')?></a>
 							</div>
 						</div>
 					</div>
@@ -812,7 +812,7 @@ $subforum = $db->query('SELECT id, forum_name, disp_position, color, icon, icon_
 								</div>
 							</div>
 							<div class="card-footer">
-								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></a>
+								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna')?></a>
 							</div>
 						</div>
 					</div>

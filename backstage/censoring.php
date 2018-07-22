@@ -154,7 +154,7 @@ if ($db->num_rows($result)) {
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
+                                    <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna') ?></button>
                                 </div>
                             </td>
                         </tr>

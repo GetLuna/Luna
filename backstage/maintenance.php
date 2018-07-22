@@ -215,7 +215,7 @@ if (isset($_GET['cache_cleared'])) {
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label"><?php _e('Cache', 'luna')?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna')?></span></label>
                     <div class="col-md-9">
-                        <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna')?></a>
+                        <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Clear cache', 'luna')?></a>
                     </div>
                 </div>
             </div>

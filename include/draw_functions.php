@@ -721,7 +721,7 @@ function draw_comment_list() {
                 
 				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
-						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fas fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
+						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fas fa-fw fa-trash-alt"></i> '.__('Delete', 'luna').'</a>';
                     
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1))
 						if ($cur_comment['soft'] == 0)
@@ -750,7 +750,7 @@ function draw_comment_list() {
 					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fas fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
 			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) {
-				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fas fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
+				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fas fa-fw fa-trash-alt"></i> '.__('Delete', 'luna').'</a>';
                 
 				if ($cur_comment['soft'] == 0)
 					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fas fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
@@ -917,7 +917,7 @@ function draw_delete_form($id) {
 			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-danger" name="delete"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+				<button type="submit" class="btn btn-danger" name="delete"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -931,7 +931,7 @@ function draw_soft_delete_form($id) {
 			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be hidden.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to hide is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fas fa-fw fa-trash"></span> <?php _e('Hide', 'luna') ?></button>
+				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Hide', 'luna') ?></button>
 			</div>
 		</form>
 <?php

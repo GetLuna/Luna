@@ -131,7 +131,7 @@ if ($num_not_seen == '0') {
                                 <a class="btn btn-light btn-block" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="fas fa-fw '.$cur_notifi['icon'].'"></span>&nbsp; '.$cur_notifi['message'].'<span class="timestamp float-right d-none d-sm-inline">'.format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true).'</span></a>
                             </div>
                             <div class="col-2">
-                                <a class="btn btn-danger btn-block" href="notifications.php?remove_notification='.$cur_notifi['id'].'"><span class="fas fa-fw fa-trash"></span><span class="d-none d-sm-inline"> '.__('Remove', 'luna').'</span></a>
+                                <a class="btn btn-danger btn-block" href="notifications.php?remove_notification='.$cur_notifi['id'].'"><span class="fas fa-fw fa-trash-alt"></span><span class="d-none d-sm-inline"> '.__('Remove', 'luna').'</span></a>
                             </div>
                         </div>';
     }

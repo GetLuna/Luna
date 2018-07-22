@@ -12,9 +12,9 @@ if (!defined('FORUM'))
 			<form method="post" action="delete.php?id=<?php echo $id ?>">
 				<div class="title-block title-block-danger">
 					<h2>
-						<i class="fas fa-fw fa-trash"></i> <?php draw_delete_title(); ?>
+						<i class="fas fa-fw fa-trash-alt"></i> <?php draw_delete_title(); ?>
 						<span class="float-right">
-							<button type="submit" class="btn btn-light btn-light-danger" name="delete"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+							<button type="submit" class="btn btn-light btn-light-danger" name="delete"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna') ?></button>
 						</span>
 					</h2>
 				</div>

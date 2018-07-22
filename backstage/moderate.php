@@ -417,7 +417,7 @@ if (isset($_GET['tid'])) {
                     <span class="float-right"><?php echo backstage_paginate($paging_links) ?></span>
                     <div class="btn-group pull-right">
                         <button type="submit" class="btn btn-primary" name="split_comments" <?php echo $button_status ?>><i class="fas fa-fw fa-code-fork"></i> <?php _e('Split', 'luna')?></button>
-                        <button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fas fa-fw fa-trash"></i> <?php _e('Delete', 'luna')?></button>
+                        <button type="submit" class="btn btn-primary" name="delete_comments"<?php echo $button_status ?>><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Delete', 'luna')?></button>
                     </div>
                 </form>
             </div>
@@ -733,7 +733,7 @@ elseif (isset($_POST['delete_threads']) || isset($_POST['delete_threads_comply']
 			<h5 class="card-header">
                 <?php _e('Delete threads', 'luna')?>
                 <span class="float-right">
-                    <button type="submit" class="btn btn-link btn-link-danger" name="delete_threads_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna')?></button>
+                    <button type="submit" class="btn btn-link btn-link-danger" name="delete_threads_comply"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna')?></button>
                 </span>
             </h5>
 			<div class="card-body">
@@ -1023,7 +1023,7 @@ while ($cur_thread = $db->fetch_assoc($result)) {
             <div class="card-footer">
                 <div class="btn-group">
                     <button type="submit" class="btn btn-primary" name="move_threads"<?php echo $button_status ?>><i class="fas fa-fw fa-arrows-alt"></i> <?php _e('Move', 'luna')?></button>
-                    <button type="submit" class="btn btn-primary" name="delete_threads"<?php echo $button_status ?>><i class="fas fa-fw fa-trash-o"></i> <?php _e('Delete', 'luna')?></button>
+                    <button type="submit" class="btn btn-primary" name="delete_threads"<?php echo $button_status ?>><i class="fas fa-fw fa-trash-alt-o"></i> <?php _e('Delete', 'luna')?></button>
                     <button type="submit" class="btn btn-primary" name="merge_threads"<?php echo $button_status ?>><i class="fas fa-fw fa-compress"></i> <?php _e('Merge', 'luna')?></button>
                 </div>
                 <div class="btn-group">

@@ -467,7 +467,7 @@ elseif (isset($_GET['del_group'])) {
 	<h5 class="card-header">
         <?php printf(__('Delete group %s', 'luna'), '<b>'.luna_htmlspecialchars($group_title).'</b>')?>
         <span class="float-right">
-            <button class="btn btn-link btn-link-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
+            <button class="btn btn-link btn-link-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fas fa-fw fa-trash-alt"></span> <?php echo __('Delete', 'luna') ?></button>
         </span>
     </h5>
     <div class="alert alert-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php echo __('<b>Warning:</b> After you deleted a group you cannot restore it.', 'luna') ?></div>
@@ -486,7 +486,7 @@ elseif (isset($_GET['del_group'])) {
     <h5 class="card-header">
         <?php printf(__('Delete group %s', 'luna'), '<b>'.luna_htmlspecialchars($group_title).'</b>')?>
         <span class="float-right">
-            <button class="btn btn-link btn-link-danger" type="submit" name="del_group"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></button>
+            <button class="btn btn-link btn-link-danger" type="submit" name="del_group"><span class="fas fa-fw fa-trash-alt"></span> <?php echo __('Delete', 'luna') ?></button>
         </span>
     </h5>
     <div class="alert alert-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php echo __('<b>Warning:</b> After you deleted a group you cannot restore it.', 'luna') ?></div>
@@ -594,7 +594,7 @@ $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id
                             <td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
                             <td>
                                 <?php if ($cur_group['g_id'] > LUNA_MEMBER) {?>
-                                    <a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php echo __('Delete', 'luna') ?></a>
+                                    <a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash-alt"></span> <?php echo __('Delete', 'luna') ?></a>
                                 <?php }?>
                             </td>
                         </tr>

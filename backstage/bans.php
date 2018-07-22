@@ -383,7 +383,7 @@ elseif (isset($_GET['find_ban'])) {
     if ($db->num_rows($result)) {
         while ($ban_data = $db->fetch_assoc($result)) {
 
-            $actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'"><span class="fas fa-fw fa-edit"></span> '.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'"><span class="fas fa-fw fa-trash"></span> '.__('Remove', 'luna').'</a></div>';
+            $actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'"><span class="fas fa-fw fa-edit"></span> '.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'"><span class="fas fa-fw fa-trash-alt"></span> '.__('Remove', 'luna').'</a></div>';
             $expire = format_time($ban_data['expire'], true);
 ?>
 						<tr>

@@ -500,7 +500,7 @@ if (isset($_GET['saved'])) {
                         <label class="col-md-3 col-form-label">
                             <?php _e('Default avatar', 'luna')?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna')?></span>
                             <?php if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {?>
-                                <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna')?></a>
+                                <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete avatar', 'luna')?></a>
                             <?php }?>
                         </label>
                         <div class="col-md-9">

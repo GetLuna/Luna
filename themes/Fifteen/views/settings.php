@@ -476,7 +476,7 @@ else
 									<div class="col-md-9">
                                         <button class="btn btn-danger" type="submit" name="ban"><i class="fas fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
                                         <?php if ($user['g_id'] == LUNA_ADMIN) { ?>
-                                            <button class="btn btn-danger" type="submit" name="delete_user"><i class="fas fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+                                            <button class="btn btn-danger" type="submit" name="delete_user"><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Delete', 'luna') ?></button>
                                         <?php } ?>
 									</div>
 								</div>

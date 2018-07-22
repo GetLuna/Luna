@@ -30,7 +30,7 @@ include(LUNA_ROOT.'themes/Typography/functions.php');
 							<button type="submit" name="markunread" class="btn btn-primary"><span class="fas fa-fw fa-eye-slash"></span> <?php _e('Unread', 'luna') ?></button>
 						</div>
 						<div class="btn-group">
-							<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
+							<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna') ?></a>
 							<?php include load_page('inbox-delete-comment.php'); ?>
 						</div>
 						<div class="btn-group pull-right">

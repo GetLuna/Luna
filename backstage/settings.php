@@ -314,7 +314,7 @@ foreach ($languages as $temp) {
                         <label class="col-md-3 col-form-label">
                             <?php _e('Favicon', 'luna')?><span class="help-block"><?php _e('You can upload a favicon here to show in the browser', 'luna')?></span>
                             <?php if (file_exists(LUNA_ROOT.'/favicon.png')) {?>
-                                <a class="btn btn-danger" href="?remove-favicon"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete favicon', 'luna')?></a>
+                                <a class="btn btn-danger" href="?remove-favicon"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete favicon', 'luna')?></a>
                             <?php }?>
                         </label>
                         <div class="col-md-9">

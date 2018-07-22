@@ -156,7 +156,7 @@ if ($db->num_rows($result)) {
                                 <input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_comments]" value="<?php echo $cur_rank['min_comments'] ?>" maxlength="7" />
                             </td>
                             <td>
-                                <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna')?></button>
+                                <button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove', 'luna')?></button>
                             </td>
                         </tr>
 <?php

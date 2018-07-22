@@ -148,7 +148,7 @@ while ($cur_item = $db->fetch_assoc($menus)) {
                             </td>
                             <td>
                                 <?php if ( $cur_item['sys_entry'] == 0 ) { ?>
-                                <a href="menu.php?del_item=<?php echo $cur_item['id'] ?>" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
+                                <a href="menu.php?del_item=<?php echo $cur_item['id'] ?>" class="btn btn-danger"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna') ?></a>
                                 <?php } ?>
                             </td>
                         </tr>

@@ -96,7 +96,7 @@ if ($db->num_rows($result)) {
                                 <div class="card-footer">
                                     <button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fas fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna')?></button>
                                     <a class="btn btn-primary" href="../edit.php?id=<?php echo $cur_report['pid'] ?>"><i class="fas fa-fw fa-pencil-alt"></i><?php _e('Edit', 'luna')?></a>
-                                    <a class="btn btn-danger" href="../delete.php?id=<?php echo $cur_report['pid'] ?>&action=delete"><i class="fas fa-fw fa-trash"></i><?php _e('Remove', 'luna')?></a>
+                                    <a class="btn btn-danger" href="../delete.php?id=<?php echo $cur_report['pid'] ?>&action=delete"><i class="fas fa-fw fa-trash-alt"></i><?php _e('Remove', 'luna')?></a>
                                 </div>
                             </div>
 <?php

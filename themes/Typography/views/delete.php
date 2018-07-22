@@ -13,7 +13,7 @@ if (!defined('FORUM'))
 	<div class="row">
 		<div class="col-12">
 			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong> ' : '' ?><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
-			<button type="submit" class="btn btn-danger" name="delete"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+			<button type="submit" class="btn btn-danger" name="delete"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna') ?></button>
 			<hr />
 			<?php echo $cur_comment['message'] ?>
 		</div>

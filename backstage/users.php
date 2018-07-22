@@ -449,7 +449,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
             <h5 class="card-header">
                 <?php _e('Delete users', 'luna')?>
                 <span class="float-right">
-                    <button class="btn btn-link btn-link-danger" type="submit" name="delete_users_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna')?></button>
+                    <button class="btn btn-link btn-link-danger" type="submit" name="delete_users_comply"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna')?></button>
                 </span>
             </h5>
             <div class="alert alert-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna')?></div>
@@ -683,7 +683,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
                                 <?php if ($can_ban): ?>
                                 <button class="btn btn-danger" type="submit" name="ban_users"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna')?></button>
                                 <?php endif;if ($can_delete): ?>
-                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna')?></button>
+                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna')?></button>
                                 <?php endif;if ($can_move): ?>
                                 <button class="btn btn-primary" type="submit" name="move_users"><span class="fas fa-fw fa-exchange-alt"></span> <?php _e('Change group', 'luna')?></button>
                                 <?php endif;?>
@@ -747,7 +747,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
                                 <?php if ($can_ban): ?>
                                 <button class="btn btn-danger" type="submit" name="ban_users"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna')?></button>
                                 <?php endif;if ($can_delete): ?>
-                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna')?></button>
+                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete', 'luna')?></button>
                                 <?php endif;if ($can_move): ?>
                                 <button class="btn btn-primary" type="submit" name="move_users"><span class="fas fa-fw fa-exchange-alt"></span> <?php _e('Change group', 'luna')?></button>
                                 <?php endif;?>

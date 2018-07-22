@@ -226,7 +226,7 @@ foreach ($theme->features->accents as $accent) {
                         <label class="col-md-3 col-form-label">
                             <?php _e('Header background', 'luna')?><span class="help-block"><?php _e('You can upload a custom header here to show in the Mainstage and Backstage', 'luna')?></span><?php if (!$theme->features->custom_css) { ?><span class="help-block text-danger"><?php _e('Your theme does not support header background', 'luna')?></span><?php } ?>
                             <?php if (file_exists(LUNA_ROOT.'/img/header.png') || file_exists(LUNA_ROOT.'/img/header.jpg')) {?>
-                                <a class="btn btn-danger" href="?remove-header"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete header', 'luna')?></a>
+                                <a class="btn btn-danger" href="?remove-header"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Delete header', 'luna')?></a>
                             <?php }?>
                         </label>
                         <div class="col-md-9">

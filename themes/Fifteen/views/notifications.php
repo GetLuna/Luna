@@ -42,7 +42,7 @@ if (!defined('FORUM'))
 				</div>
 				<div role="tabpanel" class="tab-pane" id="seen">
                     <?php if ($num_not_seen != '0') { ?>
-                        <a class="btn btn-danger" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=delnoti"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove all', 'luna') ?></a>
+                        <a class="btn btn-danger" href="notifications.php?id=<?php echo $luna_user['id'] ?>&action=delnoti"><span class="fas fa-fw fa-trash-alt"></span> <?php _e('Remove all', 'luna') ?></a>
                     <?php } ?>
                     <?php echo $not_seen; ?>
 				</div>
