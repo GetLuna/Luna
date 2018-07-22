@@ -403,13 +403,6 @@ else
 													<?php _e('Show images in user signatures.', 'luna') ?>
 												</label>
 											</div>
-										<?php endif; if ($luna_config['o_smilies_sig'] == '1'): ?>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[show_smilies]" name="form[show_smilies]" value="1"<?php echo ( $user['show_smilies'] == '1' ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[show_smilies]">
-													<?php _e('Show smilies as graphic icons.', 'luna') ?>
-												</label>
-											</div>
 										<?php endif; ?>
 									</div>
 								</div>

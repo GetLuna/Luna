@@ -1188,11 +1188,6 @@ class Installer
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'show_smilies'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
 				'show_img'			=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,

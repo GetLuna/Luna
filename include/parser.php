@@ -978,7 +978,7 @@ function parse_signature($text)
         $text = do_bbcode($text, true);
     }
 
-    if ($luna_config['o_smilies_sig'] == '1' && $luna_user['show_smilies'] == '1') {
+    if ($luna_config['o_smilies_sig'] == '1') {
         $text = do_smilies($text);
     }
 
