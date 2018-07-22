@@ -2341,10 +2341,6 @@ function get_theme_mode() {
         $body_classes .= 'normal';
     }
 
-    if ($luna_user['enforce_accent'] == 1) {
-        $body_classes .= ' enforce';
-    }
-
     if (__('Direction of language', 'luna') == 'rtl') {
         $body_classes .= ' rtl';
     } else {

@@ -156,14 +156,6 @@ else
 				}
 		?>
 									</div>
-									<div class="btn-group-toggle" data-toggle="buttons">
-									</div>
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="form[enforce_accent]" name="form[enforce_accent]" value="1"<?php echo ( $user['enforce_accent'] == '1' ) ? ' checked' : '' ?>>
-										<label class="custom-control-label" for="form[enforce_accent]">
-											<?php _e('Enforce the accent on the board.', 'luna') ?>
-										</label>
-									</div>
 								</div>
 								<hr />
 							</div>

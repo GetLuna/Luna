@@ -559,7 +559,6 @@ switch ($stage) {
 		build_config(1, 'o_default_accent', '2');
 
 		// Luna 1.2 upgrade support
-		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
 
@@ -718,6 +717,7 @@ switch ($stage) {
 		$db->drop_field('users', 'notify_inbox', 'INT', true, 0) or error('Unable to drop notify_inbox field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'notify_pm_full', 'INT', true, 0) or error('Unable to drop notify_pm_full field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'notify_inbox_full', 'INT', true, 0) or error('Unable to drop notify_inbox_full field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'enforce_accent', 'INT', true, 0) or error('Unable to drop enforce_accent field', __FILE__, __LINE__, $db->error());
 		
 		$db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 		
