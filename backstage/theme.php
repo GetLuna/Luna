@@ -150,7 +150,7 @@ foreach ( $themes as $theme ) {
                         </p>
                     <?php } if ( Version::LUNA_VERSION > $theme->maxversion ) { ?>
                         <p class="alert alert-warning">
-                            <?php echo sprintf( __( 'This theme is not reported to support Luna %s, you might want to update it.', 'luna' ), Version::LUNA_VERSION ) ?>
+                            <?php echo sprintf( __( 'This theme supports Luna %s until %s, it is not reported to support Luna %s, you might want to update it.', 'luna' ), $theme->minversion, $theme->maxversion, Version::LUNA_VERSION ) ?>
                         </p>
                     <?php } if ( isset( $theme->parent ) ) { ?>
                         <p class="parent">
@@ -195,7 +195,7 @@ if ( count( $themes ) > 0 ) {
                         </p>
                     <?php } if ( Version::LUNA_VERSION > $theme->maxversion ) { ?>
                         <p class="alert alert-warning">
-                            <?php echo sprintf( __( 'This theme is not reported to support Luna %s, you might want to update it.', 'luna' ), Version::LUNA_VERSION ) ?>
+                            <?php echo sprintf( __( 'This theme supports Luna %s until %s, it is not reported to support Luna %s, you might want to update it.', 'luna' ), $theme->minversion, $theme->maxversion, Version::LUNA_VERSION ) ?>
                         </p>
                     <?php } ?>
                     <p class="meta"><?php _e( 'Version', 'luna' )?> <?php echo $theme->version ?> &middot; <?php _e( 'By', 'luna' )?> <a href="<?php echo $theme->url ?>"><?php echo $theme->developer ?></a></p>

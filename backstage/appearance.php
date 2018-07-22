@@ -282,7 +282,7 @@ foreach ($theme->features->accents as $accent) {
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="form[moderated_by]" name="form[moderated_by]" value="1"<?php echo ( $luna_config['o_moderated_by'] == '1' ) ? ' checked' : '' ?>>
                                 <label class="custom-control-label" for="form[moderated_by]">
-                                    <?php _e('Show the "Moderated by" list when moderators are set on a per-forum base (requires theme support).', 'luna')?>
+                                    <?php _e('Show the "Moderated by" list when moderators are set on a per-forum base.', 'luna')?>
                                 </label>
                             </div>
                         </div>
