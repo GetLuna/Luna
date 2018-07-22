@@ -51,7 +51,7 @@
                         <ul class="navbar-nav my-2 my-md-0">
                             <?php if ($luna_user['is_guest']) { ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="register.php"><?php _e('Register', 'luna') ?></a>
+                                    <a class="nav-link" href="<?php echo $menu->getRegisterUrl() ?>"><?php _e('Register', 'luna') ?></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#login-form"><?php _e('Login', 'luna') ?></a>
@@ -59,12 +59,12 @@
                             <?php } else { ?>
                                 <?php if ($luna_user['is_admmod']) { ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="backstage/"><i class="fas fa-fw fa-tachometer-alt"></i><span class="d-inline d-md-none"><?php _e('Backstage', 'luna') ?></span></a>
+                                        <a class="nav-link" href="<?php echo $menu->getBackstageUrl() ?>"><i class="fas fa-fw fa-tachometer-alt"></i><span class="d-inline d-md-none"><?php _e('Backstage', 'luna') ?></span></a>
                                     </li>
                                 <?php } ?>
                                 <?php if ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $luna_user['use_inbox'] == '1') { ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="inbox.php"><?php echo $inbox_count ?><i class="fas fa-fw fa-paper-plane"></i><span class="d-inline d-md-none"> <?php _e('Inbox', 'luna') ?></span></a>
+                                        <a class="nav-link" href="<?php echo $menu->getInboxUrl( $luna_user['id'] ) ?>"><?php echo $inbox_count ?><i class="fas fa-fw fa-paper-plane"></i><span class="d-inline d-md-none"> <?php _e('Inbox', 'luna') ?></span></a>
                                     </li>
                                 <?php } ?>
                                 <?php if ($luna_config['o_notification_flyout'] == 1) { ?>
@@ -77,20 +77,20 @@
                                             <div class="dropdown-divider"></div>
                                             <?php
                                             if ($notification_count == '0') {
-                                                echo '<a class="dropdown-item" href="notifications.php">'.__('No new notifications', 'luna').'</a>';
+                                                echo '<a class="dropdown-item" href="'.$menu->getNotificationsUrl( $luna_user['id'] ).'">'.__('No new notifications', 'luna').'</a>';
                                             } else {
                                                 foreach ($notifications as $notification) {
-                                                    echo '<a class="dropdown-item" href="notifications.php?notification='.$notification->getId().'"><span class="timestamp">'.$notification->getTime().'</span> <span class="fas fa-fw '.$notification->getIcon().'"></span> '.$notification->getMessage().'</a>';
+                                                    echo '<a class="dropdown-item" href="'.$menu->getNotificationsUrl( $luna_user['id'] ).'&notification='.$notification->getId().'"><span class="timestamp">'.$notification->getTime().'</span> <span class="fas fa-fw '.$notification->getIcon().'"></span> '.$notification->getMessage().'</a>';
                                                 }
                                             }
                                             ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item float-right" href="notifications.php"><?php _e('More', 'luna') ?> <i class="fas fa-fw fa-arrow-right"></i></a>
+                                            <a class="dropdown-item float-right" href="<?php echo $menu->getNotificationsUrl( $luna_user['id'] ) ?>"><?php _e('More', 'luna') ?> <i class="fas fa-fw fa-arrow-right"></i></a>
                                         </div>
                                     </li>
                                 <?php } else { ?>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="notifications.php" class="<?php echo $notificon ?>"><span class="d-inline d-sm-none"> <?php _e('Notifications', 'luna') ?></span></a>
+                                        <a class="nav-link" href="<?php echo $menu->getNotificationsUrl( $luna_user['id'] ) ?>" class="<?php echo $notificon ?>"><span class="d-inline d-sm-none"> <?php _e('Notifications', 'luna') ?></span></a>
                                     </li>
                                 <?php } ?>
                                 <li class="nav-item dropdown dropdown-user">
@@ -98,10 +98,10 @@
                                         <?php echo draw_user_avatar($luna_user['id'], true, 'avatar') ?>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileMenu">
-                                        <a class="dropdown-item" href="<?php echo $profile_url ?>"><i class="fas fa-fw fa-user"></i><?php _e('Profile', 'luna') ?></a>
-                                        <a class="dropdown-item" href="<?php echo $settings_url ?>"><i class="fas fa-fw fa-cogs"></i><?php _e('Settings', 'luna') ?></a>
-                                        <a class="dropdown-item" href="help.php"><i class="fas fa-fw fa-info-circle"></i><?php _e('Help', 'luna') ?></a>
-                                        <a class="dropdown-item" href="<?php echo $logout_url ?>"><i class="fas fa-fw fa-sign-out-alt"></i><?php _e('Logout', 'luna') ?></a>
+                                        <a class="dropdown-item" href="<?php echo $menu->getProfileUrl( $luna_user['id'] ) ?>"><i class="fas fa-fw fa-user"></i><?php _e('Profile', 'luna') ?></a>
+                                        <a class="dropdown-item" href="<?php echo $menu->getSettingsUrl( $luna_user['id'] ) ?>"><i class="fas fa-fw fa-cogs"></i><?php _e('Settings', 'luna') ?></a>
+                                        <a class="dropdown-item" href="<?php echo $menu->getHelpUrl() ?>"><i class="fas fa-fw fa-info-circle"></i><?php _e('Help', 'luna') ?></a>
+                                        <a class="dropdown-item" href="<?php echo $menu->getLogoutUrl( $luna_user['id'] ) ?>"><i class="fas fa-fw fa-sign-out-alt"></i><?php _e('Logout', 'luna') ?></a>
                                     </div>
                                 </li>
                             <?php } ?>

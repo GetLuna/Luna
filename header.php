@@ -95,16 +95,8 @@ if ($luna_config['o_enable_inbox'] == '1' && $luna_user['g_inbox'] == '1' && $lu
 
 if (!$luna_user['is_guest']) {
     $notifications = array();
-
-    // Check for new notifications
-    $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
-    $notification_count = $db->result($result);
     
     $notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error('Unable to load notifications', __FILE__, __LINE__, $db->error());
-
-    $profile_url = 'profile.php?id='.$luna_user['id'];
-    $settings_url = 'settings.php?id='.$luna_user['id'];
-    $logout_url = 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token();
 
     while ($row = $db->fetch_assoc($notification_result)) {
         $notifications[] = Notification::withRow($row);

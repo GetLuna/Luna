@@ -38,18 +38,23 @@ require 'header.php';
                     <p><?php _e('Emoji shortcodes are now case insensitive', 'luna') ?></p>
                     <p><?php _e('Luna now uses modern emoji shortcodes for new installations and adds them to old installations', 'luna') ?></p>
                     <p><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></p>
+                    <p><?php _e('Themes now have easier access to pagination, menu and notification data', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 4.1.1 to 4.1.2', 'luna') ?></p>
                     <p><?php _e('Font Awesome has been updated from version 5.1.0 to 5.1.1', 'luna') ?></p>
+                    <p><?php _e('Luna now requires PHP 5.4 and up', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exchange-alt"></i> <?php _e('Changed', 'luna') ?></h4>
                     <p><?php _e('Typography is now the default theme for new installations', 'luna') ?></p>
                     <p><?php _e('More emoji have been remapped to better represent their text-version', 'luna') ?></p>
+                    <p><?php _e('Legacy code that functioned as fallback for old PHP versions has been removed', 'luna') ?></p>
+                    <h4><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Removed', 'luna') ?></h4>
+                    <p><?php _e('Support for MySQL and MySQL InnoDB has been removed', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('Luna no longer returns the password when a registration error occures', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
-                    <p><?php _e('Fifteen and Sunrise have multiple visual issues', 'luna') ?></p>
+                    <p><?php _e('Fifteen, Sunrise and Typography have multiple visual issues', 'luna') ?></p>
                     <p><?php _e('Fifteen and Sunrise do not properly work due to mismatching APIs', 'luna') ?></p>
                     <p><?php _e('Luna will reset the theme to Typography', 'luna') ?></p>
                 </section>

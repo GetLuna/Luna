@@ -26,6 +26,42 @@ class Menu {
     public function getItems( $visible = true ) {
         return $this->items;
     }
+
+    public function getBackstageUrl() {
+        return 'backstage/';
+    }
+
+    public function getInboxUrl( $id ) {
+        return 'inbox.php?id='.$id;
+    }
+
+    public function getProfileUrl( $id ) {
+        return 'profile.php?id='.$id;
+    }
+
+    public function getSettingsUrl( $id ) {
+        return 'settings.php?id='.$id;
+    }
+
+    public function getHelpUrl() {
+        return 'help.php';
+    }
+
+    public function getNotificationsUrl( $id ) {
+        return 'notifications.php?id='.$id;
+    }
+
+    public function getLogoutUrl( $id ) {
+        return 'login.php?action=out&amp;id='.$id.'&amp;csrf_token='.luna_csrf_token();
+    }
+
+    public function getRegisterUrl() {
+        return 'register.php';
+    }
+
+    public function getLoginUrl() {
+        return 'login.php';
+    }
 }
 
 class MenuItem {
@@ -74,11 +110,6 @@ class MenuItem {
         return $this;
     }
     
-    public function setUser( $user ) {
-        $this->user = $user;
-        return $this;
-    }
-    
     public function setUrl( $url ) {
         $this->url = $url;
         return $this;
@@ -107,10 +138,6 @@ class MenuItem {
     // Getters
     public function getId() {
         return $this->id;
-    }
-    
-    public function getUser() {
-        return $this->user;
     }
     
     public function getUrl() {
