@@ -715,6 +715,9 @@ switch ($stage) {
 		$db->drop_field('users', 'disp_posts', 'INT', true, 0) or error('Unable to drop disp_posts field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'disp_threads', 'INT', true, 0) or error('Unable to drop disp_threads field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'disp_comments', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_smilies', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_img_sig', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_avatars', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
 		
 		$db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 		

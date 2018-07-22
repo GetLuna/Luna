@@ -694,7 +694,7 @@ function draw_comment_list() {
 		}
 
 		// Get us the avatar
-		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
+		if ($luna_config['o_avatars'] == '1') {
 			if (isset($user_avatar_cache[$cur_comment['commenter_id']]))
 				$user_avatar = $user_avatar_cache[$cur_comment['commenter_id']];
 			else
@@ -809,7 +809,7 @@ function draw_response_list() {
 			// Format the online indicator
 			$is_online = ($cur_comment['is_online'] == $cur_comment['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
 
-			if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
+			if ($luna_config['o_avatars'] == '1') {
 				if (isset($user_avatar_cache[$cur_comment['sender_id']]))
 					$user_avatar = $user_avatar_cache[$cur_comment['sender_id']];
 				else

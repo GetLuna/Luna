@@ -1193,16 +1193,6 @@ class Installer
 					'allow_null'	=> false,
 					'default'		=> '1'
 				),
-				'show_img_sig'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
-				'show_avatars'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '1'
-				),
 				'show_sig'			=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,

@@ -369,14 +369,7 @@ else
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
 									<div class="col-md-9">
-										<?php if ($luna_config['o_avatars'] == '1'): ?>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[show_avatars]" name="form[show_avatars]" value="1"<?php echo ( $user['show_avatars'] == '1' ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[show_avatars]">
-													<?php _e('Show user avatars with their comments', 'luna') ?>
-												</label>
-											</div>
-										<?php endif; if ($luna_config['o_message_img_tag'] == '1'): ?>
+										<?php if ($luna_config['o_message_img_tag'] == '1'): ?>
 											<div class="custom-control custom-checkbox">
 												<input type="checkbox" class="custom-control-input" id="form[show_img]" name="form[show_img]" value="1"<?php echo ( $user['show_img'] == '1' ) ? ' checked' : '' ?>>
 												<label class="custom-control-label" for="form[show_img]">
@@ -396,14 +389,6 @@ else
 													<?php _e('Show user signatures.', 'luna') ?>
 											</label>
 										</div>
-										<?php if ($luna_config['o_sig_img_tag'] == '1'): ?>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[show_img_sig]" name="form[show_img_sig]" value="1"<?php echo ( $user['show_img_sig'] == '1' ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[show_img_sig]">
-													<?php _e('Show images in user signatures.', 'luna') ?>
-												</label>
-											</div>
-										<?php endif; ?>
 									</div>
 								</div>
 							<?php endif; ?>

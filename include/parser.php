@@ -669,9 +669,9 @@ function handle_img_tag($url, $is_signature = false, $alt = null)
 
     $img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.__('image', 'luna').' - '.$alt.'&gt;</a>';
 
-    if ($is_signature && $luna_user['show_img_sig'] != '0') {
+    if ($is_signature && $luna_user['show_img'] == '1') {
         $img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
-    } elseif (!$is_signature && $luna_user['show_img'] != '0') {
+    } elseif (!$is_signature && $luna_user['show_img'] == '1') {
         $img_tag = '<span class="commentimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
     }
 
