@@ -413,7 +413,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		}
 
 		// Determine the thread or comment offset (based on $_GET['p'])
-		$per_page = ($show_as == 'comments') ? $luna_user['disp_comments'] : $luna_user['disp_threads'];
+		$per_page = ($show_as == 'comments') ? $luna_config['o_disp_comments'] : $luna_config['o_disp_threads'];
 		$num_pages = ceil($num_hits / $per_page);
 
 		$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);

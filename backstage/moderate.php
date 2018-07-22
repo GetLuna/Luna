@@ -301,14 +301,14 @@ if (isset($_GET['tid'])) {
     $button_status = ($cur_thread['num_replies'] == 0) ? ' disabled="disabled"' : '';
 
     if (isset($_GET['action']) && $_GET['action'] == 'all') {
-        $luna_user['disp_comments'] = $cur_thread['num_replies'] + 1;
+        $luna_config['o_disp_comments'] = $cur_thread['num_replies'] + 1;
     }
 
     // Determine the comment offset (based on $_GET['p'])
-    $num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+    $num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_config['o_disp_comments']);
 
     $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-    $start_from = $luna_user['disp_comments'] * ($p - 1);
+    $start_from = $luna_config['o_disp_comments'] * ($p - 1);
 
     // Generate paging links
     $paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
@@ -341,7 +341,7 @@ if (isset($_GET['tid'])) {
     $comment_count = 0; // Keep track of comment numbers
 
     // Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_config['o_disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 
     $comment_ids = array();
     for ($i = 0; $cur_comment_id = $db->result($result, $i); $i++) {
@@ -874,10 +874,10 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
     }
 
     // Determine the thread offset (based on $_GET['p'])
-    $num_pages = ceil($cur_forum['num_threads'] / $luna_user['disp_threads']);
+    $num_pages = ceil($cur_forum['num_threads'] / $luna_config['o_disp_threads']);
 
     $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-    $start_from = $luna_user['disp_threads'] * ($p - 1);
+    $start_from = $luna_config['o_disp_threads'] * ($p - 1);
 
     // Generate paging links
     $paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
@@ -894,7 +894,7 @@ elseif (!isset($_GET['unpin']) && !isset($_GET['pin']) && !isset($_REQUEST['open
 <?php
 
 // Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-    $result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$fid.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$fid.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 
 // If there are threads in this forum
     if ($db->num_rows($result)) {
@@ -979,7 +979,7 @@ while ($cur_thread = $db->fetch_assoc($result)) {
 
             $subject_status = implode(' ', $status_text);
 
-            $num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+            $num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_config['o_disp_comments']);
 
             if ($num_pages_thread > 1) {
                 $subject_multipage = '<span class="inline-pagination"> &middot; '.simple_paginate($num_pages_thread, -1, '../thread.php?id='.$cur_thread['id']).'</span>';

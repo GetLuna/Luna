@@ -48,7 +48,7 @@ if ($pid) {
 
     $id = $db->result($result);
 
-    // Determine on what page the comment is located (depending on $luna_user['disp_comments'])
+    // Determine on what page the comment is located (depending on $luna_config['o_disp_comments'])
     $result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY commented') or error('Unable to fetch comment info', __FILE__, __LINE__, $db->error());
     $num_comments = $db->num_rows($result);
 
@@ -61,7 +61,7 @@ if ($pid) {
     }
     ++$i; // we started at 0
 
-    $_REQUEST['p'] = ceil($i / $luna_user['disp_comments']);
+    $_REQUEST['p'] = ceil($i / $luna_config['o_disp_comments']);
 }
 
 // Replace num_replies' feature by a query :-)
@@ -69,11 +69,11 @@ $result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'messages WHERE shared_
 list($num_replies) = $db->fetch_row($result);
 
 // Determine the comment offset (based on $_GET['p'])
-$num_pages = ceil($num_replies / $luna_user['disp_comments']);
+$num_pages = ceil($num_replies / $luna_config['o_disp_comments']);
 
 // Page ?
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);
-$start_from = $luna_user['disp_comments'] * ($page - 1);
+$start_from = $luna_config['o_disp_comments'] * ($page - 1);
 
 // Check that $mid looks good
 if ($mid <= 0) {
@@ -233,7 +233,7 @@ if ($action == 'delete') {
 
     $db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());
 
-    $result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
     if (!$db->num_rows($result)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
     }
@@ -243,7 +243,7 @@ if ($action == 'delete') {
     $user_username = luna_htmlspecialchars($user['username']);
     $user_usertitle = get_title($user);
 
-    $result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.commented, m.showed, m.sender, m.sender_id, m.owner, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_comments, u.admin_note, u.signature, u.use_inbox, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.commented LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.commented, m.showed, m.sender, m.sender_id, m.owner, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_comments, u.admin_note, u.signature, u.use_inbox, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.commented LIMIT '.$start_from.','.$luna_config['o_disp_comments']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result)) {
         message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));

@@ -97,10 +97,10 @@ if (!$luna_user['is_guest']) {
 }
 
 // Determine the thread offset (based on $_GET['p'])
-$num_pages = ceil($cur_forum['num_threads'] / $luna_user['disp_threads']);
+$num_pages = ceil($cur_forum['num_threads'] / $luna_config['o_disp_threads']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $luna_user['disp_threads'] * ($p - 1);
+$start_from = $luna_config['o_disp_threads'] * ($p - 1);
 
 // Get the icon
 $faicon = get_icon($cur_forum['icon'], $cur_forum['icon_style']);

@@ -587,8 +587,6 @@ switch ($stage) {
 		$db->rename_field('forums', 'num_posts', 'num_comments', 'MEDIUMINT(8)');
 		$db->rename_field('forums', 'num_topics', 'num_threads', 'MEDIUMINT(8)');
 		$db->rename_field('users', 'num_posts', 'num_comments', 'INT(10)');
-		$db->rename_field('users', 'disp_topics', 'disp_threads', 'TINYINT(3)');
-		$db->rename_field('users', 'disp_posts', 'disp_comments', 'TINYINT(3)');
 		$db->rename_field('ranks', 'min_posts', 'min_comments', 'MEDIUMINT(8)');
 		$db->rename_field('forums', 'last_post', 'last_comment', 'INT(10)');
 		$db->rename_field('forums', 'last_post_id', 'last_comment_id', 'INT(10)');
@@ -712,6 +710,11 @@ switch ($stage) {
         build_config(1, 'o_use_cdn', 1);
 		build_config(1, 'o_fontawesomepro', 0);
 		build_config(0, 'o_emoji_size');
+		
+		$db->drop_field('users', 'disp_topics', 'INT', true, 0) or error('Unable to drop disp_topics field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_posts', 'INT', true, 0) or error('Unable to drop disp_posts field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_threads', 'INT', true, 0) or error('Unable to drop disp_threads field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_comments', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
 		
 		$db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 		

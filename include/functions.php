@@ -66,14 +66,6 @@ function check_cookie(&$luna_user) {
             $luna_user['language'] = $luna_config['o_default_lang'];
         }
 
-        if (!$luna_user['disp_threads']) {
-            $luna_user['disp_threads'] = $luna_config['o_disp_threads'];
-        }
-
-        if (!$luna_user['disp_comments']) {
-            $luna_user['disp_comments'] = $luna_config['o_disp_comments'];
-        }
-
         // Define this if you want this visit to affect the online list and the users last visit data
         if (!defined('LUNA_QUIET_VISIT')) {
             // Update the online list
@@ -323,8 +315,6 @@ function set_default_user() {
         $db->query('UPDATE '.$db->prefix.'online SET logged='.time().' WHERE ident=\''.$db->escape($remote_addr).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
     }
 
-    $luna_user['disp_threads'] = $luna_config['o_disp_threads'];
-    $luna_user['disp_comments'] = $luna_config['o_disp_comments'];
     $luna_user['php_timezone'] = $luna_config['o_timezone'];
     $luna_user['language'] = $luna_config['o_default_lang'];
     $luna_user['is_guest'] = true;

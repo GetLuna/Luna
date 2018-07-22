@@ -31,11 +31,11 @@ if ($pid) {
 
     list($id, $commented) = $db->fetch_row($result);
 
-    // Determine on which page the comment is located (depending on $forum_user['disp_comments'])
+    // Determine on which page the comment is located (depending on $luna_config['o_disp_comments'])
     $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'comments WHERE thread_id='.$id.' AND commented<'.$commented) or error('Unable to count previous comments', __FILE__, __LINE__, $db->error());
     $num_comments = $db->result($result) + 1;
 
-    $_GET['p'] = ceil($num_comments / $luna_user['disp_comments']);
+    $_GET['p'] = ceil($num_comments / $luna_config['o_disp_comments']);
 } else {
     // If action=new, we redirect to the first new comment (if any)
     if ($action == 'new') {
@@ -115,10 +115,10 @@ if (!$luna_user['is_guest']) {
 }
 
 // Determine the comment offset (based on $_GET['p'])
-$num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+$num_pages = ceil(($cur_thread['num_replies'] + 1) / $luna_config['o_disp_comments']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $luna_user['disp_comments'] * ($p - 1);
+$start_from = $luna_config['o_disp_comments'] * ($p - 1);
 
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'thread.php?id='.$id);
@@ -179,9 +179,9 @@ $comment_count = 0; // Keep track of comment numbers
 
 // Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 if (!$luna_user['is_admmod']) {
-    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE soft = 0 AND thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_config['o_disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 } else {
-    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE thread_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_config['o_disp_comments']) or error('Unable to fetch comment IDs', __FILE__, __LINE__, $db->error());
 }
 
 $comment_ids = array();

@@ -414,19 +414,6 @@ else
 									</div>
 								</div>
 							<?php endif; ?>
-							<hr />
-							<div class="form-group row">
-								<label class="col-md-3 col-form-label"><?php _e('Threads per page', 'luna') ?></label>
-								<div class="col-md-9">
-									<input type="number" class="form-control" name="form[disp_threads]" value="<?php echo $user['disp_threads'] ?>" maxlength="3" />
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-md-3 col-form-label"><?php _e('Comments per page', 'luna') ?></label>
-								<div class="col-md-9">
-									<input type="number" class="form-control" name="form[disp_comments]" value="<?php echo $user['disp_comments'] ?>" maxlength="3" />
-								</div>
-							</div>
 						</fieldset>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="time">

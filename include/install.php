@@ -1173,14 +1173,6 @@ class Installer
 					'datatype'		=> 'TEXT',
 					'allow_null'	=> true
 				),
-				'disp_threads'		=> array(
-					'datatype'		=> 'TINYINT(3) UNSIGNED',
-					'allow_null'	=> true
-				),
-				'disp_comments'		=> array(
-					'datatype'		=> 'TINYINT(3) UNSIGNED',
-					'allow_null'	=> true
-				),
 				'email_setting'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,

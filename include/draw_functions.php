@@ -214,9 +214,9 @@ function draw_threads_list() {
 
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	else
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
@@ -307,7 +307,7 @@ function draw_threads_list() {
 
 			$subject_status = implode(' ', $status_text);
 
-			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_config['o_disp_comments']);
 
 			if ($num_pages_thread > 1)
 				$subject_multipage = '<span class="inline-pagination"> &middot; '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
@@ -598,7 +598,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			$subject_status = implode(' ', $status_text);
 
-			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_user['disp_comments']);
+			$num_pages_thread = ceil(($cur_thread['num_replies'] + 1) / $luna_config['o_disp_comments']);
 
 			if ($num_pages_thread > 1)
 				$subject_multipage = '<span class="inline-pagination"> &middot; '.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_thread['id']).'</span>';
@@ -1032,7 +1032,7 @@ function draw_search_results() {
         
             $subject_status = implode(' ', $status_text);
 
-			$num_pages_thread = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_comments']);
+			$num_pages_thread = ceil(($cur_search['num_replies'] + 1) / $luna_config['o_disp_comments']);
 
 			if ($num_pages_thread > 1)
 				$subject_multipage = '<span class="inline-pagination"> &middot;'.simple_paginate($num_pages_thread, -1, 'thread.php?id='.$cur_search['tid']).'</span>';
