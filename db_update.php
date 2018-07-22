@@ -241,10 +241,11 @@ switch ($stage) {
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
 		// Legacy support: FluxBB 1.5
-		$db->drop_field($db->prefix.'groups', 'g_promote_min_posts', 'INT(10) UNSIGNED', false, 0, 'g_user_title') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_threads') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'groups', 'g_mod_promote_users', 'TINYINT(1)', false, 0, 'g_mod_ban_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_promote_min_posts') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_promote_next_group') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_post_links') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('groups', 'g_mod_promote_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
+
 		if (!$db->table_exists('ranks')) {
 			$schema = array(
 				'FIELDS'		=> array(
@@ -308,12 +309,12 @@ switch ($stage) {
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, rand(1, 15)) or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
-		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'last_poster') or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'last_topic') or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('forums', 'redirect_url') or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('notifications', 'color') or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'backstage_color') or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'color') or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
 		build_config(0, 'o_additional_navlinks');
 		build_config(1, 'o_admin_note');
@@ -706,18 +707,18 @@ switch ($stage) {
 		build_config(1, 'o_fontawesomepro', 0);
 		build_config(0, 'o_emoji_size');
 		
-		$db->drop_field('users', 'disp_topics', 'INT', true, 0) or error('Unable to drop disp_topics field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'disp_posts', 'INT', true, 0) or error('Unable to drop disp_posts field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'disp_threads', 'INT', true, 0) or error('Unable to drop disp_threads field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'disp_comments', 'INT', true, 0) or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'show_smilies', 'INT', true, 0) or error('Unable to drop show_smilies field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'show_img_sig', 'INT', true, 0) or error('Unable to drop show_img_sig field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'show_avatars', 'INT', true, 0) or error('Unable to drop show_avatars field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'notify_pm', 'INT', true, 0) or error('Unable to drop notify_pm field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'notify_inbox', 'INT', true, 0) or error('Unable to drop notify_inbox field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'notify_pm_full', 'INT', true, 0) or error('Unable to drop notify_pm_full field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'notify_inbox_full', 'INT', true, 0) or error('Unable to drop notify_inbox_full field', __FILE__, __LINE__, $db->error());
-		$db->drop_field('users', 'enforce_accent', 'INT', true, 0) or error('Unable to drop enforce_accent field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_topics') or error('Unable to drop disp_topics field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_posts') or error('Unable to drop disp_posts field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_threads') or error('Unable to drop disp_threads field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'disp_comments') or error('Unable to drop disp_comments field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_smilies') or error('Unable to drop show_smilies field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_img_sig') or error('Unable to drop show_img_sig field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'show_avatars') or error('Unable to drop show_avatars field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_pm') or error('Unable to drop notify_pm field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_inbox') or error('Unable to drop notify_inbox field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_pm_full') or error('Unable to drop notify_pm_full field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'notify_inbox_full') or error('Unable to drop notify_inbox_full field', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'enforce_accent') or error('Unable to drop enforce_accent field', __FILE__, __LINE__, $db->error());
 		
 		$db->add_field('forums', 'icon_style', 'INT(10)', true, 0) or error('Unable to add icon_style field', __FILE__, __LINE__, $db->error());
 		

@@ -47,10 +47,16 @@ require 'header.php';
                     <p><?php _e('Typography is now the default theme for new installations', 'luna') ?></p>
                     <p><?php _e('More emoji have been remapped to better represent their text-version', 'luna') ?></p>
                     <p><?php _e('Legacy code that functioned as fallback for old PHP versions has been removed', 'luna') ?></p>
+                    <p><?php _e('Disabling images in signatures now uses the global image setting of the user rather than its own', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Removed', 'luna') ?></h4>
                     <p><?php _e('Support for MySQL and MySQL InnoDB has been removed', 'luna') ?></p>
+                    <p><?php _e('Users can no longer set how many threads and comments they want to see per page', 'luna') ?></p>
+                    <p><?php _e('It is no longer possible to disable graphic emoji', 'luna') ?></p>
+                    <p><?php _e('Users can no longer require avatars to be hidden', 'luna') ?></p>
+                    <p><?php _e('Themes can no longer support accent enforcement', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('Luna no longer returns the password when a registration error occures', 'luna') ?></p>
+                    <p><?php _e('When updating, fields are now correctly dropped from the database', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
@@ -153,6 +159,7 @@ require 'header.php';
                     <p><?php _e('Emoji have been remapped to better represent their text-version and match Luna 2.1', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-bug"></i> <?php _e('Fixed', 'luna') ?></h4>
                     <p><?php _e('Luna no longer returns the password when a registration error occures', 'luna') ?></p>
+                    <p><?php _e('When updating, fields are now correctly dropped from the database', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Emerald Update 11 <small>2.0.11</small></span></h2>
