@@ -98,9 +98,66 @@ class User {
         $user->fill( $row );
     }
 
+    public function save() {
+        global $db;
+
+        $userset = array(
+            'group_id'          => $this->getGroup(),
+            'username'          => $this->getUsername(),
+            'password'          => $this->getPassword(),
+            'salt'              => $this->getSalt(),
+            'email'             => $this->getEmail(),
+            'title'             => $this->getTitle( true ),
+            'realname'          => $this->getRealname(),
+            'url'               => $this->getUrl(),
+            'facebook'          => $this->getFacebook(),
+            'msn'               => $this->getMicrosoft(),
+            'twitter'           => $this->getTwitter(),
+            'google'            => $this->getGoogle(),
+            'location'          => $this->getLocation(),
+            'signature'         => $this->getSignature(),
+            'email_setting'     => $this->getEmailSetting(),
+            'notify_with_comment' => $this->getNotifyWithComment(),
+            'auto_notify'       => $this->getAutoNotify(),
+            'show_img'          => $this->getShowImg(),
+            'show_sig'          => $this->getShowSig(),
+            'php_timezone'      => $this->getPhpTimezone(),
+            'time_format'       => $this->getTimeFormat(),
+            'date_format'       => $this->getDateFormat(),
+            'language'          => $this->getLanguage(),
+            'num_comments'      => $this->getNumComments(),
+            'last_comment'      => $this->getLastComment(),
+            'last_search'       => $this->getLastSearch(),
+            'last_email_sent'   => $this->getLastEmailSent(),
+            'last_report_sent'  => $this->getLastReportSent(),
+            'last_visit'        => $this->getLastVisit(),
+            'admin_note'        => $this->getAdminNote(),
+            'activate_string'   => $this->getActivateString(),
+            'activate_key'      => $this->getActivateKey(),
+            'use_inbox'         => $this->getUseInbox(),
+            'num_inbox'         => $this->getNumInbox(),
+            'first_run'         => $this->getFirstRun(),
+            'color_scheme'      => $this->getColorScheme(),
+            'adapt_time'        => $this->getAdaptTime(),
+            'accent'            => $this->getAccent()
+        );
+
+		$temp = array();
+		foreach ( $userset as $key => $value ) {
+			$value = ( $value !== '' ) ? '\''.$db->escape( $value ).'\'' : 'NULL';
+
+			$temp[] = $key.'='.$value;
+        }
+        
+		if ( empty( $temp ) )
+			message( __( 'Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna' ), false, '404 Not Found' );
+
+        $db->query( 'UPDATE '.$db->prefix.'users SET '.implode( ', ', $temp ).' WHERE id='.$this->getId() ) or error( 'Unable to update profile', __FILE__, __LINE__, $db->error() );
+    }
+
     protected function fill( array $row ) {
         $this->setId( $row['id'] );
-        $this->setGroup( $row['group'] );
+        $this->setGroup( $row['group_id'] );
         $this->setUsername( $row['username'] );
         $this->setPassword( $row['password'] );
         $this->setSalt( $row['salt'] );
@@ -109,7 +166,7 @@ class User {
         $this->setRealname( $row['realname'] );
         $this->setUrl( $row['url'] );
         $this->setFacebook( $row['facebook'] );    
-        $this->setMicrosoft( $row['microsoft'] );    
+        $this->setMicrosoft( $row['msn'] );    
         $this->setTwitter( $row['twitter'] );    
         $this->setGoogle( $row['google'] );    
         $this->setLocation( $row['location'] );    
@@ -197,8 +254,66 @@ class User {
         return $this->email;
     }
 
-    public function getTitle() {
-        return $this->title;
+    public function getTitle( $personal = false ) {
+        global $db, $luna_config, $luna_bans;
+        static $ban_list, $luna_ranks;
+
+        if ( $personal = false ) {
+            if ( empty( $ban_list ) ) {
+                $ban_list = array();
+
+                foreach ( $luna_bans as $cur_ban ) {
+                    $ban_list[] = utf8_strtolower( $cur_ban['username'] );
+                }
+            }
+
+            if ( $luna_config['o_ranks'] == '1' && !defined( 'LUNA_RANKS_LOADED' ) ) {
+                if ( file_exists( LUNA_CACHE_DIR.'cache_ranks.php' ) ) {
+                    include LUNA_CACHE_DIR.'cache_ranks.php';
+                }
+
+                if ( !defined( 'LUNA_RANKS_LOADED' ) ) {
+                    if ( !defined( 'LUNA_CACHE_FUNCTIONS_LOADED' ) ) {
+                        require LUNA_ROOT.'include/cache.php';
+                    }
+
+                    generate_ranks_cache();
+                    require LUNA_CACHE_DIR.'cache_ranks.php';
+                }
+            }
+
+            if ( $this->title != '' ) {
+                $user_title = luna_htmlspecialchars( $this->title );
+            }
+
+            elseif ( in_array( utf8_strtolower( $this->getUsername() ), $ban_list ) ) {
+                $user_title = __( 'Banned', 'luna' );
+            }
+
+            elseif ( $this->getGUserTitle() != '' ) {
+                $user_title = luna_htmlspecialchars( $this->getGUserTitle() );
+            }
+
+            elseif ( $this->getGId() == LUNA_GUEST ) {
+                $user_title = __( 'Guest', 'luna' );
+            } else {
+                if ( $luna_config['o_ranks'] == '1' && !empty( $luna_ranks ) ) {
+                    foreach ( $luna_ranks as $cur_rank ) {
+                        if ( $this->getNumComments() >= $cur_rank['min_comments'] ) {
+                            $user_title = luna_htmlspecialchars( $cur_rank['rank'] );
+                        }
+                    }
+                }
+
+                if ( !isset( $user_title ) ) {
+                    $user_title = __( 'Member', 'luna' );
+                }
+            }
+
+            return $user_title;
+        } else {
+            $this->title;
+        }
     }
 
     public function getRealname() {
@@ -469,7 +584,7 @@ class User {
     }
 
     public function setUsername( $username ) {
-        $this->username = $username;
+        $this->username = luna_trim( $username );
         return $this;
     }
 
@@ -484,141 +599,197 @@ class User {
     }
 
     public function setEmail( $email ) {
-        $this->email = $email;
+        $email = strtolower( luna_trim( $email ) );
+
+        if ( is_valid_email( $email ) ) {
+            $this->email = $email;
+        } else {
+            message( __( 'The email address you entered is invalid.', 'luna' ) );
+        }
+
         return $this;
     }
 
     public function setTitle( $title ) {
-        $this->title = $title;
+        global $luna_user;
+
+        if ( $luna_user['g_id'] == LUNA_ADMIN || $this->getGSetTitle() == '1' ) {
+            $forbidden = array( 'member', 'moderator', 'administrator', 'banned', 'guest', utf8_strtolower( __( 'Member', 'luna' ) ), utf8_strtolower( __( 'Moderator', 'luna' ) ), utf8_strtolower( __( 'Administrator', 'luna' ) ), utf8_strtolower( __( 'Banned', 'luna' ) ), utf8_strtolower( __( 'Guest', 'luna' ) ) );
+    
+            if ( in_array( utf8_strtolower( $title ), $forbidden ) ) {
+                message( __( 'The title you entered contains a forbidden word. You must choose a different title.', 'luna' ) );
+            } else {
+                $this->title = luna_trim( $title );
+            }
+        }
+
         return $this;
     }
 
     public function setRealname( $realname ) {
-        $this->realname = $realname;
+        $this->realname = luna_trim( $realname );
         return $this;
     }
 
     public function setUrl( $url ) {
-        $this->url = $url;
+        $url = url_valid( strtolower( luna_trim( $url ) ) );
+
+        if ( $url ) {
+            $this->url = $url['url'];
+        } else {
+            message( __( 'The URL you entered is invalid.', 'luna' ) );
+        }
+
         return $this;
     }
 
     public function setFacebook( $facebook ) {
-        $this->facebook = $facebook;
+        $this->facebook = luna_trim( $facebook );
         return $this;
     }
 
     public function setMicrosoft( $microsoft ) {
-        $this->microsoft = $microsoft;
+        $this->microsoft = luna_trim( $microsoft );
         return $this;
     }
 
     public function setTwitter( $twitter ) {
-        $this->twitter = $twitter;
+        $this->twitter = luna_trim( $twitter );
         return $this;
     }
 
     public function setGoogle( $google ) {
-        $this->google = $google;
+        $this->google = luna_trim( $google );
         return $this;
     }
 
     public function setLocation( $location ) {
-        $this->location = $location;
+        $this->location = luna_trim( $location );
         return $this;
     }
 
     public function setSignature( $signature ) {
+        global $luna_config, $luna_user;
+
+        $signature = luna_linebreaks( luna_trim( $signature ) );
+
+        if ( luna_strlen( $signature ) > $luna_config['o_sig_length'] )
+            message( sprintf( __( 'Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters.', 'luna' ), $luna_config['o_sig_length'], luna_strlen( $signature ) - $luna_config['o_sig_length'] ) );
+        elseif ( substr_count( $signature, "\n" ) > ( $luna_config['o_sig_lines']-1 ) )
+            message( sprintf( __( 'Signatures cannot have more than %s lines.', 'luna' ), $luna_config['o_sig_lines'] ) );
+        elseif ( $signature && $luna_config['o_sig_all_caps'] == '0' && is_all_uppercase( $signature ) && !$luna_user['is_admmod'] )
+            $signature = utf8_ucwords( utf8_strtolower( $signature ) );
+
+        $errors = array();
+        $signature = preparse_bbcode( $signature, $errors, true );
+
+        if ( count( $errors ) > 0 )
+            message( '<ul><li>'.implode( '</li><li>', $errors ).'</li></ul>' );
+        
         $this->signature = $signature;
         return $this;
     }
 
     public function setEmailSetting( $email_setting ) {
-        $this->email_setting = $email_setting;
+        global $luna_config;
+
+		if ( $email_setting < 0 || $email_setting > 2 )
+            $email_setting = $luna_config['o_default_email_setting'];
+            
+        $this->email_setting = intval( $email_setting );
         return $this;
     }
 
     public function setNotifyWithComment( $notify_with_comment ) {
-        $this->notify_with_comment = $notify_with_comment;
+        $this->notify_with_comment = $notify_with_comment == '1' ? '1' : '0';
         return $this;
     }
 
     public function setAutoNotify( $auto_notify ) {
-        $this->auto_notify = $auto_notify;
+        $this->auto_notify = $auto_notify == '1' ? '1' : '0';
         return $this;
     }
 
     public function setShowImg( $show_img ) {
-        $this->show_img = $show_img;
+        $this->show_img = $show_img == '1' ? '1' : '0';
         return $this;
     }
 
     public function setShowSig( $show_sig ) {
-        $this->show_sig = $show_sig;
+        $this->show_sig = $show_sig == '1' ? '1' : '0';
         return $this;
     }
 
     public function setPhpTimezone( $php_timezone ) {
-        $this->php_timezone = $php_timezone;
+        $this->php_timezone = luna_trim( $php_timezone );
         return $this;
     }
 
     public function setTimeFormat( $time_format ) {
-        $this->time_format = $time_format;
+        $this->time_format = intval( $time_format );
         return $this;
     }
 
     public function setDateFormat( $date_format ) {
-        $this->date_format = $date_format;
+        $this->date_format = intval( $date_format );
         return $this;
     }
 
     public function setLanguage( $language ) {
-        $this->language = $language;
+		if ( isset( $language ) ) {
+			$languages = forum_list_langs();
+            $language = luna_trim( $language );
+            
+			if ( !in_array( $language, $languages ) ) {
+				message( __( 'Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna' ), false, '404 Not Found' );
+            } else {
+                $this->language = $language;
+            }
+        }
         return $this;
     }
 
     public function setNumComments( $num_comments ) {
-        $this->num_comments = $num_comments;
+        $this->num_comments = intval( $num_comments );
         return $this;
     }
 
     public function setLastComment( $last_comment ) {
-        $this->last_comment = $last_comment;
+        $this->last_comment = intval( $last_comment );
         return $this;
     }
 
     public function setLastSearch( $last_search ) {
-        $this->last_search = $last_search;
+        $this->last_search = intval( $last_search );
         return $this;
     }
     public function setLastEmailSent( $last_email_sent ) {
-        $this->last_email_sent = $last_email_sent;
+        $this->last_email_sent = intval( $last_email_sent );
         return $this;
     }
 
     public function setLastReportSent( $last_report_sent ) {
-        $this->last_report_sent = $last_report_sent;
+        $this->last_report_sent = intval( $last_report_sent );
         return $this;
     }
 
     public function setRegistered( $registered ) {
-        $this->registered = $registered;
+        $this->registered = intval( $registered );
         return $this;
     }
 
     public function setRegistration_ip( $registration_ip ) {
-        $this->registration_ip = $registration_ip;
+        $this->registration_ip = luna_trim( $registration_ip );
         return $this;
     }
 
     public function setLastVisit( $last_visit ) {
-        $this->last_visit = $last_visit;
+        $this->last_visit = intval( $last_visit );
         return $this;
     }
 
     public function setAdminNote( $admin_note ) {
-        $this->admin_note = $admin_note;
+        $this->admin_note = luna_trim( $admin_note );
         return $this;
     }
 
@@ -633,32 +804,32 @@ class User {
     }
 
     public function setUseInbox( $use_inbox ) {
-        $this->use_inbox = $use_inbox;
+        $this->use_inbox = $use_inbox == '1' ? '1' : '0';
         return $this;
     }
 
     public function setNumInbox( $num_inbox ) {
-        $this->num_inbox = $num_inbox;
+        $this->num_inbox = intval( $num_inbox );
         return $this;
     }
 
     public function setFirstRun( $first_run ) {
-        $this->first_run = $first_run;
+        $this->first_run = $first_run == '1' ? '1' : '0';
         return $this;
     }
 
     public function setColorScheme( $color_scheme ) {
-        $this->color_scheme = $color_scheme;
+        $this->color_scheme = intval( $color_scheme );
         return $this;
     }
 
     public function setAdaptTime( $adapt_time ) {
-        $this->adapt_time = $adapt_time;
+        $this->adapt_time = intval( $adapt_time );
         return $this;
     }
 
     public function setAccent( $accent ) {
-        $this->accent = $accent;
+        $this->accent = intval( $accent );
         return $this;
     }
 

@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 <div class="container">
 	<div class="jumbotron index">
 		<div class="row">
-			<?php if ($luna_user['first_run'] == '0' && !$luna_user['is_guest']) { ?>
+			<?php if ($luna_user['first_run'] == '1' && !$luna_user['is_guest']) { ?>
 				<div class="col-md-4 col-6">
 					<h3 class="text-center">
 						<span class="d-none d-md-inline"><?php echo sprintf(__('Hi there, %s', 'luna'), luna_htmlspecialchars($luna_user['username'])) ?></span>

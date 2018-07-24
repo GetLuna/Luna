@@ -953,7 +953,6 @@ function get_title($user) {
                 if ($user['num_comments'] >= $cur_rank['min_comments']) {
                     $user_title = luna_htmlspecialchars($cur_rank['rank']);
                 }
-
             }
         }
 
@@ -961,7 +960,6 @@ function get_title($user) {
         if (!isset($user_title)) {
             $user_title = __('Member', 'luna');
         }
-
     }
 
     return $user_title;

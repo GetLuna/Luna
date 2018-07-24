@@ -240,9 +240,6 @@ if ($action == 'delete') {
 
     $user = $db->fetch_assoc($result);
 
-    $user_username = luna_htmlspecialchars($user['username']);
-    $user_usertitle = get_title($user);
-
     $result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.commented, m.showed, m.sender, m.sender_id, m.owner, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_comments, u.admin_note, u.signature, u.use_inbox, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.commented LIMIT '.$start_from.','.$luna_config['o_disp_comments']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
 
     if (!$db->num_rows($result)) {

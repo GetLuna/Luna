@@ -147,8 +147,6 @@ if (!$db->num_rows($result)) {
 
 $user = $db->fetch_assoc($result);
 
-$user_username = luna_htmlspecialchars($user['username']);
-$user_usertitle = get_title($user);
 $avatar_field = generate_avatar_markup($id);
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));

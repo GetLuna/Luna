@@ -38,8 +38,6 @@ $last_comment = format_time($user['last_comment']);
 
 $user_personality = array();
 
-$user_username = luna_htmlspecialchars($user['username']);
-$user_usertitle = get_title($user);
 $avatar_field = generate_avatar_markup($id);
 
 $user_title_field = get_title($user);

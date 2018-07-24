@@ -14,13 +14,14 @@ require LUNA_ROOT.'include/utf8/strcasecmp.php';
 
 // Load the me functions script
 require LUNA_ROOT.'include/me_functions.php';
-
+require LUNA_ROOT.'include/email.php';
+require LUNA_ROOT.'include/class/user.class.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? intval($_GET['id']) : $luna_user['id'];
 
 if ($id < 2)
-	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrecy not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 if ($action != 'change_pass' || !isset($_GET['key']))
 {
@@ -340,8 +341,6 @@ if (isset($_POST['update_group_membership'])) {
 		// Make sure they got here from the site
 		confirm_referrer('settings.php');
 
-		require LUNA_ROOT.'include/email.php';
-
 		// Validate the email address
 		$new_email = strtolower(luna_trim($_POST['req_new_email']));
 		if (!is_valid_email($new_email))
@@ -554,45 +553,46 @@ To change your email address, please visit the following page:
 
 	redirect('settings.php?id='.$id);
 } else {
-
-	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.use_inbox, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_img, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.salt, u.first_run, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.*, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$user = $db->fetch_assoc($result);
+	$row = $db->fetch_assoc( $result );
+	$user = $row;
+	$nuser = User::withRow( $row );
 
 	if ($luna_user['is_admmod']) {
 		if ($luna_user['g_id'] == LUNA_ADMIN || $luna_user['g_mod_rename_users'] == '1')
-			$username_field = '<input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" />';
+			$username_field = '<input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($nuser->getUsername()).'" maxlength="25" />';
 		else
-			$username_field = luna_htmlspecialchars($user['username']);
+			$username_field = luna_htmlspecialchars($nuser->getUsername());
 
-		$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" />';
+		$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($nuser->getEmail()).'" maxlength="80" />';
 		$email_button = '<span class="input-group-append"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.__('Send email', 'luna').'</a></span>';
 	} else {
-		$username_field = '<input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" />';
+		$username_field = '<input class="form-control" type="text"  value="'.luna_htmlspecialchars($nuser->getUsername()).'" disabled="disabled" />';
 
 		if ($luna_config['o_regs_verify'] == '1') {
-			$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" disabled />';
-			if (isset($user['activate_string']) && isset($user['activate_key']))
+			$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($nuser->getEmail()).'" maxlength="80" disabled />';
+			if ( $nuser->getActivateString() !== null && $nuser->getActivateKey() !== null )
 				$email_button = '<span class="input-group-append"><a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newmail">'.__('Change email address', 'luna').'</a></span>';
 			else
 				$email_button = '<span class="input-group-append"><a class="btn btn-danger disabled" href="#" data-toggle="modal" data-target="#newmail">'.__('Unverified', 'luna').'</a></span>';
 		} else {
-			$email_field = '<input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" />';
+			$email_field = '<input type="text" class="form-control" name="req_email" value="'.$nuser->getEmail().'" maxlength="80" />';
 			$email_button = '<span class="input-group-append"><a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newmail">'.__('Change email address', 'luna').'</a></span>';
 		}
 	}
 
-	if ($user['signature'] != '') {
-		$parsed_signature = parse_signature($user['signature']);
+	if ($nuser->getSignature() != '') {
+		$parsed_signature = parse_signature($nuser->getSignature());
 	}
 
 	if (isset($_POST['form_sent'])) {
 		// Fetch the user group of the user we are editing
 		$result = $db->query('SELECT u.username, u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+			message(__('Bad r here.', 'luna'), false, '404 Not Found');
 
 		list($old_username, $group_id, $is_moderator) = $db->fetch_row($result);
 
@@ -610,48 +610,47 @@ To change your email address, please visit the following page:
 		$username_updated = false;
 
 		// Validate input depending on section
-		$form = array(
-			'realname'			=> luna_trim($_POST['form']['realname']),
-			'url'				=> luna_trim($_POST['form']['url']),
-			'location'			=> luna_trim($_POST['form']['location']),
-			'facebook'			=> luna_trim($_POST['form']['facebook']),
-			'msn'				=> luna_trim($_POST['form']['msn']),
-			'twitter'			=> luna_trim($_POST['form']['twitter']),
-			'google'			=> luna_trim($_POST['form']['google']),
-			'color_scheme'		=> luna_trim($_POST['form']['color_scheme']),
-			'adapt_time'		=> intval($_POST['form']['adapt_time']),
-			'accent'			=> luna_trim($_POST['form']['accent']),
-			'php_timezone'		=> luna_trim($_POST['form']['php_timezone']),
-			'time_format'		=> intval($_POST['form']['time_format']),
-			'date_format'		=> intval($_POST['form']['date_format']),
-			'show_img'			=> isset($_POST['form']['show_img']) ? '1' : '0',
-			'first_run'		    => isset($_POST['form']['first_run']) ? '0' : '1',
-			'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
-			'use_inbox'			=> isset($_POST['form']['use_inbox']) ? '1' : '0',
-			'email_setting'		=> intval($_POST['form']['email_setting']),
-			'notify_with_comment'	=> isset($_POST['form']['notify_with_comment']) ? '1' : '0',
-			'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0'
-		);
+		$nuser->setRealname( $_POST['realname'] );
+		$nuser->setUrl( $_POST['url'] );
+		$nuser->setLocation( $_POST['location'] );
+		$nuser->setFacebook( $_POST['facebook'] );
+		$nuser->setMicrosoft( $_POST['msn'] );
+		$nuser->setTwitter( $_POST['twitter'] );
+		$nuser->setGoogle( $_POST['google'] );
+		$nuser->setColorScheme( $_POST['color_scheme'] );
+		$nuser->setAdaptTime( $_POST['adapt_time'] );
+		$nuser->setAccent( $_POST['accent'] );
+		$nuser->setPhpTimezone( $_POST['php_timezone'] );
+		$nuser->setTimeFormat( $_POST['time_format'] );
+		$nuser->setDateFormat( $_POST['date_format'] );
+		$nuser->setShowImg( $_POST['show_img'] );
+		$nuser->setFirstRun( $_POST['first_run'] );
+		$nuser->setShowSig( $_POST['show_sig'] );
+		$nuser->setUseInbox( $_POST['use_inbox'] );
+		$nuser->setEmailSetting( $_POST['email_setting'] );
+		$nuser->setNotifyWithComment( $_POST['notify_with_comment'] );
+		$nuser->setAutoNotify( $_POST['auto_notify'] );
+		$nuser->setLanguage( $_POST['language'] );
 
 		if ($luna_user['is_admmod']) {
-			$form['admin_note'] = luna_trim($_POST['admin_note']);
+			$nuser->setAdminNote(  $_POST['admin_note'] );
 
 			// We only allow administrators to update the comment count
 			if ($luna_user['g_id'] == LUNA_ADMIN)
-				$form['num_comments'] = intval($_POST['num_comments']);
+				$nuser->setNumComments( $_POST['num_comments'] );
 		}
 
 		if ($luna_user['is_admmod']) {
 			// Are we allowed to change usernames?
-			if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1')) {
-				$form['username'] = luna_trim($_POST['req_username']);
+			if ( $luna_user['g_id'] == LUNA_ADMIN || ( $luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1' ))  {
+				$nuser->setUsername( $_POST['req_username'] );
 
-				if ($form['username'] != $old_username) {
+				if ( $nuser->getUsername() != $old_username ) {
 					// Check username
 					$errors = array();
-					check_username($form['username'], $id);
-					if (!empty($errors))
-						message($errors[0]);
+					check_username( $nuser->getUsername(), $id );
+					if ( !empty( $errors ) )
+						message( $errors[0] );
 
 					$username_updated = true;
 				}
@@ -659,101 +658,28 @@ To change your email address, please visit the following page:
 		}
 
 		if ($luna_config['o_regs_verify'] == '0' || $luna_user['is_admmod']) {
-			require LUNA_ROOT.'include/email.php';
-
-			// Validate the email address
-			$form['email'] = strtolower(luna_trim($_POST['req_email']));
-			if (!is_valid_email($form['email']))
-				message(__('The email address you entered is invalid.', 'luna'));
-		}
-
-		// Add http:// if the URL doesn't contain it already (while allowing https://, too)
-		if ($form['url'] != '') {
-			$url = url_valid($form['url']);
-
-			if ($url === false)
-				message(__('The website URL you entered is invalid.', 'luna'));
-
-			$form['url'] = $url['url'];
-		}
-
-		if ($luna_user['g_id'] == LUNA_ADMIN)
-			$form['title'] = luna_trim($_POST['title']);
-		elseif ($luna_user['g_set_title'] == '1') {
-			$form['title'] = luna_trim($_POST['title']);
-
-			if ($form['title'] != '') {
-				// A list of words that the title may not contain
-				// If the language is English, there will be some duplicates, but it's not the end of the world
-				$forbidden = array('member', 'moderator', 'administrator', 'banned', 'guest', utf8_strtolower(__('Member', 'luna')), utf8_strtolower(__('Moderator', 'luna')), utf8_strtolower(__('Administrator', 'luna')), utf8_strtolower(__('Banned', 'luna')), utf8_strtolower(__('Guest', 'luna')));
-
-				if (in_array(utf8_strtolower($form['title']), $forbidden))
-					message(__('The title you entered contains a forbidden word. You must choose a different title.', 'luna'));
-			}
+			$nuser->setEmail( $_POST['req_email'] );
 		}
 
 		// Clean up signature from POST
 		if ($luna_config['o_signatures'] == '1') {
-			$form['signature'] = luna_linebreaks(luna_trim($_POST['signature']));
-
-			// Validate signature
-			if (luna_strlen($form['signature']) > $luna_config['o_sig_length'])
-				message(sprintf(__('Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters.', 'luna'), $luna_config['o_sig_length'], luna_strlen($form['signature']) - $luna_config['o_sig_length']));
-			elseif (substr_count($form['signature'], "\n") > ($luna_config['o_sig_lines']-1))
-				message(sprintf(__('Signatures cannot have more than %s lines.', 'luna'), $luna_config['o_sig_lines']));
-			elseif ($form['signature'] && $luna_config['o_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
-				$form['signature'] = utf8_ucwords(utf8_strtolower($form['signature']));
-
-			$errors = array();
-			$form['signature'] = preparse_bbcode($form['signature'], $errors, true);
-
-			if(count($errors) > 0)
-				message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
+			$nuser->setSignature( $_POST['signature'] );
 		}
-
-		// Make sure we got a valid language string
-		if (isset($_POST['form']['language'])) {
-			$languages = forum_list_langs();
-			$form['language'] = luna_trim($_POST['form']['language']);
-			if (!in_array($form['language'], $languages))
-				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-		}
-
-		// Make sure we got a valid style string
-		if (isset($_POST['form']['style'])) {
-			$styles = forum_list_themes();
-			$form['style'] = luna_trim($_POST['form']['style']);
-			if (!in_array($form['style'], $styles))
-				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-		}
-
-		if ($form['email_setting'] < 0 || $form['email_setting'] > 2)
-			$form['email_setting'] = $luna_config['o_default_email_setting'];
 
 		// Single quotes around non-empty values and NULL for empty values
-		$temp = array();
-		foreach ($form as $key => $input) {
-			$value = ($input !== '') ? '\''.$db->escape($input).'\'' : 'NULL';
-
-			$temp[] = $key.'='.$value;
-		}
-
-		if (empty($temp))
-			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-
-		$db->query('UPDATE '.$db->prefix.'users SET '.implode(', ', $temp).' WHERE id='.$id) or error('Unable to update profile', __FILE__, __LINE__, $db->error());
+		$nuser->save();
 
 		// If we changed the username we have to update some stuff
 		if ($username_updated) {
-			$db->query('UPDATE '.$db->prefix.'bans SET username=\''.$db->escape($form['username']).'\' WHERE username=\''.$db->escape($old_username).'\'') or error('Unable to update bans', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'bans SET username=\''.$db->escape($_POST['req_username']).'\' WHERE username=\''.$db->escape($old_username).'\'') or error('Unable to update bans', __FILE__, __LINE__, $db->error());
 			// If any bans were updated, we will need to know because the cache will need to be regenerated.
 			if ($db->affected_rows() > 0)
 				$bans_updated = true;
-			$db->query('UPDATE '.$db->prefix.'comments SET commenter=\''.$db->escape($form['username']).'\' WHERE commenter_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'comments SET edited_by=\''.$db->escape($form['username']).'\' WHERE edited_by=\''.$db->escape($old_username).'\'') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'threads SET commenter=\''.$db->escape($form['username']).'\' WHERE commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'threads SET last_commenter=\''.$db->escape($form['username']).'\' WHERE last_commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'online SET ident=\''.$db->escape($form['username']).'\' WHERE ident=\''.$db->escape($old_username).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET commenter=\''.$db->escape($_POST['req_username']).'\' WHERE commenter_id='.$id) or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'comments SET edited_by=\''.$db->escape($_POST['req_username']).'\' WHERE edited_by=\''.$db->escape($old_username).'\'') or error('Unable to update comments', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET commenter=\''.$db->escape($_POST['req_username']).'\' WHERE commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'threads SET last_commenter=\''.$db->escape($_POST['req_username']).'\' WHERE last_commenter=\''.$db->escape($old_username).'\'') or error('Unable to update threads', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'online SET ident=\''.$db->escape($_POST['req_username']).'\' WHERE ident=\''.$db->escape($old_username).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 
 			// If the user is a moderator or an administrator we have to update the moderator lists
 			$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -770,7 +696,7 @@ To change your email address, please visit the following page:
 
 					if (in_array($id, $cur_moderators)) {
 						unset($cur_moderators[$old_username]);
-						$cur_moderators[$form['username']] = $id;
+						$cur_moderators[$_POST['req_username']] = $id;
 						uksort($cur_moderators, 'utf8_strcasecmp');
 
 						$db->query('UPDATE '.$db->prefix.'forums SET moderators=\''.$db->escape(serialize($cur_moderators)).'\' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
@@ -792,25 +718,22 @@ To change your email address, please visit the following page:
 		!empty($_GET['id']) ? redirect('settings.php?id='.$id) : redirect('settings.php');
 	}
 
-	if ($luna_user['g_set_title'] == '1')
-		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" />';
+	if ($nuser->getGSetTitle() == '1')
+		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($nuser->getTitle()).'" maxlength="50" />';
 
 	$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Change avatar', 'luna').'</a>';
 
-	$avatar_user = get_avatar( $user['id'] );
+	$avatar_user = get_avatar( $nuser->getId() );
 	$avatar_set = check_avatar($id);
 	if ($avatar_user && $avatar_set)
 		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'&amp;csrf_token='.luna_csrf_token().'">'.__('Delete avatar', 'luna').'</a>';
 	else
 		$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Upload avatar', 'luna').'</a>';
 
-	if ($user['signature'] != '')
+	if ($nuser->getSignature() != '')
 		$signature_preview = $parsed_signature;
 	else
 		$signature_preview = __('No signature currently stored in profile.', 'luna');
-
-	$user_username = luna_htmlspecialchars($user['username']);
-	$user_usertitle = get_title($user);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Settings', 'luna'));
 	define('LUNA_ACTIVE_PAGE', 'me');
