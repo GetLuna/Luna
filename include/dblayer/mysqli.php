@@ -188,7 +188,7 @@ class DBLayer
 
     public function set_names($names)
     {
-        return @mysqli_set_charset($this->link_id, $names); 
+        return mysqli_set_charset($this->link_id, $names); 
     }
 
     public function get_version()
