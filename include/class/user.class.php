@@ -258,7 +258,7 @@ class User {
         global $db, $luna_config, $luna_bans;
         static $ban_list, $luna_ranks;
 
-        if ( $personal = false ) {
+        if ( $personal == false ) {
             if ( empty( $ban_list ) ) {
                 $ban_list = array();
 
@@ -312,7 +312,26 @@ class User {
 
             return $user_title;
         } else {
-            $this->title;
+            return $this->title;
+        }
+    }
+
+    public function getAvatar() {
+        global $luna_config;
+    
+        $filetypes = array('jpg', 'gif', 'png');
+    
+        foreach ($filetypes as $cur_type) {
+            $path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
+    
+            if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
+                return luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path));
+                break;
+            } else if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {
+                return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/cplaceholder.png';
+            } else {
+                return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png';
+            }
         }
     }
 
@@ -344,8 +363,13 @@ class User {
         return $this->location;
     }
 
-    public function getSignature() {
-        return $this->signature;
+    public function getSignature( $raw = true ) {
+        if ( $raw == true ) {
+            return $this->signature;
+        } else {
+            require_once LUNA_ROOT.'include/parser.php';
+            return parse_signature( $this->signature );
+        }
     }
 
     public function getEmailSetting() {
@@ -384,12 +408,20 @@ class User {
         return $this->language;
     }
 
-    public function getNumComments() {
-        return $this->num_comments;
+    public function getNumComments( $raw = false ) {
+        if ( $raw ) {
+            return $this->num_comments;
+        } else {
+            return forum_number_format( $this->num_comments );
+        }
     }
 
-    public function getLastComment() {
-        return $this->last_comment;
+    public function getLastComment( $raw = false ) {
+        if ( $raw ) {
+            return $this->last_comment;
+        } else {
+            return format_time( $this->last_comment );
+        }
     }
 
     public function getLastSearch() {
@@ -404,16 +436,24 @@ class User {
         return $this->last_report_sent;
     }
 
-    public function getRegistered() {
-        return $this->registered;
+    public function getRegistered( $raw = false ) {
+        if ( $raw ) {
+            return $this->registered;
+        } else {
+            return format_time( $this->registered, true );
+        }
     }
 
     public function getRegistration_ip() {
         return $this->registration_ip;
     }
 
-    public function getLastVisit() {
-        return $this->last_visit;
+    public function getLastVisit( $raw = false ) {
+        if ( $raw ) {
+            return $this->last_visit;
+        } else {
+            return format_time( $this->last_visit, true );
+        }
     }
 
     public function getAdminNote() {
@@ -570,6 +610,18 @@ class User {
 
     public function getOIdle() {
         return $this->o_idle;
+    }
+
+    public function getThreadsUrl() {
+        return 'search.php?action=show_user_threads&amp;user_id='.$this->id;
+    }
+
+    public function getCommentsUrl() {
+        return 'search.php?action=show_user_comments&amp;user_id='.$this->id;
+    }
+
+    public function getSubscriptionsUrl() {
+        return 'search.php?action=show_subscriptions&amp;user_id='.$this->id;
     }
 
     // Getters
@@ -981,5 +1033,12 @@ class User {
     public function setOIdle( $o_idle ) {
         $this->o_idle = $o_idle;
         return $this;
+    }
+
+    // Checks
+    public function hasContactInfo() {
+        global $luna_user;
+
+        return ( $this->microsoft !== '' || $this->google !== '' || $this->facebook !== '' || $this->twitter !== '' || $this->url !== '' || $user->email_setting !== '2' && $luna_user['is_guest'] && $luna_user['g_send_email'] == '1' );
     }
 }

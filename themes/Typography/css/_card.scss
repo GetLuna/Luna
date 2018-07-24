@@ -1,0 +1,62 @@
+.card {
+    .card-body {
+        padding: .75rem;
+
+        h2 {
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+.row-contacts {
+    margin-left: -.375rem !important;
+    margin-right: -.375rem !important;
+
+    .col-12 {
+        padding: .375rem;
+    }
+}
+
+.card-email,
+.card-url,
+.card-microsoft,
+.card-facebook,
+.card-twitter,
+.card-google {
+    color: #fff;
+    border-radius: 0;
+
+    h2 {
+        font-weight: 500 !important;
+    }
+}
+
+.card-email {
+    background-color: #fdcd00;
+    border-color: #fdcd00;
+}
+
+.card-url {
+    background-color: #00c48a;
+    border-color: #00c48a;
+}
+
+.card-microsoft {
+    background-color: #21c9ff;
+    border-color: #21c9ff;
+}
+
+.card-facebook {
+    background-color: #4862a3;
+    border-color: #4862a3;
+}
+
+.card-twitter {
+    background-color: #00acee;
+    border-color: #00acee;
+}
+
+.card-google {
+    background-color: #da4836;
+    border-color: #da4836;
+}

@@ -13,12 +13,12 @@ else
 ?>
 <div class="main profile container">
 	<div class="jumbotron default">
-		<h2><?php echo $nuser->getUsername() ?></h2>
+		<h2><?php echo $user->getUsername() ?></h2>
 	</div>
 	<div class="row">
 		<div class="col-lg-3 col-12 sidebar">
 			<div class="container-avatar d-none d-lg-block">
-				<img src="<?php echo get_avatar( $nuser->getId() ) ?>" alt="Avatar" class="avatar">
+				<img src="<?php echo get_avatar( $user->getId() ) ?>" alt="Avatar" class="avatar">
 			</div>
 			<?php load_me_nav('settings'); ?>
 		</div>
@@ -64,7 +64,7 @@ else
 									<?php echo $username_field ?>
 								</div>
 							</div>
-							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($nuser->getGModerator() == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($nuser->getSalt() != NULL))): ?>
+							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user->getGModerator() == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($user->getSalt() != NULL))): ?>
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Password', 'luna') ?></label>
 								<div class="col-md-9">
@@ -86,7 +86,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Real name', 'luna') ?></label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="realname" value="<?php echo luna_htmlspecialchars($nuser->getRealname()) ?>" maxlength="40" />
+									<input type="text" class="form-control" name="realname" value="<?php echo luna_htmlspecialchars($user->getRealname()) ?>" maxlength="40" />
 								</div>
 							</div>
 							<?php if (isset($title_field)): ?>
@@ -100,7 +100,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Location', 'luna') ?></label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="location" value="<?php echo luna_htmlspecialchars($nuser->getLocation()) ?>" maxlength="30" />
+									<input type="text" class="form-control" name="location" value="<?php echo luna_htmlspecialchars($user->getLocation()) ?>" maxlength="30" />
 								</div>
 							</div>
 							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_signatures'] == '1') { ?>
@@ -109,7 +109,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Avatar', 'luna') ?><span class="help-block"><?php _e('Upload an image to represent you', 'luna') ?></span></label>
 								<div class="col-md-9">
-									<img src="<?php echo get_avatar( $nuser->getId() ) ?>" alt="Avatar" class="img-fluid avatar">
+									<img src="<?php echo get_avatar( $user->getId() ) ?>" alt="Avatar" class="img-fluid avatar">
 									<?php echo $avatar_field ?>
 								</div>
 							</div>
@@ -117,7 +117,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
 								<div class="col-md-9">
-									<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($nuser->getSignature()) ?></textarea>
+									<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user->getSignature()) ?></textarea>
 									<span class="help-block"><?php printf(__('Max length: %s characters / Max lines: %s', 'luna'), forum_number_format($luna_config['o_sig_length']), $luna_config['o_sig_lines']) ?></span>
 								</div>
 							</div>
@@ -155,19 +155,19 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Night mode', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-radio">
-										<input type="radio" id="adapt_time1" name="adapt_time" class="custom-control-input" value="0" <?php echo ( $nuser->getAdaptTime() == '0') ? ' checked' : '' ?>>
+										<input type="radio" id="adapt_time1" name="adapt_time" class="custom-control-input" value="0" <?php echo ( $user->getAdaptTime() == '0') ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="adapt_time1">
 											<?php _e('Never use night mode.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="adapt_time2" name="adapt_time" class="custom-control-input" value="1" <?php echo ( $nuser->getAdaptTime() == '1') ? ' checked' : '' ?>>
+										<input type="radio" id="adapt_time2" name="adapt_time" class="custom-control-input" value="1" <?php echo ( $user->getAdaptTime() == '1') ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="adapt_time2">
 											<?php _e('Always use night mode.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="adapt_time3" name="adapt_time" class="custom-control-input" value="2" <?php echo ( $nuser->getAdaptTime() == '2') ? ' checked' : '' ?>>
+										<input type="radio" id="adapt_time3" name="adapt_time" class="custom-control-input" value="2" <?php echo ( $user->getAdaptTime() == '2') ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="adapt_time3">
 											<?php _e('Enable night mode automatically.', 'luna') ?>
 										</label>
@@ -202,7 +202,7 @@ else
 									<select class="form-control" name="language">
 		<?php
 				foreach ($languages as $temp) {
-					if ($nuser->getLanguage() == $temp)
+					if ($user->getLanguage() == $temp)
 						echo '<option value="'.$temp.'" selected>'.$temp.'</option>';
 					else
 						echo '<option value="'.$temp.'">'.$temp.'</option>';
@@ -217,7 +217,7 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('First Run', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="first_run" name="first_run" value="1"<?php echo ( $nuser->getFirstRun() == '1' ) ? ' checked' : '' ?>>
+										<input type="checkbox" class="custom-control-input" id="first_run" name="first_run" value="1"<?php echo ( $user->getFirstRun() == '1' ) ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="first_run">
 											<?php _e('Show the First Run window on the index.', 'luna') ?>
 										</label>
@@ -234,7 +234,7 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Inbox', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="use_inbox" name="use_inbox" value="1"<?php echo ( $nuser->getUseInbox() == '1' ) ? ' checked' : '' ?>>
+										<input type="checkbox" class="custom-control-input" id="use_inbox" name="use_inbox" value="1"<?php echo ( $user->getUseInbox() == '1' ) ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="use_inbox">
 											<?php _e('Allow users to send messages with Inbox.', 'luna') ?>
 										</label>
@@ -247,19 +247,19 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Email settings', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-radio">
-										<input type="radio" id="email_setting1" name="email_setting" class="custom-control-input" value="0" <?php echo ( $nuser->getEmailSetting() == '0') ? ' checked' : '' ?>>
+										<input type="radio" id="email_setting1" name="email_setting" class="custom-control-input" value="0" <?php echo ( $user->getEmailSetting() == '0') ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="email_setting1">
 											<?php _e('Display your email address.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="email_setting2" name="email_setting" class="custom-control-input" value="1" <?php echo ( $nuser->getEmailSetting() == '1') ? ' checked' : '' ?>>
+										<input type="radio" id="email_setting2" name="email_setting" class="custom-control-input" value="1" <?php echo ( $user->getEmailSetting() == '1') ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="email_setting2">
 											<?php _e('Hide your email address but allow form email.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="email_setting3" name="email_setting" class="custom-control-input" value="2" <?php echo ( $nuser->getEmailSetting() == '2') ? ' checked' : '' ?>>
+										<input type="radio" id="email_setting3" name="email_setting" class="custom-control-input" value="2" <?php echo ( $user->getEmailSetting() == '2') ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="email_setting3">
 											<?php _e('Hide your email address and disallow form email.', 'luna') ?>
 										</label>
@@ -272,14 +272,14 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Subscriptions', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="notify_with_comment" name="notify_with_comment" value="1"<?php echo ( $nuser->getNotifyWithComment() == '1' ) ? ' checked' : '' ?>>
+										<input type="checkbox" class="custom-control-input" id="notify_with_comment" name="notify_with_comment" value="1"<?php echo ( $user->getNotifyWithComment() == '1' ) ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="notify_with_comment">
 											<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 										</label>
 									</div>
 									<?php if ($luna_config['o_thread_subscriptions'] == '1') { ?>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="auto_notify" name="auto_notify" value="1"<?php echo ( $nuser->getAutoNotify() == '1' ) ? ' checked' : '' ?>>
+										<input type="checkbox" class="custom-control-input" id="auto_notify" name="auto_notify" value="1"<?php echo ( $user->getAutoNotify() == '1' ) ? ' checked' : '' ?>>
 										<label class="custom-control-label" for="auto_notify">
 											<?php _e('Automatically subscribe to every thread you comment in.', 'luna') ?>
 										</label>
@@ -296,7 +296,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="website-addon"><i class="fas fa-fw fa-link"></i></span>
 										</div>
-										<input id="website" type="text" class="form-control" name="url" value="<?php echo luna_htmlspecialchars( $nuser->getUrl() ) ?>" maxlength="80" aria-describedby="website-addon">
+										<input id="website" type="text" class="form-control" name="url" value="<?php echo luna_htmlspecialchars( $user->getUrl() ) ?>" maxlength="80" aria-describedby="website-addon">
 									</div>
 								</div>
 							</div>
@@ -308,7 +308,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="microsoft-addon"><i class="fab fa-fw fa-microsoft"></i></span>
 										</div>
-										<input id="microsoft" type="text" class="form-control" name="msn" value="<?php echo luna_htmlspecialchars( $nuser->getMicrosoft() ) ?>" maxlength="50" aria-describedby="microsoft-addon">
+										<input id="microsoft" type="text" class="form-control" name="msn" value="<?php echo luna_htmlspecialchars( $user->getMicrosoft() ) ?>" maxlength="50" aria-describedby="microsoft-addon">
 									</div>
 								</div>
 							</div>
@@ -319,7 +319,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="facebook-addon"><i class="fab fa-fw fa-facebook"></i></span>
 										</div>
-										<input id="facebook" type="text" class="form-control" name="facebook" value="<?php echo luna_htmlspecialchars( $nuser->getFacebook() ) ?>" maxlength="50" aria-describedby="facebook-addon">
+										<input id="facebook" type="text" class="form-control" name="facebook" value="<?php echo luna_htmlspecialchars( $user->getFacebook() ) ?>" maxlength="50" aria-describedby="facebook-addon">
 									</div>
 								</div>
 							</div>
@@ -330,7 +330,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="twitter-addon"><i class="fab fa-fw fa-twitter"></i></span>
 										</div>
-										<input id="twitter" type="text" class="form-control" name="twitter" value="<?php echo luna_htmlspecialchars( $nuser->getTwitter() ) ?>" maxlength="50" aria-describedby="twitter-addon">
+										<input id="twitter" type="text" class="form-control" name="twitter" value="<?php echo luna_htmlspecialchars( $user->getTwitter() ) ?>" maxlength="50" aria-describedby="twitter-addon">
 									</div>
 								</div>
 							</div>
@@ -341,7 +341,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></span>
 										</div>
-										<input id="google" type="text" class="form-control" name="google" value="<?php echo luna_htmlspecialchars( $nuser->getGoogle() ) ?>" maxlength="50" aria-describedby="google-addon">
+										<input id="google" type="text" class="form-control" name="google" value="<?php echo luna_htmlspecialchars( $user->getGoogle() ) ?>" maxlength="50" aria-describedby="google-addon">
 									</div>
 								</div>
 							</div>
@@ -355,7 +355,7 @@ else
 									<div class="col-md-9">
 										<?php if ($luna_config['o_message_img_tag'] == '1'): ?>
 											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="show_img" name="show_img" value="1"<?php echo ( $nuser->getShowImg() == '1' ) ? ' checked' : '' ?>>
+												<input type="checkbox" class="custom-control-input" id="show_img" name="show_img" value="1"<?php echo ( $user->getShowImg() == '1' ) ? ' checked' : '' ?>>
 												<label class="custom-control-label" for="show_img">
 													<?php _e('Show images in comments.', 'luna') ?>
 												</label>
@@ -368,7 +368,7 @@ else
 									<label class="col-md-3 col-form-label"><?php _e('Signatures', 'luna') ?></label>
 									<div class="col-md-9">
 										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="show_sig" name="show_sig" value="1"<?php echo ( $nuser->getShowSig() == '1' ) ? ' checked' : '' ?>>
+											<input type="checkbox" class="custom-control-input" id="show_sig" name="show_sig" value="1"<?php echo ( $user->getShowSig() == '1' ) ? ' checked' : '' ?>>
 											<label class="custom-control-label" for="show_sig">
 													<?php _e('Show user signatures.', 'luna') ?>
 											</label>
@@ -388,7 +388,7 @@ else
 		$timezones = DateTimeZone::listIdentifiers();
 		foreach ($timezones as $timezone) {
 		?>
-										<option value="<?php echo $timezone ?>"<?php if ( $nuser->getPhpTimezone() == $timezone ) echo ' selected' ?>><?php echo $timezone ?></option>
+										<option value="<?php echo $timezone ?>"<?php if ( $user->getPhpTimezone() == $timezone ) echo ' selected' ?>><?php echo $timezone ?></option>
 		<?php
 		}
 		?>
@@ -402,7 +402,7 @@ else
 		<?php
 							foreach (array_unique($forum_time_formats) as $key => $time_format) {
 								echo '<option value="'.$key.'"';
-								if ( $nuser->getTimeFormat() == $key )
+								if ( $user->getTimeFormat() == $key )
 									echo ' selected';
 								echo '>'. format_time(time(), false, null, $time_format, true, true);
 								if ($key == 0)
@@ -420,7 +420,7 @@ else
 		<?php
 							foreach (array_unique($forum_date_formats) as $key => $date_format) {
 								echo '<option value="'.$key.'"';
-								if ( $nuser->getDateFormat() == $key )
+								if ( $user->getDateFormat() == $key )
 									echo ' selected';
 								echo '>'. format_time(time(), true, $date_format, null, false, true);
 								if ($key == 0)
@@ -447,7 +447,7 @@ else
 					$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 		
 					while ($cur_group = $db->fetch_assoc($result)) {
-						if ($cur_group['g_id'] == $nuser->getGId() || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $nuser->getGId() == ''))
+						if ($cur_group['g_id'] == $user->getGId() || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user->getGId() == ''))
 							echo '<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>';
 						else
 							echo '<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>';
@@ -462,12 +462,12 @@ else
 									</div>
 								</div>
 								<hr />
-							<?php } else if ($nuser->getGModerator() == '1' || $nuser->getGId() == LUNA_ADMIN) { ?>
+							<?php } else if ($user->getGModerator() == '1' || $user->getGId() == LUNA_ADMIN) { ?>
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-md-9">
                                         <button class="btn btn-danger" type="submit" name="ban"><i class="fas fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
-                                        <?php if ($nuser->getGId() == LUNA_ADMIN) { ?>
+                                        <?php if ($user->getGId() == LUNA_ADMIN) { ?>
                                             <button class="btn btn-danger" type="submit" name="delete_user"><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Delete', 'luna') ?></button>
                                         <?php } ?>
 									</div>
@@ -508,14 +508,14 @@ else
                                     <div class="form-group row">
                                         <label class="col-md-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $nuser->getNumComments() ?>" maxlength="8" />
+                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $user->getNumComments() ?>" maxlength="8" />
                                         </div>
                                     </div>
                                 <?php endif; if ($luna_user['is_admmod']): ?>
                                     <div class="form-group row">
                                         <label class="col-md-3 col-form-label"><?php _e('Admin note', 'luna') ?></label>
                                         <div class="col-md-9">
-                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars( $nuser->getAdminNote() ) ?>" maxlength="30" />
+                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars( $user->getAdminNote() ) ?>" maxlength="30" />
                                         </div>
                                     </div>
                                 <?php endif; ?>

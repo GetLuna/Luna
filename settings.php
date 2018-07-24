@@ -557,35 +557,33 @@ To change your email address, please visit the following page:
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$row = $db->fetch_assoc( $result );
-	$user = $row;
-	$nuser = User::withRow( $row );
+	$user = User::withRow( $db->fetch_assoc( $result ) );
 
 	if ($luna_user['is_admmod']) {
 		if ($luna_user['g_id'] == LUNA_ADMIN || $luna_user['g_mod_rename_users'] == '1')
-			$username_field = '<input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($nuser->getUsername()).'" maxlength="25" />';
+			$username_field = '<input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user->getUsername()).'" maxlength="25" />';
 		else
-			$username_field = luna_htmlspecialchars($nuser->getUsername());
+			$username_field = luna_htmlspecialchars($user->getUsername());
 
-		$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($nuser->getEmail()).'" maxlength="80" />';
+		$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user->getEmail()).'" maxlength="80" />';
 		$email_button = '<span class="input-group-append"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.__('Send email', 'luna').'</a></span>';
 	} else {
-		$username_field = '<input class="form-control" type="text"  value="'.luna_htmlspecialchars($nuser->getUsername()).'" disabled="disabled" />';
+		$username_field = '<input class="form-control" type="text"  value="'.luna_htmlspecialchars($user->getUsername()).'" disabled="disabled" />';
 
 		if ($luna_config['o_regs_verify'] == '1') {
-			$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($nuser->getEmail()).'" maxlength="80" disabled />';
-			if ( $nuser->getActivateString() !== null && $nuser->getActivateKey() !== null )
+			$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user->getEmail()).'" maxlength="80" disabled />';
+			if ( $user->getActivateString() !== null && $user->getActivateKey() !== null )
 				$email_button = '<span class="input-group-append"><a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newmail">'.__('Change email address', 'luna').'</a></span>';
 			else
 				$email_button = '<span class="input-group-append"><a class="btn btn-danger disabled" href="#" data-toggle="modal" data-target="#newmail">'.__('Unverified', 'luna').'</a></span>';
 		} else {
-			$email_field = '<input type="text" class="form-control" name="req_email" value="'.$nuser->getEmail().'" maxlength="80" />';
+			$email_field = '<input type="text" class="form-control" name="req_email" value="'.$user->getEmail().'" maxlength="80" />';
 			$email_button = '<span class="input-group-append"><a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newmail">'.__('Change email address', 'luna').'</a></span>';
 		}
 	}
 
-	if ($nuser->getSignature() != '') {
-		$parsed_signature = parse_signature($nuser->getSignature());
+	if ($user->getSignature() != '') {
+		$parsed_signature = parse_signature($user->getSignature());
 	}
 
 	if (isset($_POST['form_sent'])) {
@@ -610,45 +608,45 @@ To change your email address, please visit the following page:
 		$username_updated = false;
 
 		// Validate input depending on section
-		$nuser->setRealname( $_POST['realname'] );
-		$nuser->setUrl( $_POST['url'] );
-		$nuser->setLocation( $_POST['location'] );
-		$nuser->setFacebook( $_POST['facebook'] );
-		$nuser->setMicrosoft( $_POST['msn'] );
-		$nuser->setTwitter( $_POST['twitter'] );
-		$nuser->setGoogle( $_POST['google'] );
-		$nuser->setColorScheme( $_POST['color_scheme'] );
-		$nuser->setAdaptTime( $_POST['adapt_time'] );
-		$nuser->setAccent( $_POST['accent'] );
-		$nuser->setPhpTimezone( $_POST['php_timezone'] );
-		$nuser->setTimeFormat( $_POST['time_format'] );
-		$nuser->setDateFormat( $_POST['date_format'] );
-		$nuser->setShowImg( $_POST['show_img'] );
-		$nuser->setFirstRun( $_POST['first_run'] );
-		$nuser->setShowSig( $_POST['show_sig'] );
-		$nuser->setUseInbox( $_POST['use_inbox'] );
-		$nuser->setEmailSetting( $_POST['email_setting'] );
-		$nuser->setNotifyWithComment( $_POST['notify_with_comment'] );
-		$nuser->setAutoNotify( $_POST['auto_notify'] );
-		$nuser->setLanguage( $_POST['language'] );
+		$user->setRealname( $_POST['realname'] );
+		$user->setUrl( $_POST['url'] );
+		$user->setLocation( $_POST['location'] );
+		$user->setFacebook( $_POST['facebook'] );
+		$user->setMicrosoft( $_POST['msn'] );
+		$user->setTwitter( $_POST['twitter'] );
+		$user->setGoogle( $_POST['google'] );
+		$user->setColorScheme( $_POST['color_scheme'] );
+		$user->setAdaptTime( $_POST['adapt_time'] );
+		$user->setAccent( $_POST['accent'] );
+		$user->setPhpTimezone( $_POST['php_timezone'] );
+		$user->setTimeFormat( $_POST['time_format'] );
+		$user->setDateFormat( $_POST['date_format'] );
+		$user->setShowImg( $_POST['show_img'] );
+		$user->setFirstRun( $_POST['first_run'] );
+		$user->setShowSig( $_POST['show_sig'] );
+		$user->setUseInbox( $_POST['use_inbox'] );
+		$user->setEmailSetting( $_POST['email_setting'] );
+		$user->setNotifyWithComment( $_POST['notify_with_comment'] );
+		$user->setAutoNotify( $_POST['auto_notify'] );
+		$user->setLanguage( $_POST['language'] );
 
 		if ($luna_user['is_admmod']) {
-			$nuser->setAdminNote(  $_POST['admin_note'] );
+			$user->setAdminNote(  $_POST['admin_note'] );
 
 			// We only allow administrators to update the comment count
 			if ($luna_user['g_id'] == LUNA_ADMIN)
-				$nuser->setNumComments( $_POST['num_comments'] );
+				$user->setNumComments( $_POST['num_comments'] );
 		}
 
 		if ($luna_user['is_admmod']) {
 			// Are we allowed to change usernames?
 			if ( $luna_user['g_id'] == LUNA_ADMIN || ( $luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1' ))  {
-				$nuser->setUsername( $_POST['req_username'] );
+				$user->setUsername( $_POST['req_username'] );
 
-				if ( $nuser->getUsername() != $old_username ) {
+				if ( $user->getUsername() != $old_username ) {
 					// Check username
 					$errors = array();
-					check_username( $nuser->getUsername(), $id );
+					check_username( $user->getUsername(), $id );
 					if ( !empty( $errors ) )
 						message( $errors[0] );
 
@@ -658,16 +656,16 @@ To change your email address, please visit the following page:
 		}
 
 		if ($luna_config['o_regs_verify'] == '0' || $luna_user['is_admmod']) {
-			$nuser->setEmail( $_POST['req_email'] );
+			$user->setEmail( $_POST['req_email'] );
 		}
 
 		// Clean up signature from POST
 		if ($luna_config['o_signatures'] == '1') {
-			$nuser->setSignature( $_POST['signature'] );
+			$user->setSignature( $_POST['signature'] );
 		}
 
 		// Single quotes around non-empty values and NULL for empty values
-		$nuser->save();
+		$user->save();
 
 		// If we changed the username we have to update some stuff
 		if ($username_updated) {
@@ -718,19 +716,19 @@ To change your email address, please visit the following page:
 		!empty($_GET['id']) ? redirect('settings.php?id='.$id) : redirect('settings.php');
 	}
 
-	if ($nuser->getGSetTitle() == '1')
-		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($nuser->getTitle()).'" maxlength="50" />';
+	if ($user->getGSetTitle() == '1')
+		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user->getTitle()).'" maxlength="50" />';
 
 	$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Change avatar', 'luna').'</a>';
 
-	$avatar_user = get_avatar( $nuser->getId() );
+	$avatar_user = get_avatar( $user->getId() );
 	$avatar_set = check_avatar($id);
 	if ($avatar_user && $avatar_set)
 		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'&amp;csrf_token='.luna_csrf_token().'">'.__('Delete avatar', 'luna').'</a>';
 	else
 		$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Upload avatar', 'luna').'</a>';
 
-	if ($nuser->getSignature() != '')
+	if ($user->getSignature() != '')
 		$signature_preview = $parsed_signature;
 	else
 		$signature_preview = __('No signature currently stored in profile.', 'luna');

@@ -180,7 +180,7 @@
     color: #fff;
     margin-left: -.75rem;
     margin-right: -.75rem;
-    padding: 1.2rem .75rem; }
+    padding: 1.5rem 2rem; }
     .jumbotron.titletron h2 {
       margin-bottom: 0;
       font-weight: 600; }
@@ -468,6 +468,57 @@ td .custom-control {
       color: #fff; }
       .modal .modal-dialog .modal-content .modal-footer a:hover, .modal .modal-dialog .modal-content .modal-footer a:active, .modal .modal-dialog .modal-content .modal-footer a:focus {
         color: #fff; }
+
+.card .card-body {
+  padding: .75rem; }
+  .card .card-body h2 {
+    margin-bottom: .5rem; }
+
+.row-contacts {
+  margin-left: -.375rem !important;
+  margin-right: -.375rem !important; }
+  .row-contacts .col-12 {
+    padding: .375rem; }
+
+.card-email,
+.card-url,
+.card-microsoft,
+.card-facebook,
+.card-twitter,
+.card-google {
+  color: #fff;
+  border-radius: 0; }
+  .card-email h2,
+  .card-url h2,
+  .card-microsoft h2,
+  .card-facebook h2,
+  .card-twitter h2,
+  .card-google h2 {
+    font-weight: 500 !important; }
+
+.card-email {
+  background-color: #fdcd00;
+  border-color: #fdcd00; }
+
+.card-url {
+  background-color: #00c48a;
+  border-color: #00c48a; }
+
+.card-microsoft {
+  background-color: #21c9ff;
+  border-color: #21c9ff; }
+
+.card-facebook {
+  background-color: #4862a3;
+  border-color: #4862a3; }
+
+.card-twitter {
+  background-color: #00acee;
+  border-color: #00acee; }
+
+.card-google {
+  background-color: #da4836;
+  border-color: #da4836; }
 
 .nav {
   border: none; }
@@ -1894,38 +1945,6 @@ hr {
 
 .status-closed {
   color: #e74018; }
-
-#mail-addon,
-#website-addon,
-#microsoft-addon,
-#facebook-addon,
-#twitter-addon,
-#google-addon {
-  color: #fff; }
-
-#mail-addon {
-  background-color: #fdcd00;
-  border-color: #fdcd00; }
-
-#website-addon {
-  background-color: #00c48a;
-  border-color: #00c48a; }
-
-#microsoft-addon {
-  background-color: #21c9ff;
-  border-color: #21c9ff; }
-
-#facebook-addon {
-  background-color: #4862a3;
-  border-color: #4862a3; }
-
-#twitter-addon {
-  background-color: #00acee;
-  border-color: #00acee; }
-
-#google-addon {
-  background-color: #da4836;
-  border-color: #da4836; }
 
 .tab-contact .input-group {
   margin-bottom: .75rem; }

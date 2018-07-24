@@ -9,6 +9,7 @@
 
 define('LUNA_ROOT', dirname(__FILE__).'/');
 require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/parser.php';
 
 if ($luna_user['g_view_users'] == '0') {
     message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
@@ -16,6 +17,8 @@ if ($luna_user['g_view_users'] == '0') {
 
 // Load the me functions script
 require LUNA_ROOT.'include/me_functions.php';
+require LUNA_ROOT.'include/email.php';
+require LUNA_ROOT.'include/class/user.class.php';
 
 // Include UTF-8 function
 require LUNA_ROOT.'include/utf8/substr_replace.php';
@@ -27,140 +30,18 @@ if ($id < 2) {
     message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 }
 
-$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_img, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.*, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result)) {
     message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 }
 
-$user = $db->fetch_assoc($result);
-
-$last_comment = format_time($user['last_comment']);
-
-$user_personality = array();
-
-$avatar_field = generate_avatar_markup($id);
-
-$user_title_field = get_title($user);
-$user_personality[] = '<b>'.__('Title', 'luna').':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
-
-$user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$comments_field = forum_number_format($user['num_comments']);
-
-if ($user['num_comments'] > 0) {
-    $user_personality[] = '<b>'.__('Latest comment', 'luna').':</b> '.$last_comment;
-}
-
-$user_activity[] = '<b>'.__('Registered', 'luna').':</b> '.format_time($user['registered'], true);
-
-$user_personality[] = '<b>'.__('Registered since', 'luna').':</b> '.format_time($user['registered'], true);
-
-$user_personality[] = '<b>'.__('Latest visit', 'luna').':</b> '.format_time($user['last_visit'], true);
-
-if ($user['realname'] != '') {
-    $user_personality[] = '<b>'.__('Real name', 'luna').':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
-}
-
-if ($user['location'] != '') {
-    $user_personality[] = '<b>'.__('Location', 'luna').':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
-}
-
-$comments_field = '';
-
-if ($luna_user['g_search'] == '1') {
-    $quick_searches = array();
-    if ($user['num_comments'] > 0) {
-        $quick_searches[] = '<a class="btn btn-light col" href="search.php?action=show_user_threads&amp;user_id='.$id.'"><i class="fas fa-fw fa-stream"></i> '.__('Threads', 'luna').'</a>';
-        $quick_searches[] = '<a class="btn btn-light col" href="search.php?action=show_user_comments&amp;user_id='.$id.'"><i class="fas fa-fw fa-comment"></i> '.__('Comments', 'luna').'</a>';
-    }
-    if (($luna_user['is_admmod'] || $luna_user['id'] == $id) && $luna_config['o_thread_subscriptions'] == '1') {
-        $quick_searches[] = '<a class="btn btn-light col" href="search.php?action=show_subscriptions&amp;user_id='.$id.'"><i class="fas fa-fw fa-star"></i> '.__('Subscriptions', 'luna').'</a>';
-    }
-
-    if (!empty($quick_searches)) {
-        $user_activities = implode('', $quick_searches);
-    }
-}
-
-$user_messaging = array();
-
-if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') {
-    $user_messaging[] = '
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <a href="mailto:'.luna_htmlspecialchars($user['email']).'" class="input-group-text" id="mail-addon"><i class="fas fa-fw fa-envelope"></i></a>
-        </div>
-        <input type="text" class="form-control" value="'.luna_htmlspecialchars($user['email']).'" aria-describedby="mail-addon" readonly="readonly" />
-    </div>';
-}
-
-if ($user['url'] != '') {
-    $user_messaging[] = '
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <a href="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" class="input-group-text" id="website-addon"><i class="fas fa-fw fa-link"></i></a>
-        </div>
-        <input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" aria-describedby="website-addon" readonly="readonly" />
-    </div>';
-}
-
-if ($user['msn'] != '') {
-    $user_messaging[] = '
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <a href="mailto:'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" class="input-group-text" id="microsoft-addon"><i class="fab fa-fw fa-microsoft"></i></a>
-        </div>
-        <input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" aria-describedby="microsoft-addon" readonly="readonly" />
-    </div>';
-}
-
-if ($user['facebook'] != '') {
-    $user_messaging[] = '
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <a href="http://facebook.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" class="input-group-text" id="facebook-addon"><i class="fab fa-fw fa-facebook"></i></a>
-        </div>
-        <input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" aria-describedby="facebook-addon" readonly="readonly" />
-    </div>';
-}
-
-if ($user['twitter'] != '') {
-    $user_messaging[] = '
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <a href="http://twitter.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" class="input-group-text" id="twitter-addon"><i class="fab fa-fw fa-twitter"></i></a>
-        </div>
-        <input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" aria-describedby="twitter-addon" readonly="readonly" />
-    </div>';
-}
-
-if ($user['google'] != '') {
-    $user_messaging[] = '
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <a href="http://plus.google.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" class="input-group-text" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></a>
-        </div>
-        <input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" aria-describedby="google-addon" readonly="readonly" />
-    </div>';
-}
-
-$user_activity = array();
-
-if ($user['signature'] != '') {
-    require LUNA_ROOT.'include/parser.php';
-    $parsed_signature = parse_signature($user['signature']);
-}
-
-$last_comment = format_time($user['last_comment']);
-
-if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature))) {
-    $user_signature = $parsed_signature;
-}
+$user = User::withRow( $db->fetch_assoc( $result ) );
 
 // View or edit?
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
 define('LUNA_ACTIVE_PAGE', 'me');
 include LUNA_ROOT.'header.php';
+
 require load_page('header.php');
-
 require load_page('profile.php');
-
 require load_page('footer.php');

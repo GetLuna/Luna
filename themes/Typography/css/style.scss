@@ -23,6 +23,7 @@ $accents: #e52262, #e74018, #fb8009, #ffc000, #c0d700, #97c800, #46c429, #10b08f
 @import 'badge';
 @import 'alert';
 @import 'modal';
+@import 'card';
 @import 'nav';
 
 // Custom files
@@ -104,45 +105,7 @@ hr {
     color: $red;
 }
 
-// Addons
-#mail-addon,
-#website-addon,
-#microsoft-addon,
-#facebook-addon,
-#twitter-addon,
-#google-addon {
-    color: #fff;
-}
 
-#mail-addon {
-    background-color: #fdcd00;
-    border-color: #fdcd00;
-}
-
-#website-addon {
-    background-color: #00c48a;
-    border-color: #00c48a;
-}
-
-#microsoft-addon {
-    background-color: #21c9ff;
-    border-color: #21c9ff;
-}
-
-#facebook-addon {
-    background-color: #4862a3;
-    border-color: #4862a3;
-}
-
-#twitter-addon {
-    background-color: #00acee;
-    border-color: #00acee;
-}
-
-#google-addon {
-    background-color: #da4836;
-    border-color: #da4836;
-}
 
 // Contact tab
 .tab-contact {
