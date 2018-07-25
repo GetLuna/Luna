@@ -11,6 +11,10 @@
 if (!defined('FORUM'))
 	exit;
 
+include_once LUNA_ROOT.'/include/class/footer.class.php';
+
+$footer = new Footer();
+
 ?>
         <div class="container">
 <?php
@@ -37,9 +41,6 @@ elseif ($luna_config['o_feed_type'] == 2)
 if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (isset($footer_style)))
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>';
 
-$num_users = num_users_online();
-$num_guests = num_guests_online();
-
 ?>
         </div>
         <footer>
@@ -47,39 +48,50 @@ $num_guests = num_guests_online();
                 <div class="stats container">
                     <div class="row">
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php total_users(); ?></h4>
-                            <?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>
+                            <h4><?php echo $footer->getUsers( false ) ?></h4>
+                            <?php echo _n( 'User', 'Users', $footer->getUsers(), 'luna' ) ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php total_threads() ?></h4>
-                            <?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>
+                            <h4><?php echo $footer->getThreads( false ) ?></h4>
+                            <?php echo _n( 'Thread', 'Threads', $footer->getThreads(), 'luna' ) ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php total_comments() ?></h4>
-                            <?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?>
+                            <h4><?php echo $footer->getComments( false ) ?></h4>
+                            <?php echo _n('Comment', 'Comments', $footer->getComments(), 'luna') ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php newest_user() ?></h4>
+                            <h4><?php echo $footer->getUsersOnline( false ) ?></h4>
                             <?php _e('Newest user', 'luna') ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php echo forum_number_format($num_users) ?></h4>
+                            <h4><?php echo $footer->getUsersOnline( false ) ?></h4>
                             <?php if ($luna_config['o_users_online']) { ?>
                             <div class="dropup">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <?php echo _n('User online', 'Users online', $num_users, 'luna') ?> <span class="fas fa-fw fa-angle-up"></span>
+                                    <?php echo _n('User online', 'Users online', $footer->getUsersOnline(), 'luna') ?> <span class="fas fa-fw fa-angle-up"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <?php echo online_list() ?>
+                                    <?php if ( $footer->getUsersOnline() > 0 ) { ?>
+                                        <?php foreach ( $footer->getOnline() as $online ) { ?>
+                                            <?php if ($luna_user['g_view_users'] == '1') { ?>
+                                                <a class="dropdown-item" href="<?php echo $online['url'] ?>"><?php echo luna_htmlspecialchars( $online['name'] ) ?></a>
+                                            <?php } else { ?>
+                                                <a class="dropdown-item"><?php echo luna_htmlspecialchars( $online['name'] ) ?></a>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <a class="dropdown-item"><?php _e( 'No users online', 'luna' ) ?></a>
+                                    <?php } ?>
                                 </ul>
                             </div>
-                            <?php } else
-                                echo _n('User online', 'Users online', $num_users, 'luna'); ?>
+                            <?php } else {
+                                echo _n('User online', 'Users online', $footer->getUsersOnline(), 'luna'); 
+                            } ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php echo forum_number_format($num_guests) ?></h4>
-                            <?php echo _n('Guest online', 'Guests online', $num_guests, 'luna') ?>
+                            <h4><?php echo $footer->getGuestsOnline( false ) ?></h4>
+                            <?php echo _n('Guest online', 'Guests online', $footer->getGuestsOnline(), 'luna') ?>
                         </div>
                     </div>
                 </div>

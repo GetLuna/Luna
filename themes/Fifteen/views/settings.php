@@ -15,7 +15,7 @@ else
 	<div class="container">
 		<div class="row">
 			<div class="col">
-                <h4><?php echo $user['username'] ?></h4>
+                <h4><?php echo $user->getUsername() ?></h4>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@ else
 	<div class="row">
 		<div class="col-lg-3 col-12 sidebar">
 			<div class="container-avatar d-none d-lg-block">
-				<img src="<?php echo get_avatar( $user['id'] ) ?>" alt="Avatar" class="avatar">
+				<img src="<?php echo get_avatar( $user->getId() ) ?>" alt="Avatar" class="avatar">
 			</div>
 			<?php load_me_nav('settings'); ?>
 		</div>
@@ -72,7 +72,7 @@ else
 									<?php echo $username_field ?>
 								</div>
 							</div>
-							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($user['salt']) != NULL)): ?>
+							<?php if (($luna_user['id'] == $id || $luna_user['g_id'] == LUNA_ADMIN || ($user->getGModerator() == '0' && $luna_user['g_mod_change_passwords'] == '1')) && (strlen($user->getSalt() != NULL))): ?>
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Password', 'luna') ?></label>
 								<div class="col-md-9">
@@ -94,10 +94,10 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Real name', 'luna') ?></label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="form[realname]" value="<?php echo luna_htmlspecialchars($user['realname']) ?>" maxlength="40" />
+									<input type="text" class="form-control" name="realname" value="<?php echo luna_htmlspecialchars($user->getRealname()) ?>" maxlength="40" />
 								</div>
 							</div>
-							<?php if (isset($title_field)): ?>
+							<?php if ( isset( $title_field ) ): ?>
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Title', 'luna') ?><span class="help-block"><?php _e('Leave blank to use default', 'luna') ?></span></label>
 								<div class="col-md-9">
@@ -108,7 +108,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Location', 'luna') ?></label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
+									<input type="text" class="form-control" name="location" value="<?php echo luna_htmlspecialchars($user->getLocation()) ?>" maxlength="30" />
 								</div>
 							</div>
 							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_signatures'] == '1') { ?>
@@ -117,7 +117,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Avatar', 'luna') ?><span class="help-block"><?php _e('Upload an image to represent you', 'luna') ?></span></label>
 								<div class="col-md-9">
-									<img src="<?php echo get_avatar( $user['id'] ) ?>" alt="Avatar" class="img-fluid avatar">
+									<img src="<?php echo get_avatar( $user->getId() ) ?>" alt="Avatar" class="img-fluid avatar">
 									<?php echo $avatar_field ?>
 								</div>
 							</div>
@@ -125,7 +125,7 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
 								<div class="col-md-9">
-									<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
+									<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user->getSignature()) ?></textarea>
 									<span class="help-block"><?php printf(__('Max length: %s characters / Max lines: %s', 'luna'), forum_number_format($luna_config['o_sig_length']), $luna_config['o_sig_lines']) ?></span>
 								</div>
 							</div>
@@ -152,7 +152,7 @@ else
 				$accents = forum_list_accents();
 		
 				foreach ($accents as $accent) {
-					echo '<label class="btn color-accent'.(($luna_user['color_scheme'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="form[color_scheme]" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_user['color_scheme'] == $accent->id) ? ' checked' : '').'></label>';
+					echo '<label class="btn color-accent'.(($luna_user['color_scheme'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="color_scheme" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_user['color_scheme'] == $accent->id) ? ' checked' : '').'></label>';
 				}
 		?>
 									</div>
@@ -163,20 +163,20 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Night mode', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-radio">
-										<input type="radio" id="form[adapt_time1]" name="form[adapt_time]" class="custom-control-input" value="0" <?php if ($user['adapt_time'] == '0') { echo ' checked'; } ?>>
-										<label class="custom-control-label" for="form[adapt_time1]">
+										<input type="radio" id="adapt_time1" name="adapt_time" class="custom-control-input" value="0" <?php echo ( $user->getAdaptTime() == '0') ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="adapt_time1">
 											<?php _e('Never use night mode.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="form[adapt_time2]" name="form[adapt_time]" class="custom-control-input" value="1" <?php if ($user['adapt_time'] == '1') { echo ' checked'; } ?>>
-										<label class="custom-control-label" for="form[adapt_time2]">
+										<input type="radio" id="adapt_time2" name="adapt_time" class="custom-control-input" value="1" <?php echo ( $user->getAdaptTime() == '1') ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="adapt_time2">
 											<?php _e('Always use night mode.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="form[adapt_time3]" name="form[adapt_time]" class="custom-control-input" value="2" <?php if ($user['adapt_time'] == '2') { echo ' checked'; } ?>>
-										<label class="custom-control-label" for="form[adapt_time3]">
+										<input type="radio" id="adapt_time3" name="adapt_time" class="custom-control-input" value="2" <?php echo ( $user->getAdaptTime() == '2') ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="adapt_time3">
 											<?php _e('Enable night mode automatically.', 'luna') ?>
 										</label>
 									</div>
@@ -191,7 +191,7 @@ else
 				$accents = backstage_list_accents();
 		
 				foreach ($accents as $accent) {
-					echo '<label class="btn color-accent'.(($luna_user['accent'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="form[accent]" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_user['accent'] == $accent->id) ? ' checked' : '').'></label>';
+					echo '<label class="btn color-accent'.(($luna_user['accent'] == $accent->id) ? ' active' : '').'" style="background: '.$accent->color.'"><input type="radio" name="accent" id="'.$accent->id.'" value="'.$accent->id.'"'.(($luna_user['accent'] == $accent->id) ? ' checked' : '').'></label>';
 				}
 		?>
 									</div>
@@ -207,10 +207,10 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Language', 'luna') ?></label>
 								<div class="col-md-9">
-									<select class="form-control" name="form[language]">
+									<select class="form-control" name="language">
 		<?php
 				foreach ($languages as $temp) {
-					if ($user['language'] == $temp)
+					if ($user->getLanguage() == $temp)
 						echo '<option value="'.$temp.'" selected>'.$temp.'</option>';
 					else
 						echo '<option value="'.$temp.'">'.$temp.'</option>';
@@ -225,8 +225,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('First Run', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="form[first_run]" name="form[first_run]" value="1"<?php echo ( $user['first_run'] == '1' ) ? ' checked' : '' ?>>
-										<label class="custom-control-label" for="form[first_run]">
+										<input type="checkbox" class="custom-control-input" id="first_run" name="first_run" value="1"<?php echo ( $user->getFirstRun() == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="first_run">
 											<?php _e('Show the First Run window on the index.', 'luna') ?>
 										</label>
 									</div>
@@ -242,8 +242,8 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Inbox', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="form[use_inbox]" name="form[use_inbox]" value="1"<?php echo ( $user['use_inbox'] == '1' ) ? ' checked' : '' ?>>
-										<label class="custom-control-label" for="form[use_inbox]">
+										<input type="checkbox" class="custom-control-input" id="use_inbox" name="use_inbox" value="1"<?php echo ( $user->getUseInbox() == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="use_inbox">
 											<?php _e('Allow users to send messages with Inbox.', 'luna') ?>
 										</label>
 									</div>
@@ -255,20 +255,20 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Email settings', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-radio">
-										<input type="radio" id="form[email_setting1]" name="form[email_setting]" class="custom-control-input" value="0" <?php if ($user['email_setting'] == '0') { echo ' checked'; } ?>>
-										<label class="custom-control-label" for="form[email_setting1]">
+										<input type="radio" id="email_setting1" name="email_setting" class="custom-control-input" value="0" <?php echo ( $user->getEmailSetting() == '0') ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="email_setting1">
 											<?php _e('Display your email address.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="form[email_setting2]" name="form[email_setting]" class="custom-control-input" value="1" <?php if ($user['email_setting'] == '1') { echo ' checked'; } ?>>
-										<label class="custom-control-label" for="form[email_setting2]">
+										<input type="radio" id="email_setting2" name="email_setting" class="custom-control-input" value="1" <?php echo ( $user->getEmailSetting() == '1') ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="email_setting2">
 											<?php _e('Hide your email address but allow form email.', 'luna') ?>
 										</label>
 									</div>
 									<div class="custom-control custom-radio">
-										<input type="radio" id="form[email_setting3]" name="form[email_setting]" class="custom-control-input" value="2" <?php if ($user['email_setting'] == '2') { echo ' checked'; } ?>>
-										<label class="custom-control-label" for="form[email_setting3]">
+										<input type="radio" id="email_setting3" name="email_setting" class="custom-control-input" value="2" <?php echo ( $user->getEmailSetting() == '2') ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="email_setting3">
 											<?php _e('Hide your email address and disallow form email.', 'luna') ?>
 										</label>
 									</div>
@@ -280,15 +280,15 @@ else
 								<label class="col-md-3 col-form-label"><?php _e('Subscriptions', 'luna') ?></label>
 								<div class="col-md-9">
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="form[notify_with_comment]" name="form[notify_with_comment]" value="1"<?php echo ( $user['notify_with_comment'] == '1' ) ? ' checked' : '' ?>>
-										<label class="custom-control-label" for="form[notify_with_comment]">
+										<input type="checkbox" class="custom-control-input" id="notify_with_comment" name="notify_with_comment" value="1"<?php echo ( $user->getNotifyWithComment() == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="notify_with_comment">
 											<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 										</label>
 									</div>
 									<?php if ($luna_config['o_thread_subscriptions'] == '1') { ?>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="form[auto_notify]" name="form[auto_notify]" value="1"<?php echo ( $user['auto_notify'] == '1' ) ? ' checked' : '' ?>>
-										<label class="custom-control-label" for="form[auto_notify]">
+										<input type="checkbox" class="custom-control-input" id="auto_notify" name="auto_notify" value="1"<?php echo ( $user->getAutoNotify() == '1' ) ? ' checked' : '' ?>>
+										<label class="custom-control-label" for="auto_notify">
 											<?php _e('Automatically subscribe to every thread you comment in.', 'luna') ?>
 										</label>
 									</div>
@@ -304,7 +304,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="website-addon"><i class="fas fa-fw fa-link"></i></span>
 										</div>
-										<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
+										<input id="website" type="text" class="form-control" name="url" value="<?php echo $user->getUrl() ?>" maxlength="80" aria-describedby="website-addon">
 									</div>
 								</div>
 							</div>
@@ -316,7 +316,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="microsoft-addon"><i class="fab fa-fw fa-microsoft"></i></span>
 										</div>
-										<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
+										<input id="microsoft" type="text" class="form-control" name="msn" value="<?php echo $user->getMicrosoft() ?>" maxlength="50" aria-describedby="microsoft-addon">
 									</div>
 								</div>
 							</div>
@@ -327,7 +327,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="facebook-addon"><i class="fab fa-fw fa-facebook"></i></span>
 										</div>
-										<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
+										<input id="facebook" type="text" class="form-control" name="facebook" value="<?php echo $user->getFacebook() ?>" maxlength="50" aria-describedby="facebook-addon">
 									</div>
 								</div>
 							</div>
@@ -338,7 +338,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="twitter-addon"><i class="fab fa-fw fa-twitter"></i></span>
 										</div>
-										<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
+										<input id="twitter" type="text" class="form-control" name="twitter" value="<?php echo $user->getTwitter() ?>" maxlength="50" aria-describedby="twitter-addon">
 									</div>
 								</div>
 							</div>
@@ -349,11 +349,10 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></span>
 										</div>
-										<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
+										<input id="google" type="text" class="form-control" name="google" value="<?php echo $user->getGoogle() ?>" maxlength="50" aria-describedby="google-addon">
 									</div>
 								</div>
 							</div>
-						</fieldset>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="thread">
 						<fieldset class="form-setting">
@@ -363,8 +362,8 @@ else
 									<div class="col-md-9">
 										<?php if ($luna_config['o_message_img_tag'] == '1'): ?>
 											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="form[show_img]" name="form[show_img]" value="1"<?php echo ( $user['show_img'] == '1' ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="form[show_img]">
+												<input type="checkbox" class="custom-control-input" id="show_img" name="show_img" value="1"<?php echo ( $user->getShowImg() == '1' ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="show_img">
 													<?php _e('Show images in comments.', 'luna') ?>
 												</label>
 											</div>
@@ -376,8 +375,8 @@ else
 									<label class="col-md-3 col-form-label"><?php _e('Signatures', 'luna') ?></label>
 									<div class="col-md-9">
 										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="form[show_sig]" name="form[show_sig]" value="1"<?php echo ( $user['show_sig'] == '1' ) ? ' checked' : '' ?>>
-											<label class="custom-control-label" for="form[show_sig]">
+											<input type="checkbox" class="custom-control-input" id="show_sig" name="show_sig" value="1"<?php echo ( $user->getShowSig() == '1' ) ? ' checked' : '' ?>>
+											<label class="custom-control-label" for="show_sig">
 													<?php _e('Show user signatures.', 'luna') ?>
 											</label>
 										</div>
@@ -391,12 +390,12 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Time zone', 'luna') ?></label>
 								<div class="col-md-9">
-									<select class="form-control" name="form[php_timezone]">
+									<select class="form-control" name="php_timezone">
 		<?php
 		$timezones = DateTimeZone::listIdentifiers();
 		foreach ($timezones as $timezone) {
 		?>
-										<option value="<?php echo $timezone ?>"<?php if ($user['php_timezone'] == $timezone) echo ' selected' ?>><?php echo $timezone ?></option>
+										<option value="<?php echo $timezone ?>"<?php if ( $user->getPhpTimezone() == $timezone ) echo ' selected' ?>><?php echo $timezone ?></option>
 		<?php
 		}
 		?>
@@ -406,11 +405,11 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Time format', 'luna') ?></label>
 								<div class="col-md-9">
-									<select class="form-control" name="form[time_format]">
+									<select class="form-control" name="time_format">
 		<?php
 							foreach (array_unique($forum_time_formats) as $key => $time_format) {
 								echo '<option value="'.$key.'"';
-								if ($user['time_format'] == $key)
+								if ( $user->getTimeFormat() == $key )
 									echo ' selected';
 								echo '>'. format_time(time(), false, null, $time_format, true, true);
 								if ($key == 0)
@@ -424,11 +423,11 @@ else
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Date format', 'luna') ?></label>
 								<div class="col-md-9">
-									<select class="form-control" name="form[date_format]">
+									<select class="form-control" name="date_format">
 		<?php
 							foreach (array_unique($forum_date_formats) as $key => $date_format) {
 								echo '<option value="'.$key.'"';
-								if ($user['date_format'] == $key)
+								if ( $user->getDateFormat() == $key )
 									echo ' selected';
 								echo '>'. format_time(time(), true, $date_format, null, false, true);
 								if ($key == 0)
@@ -443,7 +442,6 @@ else
 					</div>
 					<?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
 					<div role="tabpanel" class="tab-pane" id="admin">
-						<fieldset class="form-setting">
 							<?php if (($luna_user['g_moderator'] == '1')  && $luna_user['id'] != $id) { ?>
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label"><?php _e('Choose user group', 'luna') ?></label>
@@ -455,7 +453,7 @@ else
 					$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 		
 					while ($cur_group = $db->fetch_assoc($result)) {
-						if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
+						if ($cur_group['g_id'] == $user->getGId() || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user->getGId() == ''))
 							echo '<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>';
 						else
 							echo '<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>';
@@ -470,12 +468,12 @@ else
 									</div>
 								</div>
 								<hr />
-							<?php } else if ($user['g_moderator'] == '1' || $user['g_id'] == LUNA_ADMIN) { ?>
+							<?php } else if ($user->getGModerator() == '1' || $user->getGId() == LUNA_ADMIN) { ?>
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-md-9">
                                         <button class="btn btn-danger" type="submit" name="ban"><i class="fas fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
-                                        <?php if ($user['g_id'] == LUNA_ADMIN) { ?>
+                                        <?php if ($user->getGId() == LUNA_ADMIN) { ?>
                                             <button class="btn btn-danger" type="submit" name="delete_user"><i class="fas fa-fw fa-trash-alt"></i> <?php _e('Delete', 'luna') ?></button>
                                         <?php } ?>
 									</div>
@@ -500,8 +498,8 @@ else
 						$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 		?>
 											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="moderator_in[<?php echo $cur_forum['fid'] ?>]" name="moderator_in[<?php echo $cur_forum['fid'] ?>]" value="1"<?php echo ( in_array( $id, $moderators ) ) ? ' checked' : '' ?>>
-												<label class="custom-control-label" for="moderator_in[<?php echo $cur_forum['fid'] ?>]">
+												<input type="checkbox" class="custom-control-input" id="moderator_in[<?php echo $cur_forum['fid'] ?>" name="moderator_in[<?php echo $cur_forum['fid'] ?>" value="1"<?php echo ( in_array( $id, $moderators ) ) ? ' checked' : '' ?>>
+												<label class="custom-control-label" for="moderator_in[<?php echo $cur_forum['fid'] ?>">
 													<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>
 												</label>
 											</div>
@@ -516,14 +514,14 @@ else
                                     <div class="form-group row">
                                         <label class="col-md-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $user['num_comments'] ?>" maxlength="8" />
+                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $user->getNumComments( true ) ?>" maxlength="8" />
                                         </div>
                                     </div>
                                 <?php endif; if ($luna_user['is_admmod']): ?>
                                     <div class="form-group row">
                                         <label class="col-md-3 col-form-label"><?php _e('Admin note', 'luna') ?></label>
                                         <div class="col-md-9">
-                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
+                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo $user->getAdminNote() ?>" maxlength="30" />
                                         </div>
                                     </div>
                                 <?php endif; ?>
