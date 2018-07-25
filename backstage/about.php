@@ -34,6 +34,7 @@ require 'header.php';
                     <p><?php _e('Typography has been added as a new theme', 'luna') ?></p>
                     <p><?php _e('All censored words can now be edited and saved at once', 'luna') ?></p>
                     <p><?php _e('Emoji can now be edited and saved at once', 'luna') ?></p>
+                    <p><?php _e('Luna now takes the number of accents in a new theme in consideration to reset user and config settings', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-wrench"></i> <?php _e('Improved', 'luna') ?></h4>
                     <p><?php _e('Emoji shortcodes are now case insensitive', 'luna') ?></p>
                     <p><?php _e('Luna now uses modern emoji shortcodes for new installations and adds them to old installations', 'luna') ?></p>
@@ -60,6 +61,7 @@ require 'header.php';
                     <p><?php _e('When updating, fields are now correctly dropped from the database', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Luna now correctly redirects after changing the theme', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen, Sunrise and Typography have multiple visual issues', 'luna') ?></p>
                     <p><?php _e('Fifteen and Sunrise do not properly work due to mismatching APIs', 'luna') ?></p>

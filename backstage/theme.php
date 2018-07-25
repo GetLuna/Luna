@@ -28,6 +28,8 @@ if ( isset( $_GET['set'] ) ) {
     $theme = forum_get_theme( $_GET['set'] );
 
     $db->query( 'UPDATE '.$db->prefix.'config SET conf_value = \''.$theme->name.'\' WHERE conf_name=\'o_default_style\'' ) or error( 'Unable to update theme config', __FILE__, __LINE__, $db->error() );
+    $db->query( 'UPDATE '.$db->prefix.'config SET conf_value = \'1\' WHERE conf_name=\'o_default_accent\' AND conf_value > \''.count( $theme->features->accents ).'\'' ) or error( 'Unable to update accent config', __FILE__, __LINE__, $db->error() );
+    $db->query( 'UPDATE '.$db->prefix.'users SET color_scheme = \'1\' WHERE color_scheme > \''.count( $theme->features->accents ).'\'' ) or error( 'Unable to update user accent setting', __FILE__, __LINE__, $db->error() );
 
     // Regenerate the config cache
     if ( !defined( 'LUNA_CACHE_FUNCTIONS_LOADED' ) ) {
@@ -37,7 +39,7 @@ if ( isset( $_GET['set'] ) ) {
     generate_config_cache();
     clear_feed_cache();
 
-    //redirect( 'backstage/theme.php?saved=true' );
+    redirect( 'backstage/theme.php?saved=true' );
 }
 
 if ( isset( $_GET['uninstall'] ) ) {

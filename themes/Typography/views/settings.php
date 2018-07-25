@@ -89,7 +89,7 @@ else
 									<input type="text" class="form-control" name="realname" value="<?php echo luna_htmlspecialchars($user->getRealname()) ?>" maxlength="40" />
 								</div>
 							</div>
-							<?php if (isset($title_field)): ?>
+							<?php if ( isset( $title_field ) ): ?>
 							<div class="form-group row">
 								<label class="col-md-3 col-form-label"><?php _e('Title', 'luna') ?><span class="help-block"><?php _e('Leave blank to use default', 'luna') ?></span></label>
 								<div class="col-md-9">
@@ -508,7 +508,7 @@ else
                                     <div class="form-group row">
                                         <label class="col-md-3 col-form-label"><?php _e('Comments', 'luna') ?></label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $user->getNumComments() ?>" maxlength="8" />
+                                            <input type="number" class="form-control" name="num_comments" value="<?php echo $user->getNumComments( true ) ?>" maxlength="8" />
                                         </div>
                                     </div>
                                 <?php endif; if ($luna_user['is_admmod']): ?>

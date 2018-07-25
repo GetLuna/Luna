@@ -553,7 +553,7 @@ To change your email address, please visit the following page:
 
 	redirect('settings.php?id='.$id);
 } else {
-	$result = $db->query('SELECT u.*, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.*, g.* FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -717,7 +717,7 @@ To change your email address, please visit the following page:
 	}
 
 	if ($user->getGSetTitle() == '1')
-		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user->getTitle()).'" maxlength="50" />';
+		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars( $user->getTitle( true ) ).'" maxlength="50" />';
 
 	$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Change avatar', 'luna').'</a>';
 

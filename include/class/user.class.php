@@ -125,12 +125,12 @@ class User {
             'time_format'       => $this->getTimeFormat(),
             'date_format'       => $this->getDateFormat(),
             'language'          => $this->getLanguage(),
-            'num_comments'      => $this->getNumComments(),
-            'last_comment'      => $this->getLastComment(),
-            'last_search'       => $this->getLastSearch(),
-            'last_email_sent'   => $this->getLastEmailSent(),
-            'last_report_sent'  => $this->getLastReportSent(),
-            'last_visit'        => $this->getLastVisit(),
+            'num_comments'      => $this->getNumComments( true ),
+            'last_comment'      => $this->getLastComment( true ),
+            'last_search'       => $this->getLastSearch( true ),
+            'last_email_sent'   => $this->getLastEmailSent( true ),
+            'last_report_sent'  => $this->getLastReportSent( true ),
+            'last_visit'        => $this->getLastVisit( true ),
             'admin_note'        => $this->getAdminNote(),
             'activate_string'   => $this->getActivateString(),
             'activate_key'      => $this->getActivateKey(),
@@ -319,18 +319,18 @@ class User {
     public function getAvatar() {
         global $luna_config;
     
-        $filetypes = array('jpg', 'gif', 'png');
+        $filetypes = array( 'jpg', 'gif', 'png' );
     
-        foreach ($filetypes as $cur_type) {
-            $path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
+        foreach ( $filetypes as $cur_type ) {
+            $path = $luna_config['o_avatars_dir'].'/'.$this->id.'.'.$cur_type;
     
-            if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
-                return luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path));
+            if ( file_exists( LUNA_ROOT.$path ) && $img_size = getimagesize( LUNA_ROOT.$path ) ) {
+                return luna_htmlspecialchars( get_base_url( true ).'/'.$path.'?m='.filemtime( LUNA_ROOT.$path ) );
                 break;
-            } else if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) {
-                return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/cplaceholder.png';
+            } else if ( file_exists( LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png' ) ) {
+                return luna_htmlspecialchars( get_base_url( true ) ).'/img/avatars/cplaceholder.png';
             } else {
-                return luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png';
+                return luna_htmlspecialchars( get_base_url( true ) ).'/img/avatars/placeholder.png';
             }
         }
     }
@@ -424,16 +424,28 @@ class User {
         }
     }
 
-    public function getLastSearch() {
-        return $this->last_search;
+    public function getLastSearch( $raw = false ) {
+        if ( $raw ) {
+            return $this->last_search;
+        } else {
+            return format_time( $this->last_search );
+        }
     }
 
-    public function getLastEmailSent() {
-        return $this->last_email_sent;
+    public function getLastEmailSent( $raw = false ) {
+        if ( $raw ) {
+            return $this->last_email_sent;
+        } else {
+            return format_time( $this->last_email_sent );
+        }
     }
 
-    public function getLastReportSent() {
-        return $this->last_report_sent;
+    public function getLastReportSent( $raw = false ) {
+        if ( $raw ) {
+            return $this->last_report_sent;
+        } else {
+            return format_time( $this->last_report_sent );
+        }
     }
 
     public function getRegistered( $raw = false ) {
