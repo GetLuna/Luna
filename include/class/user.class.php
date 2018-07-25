@@ -2,7 +2,7 @@
 
 class User {
     private $id;
-    private $group;
+    private $group_id;
     private $username;
     private $password;
     private $salt;
@@ -156,77 +156,77 @@ class User {
     }
 
     protected function fill( array $row ) {
-        $this->setId( $row['id'] );
-        $this->setGroup( $row['group_id'] );
-        $this->setUsername( $row['username'] );
-        $this->setPassword( $row['password'] );
-        $this->setSalt( $row['salt'] );
-        $this->setEmail( $row['email'] );
-        $this->setTitle( $row['title'] );
-        $this->setRealname( $row['realname'] );
-        $this->setUrl( $row['url'] );
-        $this->setFacebook( $row['facebook'] );    
-        $this->setMicrosoft( $row['msn'] );    
-        $this->setTwitter( $row['twitter'] );    
-        $this->setGoogle( $row['google'] );    
-        $this->setLocation( $row['location'] );    
-        $this->setSignature( $row['signature'] );    
-        $this->setEmailSetting( $row['email_setting'] );    
-        $this->setNotifyWithComment( $row['notify_with_comment'] );    
-        $this->setAutoNotify( $row['auto_notify'] );    
-        $this->setShowImg( $row['show_img'] );    
-        $this->setShowSig( $row['show_sig'] );    
-        $this->setPhpTimezone( $row['php_timezone'] );    
-        $this->setTimeFormat( $row['time_format'] );    
-        $this->setDateFormat( $row['date_format'] );    
-        $this->setLanguage( $row['language'] );    
-        $this->setNumComments( $row['num_comments'] );    
-        $this->setLastComment( $row['last_comment'] );    
-        $this->setLastSearch( $row['last_search'] );
-        $this->setLastEmailSent( $row['last_email_sent'] );    
-        $this->setLastReportSent( $row['last_report_sent'] );    
-        $this->setRegistered( $row['registered'] );    
-        $this->setRegistration_ip( $row['registration_ip'] );    
-        $this->setLastVisit( $row['last_visit'] );    
-        $this->setAdminNote( $row['admin_note'] );    
-        $this->setActivateString( $row['activate_string'] );    
-        $this->setActivateKey( $row['activate_key'] );    
-        $this->setUseInbox( $row['use_inbox'] );    
-        $this->setNumInbox( $row['num_inbox'] );    
-        $this->setFirstRun( $row['first_run'] );    
-        $this->setColorScheme( $row['color_scheme'] );    
-        $this->setAdaptTime( $row['adapt_time'] );    
-        $this->setAccent( $row['accent'] );    
-        $this->setGId( $row['g_id'] );    
-        $this->setGTitle( $row['g_title'] );    
-        $this->setGUserTitle( $row['g_user_title'] );    
-        $this->setGModerator( $row['g_moderator'] );    
-        $this->setGModEditUsers( $row['g_mod_edit_users'] );    
-        $this->setGModRenameUsers( $row['g_mod_rename_users'] );    
-        $this->setGModChangePasswords( $row['g_mod_change_passwords'] );    
-        $this->setGModBanUsers( $row['g_mod_ban_users'] );    
-        $this->setGReadBoard( $row['g_read_board'] );    
-        $this->setGViewUsers( $row['g_view_users'] );    
-        $this->setGComment( $row['g_comment'] );    
-        $this->setGCreateThreads( $row['g_create_threads'] );    
-        $this->setGEditComments( $row['g_edit_comments'] );    
-        $this->setGDeleteComments( $row['g_delete_comments'] );    
-        $this->setGDeleteThreads( $row['g_delete_threads'] );    
-        $this->setGSetTitle( $row['g_set_title'] );    
-        $this->setGSearch( $row['g_search'] );    
-        $this->setGSearchUsers( $row['g_search_users'] );    
-        $this->setGSendEmail( $row['g_send_email'] );    
-        $this->setGCommentFlood( $row['g_comment_flood'] );    
-        $this->setGSearchFlood( $row['g_search_flood'] );    
-        $this->setGEmailFlood( $row['g_email_flood'] );    
-        $this->setGInbox( $row['g_inbox'] );    
-        $this->setGInboxLimit( $row['g_inbox_limit'] );    
-        $this->setGReportFlood( $row['g_report_flood'] );    
-        $this->setGSoftDeleteView( $row['g_soft_delete_view'] );    
-        $this->setGSoftDeleteComments( $row['g_soft_delete_comments'] );    
-        $this->setGSoftDeleteThreads( $row['g_soft_delete_threads'] );    
-        $this->setOLogged( $row['o_logged'] );    
-        $this->setOIdle( $row['o_idle'] );
+        $this->id = $row['id'];
+        $this->group_id = $row['group_id'];
+        $this->username = $row['username'];
+        $this->password = $row['password'];
+        $this->salt = $row['salt'];
+        $this->email = $row['email'];
+        $this->title = $row['title'];
+        $this->realname = $row['realname'];
+        $this->url = $row['url'];
+        $this->facebook = $row['facebook'];    
+        $this->msn = $row['msn'];    
+        $this->twitter = $row['twitter'];    
+        $this->google = $row['google'];    
+        $this->location = $row['location'];    
+        $this->signature = $row['signature'];    
+        $this->email_setting = $row['email_setting'];    
+        $this->notify_with_comment = $row['notify_with_comment'];    
+        $this->auto_notify = $row['auto_notify'];    
+        $this->show_img = $row['show_img'];    
+        $this->show_sig = $row['show_sig'];    
+        $this->php_timezone = $row['php_timezone'];    
+        $this->time_format = $row['time_format'];    
+        $this->date_format = $row['date_format'];    
+        $this->language = $row['language'];    
+        $this->num_comments = $row['num_comments'];    
+        $this->last_comment = $row['last_comment'];    
+        $this->last_search = $row['last_search'];
+        $this->last_email_sent = $row['last_email_sent'];    
+        $this->last_report_sent = $row['last_report_sent'];    
+        $this->registered = $row['registered'];    
+        $this->registration_ip = $row['registration_ip'];    
+        $this->last_visit = $row['last_visit'];    
+        $this->admin_note = $row['admin_note'];    
+        $this->activate_string = $row['activate_string'];    
+        $this->activate_key = $row['activate_key'];    
+        $this->use_inbox = $row['use_inbox'];    
+        $this->num_inbox = $row['num_inbox'];    
+        $this->first_run = $row['first_run'];    
+        $this->color_scheme = $row['color_scheme'];    
+        $this->adapt_time = $row['adapt_time'];    
+        $this->accent = $row['accent'];    
+        $this->g_id = $row['g_id'];    
+        $this->g_title = $row['g_title'];    
+        $this->g_user_title = $row['g_user_title'];    
+        $this->g_moderator = $row['g_moderator'];    
+        $this->g_mod_edit_users = $row['g_mod_edit_users'];    
+        $this->g_mod_rename_users = $row['g_mod_rename_users'];    
+        $this->g_mod_change_passwords = $row['g_mod_change_passwords'];    
+        $this->g_mod_ban_users = $row['g_mod_ban_users'];    
+        $this->g_read_board = $row['g_read_board'];    
+        $this->g_view_users = $row['g_view_users'];    
+        $this->g_comment = $row['g_comment'];    
+        $this->g_create_threads = $row['g_create_threads'];    
+        $this->g_edit_comments = $row['g_edit_comments'];    
+        $this->g_delete_comments = $row['g_delete_comments'];    
+        $this->g_delete_threads = $row['g_delete_threads'];    
+        $this->g_set_title = $row['g_set_title'];    
+        $this->g_search = $row['g_search'];    
+        $this->g_search_users = $row['g_search_users'];    
+        $this->g_send_email = $row['g_send_email'];    
+        $this->g_comment_flood = $row['g_comment_flood'];    
+        $this->g_search_flood = $row['g_search_flood'];    
+        $this->g_email_flood = $row['g_email_flood'];    
+        $this->g_inbox = $row['g_inbox'];    
+        $this->g_inbox_limit = $row['g_inbox_limit'];    
+        $this->g_report_flood = $row['g_report_flood'];    
+        $this->g_soft_delete_view = $row['g_soft_delete_view'];    
+        $this->g_soft_delete_comments = $row['g_soft_delete_comments'];    
+        $this->g_soft_delete_threads = $row['g_soft_delete_threads'];    
+        $this->o_logged = $row['o_logged'];    
+        $this->o_idle = $row['o_idle'];
     }
 
     // Setters
@@ -235,7 +235,7 @@ class User {
     }
 
     public function getGroup() {
-        return $this->group;
+        return $this->group_id;
     }
 
     public function getUsername() {
@@ -348,7 +348,7 @@ class User {
     }
 
     public function getMicrosoft() {
-        return $this->microsoft;
+        return $this->msn;
     }
 
     public function getTwitter() {
@@ -642,8 +642,8 @@ class User {
         return $this;
     }
 
-    public function setGroup( $group ) {
-        $this->group = $group;
+    public function setGroup( $group_id ) {
+        $this->group_id = $group_id;
         return $this;
     }
 
@@ -698,7 +698,7 @@ class User {
     public function setUrl( $url ) {
         $url = url_valid( strtolower( luna_trim( $url ) ) );
 
-        if ( $url ) {
+        if ( $url != '' ) {
             $this->url = $url['url'];
         } else {
             message( __( 'The URL you entered is invalid.', 'luna' ) );
