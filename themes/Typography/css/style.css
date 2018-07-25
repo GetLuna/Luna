@@ -654,25 +654,41 @@ h2 {
     margin-top: 0; }
 
 footer {
+  background: #333;
   color: #fff;
-  background-color: #333;
   padding: 1.5rem 2rem;
   border-bottom: 15px solid #292929; }
+  @media (max-width: 992px) {
+    footer {
+      padding: 1.5rem; } }
+  footer p {
+    margin: 0;
+    line-height: 1.8; }
   footer a {
-    color: inherit !important; }
-  footer .stats {
-    padding-top: .75rem;
-    padding-bottom: .75rem; }
-    footer .stats .text-center {
+    color: #fff; }
+    footer a:hover {
+      color: #f07da3;
+      text-decoration: none; }
+  footer h6 {
+    margin: 0 0 10px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase; }
+  footer .brand {
+    margin-top: 20px;
+    font-size: 1.5rem; }
+    footer .brand .slogan {
       text-transform: lowercase; }
-      footer .stats .text-center h4 {
-        font-weight: 600;
-        margin: 0;
-        text-transform: initial; }
-    footer .stats .dropdown-toggle::after {
-      display: none; }
-  footer .footer {
-    padding: .75rem; }
+    footer .brand .name {
+      text-transform: uppercase;
+      font-weight: 700; }
+  @media (max-width: 992px) {
+    footer .col-4 {
+      padding-left: 5px;
+      padding-right: 5px; }
+    footer .text-right {
+      text-align: center !important;
+      margin-top: 15px; } }
 
 .notification-row .col-10,
 .notification-row .col-2 {

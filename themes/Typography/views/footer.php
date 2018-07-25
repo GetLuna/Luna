@@ -42,61 +42,40 @@ $num_guests = num_guests_online();
 
 ?>
         </div>
-        <footer class="container">
-            <?php if ($luna_config['o_board_statistics'] == 1): ?>
-                <div class="stats container">
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php total_users(); ?></h4>
-                            <?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php total_threads() ?></h4>
-                            <?php echo _n( 'Thread', 'Threads', get_total_threads(), 'luna' ) ?>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php total_comments() ?></h4>
-                            <?php echo _n('Comment', 'Comments', get_total_comments(), 'luna') ?>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php newest_user() ?></h4>
-                            <?php _e('Newest user', 'luna') ?>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php echo forum_number_format($num_users) ?></h4>
-                            <?php if ($luna_config['o_users_online']) { ?>
-                            <div class="dropup">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <?php echo _n('User online', 'Users online', $num_users, 'luna') ?> <span class="fas fa-fw fa-angle-up"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <?php echo online_list() ?>
-                                </ul>
-                            </div>
-                            <?php } else
-                                echo _n('User online', 'Users online', $num_users, 'luna'); ?>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php echo forum_number_format($num_guests) ?></h4>
-                            <?php echo _n('Guest online', 'Guests online', $num_guests, 'luna') ?>
-                        </div>
+        <div class="container">
+            <footer>
+                <div class="row">
+                    <div class="col-lg-2 col-4">
+                        <h6><?php _e( 'Users', 'luna' ) ?></h6>
+                        <p><?php printf( _n( '%s user online', '%s users online', $num_users, 'luna' ), '<b>'.forum_number_format( $num_users ).'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s guest online', '%s guests online', $num_guests, 'luna' ), '<b>'.forum_number_format( $num_guests ).'</b>' ) ?></p>
+                        <p><?php printf( __( 'Newest user: %s', 'luna' ), '<b>'.newest_user().'</b>' ) ?></p>
+                    </div>
+                    <div class="col-lg-2 col-4">
+                        <h6><?php _e( 'Board', 'luna' ) ?></h6>
+                        <p><?php printf( _n( '%s user', '%s users', get_total_users(), 'luna' ), '<b>'.total_users().'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s thread', '%s threads', get_total_threads(), 'luna' ), '<b>'.total_threads().'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s comment', '%s comments', get_total_comments(), 'luna' ), '<b>'.total_comments().'</b>' ) ?></p>
+                    </div>
+                    <div class="col-lg-2 col-4">
+                    </div>
+                    <div class="col-lg-6 col-12 text-right">
+                        <p><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></p>
+                        <p>
+                            <?php
+                                if ($luna_config['o_show_copyright'] == '1') {
+                                    if ($luna_config['o_copyright_type'] == '0')
+                                        echo __('Copyright', 'luna').' &copy; '.date('Y');
+                                    if ($luna_config['o_copyright_type'] == '1')
+                                        echo $luna_config['o_custom_copyright'];
+                                }
+                            ?>
+                        </p>
+                        <p class="brand"><span class="slogan"><?php echo $luna_config['o_board_slogan'] ?></span> <span class="name"><?php echo $luna_config['o_board_title'] ?></span></p>
                     </div>
                 </div>
-            <?php endif; ?>
-            <div class="footer container">
-<?php
-	if ($luna_config['o_show_copyright'] == '1') {
-		if ($luna_config['o_copyright_type'] == '0')
-			echo __('Copyright', 'luna').' &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
-		if ($luna_config['o_copyright_type'] == '1')
-			echo $luna_config['o_custom_copyright'];
-	}
-?>
-                <?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fas fa-fw fa-chevron-up"></i></a><?php endif; ?>
-                <span class="float-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
-            </div>
-        </footer>
+            </footer>
+        </div>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 		<div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 			<div class="container">

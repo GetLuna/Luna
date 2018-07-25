@@ -1,33 +1,57 @@
 footer {
+    background: #333;
     color: #fff;
-    background-color: #333;
     padding: 1.5rem 2rem;
     border-bottom: 15px solid #292929;
 
+    @media (max-width: 992px) {
+        padding: 1.5rem;
+    }
+
+    p {
+        margin: 0;
+        line-height: 1.8;
+    }
+
     a {
-        color: inherit !important;
+        color: #fff;
+
+        &:hover {
+            color: lighten( $accent, 20% );
+            text-decoration: none;
+        }
     }
 
-    .stats {
-        padding-top: .75rem;
-        padding-bottom: .75rem;
+    h6 {
+        margin: 0 0 10px;
+        font-weight: 600;
+        color: #999;
+        text-transform: uppercase;
+    }
 
-        .text-center {
+    .brand {
+        margin-top: 20px;
+        font-size: 1.5rem;
+
+        .slogan {
             text-transform: lowercase;
-
-            h4 {
-                font-weight: 600;
-                margin: 0;
-                text-transform: initial;
-            }
         }
 
-        .dropdown-toggle::after {
-            display: none;
+        .name {
+            text-transform: uppercase;
+            font-weight: 700;
         }
     }
 
-    .footer {
-        padding: .75rem;
+    @media (max-width: 992px) {
+        .col-4 {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .text-right {
+            text-align: center !important;
+            margin-top: 15px;
+        }
     }
 }

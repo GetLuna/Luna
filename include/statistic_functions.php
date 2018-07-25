@@ -31,36 +31,36 @@ function get_total_users()
 {
     global $stats;
 
-    return sprintf(forum_number_format($stats['total_users']));
+    return forum_number_format($stats['total_users']);
 }
 
 function get_total_threads()
 {
     global $stats;
 
-    return sprintf(forum_number_format($stats['total_threads']));
+    return forum_number_format($stats['total_threads']);
 }
 
 function get_total_comments()
 {
     global $stats;
 
-    return sprintf(forum_number_format($stats['total_comments']));
+    return forum_number_format($stats['total_comments']);
 }
 
 function total_users()
 {
-    echo get_total_users();
+    return get_total_users();
 }
 
 function total_threads()
 {
-    echo get_total_threads();
+    return get_total_threads();
 }
 
 function total_comments()
 {
-    echo get_total_comments();
+    return get_total_comments();
 }
 
 function newest_user()
@@ -73,7 +73,7 @@ function newest_user()
         $stats['newest_user'] = luna_htmlspecialchars($stats['last_user']['username']);
     }
 
-    printf($stats['newest_user']);
+    return $stats['newest_user'];
 }
 
 function online_list()
@@ -98,6 +98,5 @@ function online_list()
         } else {
             echo '<li><a>'.__('No users online', 'luna').'</a></li>';
         }
-
     }
 }
