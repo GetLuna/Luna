@@ -340,35 +340,35 @@ class User {
     }
 
     public function getUrl() {
-        return $this->url;
+        return luna_htmlspecialchars( $this->url );
     }
 
     public function getFacebook() {
-        return $this->facebook;
+        return luna_htmlspecialchars( $this->facebook );
     }
 
     public function getMicrosoft() {
-        return $this->msn;
+        return luna_htmlspecialchars( $this->msn );
     }
 
     public function getTwitter() {
-        return $this->twitter;
+        return luna_htmlspecialchars( $this->twitter );
     }
 
     public function getGoogle() {
-        return $this->google;
+        return luna_htmlspecialchars( $this->google );
     }
 
     public function getLocation() {
-        return $this->location;
+        return luna_htmlspecialchars( $this->location );
     }
 
     public function getSignature( $raw = true ) {
         if ( $raw == true ) {
-            return $this->signature;
+            return luna_htmlspecialchars( $this->signature );
         } else {
             require_once LUNA_ROOT.'include/parser.php';
-            return parse_signature( $this->signature );
+            return luna_htmlspecialchars( parse_signature( $this->signature ) );
         }
     }
 
@@ -469,7 +469,7 @@ class User {
     }
 
     public function getAdminNote() {
-        return $this->admin_note;
+        return luna_htmlspecialchars( $this->admin_note );
     }
 
     public function getActivateString() {
