@@ -60,7 +60,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 if ($action == 'do_not_show') {
     confirm_referrer(array('index.php', ''));
 
-    $db->query('UPDATE '.$db->prefix.'users SET first_run = 1 WHERE id='.$luna_user['id']) or error('Unable to disable first run', __FILE__, __LINE__, $db->error());
+    $db->query('UPDATE '.$db->prefix.'users SET first_run = 0 WHERE id='.$luna_user['id']) or error('Unable to disable first run', __FILE__, __LINE__, $db->error());
 
     //redirect('index.php');
 }
