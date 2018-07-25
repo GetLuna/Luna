@@ -296,7 +296,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="website-addon"><i class="fas fa-fw fa-link"></i></span>
 										</div>
-										<input id="website" type="text" class="form-control" name="url" value="<?php echo luna_htmlspecialchars( $user->getUrl() ) ?>" maxlength="80" aria-describedby="website-addon">
+										<input id="website" type="text" class="form-control" name="url" value="<?php echo $user->getUrl() ?>" maxlength="80" aria-describedby="website-addon">
 									</div>
 								</div>
 							</div>
@@ -308,7 +308,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="microsoft-addon"><i class="fab fa-fw fa-microsoft"></i></span>
 										</div>
-										<input id="microsoft" type="text" class="form-control" name="msn" value="<?php echo luna_htmlspecialchars( $user->getMicrosoft() ) ?>" maxlength="50" aria-describedby="microsoft-addon">
+										<input id="microsoft" type="text" class="form-control" name="msn" value="<?php echo $user->getMicrosoft() ?>" maxlength="50" aria-describedby="microsoft-addon">
 									</div>
 								</div>
 							</div>
@@ -319,7 +319,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="facebook-addon"><i class="fab fa-fw fa-facebook"></i></span>
 										</div>
-										<input id="facebook" type="text" class="form-control" name="facebook" value="<?php echo luna_htmlspecialchars( $user->getFacebook() ) ?>" maxlength="50" aria-describedby="facebook-addon">
+										<input id="facebook" type="text" class="form-control" name="facebook" value="<?php echo $user->getFacebook() ?>" maxlength="50" aria-describedby="facebook-addon">
 									</div>
 								</div>
 							</div>
@@ -330,7 +330,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="twitter-addon"><i class="fab fa-fw fa-twitter"></i></span>
 										</div>
-										<input id="twitter" type="text" class="form-control" name="twitter" value="<?php echo luna_htmlspecialchars( $user->getTwitter() ) ?>" maxlength="50" aria-describedby="twitter-addon">
+										<input id="twitter" type="text" class="form-control" name="twitter" value="<?php echo $user->getTwitter() ?>" maxlength="50" aria-describedby="twitter-addon">
 									</div>
 								</div>
 							</div>
@@ -341,7 +341,7 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="google-addon"><i class="fab fa-fw fa-google-plus-g"></i></span>
 										</div>
-										<input id="google" type="text" class="form-control" name="google" value="<?php echo luna_htmlspecialchars( $user->getGoogle() ) ?>" maxlength="50" aria-describedby="google-addon">
+										<input id="google" type="text" class="form-control" name="google" value="<?php echo $user->getGoogle() ?>" maxlength="50" aria-describedby="google-addon">
 									</div>
 								</div>
 							</div>
@@ -515,7 +515,7 @@ else
                                     <div class="form-group row">
                                         <label class="col-md-3 col-form-label"><?php _e('Admin note', 'luna') ?></label>
                                         <div class="col-md-9">
-                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars( $user->getAdminNote() ) ?>" maxlength="30" />
+                                            <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo $user->getAdminNote() ?>" maxlength="30" />
                                         </div>
                                     </div>
                                 <?php endif; ?>

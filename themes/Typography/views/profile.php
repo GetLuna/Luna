@@ -45,10 +45,10 @@ if (!defined('FORUM'))
                     <?php echo $user->getRealname() ?>
                 </h3>
                 <?php } if ($user->getLocation() != '') { ?>
-                <h3 class="col-xl-3 col-lg-4 col-md-6 user-stat text-center">
-                    <small><?php _e('Location', 'luna') ?></small>
-                    <?php echo $user->getLocation() ?>
-                </h3>
+                    <h3 class="col-xl-3 col-lg-4 col-md-6 user-stat text-center">
+                        <small><?php _e('Location', 'luna') ?></small>
+                        <?php echo $user->getLocation() ?>
+                    </h3>
                 <?php } ?>
             </div>
             <h2><i class="fas fa-fw fa-chart-line"></i> <?php _e('Activity', 'luna') ?></h2>
@@ -59,7 +59,7 @@ if (!defined('FORUM'))
             <?php } ?>
             <h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Contact', 'luna') ?></h2>
             <?php if ($user->getEmailSetting() == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1') { ?>
-                <a class="btn btn-primary" href="misc.php?email='.$id.'">
+                <a class="btn btn-primary" href="misc.php?email=<?php echo $user->getId() ?>">
                     <i class="fas fa-fw fa-at"></i> <?php _e('Send email', 'luna') ?>
                 </a>
             <?php } if ( $user->hasContactInfo() ) { ?>

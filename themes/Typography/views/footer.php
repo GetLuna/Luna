@@ -9,7 +9,11 @@
 
 // Make sure no one attempts to run this script "directly"
 if (!defined('FORUM'))
-	exit;
+    exit;
+
+include_once LUNA_ROOT.'/include/class/footer.class.php';
+
+$footer = new Footer();
 
 ?>
         <div class="container">
@@ -37,9 +41,6 @@ elseif ($luna_config['o_feed_type'] == 2)
 if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (isset($footer_style)))
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>';
 
-$num_users = num_users_online();
-$num_guests = num_guests_online();
-
 ?>
         </div>
         <div class="container">
@@ -47,15 +48,15 @@ $num_guests = num_guests_online();
                 <div class="row">
                     <div class="col-lg-2 col-4">
                         <h6><?php _e( 'Users', 'luna' ) ?></h6>
-                        <p><?php printf( _n( '%s user online', '%s users online', $num_users, 'luna' ), '<b>'.forum_number_format( $num_users ).'</b>' ) ?></p>
-                        <p><?php printf( _n( '%s guest online', '%s guests online', $num_guests, 'luna' ), '<b>'.forum_number_format( $num_guests ).'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s user online', '%s users online', $footer->getUsersOnline(), 'luna' ), '<b>'.forum_number_format( $footer->getUsersOnline( false) ).'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s guest online', '%s guests online', $footer->getGuestsOnline(), 'luna' ), '<b>'.forum_number_format( $footer->getGuestsOnline( false ) ).'</b>' ) ?></p>
                         <p><?php printf( __( 'Newest user: %s', 'luna' ), '<b>'.newest_user().'</b>' ) ?></p>
                     </div>
                     <div class="col-lg-2 col-4">
                         <h6><?php _e( 'Board', 'luna' ) ?></h6>
-                        <p><?php printf( _n( '%s user', '%s users', get_total_users(), 'luna' ), '<b>'.total_users().'</b>' ) ?></p>
-                        <p><?php printf( _n( '%s thread', '%s threads', get_total_threads(), 'luna' ), '<b>'.total_threads().'</b>' ) ?></p>
-                        <p><?php printf( _n( '%s comment', '%s comments', get_total_comments(), 'luna' ), '<b>'.total_comments().'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s user', '%s users', $footer->getUsers(), 'luna' ), '<b>'.$footer->getUsers( false ).'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s thread', '%s threads', $footer->getThreads(), 'luna' ), '<b>'.$footer->getThreads( false ).'</b>' ) ?></p>
+                        <p><?php printf( _n( '%s comment', '%s comments', $footer->getComments(), 'luna' ), '<b>'.$footer->getComments( false ).'</b>' ) ?></p>
                     </div>
                     <div class="col-lg-2 col-4">
                     </div>
