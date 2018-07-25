@@ -121,7 +121,7 @@ if ($luna_user['first_run'] == '0') {
 			<?php } ?>
 			<hr />
 			<div class="list-group list-group-none">
-				<?php draw_mark_read('list-group-item', 'index'); ?>
+				<a class="list-group-item" href="<?php echo get_read_url('index') ?>"><i class="fas fa-fw fa-glasses"></i> <?php _e('Mark all as read', 'luna') ?></a>
 			</div>
 		</div>
 		<div class="col-sm-9 col-xs-12">
