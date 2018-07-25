@@ -39,6 +39,7 @@ require 'header.php';
                     <p><?php _e('Luna now uses modern emoji shortcodes for new installations and adds them to old installations', 'luna') ?></p>
                     <p><?php _e('Maintenance mode now throws a HTTP/503 code instead of HTTP/200', 'luna') ?></p>
                     <p><?php _e('Themes now have easier access to pagination, menu and notification data', 'luna') ?></p>
+                    <p><?php _e('Revamped profile, profile settings and footer API', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-server"></i> <?php _e('System', 'luna') ?></h4>
                     <p><?php _e('Bootstrap has been updated from version 4.1.1 to 4.1.2', 'luna') ?></p>
                     <p><?php _e('Font Awesome has been updated from version 5.1.0 to 5.1.1', 'luna') ?></p>
