@@ -60,8 +60,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
                             <?php echo _n('Comment', 'Comments', $footer->getComments(), 'luna') ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
-                            <h4><?php echo $footer->getUsersOnline( false ) ?></h4>
-                            <?php _e('Newest user', 'luna') ?>
+                            <?php if ($luna_user['g_view_users'] == '1') { ?>
+                                <h4><?php echo $footer->getLatestUser()['name'] ?></h4>
+                            <?php } else { ?>
+                                <h4><a href="<?php echo $online['url'] ?>"><?php echo $footer->getLatestUser()['name'] ?></a></h4>
+                            <?php } ?>
                         </div>
                         <div class="col-md-2 col-sm-4 col-xs-12 text-center">
                             <h4><?php echo $footer->getUsersOnline( false ) ?></h4>
@@ -75,9 +78,9 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
                                     <?php if ( $footer->getUsersOnline() > 0 ) { ?>
                                         <?php foreach ( $footer->getOnline() as $online ) { ?>
                                             <?php if ($luna_user['g_view_users'] == '1') { ?>
-                                                <a class="dropdown-item" href="<?php echo $online['url'] ?>"><?php echo luna_htmlspecialchars( $online['name'] ) ?></a>
+                                                <a class="dropdown-item" href="profile.php?id=<?php echo $online['id'] ?>"><?php echo luna_htmlspecialchars( $online['username'] ) ?></a>
                                             <?php } else { ?>
-                                                <a class="dropdown-item"><?php echo luna_htmlspecialchars( $online['name'] ) ?></a>
+                                                <a class="dropdown-item"><?php echo luna_htmlspecialchars( $online['username'] ) ?></a>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } else { ?>

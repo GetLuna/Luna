@@ -50,7 +50,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
                         <h6><?php _e( 'Users', 'luna' ) ?></h6>
                         <p><?php printf( _n( '%s user online', '%s users online', $footer->getUsersOnline(), 'luna' ), '<b>'.$footer->getUsersOnline( false ).'</b>' ) ?></p>
                         <p><?php printf( _n( '%s guest online', '%s guests online', $footer->getGuestsOnline(), 'luna' ), '<b>'.$footer->getGuestsOnline( false ).'</b>' ) ?></p>
-                        <p><?php printf( __( 'Newest user: %s', 'luna' ), '<b>'.newest_user().'</b>' ) ?></p>
+                        <p><?php printf( __( 'Newest user: %s', 'luna' ), '<b>'. ( ( $luna_user['g_view_users'] == '0' ) ? $footer->getLatestUser()['username'] : '<a href="profile.php?id='.$footer->getLatestUser()['id'].'">'.$footer->getLatestUser()['username'].'</a>' ).'</b>' ) ?></p>
                     </div>
                     <div class="col-lg-2 col-4">
                         <h6><?php _e( 'Board', 'luna' ) ?></h6>

@@ -62,9 +62,9 @@ require 'header.php';
                     <p><?php _e('<b>ALPHA</b> Fixes a number of issues with Fifteen and Sunrise', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Bootstrap Javascript is now loaded correctly locally', 'luna') ?></p>
                     <p><?php _e('<b>ALPHA</b> Luna now correctly redirects after changing the theme', 'luna') ?></p>
+                    <p><?php _e('<b>ALPHA</b> Fifteen\'s "online users" list now works properly', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen, Sunrise and Typography have multiple visual issues', 'luna') ?></p>
-                    <p><?php _e('Fifteen and Sunrise do not properly work due to mismatching APIs', 'luna') ?></p>
                     <p><?php _e('Luna will reset the theme to Typography', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
