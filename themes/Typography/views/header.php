@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
         <?php if ($luna_config['o_fontawesomepro'] == 0) { ?>
             <?php if ($luna_config['o_use_cdn']) { ?>
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
             <?php } else { ?>
                 <link rel="stylesheet" href="../vendor/css/fontawesome-all.min.css">
             <?php } ?>

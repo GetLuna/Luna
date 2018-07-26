@@ -141,7 +141,7 @@ require 'header.php';
 						</tr>
 						<tr>
 							<td><?php _e('Font Awesome version', 'luna')?></td>
-							<td>v5.1.1</td>
+							<td>v5.2.0</td>
 						</tr>
 						<tr>
 							<td><?php _e('jQuery version', 'luna')?></td>
