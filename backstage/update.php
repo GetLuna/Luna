@@ -137,7 +137,7 @@ require 'header.php';
 						</tr>
 						<tr>
 							<td><?php _e('Bootstrap version', 'luna')?></td>
-							<td>v4.1.2</td>
+							<td>v4.1.3</td>
 						</tr>
 						<tr>
 							<td><?php _e('Font Awesome version', 'luna')?></td>
