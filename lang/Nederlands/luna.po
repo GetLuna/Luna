@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luna 2.1\n"
-"POT-Creation-Date: 2018-07-19 23:40+0200\n"
-"PO-Revision-Date: 2018-07-19 23:48+0200\n"
+"POT-Creation-Date: 2018-07-26 14:54+0200\n"
+"PO-Revision-Date: 2018-07-26 14:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: Luna\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1\n"
 "X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,9 +22,9 @@ msgstr ""
 msgid "About Luna %s %s"
 msgstr "Over Luna %s %s"
 
-#: backstage/about.php:33 backstage/about.php:57 backstage/about.php:84
-#: backstage/about.php:106 backstage/about.php:122 backstage/about.php:142
-#: backstage/about.php:205 backstage/about.php:268 header.php:61 header.php:64
+#: backstage/about.php:33 backstage/about.php:72 backstage/about.php:99
+#: backstage/about.php:121 backstage/about.php:137 backstage/about.php:157
+#: backstage/about.php:223 backstage/about.php:286 header.php:64 header.php:67
 #: include/draw_functions.php:367 include/draw_functions.php:445
 #: themes/Fifteen/views/inbox.php:41 themes/Fifteen/views/notifications.php:29
 #: themes/Typography/views/inbox.php:37 themes/Typography/views/index.php:52
@@ -45,18 +45,26 @@ msgstr ""
 msgid "Emoji can now be edited and saved at once"
 msgstr "Emoji kan nu worden bewerkt en opgeslagen in één keer"
 
-#: backstage/about.php:37 backstage/about.php:61 backstage/about.php:90
-#: backstage/about.php:108 backstage/about.php:125 backstage/about.php:144
-#: backstage/about.php:156 backstage/about.php:167 backstage/about.php:239
-#: backstage/about.php:254 backstage/about.php:285
+#: backstage/about.php:37
+msgid ""
+"Luna now takes the number of accents in a new theme in consideration to "
+"reset user and config settings"
+msgstr ""
+"Luna neemt nu het aantal accenten in een nieuw thema in overweging om "
+"gebruikers instellingen en Luna instellingen te resetten"
+
+#: backstage/about.php:38 backstage/about.php:76 backstage/about.php:105
+#: backstage/about.php:123 backstage/about.php:140 backstage/about.php:159
+#: backstage/about.php:174 backstage/about.php:185 backstage/about.php:257
+#: backstage/about.php:272 backstage/about.php:303
 msgid "Improved"
 msgstr "Verbeterd"
 
-#: backstage/about.php:38
+#: backstage/about.php:39
 msgid "Emoji shortcodes are now case insensitive"
 msgstr "Emoji shortcodes zijn nu niet hoofdlettergevoelig"
 
-#: backstage/about.php:39
+#: backstage/about.php:40
 msgid ""
 "Luna now uses modern emoji shortcodes for new installations and adds them to "
 "old installations"
@@ -64,81 +72,157 @@ msgstr ""
 "Luna nu maakt gebruik van moderne emoji shortcodes voor nieuwe installaties "
 "en voegt deze toe aan de oude installaties"
 
-#: backstage/about.php:40 backstage/about.php:145
+#: backstage/about.php:41 backstage/about.php:160
 msgid "Maintenance mode now throws a HTTP/503 code instead of HTTP/200"
 msgstr "Onderhoudsmodus geeft nu een HTTP/503 code in plaats van HTTP/200"
 
-#: backstage/about.php:41 backstage/about.php:66 backstage/about.php:93
-#: backstage/about.php:114 backstage/about.php:129 backstage/about.php:172
-#: backstage/about.php:190 backstage/about.php:218 backstage/about.php:226
-#: backstage/about.php:243 backstage/about.php:256 backstage/about.php:296
+#: backstage/about.php:42
+msgid "Themes now have easier access to pagination, menu and notification data"
+msgstr ""
+"De Thema's hebben nu gemakkelijker toegang tot paginering, menu en "
+"notificaties"
+
+#: backstage/about.php:43
+msgid "Revamped profile, profile settings and footer API"
+msgstr "Vernieuwde profiel, profielinstellingen en footer API"
+
+#: backstage/about.php:44 backstage/about.php:81 backstage/about.php:108
+#: backstage/about.php:129 backstage/about.php:144 backstage/about.php:190
+#: backstage/about.php:208 backstage/about.php:236 backstage/about.php:244
+#: backstage/about.php:261 backstage/about.php:274 backstage/about.php:314
 #: backstage/settings.php:740
 msgid "System"
 msgstr "Systeem"
 
-#: backstage/about.php:42
+#: backstage/about.php:45
 msgid "Bootstrap has been updated from version 4.1.1 to 4.1.2"
 msgstr "Bootstrap is bijgewerkt van versie 4.1.1 naar 4.1.2"
 
-#: backstage/about.php:43
+#: backstage/about.php:46
 msgid "Font Awesome has been updated from version 5.1.0 to 5.1.1"
 msgstr "Font Awesome is bijgewerkt van versie 5.1.0 naar 5.1.1"
 
-#: backstage/about.php:44 backstage/about.php:70 backstage/about.php:96
-#: backstage/about.php:133 backstage/about.php:146 backstage/about.php:174
-#: backstage/about.php:302
+#: backstage/about.php:47
+msgid "Luna now requires PHP 5.4 and up"
+msgstr "Luna vereist nu PHP 5,4 en hoger"
+
+#: backstage/about.php:48 backstage/about.php:85 backstage/about.php:111
+#: backstage/about.php:148 backstage/about.php:161 backstage/about.php:192
+#: backstage/about.php:320
 msgid "Changed"
 msgstr "Veranderd"
 
-#: backstage/about.php:45
+#: backstage/about.php:49
 msgid "Typography is now the default theme for new installations"
 msgstr "Typografie is nu het standaardthema voor nieuwe installaties"
 
-#: backstage/about.php:46
+#: backstage/about.php:50
 msgid "More emoji have been remapped to better represent their text-version"
 msgstr ""
 "Meer emoji zijn opnieuw toegewezen om hun tekstversie beter overeen te laten "
 "komen"
 
-#: backstage/about.php:47 backstage/about.php:73 backstage/about.php:101
-#: backstage/about.php:116 backstage/about.php:151 backstage/about.php:158
-#: backstage/about.php:178 backstage/about.php:194 backstage/about.php:200
-#: backstage/about.php:207 backstage/about.php:220 backstage/about.php:228
-#: backstage/about.php:234 backstage/about.php:247 backstage/about.php:260
-#: backstage/about.php:312
+#: backstage/about.php:51
+msgid ""
+"Legacy code that functioned as fallback for old PHP versions has been removed"
+msgstr ""
+"Legacy-code die functioneerde als terugval voor oude PHP-versies is "
+"verwijderd"
+
+#: backstage/about.php:52
+msgid ""
+"Disabling images in signatures now uses the global image setting of the user "
+"rather than its own"
+msgstr ""
+"Het uitschakelen van afbeeldingen in handtekeningen maakt nu gebruik van de "
+"algemene afbeelding-instellingen van de gebruiker in plaats van zijn eigen"
+
+#: backstage/about.php:53 backstage/about.php:114 backstage/about.php:151
+#: backstage/about.php:263 backstage/about.php:276 backstage/about.php:324
+msgid "Removed"
+msgstr "Verwijderd"
+
+#: backstage/about.php:54
+msgid "Support for MySQL and MySQL InnoDB has been removed"
+msgstr "Ondersteuning voor MySQL en MySQL InnoDB is verwijderd"
+
+#: backstage/about.php:55
+msgid ""
+"Users can no longer set how many threads and comments they want to see per "
+"page"
+msgstr ""
+"Gebruikers kunnen niet meer instellen hoeveel discussies en opmerkingen ze "
+"willen zien per pagina"
+
+#: backstage/about.php:56
+msgid "It is no longer possible to disable graphic emoji"
+msgstr "Het is niet langer mogelijk om grafische emoticons uit te schakelen"
+
+#: backstage/about.php:57
+msgid "Users can no longer require avatars to be hidden"
+msgstr "Gebruikersafbeeldingen kunnen niet meer verborgen worden"
+
+#: backstage/about.php:58
+msgid "Themes can no longer support accent enforcement"
+msgstr "Thema's kunnen niet langer een optie gebruiken om accent te forceren"
+
+#: backstage/about.php:59 backstage/about.php:88 backstage/about.php:116
+#: backstage/about.php:131 backstage/about.php:163 backstage/about.php:169
+#: backstage/about.php:176 backstage/about.php:196 backstage/about.php:212
+#: backstage/about.php:218 backstage/about.php:225 backstage/about.php:238
+#: backstage/about.php:246 backstage/about.php:252 backstage/about.php:265
+#: backstage/about.php:278 backstage/about.php:330
 msgid "Fixed"
 msgstr "Herstelt"
 
-#: backstage/about.php:48
-msgid "Fixes a number of issues with Fifteen and Sunrise"
-msgstr "Herstelt een aantal problemen met Fifteen en Sunrise"
+#: backstage/about.php:60 backstage/about.php:164
+msgid "Luna no longer returns the password when a registration error occures"
+msgstr ""
+"Luna geeft niet langer het wachtwoord terug als er zich een registratie "
+"error voordoet"
 
-#: backstage/about.php:49
-msgid "Bootstrap Javascript is now loaded correctly locally"
-msgstr "Bootstrap Javascript is nu correct lokaal geladen"
+#: backstage/about.php:61 backstage/about.php:165
+msgid "When updating, fields are now correctly dropped from the database"
+msgstr "Tijdens updates worden velden nu correct verwijderd uit de database"
 
-#: backstage/about.php:50
+#: backstage/about.php:62
+msgid "<b>ALPHA</b> Fixes a number of issues with Fifteen and Sunrise"
+msgstr "<b>ALPHA</b> Herstelt een aantal problemen met Fifteen en Sunrise"
+
+#: backstage/about.php:63
+msgid "<b>ALPHA</b> Bootstrap Javascript is now loaded correctly locally"
+msgstr "<b>ALPHA</b> Bootstrap's JavaScript is nu correct geladen"
+
+#: backstage/about.php:64
+msgid "<b>ALPHA</b> Luna now correctly redirects after changing the theme"
+msgstr ""
+"<b>ALFA</b> Luna zal nu correct omleidingen na het veranderen van het thema"
+
+#: backstage/about.php:65
+msgid "<b>ALPHA</b> Fifteen's \"online users\" list now works properly"
+msgstr ""
+"<b>ALPHA</b> - Fifteen's \"online gebruikers\"-lijst werkt nu zoals verwacht"
+
+#: backstage/about.php:66
 msgid "Known issues"
 msgstr "Gekende problemen"
 
-#: backstage/about.php:51
-msgid "Fifteen and Sunrise have multiple visual issues"
-msgstr "Fifteen en Sunrise hebben verschillende visuele fouten in deze Preview"
+#: backstage/about.php:67
+msgid "Fifteen, Sunrise and Typography have multiple visual issues"
+msgstr ""
+"Fifteen, Sunrise en Typography hebben verschillende visuele fouten in deze "
+"Preview"
 
-#: backstage/about.php:52
-msgid "Fifteen and Sunrise do not properly work due to mismatching APIs"
-msgstr "Fifteen en Sunrise werken niet goed vanwege niet-overeenkomende API's"
-
-#: backstage/about.php:53
+#: backstage/about.php:68
 msgid "Luna will reset the theme to Typography"
 msgstr "Luna zal het thema opnieuw instellen op Typografie"
 
-#: backstage/about.php:58
+#: backstage/about.php:73
 msgid "Known issues are now listed in the Backstage under \"About\""
 msgstr ""
 "Gekende problemen worden nu ook aangeduid in de Backstage onder \"Over\""
 
-#: backstage/about.php:59
+#: backstage/about.php:74
 msgid ""
 "Syntax highlighting now supports JSON and TypeScript and extended support "
 "for PHP"
@@ -146,26 +230,26 @@ msgstr ""
 "Syntax markering ondersteund nu ook JSON en TypeScript en uitgebreidere "
 "ondersteuning voor PHP"
 
-#: backstage/about.php:60
+#: backstage/about.php:75
 msgid "Backstage now defines its accent colors in a JSON file"
 msgstr "Backstage definieert nu de accentkleuren in een JSON-bestand"
 
-#: backstage/about.php:62
+#: backstage/about.php:77
 msgid ""
 "Font Awesome 5 will now also be loaded from a CDN when CDN load is enabled"
 msgstr ""
 "Font Awesome 5 zal nu ook geladen worden uit een CDN wanneer CDN belasting "
 "is ingeschakeld"
 
-#: backstage/about.php:63
+#: backstage/about.php:78
 msgid "The Backstage and installer now use Bootstrap 4.1"
 msgstr "De Backstage en installatie gebruiken nu Bootstrap 4.1"
 
-#: backstage/about.php:64
+#: backstage/about.php:79
 msgid "Fifteen and Sunrise now use Bootstrap 4.1"
 msgstr "Fifteen en Sunrise gebruiken nu Bootstrap 4.1"
 
-#: backstage/about.php:65 backstage/about.php:157
+#: backstage/about.php:80 backstage/about.php:175
 msgid ""
 "Upgrading will update the cookie bar url if the old default value is still "
 "used"
@@ -173,41 +257,41 @@ msgstr ""
 "Bij het upgraden wordt de URL van de cookiebalk bijgewerkt als de oude "
 "standaardwaarde nog steeds wordt gebruikt"
 
-#: backstage/about.php:67
+#: backstage/about.php:82
 msgid "Bootstrap has been updated from version 3.3.7 to 4.1.1"
 msgstr "Bootstrap is bijgewerkt van versie 3.3.7 naar 4.1.1"
 
-#: backstage/about.php:68
+#: backstage/about.php:83
 msgid "Prism has been updated from version 14.0 to 15.0"
 msgstr "Prism is bijgewerkt van versie 14.0 naar versie 15.0"
 
-#: backstage/about.php:69
+#: backstage/about.php:84
 msgid "Font Awesome has been updated from version 5.0.13 to 5.1.0"
 msgstr "Font Awesome is bijgewerkt van versie 5.0.13 naar 5.1.0"
 
-#: backstage/about.php:71
+#: backstage/about.php:86
 msgid "Some emoji have been remapped to better represent their text-version"
 msgstr ""
 "Enkele emoji zijn opnieuw toegewezen om de tekstversie beter overeen te "
 "laten komen"
 
-#: backstage/about.php:72
+#: backstage/about.php:87
 msgid ""
 "When pruning threads, pruning pinned threads is no longer enabled by default"
 msgstr ""
 "Bij het opruimen van discussies is het verwijderen van gepinde discussies "
 "niet meer standaard actief"
 
-#: backstage/about.php:74 backstage/about.php:159
+#: backstage/about.php:89 backstage/about.php:177
 msgid "The default user group can now be changed again"
 msgstr "Het gast-account kan niet worden verbannen"
 
-#: backstage/about.php:75 backstage/about.php:160
+#: backstage/about.php:90 backstage/about.php:178
 msgid "Enabling debug mode now works correctly for PostgreSQL"
 msgstr ""
 "Het inschakelen van debug modus werkt nu correct voor PostgreSQL installaties"
 
-#: backstage/about.php:76 backstage/about.php:161
+#: backstage/about.php:91 backstage/about.php:179
 msgid ""
 "Updating to Luna 2.0 no longer causes 'o_custom_css' to start with \"NULL\" "
 "as value"
@@ -215,120 +299,115 @@ msgstr ""
 "Updaten naar Luna 2.0 zorgt er niet langer voor dat 'o_custom_css' begint "
 "met 'NULL' als waarde"
 
-#: backstage/about.php:77 backstage/about.php:162
+#: backstage/about.php:92 backstage/about.php:180
 msgid "Fixes a PHP error with receivers in Inbox not being countable"
 msgstr "Lost een PHP-fout op waarbij ontvangers in Inbox niet telbaar zijn"
 
-#: backstage/about.php:78 backstage/about.php:163
+#: backstage/about.php:93 backstage/about.php:181
 msgid "The paper plane icons in Inbox are now properly alligned"
 msgstr ""
 "De papieren vliegtuig pictogrammen in Inbox in worden nu goed uitgelijnd"
 
-#: backstage/about.php:79
+#: backstage/about.php:94
 msgid "<b>ALPHA</b> Bootstrap's JavaScript is now loaded correctly"
 msgstr "<b>ALPHA</b> Bootstrap's JavaScript is nu correct geladen"
 
-#: backstage/about.php:80
+#: backstage/about.php:95
 msgid "<b>ALPHA</b> Enabling CDN loading does no longer break the Backstage"
 msgstr ""
 "<b>ALPHA</b> Als CDN wordt gebruikt zal de Backstage niet langer breken"
 
-#: backstage/about.php:85
+#: backstage/about.php:100
 msgid "Custom emoji can now be added under Settings > Emoji"
 msgstr "Aangepaste emoji kan nu worden toegevoegd onder Instellingen > Emoji"
 
-#: backstage/about.php:86
+#: backstage/about.php:101
 msgid "Themes now have to be installed through Settings > Theme"
 msgstr "Thema's moeten worden geïnstalleerd via Instellingen > Thema"
 
-#: backstage/about.php:87
+#: backstage/about.php:102
 msgid "You can now remove a theme from the Backstage"
 msgstr "Je kan een thema nu verwijderen vanuit de Backstage"
 
-#: backstage/about.php:88
+#: backstage/about.php:103
 msgid "Themes can now declare which features they support"
 msgstr "Thema's kunnen nu aanduiden welke functies ze ondersteunen"
 
-#: backstage/about.php:89
+#: backstage/about.php:104
 msgid "Features that are not supported by the current theme show a warning"
 msgstr ""
 "Functies die niet ondersteund worden door het huidige thema tonen nu een "
 "waarschuwing"
 
-#: backstage/about.php:91
+#: backstage/about.php:106
 msgid "Themes now use theme.json to define their details"
 msgstr "Thema's gebruiken nu theme.json om informatie bij te houden"
 
-#: backstage/about.php:92
+#: backstage/about.php:107
 msgid "Improved consistency in the use of \"email\""
 msgstr "Verbeterde consistentie in het gebruik van \"email\""
 
-#: backstage/about.php:94
+#: backstage/about.php:109
 msgid "Backstage now uses the page name in the page title"
 msgstr "Backstage gebruikt nu de naam van de pagina in de paginatitel"
 
-#: backstage/about.php:95
+#: backstage/about.php:110
 msgid "The LESS Backstage styling has been moved to SCSS"
 msgstr "De LESS Backstage stijl is herschreven in SCSS"
 
-#: backstage/about.php:97
+#: backstage/about.php:112
 msgid "\"Theme\" has been renamed \"Appearance\""
 msgstr "\"Thema\" is hernoemt naar \"Weegave\""
 
-#: backstage/about.php:98
+#: backstage/about.php:113
 msgid "Theme selection has been moved from Appearance to Theme"
 msgstr "Thema selectie is verplaatst van Weergave naar Thema"
 
-#: backstage/about.php:99 backstage/about.php:136 backstage/about.php:245
-#: backstage/about.php:258 backstage/about.php:306
-msgid "Removed"
-msgstr "Verwijderd"
-
-#: backstage/about.php:100
+#: backstage/about.php:115
 msgid "You can no longer change the size of emoji"
 msgstr "De grootte van emoji kan niet langer meer worden gewijzigd"
 
-#: backstage/about.php:102
+#: backstage/about.php:117
 msgid "<b>ALPHA</b> Accents in Fifteen and Sunrise now work again"
 msgstr "<b>ALPHA</b> - Accenten in Fifteen en Sunrise werken opnieuw"
 
-#: backstage/about.php:107
+#: backstage/about.php:122
 msgid "You can now pick a Font Awesome style for forum icons"
 msgstr "Je ka nu kiezen een Font Awesome stijl kiezen voor forum icons"
 
-#: backstage/about.php:109
+#: backstage/about.php:124
 msgid "Spoilers now use the Bootstrap's collapse plugin"
 msgstr "Spoilers gebruik nu de native Bootstrap plugin"
 
-#: backstage/about.php:110
+#: backstage/about.php:125
 msgid "Improved database management"
 msgstr "Verbeterd database beheer"
 
-#: backstage/about.php:111
+#: backstage/about.php:126
 msgid "Further refinements to the new Backstage design"
 msgstr "Verdere verfijning van het nieuwe ontwerp van de Backstage"
 
-#: backstage/about.php:112
+#: backstage/about.php:127
 msgid "Night mode has better contrast and darker design"
 msgstr "Nachtmodus heeft beter contrast en donkerder design"
 
-#: backstage/about.php:113
+#: backstage/about.php:128
 msgid "The sidebar in threads now takes less vertical space on small screens"
 msgstr ""
 "De zijbalk van conversaties neemt nu minder verticale ruimte op kleine "
 "schermen"
 
-#: backstage/about.php:115
+#: backstage/about.php:130
 msgid "Fifteen and Sunrise are now written in SCSS"
 msgstr "Fifteen en Sunrise zijn nu geschreven in SCSS"
 
-#: backstage/about.php:117
+#: backstage/about.php:132
 msgid "<b>ALPHA</b> Backstage accent settings no longer trigger a warning"
 msgstr ""
 "<b>ALPHA</b> - Backstage accent instellingen tonen niet langer een "
 "waarschuwing"
 
-#: backstage/about.php:118
+#: backstage/about.php:133
 msgid ""
 "<b>ALPHA</b> $luna_config is now used instead of $config for some settings, "
 "as it should be"
@@ -336,61 +415,61 @@ msgstr ""
 "<b>ALPHA</b> - $luna_config wordt nu gebruikt in plaats van $config voor "
 "bepaalde instellingen, zoals het hoort"
 
-#: backstage/about.php:123
+#: backstage/about.php:138
 msgid "Luna will now get Bootstrap and jQuery from a CDN by default"
 msgstr "Luna haalt Bootstrap en jQuery nu standaard op vanaf een CDN"
 
-#: backstage/about.php:124
+#: backstage/about.php:139
 msgid "Font Awesome Pro 5 is now supported"
 msgstr "Font Awesome Pro 5 is nu ondersteund"
 
-#: backstage/about.php:126
+#: backstage/about.php:141
 msgid "Luna now uses your native system font instead of Segoe UI and Open Sans"
 msgstr ""
 "Luna gebruikt nu de standaard lettertypes van het OS in plaats van Segoe UI "
 "en Open Sans"
 
-#: backstage/about.php:127
+#: backstage/about.php:142
 msgid "Improved navbar for small devices"
 msgstr "Verbeterde navigatie op kleine toestellen"
 
-#: backstage/about.php:128
+#: backstage/about.php:143
 msgid "Tables will now work better on small devices"
 msgstr "Tabellen werken nu beter op kleine toestellen"
 
-#: backstage/about.php:130
+#: backstage/about.php:145
 msgid "Font Awesome has been updated to version 5.0.13"
 msgstr "Font Awesome is bijgewerkt naar versie 5.0.13"
 
-#: backstage/about.php:131
+#: backstage/about.php:146
 msgid "jQuery has been updated to version 3.3.1"
 msgstr "jQuery is bijgewerkt naar versie 3.3.1"
 
-#: backstage/about.php:132
+#: backstage/about.php:147
 msgid "Rewrites Backstage style in LESS"
 msgstr "Backstage stijl is nu geschreven in LESS"
 
-#: backstage/about.php:134
+#: backstage/about.php:149
 msgid "Improved Backstage design with faster navigation"
 msgstr "Verbeterde Backstage design en snellere navigatie"
 
-#: backstage/about.php:135
+#: backstage/about.php:150
 msgid "Improvements to the Luna coding conventions"
 msgstr "Verbeteringen aan de Luna coderingsconventies"
 
-#: backstage/about.php:137
+#: backstage/about.php:152
 msgid "It is no longer possible to enable smilies"
 msgstr "Het is niet langer mogelijk om smilies te gebruiken"
 
-#: backstage/about.php:138
+#: backstage/about.php:153
 msgid "Support for update rings has been removed"
 msgstr "Ondersteuning voor update kanalen is verwijderd"
 
-#: backstage/about.php:143
+#: backstage/about.php:158
 msgid "Support for more modern emoji shortcode like Luna 2.1"
 msgstr "Ondersteuning voor modernere emoji-shortcode zoals Luna 2.1"
 
-#: backstage/about.php:147
+#: backstage/about.php:162
 msgid ""
 "Emoji have been remapped to better represent their text-version and match "
 "Luna 2.1"
@@ -398,36 +477,36 @@ msgstr ""
 "Enkele emoji zijn opnieuw toegewezen om de tekstversie beter overeen te "
 "laten komen"
 
-#: backstage/about.php:152
+#: backstage/about.php:170
 msgid "Fixes the incorrect language file versions being included"
 msgstr "Corrigeert de onjuiste taal versies in de vorige update"
 
-#: backstage/about.php:168
+#: backstage/about.php:186
 msgid "Site descriptions can now be up to 300 characters long instead of 255"
 msgstr "Site beschrijvingen kunnen nu 300 tekens lang zijn in plaats van 255"
 
-#: backstage/about.php:169
+#: backstage/about.php:187
 msgid "Improved errors for search queries"
 msgstr "Verbeterde foutmeldingen bij zoek opdrachten"
 
-#: backstage/about.php:170
+#: backstage/about.php:188
 msgid "Adds a number of files to Git that GitHub likes you to have"
 msgstr "Voegt een aantal bestanden toe aan Git die GitHub leuk vindt"
 
-#: backstage/about.php:171
+#: backstage/about.php:189
 msgid "Generated downloads no longer contain files you don't need"
 msgstr ""
 "Gegenereerde downloads bevatten niet langer bestanden die u niet nodig hebt"
 
-#: backstage/about.php:173
+#: backstage/about.php:191
 msgid "Further improvements for PHP 7.2 support"
 msgstr "Verdere verbeteringen voor PHP 7.2 ondersteuning"
 
-#: backstage/about.php:175
+#: backstage/about.php:193
 msgid "Updates some string to reflect current situations"
 msgstr "Past enkele teksten aan aan huidige situatie"
 
-#: backstage/about.php:176
+#: backstage/about.php:194
 msgid ""
 "\"Check for updates\" has been updated to match the new site and repo "
 "structure"
@@ -435,176 +514,176 @@ msgstr ""
 "'Controleer updates' is bijgewerkt zodat deze overeenkomen met de nieuwe "
 "structuur van de site en repo"
 
-#: backstage/about.php:177
+#: backstage/about.php:195
 msgid "Updates references to GetLuna.org to match new site"
 msgstr "Updates verwijzingen naar GetLuna.org aan de nieuwe site"
 
-#: backstage/about.php:179
+#: backstage/about.php:197
 msgid "Underscores are now properly escaped in LIKE-queries"
 msgstr "Liggende streepjes zijn nu goed escaped in LIKE-queries"
 
-#: backstage/about.php:180
+#: backstage/about.php:198
 msgid ""
 "Fixes an issue where SMTP data could not be set due to a character limit"
 msgstr ""
 "Corrigeert een probleem waar SMTP gegevens niet kunnen worden ingevuld door "
 "een limiet van tekens"
 
-#: backstage/about.php:181
+#: backstage/about.php:199
 msgid "Calculations now work properly in debug mode regardless of localization"
 msgstr "Berekeningen functioneren in de debugmodus ongeacht lokalisatie"
 
-#: backstage/about.php:182
+#: backstage/about.php:200
 msgid "There is no longer a hardcoded \"said\" string"
 msgstr "De tekst \"said\" is niet langer hardcoded"
 
-#: backstage/about.php:183
+#: backstage/about.php:201
 msgid "The forum title will no longer appear to far to the left when active"
 msgstr "De titel van het active forum verschijnt niet meer te ver naar links"
 
-#: backstage/about.php:184
+#: backstage/about.php:202
 msgid "A space has been added to quote titles before \"wrote\""
 msgstr "Een spatie is toegevoegd aan titels van citaten voor \"schreef\""
 
-#: backstage/about.php:185
+#: backstage/about.php:203
 msgid "\"spoiler\" is now properly quoted in the parser"
 msgstr "\"spoiler\" wordt nu correct geciteerd in de parser"
 
-#: backstage/about.php:186
+#: backstage/about.php:204
 msgid "Night mode now correctly colors the border in the release notes"
 msgstr "De nachtmodus kleurt nu correct de rand in de release-opmerkingen"
 
-#: backstage/about.php:191
+#: backstage/about.php:209
 msgid "Font Awesome has been updated to version 4.7.0"
 msgstr "Font Awesome is bijgewerkt naar versie 4.7.0"
 
-#: backstage/about.php:192
+#: backstage/about.php:210
 msgid "Prism has been updated to version 14.0"
 msgstr "Prism is bijgewerkt naar versie 14.0"
 
-#: backstage/about.php:193
+#: backstage/about.php:211
 msgid "Add support for PHP 7.2"
 msgstr "Ondersteuning voor PHP 7.2 is toegevoegd"
 
-#: backstage/about.php:195
+#: backstage/about.php:213
 msgid "Fixes an issue where splitting a thread would reset solved to null"
 msgstr ""
 "Herstelt een probleem waarbij the splitsen van discussies reset opgelost "
 "naar null"
 
-#: backstage/about.php:196
+#: backstage/about.php:214
 msgid "Fixes an issue where Backstage would use Mainstage errors"
 msgstr ""
 "Herstelt een probleem waar Backstage gebruik maakt van Mainstage "
 "foutmeldingen"
 
-#: backstage/about.php:201
+#: backstage/about.php:219
 msgid "Fixes an issue where resetting the password would fail"
 msgstr "Herstelt een probleem waarbij het resetten van het wachtwoord faalt"
 
-#: backstage/about.php:206
+#: backstage/about.php:224
 msgid "Hidden threads now have a yellow indicator on the right hand side"
 msgstr ""
 "Verborgen conversaties worden nu in het geel aangeduid aan de rechter kant"
 
-#: backstage/about.php:208
+#: backstage/about.php:226
 msgid "The Mainstage won't show notifications twice anymore"
 msgstr "De Mainstage zal notificaties geen 2 keer meer tonen"
 
-#: backstage/about.php:209
+#: backstage/about.php:227
 msgid "Some BBCodes would break with certain uses of hard returns"
 msgstr ""
 "Sommige BBCode in combinatie met witregels zorgt nu niet meer voor problemen"
 
-#: backstage/about.php:210
+#: backstage/about.php:228
 msgid "Fixes content of spoiler-tags being unreadable in night mode"
 msgstr "De spoiler-tag is nu leesbaar in nacht modus"
 
-#: backstage/about.php:211
+#: backstage/about.php:229
 msgid "Editing a user will no longer change the accent color of that user"
 msgstr "Het aanpassen van een profiel zal nu niet meer de accentkleur wijzigen"
 
-#: backstage/about.php:212
+#: backstage/about.php:230
 msgid "Fixes sorting of the userlist on the second page"
 msgstr "Het volgorde van de gebruikerslijst is nu correct op de 2de pagina"
 
-#: backstage/about.php:213
+#: backstage/about.php:231
 msgid "Fixes moderator forums being unavailable in the profile admin settings"
 msgstr ""
 "Herstelt een fout waarbij moderator forums niet zichtbaar zijn in het "
 "profiel van gebruikers"
 
-#: backstage/about.php:214
+#: backstage/about.php:232
 msgid "Fixes an undisclosed security issue"
 msgstr "Herstelt een niet nader genoemd beveiligingsprobleem"
 
-#: backstage/about.php:219
+#: backstage/about.php:237
 msgid "Simple searches now list results descending"
 msgstr "Simpele zoekopdrachten tonen nu het resultaat aflopend"
 
-#: backstage/about.php:221
+#: backstage/about.php:239
 msgid "Fixes notification links being broken"
 msgstr "Herstelt links van notificaties die niet werken"
 
-#: backstage/about.php:222
+#: backstage/about.php:240
 msgid "Fixing missing ids for threads in the bell icon in search results"
 msgstr "Herstelt missende IDs van conversaties in de zoekresultaten"
 
-#: backstage/about.php:227
+#: backstage/about.php:245
 msgid "Bootstrap 3.3.6 has been updated to version 3.3.7"
 msgstr "Bootstrap 3.3.6 is bijgewerkt naar versie 3.3.7"
 
-#: backstage/about.php:229
+#: backstage/about.php:247
 msgid "Fixes an SQL injection with notifications"
 msgstr "Herstelt een SQL injectie met notificaties"
 
-#: backstage/about.php:230
+#: backstage/about.php:248
 msgid "Fixes a memory leak in PHP 5.6 on XAMPP"
 msgstr "Herstelt een memory leak in PHP 5.6 op XAMPP"
 
-#: backstage/about.php:235
+#: backstage/about.php:253
 msgid "Password reset would fail to reset the password in some situations"
 msgstr ""
 "Wachtwoord reset faalde in sommige omstandigheden met het resetten van het "
 "wachtwoord"
 
-#: backstage/about.php:240
+#: backstage/about.php:258
 msgid "Info messages no longer feel like an error if they're not"
 msgstr "Info berichten lijken niet meer op foutmeldingen als ze dat niet zijn"
 
-#: backstage/about.php:241
+#: backstage/about.php:259
 msgid "Custom CSS is now loaded before emoji CSS to allow custom web fonts"
 msgstr ""
 "Aangepaste CSS wordt nu ingeladen voor de emoji CSS voor aangepaste "
 "weblettertypes mogelijk te maken"
 
-#: backstage/about.php:242
+#: backstage/about.php:260
 msgid "Improved error design in Inbox"
 msgstr "Verbeterde foutmeldingen in Inbox"
 
-#: backstage/about.php:244
+#: backstage/about.php:262
 msgid "jQuery has been updated to version 2.2.4"
 msgstr "jQuery is bijgewerkt naar versie 2.2.4"
 
-#: backstage/about.php:246
+#: backstage/about.php:264
 msgid "The quick reply box in Inbox has been replaced with a Reply-button"
 msgstr "Je kan niet meer reageren op een Inbox conversatie in de conversatie"
 
-#: backstage/about.php:248
+#: backstage/about.php:266
 msgid "An issue with signing in has been resolved"
 msgstr "Een probleem met inloggen is opgelost"
 
-#: backstage/about.php:249
+#: backstage/about.php:267
 msgid "Fixes the password reset link which was broken in certain situations"
 msgstr ""
 "Herstelt een fout in de wachtwoord-reset link welke niet werkte in sommige "
 "situaties"
 
-#: backstage/about.php:250
+#: backstage/about.php:268
 msgid "Fixes wrong avatars in Inbox conversations"
 msgstr "Herstelt foute avatars in Inbox conversaties"
 
-#: backstage/about.php:255
+#: backstage/about.php:273
 msgid ""
 "When no threads or forums exist, the messages are shown in a more polished "
 "style"
@@ -612,209 +691,209 @@ msgstr ""
 "Als geen forum of conversatie bestaat worden deze meldingen nu beter "
 "weergegeven"
 
-#: backstage/about.php:257
+#: backstage/about.php:275
 msgid "Font Awesome has been updated to version 4.6.3"
 msgstr "Font Awesome is bijgewerkt naar versie 4.6.3"
 
-#: backstage/about.php:259
+#: backstage/about.php:277
 msgid "Some of the left over Luna Preview elements hav been removed"
 msgstr "De overblijfselen van de Luna Preview zijn verwijderd"
 
-#: backstage/about.php:261
+#: backstage/about.php:279
 msgid "Fixes an issue where an URL in a mail would be mising"
 msgstr "Herstelt een probleem met een URL die niet werd getoond in een mail"
 
-#: backstage/about.php:262
+#: backstage/about.php:280
 msgid "Fixes an issue where removing a forum would fail"
 msgstr ""
 "Herstelt een probleem waardoor het verwijderen van een forum niet zou werken"
 
-#: backstage/about.php:263
+#: backstage/about.php:281
 msgid "Fixes a number of issues with plugins"
 msgstr "Herstelt enkele problemen met plugins"
 
-#: backstage/about.php:264
+#: backstage/about.php:282
 msgid "Fixes a nesting bug in the board page"
 msgstr "Herstelt een probleem in de markup van de forum pagina"
 
-#: backstage/about.php:269
+#: backstage/about.php:287
 msgid "Fifteen has received a fully reimagned design based on Airalin"
 msgstr "Fifteen heeft een volledig nieuw ontwerp gebaseerd op Airalin"
 
-#: backstage/about.php:270
+#: backstage/about.php:288
 msgid "Sunrise has also been reimagned based on the new Fifteen look"
 msgstr "Sunrise heeft ook een nieuwe uiterlijk gebaseerd op Fifteen"
 
-#: backstage/about.php:271
+#: backstage/about.php:289
 msgid "You can now add custom CSS to the theme you're using"
 msgstr "Je kan nu je eigen CSS toevoegen aan een thema"
 
-#: backstage/about.php:272
+#: backstage/about.php:290
 msgid "Luna's default placeholder avatar can now be replaced"
 msgstr "De standaard avatar kan nu worden aangepast"
 
-#: backstage/about.php:273
+#: backstage/about.php:291
 msgid "Notifications now get marked as read when clicked"
 msgstr "Notificaties worden nu gemarkeerd als gelezen als er op geklikt wordt"
 
-#: backstage/about.php:274
+#: backstage/about.php:292
 msgid "New notification tools on the Notification page in the profile"
 msgstr ""
 "Niuewe notificatie hulpmiddelen op de Notificaties-pagina in het profiel"
 
-#: backstage/about.php:275
+#: backstage/about.php:293
 msgid "Comments can now have admin notes that are displayed in threads"
 msgstr "Reacties kunnen nu nota's hebben die zichtbaar zijn in conversaties"
 
-#: backstage/about.php:276
+#: backstage/about.php:294
 msgid ""
 "You can now upload a header background to use in your theme and the Backstage"
 msgstr "Je kan nu een header uploaden voor in thema's en de Backstage"
 
-#: backstage/about.php:277
+#: backstage/about.php:295
 msgid "You can now manage your boards favicon in Settings"
 msgstr "Je kan nu het favicon van het forum beheren in Instellingen"
 
-#: backstage/about.php:278
+#: backstage/about.php:296
 msgid "You can now respond on Inbox messages from the message view"
 msgstr "Gebruikers kunnen nu direct reageren op Inbox berichten"
 
-#: backstage/about.php:279
+#: backstage/about.php:297
 msgid "Reports now trigger a notifications for admins and moderators"
 msgstr "Rapporten sturen nu notificaties voor admins en moderators"
 
-#: backstage/about.php:280
+#: backstage/about.php:298
 msgid "New threads in a subscribed board now trigger notifications"
 msgstr ""
 "Nieuwe conversaties in forums waarop men geabonneerd is sturen nu "
 "notificaties"
 
-#: backstage/about.php:281
+#: backstage/about.php:299
 msgid ""
 "Fifteen, Sunrise and Backstage have new Pink, Dark Red and Beige accents"
 msgstr ""
 "Fifteen, Sunrise en Backstage hebben een Roos, Donker Rood en Beige accent"
 
-#: backstage/about.php:282
+#: backstage/about.php:300
 msgid "The parser now supports the spoiler-tag optionally"
 msgstr "De parser biedt optionele ondersteunding voor de spoiler-tag"
 
-#: backstage/about.php:283
+#: backstage/about.php:301
 msgid "Luna now has a Dutch translation included by default"
 msgstr "Luna heeft nu een Nederlandse vertaling standaard meegeleverd"
 
-#: backstage/about.php:284
+#: backstage/about.php:302
 msgid "Maintenance mode now shows a warning in the Backstage header"
 msgstr "Onderhoudsmodus toont nu een waarschuwing in de Backstage"
 
-#: backstage/about.php:286
+#: backstage/about.php:304
 msgid ""
 "You can now see what's a subforum and edit more settings in board management"
 msgstr ""
 "Je kan nu zien wat een sub forum is en meer instellingen wijzigen in forum "
 "beheer"
 
-#: backstage/about.php:287
+#: backstage/about.php:305
 msgid "Users can now disable or enable First Run from their profile"
 msgstr "Gebruikers kunnen nu Eerste Start beheren vanuit hun profiel"
 
-#: backstage/about.php:288
+#: backstage/about.php:306
 msgid ""
 "The editor will now put items under a button if the screen becomes to small"
 msgstr ""
 "De editor verbergt knoppen voortaan in een menu als het scherm te smal wordt"
 
-#: backstage/about.php:289
+#: backstage/about.php:307
 msgid "When you have a notification, the icon will animate"
 msgstr "Een nieuwe notificatie zal het icoon laten flikkeren"
 
-#: backstage/about.php:290
+#: backstage/about.php:308
 msgid "Advanced search has an improved UI"
 msgstr "Geavanceerd zoeken heeft een verbeterde UI"
 
-#: backstage/about.php:291
+#: backstage/about.php:309
 msgid "About can now be translated to other languages"
 msgstr "Over kan nu vertaald worden"
 
-#: backstage/about.php:292
+#: backstage/about.php:310
 msgid "You can now directly manage a reported comment from the Backstage"
 msgstr "Je kan gerapporteerde reacties nu direct beheren vanuit de Backstage"
 
-#: backstage/about.php:293
+#: backstage/about.php:311
 msgid "Improved Backstage UI and night mode"
 msgstr "De Backstage UI en nacht modus zijn verbeterd"
 
-#: backstage/about.php:294
+#: backstage/about.php:312
 msgid "Multiple improvements on accessibility"
 msgstr "Verschillende verbeteringen voor toegankelijkheid"
 
-#: backstage/about.php:295
+#: backstage/about.php:313
 msgid ""
 "Luna now provides a description meta tag to prevent weird search results"
 msgstr "Luna geeft nu een beschrijving meta-tag mee voor betere zoekresultaten"
 
-#: backstage/about.php:297
+#: backstage/about.php:315
 msgid "Luna now uses salts and SHA-512 to save passwords"
 msgstr "Luna gebruikt voortaan salts en SHA-512 om wachtwoorden op te slaan"
 
-#: backstage/about.php:298
+#: backstage/about.php:316
 msgid "Luna now includes full \"Right to Left\"-support"
 msgstr "Luna bied nu volledige \"Rechts naar Links\"-ondersteuning"
 
-#: backstage/about.php:299
+#: backstage/about.php:317
 msgid "Components now live in their own folder in the Luna root"
 msgstr "Componenten zitten nu in hun eigen map in de hoofdmap van Luna"
 
-#: backstage/about.php:300
+#: backstage/about.php:318
 msgid "Debug mode can now be enabled with one line in the config file"
 msgstr ""
 "Debug mode can nu worden geactiveerd met een lijn in het config bestand"
 
-#: backstage/about.php:301
+#: backstage/about.php:319
 msgid ""
 "Bootstrap, Font Awesome and jQuery have been updated to the latest version"
 msgstr "Bootstrap, Font Awesome en jQuery zijn voorzien van de laatste versie"
 
-#: backstage/about.php:303
+#: backstage/about.php:321
 msgid "Revamped search forms for users and bans, including responsive design"
 msgstr ""
 "Nieuwe zoekformulieren voor gebruikers en bans, inclusief responsief design"
 
-#: backstage/about.php:304
+#: backstage/about.php:322
 msgid "The Backstage has a whole new structure"
 msgstr "De Backstage heeft een volledig nieuwe indeling"
 
-#: backstage/about.php:305
+#: backstage/about.php:323
 msgid "Luna's file structure has been updated"
 msgstr "Luna's bestandsstructuur is aangepast"
 
-#: backstage/about.php:307
+#: backstage/about.php:325
 msgid "The editor no longer has an emoticon menu"
 msgstr "De editor heeft geen emoticonmenu meer"
 
-#: backstage/about.php:308
+#: backstage/about.php:326
 msgid "The code base no longer supports PHP 5.2"
 msgstr "Alle ondersteuning voor PHP 5.2 en lager is verwijderd"
 
-#: backstage/about.php:309
+#: backstage/about.php:327
 msgid "Notifications can no longer be marked as read/trashed from the fly-out"
 msgstr ""
 "Notificaties kunnen niet worden gemarkeerd als gelezen/verwijderd vanuit de "
 "fly-out"
 
-#: backstage/about.php:310
+#: backstage/about.php:328
 msgid "You can no longer manage the database from the Backstage"
 msgstr "Database beheer kan niet meer worden uitgevoerd vanuit de Backstage"
 
-#: backstage/about.php:311
+#: backstage/about.php:329
 msgid "Tools to add new users have been removed"
 msgstr "Hulpmiddelen om gebruikers toe te voegen zijn verwijderd"
 
-#: backstage/about.php:313
+#: backstage/about.php:331
 msgid "Fixes 63 bugs"
 msgstr "Herstelt 63 bugs"
 
-#: backstage/about.php:317
+#: backstage/about.php:335
 #, php-format
 msgid ""
 "Luna is developed by the %s. Copyright %s. Released under the GPLv2 license."
@@ -822,27 +901,27 @@ msgstr ""
 "Luna is ontwikkeld door de %s. Copyright %s. Vrijgegeven onder de GPLv2 "
 "licentie."
 
-#: backstage/about.php:323
+#: backstage/about.php:341
 msgid "users"
 msgstr "gebruikers"
 
-#: backstage/about.php:324
+#: backstage/about.php:342
 msgid "threads"
 msgstr "conversaties"
 
-#: backstage/about.php:325 themes/Fifteen/objects/comment.php:7
+#: backstage/about.php:343 themes/Fifteen/objects/comment.php:7
 #: themes/Typography/objects/comment.php:7
 msgid "comments"
 msgstr "reacties"
 
-#: backstage/about.php:326
+#: backstage/about.php:344
 msgid "views"
 msgstr "weergaven"
 
 #: backstage/appearance.php:21 backstage/appearance.php:30
 #: backstage/features.php:22 backstage/features.php:30
 #: backstage/settings.php:22 backstage/settings.php:30 backstage/theme.php:26
-#: backstage/theme.php:44 backstage/theme.php:70 backstage/theme.php:96
+#: backstage/theme.php:46 backstage/theme.php:72 backstage/theme.php:98
 msgid ""
 "Bad HTTP_REFERER. If you have moved these forums from one location to "
 "another or switched domains, you need to update the Base URL manually in the "
@@ -856,7 +935,7 @@ msgstr ""
 "cache-map te verwijderen."
 
 #: backstage/appearance.php:87 backstage/features.php:97
-#: backstage/settings.php:189 settings.php:477
+#: backstage/settings.php:189 settings.php:476
 msgid ""
 "The selected file was too large to upload. The server didn't allow the "
 "upload."
@@ -865,20 +944,20 @@ msgstr ""
 "upload niet afgehandelt."
 
 #: backstage/appearance.php:91 backstage/features.php:101
-#: backstage/settings.php:193 settings.php:481
+#: backstage/settings.php:193 settings.php:480
 msgid "The selected file was only partially uploaded. Please try again."
 msgstr ""
 "Het geselecteerde bestand was slechts deels geüpload. Probeer het opnieuw."
 
 #: backstage/appearance.php:95 backstage/features.php:105
-#: backstage/settings.php:197 settings.php:489
+#: backstage/settings.php:197 settings.php:488
 msgid "PHP was unable to save the uploaded file to a temporary location."
 msgstr ""
 "PHP was niet in staat om het bestand in een tijdelijke locatie op te slaan."
 
 #: backstage/appearance.php:101 backstage/features.php:111
-#: backstage/settings.php:203 settings.php:465 settings.php:485
-#: settings.php:495
+#: backstage/settings.php:203 settings.php:464 settings.php:484
+#: settings.php:494
 msgid "You did not select a file for upload."
 msgstr "Je hebt geen bestand geselecteerd om te uploaden."
 
@@ -891,7 +970,7 @@ msgstr ""
 "Toegestane formaten zijn jpeg en png."
 
 #: backstage/appearance.php:117 backstage/features.php:127
-#: backstage/settings.php:219 settings.php:512
+#: backstage/settings.php:219 settings.php:511
 msgid ""
 "The server was unable to save the uploaded file. Please contact the forum "
 "administrator at"
@@ -900,14 +979,14 @@ msgstr ""
 "op met de administrator op"
 
 #: backstage/appearance.php:141 backstage/features.php:139
-#: backstage/settings.php:231 settings.php:540
+#: backstage/settings.php:231 settings.php:539
 msgid "An unknown error occurred. Please try again."
 msgstr "Een onbekende fout is opgetreden. Probeer het opnieuw."
 
 #: backstage/appearance.php:164 backstage/board.php:592
 #: backstage/features.php:162 backstage/index.php:87
 #: backstage/maintenance.php:182 backstage/settings.php:256
-#: backstage/theme.php:122 backstage/users.php:773
+#: backstage/theme.php:124 backstage/users.php:773
 msgid "Your settings have been saved."
 msgstr "De wijzigingen zijn opgeslagen."
 
@@ -931,11 +1010,11 @@ msgstr "Algemeen"
 #: backstage/settings.php:662 backstage/settings.php:689
 #: backstage/settings.php:742 backstage/users.php:304
 #: themes/Fifteen/views/me-modals.php:17 themes/Fifteen/views/me-modals.php:43
-#: themes/Fifteen/views/settings.php:38 themes/Fifteen/views/settings.php:510
+#: themes/Fifteen/views/settings.php:38 themes/Fifteen/views/settings.php:465
 #: themes/Typography/views/me-modals.php:17
 #: themes/Typography/views/me-modals.php:43
 #: themes/Typography/views/settings.php:31
-#: themes/Typography/views/settings.php:502
+#: themes/Typography/views/settings.php:459
 msgid "Save"
 msgstr "Opslaan"
 
@@ -951,8 +1030,8 @@ msgstr "Dit thema heeft geen ondersteuning voor accenten"
 msgid "Allow users to set their own accent color."
 msgstr "Laat gebruikers hun eigen accentkleur kiezen."
 
-#: backstage/appearance.php:196 themes/Fifteen/views/settings.php:171
-#: themes/Typography/views/settings.php:163
+#: backstage/appearance.php:196 themes/Fifteen/views/settings.php:163
+#: themes/Typography/views/settings.php:155
 msgid "Night mode"
 msgstr "Nacht modus"
 
@@ -1045,14 +1124,12 @@ msgstr "Dit thema heeft geen ondersteuning voor de moderatie lijst"
 
 #: backstage/appearance.php:285
 msgid ""
-"Show the \"Moderated by\" list when moderators are set on a per-forum base "
-"(requires theme support)."
+"Show the \"Moderated by\" list when moderators are set on a per-forum base."
 msgstr ""
 "Toon de \"Gemodereerd door\" lijst als moderatoren zijn ingesteld op basis "
-"van individuele forums (vereist ondersteuning door het thema)."
+"van individuele forums."
 
-#: backstage/appearance.php:292 themes/Fifteen/views/settings.php:419
-#: themes/Typography/views/settings.php:411
+#: backstage/appearance.php:292
 msgid "Threads per page"
 msgstr "Conversaties per pagina"
 
@@ -1060,8 +1137,7 @@ msgstr "Conversaties per pagina"
 msgid "Default amount of threads per page"
 msgstr "Standaard aantal conversaties per pagina"
 
-#: backstage/appearance.php:298 themes/Fifteen/views/settings.php:425
-#: themes/Typography/views/settings.php:417
+#: backstage/appearance.php:298
 msgid "Comments per page"
 msgstr "Reacties per pagina"
 
@@ -1074,9 +1150,12 @@ msgid "Header"
 msgstr "Hoofding"
 
 #: backstage/appearance.php:314 backstage/header.php:69 backstage/header.php:85
-#: backstage/prune.php:233 header.php:137 header.php:140 header.php:156
-#: include/me_functions.php:24 include/me_functions.php:36
+#: backstage/prune.php:233 include/me_functions.php:24
+#: include/me_functions.php:36 themes/Fifteen/views/header.php:70
+#: themes/Fifteen/views/header.php:73 themes/Fifteen/views/header.php:90
 #: themes/Fifteen/views/notifications.php:26
+#: themes/Typography/views/header.php:73 themes/Typography/views/header.php:76
+#: themes/Typography/views/header.php:93
 #: themes/Typography/views/notifications.php:19
 msgid "Notifications"
 msgstr "Notificaties"
@@ -1147,8 +1226,8 @@ msgstr "Dit thema heeft geen ondersteuning voor terug omhoog"
 msgid "Show a \"Back to top\" link in the footer."
 msgstr "Toon een \"Terug omhoog\" link in de voet."
 
-#: backstage/appearance.php:370 themes/Fifteen/views/footer.php:91
-#: themes/Typography/views/footer.php:91
+#: backstage/appearance.php:370 themes/Fifteen/views/footer.php:106
+#: themes/Typography/views/footer.php:69
 msgid "Copyright"
 msgstr "Copyright"
 
@@ -1202,23 +1281,23 @@ msgstr "Jou copyright"
 #: backstage/settings.php:145 backstage/settings.php:149 backstage/users.php:25
 #: comment.php:20 comment.php:31 comment.php:491 comment.php:496
 #: comment.php:563 delete.php:19 delete.php:27 edit.php:19 edit.php:25
-#: extern.php:293 extern.php:535 inbox.php:102 misc.php:46 misc.php:61
-#: misc.php:66 misc.php:163 misc.php:186 misc.php:194 misc.php:255 misc.php:283
+#: extern.php:293 extern.php:535 inbox.php:102 include/class/user.class.php:153
+#: include/class/user.class.php:808 misc.php:46 misc.php:61 misc.php:66
+#: misc.php:163 misc.php:186 misc.php:194 misc.php:255 misc.php:283
 #: misc.php:290 misc.php:324 misc.php:331 misc.php:366 misc.php:377
 #: misc.php:398 misc.php:420 misc.php:453 new_inbox.php:52 new_inbox.php:59
 #: new_inbox.php:75 new_inbox.php:83 new_inbox.php:99 new_inbox.php:113
-#: new_inbox.php:119 new_inbox.php:139 new_inbox.php:358 new_inbox.php:412
-#: new_inbox.php:426 new_inbox.php:449 notifications.php:25
+#: new_inbox.php:119 new_inbox.php:139 new_inbox.php:353 new_inbox.php:402
+#: new_inbox.php:416 new_inbox.php:439 notifications.php:25
 #: notifications.php:33 notifications.php:40 notifications.php:53
 #: notifications.php:60 notifications.php:72 notifications.php:79
-#: notifications.php:145 profile.php:27 profile.php:32 search.php:44
+#: notifications.php:145 profile.php:30 profile.php:35 search.php:44
 #: search.php:71 search.php:79 search.php:324 search.php:350 search.php:462
-#: settings.php:23 settings.php:66 settings.php:314 settings.php:560
-#: settings.php:595 settings.php:741 settings.php:749 settings.php:764
-#: thread.php:22 thread.php:29 thread.php:80 viewforum.php:20 viewforum.php:63
+#: settings.php:67 settings.php:315 settings.php:558 thread.php:22
+#: thread.php:29 thread.php:80 viewforum.php:20 viewforum.php:63
 #: viewinbox.php:46 viewinbox.php:80 viewinbox.php:93 viewinbox.php:102
 #: viewinbox.php:111 viewinbox.php:139 viewinbox.php:197 viewinbox.php:213
-#: viewinbox.php:238 viewinbox.php:249
+#: viewinbox.php:238 viewinbox.php:246
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
@@ -1261,15 +1340,15 @@ msgid "Ban range"
 msgstr "Ban reeks"
 
 #: backstage/bans.php:107 backstage/users.php:572 backstage/users.php:684
-#: backstage/users.php:748 themes/Fifteen/views/settings.php:520
-#: themes/Typography/views/settings.php:512
+#: backstage/users.php:748 themes/Fifteen/views/settings.php:475
+#: themes/Typography/views/settings.php:469
 msgid "Ban"
 msgstr "Ban"
 
 #: backstage/bans.php:114 backstage/bans.php:371 backstage/bans.php:431
 #: backstage/bans.php:448 backstage/bans.php:489 backstage/login.php:24
 #: backstage/users.php:130 backstage/users.php:699 backstage/users.php:790
-#: backstage/users.php:855 install.php:207 install.php:324 install.php:347
+#: backstage/users.php:855 install.php:186 install.php:303 install.php:326
 #: register.php:256 themes/Fifteen/views/index.php:59
 #: themes/Fifteen/views/login.php:12 themes/Fifteen/views/register.php:25
 #: themes/Fifteen/views/settings.php:70 themes/Sunrise/views/index.php:59
@@ -1307,7 +1386,7 @@ msgstr "hier"
 #: comment.php:567 include/draw_functions.php:96 include/draw_functions.php:661
 #: include/draw_functions.php:663 include/draw_functions.php:693
 #: include/draw_functions.php:835 include/draw_functions.php:837
-#: include/draw_functions.php:863 install.php:210 install.php:366
+#: include/draw_functions.php:863 install.php:189 install.php:345
 #: register.php:256 themes/Fifteen/views/comment.php:55
 #: themes/Fifteen/views/comment.php:56 themes/Fifteen/views/login.php:42
 #: themes/Fifteen/views/register.php:46 themes/Fifteen/views/settings.php:84
@@ -1397,11 +1476,11 @@ msgstr "Vervalt"
 
 #: backstage/bans.php:375 backstage/bans.php:466 backstage/index.php:125
 #: backstage/settings.php:394 backstage/settings.php:627 comment.php:567
-#: edit.php:148 misc.php:147 new_inbox.php:437 thread.php:128 viewinbox.php:220
+#: edit.php:148 misc.php:147 new_inbox.php:427 thread.php:128 viewinbox.php:220
 msgid "Message"
 msgstr "Bericht"
 
-#: backstage/bans.php:376 backstage/theme.php:160 backstage/theme.php:201
+#: backstage/bans.php:376 backstage/theme.php:162 backstage/theme.php:203
 msgid "By"
 msgstr "Door"
 
@@ -1525,7 +1604,7 @@ msgstr "Forum details"
 msgid "Forum name"
 msgstr "Forum naam"
 
-#: backstage/board.php:288 backstage/settings.php:283 install.php:389
+#: backstage/board.php:288 backstage/settings.php:283 install.php:368
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -1555,7 +1634,7 @@ msgid "Thread start"
 msgstr "Conversatie gestart door"
 
 #: backstage/board.php:350 comment.php:567 edit.php:148
-#: include/draw_functions.php:1081 misc.php:147 new_inbox.php:441
+#: include/draw_functions.php:1081 misc.php:147 new_inbox.php:431
 #: themes/Fifteen/views/comment.php:61 themes/Fifteen/views/inbox-new.php:76
 #: themes/Fifteen/views/search-advanced.php:43
 #: themes/Typography/views/comment.php:57
@@ -1613,8 +1692,8 @@ msgstr ""
 msgid "Read forum"
 msgstr "Lees forum"
 
-#: backstage/board.php:406 themes/Fifteen/views/footer.php:59
-#: themes/Typography/views/footer.php:59 thread.php:95 thread.php:104
+#: backstage/board.php:406 themes/Fifteen/views/footer.php:60 thread.php:95
+#: thread.php:104
 msgid "Comment"
 msgstr "Reacties"
 
@@ -1646,7 +1725,7 @@ msgstr "Nieuw forum"
 #: backstage/board.php:618 backstage/board.php:634 backstage/board.php:718
 #: backstage/board.php:720 backstage/board.php:777 backstage/board.php:779
 #: backstage/menu.php:95 backstage/menu.php:122 comment.php:573
-#: include/draw_functions.php:95 install.php:206 install.php:318
+#: include/draw_functions.php:95 install.php:185 install.php:297
 #: themes/Fifteen/views/comment.php:53 themes/Fifteen/views/comment.php:54
 #: themes/Typography/views/comment.php:49
 #: themes/Typography/views/comment.php:50 thread.php:130
@@ -1727,7 +1806,7 @@ msgstr "Je moet een BBCode ingeven die zal worden vervangen door de emoji."
 
 #: backstage/emoji.php:33 backstage/emoji.php:64
 msgid "You must enter a unicode which represents the emoji."
-msgstr "Je moet een unicode ingeven welke een emoji representeerd"
+msgstr "Je moet een unicode ingeven welke een emoji representeerd."
 
 #: backstage/emoji.php:107
 msgid "Add emoji"
@@ -1756,10 +1835,8 @@ msgid "Unicode"
 msgstr "Unicode"
 
 #: backstage/emoji.php:129
-#, fuzzy
-#| msgid "Manage board"
 msgid "Manage emoji"
-msgstr "Beheer forum"
+msgstr "Beheer emoji"
 
 #: backstage/emoji.php:172
 msgid "No emoji available."
@@ -1812,16 +1889,18 @@ msgid "Allow search only in 1 forum at a time."
 msgstr "Limiteer zoeken tot een forum per keer."
 
 #: backstage/features.php:236 backstage/features.php:243
-#: backstage/groups.php:121 backstage/header.php:176 header.php:111
-#: inbox.php:98 include/me_functions.php:22 include/me_functions.php:34
+#: backstage/groups.php:121 backstage/header.php:176 inbox.php:98
+#: include/me_functions.php:22 include/me_functions.php:34
+#: themes/Fifteen/views/header.php:64
 #: themes/Fifteen/views/inbox-delete-comment.php:13
 #: themes/Fifteen/views/inbox-new.php:61 themes/Fifteen/views/inbox-view.php:26
-#: themes/Fifteen/views/inbox.php:28 themes/Fifteen/views/settings.php:250
+#: themes/Fifteen/views/inbox.php:28 themes/Fifteen/views/settings.php:242
+#: themes/Typography/views/header.php:67
 #: themes/Typography/views/inbox-delete-comment.php:13
 #: themes/Typography/views/inbox-new.php:55
 #: themes/Typography/views/inbox-view.php:23
 #: themes/Typography/views/inbox.php:24
-#: themes/Typography/views/settings.php:242
+#: themes/Typography/views/settings.php:234
 msgid "Inbox"
 msgstr "Inbox"
 
@@ -1839,9 +1918,10 @@ msgstr "Ontvangers"
 msgid "The number of receivers an Inbox message can have"
 msgstr "Het aantal ontvangers dat een Inbox bericht mag hebben"
 
-#: backstage/features.php:264 backstage/features.php:271 profile.php:77
-#: themes/Fifteen/views/settings.php:288
-#: themes/Typography/views/settings.php:280
+#: backstage/features.php:264 backstage/features.php:271
+#: themes/Fifteen/views/profile.php:70 themes/Fifteen/views/settings.php:280
+#: themes/Typography/views/profile.php:58
+#: themes/Typography/views/settings.php:272
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
@@ -1909,8 +1989,8 @@ msgid "Allow the use of the [spoiler]-tag."
 msgstr "Sta het gebruik van de [spoiler]-tag toe."
 
 #: backstage/features.php:371 backstage/features.php:520
-#: backstage/features.php:527 themes/Fifteen/views/settings.php:391
-#: themes/Typography/views/settings.php:383
+#: backstage/features.php:527 themes/Fifteen/views/settings.php:375
+#: themes/Typography/views/settings.php:368
 msgid "Signatures"
 msgstr "Handtekeningen"
 
@@ -1950,7 +2030,7 @@ msgstr "Sta toe dat reacties enkel uit hoofdletters bestaan."
 msgid "Allow a subject to contain only capital letters."
 msgstr "Sta toe dat onderwerpen enkel uit hoofdletters bestaan."
 
-#: backstage/features.php:428 include/install.php:1690
+#: backstage/features.php:428 include/install.php:1630
 msgid "Guests"
 msgstr "Gasten"
 
@@ -1986,7 +2066,7 @@ msgstr ""
 msgid "Max width"
 msgstr "Maximum hoogte"
 
-#: backstage/features.php:471 backstage/features.php:482 settings.php:532
+#: backstage/features.php:471 backstage/features.php:482 settings.php:531
 msgid "pixels"
 msgstr "pixels"
 
@@ -1998,7 +2078,7 @@ msgstr "Maximum breedte"
 msgid "Max size"
 msgstr "Maximum grootte"
 
-#: backstage/features.php:493 settings.php:508
+#: backstage/features.php:493 settings.php:507
 msgid "bytes"
 msgstr "bytes"
 
@@ -2010,7 +2090,7 @@ msgstr "Standaard avatar"
 msgid "You can upload a custom default avatar for all users"
 msgstr "Upload je eigen standaard avatar"
 
-#: backstage/features.php:503 settings.php:825
+#: backstage/features.php:503 settings.php:727
 msgid "Delete avatar"
 msgstr "Verwijder avatar"
 
@@ -2046,26 +2126,26 @@ msgstr "Maximale lijnen"
 msgid "Maximum amount of lines a signature can have"
 msgstr "Het maximaal aantal lijnen in een handtekening"
 
-#: backstage/footer.php:30 themes/Fifteen/views/footer.php:97
-#: themes/Typography/views/footer.php:97
+#: backstage/footer.php:30 themes/Fifteen/views/footer.php:112
+#: themes/Typography/views/footer.php:64
 #, php-format
 msgid "Powered by %s"
 msgstr "Powered by %s"
 
-#: backstage/footer.php:38 themes/Fifteen/views/footer.php:135
-#: themes/Typography/views/footer.php:135
+#: backstage/footer.php:38 themes/Fifteen/views/footer.php:150
+#: themes/Typography/views/footer.php:115
 #, php-format
 msgid "Generated in %1$s seconds &middot; %2$s queries executed"
 msgstr "Gegenereerd in %1$s seconden &middot; %2$s queries uitgevoerd"
 
-#: backstage/footer.php:41 themes/Fifteen/views/footer.php:138
-#: themes/Typography/views/footer.php:138
+#: backstage/footer.php:41 themes/Fifteen/views/footer.php:153
+#: themes/Typography/views/footer.php:118
 #, php-format
 msgid "Memory usage: %1$s"
 msgstr "Geheugen gebruik: %1$s"
 
-#: backstage/footer.php:44 themes/Fifteen/views/footer.php:141
-#: themes/Typography/views/footer.php:141
+#: backstage/footer.php:44 themes/Fifteen/views/footer.php:156
+#: themes/Typography/views/footer.php:121
 #, php-format
 msgid "(Peak: %1$s)"
 msgstr "(Piek: %1$s)"
@@ -2135,8 +2215,8 @@ msgstr "Sta toe dat moderatoren wachtwoorden van andere gebruikers wijzigen."
 msgid "Allow moderators to ban users."
 msgstr "Sta toe dat moderatoren gebruikers verbannen."
 
-#: backstage/groups.php:126 themes/Fifteen/views/settings.php:255
-#: themes/Typography/views/settings.php:247
+#: backstage/groups.php:126 themes/Fifteen/views/settings.php:247
+#: themes/Typography/views/settings.php:239
 msgid "Allow users to send messages with Inbox."
 msgstr "Laat gebruikers berichten sturen met Inbox."
 
@@ -2181,17 +2261,17 @@ msgstr "Sta toe dat gebruikers hun eigen reacties aanpassen."
 #: backstage/groups.php:597 backstage/menu.php:126 backstage/menu.php:151
 #: backstage/moderate.php:156 backstage/moderate.php:420
 #: backstage/moderate.php:736 backstage/moderate.php:1026
-#: backstage/theme.php:186 backstage/users.php:452 backstage/users.php:686
+#: backstage/theme.php:188 backstage/users.php:452 backstage/users.php:686
 #: backstage/users.php:750 include/draw_functions.php:724
 #: include/draw_functions.php:753 include/draw_functions.php:920
 #: themes/Fifteen/views/delete.php:17
 #: themes/Fifteen/views/inbox-delete-comment.php:17
 #: themes/Fifteen/views/inbox.php:37 themes/Fifteen/views/me-delete.php:14
-#: themes/Fifteen/views/settings.php:522 themes/Typography/views/delete.php:17
+#: themes/Fifteen/views/settings.php:477 themes/Typography/views/delete.php:16
 #: themes/Typography/views/inbox-delete-comment.php:17
 #: themes/Typography/views/inbox.php:33
 #: themes/Typography/views/me-delete.php:14
-#: themes/Typography/views/settings.php:514
+#: themes/Typography/views/settings.php:471
 msgid "Delete"
 msgstr "Verwijder"
 
@@ -2207,7 +2287,7 @@ msgstr ""
 
 #: backstage/groups.php:204 include/draw_functions.php:728
 #: include/draw_functions.php:756 include/draw_functions.php:934
-#: themes/Fifteen/views/soft.php:17 themes/Typography/views/soft.php:17
+#: themes/Fifteen/views/soft.php:17 themes/Typography/views/soft.php:16
 msgid "Hide"
 msgstr "Verberg"
 
@@ -2346,21 +2426,24 @@ msgstr "Standaard groep"
 msgid "Manage groups"
 msgstr "Groepen beheren"
 
-#: backstage/header.php:28 backstage/header.php:141 include/functions.php:2326
-#: include/functions.php:2396 install.php:196
+#: backstage/header.php:28 backstage/header.php:141 include/functions.php:2276
+#: include/functions.php:2342 install.php:175
 msgid "Direction of language"
 msgstr "ltr"
 
-#: backstage/header.php:51 header.php:122
+#: backstage/header.php:51 themes/Fifteen/views/header.php:77
+#: themes/Typography/views/header.php:80
 msgid "No new notifications"
 msgstr "Geen nieuwe notificaties"
 
-#: backstage/header.php:73 header.php:144
+#: backstage/header.php:73 themes/Fifteen/views/header.php:85
+#: themes/Typography/views/header.php:88
 msgid "More"
 msgstr "Meer"
 
 #: backstage/header.php:89 backstage/header.php:110 backstage/header.php:192
-#: backstage/header.php:216 header.php:165
+#: backstage/header.php:216 themes/Fifteen/views/header.php:59
+#: themes/Typography/views/header.php:62
 msgid "Backstage"
 msgstr "Backstage"
 
@@ -2372,7 +2455,8 @@ msgstr "Update"
 msgid "About"
 msgstr "Over"
 
-#: backstage/header.php:92 backstage/header.php:223 install.php:374
+#: backstage/header.php:92 backstage/header.php:223 install.php:353
+#: themes/Typography/views/footer.php:56
 msgid "Board"
 msgstr "Forum"
 
@@ -2402,9 +2486,11 @@ msgid "Bans"
 msgstr "Bans"
 
 #: backstage/header.php:100 backstage/header.php:177 backstage/header.php:202
-#: backstage/header.php:239 header.php:181 include/me_functions.php:25
-#: include/me_functions.php:37 settings.php:837
-#: themes/Fifteen/views/settings.php:35 themes/Typography/views/settings.php:28
+#: backstage/header.php:239 include/me_functions.php:25
+#: include/me_functions.php:37 settings.php:736
+#: themes/Fifteen/views/header.php:99 themes/Fifteen/views/settings.php:35
+#: themes/Typography/views/header.php:102
+#: themes/Typography/views/settings.php:28
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -2428,7 +2514,7 @@ msgstr "Menu"
 
 #: backstage/header.php:106 backstage/header.php:205 backstage/header.php:249
 #: backstage/maintenance.php:191 backstage/maintenance.php:199
-#: db_update.php:196
+#: db_update.php:175
 msgid "Maintenance"
 msgstr "Onderhoud"
 
@@ -2445,15 +2531,17 @@ msgstr "Documentatie"
 msgid "Support"
 msgstr "Ondersteuning"
 
-#: backstage/header.php:175 header.php:180 include/me_functions.php:19
-#: include/me_functions.php:31 notifications.php:154 profile.php:161
-#: settings.php:266 settings.php:448 settings.php:837
-#: themes/Fifteen/views/help.php:161 themes/Fifteen/views/settings.php:44
+#: backstage/header.php:175 include/me_functions.php:19
+#: include/me_functions.php:31 notifications.php:152 profile.php:41
+#: settings.php:267 settings.php:447 settings.php:736
+#: themes/Fifteen/views/header.php:98 themes/Fifteen/views/help.php:161
+#: themes/Fifteen/views/settings.php:44 themes/Typography/views/header.php:101
 #: themes/Typography/views/help.php:150 themes/Typography/views/settings.php:37
 msgid "Profile"
 msgstr "Profiel"
 
-#: backstage/header.php:178 header.php:183
+#: backstage/header.php:178 themes/Fifteen/views/header.php:101
+#: themes/Typography/views/header.php:104
 msgid "Logout"
 msgstr "Afmelden"
 
@@ -2463,8 +2551,8 @@ msgstr "Content"
 
 #: backstage/header.php:198 backstage/prune.php:334 backstage/users.php:41
 #: extern.php:526 themes/Fifteen/views/help.php:248
-#: themes/Fifteen/views/users.php:13 themes/Typography/views/help.php:231
-#: themes/Typography/views/users.php:11
+#: themes/Fifteen/views/users.php:13 themes/Typography/views/footer.php:50
+#: themes/Typography/views/help.php:231 themes/Typography/views/users.php:11
 msgid "Users"
 msgstr "Gebruikers"
 
@@ -2472,7 +2560,7 @@ msgstr "Gebruikers"
 msgid "Luna is currently set in Maintenance Mode. Do not log off."
 msgstr "Luna is momenteel in Onderhoudsmodus. Log niet uit."
 
-#: backstage/header.php:281 include/general_functions.php:50 install.php:218
+#: backstage/header.php:281 include/general_functions.php:49 install.php:197
 msgid "is a required field in this form."
 msgstr "is een vereist veld in dit formulier."
 
@@ -2510,7 +2598,7 @@ msgstr "Verander functionaliteit"
 msgid "Change settings"
 msgstr "Verander instellingen"
 
-#: backstage/index.php:114 backstage/reports.php:57 header.php:51
+#: backstage/index.php:114 backstage/reports.php:57 header.php:54
 msgid "New reports"
 msgstr "Nieuwe rapporten"
 
@@ -2577,7 +2665,7 @@ msgstr ""
 msgid "The file install.php still exists, but should be removed."
 msgstr "Het bestand install.php bestaat nog, je kan dit best verwijderen."
 
-#: backstage/index.php:206 db_update.php:862 db_update.php:951
+#: backstage/index.php:206 db_update.php:848 db_update.php:937
 #: include/draw_functions.php:317 include/draw_functions.php:379
 #: include/draw_functions.php:457
 msgid "comment"
@@ -2599,11 +2687,11 @@ msgstr "gebruiker"
 #: misc.php:39 misc.php:56 misc.php:158 misc.php:276 misc.php:317 misc.php:358
 #: misc.php:371 misc.php:392 misc.php:412 misc.php:425 misc.php:440
 #: new_inbox.php:16 new_inbox.php:21 new_inbox.php:26 new_inbox.php:126
-#: profile.php:14 search.php:75 search.php:281 search.php:527 settings.php:28
-#: settings.php:30 settings.php:62 settings.php:71 settings.php:123
-#: settings.php:128 settings.php:171 settings.php:188 settings.php:274
-#: settings.php:310 settings.php:319 settings.php:461 settings.php:547
-#: settings.php:605 userlist.php:16 viewinbox.php:18 viewinbox.php:23
+#: profile.php:15 search.php:75 search.php:281 search.php:527 settings.php:29
+#: settings.php:31 settings.php:63 settings.php:72 settings.php:124
+#: settings.php:129 settings.php:172 settings.php:189 settings.php:275
+#: settings.php:311 settings.php:320 settings.php:460 settings.php:546
+#: settings.php:603 userlist.php:16 viewinbox.php:18 viewinbox.php:23
 #: viewinbox.php:28 viewinbox.php:128 viewinbox.php:161 viewinbox.php:183
 #: viewinbox.php:229
 msgid "You do not have permission to access this page."
@@ -2619,16 +2707,17 @@ msgstr "Er is geen plugin met de naam %s in de plugin-map."
 msgid "Loading of the plugin - <strong>%s</strong> - failed."
 msgstr "Plugin - <strong>%s</strong - laden is gefaald.."
 
-#: backstage/login.php:19 backstage/login.php:33 header.php:172
-#: themes/Fifteen/views/index.php:55 themes/Fifteen/views/index.php:69
-#: themes/Fifteen/views/login.php:6 themes/Fifteen/views/login.php:22
-#: themes/Sunrise/views/index.php:55 themes/Sunrise/views/index.php:69
+#: backstage/login.php:19 backstage/login.php:33
+#: themes/Fifteen/views/header.php:54 themes/Fifteen/views/index.php:55
+#: themes/Fifteen/views/index.php:69 themes/Fifteen/views/login.php:6
+#: themes/Fifteen/views/login.php:22 themes/Sunrise/views/index.php:55
+#: themes/Sunrise/views/index.php:69 themes/Typography/views/header.php:57
 #: themes/Typography/views/login.php:6 themes/Typography/views/login.php:22
 msgid "Login"
 msgstr "Aanmelden"
 
-#: backstage/login.php:27 install.php:330 install.php:353 register.php:256
-#: settings.php:449 themes/Fifteen/views/index.php:60
+#: backstage/login.php:27 install.php:309 install.php:332 register.php:256
+#: settings.php:448 themes/Fifteen/views/index.php:60
 #: themes/Fifteen/views/login.php:13 themes/Fifteen/views/me-modals.php:12
 #: themes/Fifteen/views/register.php:32 themes/Fifteen/views/settings.php:77
 #: themes/Sunrise/views/index.php:60 themes/Typography/views/login.php:13
@@ -2661,7 +2750,7 @@ msgstr "Hergenereren index. Dit is een goed moment om wat koffie te pakken."
 msgid "Processing comment <strong>%s</strong> …"
 msgstr "Reactie <strong>%s</strong> verwerken…"
 
-#: backstage/maintenance.php:141 db_update.php:194 include/install.php:1585
+#: backstage/maintenance.php:141 db_update.php:173 include/install.php:1525
 msgid ""
 "The forums are temporarily down for maintenance. Please try again in a few "
 "minutes."
@@ -2839,9 +2928,10 @@ msgstr "Verplaats naar"
 msgid "New subject"
 msgstr "Nieuw onderwerp"
 
-#: backstage/moderate.php:377 backstage/users.php:180 include/functions.php:460
-#: include/functions.php:958 include/install.php:1668 search.php:223
-#: settings.php:694
+#: backstage/moderate.php:377 backstage/users.php:180
+#: include/class/user.class.php:298 include/class/user.class.php:681
+#: include/functions.php:450 include/functions.php:948 include/install.php:1608
+#: search.php:223
 msgid "Guest"
 msgstr "Gast"
 
@@ -3018,8 +3108,8 @@ msgstr "Dagen oud"
 msgid "The number of days old a notification must be to be pruned"
 msgstr "Hoe oud een notificatie moet zijn voordat deze wordt opgeruimd"
 
-#: backstage/prune.php:247 backstage/settings.php:359 install.php:204
-#: install.php:293
+#: backstage/prune.php:247 backstage/settings.php:359 install.php:183
+#: install.php:272
 msgid "Type"
 msgstr "Type"
 
@@ -3037,13 +3127,14 @@ msgstr "Nieuwe notificaties"
 
 #: backstage/prune.php:273 backstage/users.php:133 backstage/users.php:162
 #: backstage/users.php:702 backstage/users.php:720 extern.php:529
-#: profile.php:48 profile.php:74 themes/Fifteen/views/profile.php:37
+#: themes/Fifteen/views/profile.php:37 themes/Fifteen/views/profile.php:68
 #: themes/Fifteen/views/search-advanced.php:56
-#: themes/Fifteen/views/settings.php:370 themes/Fifteen/views/settings.php:560
-#: themes/Typography/views/profile.php:31
+#: themes/Fifteen/views/settings.php:361 themes/Fifteen/views/settings.php:515
+#: themes/Typography/views/profile.php:27
+#: themes/Typography/views/profile.php:56
 #: themes/Typography/views/search-advanced.php:56
-#: themes/Typography/views/settings.php:362
-#: themes/Typography/views/settings.php:552
+#: themes/Typography/views/settings.php:354
+#: themes/Typography/views/settings.php:509
 msgid "Comments"
 msgstr "Reacties"
 
@@ -3146,7 +3237,8 @@ msgstr "Geen rangen ingesteld"
 msgid "Old reports"
 msgstr "Oude rapporten"
 
-#: backstage/reports.php:97 search.php:393 themes/Typography/views/forum.php:34
+#: backstage/reports.php:97 search.php:393 themes/Fifteen/views/forum.php:39
+#: themes/Sunrise/views/forum.php:35 themes/Typography/views/forum.php:34
 msgid "Mark as read"
 msgstr "Markeer als gelezen"
 
@@ -3199,18 +3291,17 @@ msgid "Branding"
 msgstr "Merknaam en huisstijl"
 
 #: backstage/settings.php:271 backstage/settings.php:353
-#: backstage/users.php:802 install.php:377 profile.php:46
-#: themes/Fifteen/views/profile.php:33 themes/Fifteen/views/settings.php:102
-#: themes/Typography/views/profile.php:27
+#: backstage/users.php:802 install.php:356 themes/Fifteen/views/profile.php:33
+#: themes/Fifteen/views/settings.php:102 themes/Typography/views/profile.php:23
 #: themes/Typography/views/settings.php:94
 msgid "Title"
 msgstr "Titel"
 
-#: backstage/settings.php:277 install.php:383
+#: backstage/settings.php:277 install.php:362
 msgid "Slogan"
 msgstr "Slogan"
 
-#: backstage/settings.php:289 install.php:401
+#: backstage/settings.php:289 install.php:380
 msgid "Default language"
 msgstr "Standaard taal"
 
@@ -3240,7 +3331,7 @@ msgid "Default favicon"
 msgstr "Standaard favicon"
 
 #: backstage/settings.php:334 backstage/settings.php:341
-#: include/install.php:1577
+#: include/install.php:1517
 msgid "Announcement"
 msgstr "Aankondiging"
 
@@ -3257,15 +3348,15 @@ msgid "Your theme does not support different announcement types"
 msgstr ""
 "Dit thema heeft geen ondersteuning voor verschillende types aankondigingen"
 
-#: backstage/settings.php:364 themes/Fifteen/views/settings.php:460
-#: themes/Fifteen/views/settings.php:478
-#: themes/Typography/views/settings.php:452
-#: themes/Typography/views/settings.php:470
+#: backstage/settings.php:364 themes/Fifteen/views/settings.php:416
+#: themes/Fifteen/views/settings.php:434
+#: themes/Typography/views/settings.php:409
+#: themes/Typography/views/settings.php:427
 msgid "Default"
 msgstr "Standaard"
 
-#: backstage/settings.php:370 include/functions.php:1103
-#: include/functions.php:1111
+#: backstage/settings.php:370 include/functions.php:1091
+#: include/functions.php:1099
 msgid "Info"
 msgstr "Info"
 
@@ -3285,8 +3376,8 @@ msgstr "Gevaar"
 msgid "Time and timeouts"
 msgstr "Tijd en time-outs"
 
-#: backstage/settings.php:410 themes/Fifteen/views/settings.php:450
-#: themes/Typography/views/settings.php:442
+#: backstage/settings.php:410 themes/Fifteen/views/settings.php:406
+#: themes/Typography/views/settings.php:399
 msgid "Time format"
 msgstr "Tijd formaat"
 
@@ -3299,8 +3390,8 @@ msgstr "Nu: %s. Zie %s voor meer info"
 msgid "PHP manual"
 msgstr "PHP handleiding"
 
-#: backstage/settings.php:416 themes/Fifteen/views/settings.php:468
-#: themes/Typography/views/settings.php:460
+#: backstage/settings.php:416 themes/Fifteen/views/settings.php:424
+#: themes/Typography/views/settings.php:417
 msgid "Date format"
 msgstr "Datum formaat"
 
@@ -3442,7 +3533,7 @@ msgstr ""
 "Sta toe dat gebruikers een email adres gebruiken dat al aan een andere "
 "gebruiker is toegewezen, de maillijst wordt gewaarschuwd als dit gebeurd."
 
-#: backstage/settings.php:616 include/install.php:1583
+#: backstage/settings.php:616 include/install.php:1523
 #: themes/Fifteen/views/help.php:14 themes/Fifteen/views/rules.php:14
 #: themes/Typography/views/help.php:15 themes/Typography/views/rules.php:14
 msgid "Rules"
@@ -3487,8 +3578,8 @@ msgstr "Verberg email adres en laat geen e-mails toe."
 msgid "Cookie bar"
 msgstr "Cookie balk"
 
-#: backstage/settings.php:667 themes/Fifteen/views/footer.php:106
-#: themes/Typography/views/footer.php:106
+#: backstage/settings.php:667 themes/Fifteen/views/footer.php:121
+#: themes/Typography/views/footer.php:86
 msgid "More info"
 msgstr "Meer info"
 
@@ -3590,26 +3681,24 @@ msgstr ""
 "geconfigureerd met zlib. Als je al beschikt over een Apache module (mod_gzip/"
 "mod_deflate) die PHP scripts verkleind, schakel je dit best uit."
 
-#: backstage/theme.php:127
+#: backstage/theme.php:129
 msgid "Installed themes"
 msgstr "Geïnstalleerde thema's"
 
-#: backstage/theme.php:139 backstage/theme.php:183 header.php:69 header.php:71
+#: backstage/theme.php:141 backstage/theme.php:185 header.php:72 header.php:74
 #: themes/Typography/views/index.php:55
 msgid "Active"
 msgstr "Actief"
 
-#: backstage/theme.php:141
-#, fuzzy
-#| msgid "Active"
+#: backstage/theme.php:143
 msgid "Activate"
-msgstr "Actief"
+msgstr "Activeer"
 
-#: backstage/theme.php:141
+#: backstage/theme.php:143
 msgid "Uninstall"
 msgstr "Deïnstalleer"
 
-#: backstage/theme.php:149 backstage/theme.php:194
+#: backstage/theme.php:151 backstage/theme.php:196
 #, php-format
 msgid ""
 "This theme does not support your current version of Luna, please update to "
@@ -3618,32 +3707,33 @@ msgstr ""
 "Dit thema bied geen ondersteuning voor je huidige versie van Luna, update to "
 "Luna %s."
 
-#: backstage/theme.php:153 backstage/theme.php:198
+#: backstage/theme.php:155 backstage/theme.php:200
 #, php-format
 msgid ""
-"This theme is not reported to support Luna %s, you might want to update it."
+"This theme supports Luna %s until %s, it is not reported to support Luna %s, "
+"you might want to update it."
 msgstr ""
-"Dit thema is niet geschreven voor Luna %s, je kan best zoeken naar een "
-"update."
+"Dit thema ondersteund Luna %s tot %s, het is niet geschreven voor Luna %s, "
+"je kan best zoeken naar een update."
 
-#: backstage/theme.php:157
+#: backstage/theme.php:159
 #, php-format
 msgid "This theme requires a theme with the id <b>%s</b>."
 msgstr "Dit thema vereist een thema met het id <b>%s</b>."
 
-#: backstage/theme.php:160 backstage/theme.php:201
+#: backstage/theme.php:162 backstage/theme.php:203
 msgid "Version"
 msgstr "Versie"
 
-#: backstage/theme.php:172
+#: backstage/theme.php:174
 msgid "Available themes"
 msgstr "Beschikbare thema's"
 
-#: backstage/theme.php:185
+#: backstage/theme.php:187
 msgid "Install"
 msgstr "Installeer"
 
-#: backstage/theme.php:209
+#: backstage/theme.php:211
 msgid "There are no themes available"
 msgstr "Er zijn geen thema's beschikbaar"
 
@@ -3794,7 +3884,7 @@ msgstr "Server gebruik"
 msgid "Environment"
 msgstr "Omgeving"
 
-#: backstage/update.php:204 install.php:290
+#: backstage/update.php:204 install.php:269
 msgid "Database"
 msgstr "Database"
 
@@ -3861,8 +3951,8 @@ msgid "Title/Status"
 msgstr "Titel/status"
 
 #: backstage/users.php:134 backstage/users.php:703 backstage/users.php:832
-#: themes/Fifteen/views/settings.php:567
-#: themes/Typography/views/settings.php:559
+#: themes/Fifteen/views/settings.php:522
+#: themes/Typography/views/settings.php:516
 msgid "Admin note"
 msgstr "Admin nota"
 
@@ -3972,7 +4062,8 @@ msgstr ""
 msgid "Change group"
 msgstr "Groep wijzigen"
 
-#: backstage/users.php:716 include/functions.php:948 settings.php:694
+#: backstage/users.php:716 include/class/user.class.php:290
+#: include/class/user.class.php:681 include/functions.php:938
 msgid "Banned"
 msgstr "Verbannen"
 
@@ -3999,8 +4090,8 @@ msgstr ""
 msgid "Email address"
 msgstr "Email adres"
 
-#: backstage/users.php:808 profile.php:61 themes/Fifteen/views/profile.php:54
-#: themes/Fifteen/views/settings.php:95 themes/Typography/views/profile.php:48
+#: backstage/users.php:808 themes/Fifteen/views/profile.php:54
+#: themes/Fifteen/views/settings.php:95 themes/Typography/views/profile.php:44
 #: themes/Typography/views/settings.php:87
 msgid "Real name"
 msgstr "Echte naam"
@@ -4033,7 +4124,7 @@ msgstr "Aantal reacties"
 msgid "Last visit"
 msgstr "Laatste bezoek"
 
-#: backstage/users.php:860 profile.php:54
+#: backstage/users.php:860
 msgid "Registered"
 msgstr "Geregistreerd"
 
@@ -4071,12 +4162,12 @@ msgstr ""
 msgid "Subjects cannot contain only capital letters."
 msgstr "Het onderwerp mag niet enkel uit hoofdletters bestaan."
 
-#: comment.php:102 login.php:122 register.php:71 settings.php:348
-#: settings.php:673
+#: comment.php:102 include/class/user.class.php:671 login.php:122
+#: register.php:71 settings.php:347
 msgid "The email address you entered is invalid."
 msgstr "Het email adres dat je hebt ingevuld is ongeldig."
 
-#: comment.php:109 register.php:79 settings.php:353
+#: comment.php:109 register.php:79 settings.php:352
 msgid ""
 "The email address you entered is banned in this forum. Please choose another "
 "email address."
@@ -4289,8 +4380,8 @@ msgstr "Nieuwe reactie"
 msgid "Create thread"
 msgstr "Nieuwe conversatie"
 
-#: db_update.php:150 db_update.php:159 include/install.php:188
-#: include/install.php:196 install.php:112
+#: db_update.php:129 db_update.php:138 include/install.php:166
+#: include/install.php:174 install.php:91
 #, php-format
 msgid ""
 "You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to "
@@ -4300,46 +4391,46 @@ msgstr ""
 "Je maakt gebruik van %1$s versie %2$s. Luna %3$s vereist minstens %1$s %4$s "
 "om te werken. Je moet je installatie bijwerken naar %1$s om verder te gaan."
 
-#: db_update.php:170
+#: db_update.php:149
 msgid "Your forum is already as up-to-date as this script can make it"
 msgstr "Je forum is al zo up-to-date als dit script het kan maken"
 
-#: db_update.php:170 install.php:96
+#: db_update.php:149 install.php:75
 msgid "Continue"
 msgstr "Volgende"
 
-#: db_update.php:198
+#: db_update.php:177
 msgid "There is an update ready to be installed"
 msgstr "Er staat een update klaar om te installeren"
 
-#: db_update.php:198
+#: db_update.php:177
 msgid "Start update"
 msgstr "Update"
 
-#: db_update.php:862 db_update.php:897
+#: db_update.php:848 db_update.php:883
 #, php-format
 msgid "Preparsing %1$s %2$s …"
 msgstr "Parsen van %1$s %2$s …"
 
-#: db_update.php:897
+#: db_update.php:883
 msgid "signature"
 msgstr "handtekening"
 
-#: db_update.php:951
+#: db_update.php:937
 #, php-format
 msgid "Rebuilding index for %1$s %2$s"
 msgstr "Hergenereren index voor %1$s %2$s"
 
-#: db_update.php:979
+#: db_update.php:965
 #, php-format
 msgid "Luna has been updated to %s"
 msgstr "Luna is bijgewerkt naar %s"
 
-#: db_update.php:1026
+#: db_update.php:1012
 msgid "If this takes to long, the automatic redirect might have failed."
 msgstr "Als dit te lang duurt wordt je mogelijk niet automatisch doorgestuurt."
 
-#: db_update.php:1026
+#: db_update.php:1012
 msgid "Click here"
 msgstr "Klik hier"
 
@@ -4352,7 +4443,7 @@ msgstr "Verwijder reactie"
 msgid "Edit comment"
 msgstr "Reactie bewerken"
 
-#: extern.php:304 extern.php:360 include/functions.php:669
+#: extern.php:304 extern.php:360 include/functions.php:659
 msgid " / "
 msgstr " / "
 
@@ -4382,49 +4473,40 @@ msgstr "Gasten online"
 msgid "Users online"
 msgstr "Gebruikers online"
 
-#: extern.php:527 themes/Fifteen/views/footer.php:63
-#: themes/Typography/views/footer.php:63
+#: extern.php:527
 msgid "Newest user"
 msgstr "Nieuwste gebruiker"
 
-#: extern.php:528 profile.php:73 themes/Fifteen/views/help.php:245
+#: extern.php:528 themes/Fifteen/views/help.php:245
+#: themes/Fifteen/views/profile.php:67
 #: themes/Fifteen/views/search-advanced.php:55
-#: themes/Typography/views/help.php:228
+#: themes/Typography/views/help.php:228 themes/Typography/views/profile.php:55
 #: themes/Typography/views/search-advanced.php:55
 msgid "Threads"
 msgstr "Conversaties"
 
-#: header.php:56
+#: header.php:59
 msgid "Maintenance mode is enabled"
 msgstr "Onderhoud is geactiveerd"
 
-#: header.php:61 header.php:64
+#: header.php:64 header.php:67
 msgid "Show all new comments since your last visit"
 msgstr "Toon alle nieuwe reacties sinds je laatste bezoek"
 
-#: header.php:69 header.php:71
+#: header.php:72 header.php:74
 msgid "Show all active threads"
 msgstr "Toon alle active conversaties"
 
-#: header.php:70 header.php:72
+#: header.php:73 header.php:75
 msgid "Show all unanswered threads"
 msgstr "Toon alle onbeantwoorde conversaties"
 
-#: header.php:70 header.php:72 themes/Typography/views/index.php:58
+#: header.php:73 header.php:75 themes/Typography/views/index.php:58
 msgid "Unanswered"
 msgstr "Onbeantwoord"
 
-#: header.php:171 register.php:24 register.php:255
-#: themes/Fifteen/views/index.php:48 themes/Fifteen/views/login.php:23
-#: themes/Fifteen/views/login.php:27 themes/Fifteen/views/register.php:15
-#: themes/Fifteen/views/register.php:17 themes/Sunrise/views/index.php:48
-#: themes/Typography/views/login.php:23 themes/Typography/views/login.php:27
-#: themes/Typography/views/register.php:15
-#: themes/Typography/views/register.php:17
-msgid "Register"
-msgstr "Registreer"
-
-#: header.php:182 help.php:17 themes/Typography/views/help.php:10
+#: help.php:17 themes/Fifteen/views/header.php:100
+#: themes/Typography/views/header.php:103 themes/Typography/views/help.php:10
 msgid "Help"
 msgstr "Help"
 
@@ -4432,11 +4514,49 @@ msgstr "Help"
 msgid "You must select some messages"
 msgstr "Je moet een bericht selecten"
 
-#: inbox.php:98 new_inbox.php:435 viewinbox.php:222
+#: inbox.php:98 new_inbox.php:425 viewinbox.php:222
 msgid "Private Messages"
 msgstr "Privé berichten"
 
-#: include/common.php:219
+#: include/class/user.class.php:309 include/class/user.class.php:681
+#: include/functions.php:961 include/install.php:1632 include/install.php:1666
+msgid "Member"
+msgstr "Gebruiker"
+
+#: include/class/user.class.php:681 include/install.php:1628
+msgid "Moderator"
+msgstr "Moderator"
+
+#: include/class/user.class.php:681 include/install.php:1626
+msgid "Administrator"
+msgstr "Administrator"
+
+#: include/class/user.class.php:684
+msgid ""
+"The title you entered contains a forbidden word. You must choose a different "
+"title."
+msgstr ""
+"De gegeven titel bevat verboden woorden. Je moet een andere titel kiezen."
+
+#: include/class/user.class.php:704
+msgid "The URL you entered is invalid."
+msgstr "De gegeven website URL is ongeldig."
+
+#: include/class/user.class.php:741
+#, php-format
+msgid ""
+"Signatures cannot be longer than %1$s characters. Please reduce your "
+"signature by %2$s characters."
+msgstr ""
+"Handtekeningen mogen niet meer dan %1$s tekens bevatten. Maak je "
+"handtekening %2$s tekens kleiner."
+
+#: include/class/user.class.php:743
+#, php-format
+msgid "Signatures cannot have more than %s lines."
+msgstr "Handtekeningen mogen niet meer dan %s lijnen beslaan."
+
+#: include/common.php:189
 msgid ""
 "You appear to have logged in successfully, however a cookie has not been "
 "set. Please check your settings and if applicable, enable cookies for this "
@@ -4543,7 +4663,7 @@ msgstr ""
 "<a href=\"comment.php?fid=%s\">Start de eerste conversatie in dit forum</a>"
 
 #: include/draw_functions.php:396 include/draw_functions.php:474
-#: include/functions.php:1255
+#: include/functions.php:1243
 msgid "Never"
 msgstr "Nooit"
 
@@ -4565,8 +4685,8 @@ msgid "Comment:"
 msgstr "Reactie:"
 
 #: include/draw_functions.php:669 include/draw_functions.php:845
-#: themes/Fifteen/views/settings.php:309
-#: themes/Typography/views/settings.php:301
+#: themes/Fifteen/views/settings.php:301
+#: themes/Typography/views/settings.php:293
 msgid "Website"
 msgstr "Website"
 
@@ -4580,12 +4700,13 @@ msgid "Note:"
 msgstr "Nota:"
 
 #: include/draw_functions.php:718 include/draw_functions.php:748
-#: themes/Fifteen/views/unsolved.php:13 themes/Typography/views/unsolved.php:13
+#: themes/Fifteen/views/unsolved.php:13
 msgid "Unsolved"
 msgstr "Onopgelost"
 
 #: include/draw_functions.php:720 include/draw_functions.php:750
-#: themes/Fifteen/views/answer.php:14 themes/Typography/views/answer.php:14
+#: themes/Fifteen/views/answer.php:14 themes/Typography/views/answer.php:10
+#: themes/Typography/views/unsolved.php:9
 msgid "Answer"
 msgstr "Opgelost"
 
@@ -4604,8 +4725,8 @@ msgstr "Online:"
 msgid "Offline"
 msgstr "Offline"
 
-#: include/draw_functions.php:828 profile.php:56
-#: themes/Fifteen/views/profile.php:45 themes/Typography/views/profile.php:39
+#: include/draw_functions.php:828 themes/Fifteen/views/profile.php:45
+#: themes/Typography/views/profile.php:35
 msgid "Registered since"
 msgstr "Geregistreerd op"
 
@@ -4623,7 +4744,7 @@ msgid "Your search returned no hits."
 msgstr "Je zoekopdracht heeft geen resultaten."
 
 #: include/draw_functions.php:917 themes/Fifteen/views/delete.php:22
-#: themes/Typography/views/delete.php:22
+#: themes/Typography/views/delete.php:15
 msgid ""
 "This is the first comment in the thread, the whole thread will be "
 "permanently deleted."
@@ -4632,7 +4753,7 @@ msgstr ""
 "verwijderd worden."
 
 #: include/draw_functions.php:917 themes/Fifteen/views/delete.php:22
-#: themes/Typography/views/delete.php:22
+#: themes/Typography/views/delete.php:15
 msgid ""
 "The comment you have chosen to delete is set out below for you to review "
 "before proceeding."
@@ -4650,7 +4771,7 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 #: include/draw_functions.php:931 themes/Fifteen/views/soft.php:22
-#: themes/Typography/views/soft.php:22
+#: themes/Typography/views/soft.php:15
 msgid ""
 "This is the first comment in the thread, the whole thread will be hidden."
 msgstr ""
@@ -4723,26 +4844,26 @@ msgstr "Luna"
 msgid "%s Mailer"
 msgstr "%s Mailer"
 
-#: include/functions.php:430
+#: include/functions.php:420
 msgid "You are banned from this forum."
 msgstr "Je bent verbannen van dit forum."
 
-#: include/functions.php:430
+#: include/functions.php:420
 msgid "The ban expires at the end of"
 msgstr "De ban verloopt op"
 
-#: include/functions.php:430
+#: include/functions.php:420
 msgid ""
 "The administrator or moderator that banned you left the following message:"
 msgstr ""
 "De administrator of moderator die je verbannen heeft heeft het volgende "
 "bericht achtergelaten:"
 
-#: include/functions.php:430
+#: include/functions.php:420
 msgid "Please direct any inquiries to the forum administrator at"
 msgstr "Voor vragen richt je je tot de forum administrator op"
 
-#: include/functions.php:457
+#: include/functions.php:447
 msgid ""
 "Usernames must be at least 2 characters long. Please choose another (longer) "
 "username."
@@ -4750,7 +4871,7 @@ msgstr ""
 "Gebruikersnamen moeten minstens 2 tekens bevatten. Kies een andere (langere) "
 "gebruikersnaam."
 
-#: include/functions.php:459
+#: include/functions.php:449
 msgid ""
 "Usernames must not be more than 25 characters long. Please choose another "
 "(shorter) username."
@@ -4758,12 +4879,12 @@ msgstr ""
 "Gebruikersnamen mogen niet langer dan 25 tekens zijn. Kies een kortere "
 "gebruikersnaam."
 
-#: include/functions.php:461
+#: include/functions.php:451
 msgid "The username guest is reserved. Please choose another username."
 msgstr ""
 "De gebruikersnaam gast is gereserveerd. Kies een andere gebruikersnaam."
 
-#: include/functions.php:463
+#: include/functions.php:453
 msgid ""
 "Usernames may not be in the form of an IP address. Please choose another "
 "username."
@@ -4771,7 +4892,7 @@ msgstr ""
 "Gebruikersnamen mogen niet de vorm van een IP-adres hebben. Kies een andere "
 "naam."
 
-#: include/functions.php:465
+#: include/functions.php:455
 msgid ""
 "Usernames may not contain all the characters ', \" and [ or ] at once. "
 "Please choose another username."
@@ -4779,7 +4900,7 @@ msgstr ""
 "Gebruikersnamen mogen niet de tekens ' , \", [ of ] bevatten. Kies een "
 "andere gebruikersnaam."
 
-#: include/functions.php:467
+#: include/functions.php:457
 msgid ""
 "Usernames may not contain any of the text formatting tags (BBCode) that the "
 "forum uses. Please choose another username."
@@ -4787,7 +4908,7 @@ msgstr ""
 "Gebruikersnamen mogen geen opmaak tags bevatten. Kies een andere "
 "gebruikersnaam."
 
-#: include/functions.php:471
+#: include/functions.php:461
 msgid ""
 "The username you entered contains one or more censored words. Please choose "
 "a different username."
@@ -4795,11 +4916,11 @@ msgstr ""
 "De gebruikersnaam bevat één of meerdere gecensureerde woorden. Kies een "
 "andere gebruikersnaam."
 
-#: include/functions.php:480
+#: include/functions.php:470
 msgid "Someone is already registered with the username"
 msgstr "Iemand anders gebruikt deze naam al"
 
-#: include/functions.php:480
+#: include/functions.php:470
 msgid ""
 "The username you entered is too similar. The username must differ from that "
 "by at least one alphanumerical character (a-z or 0-9). Please choose a "
@@ -4809,7 +4930,7 @@ msgstr ""
 "gebruiker. Wees zeker dat je gebruikersnaam verschilt met minstens één "
 "alfanumeriek teken (a-z of 0-9). Kies een andere gebruikersnaam."
 
-#: include/functions.php:486
+#: include/functions.php:476
 msgid ""
 "The username you entered is banned in this forum. Please choose another "
 "username."
@@ -4817,41 +4938,36 @@ msgstr ""
 "De gebruikersnaam die je hebt ingegeven is verbannen. Kies een andere "
 "gebruikersnaam."
 
-#: include/functions.php:666
+#: include/functions.php:656
 #, php-format
 msgid "Page %s"
 msgstr "Pagina %s"
 
-#: include/functions.php:972 include/install.php:1692 include/install.php:1726
-#: settings.php:694
-msgid "Member"
-msgstr "Gebruiker"
-
-#: include/functions.php:1063 include/functions.php:1082
+#: include/functions.php:1051 include/functions.php:1070
 msgid "…"
 msgstr "…"
 
-#: include/functions.php:1185
+#: include/functions.php:1173
 msgid "Luna failed to perform your request"
 msgstr "Luna kon je verzoek niet volbrengen"
 
-#: include/functions.php:1271
+#: include/functions.php:1259
 msgid "Today"
 msgstr "Vandaag"
 
-#: include/functions.php:1273
+#: include/functions.php:1261
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: include/functions.php:1292
+#: include/functions.php:1280
 msgid "."
 msgstr "."
 
-#: include/functions.php:1292
+#: include/functions.php:1280
 msgid ","
 msgstr ","
 
-#: include/functions.php:1343 include/functions.php:1366
+#: include/functions.php:1331 include/functions.php:1354
 msgid ""
 "Bad HTTP_REFERER. You were referred to this page from an unauthorized "
 "source. If the problem persists please make sure that \"Base URL\" is "
@@ -4864,98 +4980,98 @@ msgstr ""
 "instelling mogelijk fout ingegeven. Meer informatie over dit probleem kan je "
 "vinden in de Luna documentatie."
 
-#: include/functions.php:1409
+#: include/functions.php:1397
 msgid ""
 "Bad CSRF hash. You were referred to this page from an unauthorized source."
 msgstr ""
 "Slechte CSRF hash. Je bent naar deze pagina doorgestuurt van een ongeldige "
 "bron."
 
-#: include/functions.php:1805
+#: include/functions.php:1755
 #, php-format
 msgid "%s "
 msgstr "%s "
 
-#: include/functions.php:2209
+#: include/functions.php:2159
 msgid "Debug information"
 msgstr "Debug info"
 
-#: include/functions.php:2215
+#: include/functions.php:2165
 msgid "Time (s)"
 msgstr "Tijd (s)"
 
-#: include/functions.php:2216
+#: include/functions.php:2166
 msgid "Query"
 msgstr "Query"
 
-#: include/functions.php:2237
+#: include/functions.php:2187
 #, php-format
 msgid "Total query time: %s"
 msgstr "Totale query tijd: %s"
 
-#: include/install.php:90
+#: include/install.php:78
 msgid "Usernames must be at least 2 characters long."
 msgstr "Gebruikersnamen moeten minstens 2 tekens bevatten."
 
-#: include/install.php:93
+#: include/install.php:81
 msgid "Usernames must not be more than 25 characters long."
 msgstr "Gebruikersnamen mogen maximum 25 tekens bevatten."
 
-#: include/install.php:95
+#: include/install.php:83
 msgid "The username guest is reserved."
 msgstr "De gebruikersnaam gast is gereserveerd."
 
-#: include/install.php:97
+#: include/install.php:85
 msgid "Usernames may not be in the form of an IP address."
 msgstr "Gebruikersnamen mogen niet in de vorm van IP-adressen zijn."
 
-#: include/install.php:99
+#: include/install.php:87
 msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
 msgstr "Gebruikersnamen mogen niet het teken ', \", [ of ] bevatten."
 
-#: include/install.php:101
+#: include/install.php:89
 msgid ""
 "Usernames may not contain any of the text formatting tags (BBCode) that the "
 "forum uses."
 msgstr "Gebruikersnamen mogen geen gebruik maken van opmaak tags."
 
-#: include/install.php:105
+#: include/install.php:93
 msgid "Passwords must be at least 6 characters long."
 msgstr "Wachtwoorden moeten minstens 6 tekens bevatten."
 
-#: include/install.php:107 register.php:64 settings.php:84
+#: include/install.php:95 register.php:64 settings.php:85
 msgid "Passwords do not match."
 msgstr "Wachtwoorden komen niet overeen."
 
-#: include/install.php:114
+#: include/install.php:102
 msgid "The administrator email address you entered is invalid."
 msgstr "Het administrator email adres is ongeldig."
 
-#: include/install.php:118
+#: include/install.php:106
 msgid "You must enter a board title."
 msgstr "Je moet je forum een naam geven."
 
-#: include/install.php:123
+#: include/install.php:111
 msgid "The default language chosen doesn't seem to exist."
 msgstr "De gekozen standaard taal bestaat niet."
 
-#: include/install.php:132
+#: include/install.php:120
 msgid "The default style chosen doesn't seem to exist."
 msgstr "HEt gekozen standaard thema bestaat niet."
 
-#: include/install.php:172
+#: include/install.php:152
 #, php-format
 msgid "\"%s\" is not a valid database type"
 msgstr "\"%s\" is geen geldige database type"
 
-#: include/install.php:204
+#: include/install.php:182
 msgid ""
 "The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please "
 "choose a different prefix"
 msgstr ""
 "De tabel prefix 'SQLite_' is gereserveerd voor SQLite. Kies een andere prefix"
 
-#: include/install.php:215
+#: include/install.php:193
 msgid ""
 "InnoDB does not seem to be enabled. Please choose a database layer that does "
 "not have InnoDB support, or enable InnoDB on your MySQL server"
@@ -4963,7 +5079,7 @@ msgstr ""
 "InnoDB lijkt niet beschikbaar te zijn. Kies een database layer dat geen "
 "InnoDB gebruik, of schakel InnoDB in op je MySQL server"
 
-#: include/install.php:226
+#: include/install.php:204
 #, php-format
 msgid ""
 "The table prefix '%s' contains illegal characters or is too long. The prefix "
@@ -4976,7 +5092,7 @@ msgstr ""
 "starten met een cijfer en mag maximum 40 tekens lang zijn. Kies een andere "
 "prefix"
 
-#: include/install.php:241
+#: include/install.php:219
 #, php-format
 msgid ""
 "A table called \"%susers\" is already present in the database \"%s\". This "
@@ -4991,15 +5107,15 @@ msgstr ""
 "gebruikt. Als je meerdere installaties van Luna in dezelfde database wilt "
 "bewaren kan je een andere prefix instellen"
 
-#: include/install.php:1522
+#: include/install.php:1462
 msgid "H:i"
 msgstr "H:i"
 
-#: include/install.php:1523
+#: include/install.php:1463
 msgid "j F Y"
 msgstr "j F Y"
 
-#: include/install.php:1565
+#: include/install.php:1505
 msgid ""
 "Wow, it's great to have you here, welcome and thanks for joining us. We've "
 "set up your account and you're ready to go. Though we like to point out some "
@@ -5009,31 +5125,23 @@ msgstr ""
 "aangemaakt en je bent klaar om te starten. We hebben echter nog wat handige "
 "links voor je die je mogelijk wilt bekijken."
 
-#: include/install.php:1686
+#: include/install.php:1626
 msgid "Administrators"
 msgstr "Administratoren"
 
-#: include/install.php:1686 settings.php:694
-msgid "Administrator"
-msgstr "Administrator"
-
-#: include/install.php:1688
+#: include/install.php:1628
 msgid "Moderators"
 msgstr "Moderatoren"
 
-#: include/install.php:1688 settings.php:694
-msgid "Moderator"
-msgstr "Moderator"
-
-#: include/install.php:1692
+#: include/install.php:1632
 msgid "Members"
 msgstr "Gebruikers"
 
-#: include/install.php:1723
+#: include/install.php:1663
 msgid "New member"
 msgstr "Nieuwe gebruikers"
 
-#: include/install.php:1730
+#: include/install.php:1670
 msgid "Welcome to Luna, discover the possibilities!"
 msgstr "Welkom bij Luna, ontdek de mogelijkheden!"
 
@@ -5096,29 +5204,25 @@ msgstr "schreef"
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: include/statistic_functions.php:99
-msgid "No users online"
-msgstr "Geen gebruikers online"
-
-#: index.php:50 themes/Fifteen/views/footer.php:22
-#: themes/Typography/views/footer.php:22
+#: index.php:50 themes/Fifteen/views/footer.php:26
+#: themes/Typography/views/footer.php:26
 msgid "RSS active thread feed"
 msgstr "RSS active conversaties feed"
 
-#: index.php:52 themes/Fifteen/views/footer.php:22
-#: themes/Typography/views/footer.php:22
+#: index.php:52 themes/Fifteen/views/footer.php:26
+#: themes/Typography/views/footer.php:26
 msgid "Atom active thread feed"
 msgstr "Atom active conversatie feed"
 
-#: install.php:96
+#: install.php:75
 msgid "It seems like Luna is already installed."
 msgstr "Het lijkt erop dat Luna al geïnstalleerd is."
 
-#: install.php:135
+#: install.php:114
 msgid "You can do anything"
 msgstr "You can do anything"
 
-#: install.php:167
+#: install.php:146
 #, php-format
 msgid ""
 "<strong>The cache directory is currently not writable!</strong> In order for "
@@ -5130,7 +5234,7 @@ msgstr ""
 "schrijfrechten hebben naar de map <em>%s</em> in PHP. Zet CHMod op 0777 voor "
 "de juiste permissies."
 
-#: install.php:172
+#: install.php:151
 #, php-format
 msgid ""
 "<strong>The avatar directory is currently not writable!</strong> If you want "
@@ -5145,7 +5249,7 @@ msgstr ""
 "op te slaan in een andere map (zie Backstage > Instellingen > Instellingen > "
 "Avatars). Zet CHMod op 0777 voor de juiste permissies."
 
-#: install.php:180
+#: install.php:159
 msgid ""
 "PHP needs to have support for either MySQL or SQLite to run Luna to be "
 "installed. Non is available, though"
@@ -5153,48 +5257,48 @@ msgstr ""
 "PHP moet ondersteuning bieden voor MySQL of SQLite om Luna te installeren. "
 "Geen van beide is beschikbaar"
 
-#: install.php:191 install.php:487 install.php:503
+#: install.php:170 install.php:466 install.php:482
 msgid "Luna Installation"
 msgstr "Luna installatie"
 
-#: install.php:205 install.php:312
+#: install.php:184 install.php:291
 msgid "Server hostname"
 msgstr "Server hostnaam"
 
-#: install.php:208
+#: install.php:187
 msgid "Administrator password 1"
 msgstr "Administrator wachtwoord 1"
 
-#: install.php:209
+#: install.php:188
 msgid "Administrator password 2"
 msgstr "Administrator wachtwoord 2"
 
-#: install.php:211
+#: install.php:190
 msgid "Board title"
 msgstr "Forum titel"
 
-#: install.php:212 install.php:395
+#: install.php:191 install.php:374
 msgid "No trailing slash"
 msgstr "Geen eindstreep"
 
-#: install.php:236 install.php:494
+#: install.php:215 install.php:473
 msgid "Install<span class=\"brand\">Luna</span>"
 msgstr "Installeer<span class=\"brand\">Luna</span>"
 
-#: install.php:247
+#: install.php:226
 msgid "Install language"
 msgstr "Installatie taal"
 
-#: install.php:249
+#: install.php:228
 msgid "Change language"
 msgstr "Verander taal"
 
-#: install.php:254 themes/Fifteen/views/settings.php:216
-#: themes/Typography/views/settings.php:208
+#: install.php:233 themes/Fifteen/views/settings.php:208
+#: themes/Typography/views/settings.php:200
 msgid "Language"
 msgstr "Taal"
 
-#: install.php:254
+#: install.php:233
 msgid ""
 "The language used for the installer, the default language for the board can "
 "be set below"
@@ -5202,47 +5306,47 @@ msgstr ""
 "De taal voor de installer, de standaard taal voor het forum kan onderaan "
 "ingesteld worden"
 
-#: install.php:275
+#: install.php:254
 msgid "Errors"
 msgstr "Errors"
 
-#: install.php:293
+#: install.php:272
 msgid "We've listed everything this server knows"
 msgstr "Hier is een lijst van alles dat deze server kent"
 
-#: install.php:336
+#: install.php:315
 msgid "Table prefix"
 msgstr "Tabel prefix"
 
-#: install.php:336
+#: install.php:315
 msgid "Set for more Luna installation in this database"
 msgstr "Gebruik dit voor meerdere Luna installaties in deze database"
 
-#: install.php:344
+#: install.php:323
 msgid "Administration"
 msgstr "Administratie"
 
-#: install.php:347
+#: install.php:326
 msgid "2 to 25 characters long"
 msgstr "2 tot 25 tekens lang"
 
-#: install.php:353
+#: install.php:332
 msgid "At least 6 characters long"
 msgstr "Minstens 6 tekens lang"
 
-#: install.php:395
+#: install.php:374
 msgid "Board URL"
 msgstr "Forum URL"
 
-#: install.php:418
+#: install.php:397
 msgid "Default theme"
 msgstr "Standaard thema"
 
-#: install.php:437
+#: install.php:416
 msgid "Start install"
 msgstr "Installeer"
 
-#: install.php:464
+#: install.php:443
 msgid ""
 "<strong>File uploads appear to be disallowed on this server!</strong> If you "
 "want users to be able to upload their own avatar images you must enable the "
@@ -5255,18 +5359,18 @@ msgstr ""
 "avatar uploads inschakelen in Backstage > Instellingen > Instellingen > "
 "Avatars."
 
-#: install.php:505
+#: install.php:484
 msgid "Download config.php file"
 msgstr "Download config.php bestand"
 
-#: install.php:509
+#: install.php:488
 msgid ""
 "Luna has been installed. To finalize the installation please follow the "
 "instructions below."
 msgstr ""
 "Luna is geïnstalleerd. Volg onderstaande instructies om verder te gaan."
 
-#: install.php:511
+#: install.php:490
 msgid ""
 "To finalize the installation, you need to click on the button below to "
 "download a file called config.php. You then need to upload this file to the "
@@ -5276,7 +5380,7 @@ msgstr ""
 "php bestand te downloaden. Je moet deze vervolgens uploaden naar de hoofdmap "
 "van deze Luna installatie."
 
-#: install.php:512
+#: install.php:491
 msgid ""
 "Once you have uploaded config.php, Luna will be fully installed! At that "
 "point, you may <a href=\"index.php\">go to the forum index</a>."
@@ -5284,7 +5388,7 @@ msgstr ""
 "Zodra config.php is geüpload, is Luna volledig geïnstalleerd. Je kan dan "
 "naar <a href=\"index.php\">de forum index</a> gaan."
 
-#: install.php:521
+#: install.php:500
 msgid ""
 "Luna has been fully installed! You may now <a href=\"index.php\">go to the "
 "forum index</a>."
@@ -5591,7 +5695,7 @@ msgstr ""
 "<board_mailer> Mailer\n"
 "(Reageer niet op dit bericht)"
 
-#: new_inbox.php:435
+#: new_inbox.php:425
 msgid "Send a message"
 msgstr "Stuur een bericht"
 
@@ -5608,25 +5712,19 @@ msgstr "Gezien"
 msgid "No old notifications."
 msgstr "Geen oude notificaties."
 
-#: profile.php:51 themes/Fifteen/views/profile.php:41
-#: themes/Typography/views/profile.php:35
-msgid "Latest comment"
-msgstr "Nieuwste reactie"
-
-#: profile.php:58 themes/Fifteen/views/profile.php:49
-#: themes/Typography/views/profile.php:43
-msgid "Latest visit"
-msgstr "Laatste bezoek"
-
-#: profile.php:65 themes/Fifteen/views/profile.php:59
-#: themes/Fifteen/views/settings.php:109 themes/Typography/views/profile.php:53
-#: themes/Typography/views/settings.php:101
-msgid "Location"
-msgstr "Locatie"
-
 #: register.php:20
 msgid "This forum is not accepting new registrations."
 msgstr "Dit forum aanvaard geen nieuwe registraties."
+
+#: register.php:24 register.php:255 themes/Fifteen/views/header.php:51
+#: themes/Fifteen/views/index.php:48 themes/Fifteen/views/login.php:23
+#: themes/Fifteen/views/login.php:27 themes/Fifteen/views/register.php:15
+#: themes/Fifteen/views/register.php:17 themes/Sunrise/views/index.php:48
+#: themes/Typography/views/header.php:54 themes/Typography/views/login.php:23
+#: themes/Typography/views/login.php:27 themes/Typography/views/register.php:15
+#: themes/Typography/views/register.php:17
+msgid "Register"
+msgstr "Registreer"
 
 #: register.php:24
 msgid "Forum rules"
@@ -5642,7 +5740,7 @@ msgstr ""
 "in het laatste uur. Om dubbele registraties te voorkomen moet je minstens "
 "een uur wachten tussen 2 registraties. Sorry voor het ongemak."
 
-#: register.php:62 settings.php:86
+#: register.php:62 settings.php:87
 msgid ""
 "Passwords must be at least 6 characters long. Please choose another (longer) "
 "password."
@@ -5654,7 +5752,7 @@ msgstr ""
 msgid "Email addresses do not match."
 msgstr "Email adressen komen niet overeen."
 
-#: register.php:93 settings.php:384
+#: register.php:93 settings.php:383
 msgid ""
 "Someone else is already registered with that email address. Please choose "
 "another email address."
@@ -5851,7 +5949,15 @@ msgstr "Abonnement van %s"
 msgid "Quick search %s"
 msgstr "Snel zoeken %s"
 
-#: settings.php:48
+#: settings.php:24
+msgid ""
+"Bad request. The link you followed is incorrecy not allowed to hang around "
+"here."
+msgstr ""
+"Bad request. Die link die je volgt in fout, verouderd of je hebt geen "
+"rechten om hier te zijn."
+
+#: settings.php:49
 msgid ""
 "The specified password activation key was incorrect or has expired. Please "
 "re-request a new password. If that fails, contact the forum administrator at"
@@ -5859,17 +5965,17 @@ msgstr ""
 "De gegeven wachtwoord activatiesleutel is ongeldig. Vraag een nieuw "
 "wachtwoord aan. Als het nog niet lukt contacteer je best de administrator op"
 
-#: settings.php:55
+#: settings.php:56
 msgid ""
 "Your password has been updated. You can now login with your new password."
 msgstr ""
 "Je wachtwoord is bijgewerkt. Je kan nu inloggen met je nieuwe wachtwoord."
 
-#: settings.php:101 settings.php:338
+#: settings.php:102 settings.php:339
 msgid "Wrong old password."
 msgstr "Fout oud wachtwoord."
 
-#: settings.php:195
+#: settings.php:196
 msgid ""
 "Administrators cannot be deleted. In order to delete this user, you must "
 "first move him/her to a different user group."
@@ -5877,11 +5983,11 @@ msgstr ""
 "Administratoren kunnen niet worden verwijderd. Als je deze gebruiker wilt "
 "verwijderen moet je dit profiel degraderen."
 
-#: settings.php:266
+#: settings.php:267
 msgid "Confirm delete user"
 msgstr "Verwijder gebruiker bevestigen"
 
-#: settings.php:330
+#: settings.php:331
 msgid ""
 "The specified email activation key was incorrect or has expired. Please re-"
 "request change of email address. If that fails, contact the forum "
@@ -5891,11 +5997,11 @@ msgstr ""
 "wijziging opnieuw aan. Als het nog niet lukt contacteer je best de "
 "administrator op"
 
-#: settings.php:334
+#: settings.php:335
 msgid "Your email address has been updated."
 msgstr "Je email adres is bijgewerkt."
 
-#: settings.php:356
+#: settings.php:355
 msgid ""
 "Subject: Alert - Banned email detected\n"
 "\n"
@@ -5918,7 +6024,7 @@ msgstr ""
 "<board_mailer> Mailer\n"
 "(Reageer niet op dit bericht)"
 
-#: settings.php:390
+#: settings.php:389
 msgid ""
 "Subject: Alert - Duplicate email detected\n"
 "\n"
@@ -5942,7 +6048,7 @@ msgstr ""
 "<board_mailer> Mailer\n"
 "(Reageer niet op dit bericht)"
 
-#: settings.php:420
+#: settings.php:419
 msgid ""
 "Subject: Change email address requested\n"
 "\n"
@@ -5978,7 +6084,7 @@ msgstr ""
 "<board_mailer> Mailer\n"
 "(Reageer niet op dit bericht)"
 
-#: settings.php:445
+#: settings.php:444
 msgid ""
 "An email has been sent to the specified address with instructions on how to "
 "activate the new email address. If it doesn't arrive you can contact the "
@@ -5988,21 +6094,21 @@ msgstr ""
 "controleren. Als je de email niet ontvangt neem je best contact op met de "
 "administrator op"
 
-#: settings.php:448 settings.php:578 settings.php:583
+#: settings.php:447 settings.php:576 settings.php:581
 #: themes/Fifteen/views/me-modals.php:5 themes/Typography/views/me-modals.php:5
 msgid "Change email address"
 msgstr "Verander email adres"
 
-#: settings.php:449 themes/Fifteen/views/me-modals.php:11
+#: settings.php:448 themes/Fifteen/views/me-modals.php:11
 #: themes/Typography/views/me-modals.php:11
 msgid "New email"
 msgstr "Nieuwe email"
 
-#: settings.php:458
+#: settings.php:457
 msgid "The administrator has disabled avatar support."
 msgstr "De administrator heeft ondersteuning voor avatars uitgeschakeld."
 
-#: settings.php:504 settings.php:526
+#: settings.php:503 settings.php:525
 msgid ""
 "The file you tried to upload is not of an allowed type. Allowed types are "
 "gif, jpeg and png."
@@ -6010,61 +6116,49 @@ msgstr ""
 "Het bestand dat je probeerde te uploaden is van een ongeldig type. Alleen "
 "gif, jpeg en png zijn toegestaan."
 
-#: settings.php:508
+#: settings.php:507
 msgid "The file you tried to upload is larger than the maximum allowed"
 msgstr "Het bestand dat je hebt geüpload is te groot"
 
-#: settings.php:532
+#: settings.php:531
 msgid ""
 "The file you tried to upload is wider and/or higher than the maximum allowed"
 msgstr ""
 "Het bestand dat je probeerde te uploaden is breder en/of hoger dan de "
 "maximum toegestane"
 
-#: settings.php:571 themes/Fifteen/views/profile.php:74
-#: themes/Typography/views/profile.php:68
+#: settings.php:569 themes/Fifteen/views/profile.php:77
+#: themes/Typography/views/profile.php:63
 msgid "Send email"
 msgstr "Stuur een email"
 
-#: settings.php:580
+#: settings.php:578
 msgid "Unverified"
 msgstr "Niet geverifieerd"
 
-#: settings.php:681
-msgid "The website URL you entered is invalid."
-msgstr "De gegeven website URL is ongeldig."
-
-#: settings.php:697
+#: settings.php:593
 msgid ""
-"The title you entered contains a forbidden word. You must choose a different "
-"title."
+"Bad HTTP_REFERER. If you have moved these forums from one location to "
+"another or switched domains, you need to update the Base URL manually in the "
+"database (look for o_base_url in the config table) and then clear the cache "
+"by deleting all .php files in the /cache directory.."
 msgstr ""
-"De gegeven titel bevat verboden woorden. Je moet een andere titel kiezen."
+"Foute HTTP_REFERER. Als je dit forum hebt verplaatst van de ene locatie naar "
+"de andere of je hebt een nieuw domein aangenomen moet de Basis URL handmatig "
+"worden aangepast in de database (zoek naar o_base_url in de config tabel) en "
+"moet de cache vervolgens verwijderd worden door alle .php-bestanden in de /"
+"cache-map te verwijderen."
 
-#: settings.php:707
-#, php-format
-msgid ""
-"Signatures cannot be longer than %1$s characters. Please reduce your "
-"signature by %2$s characters."
-msgstr ""
-"Handtekeningen mogen niet meer dan %1$s tekens bevatten. Maak je "
-"handtekening %2$s tekens kleiner."
-
-#: settings.php:709
-#, php-format
-msgid "Signatures cannot have more than %s lines."
-msgstr "Handtekeningen mogen niet meer dan %s lijnen beslaan."
-
-#: settings.php:820 themes/Fifteen/views/me-modals.php:54
+#: settings.php:722 themes/Fifteen/views/me-modals.php:54
 #: themes/Typography/views/me-modals.php:54
 msgid "Change avatar"
 msgstr "Verander avatar"
 
-#: settings.php:827
+#: settings.php:729
 msgid "Upload avatar"
 msgstr "Upload avatar"
 
-#: settings.php:832
+#: settings.php:734
 msgid "No signature currently stored in profile."
 msgstr "Er is geen handteking gekoppelt aan dit profiel."
 
@@ -6081,7 +6175,7 @@ msgstr "op"
 msgid "comment since"
 msgstr "reactie sinds"
 
-#: themes/Fifteen/views/answer.php:22 themes/Typography/views/answer.php:22
+#: themes/Fifteen/views/answer.php:22 themes/Typography/views/answer.php:15
 msgid "Are you certain that this comment is the solution to your thread?"
 msgstr "Ben je zeker dat deze reactie de oplossing van je vraag bevat?"
 
@@ -6093,51 +6187,53 @@ msgstr "Nieuwe conversatie"
 msgid "New comment"
 msgstr "Nieuwe reactie"
 
-#: themes/Fifteen/views/footer.php:25 themes/Typography/views/footer.php:25
+#: themes/Fifteen/views/footer.php:29 themes/Typography/views/footer.php:29
 #: viewforum.php:112
 msgid "RSS forum feed"
 msgstr "RSS forum feed"
 
-#: themes/Fifteen/views/footer.php:25 themes/Typography/views/footer.php:25
+#: themes/Fifteen/views/footer.php:29 themes/Typography/views/footer.php:29
 #: viewforum.php:114
 msgid "Atom forum feed"
 msgstr "Atom forum feed"
 
-#: themes/Fifteen/views/footer.php:28 themes/Typography/views/footer.php:28
+#: themes/Fifteen/views/footer.php:32 themes/Typography/views/footer.php:32
 #: thread.php:145
 msgid "RSS thread feed"
 msgstr "RSS conversatie feed"
 
-#: themes/Fifteen/views/footer.php:28 themes/Typography/views/footer.php:28
+#: themes/Fifteen/views/footer.php:32 themes/Typography/views/footer.php:32
 #: thread.php:147
 msgid "Atom thread feed"
 msgstr "Atom conversatie feed"
 
-#: themes/Fifteen/views/footer.php:51 themes/Typography/views/footer.php:51
+#: themes/Fifteen/views/footer.php:52
 msgid "User"
 msgstr "Gebruiker"
 
-#: themes/Fifteen/views/footer.php:55 themes/Fifteen/views/settings.php:53
-#: themes/Typography/views/footer.php:55
+#: themes/Fifteen/views/footer.php:56 themes/Fifteen/views/settings.php:53
 #: themes/Typography/views/settings.php:46
 msgid "Thread"
 msgstr "Conversaties"
 
-#: themes/Fifteen/views/footer.php:70 themes/Fifteen/views/footer.php:78
-#: themes/Typography/views/footer.php:70 themes/Typography/views/footer.php:78
+#: themes/Fifteen/views/footer.php:74 themes/Fifteen/views/footer.php:92
 msgid "User online"
 msgstr "Gebruiker online"
 
-#: themes/Fifteen/views/footer.php:82 themes/Typography/views/footer.php:82
+#: themes/Fifteen/views/footer.php:87
+msgid "No users online"
+msgstr "Geen gebruikers online"
+
+#: themes/Fifteen/views/footer.php:97
 msgid "Guest online"
 msgstr "Gasten online"
 
-#: themes/Fifteen/views/footer.php:103 themes/Typography/views/footer.php:103
+#: themes/Fifteen/views/footer.php:118 themes/Typography/views/footer.php:83
 msgid "We use cookies to give you the best experience on this board."
 msgstr "We gebruiken cookies om je een betere ervaring te bieden op dit forum."
 
-#: themes/Fifteen/views/footer.php:106 themes/Fifteen/views/index.php:40
-#: themes/Sunrise/views/index.php:40 themes/Typography/views/footer.php:106
+#: themes/Fifteen/views/footer.php:121 themes/Fifteen/views/index.php:40
+#: themes/Sunrise/views/index.php:40 themes/Typography/views/footer.php:86
 #: themes/Typography/views/index.php:27
 msgid "Don't show again"
 msgstr "Niet meer tonen"
@@ -6685,7 +6781,7 @@ msgstr "Ben je zeker dat je deze berichten wilt verwijderen van Inbox?"
 #: themes/Fifteen/views/inbox-view.php:26
 #: themes/Fifteen/views/inbox-view.php:35
 #: themes/Typography/views/inbox-view.php:23
-#: themes/Typography/views/inbox-view.php:28 viewinbox.php:252
+#: themes/Typography/views/inbox-view.php:28 viewinbox.php:249
 msgid "Reply"
 msgstr "Reageer"
 
@@ -6744,6 +6840,11 @@ msgstr "Welkom terug"
 #: themes/Fifteen/views/index.php:102 themes/Sunrise/views/index.php:102
 msgid "Search in comments"
 msgstr "Zoeken in reacties"
+
+#: themes/Fifteen/views/index.php:121 themes/Sunrise/views/index.php:124
+#: themes/Typography/views/index.php:75
+msgid "Mark all as read"
+msgstr "Markeer alles als gelezen"
 
 #: themes/Fifteen/views/index.php:137 themes/Sunrise/views/forum.php:27
 #: themes/Sunrise/views/index.php:111
@@ -6840,14 +6941,28 @@ msgstr "Markeer alles als gelezen"
 msgid "Remove all"
 msgstr "Verwijder alles"
 
-#: themes/Fifteen/views/profile.php:74 themes/Fifteen/views/settings.php:50
-#: themes/Typography/views/profile.php:68
+#: themes/Fifteen/views/profile.php:41 themes/Typography/views/profile.php:31
+msgid "Latest comment"
+msgstr "Nieuwste reactie"
+
+#: themes/Fifteen/views/profile.php:49 themes/Typography/views/profile.php:39
+msgid "Latest visit"
+msgstr "Laatste bezoek"
+
+#: themes/Fifteen/views/profile.php:59 themes/Fifteen/views/settings.php:109
+#: themes/Typography/views/profile.php:49
+#: themes/Typography/views/settings.php:101
+msgid "Location"
+msgstr "Locatie"
+
+#: themes/Fifteen/views/profile.php:77 themes/Fifteen/views/settings.php:50
+#: themes/Typography/views/profile.php:60
 #: themes/Typography/views/settings.php:43
 msgid "Contact"
 msgstr "Contact"
 
-#: themes/Fifteen/views/profile.php:89 themes/Fifteen/views/settings.php:126
-#: themes/Typography/views/profile.php:83
+#: themes/Fifteen/views/profile.php:132 themes/Fifteen/views/settings.php:126
+#: themes/Typography/views/profile.php:124
 #: themes/Typography/views/settings.php:118
 msgid "Signature"
 msgstr "Handtekening"
@@ -6946,146 +7061,126 @@ msgstr "Handtekening voorbeeld"
 msgid "Color"
 msgstr "Kleur"
 
-#: themes/Fifteen/views/settings.php:164
-#: themes/Typography/views/settings.php:156
-msgid "Enforce the accent on the board."
-msgstr "Forceer de accentkleur op het forum."
-
-#: themes/Fifteen/views/settings.php:176
-#: themes/Typography/views/settings.php:168
+#: themes/Fifteen/views/settings.php:168
+#: themes/Typography/views/settings.php:160
 msgid "Never use night mode."
 msgstr "Gebruik nacht modus nooit."
 
-#: themes/Fifteen/views/settings.php:182
-#: themes/Typography/views/settings.php:174
+#: themes/Fifteen/views/settings.php:174
+#: themes/Typography/views/settings.php:166
 msgid "Always use night mode."
 msgstr "Gebruik nacht modus altijd."
 
-#: themes/Fifteen/views/settings.php:188
-#: themes/Typography/views/settings.php:180
+#: themes/Fifteen/views/settings.php:180
+#: themes/Typography/views/settings.php:172
 msgid "Enable night mode automatically."
 msgstr "Schakel automatisch over op nacht modus."
 
-#: themes/Fifteen/views/settings.php:195
-#: themes/Typography/views/settings.php:187
+#: themes/Fifteen/views/settings.php:187
+#: themes/Typography/views/settings.php:179
 msgid "Backstage accent"
 msgstr "Backstage accent"
 
-#: themes/Fifteen/views/settings.php:233
-#: themes/Typography/views/settings.php:225
+#: themes/Fifteen/views/settings.php:225
+#: themes/Typography/views/settings.php:217
 msgid "First Run"
 msgstr "Eerste Start"
 
-#: themes/Fifteen/views/settings.php:238
-#: themes/Typography/views/settings.php:230
+#: themes/Fifteen/views/settings.php:230
+#: themes/Typography/views/settings.php:222
 msgid "Show the First Run window on the index."
 msgstr "Toon het Eerste Start paneel op de index."
 
-#: themes/Fifteen/views/settings.php:263
-#: themes/Typography/views/settings.php:255
+#: themes/Fifteen/views/settings.php:255
+#: themes/Typography/views/settings.php:247
 msgid "Email settings"
 msgstr "Email instellingen"
 
-#: themes/Fifteen/views/settings.php:268
-#: themes/Typography/views/settings.php:260
+#: themes/Fifteen/views/settings.php:260
+#: themes/Typography/views/settings.php:252
 msgid "Display your email address."
 msgstr "Toon je email adres."
 
-#: themes/Fifteen/views/settings.php:274
-#: themes/Typography/views/settings.php:266
+#: themes/Fifteen/views/settings.php:266
+#: themes/Typography/views/settings.php:258
 msgid "Hide your email address but allow form email."
 msgstr "Verberg je email adres maar laat e-mails toe."
 
-#: themes/Fifteen/views/settings.php:280
-#: themes/Typography/views/settings.php:272
+#: themes/Fifteen/views/settings.php:272
+#: themes/Typography/views/settings.php:264
 msgid "Hide your email address and disallow form email."
 msgstr "Verberg je email adres en laat geen e-mails toe."
 
-#: themes/Fifteen/views/settings.php:293
-#: themes/Typography/views/settings.php:285
+#: themes/Fifteen/views/settings.php:285
+#: themes/Typography/views/settings.php:277
 msgid ""
 "Include a plain text version of new comments in subscription notification "
 "emails."
 msgstr ""
 "Voeg een opmaakloze versie van nieuwe reacties toe in je abonnement e-mails."
 
-#: themes/Fifteen/views/settings.php:300
-#: themes/Typography/views/settings.php:292
+#: themes/Fifteen/views/settings.php:292
+#: themes/Typography/views/settings.php:284
 msgid "Automatically subscribe to every thread you comment in."
 msgstr "Abonneer automatisch op conversaties waar je aan deelneemt."
 
-#: themes/Fifteen/views/settings.php:321
-#: themes/Typography/views/settings.php:313
+#: themes/Fifteen/views/settings.php:313
+#: themes/Typography/views/settings.php:305
 msgid "Microsoft Account"
 msgstr "Microsoft Account"
 
-#: themes/Fifteen/views/settings.php:332
-#: themes/Typography/views/settings.php:324
+#: themes/Fifteen/views/settings.php:324
+#: themes/Typography/views/settings.php:316
 msgid "Facebook"
 msgstr "Facebook"
 
-#: themes/Fifteen/views/settings.php:343
-#: themes/Typography/views/settings.php:335
+#: themes/Fifteen/views/settings.php:335
+#: themes/Typography/views/settings.php:327
 msgid "Twitter"
 msgstr "Twitter"
 
-#: themes/Fifteen/views/settings.php:354
-#: themes/Typography/views/settings.php:346
+#: themes/Fifteen/views/settings.php:346
+#: themes/Typography/views/settings.php:338
 msgid "Google+"
 msgstr "Google+"
 
-#: themes/Fifteen/views/settings.php:376
-#: themes/Typography/views/settings.php:368
-msgid "Show user avatars with their comments"
-msgstr "Toon avatars bij reacties."
-
-#: themes/Fifteen/views/settings.php:383
-#: themes/Typography/views/settings.php:375
+#: themes/Fifteen/views/settings.php:367
+#: themes/Typography/views/settings.php:360
 msgid "Show images in comments."
 msgstr "Toon afbeeldingen in reacties."
 
-#: themes/Fifteen/views/settings.php:396
-#: themes/Typography/views/settings.php:388
+#: themes/Fifteen/views/settings.php:380
+#: themes/Typography/views/settings.php:373
 msgid "Show user signatures."
 msgstr "Toon handtekeningen bij reacties."
 
-#: themes/Fifteen/views/settings.php:403
-#: themes/Typography/views/settings.php:395
-msgid "Show images in user signatures."
-msgstr "Toon afbeeldingen in handtekeningen."
-
-#: themes/Fifteen/views/settings.php:410
-#: themes/Typography/views/settings.php:402
-msgid "Show smilies as graphic icons."
-msgstr "Too emoticons als grafische iconen."
-
-#: themes/Fifteen/views/settings.php:435
-#: themes/Typography/views/settings.php:427
+#: themes/Fifteen/views/settings.php:391
+#: themes/Typography/views/settings.php:384
 msgid "Time zone"
 msgstr "Tijdzone"
 
-#: themes/Fifteen/views/settings.php:492
-#: themes/Typography/views/settings.php:484
+#: themes/Fifteen/views/settings.php:447
+#: themes/Typography/views/settings.php:441
 msgid "Choose user group"
 msgstr "Kies een groep"
 
-#: themes/Fifteen/views/settings.php:518
-#: themes/Typography/views/settings.php:510
+#: themes/Fifteen/views/settings.php:473
+#: themes/Typography/views/settings.php:467
 msgid "Delete or ban user"
 msgstr "Verwijder of verban gebruiker"
 
-#: themes/Fifteen/views/settings.php:528
-#: themes/Typography/views/settings.php:520
+#: themes/Fifteen/views/settings.php:483
+#: themes/Typography/views/settings.php:477
 msgid "Set moderator access"
 msgstr "Stel moderator toegang in"
 
-#: themes/Fifteen/views/settings.php:528
-#: themes/Typography/views/settings.php:520
+#: themes/Fifteen/views/settings.php:483
+#: themes/Typography/views/settings.php:477
 msgid "Update forums"
 msgstr "Update forums"
 
-#: themes/Fifteen/views/settings.php:530
-#: themes/Typography/views/settings.php:522
+#: themes/Fifteen/views/settings.php:485
+#: themes/Typography/views/settings.php:479
 msgid ""
 "Choose which forums this user should be allowed to moderate. Note: This only "
 "applies to moderators. Administrators always have full permissions in all "
@@ -7094,7 +7189,7 @@ msgstr ""
 "Kies welke forums deze gebruiker mag modereren. Belangrijk: Dit geldt alleen "
 "voor moderators. Administrators hebben altijd alle permissies."
 
-#: themes/Fifteen/views/soft.php:22 themes/Typography/views/soft.php:22
+#: themes/Fifteen/views/soft.php:22 themes/Typography/views/soft.php:15
 msgid ""
 "The comment you have chosen to hide is set out below for you to review "
 "before proceeding. Deleting this comment is not permanent. If you want to "
@@ -7132,7 +7227,7 @@ msgstr "Belangrijk"
 msgid "Unimportant"
 msgstr "Onbelangrijk"
 
-#: themes/Fifteen/views/unsolved.php:21 themes/Typography/views/unsolved.php:21
+#: themes/Fifteen/views/unsolved.php:21 themes/Typography/views/unsolved.php:14
 msgid "Are you certain that this comment isn't the solution to your thread?"
 msgstr ""
 "Ben je zeker dat deze reactie niet op oplossing is voor de conversatie?"
@@ -7157,13 +7252,43 @@ msgstr "Laatste reactie op"
 msgid "In"
 msgstr "In"
 
+#: themes/Typography/views/footer.php:51
+#, php-format
+msgid "%s user online"
+msgstr "%s gebruikers online"
+
+#: themes/Typography/views/footer.php:52
+#, php-format
+msgid "%s guest online"
+msgstr "%s gasten online"
+
+#: themes/Typography/views/footer.php:53
+#, php-format
+msgid "Newest user: %s"
+msgstr "Nieuwste gebruiker: %s"
+
+#: themes/Typography/views/footer.php:57
+#, php-format
+msgid "%s user"
+msgstr "%s gebruiker"
+
+#: themes/Typography/views/footer.php:58
+#, php-format
+msgid "%s thread"
+msgstr "%s conversatie"
+
+#: themes/Typography/views/footer.php:59
+#, php-format
+msgid "%s comment"
+msgstr "%s reactie"
+
 #: themes/Typography/views/index.php:49
 msgid "Latest"
 msgstr "Laatste"
 
-#: themes/Typography/views/index.php:75
-msgid "Mark all as read"
-msgstr "Markeer alles als gelezen"
+#: themes/Typography/views/profile.php:54
+msgid "Activity"
+msgstr "Activiteit"
 
 #: userlist.php:55
 msgid "User list"
@@ -7180,6 +7305,25 @@ msgstr "met"
 #: viewinbox.php:222
 msgid "View a private discussion"
 msgstr "Bekijk privé conversaties"
+
+#~ msgid "Bootstrap Javascript is now loaded correctly locally"
+#~ msgstr "Bootstrap Javascript is nu correct lokaal geladen"
+
+#~ msgid "Fifteen and Sunrise do not properly work due to mismatching APIs"
+#~ msgstr ""
+#~ "Fifteen en Sunrise werken niet goed vanwege niet-overeenkomende API's"
+
+#~ msgid "Enforce the accent on the board."
+#~ msgstr "Forceer de accentkleur op het forum."
+
+#~ msgid "Show user avatars with their comments"
+#~ msgstr "Toon avatars bij reacties."
+
+#~ msgid "Show images in user signatures."
+#~ msgstr "Toon afbeeldingen in handtekeningen."
+
+#~ msgid "Show smilies as graphic icons."
+#~ msgstr "Too emoticons als grafische iconen."
 
 #, fuzzy
 #~| msgid ""
@@ -7356,9 +7500,6 @@ msgstr "Bekijk privé conversaties"
 #~ msgstr ""
 #~ "De quote, code, lijst, video en hoofding BBCodes zijn niet toegestaan in "
 #~ "handtekeningen."
-
-#~ msgid "The code base no longer supports PHP 5.2 anymore"
-#~ msgstr "The Luna core ondersteund PHP 5.2 niet meer"
 
 #~ msgid "Fixes 33 bugs"
 #~ msgstr "Herstelt 33 bugs"

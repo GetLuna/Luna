@@ -21,7 +21,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? intval($_GET['id']) : $luna_user['id'];
 
 if ($id < 2)
-	message(__('Bad request. The link you followed is incorrecy not allowed to hang around here.', 'luna'), false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 if ($action != 'change_pass' || !isset($_GET['key']))
 {
@@ -590,7 +590,7 @@ To change your email address, please visit the following page:
 		// Fetch the user group of the user we are editing
 		$result = $db->query('SELECT u.username, u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message(__('Bad r here.', 'luna'), false, '404 Not Found');
+			message(__('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'), false, '404 Not Found');
 
 		list($old_username, $group_id, $is_moderator) = $db->fetch_row($result);
 
