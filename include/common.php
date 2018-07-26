@@ -177,7 +177,6 @@ $is_admin = $luna_user['g_id'] == LUNA_ADMIN ? true : false;
 
 require LUNA_ROOT . 'include/general_functions.php';
 require LUNA_ROOT . 'include/draw_functions.php';
-require LUNA_ROOT . 'include/statistic_functions.php';
 
 // Check if current user is banned
 check_bans();
