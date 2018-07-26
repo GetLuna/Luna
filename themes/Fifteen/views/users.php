@@ -39,7 +39,28 @@ if (!defined('FORUM'))
 						</div>
 					</div>
 					<div class="userlist row tab-row">
-						<?php draw_user_list() ?>
+						<?php if ( count( $users ) > 0 ) { ?>
+							<?php foreach( $users as $user ) { ?>
+								<div class="col-xl-4 col-lg-6 col-md-6 col-12">
+									<div class="user-entry">
+										<div class="media">
+											<a href="<?php echo 'profile.php?id='.$user->getId() ?>">
+												<img class="img-fluid" src="<?php echo $user->getAvatar() ?>" alt="">
+											</a>
+											<div class="media-body">
+												<h5 class="mt-0 mb-0">
+													<a title="<?php echo $user->getUsername() ?>" href="profile.php?id=<?php echo $user->getId() ?>"><?php echo $user->getUsername() ?></a>
+												</h5>
+												<h6><?php echo $user->getTitle() ?></h6>
+												<?php echo $user->getNumComments().' '._n('comment since', 'comments since', $user->getNumComments(), 'luna').' '.$user->getRegistered(); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+						<?php } else { ?>
+							<h3><?php _e('Your search returned no hits.', 'luna') ?></h3>
+						<?php } ?>
 					</div>
 					<div class="row tab-row">
 						<div class="col-12">

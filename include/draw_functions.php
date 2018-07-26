@@ -884,31 +884,6 @@ function draw_response_list() {
 	}
 }
 
-function draw_user_list() {
-	global $db, $where_sql, $sort_query, $start_from;
-
-	// Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.LUNA_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_query.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
-
-	if ($db->num_rows($result)) {
-		$user_ids = array();
-		for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)
-			$user_ids[] = $cur_user_id;
-
-		// Grab the users
-		$result = $db->query('SELECT u.id, u.username, u.title, u.num_comments, u.registered, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id IN('.implode(',', $user_ids).') ORDER BY '.$sort_query.', u.id ASC') or error('Unable to fetch user list', __FILE__, __LINE__, $db->error());
-
-		while ($user_data = $db->fetch_assoc($result)) {
-			$user_title_field = get_title($user_data);
-			$user_avatar = get_user_avatar($user_data['id']);
-
-			require get_view_path('user.php');
-
-		}
-	} else
-		echo '<p>'.__('Your search returned no hits.', 'luna').'</p>';
-}
-
 function draw_delete_form($id) {
 	global $is_thread_comment;
 
