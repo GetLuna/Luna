@@ -37,7 +37,6 @@ require 'header.php';
                     <p><?php _e('Font Awesome has been updated from version 5.1.1 to 5.2.0', 'luna') ?></p>
                     <h4><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('Known issues', 'luna') ?></h4>
                     <p><?php _e('Fifteen, Sunrise and Typography have multiple visual issues', 'luna') ?></p>
-                    <p><?php _e('Luna will reset the theme to Typography', 'luna') ?></p>
                 </section>
                 <section class="release-notes">
                     <h2><span class="version-name">Fluorescent Blue Preview 5 <small>2.1-alpha.5</small></span></h2>

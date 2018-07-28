@@ -810,20 +810,14 @@ switch ($stage) {
 			$db->create_table('themes', $schema) or error('Unable to create themes table', __FILE__, __LINE__, $db->error());
 
 			$themes = array(
-				'fifteen' => '3.0-alpha.4',
-				'sunrise' => '4.0-alpha.4',
-				'typography' => '1.0-alpha.1'
+				'fifteen' => '3.0-alpha.6',
+				'sunrise' => '4.0-alpha.6',
+				'typography' => '1.0-alpha.2'
 			);
 	
 			foreach ($themes as $name => $version) {
 				$db->query('INSERT INTO '.$db->prefix.'themes (version, name) VALUES(\''.$version.'\', \''.$db->escape($name).'\')') or error('Unable to add theme', __FILE__, __LINE__, $db->error());
 			}
-		}
-
-		// Force Typography for the preview stage
-		if ( $luna_config['o_default_style'] !== 'Typography' ) {
-			$db->query( 'UPDATE '.$db->prefix.'config SET conf_value = \'Typography\' WHERE conf_name=\'o_default_style\'' ) or error( 'Unable to update theme config', __FILE__, __LINE__, $db->error() );
-			$db->query( 'INSERT INTO '.$db->prefix.'themes (version, name) VALUES(\'1.0-alpha.1\', \'Typography\')') or error('Unable to add theme', __FILE__, __LINE__, $db->error());
 		}
 
         break;
