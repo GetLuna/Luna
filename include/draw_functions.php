@@ -199,24 +199,24 @@ function draw_admin_note() {
 	global $cur_comment, $luna_user, $cur_index, $is_admmod;
 
     
-if ($luna_user['g_edit_comments'] == '1' && $luna_user['g_id'] == LUNA_ADMIN) {
+	if ($luna_user['g_edit_comments'] == '1' && $luna_user['g_id'] == LUNA_ADMIN) {
 ?>
     <div class="alert alert-danger admin-note">
         <h4><?php _e('Manage admin note', 'luna') ?></h4>
         <textarea class="form-control"  placeholder="<?php _e('Add a note to this comment...', 'luna') ?>" name="admin_note" id="note_field" rows="3" tabindex="<?php echo $cur_index++ ?>"><?php echo $cur_comment['admin_note'] ?></textarea>
     </div>
 <?php
-                 }
+	}
 }
 
 function draw_threads_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_threads, $cur_forum;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $forum_id, $db_type, $tracked_threads, $cur_forum;
 
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$forum_id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 	else
-		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$forum_id.' ORDER BY pinned DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_config['o_disp_threads']) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
 
 	// If there are threads in this forum
 	if ($db->num_rows($result)) {
@@ -290,7 +290,7 @@ function draw_threads_list() {
 				$item_status .= ' closed-item';
 			}
 
-			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$forum_id]) || $tracked_threads['forums'][$forum_id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fas fa-fw fa-bell status-new"></i></a>';
@@ -323,7 +323,7 @@ function draw_threads_list() {
 
 	} else {
 		echo '<h3 class="text-center">';
-		printf(__('<a href="comment.php?fid=%s">Start the first thread in this forum</a>', 'luna'), $id);
+		printf(__('<a href="comment.php?fid=%s">Start the first thread in this forum</a>', 'luna'), $forum_id);
 		echo '</h3>';
 	}
 
@@ -340,8 +340,6 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 	$forum_count = 0;
 	while ($cur_forum = $db->fetch_assoc($result)) {
 		if(!isset($cur_forum['parent_id']) || $cur_forum['parent_id'] == 0) {
-			$moderators = '';
-
 			if ($cur_forum['cid'] != $cur_category && $use_cat == 1) {
 				if ($cur_category != 0)
 					echo $close_tags;
@@ -409,13 +407,13 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 }
 
 function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
-	global $db, $luna_config, $luna_user, $id, $new_threads;
+	global $db, $luna_config, $luna_user, $forum_id, $new_threads;
 
-	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 	$cur_parent = $db->fetch_assoc($result);
 
 	if ($cur_parent['parent_id'] == '0')
-		$subforum_parent_id = $id;
+		$subforum_parent_id = $forum_id;
 	else
 		$subforum_parent_id = $cur_parent['parent_id'];
 
@@ -456,7 +454,7 @@ function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 			$threads_label = _n('thread', 'threads', $cur_forum['num_threads'], 'luna');
 			$comments_label = _n('comment', 'comments', $cur_forum['num_comments'], 'luna');
 
-			if ($id == $cur_forum['fid']) {
+			if ($forum_id == $cur_forum['fid']) {
 				$item_status .= ' active';
 				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
 			} else {
@@ -479,7 +477,7 @@ function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 }
 
 function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php', $link_to_new = false) {
-	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
+	global $luna_user, $luna_config, $db, $start_from, $forum_id, $sort_by, $start_from, $db_type, $cur_thread, $tracked_threads;
 
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_comment DESC LIMIT '.$limit) or error('Unable to fetch thread IDs', __FILE__, __LINE__, $db->error());
@@ -576,7 +574,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 				$item_status .= ' closed-item';
 			}
 
-			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
+			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$forum_id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fas fa-fw fa-bell status-new"></i></a>';

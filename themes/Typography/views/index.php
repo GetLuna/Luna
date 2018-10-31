@@ -67,7 +67,18 @@ if (!defined('FORUM'))
 	<div class="row">
 		<div class="col-md-4 col-12 sidebar">
 			<div class="list-group list-group-nav">
-				<?php draw_forum_list('forum.php', 1, 'category.php', ''); ?>
+				<?php foreach( $board as $category ) { ?>
+					<h4><?php echo $category->getName() ?></h4>
+					<?php foreach( $category->getForums() as $forum ) { ?>
+						<a href="<?php echo $forum->getForumUrl() ?>" class="list-group-item <?php echo $item_status ?>">
+							<h5 class="mb-1" style="<?php echo 'color: '.$forum->getColor().';' ?>">
+								<?php echo $forum->getIconMarkup() ?> <span class="forum-title"><?php echo $forum->getName() ?></span>
+							</h5>
+							<p class="text-muted"><?php printf( _n('%s thread', '%s threads', $forum->getNumThreads(), 'luna'), $forum->getNumThreads() ) ?> &middot; <?php printf( _n('%s comment', '%s comments', $forum->getNumThreads(), 'luna'), $forum->getNumComments() ) ?></p>
+							<?php echo $forum->getDescription() ?>
+						</a>
+					<?php } ?>
+				<?php } ?>
 			</div>
 			<?php if (get_read_url('forumview')) { ?>
 				<hr />

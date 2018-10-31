@@ -1208,7 +1208,8 @@ function is_subforum($id, $self_subforum = '0') {
 //
 // Get the icon
 //
-function get_icon($icon, $style = null) { 	global $luna_config;
+function get_icon($icon, $style = null) {
+    global $luna_config;
 
 	if ($icon == null) {
 		return '';

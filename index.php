@@ -9,9 +9,18 @@
 
 define('LUNA_ROOT', dirname(__FILE__).'/');
 require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/class/category.class.php';
 
 if ($luna_user['g_read_board'] == '0') {
     message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
+}
+
+$board = [];
+
+$result = $db->query( 'SELECT * FROM '.$db->prefix.'categories ORDER BY disp_position ASC' ) or error( 'Unable to fetch categories info', __FILE__, __LINE__, $db->error() );
+
+while ( $category = $db->fetch_assoc( $result ) ) {
+    $board[] = Category::withRow( $category );
 }
 
 // Get list of forums and threads with new comments since last visit
