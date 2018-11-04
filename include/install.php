@@ -1550,7 +1550,9 @@ class Installer
 			'o_sig_lines'				=> 4,
 			'o_allow_banned_email'		=> 1,
 			'o_allow_dupe_email'		=> 0,
-			'o_force_guest_email'		=> 1
+			'o_force_guest_email'		=> 1,
+			'o_use_cdn'					=> 1,
+			'o_fontawesomepro'			=> 0
 		);
 
 		foreach ($luna_config as $conf_name => $conf_value) {
