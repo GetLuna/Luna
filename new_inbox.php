@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2014-2018 Luna
+ * Copyright (C) 2014-2020 Luna
  * Based on work by Adaur (2010), Vincent Garnier, Connorhd and David 'Chacmool' Djurback
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */

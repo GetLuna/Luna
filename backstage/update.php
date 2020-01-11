@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -184,15 +184,15 @@ if (isset($_GET['saved']))
                     </tr>
                     <tr>
                         <td><?php _e('Bootstrap version', 'luna') ?></td>
-                        <td>3.3.7</td>
+                        <td>3.4.1</td>
                     </tr>
                     <tr>
                         <td><?php _e('Font Awesome version', 'luna') ?></td>
-                        <td>4.7.0</td>
+                        <td>5.12.0</td>
                     </tr>
                     <tr>
                         <td><?php _e('jQuery version', 'luna') ?></td>
-                        <td>2.2.4</td>
+                        <td>3.4.1</td>
                     </tr>
                 </tbody>
             </table>
