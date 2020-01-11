@@ -49,9 +49,6 @@ require LUNA_ROOT.'include/utf8/utf8.php';
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
 
-// Reverse the effect of register_globals
-forum_unregister_globals();
-
 // Record the start time (will be used to calculate the generation time for the page)
 $luna_start = get_microtime();
 
