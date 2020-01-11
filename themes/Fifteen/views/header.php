@@ -3,7 +3,7 @@
 	<head>
 		<?php load_meta(); ?>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="vendor/css/all.min.css">
 		<link rel="stylesheet" type="text/css" href="vendor/css/prism.css">
 		<?php load_css(); ?>
 		<script src="vendor/js/jquery.min.js"></script>

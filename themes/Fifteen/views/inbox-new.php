@@ -30,7 +30,7 @@ if (!defined('FORUM'))
 if (!empty($errors)) {
 ?>
             <div class="title-block title-block-danger">
-                <h2><i class="fa fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
+                <h2><i class="fas fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
             </div>
             <div class="tab-content tab-content-danger">
 			<?php
@@ -46,7 +46,7 @@ if (!empty($errors)) {
 
 ?>
             <div class="title-block title-block-primary">
-                <h2><i class="fa fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
+                <h2><i class="fas fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
             </div>
             <div class="tab-content">
                 <p><?php echo $preview_message."\n" ?></p>
@@ -60,7 +60,7 @@ $cur_index = 1;
 ?>
 			<form class="form-horizontal" method="post" id="comment" action="new_inbox.php" onsubmit="return process_form(this)">
 				<div class="title-block title-block-primary">
-					<h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
+					<h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?></h2>
 				</div>
 				<div class="tab-content new-inbox">
 					<fieldset>

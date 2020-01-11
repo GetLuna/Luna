@@ -97,14 +97,14 @@ require 'header.php';
         <div class="col-sm-12">
             <?php if ($luna_config['o_ranks'] == 0) { ?>
             <div class="alert alert-danger">
-                <i class="fa fa-fw fa-exclamation"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
+                <i class="fas fa-fw fa-exclamation"></i> <?php echo sprintf(__('User ranks is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
             </div>
             <?php } ?>
         </div>
 		<div class="col-sm-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add rank', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_rank" tabindex="3"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add rank', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_rank" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
                 <div class="panel-body">
                     <input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna') ?>" maxlength="50" tabindex="1" />
@@ -118,7 +118,7 @@ require 'header.php';
 		<div class="col-sm-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Manage ranks', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Manage ranks', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 <?php
@@ -147,7 +147,7 @@ if ($db->num_rows($result)) {
 									<input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_comments]" value="<?php echo $cur_rank['min_comments'] ?>" maxlength="7" />
 								</td>
 								<td>
-									<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
+									<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
 								</td>
 							</tr>
 <?php

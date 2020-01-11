@@ -12,7 +12,7 @@ function draw_error_panel($errors) {
 	if (!empty($errors)) {
 ?>
 <div class="title-block title-block-danger">
-    <h2><i class="fa fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
+    <h2><i class="fas fa-fw fa-exclamation-triangle "></i> <?php _e('Comment errors', 'luna') ?></h2>
 </div>
 <div class="tab-content tab-content-danger">
 <?php
@@ -35,7 +35,7 @@ function draw_preview_panel($message) {
 
 ?>
 <div class="title-block title-block-primary">
-    <h2><i class="fa fa-fw fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
+    <h2><i class="fas fa-fw fa-eye"></i> <?php _e('Comment preview', 'luna') ?></h2>
 </div>
 <div class="tab-content">
     <p><?php echo $preview_message?></p>
@@ -59,7 +59,7 @@ function draw_editor($height, $meta_enabled = null) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_thread" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="pin_thread" value="1" tabindex="-1"'.$pin_status.' /><span class="fas fa-fw fa-thumbtack"></span></label></div>';
 
 	if (LUNA_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -68,7 +68,7 @@ function draw_editor($height, $meta_enabled = null) {
 		}
 
 		if ($is_admmod)
-			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Mute edit', 'luna').'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
+			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Mute edit', 'luna').'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fas fa-fw fa-microphone-slash"></span></label></div>';
 	}
 
 ?>
@@ -84,43 +84,43 @@ function draw_editor($height, $meta_enabled = null) {
 		<?php echo $pin_btn ?>
 		<?php echo $silence_btn ?>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-bold fa-fw"></span></a>
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-underline fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-bold"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-underline"></span></a>
+			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-italic"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-strikethrough"></span></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-header fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-heading"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-subscript"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-superscript"></span></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-quote-left"></span></a>
+			<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-code"></span></a>
+			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-file-code"></span></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-link fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span></a>
-			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-play fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-link"></span></a>
+			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-image"></span></a>
+			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-play"></span></a>
 		</div>
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-list-ul"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-asterisk"></span></a>
 		</div>
 		<div class="btn-group pull-right hidden-lg">
 			<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				<span class="fa fa-fw fa-ellipsis-h"></span>
+				<span class="fas fa-fw fa-ellipsis-h"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu">
-				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span> <?php _e('Italic', 'luna'); ?></a></li>
-				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span> <?php _e('Code', 'luna'); ?></a></li>
-				<li class="hidden-lg"><a href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span> <?php _e('Inline code', 'luna'); ?></a></li>
-				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span> <?php _e('Image', 'luna'); ?></a></li>
-				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-play fa-fw"></span> <?php _e('Video', 'luna'); ?></a></li>
-				<li><a href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span> <?php _e('Strike', 'luna'); ?></a></li>
-				<li><a href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span> <?php _e('Subscript', 'luna'); ?></a></li>
-				<li><a href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span> <?php _e('Superscript', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-italic"></span> <?php _e('Italic', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md"><a href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-code"></span> <?php _e('Code', 'luna'); ?></a></li>
+				<li class="hidden-lg"><a href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-file-code"></span> <?php _e('Inline code', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-image"></span> <?php _e('Image', 'luna'); ?></a></li>
+				<li class="hidden-lg hidden-md hidden-sm"><a href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-play"></span> <?php _e('Video', 'luna'); ?></a></li>
+				<li><a href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-strikethrough"></span> <?php _e('Strike', 'luna'); ?></a></li>
+				<li><a href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-subscript"></span> <?php _e('Subscript', 'luna'); ?></a></li>
+				<li><a href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fas fa-fw fa-superscript"></span> <?php _e('Superscript', 'luna'); ?></a></li>
 			</ul>
 		</div>
 	</div>
@@ -142,10 +142,10 @@ function draw_editor($height, $meta_enabled = null) {
 	?>
 	<div class="btn-toolbar btn-toolbar-bottom">
 		<div class="btn-group">
-			<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
+			<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fas fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
 		</div>
 		<div class="btn-group pull-right">
-			<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
+			<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fas fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
 		</div>
 	</div>
 </div>
@@ -250,33 +250,33 @@ function draw_threads_list() {
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
 			}
 
 			if (isset($cur_thread['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-check status-solved"></i>';
 			}
 
 			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
-				$status_text[] = '<i class="fa fa-fw fa-arrows-alt status-moved"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-arrows-alt status-moved"></i>';
 				$item_status .= ' moved-item';
 			}
 
 			if ($cur_thread['closed'] == '1') {
-				$status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-lock status-closed"></i>';
 				$item_status .= ' closed-item';
 			}
 
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fas fa-fw fa-bell status-new"></i></a>';
 			}
 
 			$url = 'thread.php?id='.$thread_id;
@@ -352,7 +352,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			}
 
 			if ($cur_forum['icon'] != NULL)
-				$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+				$faicon = '<span class="fas fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 			else
 				$faicon = '';
 
@@ -433,7 +433,7 @@ function draw_subforum_list($object_name = 'forum.php', $display_in_sub = 1) {
 			}
 
 			if ($cur_forum['icon'] != NULL)
-				$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+				$faicon = '<span class="fas fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 			else
 				$faicon = '';
 
@@ -528,7 +528,7 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 						$forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
 						$forum_color = $cur_forum['color'];
 						if ($cur_forum['icon'] != NULL)
-							$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+							$faicon = '<span class="fas fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 						else
 							$faicon = '';
 					}
@@ -545,33 +545,33 @@ function draw_index_threads_list($limit = 30, $thread_object_name = 'thread.php'
 
 			if ($cur_thread['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
 			}
 
 			if (isset($cur_thread['answer'])) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-check status-solved"></i>';
 			}
 
 			if ($cur_thread['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_thread['moved_to'] != 0) {
-				$status_text[] = '<i class="fa fa-fw fa-arrows-alt status-moved"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-arrows-alt status-moved"></i>';
 				$item_status .= ' moved-item';
 			}
 
 			if ($cur_thread['closed'] == '1') {
-				$status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-lock status-closed"></i>';
 				$item_status .= ' closed-item';
 			}
 
 			if (!$luna_user['is_guest'] && $cur_thread['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_thread['id']]) || $tracked_threads['threads'][$cur_thread['id']] < $cur_thread['last_comment']) && (!isset($tracked_threads['forums'][$id]) || $tracked_threads['forums'][$id] < $cur_thread['last_comment']) && is_null($cur_thread['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_thread['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fas fa-fw fa-bell status-new"></i></a>';
 			}
 
             if ($link_to_new == false) {
@@ -698,62 +698,62 @@ function draw_comment_list() {
 			if ($cur_thread['closed'] == 0) {
 				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ($luna_user['g_edit_comments'] == 1)
-						$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-pencil"></i> '.__('Edit', 'luna').'</a>';
+						$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'" class="btn btn-link"><i class="fas fa-fw fa-edit"></i> '.__('Edit', 'luna').'</a>';
                 }
                 
 				if (($cur_thread['comment'] == 0 && $luna_user['g_comment'] == 1) || $cur_thread['comment'] == 1)
-					$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
+					$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fas fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
 
 				if ($cur_forum['solved'] == 1)
 					if ($luna_user['username'] == $started_by)
 						if ($cur_comment['id'] == $cur_thread['answer'])
-							$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
+							$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fas fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
 						else
-							$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
+							$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fas fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
 				if ($cur_comment['commenter_id'] == $luna_user['id']) {
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_delete_comments'] == 1))
-						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fa fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
+						$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fas fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
                     
 					if ((($start_from + $comment_count) == 1 && $luna_user['g_soft_delete_threads'] == 1) || (($start_from + $comment_count) > 1 && $luna_user['g_soft_delete_comments'] == 1))
 						if ($cur_comment['soft'] == 0)
-							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fa fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
+							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fas fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
 						else
-							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fa fa-fw fa-eye"></i> '.__('Show', 'luna').'</a>';
+							$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fas fa-fw fa-eye"></i> '.__('Show', 'luna').'</a>';
 					
 				}
 			}
             
 			if (!$luna_user['is_guest'])
 				if ($cur_comment['marked'] == false)
-					$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
+					$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'" class="btn btn-link"><i class="fas fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
 				else
-					$comment_actions[] = '<a class="btn btn-danger" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
+					$comment_actions[] = '<a class="btn btn-danger" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'"><i class="fas fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
 		} else {
 			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids))
-				$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-pencil"></i> '.__('Edit', 'luna').'</a>';
+				$comment_actions[] = '<a href="edit.php?id='.$cur_comment['id'].'" class="btn btn-link"><i class="fas fa-fw fa-edit"></i> '.__('Edit', 'luna').'</a>';
             
-			$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
+			$comment_actions[] = '<a href="comment.php?tid='.$id.'&amp;qid='.$cur_comment['id'].'" class="btn btn-link"><i class="fas fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
 
 			if ($cur_forum['solved'] == 1)
 				if ($cur_comment['id'] == $cur_thread['answer'])
-					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
+					$comment_actions[] = '<a href="misc.php?unanswer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fas fa-fw fa-times"></i> '.__('Unsolved', 'luna').'</a>';
 				else
-					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fa fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
+					$comment_actions[] = '<a href="misc.php?answer='.$cur_comment['id'].'&amp;tid='.$id.'" class="btn btn-link"><i class="fas fa-fw fa-check"></i> '.__('Answer', 'luna').'</a>';
                 
 			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_comment['commenter_id'], $admin_ids)) {
-				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fa fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
+				$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=delete" class="btn btn-link"><i class="fas fa-fw fa-trash"></i> '.__('Delete', 'luna').'</a>';
                 
 				if ($cur_comment['soft'] == 0)
-					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fa fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
+					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=soft" class="btn btn-link"><i class="fas fa-fw fa-eye-slash"></i> '.__('Hide', 'luna').'</a>';
 				else
-					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fa fa-fw fa-eye"></i> '.__('Show', 'luna').'</a>';
+					$comment_actions[] = '<a href="delete.php?id='.$cur_comment['id'].'&action=reset" class="btn btn-link"><i class="fas fa-fw fa-eye"></i> '.__('Show', 'luna').'</a>';
 			}
             
 			if ($cur_comment['marked'] == false)
-				$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'" class="btn btn-link"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
+				$comment_actions[] = '<a href="misc.php?report='.$cur_comment['id'].'" class="btn btn-link"><i class="fas fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
 			else
-				$comment_actions[] = '<a class="btn btn-danger" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'"><i class="fa fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
+				$comment_actions[] = '<a class="btn btn-danger" disabled="disabled" href="misc.php?report='.$cur_comment['id'].'"><i class="fas fa-fw fa-flag"></i> '.__('Report', 'luna').'</a>';
 		}
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -857,7 +857,7 @@ function draw_response_list() {
 
 		$username_quickreply = luna_htmlspecialchars($cur_comment['username']);
 
-		$comment_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'" class="btn btn-link"><i class="fa fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
+		$comment_actions[] = '<a href="new_inbox.php?reply='.$cur_comment['shared_id'].'&amp;quote='.$cur_comment['mid'].'" class="btn btn-link"><i class="fas fa-fw fa-quote-right"></i> '.__('Quote', 'luna').'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_comment['message'] = parse_message($cur_comment['message']);
@@ -908,8 +908,8 @@ function draw_delete_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
 			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" class="btn btn-danger" name="delete"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -922,8 +922,8 @@ function draw_soft_delete_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
 			<p><?php echo ($is_thread_comment) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be hidden.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to hide is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Hide', 'luna') ?></button>
+				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fas fa-fw fa-trash"></span> <?php _e('Hide', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -936,8 +936,8 @@ function draw_soft_reset_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
 			<p><?php _e('This comment has been hidden. We\'ll unhide it again with a click on the button.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Show', 'luna') ?></button>
+				<a class="btn btn-default" href="thread.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" class="btn btn-primary" name="reset"><span class="fas fa-fw fa-undo"></span> <?php _e('Show', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -998,28 +998,28 @@ function draw_search_results() {
 
 			if ($cur_search['pinned'] == '1') {
 				$item_status .= ' pinned-item';
-				$status_text[] = '<i class="fa fa-fw fa-thumb-tack status-pinned"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-thumbtack status-pinned"></i>';
 			}
 
 			if (isset($cur_search['solved'])) {
 				$item_status .= ' solved-item';
-				$status_text[] = '<i class="fa fa-fw fa-check status-solved"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-check status-solved"></i>';
 			}
 
 			if ($cur_search['important']) {
 				$item_status .= ' important-item';
-				$status_text[] = '<i class="fa fa-fw fa-map-marker status-important"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-map-marker status-important"></i>';
 			}
 
 			if ($cur_search['closed'] != '0') {
-				$status_text[] = '<i class="fa fa-fw fa-lock status-closed"></i>';
+				$status_text[] = '<i class="fas fa-fw fa-lock status-closed"></i>';
 				$item_status .= ' closed-item';
 			}
 
 			if (!$luna_user['is_guest'] && $cur_search['last_comment'] > $luna_user['last_visit'] && (!isset($tracked_threads['threads'][$cur_search['tid']]) || $tracked_threads['threads'][$cur_search['tid']] < $cur_search['last_comment']) && (!isset($tracked_threads['forums'][$cur_search['forum_id']]) || $tracked_threads['forums'][$cur_search['forum_id']] < $cur_search['last_comment'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$status_text[] = '<a href="thread.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fa fa-fw fa-bell status-new"></i></a>';
+				$status_text[] = '<a href="thread.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'"><i class="fas fa-fw fa-bell status-new"></i></a>';
 			}
         
             $subject_status = implode(' ', $status_text);
@@ -1050,7 +1050,7 @@ function draw_search_results() {
                     $forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
                     $forum_color = $cur_forum['color'];
                     if ($cur_forum['icon'] != NULL)
-                        $faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+                        $faicon = '<span class="fas fa-fw fa-'.$cur_forum['icon'].'"></span> ';
                     else
                         $faicon = '';
                     
@@ -1077,7 +1077,7 @@ function draw_mail_form($recipient_id) {
 		<textarea name="req_message" class="form-control textarea" placeholder="<?php _e('Mail', 'luna') ?>" rows="10" tabindex="<?php echo $cur_index++ ?>"></textarea>
 		<div class="btn-toolbar btn-toolbar-bottom">
 			<div class="btn-group pull-right">
-				<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php _e('Send', 'luna') ?></button>
+				<button class="btn btn-with-text btn-default" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-envelope-o"></span> <?php _e('Send', 'luna') ?></button>
 			</div>
 		</div>
 	</div>
@@ -1106,8 +1106,8 @@ function draw_report_form($comment_id) {
 				<div class="form-group">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-9">
-						<a href="thread.php?pid=<?php echo $comment_id ?>#p<?php echo $comment_id ?>" class="btn btn-default"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-						<button type="submit" class="btn btn-primary" name="submit" accesskey="s"><span class="fa fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button>
+						<a href="thread.php?pid=<?php echo $comment_id ?>#p<?php echo $comment_id ?>" class="btn btn-default"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+						<button type="submit" class="btn btn-primary" name="submit" accesskey="s"><span class="fas fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button>
 					</div>
 				</div>
 			</fieldset>

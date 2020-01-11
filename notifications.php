@@ -102,10 +102,10 @@ else {
 		$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
 		$ind_not[] = '<div class="notification-row clearfix">
                         <div class="col-xs-10">
-                             <a class="btn btn-default btn-block" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span>&nbsp; '.$cur_notifi['message'].'<span class="timestamp pull-right hidden-xxs">'.format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true).'</span></a>
+                             <a class="btn btn-default btn-block" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="fas fa-fw '.$cur_notifi['icon'].'"></span>&nbsp; '.$cur_notifi['message'].'<span class="timestamp pull-right hidden-xxs">'.format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true).'</span></a>
                         </div>
                         <div class="col-xs-2">
-                            <a class="btn btn-primary btn-block" href="notifications.php?read_notification='.$cur_notifi['id'].'"><span class="fa fa-fw fa-eye"></span><span class="hidden-xxs"> '.__('Seen', 'luna').'</span></a>
+                            <a class="btn btn-primary btn-block" href="notifications.php?read_notification='.$cur_notifi['id'].'"><span class="fas fa-fw fa-eye"></span><span class="hidden-xxs"> '.__('Seen', 'luna').'</span></a>
                         </div>
                     </div>';
 	}
@@ -122,10 +122,10 @@ else {
 		$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
 		$ind_not_seen[] = '<div class="notification-row clearfix">
                             <div class="col-xs-10">
-                                <a class="btn btn-default btn-block" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span>&nbsp; '.$cur_notifi['message'].'<span class="timestamp pull-right hidden-xxs">'.format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true).'</span></a>
+                                <a class="btn btn-default btn-block" href="notifications.php?notification='.$cur_notifi['id'].'"><span class="fas fa-fw '.$cur_notifi['icon'].'"></span>&nbsp; '.$cur_notifi['message'].'<span class="timestamp pull-right hidden-xxs">'.format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true).'</span></a>
                             </div>
                             <div class="col-xs-2">
-                                <a class="btn btn-danger btn-block" href="notifications.php?remove_notification='.$cur_notifi['id'].'"><span class="fa fa-fw fa-trash"></span><span class="hidden-xxs"> '.__('Remove', 'luna').'</span></a>
+                                <a class="btn btn-danger btn-block" href="notifications.php?remove_notification='.$cur_notifi['id'].'"><span class="fas fa-fw fa-trash"></span><span class="hidden-xxs"> '.__('Remove', 'luna').'</span></a>
                             </div>
                         </div>';
 	}

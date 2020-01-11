@@ -10,7 +10,7 @@ if (!defined('FORUM'))
 		<div class="col-xs-12">
 			<?php if ($luna_config['o_rules'] == '1') { ?>
 			<div class="title-block title-block-primary">
-				<h2><i class="fa fa-fw fa-exclamation-circle"></i> <?php _e('Rules', 'luna') ?></h2>
+				<h2><i class="fas fa-fw fa-exclamation-circle"></i> <?php _e('Rules', 'luna') ?></h2>
 			</div>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="forums">
@@ -19,15 +19,15 @@ if (!defined('FORUM'))
 			</div>
 			<?php } ?>
 			<div class="title-block title-block-primary title-block-nav">
-				<h2><i class="fa fa-fw fa-code"></i> <?php _e('BBCode', 'luna') ?></h2>
+				<h2><i class="fas fa-fw fa-code"></i> <?php _e('BBCode', 'luna') ?></h2>
 				<p><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode.', 'luna') ?></p>
 				<ul class="nav nav-tabs">
-					<li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab"><i class="fa fa-fw fa-bold"></i> <?php _e('Text', 'luna') ?></a></li>
-					<li role="presentation"><a href="#media" aria-controls="media" role="tab" data-toggle="tab"><i class="fa fa-fw fa-play"></i> <?php _e('Media', 'luna') ?></a></li>
-					<li role="presentation"><a href="#quote" aria-controls="quote" role="tab" data-toggle="tab"><i class="fa fa-fw fa-quote-right"></i> <?php _e('Quotes', 'luna') ?></a></li>
-					<li role="presentation"><a href="#code" aria-controls="code" role="tab" data-toggle="tab"><i class="fa fa-fw fa-code"></i> <?php _e('Code', 'luna') ?></a></li>
-					<li role="presentation"><a href="#list" aria-controls="list" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list-ol"></i> <?php _e('Lists', 'luna') ?></a></li>
-					<li role="presentation"><a href="#emoji" aria-controls="emoji" role="tab" data-toggle="tab"><i class="fa fa-fw fa-smile-o"></i> <?php _e('Emoji', 'luna') ?></a></li>
+					<li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab"><i class="fas fa-fw fa-bold"></i> <?php _e('Text', 'luna') ?></a></li>
+					<li role="presentation"><a href="#media" aria-controls="media" role="tab" data-toggle="tab"><i class="fas fa-fw fa-play"></i> <?php _e('Media', 'luna') ?></a></li>
+					<li role="presentation"><a href="#quote" aria-controls="quote" role="tab" data-toggle="tab"><i class="fas fa-fw fa-quote-right"></i> <?php _e('Quotes', 'luna') ?></a></li>
+					<li role="presentation"><a href="#code" aria-controls="code" role="tab" data-toggle="tab"><i class="fas fa-fw fa-code"></i> <?php _e('Code', 'luna') ?></a></li>
+					<li role="presentation"><a href="#list" aria-controls="list" role="tab" data-toggle="tab"><i class="fas fa-fw fa-list-ol"></i> <?php _e('Lists', 'luna') ?></a></li>
+					<li role="presentation"><a href="#emoji" aria-controls="emoji" role="tab" data-toggle="tab"><i class="fas fa-fw fa-smile-o"></i> <?php _e('Emoji', 'luna') ?></a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
@@ -71,7 +71,7 @@ if (!defined('FORUM'))
 					<p><code>[spoiler=<?php _e('Spoiled text', 'luna') ?>]<?php _e('This is the text I don\'t want to spoil.', 'luna') ?>[/spoiler]</code></p>
                     <div class="panel panel-default panel-spoiler" style="padding: 0px;">
                         <div class="panel-heading" onclick="var e,d,c=this.parentNode,a=c.getElementsByTagName('div')[1],b=this.getElementsByTagName('span')[0];if(a.style.display!=''){while(c.parentNode&&(!d||!e||d==e)){e=d;d=(window.getComputedStyle?getComputedStyle(c, null):c.currentStyle)['backgroundColor'];if(d=='transparent'||d=='rgba(0, 0, 0, 0)')d=e;c=c.parentNode;}a.style.display='';a.style.backgroundColor=d;b.innerHTML='&#9650;';}else{a.style.display='none';b.innerHTML='&#9660;';}" style="font-weight: bold; cursor: pointer; font-size: 0.9em;">
-                            <h3 class="panel-title"><i class="fa fa-fw fa-angle-down"></i> <?php _e('Spoiled text', 'luna') ?></h3>
+                            <h3 class="panel-title"><i class="fas fa-fw fa-angle-down"></i> <?php _e('Spoiled text', 'luna') ?></h3>
                         </div>
                         <div class="panel-body" style="display: none;">
                             <?php _e('This is the text I don\'t want to spoil.', 'luna') ?>
@@ -141,12 +141,12 @@ if ($db->num_rows($result) > 0)
 				</div>
 			</div>
 			<div class="title-block title-block-primary title-block-nav">
-				<h2><i class="fa fa-fw fa-list"></i> <?php _e('General use', 'luna') ?></h2>
+				<h2><i class="fas fa-fw fa-list"></i> <?php _e('General use', 'luna') ?></h2>
 				<p><?php _e('Explains some of the basics on how to work with this forum software.', 'luna') ?></p>
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#forum" aria-controls="forum" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i> <?php _e('Forums + threads', 'luna') ?></a></li>
-					<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a></li>
-					<li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab"><i class="fa fa-fw fa-search"></i> <?php _e('Search', 'luna') ?></a></li>
+					<li role="presentation" class="active"><a href="#forum" aria-controls="forum" role="tab" data-toggle="tab"><i class="fas fa-fw fa-list"></i> <?php _e('Forums + threads', 'luna') ?></a></li>
+					<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-fw fa-user"></i> <?php _e('Profile', 'luna') ?></a></li>
+					<li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab"><i class="fas fa-fw fa-search"></i> <?php _e('Search', 'luna') ?></a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
@@ -162,27 +162,27 @@ if ($db->num_rows($result) > 0)
 						</thead>
 						<tbody>
 							<tr>
-								<td><span class="fa fa-fw fa-check status-solved"></span></td>
+								<td><span class="fas fa-fw fa-check status-solved"></span></td>
 								<td><?php _e('Threads marked with a check are solved according to the author.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="fa fa-fw fa-thumb-tack status-pinned"></span></td>
+								<td><span class="fas fa-fw fa-thumbtack status-pinned"></span></td>
 								<td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="fa fa-fw fa-map-marker status-important"></span></td>
+								<td><span class="fas fa-fw fa-map-marker status-important"></span></td>
 								<td><?php _e('Much like pinned threads, these are important, however, they do not stay on the top of the list.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="fa fa-fw fa-lock status-closed"></span></td>
+								<td><span class="fas fa-fw fa-lock status-closed"></span></td>
 								<td><?php _e('When a you see a closed label, it means you can\'t comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="fa fa-fw fa-arrows-alt status-moved"></span></td>
+								<td><span class="fas fa-fw fa-arrows-alt status-moved"></span></td>
 								<td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
 							</tr>
 							<tr>
-								<td><span class="fa fa-fw fa-bell status-new"></span></td>
+								<td><span class="fas fa-fw fa-bell status-new"></span></td>
 								<td><?php _e('This thread has received a new comment since you last visited the board.', 'luna') ?></td>
 							</tr>
 							<?php if (!$luna_user['is_guest'] && $luna_config['o_has_commented'] == '1') { ?>
@@ -215,12 +215,12 @@ if ($db->num_rows($result) > 0)
 			if ($luna_user['is_admmod']) {
 			?>
 			<div class="title-block title-block-primary title-block-nav">
-				<h2><i class="fa fa-fw fa-dashboard"></i> <?php _e('Moderating', 'luna') ?></h2>
+				<h2><i class="fas fa-fw fa-tachometer-alt"></i> <?php _e('Moderating', 'luna') ?></h2>
 				<p><?php _e('Admins and moderators need help sometimes, too! The basics of moderating are explained here.', 'luna') ?></p>
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#forums" aria-controls="forums" role="tab" data-toggle="tab"><i class="fa fa-fw fa-th-large"></i> <?php _e('Forums', 'luna') ?></a></li>
-					<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i> <?php _e('Threads', 'luna') ?></a></li>
-					<li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab"><i class="fa fa-fw fa-users"></i> <?php _e('Users', 'luna') ?></a></li>
+					<li role="presentation" class="active"><a href="#forums" aria-controls="forums" role="tab" data-toggle="tab"><i class="fas fa-fw fa-th-large"></i> <?php _e('Forums', 'luna') ?></a></li>
+					<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><i class="fas fa-fw fa-list"></i> <?php _e('Threads', 'luna') ?></a></li>
+					<li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab"><i class="fas fa-fw fa-users"></i> <?php _e('Users', 'luna') ?></a></li>
 				</ul>
 			</div>
 			<div class="tab-content">

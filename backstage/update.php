@@ -141,14 +141,14 @@ require 'header.php';
     <div class="col-sm-12">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+	echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 ?>
     </div>
 	<div class="col-sm-4">
 		<form method="post" action="update.php" class="panel panel-default">
 			<input type="hidden" name="form_sent" value="1" />
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Update ring', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                <h3 class="panel-title"><?php _e('Update ring', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
                 <select class="form-control" id="update_ring" name="form[update_ring]" tabindex="1">
@@ -201,7 +201,7 @@ if (isset($_GET['saved']))
 	<div class="col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><?php if ($luna_config['o_update_ring'] != 3) { ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span><?php } ?></h3>
+				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><?php if ($luna_config['o_update_ring'] != 3) { ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fas fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span><?php } ?></h3>
 			</div>
 			<div class="panel-body">
 <?php
@@ -211,8 +211,8 @@ if ($luna_config['o_update_ring'] != 3) {
 				<h3><?php _e('A new version is available!', 'luna') ?></h3>
 				<p><?php printf(__('A new version, Luna %s has been released. It\'s a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates.', 'luna'), $update_cache) ?></p>
 				<div class="btn-group">
-					<a href="https://github.com/GetLuna/Luna/archive/preview.zip" class="btn btn-primary"><i class="fa fa-fw fa-download"></i> <?php echo sprintf(__('Download v%s', 'luna'), $update_cache) ?></a>
-					<a href="http://getluna.org/release" class="btn btn-primary"><i class="fa fa-fw fa-refresh"></i> <?php _e('Changelog', 'luna') ?></a>
+					<a href="https://github.com/GetLuna/Luna/archive/preview.zip" class="btn btn-primary"><i class="fas fa-fw fa-download"></i> <?php echo sprintf(__('Download v%s', 'luna'), $update_cache) ?></a>
+					<a href="http://getluna.org/release" class="btn btn-primary"><i class="fas fa-fw fa-refresh"></i> <?php _e('Changelog', 'luna') ?></a>
 				</div>
 <?php
 	} elseif (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'eq')) {
@@ -232,7 +232,7 @@ if ($luna_config['o_update_ring'] != 3) {
 				<h3><?php _e('You\'re using a development version of Luna. Be sure to stay up-to-date.', 'luna') ?></h3>
 				<p><?php _e('At this point, we can only tell you that you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
 				<div class="btn-group">
-					<a href="https://github.com/GetLuna/Luna/archive/preview.zip" class="btn btn-primary"><i class="fa fa-fw fa-download"></i> <?php _e('Download', 'luna') ?></a>
+					<a href="https://github.com/GetLuna/Luna/archive/preview.zip" class="btn btn-primary"><i class="fas fa-fw fa-download"></i> <?php _e('Download', 'luna') ?></a>
 				</div>
 <?php } ?>
 			</div>

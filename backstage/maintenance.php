@@ -171,14 +171,14 @@ require 'header.php';
 	<div class="col-sm-12">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+	echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 if (isset($_GET['cache_cleared']))
-	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('The cache files have been removed.', 'luna').'</div>';
+	echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('The cache files have been removed.', 'luna').'</div>';
 ?>
         <form class="form-horizontal" method="post" action="maintenance.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title" id="maintenance"><?php _e('Maintenance', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title" id="maintenance"><?php _e('Maintenance', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -207,7 +207,7 @@ if (isset($_GET['cache_cleared']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php _e('Cache', 'luna') ?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna') ?></span></label>
                     <div class="col-sm-9">
-                        <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna') ?></a>
+                        <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna') ?></a>
                     </div>
                 </div>
             </div>
@@ -215,12 +215,12 @@ if (isset($_GET['cache_cleared']))
         <form class="form-horizontal" method="get" action="maintenance.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Rebuild search index', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fa fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Rebuild search index', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fas fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="action" value="rebuild" />
                     <fieldset>
-                        <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php _e('If you changes something about threads and comments in the database you should rebuild the search index. This process can take a while and increase the server load during. Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></div>
+                        <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('If you changes something about threads and comments in the database you should rebuild the search index. This process can take a while and increase the server load during. Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Comments per cycle', 'luna') ?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
                             <div class="col-sm-9">

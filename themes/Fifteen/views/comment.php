@@ -11,9 +11,9 @@ $btn_style = ' style="color:'.$cur_commenting['color'].';"';
 <div class="jumbotron edit-title"<?php echo $jumbo_style ?>>
 	<div class="container">
 		<?php if ($fid) { ?>
-			<h2 class="forum-title"><?php printf(__('New thread in %s', 'luna'), luna_htmlspecialchars($cur_commenting['forum_name'])) ?><span class="pull-right naviton"><a class="btn btn-default"<?php echo $btn_style ?> href="index.php?id=<?php echo $cur_commenting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
+			<h2 class="forum-title"><?php printf(__('New thread in %s', 'luna'), luna_htmlspecialchars($cur_commenting['forum_name'])) ?><span class="pull-right naviton"><a class="btn btn-default"<?php echo $btn_style ?> href="index.php?id=<?php echo $cur_commenting['fid'] ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
 		<?php } else { ?>
-			<h2 class="forum-title"><?php printf(__('New comment in %s', 'luna'), luna_htmlspecialchars($cur_commenting['subject'])) ?><span class="pull-right naviton"><a class="btn btn-default"<?php echo $btn_style ?> href="thread.php?id=<?php echo $cur_commenting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
+			<h2 class="forum-title"><?php printf(__('New comment in %s', 'luna'), luna_htmlspecialchars($cur_commenting['subject'])) ?><span class="pull-right naviton"><a class="btn btn-default"<?php echo $btn_style ?> href="thread.php?id=<?php echo $cur_commenting['tid'] ?>"><span class="fas fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span></h2>
 		<?php } ?>
 	</div>
 </div>

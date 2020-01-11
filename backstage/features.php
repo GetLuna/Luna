@@ -151,12 +151,12 @@ require 'header.php';
 	<div class="col-sm-12">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+	echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 ?>
         <form class="form-horizontal" method="post" action="features.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('General', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('General', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -223,7 +223,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Inbox', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Inbox', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -251,7 +251,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Subscriptions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Subscriptions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -278,7 +278,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('First run', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('First run', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -311,7 +311,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('BBCode', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('BBCode', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -411,7 +411,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Commenting', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Commenting', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="form_sent" value="1" />
@@ -449,7 +449,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Avatars', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Avatars', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -502,7 +502,7 @@ if (isset($_GET['saved']))
                             <label class="col-sm-3 control-label">
                                 <?php _e('Default avatar', 'luna') ?><span class="help-block"><?php _e('You can upload a custom default avatar for all users', 'luna') ?></span>
                                 <?php if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/cplaceholder.png')) { ?>
-                                    <a class="btn btn-danger" href="?remove-avatar"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna') ?></a>
+                                    <a class="btn btn-danger" href="?remove-avatar"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete avatar', 'luna') ?></a>
                                 <?php } ?>
                             </label>
                             <div class="col-sm-9">
@@ -520,7 +520,7 @@ if (isset($_GET['saved']))
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Signatures', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Signatures', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>

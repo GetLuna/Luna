@@ -25,7 +25,7 @@ if (!defined('FORUM'))
 		</div>
 		<div class="col-xs-12 col-sm-9">
 			<div class="title-block title-block-primary">
-				<h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?><span class="pull-right"><a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a></span></h2>
+				<h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?><span class="pull-right"><a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fas fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a></span></h2>
 			</div>
 <?php
 echo $paging_links;
@@ -34,7 +34,7 @@ draw_response_list();
 
 echo $paging_links;
 ?>
-			<a type="button" class="btn btn-primary btn-lg btn-block btn-bottom" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a>
+			<a type="button" class="btn btn-primary btn-lg btn-block btn-bottom" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fas fa-fw fa-reply"></span> <?php _e('Reply', 'luna') ?></a>
 		</div>
 	</div>
 </div>

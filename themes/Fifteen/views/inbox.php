@@ -28,20 +28,20 @@ if (!defined('FORUM'))
 			<form method="post" action="inbox.php">
 				<fieldset>
 					<div class="title-block title-block-primary">
-						<h2><i class="fa fa-fw fa-paper-plane-o"></i> <?php _e('Inbox', 'luna') ?></h2>
+						<h2><i class="fas fa-fw fa-paper-plane"></i> <?php _e('Inbox', 'luna') ?></h2>
 					</div>
 					<div class="tab-content">
 						<div class="btn-toolbar btn-toolbar-profile">
 							<div class="btn-group">
-								<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Read', 'luna') ?></button>
-								<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php _e('Unread', 'luna') ?></button>
+								<button type="submit" name="markread" class="btn btn-primary"><span class="fas fa-fw fa-eye"></span> <?php _e('Read', 'luna') ?></button>
+								<button type="submit" name="markunread" class="btn btn-primary"><span class="fas fa-fw fa-eye-slash"></span> <?php _e('Unread', 'luna') ?></button>
 							</div>
 							<div class="btn-group">
-								<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
+								<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
 								<?php include load_page('inbox-delete-comment.php'); ?>
 							</div>
 							<div class="btn-group pull-right">
-								<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> <?php _e('New', 'luna') ?></a>
+								<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fas fa-fw fa-edit"></span> <?php _e('New', 'luna') ?></a>
 							</div>
 						</div>
 						<?php echo paginate($num_pages, $page, 'inbox.php?') ?>

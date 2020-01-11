@@ -93,7 +93,7 @@ if ($luna_user['first_run'] == '0') {
 				<input type="hidden" name="action" value="search" />
 				<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in comments', 'luna') ?>" maxlength="100" />
 				<span class="input-group-btn">
-					<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s"><i class="fa fa-fw fa-search"></i></button>
+					<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s"><i class="fas fa-fw fa-search"></i></button>
 				</span>
 			</form>
 			<hr />

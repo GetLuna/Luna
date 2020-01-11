@@ -33,15 +33,15 @@ else
 		<div class="col-xs-12 col-sm-9">
 			<form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
 				<div class="title-block title-block-primary title-block-nav">
-					<h2><i class="fa fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="pull-right"><button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
+					<h2><i class="fas fa-fw fa-cogs"></i> <?php _e('Settings', 'luna') ?><span class="pull-right"><button class="btn btn-default" type="submit" name="update"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-fw fa-user"></i><span class="hidden-sm hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fa fa-fw fa-paint-brush"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fa fa-fw fa-share-alt"></i><span class="hidden-sm hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#thread" aria-controls="thread" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i><span class="hidden-sm hidden-xs"> <?php _e('Thread', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><i class="fa fa-fw fa-clock-o"></i><span class="hidden-sm hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
+						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-fw fa-user"></i><span class="hidden-sm hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fas fa-fw fa-paint-brush"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fas fa-fw fa-share-alt"></i><span class="hidden-sm hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#thread" aria-controls="thread" role="tab" data-toggle="tab"><i class="fas fa-fw fa-list"></i><span class="hidden-sm hidden-xs"> <?php _e('Thread', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><i class="fas fa-fw fa-clock"></i><span class="hidden-sm hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
                         <?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-                            <li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><i class="fa fa-fw fa-dashboard"></i><span class="hidden-sm hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
+                            <li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><i class="fas fa-fw fa-tachometer-alt"></i><span class="hidden-sm hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
                         <?php endif; ?>
 					</ul>
 				</div>
@@ -295,7 +295,7 @@ else
 								<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group input">
-										<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span>
+										<span class="input-group-addon" id="website-addon"><span class="fas fa-fw fa-link"></span></span>
 										<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
 									</div>
 								</div>
@@ -305,7 +305,7 @@ else
 								<label class="col-sm-3 control-label"><?php _e('Microsoft Account', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group input">
-										<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span>
+										<span class="input-group-addon" id="microsoft-addon"><span class="fab fa-fw fa-microsoft"></span></span>
 										<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
 									</div>
 								</div>
@@ -314,7 +314,7 @@ else
 								<label class="col-sm-3 control-label"><?php _e('Facebook', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
-										<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></span>
+										<span class="input-group-addon" id="facebook-addon"><span class="fab fa-fw fa-facebook"></span></span>
 										<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
 									</div>
 								</div>
@@ -323,7 +323,7 @@ else
 								<label class="col-sm-3 control-label"><?php _e('Twitter', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
-										<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></span>
+										<span class="input-group-addon" id="twitter-addon"><span class="fab fa-fw fa-twitter"></span></span>
 										<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
 									</div>
 								</div>
@@ -332,7 +332,7 @@ else
 								<label class="col-sm-3 control-label"><?php _e('Google+', 'luna') ?></label>
 								<div class="col-sm-9">
 									<div class="input-group">
-										<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span>
+										<span class="input-group-addon" id="google-addon"><span class="fab fa-fw fa-google-plus"></span></span>
 										<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
 									</div>
 								</div>
@@ -493,15 +493,15 @@ else
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Delete or ban user', 'luna') ?></label>
 									<div class="col-sm-9">
-                                        <button class="btn btn-danger" type="submit" name="ban"><i class="fa fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
+                                        <button class="btn btn-danger" type="submit" name="ban"><i class="fas fa-fw fa-ban"></i> <?php _e('Ban', 'luna') ?></button>
                                         <?php if ($user['g_id'] == LUNA_ADMIN) { ?>
-                                            <button class="btn btn-danger" type="submit" name="delete_user"><i class="fa fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
+                                            <button class="btn btn-danger" type="submit" name="delete_user"><i class="fas fa-fw fa-trash"></i> <?php _e('Delete', 'luna') ?></button>
                                         <?php } ?>
 									</div>
 								</div>
 								<hr />
 								<div class="form-group">
-									<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
+									<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fas fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
 									<div class="col-sm-9">
 										<p><?php _e('Choose which forums this user should be allowed to moderate. Note: This only applies to moderators. Administrators always have full permissions in all forums.', 'luna') ?></p>
 		<?php

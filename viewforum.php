@@ -78,7 +78,7 @@ switch ($cur_forum['sort_by']) {
 
 // Can we or can we not comment new threads?
 if (($cur_forum['create_threads'] == '' && $luna_user['g_create_threads'] == '1') || $cur_forum['create_threads'] == '1' || $is_admmod)
-	$comment_link = "\t\t\t".'<a class="btn btn-default btn-comment" style="color: '.$cur_forum['color'].'" href="comment.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
+	$comment_link = "\t\t\t".'<a class="btn btn-default btn-comment" style="color: '.$cur_forum['color'].'" href="comment.php?fid='.$id.'"><span class="fas fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
 else
 	$comment_link = '';
 
@@ -94,7 +94,7 @@ $start_from = $luna_user['disp_threads'] * ($p - 1);
 
 // Get the icon
 if ($cur_forum['icon'] != NULL)
-	$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+	$faicon = '<span class="fas fa-fw fa-'.$cur_forum['icon'].'"></span> ';
 else
 	$faicon = '';
 

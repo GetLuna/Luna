@@ -92,7 +92,7 @@ if ($cur_thread['closed'] == '0') {
 	else
 		$comment_link = '';
 } else {
-	$comment_link = '<a class="btn disabled btn-danger btn-comment"><span class="fa fa-fw fa-lock"></span></a>';
+	$comment_link = '<a class="btn disabled btn-danger btn-comment"><span class="fas fa-fw fa-lock"></span></a>';
 
 	if ($is_admmod)
 		$comment_link .= '<a class="btn btn-primary btn-comment" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';
