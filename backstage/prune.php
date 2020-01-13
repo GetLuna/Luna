@@ -109,7 +109,7 @@ if ($action == 'prune') {
                     <input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
                     <fieldset>
                         <h3><?php _e('Confirm prune comments', 'luna') ?></h3>
-                        <p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
+                        <p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads)?', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
                         <p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
                     </fieldset>
                     <div class="btn-group">

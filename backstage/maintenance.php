@@ -23,6 +23,9 @@ if (!$luna_user['is_admmod']) {
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild') {
+	confirm_referrer('backstage/maintenance.php');
+	check_csrf($_GET['csrf_token']);
+
 	ob_start();
 	$per_page = isset($_GET['i_per_page']) ? intval($_GET['i_per_page']) : 0;
 	$start_at = isset($_GET['i_start_at']) ? intval($_GET['i_start_at']) : 0;
@@ -35,7 +38,6 @@ if ($action == 'rebuild') {
 
 	// If this is the first cycle of comments we empty the search index before we proceed
 	if (isset($_GET['i_empty_index'])) {
-		confirm_referrer('backstage/maintenance.php');
 
 		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
@@ -104,7 +106,7 @@ if ($action == 'rebuild') {
 		$result = $db->query('SELECT id FROM '.$db->prefix.'comments WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) > 0)
-			$query_str = '?action=rebuild&i_per_page='.$per_page.'&i_start_at='.$db->result($result);
+			$query_str = '?action=rebuild&csrf_token='.luna_csrf_token().'&i_per_page='.$per_page.'&i_start_at='.$db->result($result);
 	}
 
 	$db->end_transaction();
@@ -213,6 +215,7 @@ if (isset($_GET['cache_cleared']))
             </div>
         </div>
         <form class="form-horizontal" method="get" action="maintenance.php">
+			<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php _e('Rebuild search index', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fas fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna') ?></button></span></h3>
