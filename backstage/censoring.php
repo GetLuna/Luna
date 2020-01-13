@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -88,7 +88,7 @@ require 'header.php';
     <div class="col-sm-12">
         <?php if ($luna_config['o_censoring'] == 0) { ?>
         <div class="alert alert-danger">
-            <i class="fa fa-fw fa-exclamation"></i> <?php echo sprintf(__('Censoring is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
+            <i class="fas fa-fw fa-exclamation"></i> <?php echo sprintf(__('Censoring is disabled in %s.', 'luna'), '<a href="features.php">'.__('Features', 'luna').'</a>') ?>
         </div>
         <?php } ?>
     </div>
@@ -96,7 +96,7 @@ require 'header.php';
 		<form id="censoring" method="post" action="censoring.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add word', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add word', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<div class="panel-body">
@@ -142,8 +142,8 @@ if ($db->num_rows($result)) {
 								</td>
 								<td>
 									<div class="btn-group">
-										<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fa fa-fw fa-check"></span> <?php _e('Update', 'luna') ?></button>
-										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
+										<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-check"></span> <?php _e('Update', 'luna') ?></button>
+										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
 									</div>
 								</td>
 								</tr>

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://opensource.org/licenses/MIT MIT
@@ -1569,33 +1569,6 @@ function error($message, $file = null, $line = null, $db_error = false) {
 	exit;
 }
 
-
-//
-// Unset any variables instantiated as a result of register_globals being enabled
-//
-function forum_unregister_globals() {
-	$register_globals = ini_get('register_globals');
-	if ($register_globals === '' || $register_globals === '0' || strtolower($register_globals) === 'off')
-		return;
-
-	// Prevent script.php?GLOBALS[foo]=bar
-	if (isset($_REQUEST['GLOBALS']) || isset($_FILES['GLOBALS']))
-		exit('I\'ll have a steak sandwich and... a steak sandwich.');
-
-	// Variables that shouldn't be unset
-	$no_unset = array('GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
-
-	// Remove elements in $GLOBALS that are present in any of the superglobals
-	$input = array_merge($_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, $_FILES, isset($_SESSION) && is_array($_SESSION) ? $_SESSION : array());
-	foreach ($input as $k => $v) {
-		if (!in_array($k, $no_unset) && isset($GLOBALS[$k])) {
-			unset($GLOBALS[$k]);
-			unset($GLOBALS[$k]); // Double unset to circumvent the zend_hash_del_key_or_index hole in PHP <4.4.3 and <5.1.4
-		}
-	}
-}
-
-
 //
 // Removes any "bad" characters (characters which mess with the display of a page, are invisible, etc) from user input
 //
@@ -1693,7 +1666,7 @@ function forum_list_styles() {
 
 	$d = dir(LUNA_ROOT.'themes');
 	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		if (is_dir(LUNA_ROOT.'themes/'.$entry) && file_exists(LUNA_ROOT.'themes/'.$entry.'/information.php'))
@@ -1729,7 +1702,7 @@ function forum_list_accents($stage) {
 		$d = dir(LUNA_ROOT.'backstage/css/accents/');
 
 	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		if (substr($entry, -4) == '.css')
@@ -1751,7 +1724,7 @@ function forum_list_langs() {
 
 	$d = dir(LUNA_ROOT.'lang');
 	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		if (is_dir(LUNA_ROOT.'lang/'.$entry) && file_exists(LUNA_ROOT.'lang/'.$entry.'/luna.mo'))
@@ -1792,7 +1765,7 @@ function forum_list_plugins($is_admin) {
 
 	$d = dir(LUNA_ROOT.'plugins');
 	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		$prefix = substr($entry, 0, strpos($entry, '_'));
@@ -1966,7 +1939,7 @@ function url_valid($url) {
 		return FALSE;	// Unrecognised URI scheme. Default to FALSE
 	}
 	// Validate host name conforms to DNS "dot-separated-parts"
-	if ($m{'regname'}) { // If host regname specified, check for DNS conformance
+	if ($m['regname']) { // If host regname specified, check for DNS conformance
 		if (!preg_match('/# HTTP DNS host name.
 			^					   # Anchor to beginning of string.
 			(?!.{256})			   # Overall host length is less than 256 chars.

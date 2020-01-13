@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -93,7 +93,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
         <form class="form-horizontal" id="bans2" method="post" action="bans.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Ban range', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Ban range', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="mode" value="<?php echo $mode ?>" />
@@ -123,7 +123,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Ban details', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Ban details', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -362,7 +362,7 @@ elseif (isset($_GET['find_ban'])) {
 	if ($db->num_rows($result)) {
 		while ($ban_data = $db->fetch_assoc($result)) {
 
-			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'"><span class="fa fa-fw fa-pencil-square-o"></span> '.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'"><span class="fa fa-fw fa-trash"></span> '.__('Remove', 'luna').'</a></div>';
+			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'"><span class="fas fa-fw fa-edit"></span> '.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'"><span class="fas fa-fw fa-trash"></span> '.__('Remove', 'luna').'</a></div>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
@@ -402,7 +402,7 @@ elseif (isset($_GET['find_ban'])) {
 	<div class="col-sm-12">
         <form class="panel panel-default form-horizontal" id="bans" method="post" action="bans.php?action=more">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Add ban', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
+                <h3 class="panel-title"><?php _e('Add ban', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -415,10 +415,10 @@ elseif (isset($_GET['find_ban'])) {
         </form>
         <form class="panel panel-default form-horizontal" id="find_bans" method="get" action="bans.php">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Ban search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
+                <h3 class="panel-title"><?php _e('Ban search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fas fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
-                <p class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php _e('Enter user data to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
+                <p class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('Enter user data to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
                     <div class="col-sm-9">

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -48,9 +48,6 @@ require LUNA_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
-
-// Reverse the effect of register_globals
-forum_unregister_globals();
 
 // Record the start time (will be used to calculate the generation time for the page)
 $luna_start = get_microtime();

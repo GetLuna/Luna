@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -109,7 +109,7 @@ if ($action == 'prune') {
                     <input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
                     <fieldset>
                         <h3><?php _e('Confirm prune comments', 'luna') ?></h3>
-                        <p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
+                        <p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads)?', 'luna'), $prune_days, $forum, forum_number_format($num_threads)) ?></p>
                         <p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
                     </fieldset>
                     <div class="btn-group">
@@ -216,11 +216,11 @@ require 'header.php';
 
 <div class="row">
 	<div class="col-sm-12">
-        <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php printf(__('It\'s recommended to activate %s while using the options below.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></div>
+        <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php printf(__('It\'s recommended to activate %s while using the options below.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></div>
         <form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fas fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="action" value="notiprune" />
@@ -255,7 +255,7 @@ require 'header.php';
         <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Comments', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Comments', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fas fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="action" value="prune" />
@@ -313,7 +313,7 @@ require 'header.php';
         <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Users', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Users', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fas fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>

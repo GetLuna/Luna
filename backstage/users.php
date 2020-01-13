@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -441,7 +441,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
                     </fieldset>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+                    <button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
                 </div>
             </div>
         </form>
@@ -539,7 +539,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
         <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
@@ -656,11 +656,11 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
                         <span class="btn-toolbar pull-right">
                             <div class="btn-group">
                                 <?php if ($can_ban) : ?>
-                                <button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
+                                <button class="btn btn-danger" type="submit" name="ban_users"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
                                 <?php endif; if ($can_delete) : ?>
-                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
                                 <?php endif; if ($can_move) : ?>
-                                <button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
+                                <button class="btn btn-primary" type="submit" name="move_users"><span class="fas fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
                                 <?php endif; ?>
                             </div>
                         </span>
@@ -716,11 +716,11 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
                         <span class="btn-toolbar pull-right">
                             <div class="btn-group">
                                 <?php if ($can_ban) : ?>
-                                <button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
+                                <button class="btn btn-danger" type="submit" name="ban_users"><span class="fas fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
                                 <?php endif; if ($can_delete) : ?>
-                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
+                                <button class="btn btn-danger" type="submit" name="delete_users"><span class="fas fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
                                 <?php endif; if ($can_move) : ?>
-                                <button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
+                                <button class="btn btn-primary" type="submit" name="move_users"><span class="fas fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
                                 <?php endif; ?>
                             </div>
                         </span>
@@ -741,18 +741,18 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	<div class="col-sm-12">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
+	echo '<div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div>';
 if (isset($_GET['deleted']))
-    echo '<div class="alert alert-danger"><i class="fa fa-fw fa-check"></i> '.__('The user has been deleted.', 'luna').'</div>';
+    echo '<div class="alert alert-danger"><i class="fas fa-fw fa-check"></i> '.__('The user has been deleted.', 'luna').'</div>';
 ?>
         <form id="find_user" method="get" action="users.php" class="form-horizontal">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('User search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('User search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_user"><span class="fas fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
                 </div>
                 <fieldset>
                     <div class="panel-body">
-                        <p class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
+                        <p class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php _e('Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.', 'luna') ?></p>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?></label>
                             <div class="col-sm-9">
@@ -841,7 +841,7 @@ if (isset($_GET['deleted']))
         </form>
         <form method="get" action="users.php" class="form-horizontal panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('IP search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit"><span class="fa fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button></span></h3>
+                <h3 class="panel-title"><?php _e('IP search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit"><span class="fas fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
                 <div class="form-group">

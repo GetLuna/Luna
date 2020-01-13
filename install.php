@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -30,9 +30,6 @@ require LUNA_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
-
-// Reverse the effect of register_globals
-forum_unregister_globals();
 
 // It might happen you are redirected to this page from backstage/update.php
 $action = isset($_GET['action']) ? $_GET['action'] : null;
@@ -179,7 +176,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/all.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/accents/2.css" />
         <?php
@@ -230,7 +227,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 			<form  class="form-horizontal" id="install" method="post" action="install.php">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Install language', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-primary" name="start"><i class="fa fa-fw fa-language"></i> <?php _e('Change language', 'luna') ?></button></span></h3>
+						<h3 class="panel-title"><?php _e('Install language', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-primary" name="start"><i class="fas fa-fw fa-language"></i> <?php _e('Change language', 'luna') ?></button></span></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
@@ -433,7 +430,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 						</fieldset>
 					</div>
 				</div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block" name="start"><i class="fa fa-fw fa-check"></i> <?php _e('Start install', 'luna') ?></button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" name="start"><i class="fas fa-fw fa-check"></i> <?php _e('Start install', 'luna') ?></button>
 			</form>
 		</div>
 	</body>
@@ -482,7 +479,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/all.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/accents/2.css" />
 		<style>

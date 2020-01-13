@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -28,6 +28,25 @@ require 'header.php';
 				<h3 class="panel-title"><?php printf(__('About Luna %s %s', 'luna'), Version::LUNA_VERSION, Version::LUNA_CODE_NAME) ?></h3>
 			</div>
 			<div class="panel-body">
+				<section class="release-notes">
+					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 14 <small>2.0.14</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-fixed"><?php _e('Fixed', 'luna') ?></em></div><?php _e('Fixes a security vulnerability that allowed anyone to index the forum', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
+				<section class="release-notes">
+					<div class="container">
+						<h2 class="clearfix"><span class="version-name">Emerald Update 13 <small>2.0.13</small></span></h2>
+						<ul class="changes">
+                            <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Support for PHP 7.4', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Font Awesome updated from version 4.7.0 to 5.12.0', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Bootstrap updated from version 3.3.7 to 3.4.1', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('jQuery updated from version 2.2.4 to 3.4.1', 'luna') ?></li>
+						</ul>
+					</div>
+				</section>
 				<section class="release-notes">
 					<div class="container">
 						<h2 class="clearfix"><span class="version-name">Emerald Update 12 <small>2.0.12</small></span></h2>
@@ -225,7 +244,7 @@ require 'header.php';
 				</section>
 			</div>
 			<div class="panel-footer">
-				<p><?php printf(__('Luna is developed by the %s. Copyright %s. Released under the GPLv2 license.', 'luna'), '<a href="http://getluna.org/">Luna Group</a>', '2013-2018') ?></p>
+				<p><?php printf(__('Luna is developed by the %s. Copyright %s. Released under the GPLv2 license.', 'luna'), '<a href="http://getluna.org/">Luna Group</a>', '2013-2020') ?></p>
 			</div>
 		</div>
 	</div>

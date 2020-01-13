@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -89,7 +89,7 @@ elseif (isset($_GET['del_forum'])) {
     <div class="col-xs-12">
         <form class="panel panel-danger" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Confirm delete forum', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
+                <h3 class="panel-title"><?php _e('Confirm delete forum', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
                 <p><?php printf(__('Are you sure that you want to delete the forum <strong>%s</strong>?', 'luna'), $forum_name) ?> <?php _e('Deleting a forum will delete all comments (if any) in that forum!', 'luna') ?></p>
@@ -242,7 +242,7 @@ elseif ( isset( $_POST['update_board'] ) ) {
         <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Forum details', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Forum details', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
@@ -320,7 +320,7 @@ elseif ( isset( $_POST['update_board'] ) ) {
                             <label class="col-sm-3 control-label"><?php _e('Icon', 'luna') ?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__('Font Awesome icon guide', 'luna').'</a>') ?></span></label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <span class="input-group-addon">fa fa-fw fa-</span>
+                                    <span class="input-group-addon">fas fa-fw fa-</span>
                                     <input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="1" />
                                 </div>
                             </div>
@@ -347,12 +347,12 @@ elseif ( isset( $_POST['update_board'] ) ) {
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Group permissions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Group permissions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <fieldset>
                     <div class="panel-body">
-                        <div class="alert alert-info"><i class="fa fa-fw fa-info-circle"></i> <?php printf(__('Permission settings that differ from the default permissions for the group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">'.__('User groups', 'luna').'</a>') ?></div>
-                        <button class="btn btn-warning pull-right" type="submit" name="revert_perms" tabindex="<?php echo $cur_index++ ?>"><i class="fa fa-fw fa-undo"></i> <?php _e('Revert to default', 'luna') ?></button>
+                        <div class="alert alert-info"><i class="fas fa-fw fa-info-circle"></i> <?php printf(__('Permission settings that differ from the default permissions for the group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">'.__('User groups', 'luna').'</a>') ?></div>
+                        <button class="btn btn-warning pull-right" type="submit" name="revert_perms" tabindex="<?php echo $cur_index++ ?>"><i class="fas fa-fw fa-undo"></i> <?php _e('Revert to default', 'luna') ?></button>
                     </div>
                     <table class="table">
                         <thead>
@@ -480,7 +480,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
         <form class="panel panel-danger" method="post" action="board.php">
             <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('Confirm delete category', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
+                <h3 class="panel-title"><?php _e('Confirm delete category', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
             </div>
             <div class="panel-body">
                 <p><?php printf(__('Are you sure that you want to delete the category <strong>%s</strong>?', 'luna'), $cat_name) ?> <?php _e('Deleting a category will delete all forums and comments (if any) in this category!', 'luna') ?></p>
@@ -529,7 +529,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 <div class="row">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="col-lg-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
+	echo '<div class="col-lg-12"><div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
 ?>
 	<div class="col-lg-4">
 		<form method="post" action="board.php?action=add_forum">
@@ -539,7 +539,7 @@ if (isset($_GET['saved']))
 ?>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add forum', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add forum', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<div class="panel-body">
@@ -561,7 +561,7 @@ if (isset($_GET['saved']))
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Add categories', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add categories', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fas fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<div class="panel-body">
@@ -574,7 +574,7 @@ if (isset($_GET['saved']))
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Delete categories', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Delete categories', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fas fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<div class="panel-body">
@@ -604,7 +604,7 @@ if ($db->num_rows($result) > 0) {
 		<?php if ( $num_cats > 0 ) { ?>
 			<form class="panel panel-default panel-board form-horizontal" id="edforum" method="post" action="board.php?action=edit">
 				<div class="panel-heading">
-                    <h3 class="panel-title"><?php _e( 'Manage board', 'luna' ) ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_board"><span class="fa fa-fw fa-check"></span> <?php _e( 'Save', 'luna' ) ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e( 'Manage board', 'luna' ) ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_board"><span class="fas fa-fw fa-check"></span> <?php _e( 'Save', 'luna' ) ?></button></span></h3>
 				</div>
 				<div class="panel-body">
 <?php
@@ -633,7 +633,7 @@ if ($db->num_rows($result) > 0) {
 	
 		while ( $cur_forum = $db->fetch_assoc( $forum ) ) {
 			if ( $cur_forum['icon'] != '' )
-				$icon = '<i class="fa fa-fw fa-'.$cur_forum['icon'].'"></i> ';
+				$icon = '<i class="fas fa-fw fa-'.$cur_forum['icon'].'"></i> ';
 			else
 				$icon = '';
 ?>
@@ -643,7 +643,7 @@ if ($db->num_rows($result) > 0) {
                                 <a data-toggle="collapse" href="#collapse<?php echo $cur_forum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_forum['id'] ?>">
                                     <?php echo $icon.luna_htmlspecialchars($cur_forum['forum_name'] ) ?>
                                 </a>
-                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e( 'Edit', 'luna' ) ?></a></span>
+                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php _e( 'Edit', 'luna' ) ?></a></span>
                             </h3>
 						</div>
 						<div class="collapse" id="collapse<?php echo $cur_forum['id'] ?>">
@@ -665,7 +665,7 @@ if ($db->num_rows($result) > 0) {
 									<div class="col-sm-9">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                fa fa-fw fa-
+                                                fas fa-fw fa-
                                             </div>
                                             <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][icon]" placeholder="<?php _e('Icon', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['icon'] ) ?>" maxlength="50" />
                                         </div>
@@ -679,7 +679,7 @@ if ($db->num_rows($result) > 0) {
 								</div>
 							</div>
 							<div class="panel-footer">
-								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e( 'Remove', 'luna' ) ?></a>
+								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php _e( 'Remove', 'luna' ) ?></a>
 							</div>
 						</div>
 					</div>
@@ -688,7 +688,7 @@ if ($db->num_rows($result) > 0) {
 		
 			while ( $cur_subforum = $db->fetch_assoc( $subforum ) ) {
 				if ( $cur_subforum['icon'] != '' )
-					$icon = '<i class="fa fa-fw fa-'.$cur_subforum['icon'].'"></i> ';
+					$icon = '<i class="fas fa-fw fa-'.$cur_subforum['icon'].'"></i> ';
 				else
 					$icon = '';
 ?>
@@ -698,7 +698,7 @@ if ($db->num_rows($result) > 0) {
                                 <a data-toggle="collapse" href="#collapse<?php echo $cur_subforum['id'] ?>" aria-expanded="false" aria-controls="collapse<?php echo $cur_subforum['id'] ?>">
 								<?php echo $icon.luna_htmlspecialchars($cur_subforum['forum_name'] ) ?>
                                 </a>
-                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e( 'Edit', 'luna' ) ?></a></span>
+                                <span class="pull-right"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-edit"></span> <?php _e( 'Edit', 'luna' ) ?></a></span>
                             </h3>
 						</div>
 						<div class="collapse" id="collapse<?php echo $cur_subforum['id'] ?>">
@@ -720,7 +720,7 @@ if ($db->num_rows($result) > 0) {
 									<div class="col-sm-9">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                fa fa-fw fa-
+                                                fas fa-fw fa-
                                             </div>
                                             <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][icon]" placeholder="<?php _e('Icon', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['icon'] ) ?>" maxlength="50" />
                                         </div>
@@ -734,7 +734,7 @@ if ($db->num_rows($result) > 0) {
 								</div>
 							</div>
 							<div class="panel-footer">
-								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e( 'Remove', 'luna' ) ?></a>
+								<a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_subforum['id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fas fa-fw fa-trash"></span> <?php _e( 'Remove', 'luna' ) ?></a>
 							</div>
 						</div>
 					</div>

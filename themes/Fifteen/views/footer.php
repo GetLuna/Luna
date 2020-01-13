@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -67,7 +67,7 @@ $num_guests = num_guests_online();
                             <?php if ($luna_config['o_users_online']) { ?>
                             <div class="dropup">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <?php echo _n('User online', 'Users online', $num_users, 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
+                                    <?php echo _n('User online', 'Users online', $num_users, 'luna') ?> <span class="fas fa-fw fa-angle-up"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -94,7 +94,7 @@ $num_guests = num_guests_online();
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
-                <?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fa fa-fw fa-chevron-up"></i></a><?php endif; ?>
+                <?php if ($luna_config['o_back_to_top'] == '1'): ?><a href="#" class="back-to-top"><i class="fas fa-fw fa-chevron-up"></i></a><?php endif; ?>
                 </span>
                 <span class="pull-right"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span>
             </div>

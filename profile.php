@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -80,22 +80,22 @@ $user_activities = '<div class="btn-group btn-group-justified">'.$user_activitie
 $user_messaging = array();
 
 if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-	$user_messaging[] = '<div class="input-group"><a href="mailto:'.luna_htmlspecialchars($user['email']).'" class="input-group-addon" id="mail-addon"><span class="fa fa-fw fa-envelope-o"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars($user['email']).'" aria-describedby="mail-addon" readonly="readonly" /></div>';
+	$user_messaging[] = '<div class="input-group"><a href="mailto:'.luna_htmlspecialchars($user['email']).'" class="input-group-addon" id="mail-addon"><span class="fas fa-fw fa-envelope-o"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars($user['email']).'" aria-describedby="mail-addon" readonly="readonly" /></div>';
 
 if ($user['url'] != '')
-	$user_messaging[] = '<div class="input-group"><a href="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" aria-describedby="website-addon" readonly="readonly" /></div>';
+	$user_messaging[] = '<div class="input-group"><a href="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" class="input-group-addon" id="website-addon"><span class="fas fa-fw fa-link"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" aria-describedby="website-addon" readonly="readonly" /></div>';
 
 if ($user['msn'] != '')
-	$user_messaging[] = '<div class="input-group"><a href="mailto:'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" aria-describedby="microsoft-addon" readonly="readonly" /></div>';
+	$user_messaging[] = '<div class="input-group"><a href="mailto:'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" class="input-group-addon" id="microsoft-addon"><span class="fas fa-fw fa-windows"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" aria-describedby="microsoft-addon" readonly="readonly" /></div>';
 
 if ($user['facebook'] != '')
-	$user_messaging[] = '<div class="input-group"><a href="http://facebook.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" aria-describedby="facebook-addon" readonly="readonly" /></div>';
+	$user_messaging[] = '<div class="input-group"><a href="http://facebook.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" class="input-group-addon" id="facebook-addon"><span class="fas fa-fw fa-facebook-square"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" aria-describedby="facebook-addon" readonly="readonly" /></div>';
 
 if ($user['twitter'] != '')
-	$user_messaging[] = '<div class="input-group"><a href="http://twitter.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" aria-describedby="twitter-addon" readonly="readonly" /></div>';
+	$user_messaging[] = '<div class="input-group"><a href="http://twitter.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" class="input-group-addon" id="twitter-addon"><span class="fas fa-fw fa-twitter"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" aria-describedby="twitter-addon" readonly="readonly" /></div>';
 
 if ($user['google'] != '')
-	$user_messaging[] = '<div class="input-group"><a href="http://plus.google.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" aria-describedby="google-addon" readonly="readonly" /></div>';
+	$user_messaging[] = '<div class="input-group"><a href="http://plus.google.com/'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" class="input-group-addon" id="google-addon"><span class="fas fa-fw fa-google-plus"></span></a><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" aria-describedby="google-addon" readonly="readonly" /></div>';
 
 $user_activity = array();
 

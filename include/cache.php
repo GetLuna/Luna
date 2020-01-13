@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://opensource.org/licenses/MIT MIT
@@ -142,7 +142,7 @@ function generate_stopwords_cache() {
 
 	$d = dir(LUNA_ROOT.'lang');
 	while (($entry = $d->read()) !== false) {
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		if (is_dir(LUNA_ROOT.'lang/'.$entry) && file_exists(LUNA_ROOT.'lang/'.$entry.'/stopwords.txt'))

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -78,7 +78,7 @@ require 'header.php';
 <div class="row">
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fa fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
+	echo '<div class="col-sm-12"><div class="alert alert-success"><i class="fas fa-fw fa-check"></i> '.__('Your settings have been saved.', 'luna').'</div></div>';
 ?>
 	<div class="col-sm-8">
 <?php if ($luna_config['o_first_run_backstage'] == 0) { ?>
@@ -88,7 +88,7 @@ if (isset($_GET['saved']))
                     <span class="pull-right">
                         <form class="form-horizontal" method="post" action="index.php">
                             <input type="hidden" name="first_run_disable" value="1" />
-                            <button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
+                            <button class="btn btn-success" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
                         </form>
                     </span>
                 </h3>
@@ -106,7 +106,7 @@ if (isset($_GET['saved']))
 <?php } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php _e('New reports', 'luna') ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php _e('View all', 'luna') ?></a></span></h3>
+                <h3 class="panel-title"><?php _e('New reports', 'luna') ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fas fa-fw fa-eye"></span> <?php _e('View all', 'luna') ?></a></span></h3>
             </div>
             <table class="table">
                 <thead>
@@ -157,7 +157,7 @@ if ($db->num_rows($result)) {
             <input type="hidden" name="form_sent" value="1" />
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+                    <h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fas fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
                 </div>
                 <div class="panel-body">
                     <textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna') ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
@@ -171,17 +171,17 @@ if ($db->num_rows($result)) {
 if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 		<div class="alert alert-info">
-			<h4><i class="fa fa-fw fa-moon-o"></i> <?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>
+			<h4><i class="fas fa-fw fa-moon-o"></i> <?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>
 		</div>
 <?php
 }
 
 if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
-        <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
+        <div class="alert alert-warning"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
 <?php endif;
 
 if ($install_file_exists) : ?>
-        <div class="alert alert-warning"><i class="fa fa-fw fa-exclamation-triangle"></i> <?php _e('The file install.php still exists, but should be removed.', 'luna') ?></div>
+        <div class="alert alert-warning"><i class="fas fa-fw fa-exclamation-triangle"></i> <?php _e('The file install.php still exists, but should be removed.', 'luna') ?></div>
 <?php endif; ?>
         <div class="panel panel-default">
             <div class="panel-heading">

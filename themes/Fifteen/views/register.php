@@ -11,7 +11,7 @@ if (!defined('FORUM'))
 			<?php draw_error_panel($errors); ?>
 			<form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
 				<div class="title-block title-block-primary">
-				<h2><i class="fa fa-fw fa-user"></i> <?php _e('Register', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-default" name="register"><span class="fa fa-fw fa-check"></span> <?php _e('Register', 'luna') ?></button></span></h2>
+				<h2><i class="fas fa-fw fa-user"></i> <?php _e('Register', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-default" name="register"><span class="fas fa-fw fa-check"></span> <?php _e('Register', 'luna') ?></button></span></h2>
 				</div>
 				<div class="tab-content">
 					<input type="hidden" name="form_sent" value="1" />

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -92,7 +92,7 @@ if ($cur_thread['closed'] == '0') {
 	else
 		$comment_link = '';
 } else {
-	$comment_link = '<a class="btn disabled btn-danger btn-comment"><span class="fa fa-fw fa-lock"></span></a>';
+	$comment_link = '<a class="btn disabled btn-danger btn-comment"><span class="fas fa-fw fa-lock"></span></a>';
 
 	if ($is_admmod)
 		$comment_link .= '<a class="btn btn-primary btn-comment" href="comment.php?tid='.$id.'">'.__('Comment', 'luna').'</a>';

@@ -1,14 +1,14 @@
 <?php
 
 /*
- * Copyright (C) 2014-2018 Luna
+ * Copyright (C) 2014-2020 Luna
  * Licensed under GPLv2 (http://getluna.org/license.php)
  */
 
 class Version {
-	const LUNA_VERSION = '2.0.12';
-    const LUNA_BRANCH = '2.0';
-	const LUNA_CORE_VERSION = '2.0.5829';
+	const LUNA_VERSION = '2.0.14';
+	const LUNA_BRANCH = '2.0';
+	const LUNA_CORE_VERSION = '2.0.5836';
 	const LUNA_CODE_NAME = 'Emerald';
 
 	// The database version number, every change in the database requires this number to go one up

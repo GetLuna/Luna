@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2018 Luna
+ * Copyright (C) 2013-2020 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -52,8 +52,8 @@ require 'header.php';
 	<div class="col-sm-12">
         <div class="title title-md title-primary title-nav title-non">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="nav-item active"><a class="nav-link" href="#new" aria-controls="new" role="tab" data-toggle="tab"><i class="fa fa-fw fa-flag-o"></i> <?php _e('New reports', 'luna') ?></a></li>
-                <li role="presentation" class="nav-item"><a class="nav-link" href="#old" aria-controls="old" role="tab" data-toggle="tab"><i class="fa fa-fw fa-flag"></i> <?php _e('Old reports', 'luna') ?></a></li>
+                <li role="presentation" class="nav-item active"><a class="nav-link" href="#new" aria-controls="new" role="tab" data-toggle="tab"><i class="fas fa-fw fa-flag-o"></i> <?php _e('New reports', 'luna') ?></a></li>
+                <li role="presentation" class="nav-item"><a class="nav-link" href="#old" aria-controls="old" role="tab" data-toggle="tab"><i class="fas fa-fw fa-flag"></i> <?php _e('Old reports', 'luna') ?></a></li>
             </ul>
         </div>
         <div class="tab-content">
@@ -83,9 +83,9 @@ if ( $db->num_rows( $result ) ) {
                             <?php echo $comment ?>
                         </div>
                         <div class="panel-footer">
-                            <button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php _e( 'Mark as read', 'luna' ) ?></button>
-                            <a class="btn btn-primary" href="../edit.php?id=<?php echo $cur_report['pid'] ?>"><i class="fa fa-fw fa-pencil"></i><?php _e( 'Edit', 'luna' ) ?></a>
-                            <a class="btn btn-danger" href="../delete.php?id=<?php echo $cur_report['pid'] ?>&action=delete"><i class="fa fa-fw fa-trash"></i><?php _e( 'Remove', 'luna' ) ?></a>
+                            <button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fas fa-fw fa-eye"></span> <?php _e( 'Mark as read', 'luna' ) ?></button>
+                            <a class="btn btn-primary" href="../edit.php?id=<?php echo $cur_report['pid'] ?>"><i class="fas fa-fw fa-edit"></i><?php _e( 'Edit', 'luna' ) ?></a>
+                            <a class="btn btn-danger" href="../delete.php?id=<?php echo $cur_report['pid'] ?>&action=delete"><i class="fas fa-fw fa-trash"></i><?php _e( 'Remove', 'luna' ) ?></a>
                         </div>
                     </div>
 <?php
