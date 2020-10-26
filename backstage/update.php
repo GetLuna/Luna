@@ -188,11 +188,11 @@ if (isset($_GET['saved']))
                     </tr>
                     <tr>
                         <td><?php _e('Font Awesome version', 'luna') ?></td>
-                        <td>5.12.0</td>
+                        <td>5.15.1</td>
                     </tr>
                     <tr>
                         <td><?php _e('jQuery version', 'luna') ?></td>
-                        <td>3.4.1</td>
+                        <td>3.5.1</td>
                     </tr>
                 </tbody>
             </table>
