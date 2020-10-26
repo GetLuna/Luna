@@ -4,7 +4,7 @@ Luna is an open source board software web app released under the GPLv2 license. 
 
 ## Requirements
 - A webserver
-- PHP 5.3 or later
+- PHP 5.6 or later
 - A database running either
     - MySQL 5.0 or later
     - SQLite 2 or later
